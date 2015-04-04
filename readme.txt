@@ -12,7 +12,7 @@ WPSSO extension to provide updates for the WordPress Social Sharing Optimization
 
 == Description ==
 
-<p><img src="https://raw.githubusercontent.com/SurniaUlula/wpsso-um/master/images/icon-256x256.png" width="256" height="256" style="width:33%;min-width:128px;max-width:256px;float:left;margin:0 40px 20px 0;" />An Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro Plugin and its extensions.</p>
+<p><img src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png" width="256" height="256" style="width:33%;min-width:128px;max-width:256px;float:left;margin:0 40px 20px 0;" />An Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro Plugin and its extensions.</p>
 
 == Installation ==
 
