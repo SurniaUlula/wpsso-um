@@ -2,7 +2,7 @@
 /*
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.txt
-Copyright 2014 - Jean-Sebastien Morisset - http://surniaulula.com/
+Copyright 2015 - Jean-Sebastien Morisset - http://surniaulula.com/
 */
 
 if ( ! defined( 'ABSPATH' ) ) 
@@ -15,7 +15,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		public static $cf = array(
 			'plugin' => array(
 				'wpssoum' => array(
-					'version' => '1.0dev1',	// plugin version
+					'version' => '1.0',	// plugin version
 					'short' => 'WPSSO UM',
 					'name' => 'WPSSO Pro Update Manager (WPSSO UM)',
 					'desc' => 'WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its extensions.',
