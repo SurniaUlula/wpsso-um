@@ -1,8 +1,8 @@
-<h2>WPSSO Pro Update Manager</h2>
+<h2>NextGEN Facebook (NGFB) Pro Update Manager</h2>
 <blockquote>
 <strong>Contributors</strong>: jsmoriss<br/>
-<strong>Donate Link</strong>: https://surniaulula.com/extend/plugins/wpsso-um/<br/>
-<strong>Tags</strong>: wpsso, update, manager<br/>
+<strong>Donate Link</strong>: https://surniaulula.com/extend/plugins/nextgen-facebook-um/<br/>
+<strong>Tags</strong>: nextgen, facebook, update, manager<br/>
 <strong>License</strong>: GPLv3<br/>
 <strong>License URI</strong>: http://www.gnu.org/licenses/gpl.txt<br/>
 <strong>Requires At Least</strong>: 3.0<br/>
@@ -10,12 +10,12 @@
 <strong>Stable Tag</strong>: 1.0<br/>
 </blockquote>
 
-WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its extensions.
+Update Manager for the NextGEN Facebook (NGFB) Pro plugin and its extensions.
 
 <h3>Description</h3>
 
-<p align="center"><img src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png" width="256" height="256" /></p>
-<p>An Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro Plugin and its extensions.</p>
+<p align="center"><img src="https://surniaulula.github.io/nextgen-facebook-um/assets/icon-256x256.png" width="256" height="256" /></p>
+<p>An Update Manager for the NextGEN Facebook (NGFB) Pro plugin and its extensions.</p>
 
 <h3>Installation</h3>
 
