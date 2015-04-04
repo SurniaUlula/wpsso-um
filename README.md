@@ -10,11 +10,11 @@
 <strong>Stable Tag</strong>: 1.0<br/>
 </blockquote>
 
-An Update Manager for the WPSSO Pro Plugin and its Extensions
+WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its extensions.
 
 <h3>Description</h3>
 
-An Update Manager for the WPSSO Pro Plugin and its Extensions
+<p><img src="https://raw.githubusercontent.com/SurniaUlula/wpsso-um/master/images/icon-256x256.png" width="256" height="256" style="width:33%;min-width:128px;max-width:256px;float:left;margin:0 40px 20px 0;" />An Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro Plugin and its extensions.</p>
 
 <h3>Installation</h3>
 
