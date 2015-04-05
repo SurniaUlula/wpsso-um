@@ -22,11 +22,12 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					'slug' => 'wpsso-um',
 					'base' => 'wpsso-ssb/wpsso-um.php',
 					'img' => array(
-						'icon-small' => 'images/icon-128x128.png',
-						'icon-medium' => 'images/icon-256x256.png',
+						'icon_small' => 'images/icon-128x128.png',
+						'icon_medium' => 'images/icon-256x256.png',
 					),
 					'url' => array(
 						'download' => 'http://surniaulula.com/extend/plugins/wpsso-um/',
+						'latest_zip' => 'http://surniaulula.com/extend/plugins/wpsso-um/latest/',
 						'review' => '',
 						'readme' => 'https://raw.githubusercontent.com/SurniaUlula/wpsso-um/master/readme.txt',
 						'wp_support' => '',

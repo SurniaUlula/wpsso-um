@@ -1,9 +1,9 @@
 <?php
 /* 
-License: GPLv3
-License URI: http://www.gnu.org/licenses/gpl.txt
-Copyright 2012-2015 - Jean-Sebastien Morisset - http://surniaulula.com/
-*/
+ * License: GPLv3
+ * License URI: http://www.gnu.org/licenses/gpl.txt
+ * Copyright 2012-2015 - Jean-Sebastien Morisset - http://surniaulula.com/
+ */
 
 if ( ! defined( 'ABSPATH' ) ) 
 	die( 'These aren\'t the droids you\'re looking for...' );
@@ -226,29 +226,21 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$option_data->update = $this->get_update_data( $lca, $use_cache );
 				$saved = update_site_option( $info['opt_name'], $option_data );
 
-				if ( $notice === true || 
-					( isset( $this->p->debug_enabled ) && $this->p->debug_enabled ) ) {
-
+				if ( $notice === true || ( isset( $this->p->debug->enabled ) && $this->p->debug->enabled ) ) {
 					if ( $saved === true ) {
 						if ( $this->p->debug->enabled )
-							$this->p->debug->log( 'update information saved in the '.
-								$info['opt_name'].' site option' );
-						$this->p->notice->inf( 'Plugin update information ('.
-							$info['opt_name'].') has been retrieved and saved.', true );
+							$this->p->debug->log( 'update information saved in the '.$info['opt_name'].' site option' );
+						$this->p->notice->inf( 'Plugin update information ('.$info['opt_name'].') has been retrieved and saved.', true );
 					} else {
 						// update_site_option() can return false if existing option value is identical
 						if ( $option_data === get_site_option( $info['opt_name'] ) ) {
 							if ( $this->p->debug->enabled )
-								$this->p->debug->log( 'update information ignored - the '.
-									$info['opt_name'].' site option is current' );
-							$this->p->notice->inf( 'Plugin update information ('.
-								$info['opt_name'].') in the site option is current.', true );
+								$this->p->debug->log( 'update information ignored - the '.$info['opt_name'].' site option is current' );
+							$this->p->notice->inf( 'Plugin update information ('.$info['opt_name'].') in the site option is current.', true );
 						} else {
 							if ( $this->p->debug->enabled )
-								$this->p->debug->log( 'failed saving the update information in the '.
-									$info['opt_name'].' site option' );
-							$this->p->notice->err( 'WordPress returned an error saving the plugin update information ('.
-								$info['opt_name'].') to the site options table.', true );
+								$this->p->debug->log( 'failed saving the update information in the '.$info['opt_name'].' site option' );
+							$this->p->notice->err( 'WordPress returned an error saving the plugin update information ('.$info['opt_name'].') to the site options table.', true );
 						}
 					}
 					if ( $this->p->debug->enabled )

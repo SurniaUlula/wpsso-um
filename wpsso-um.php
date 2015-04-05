@@ -69,16 +69,32 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		// executed once all class objects have been defined and modules have been loaded
 		public function init_plugin() {
 			$this->p =& Wpsso::get_instance();
-			$this->update = new SucomUpdate( $this->p, $this->p->cf['plugin'], $this->p->cf['update_check_hours'] );
+
+			if ( $this->wpsso_has_min_ver === false )
+				return $this->min_version_warning( WpssoUmConfig::$cf['plugin']['wpssoum'] );
+
+			$check_hours = empty( $this->p->cf['update_check_hours'] ) ? 
+				24 : $this->p->cf['update_check_hours'];
+			$this->update = new SucomUpdate( $this->p, $this->p->cf['plugin'], $check_hours );
+
 			if ( is_admin() ) {
 				foreach ( array_keys( $this->p->cf['plugin'] ) as $lca ) {
 					$last_update = get_option( $lca.'_utime' );
 					if ( empty( $last_update ) || 
-						( ! empty( $this->cf['update_check_hours'] ) && 
-							$last_update + ( $this->cf['update_check_hours'] * 7200 ) < time() ) )
-								$this->update->check_for_updates( $lca );
+						$last_update + ( $check_hours * 7200 ) < time() )
+							$this->update->check_for_updates( $lca );
 				}
 			}
+		}
+
+		private function min_version_warning( $info ) {
+			$wpsso_version = $this->p->cf['plugin']['wpsso']['version'];
+			if ( $this->p->debug->enabled )
+				$this->p->debug->log( $info['name'].' requires WPSSO version '.$this->wpsso_min_version.
+					' or newer ('.$wpsso_version.' installed)' );
+			if ( is_admin() )
+				$this->p->notice->err( $info['name'].' v'.$info['version'].' requires WPSSO v'.$this->wpsso_min_version.
+					' or newer ('.$wpsso_version.' is currently installed).', true );
 		}
 	}
 
