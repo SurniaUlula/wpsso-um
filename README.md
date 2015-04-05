@@ -1,4 +1,4 @@
-<h2>WPSSO Pro Update Manager</h2>
+=== WPSSO Pro Update Manager ===
 <blockquote>
 <strong>Contributors</strong>: jsmoriss<br/>
 <strong>Donate Link</strong>: https://surniaulula.com/extend/plugins/wpsso-um/<br/>
@@ -10,7 +10,11 @@
 <strong>Stable Tag</strong>: 1.0<br/>
 </blockquote>
 
+<p>
+
 Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its extensions.
+
+</p>
 
 <h3>Description</h3>
 
