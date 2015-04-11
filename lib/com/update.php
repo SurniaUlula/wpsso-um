@@ -59,24 +59,39 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 		public function set_config( &$ext ) {
 			foreach ( $ext as $lca => $info ) {
-				$tid_name = 'plugin_'.$lca.'_tid';					// plugin_ngfb_tid
-				if ( empty( $this->p->options[$tid_name] ) ) {
+				$auth_type = isset( $this->p->cf['plugin'][$lca]['update_auth'] ) ?	// allow for empty value
+					$this->p->cf['plugin'][$lca]['update_auth'] : 'tid';		// default to tid auth
+				$opt_name = 'plugin_'.$lca.'_'.$auth_type;				// plugin_ngfb_tid
+
+				if ( $auth_type === 'tid' && empty( $this->p->options[$opt_name] ) ) {
 					if ( $this->p->debug->enabled )
-						$this->p->debug->log( 'empty '.$tid_name.' option - no update config for '.$lca );
+						$this->p->debug->log( 'skipping update config for '.$lca.' - empty '.$opt_name );
 				} elseif ( empty( $info['slug'] ) || empty( $info['base'] ) || empty( $info['url']['update'] ) ) {
 					if ( $this->p->debug->enabled )
 						$this->p->debug->log( 'skipping update checks for '.$lca.' - incomplete plugin config array' );
 				} else {
+					if ( $this->p->debug->enabled )
+						$this->p->debug->log( 'update config for '.$lca.' defined (auth_type = '.
+							( empty( $auth_type ) ? 'none' : $auth_type ).')' );
 					self::$c[$lca] = array(
 						'slug' => $info['slug'],				// nextgen-facebook
 						'base' => $info['base'],				// nextgen-facebook/nextgen-facebook.php
 						'opt_name' => 'external_updates-'.$info['slug'],	// external_updates-nextgen-facebook
-						'json_url' => $info['url']['update'].'?tid='.$this->p->options[$tid_name],
+						'json_url' => $info['url']['update'].
+							( $auth_type == 'tid' ? '?'.$auth_type.'='.$this->p->options[$opt_name] : '' ),
 						'expire' => 3600,
 						'utime' => '',
 					);
 				}
 			}
+		}
+
+		public static function is_enabled() {
+			return empty( self::$c ) ? false : true;
+		}
+
+		public static function is_configured() {
+			return count( self::$c );
 		}
 
 		public function install_hooks() {
@@ -97,17 +112,21 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			add_filter( 'http_request_host_is_external', array( &$this, 'allow_host' ), 1000, 3 );
 
 			if ( $this->sched_hours > 0 && ! empty( $this->sched_name ) ) {
+				if ( $this->p->debug->enabled )
+					$this->p->debug->log( 'adding schedule '.$this->cron_hook.' for '.$this->sched_name );
 				add_filter( 'cron_schedules', array( &$this, 'custom_schedule' ) );
 				add_action( $this->cron_hook, array( &$this, 'check_for_updates' ) );
 
 				$schedule = wp_get_schedule( $this->cron_hook );
 				if ( ! empty( $schedule ) && $schedule !== $this->sched_name ) {
 					if ( $this->p->debug->enabled )
-						$this->p->debug->log( 'changing '.$this->cron_hook.' schedule from '.$schedule.' to '.$this->sched_name );
+						$this->p->debug->log( 'changing '.$this->cron_hook.' schedule from '.
+							$schedule.' to '.$this->sched_name );
 					wp_clear_scheduled_hook( $this->cron_hook );
 				}
-				if ( ! defined('WP_INSTALLING') && ! wp_next_scheduled( $this->cron_hook ) )
-					wp_schedule_event( time(), $this->sched_name, $this->cron_hook );	// since wp 2.1.0
+				if ( ! defined('WP_INSTALLING') &&
+					! wp_next_scheduled( $this->cron_hook ) )
+						wp_schedule_event( time(), $this->sched_name, $this->cron_hook );	// since wp 2.1.0
 			} else wp_clear_scheduled_hook( $this->cron_hook );
 		}
 
@@ -121,15 +140,18 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			} else return $current_wpua;
 		}
 	
-		public function allow_host( $ret, $host, $url ) {
-			if ( strpos( $url, '?tid=' ) !== false ) {
+		public function allow_host( $allow, $ip, $url ) {
+			if ( strpos( $url, '/'.$this->p->cf['allow_update_host'].'/' ) !== false ) {
 				foreach ( self::$c as $lca => $info ) {
 					$plugin_data = $this->get_json( $lca );
-					if ( $url == $plugin_data->download_url )
+					if ( $url == $plugin_data->download_url ) {
+						if ( $this->p->debug->enabled )
+							$this->p->debug->log( 'allowing external host url: '.$url );
 						return true;
+					}
 				}
 			}
-			return $ret;
+			return $allow;
 		}
 
 		public function inject_data( $result, $action = null, $args = null ) {
@@ -215,12 +237,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					continue;
 
 				$option_data = get_site_option( $info['opt_name'], false, true );	// use_cache = true
+
 				if ( empty( $option_data ) ) {
 					$option_data = new StdClass;
 					$option_data->lastCheck = 0;
 					$option_data->checkedVersion = 0;
 					$option_data->update = null;
 				}
+
 				$option_data->lastCheck = time();
 				$option_data->checkedVersion = $this->get_installed_version( $lca );
 				$option_data->update = $this->get_update_data( $lca, $use_cache );
@@ -251,9 +275,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 	
 		public function get_update_data( $lca, $use_cache = true ) {
 			$plugin_data = $this->get_json( $lca, $use_cache );
-			if ( empty( $plugin_data ) ) 
+			if ( empty( $plugin_data ) ) {
+				if ( $this->p->debug->enabled )
+					$this->p->debug->log( 'update data from get_json() is empty' );
 				return null;
-			return SucomPluginUpdate::from_plugin_data( $plugin_data );
+			} else return SucomPluginUpdate::from_plugin_data( $plugin_data );
 		}
 	
 		public function get_json( $lca, $use_cache = true ) {
@@ -304,18 +330,18 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			);
 
 			$plugin_data = null;
+			if ( $this->p->debug->enabled )
+				$this->p->debug->log( 'calling wp_remote_get() for '.$json_url );
 			$result = wp_remote_get( $json_url, $options );
-
 			if ( is_wp_error( $result ) ) {
 
 				if ( isset( $this->p->notice ) && is_object( $this->p->notice ) )
 					$this->p->notice->err( 'Update error &ndash; '.$result->get_error_message().'.' );
-
 				if ( $this->p->debug->enabled )
-					$this->p->debug->log( 'update error: '.$result->get_error_message().'.' );
+					$this->p->debug->log( 'update error: '.$result->get_error_message() );
 
 			} elseif ( isset( $result['response']['code'] ) && ( $result['response']['code'] == 200 ) && ! empty( $result['body'] ) ) {
-	
+
 				if ( ! empty( $result['headers']['x-smp-error'] ) ) {
 					self::$c[$lca]['umsg'] = json_decode( $result['body'] );
 					update_option( $lca.'_umsg', base64_encode( self::$c[$lca]['umsg'] ) );

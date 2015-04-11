@@ -13,6 +13,8 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 	class WpssoUmConfig {
 
 		public static $cf = array(
+			'update_check_hours' => 24,
+			'allow_update_host' => 'surniaulula.com',
 			'plugin' => array(
 				'wpssoum' => array(
 					'version' => '1.0',	// plugin version
@@ -21,6 +23,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					'desc' => 'WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its extensions.',
 					'slug' => 'wpsso-um',
 					'base' => 'wpsso-ssb/wpsso-um.php',
+					'update_auth' => '',
 					'img' => array(
 						'icon_small' => 'images/icon-128x128.png',
 						'icon_medium' => 'images/icon-256x256.png',
@@ -40,6 +43,10 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 						'feed' => '',
 						'pro_support' => '',
 						'pro_ticket' => '',
+					),
+					'lib' => array(
+						'gpl' => array(
+						),
 					),
 				),
 			),

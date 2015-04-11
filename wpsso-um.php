@@ -21,7 +21,9 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 	class WpssoUm {
 
-		public $p;				// class object variables
+		public $p;			// Wpsso
+		public $filters;		// WpssoUmFilters
+		public $update;			// SucomUpdate
 
 		protected static $instance = null;
 
@@ -73,16 +75,24 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			if ( $this->wpsso_has_min_ver === false )
 				return $this->min_version_warning( WpssoUmConfig::$cf['plugin']['wpssoum'] );
 
+			require_once( WPSSOUM_PLUGINDIR.'lib/filters.php' );
+			$this->filters = new WpssoUmFilters( $this->p, __FILE__ );
+
 			$check_hours = empty( $this->p->cf['update_check_hours'] ) ? 
 				24 : $this->p->cf['update_check_hours'];
 			$this->update = new SucomUpdate( $this->p, $this->p->cf['plugin'], $check_hours );
 
 			if ( is_admin() ) {
-				foreach ( array_keys( $this->p->cf['plugin'] ) as $lca ) {
+				foreach ( $this->p->cf['plugin'] as $lca => $info ) {
+					if ( ! empty( $info['update_auth'] ) &&
+						empty( $this->p->options['plugin_'.$lca.'_'.$info['update_auth']] ) )
+							continue;
+
 					$last_update = get_option( $lca.'_utime' );
-					if ( empty( $last_update ) || 
-						$last_update + ( $check_hours * 7200 ) < time() )
-							$this->update->check_for_updates( $lca );
+					if ( empty( $last_update ) || $last_update + ( $check_hours * 7200 ) < time() )
+						if ( $this->p->debug->enabled )
+							$this->p->debug->log( 'requesting update check for '.$lca );
+						$this->update->check_for_updates( $lca );
 				}
 			}
 		}
