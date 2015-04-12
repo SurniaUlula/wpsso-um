@@ -56,7 +56,7 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 <h4>Version 1.0 (2015/04/12)</h4>
 
 * **New Features**
-	* Initial release.
+	* Initial plugin release.
 * **Improvements**
 	* *None*
 * **Bugfixes**
@@ -66,5 +66,5 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 
 <h4>1.0</h4>
 
-Initial release.
+Initial plugin released on 2015/04/12.
 
