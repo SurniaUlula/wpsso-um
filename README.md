@@ -1,4 +1,5 @@
-=== WPSSO Pro Update Manager ===
+<h2>WPSSO Pro Update Manager</h2>
+
 <blockquote>
 <strong>Contributors</strong>: jsmoriss<br/>
 <strong>Donate Link</strong>: https://surniaulula.com/extend/plugins/wpsso-um/<br/>
