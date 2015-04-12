@@ -512,7 +512,8 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 				'upgrade_notice'
 			);
 			foreach( $fields as $field )
-				$plugin_update->$field = $data->$field;
+				if ( isset( $data->$field ) )
+					$plugin_update->$field = $data->$field;
 			return $plugin_update;
 		}
 	
