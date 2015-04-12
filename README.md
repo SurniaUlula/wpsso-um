@@ -19,9 +19,30 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 <h3>Description</h3>
 
 <p align="center"><img src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png" width="256" height="256" /></p>
-<p>The WPSSO Pro Update Manager (WPSSO UM) extension plugin is required to enable and update the WordPress Social Sharing Optimization (WPSSO) Pro version, including all its licensed Pro extensions.</p>
+<p>The WPSSO Pro Update Manager (WPSSO UM) extension plugin is required to enable and update the WordPress Social Sharing Optimization (WPSSO) Pro version, including all licensed extensions.</p>
 
 <h3>Installation</h3>
+
+<h4>Semi-Automated Install</h4>
+
+* [Download the latest plugin archive file](http://surniaulula.com/extend/plugins/wpsso-um/latest/)
+* Go to the wp-admin/ section of your website
+* Select the *Plugins* menu item
+* Select the *Add New* sub-menu item
+* Click on *Upload Plugin* link (next to the *Add Plugins* page title)
+* Click the *Browse...* button
+* Navigate your local folders / directories and choose the zip file you downloaded previously
+* Click on the *Install Now* button
+* Click the *Activate Plugin* link
+
+<h4>Manual Install</h4>
+
+* [Download and unzip the latest plugin archive file](http://surniaulula.com/extend/plugins/wpsso-um/latest/)
+* Upload the entire wpsso-um/ folder to your website's wordpress/wp-content/plugins/ directory
+* Go to the wp-admin/ section of your website
+* Select the *Plugins* menu item
+* Select the *Installed Plugins* sub-menu
+* Scroll down to the "WPSSO Pro Update Manager (WPSSO UM)" plugin, and click its *Activate* link
 
 <h3>Frequently Asked Questions</h3>
 
@@ -31,5 +52,18 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 
 <h3>Changelog</h3>
 
+<h4>Version 1.0 (2015/04/12)</h4>
+
+* **New Features**
+	* Initial release.
+* **Improvements**
+	* *None*
+* **Bugfixes**
+	* *None*
+
 <h3>Upgrade Notice</h3>
+
+<h4>1.0</h4>
+
+Initial release.
 

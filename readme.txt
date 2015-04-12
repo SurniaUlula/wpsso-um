@@ -12,9 +12,30 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 
 == Description ==
 
-<p><img src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png" width="256" height="256" style="width:33%;min-width:128px;max-width:256px;float:left;margin:0 40px 20px 0;" />The WPSSO Pro Update Manager (WPSSO UM) extension plugin is required to enable and update the WordPress Social Sharing Optimization (WPSSO) Pro version, including all its licensed Pro extensions.</p>
+<p><img src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png" width="256" height="256" style="width:33%;min-width:128px;max-width:256px;float:left;margin:0 40px 20px 0;" />The WPSSO Pro Update Manager (WPSSO UM) extension plugin is required to enable and update the WordPress Social Sharing Optimization (WPSSO) Pro version, including all licensed extensions.</p>
 
 == Installation ==
+
+= Semi-Automated Install =
+
+* [Download the latest plugin archive file](http://surniaulula.com/extend/plugins/wpsso-um/latest/)
+* Go to the wp-admin/ section of your website
+* Select the *Plugins* menu item
+* Select the *Add New* sub-menu item
+* Click on *Upload Plugin* link (next to the *Add Plugins* page title)
+* Click the *Browse...* button
+* Navigate your local folders / directories and choose the zip file you downloaded previously
+* Click on the *Install Now* button
+* Click the *Activate Plugin* link
+
+= Manual Install =
+
+* [Download and unzip the latest plugin archive file](http://surniaulula.com/extend/plugins/wpsso-um/latest/)
+* Upload the entire wpsso-um/ folder to your website's wordpress/wp-content/plugins/ directory
+* Go to the wp-admin/ section of your website
+* Select the *Plugins* menu item
+* Select the *Installed Plugins* sub-menu
+* Scroll down to the "WPSSO Pro Update Manager (WPSSO UM)" plugin, and click its *Activate* link
 
 == Frequently Asked Questions ==
 
@@ -24,5 +45,18 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 
 == Changelog ==
 
+= Version 1.0 (2015/04/12) =
+
+* **New Features**
+	* Initial release.
+* **Improvements**
+	* *None*
+* **Bugfixes**
+	* *None*
+
 == Upgrade Notice ==
+
+= 1.0 =
+
+Initial release.
 
