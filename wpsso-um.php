@@ -89,10 +89,12 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 							continue;
 
 					$last_update = get_option( $lca.'_utime' );
-					if ( empty( $last_update ) || $last_update + ( $check_hours * 7200 ) < time() )
+					if ( empty( $last_update ) || $last_update + ( $check_hours * 7200 ) < time() ) {
 						if ( $this->p->debug->enabled )
 							$this->p->debug->log( 'requesting update check for '.$lca );
+						$this->p->notice->inf( 'Performing an update check for the '.$info['name'].' plugin.' );
 						$this->update->check_for_updates( $lca );
+					}
 				}
 			}
 		}
