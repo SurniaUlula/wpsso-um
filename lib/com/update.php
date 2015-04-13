@@ -192,8 +192,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( isset( self::$u[$lca] ) ) {
 					if ( self::$u[$lca] !== false )
 						$updates->response[$info['base']] = self::$u[$lca];
-					if ( $this->p->debug->enabled )
-						$this->p->debug->log( $lca.': using pre-existing update status' );
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( $lca.': mark', 5 );
+						$this->p->debug->log( $lca.': using saved update status' );
+					}
 					continue;
 				}
 				
