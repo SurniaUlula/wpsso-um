@@ -17,11 +17,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		private $sched_hours = 0;
 		private $sched_name = '';
 		private static $c = array();
+		private static $u = array();	// cache update information
 
 		public function __construct( &$plugin, &$ext, $hours = 24 ) {
 			$this->p =& $plugin;
 			if ( $this->p->debug->enabled )
-				$this->p->debug->mark();
+				$this->p->debug->mark( 'update setup' );
 			$lca = $this->p->cf['lca'];						// ngfb
 			$slug = $this->p->cf['plugin'][$lca]['slug'];				// nextgen-facebook
 			$this->cron_hook = 'plugin_updates-'.$slug;				// plugin_updates-nextgen-facebook
@@ -29,6 +30,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$this->sched_name = ( empty( $hours ) ? '' : 'every'.$hours.'hours' );	// every24hours
 			$this->set_config( $ext );
 			$this->install_hooks();
+			if ( $this->p->debug->enabled )
+				$this->p->debug->mark( 'update setup' );
 		}
 
 		public static function get_umsg( $lca ) {
@@ -177,9 +180,22 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		public function inject_update( $updates = false ) {
+
 			foreach ( self::$c as $lca => $info ) {
-				if ( empty( $info['slug'] ) )
+
+				if ( empty( $info['base'] ) ) {
+					if ( $this->p->debug->enabled )
+						$this->p->debug->log( 'missing \'base\' in plugin configuration' );
 					continue;
+				}
+
+				if ( isset( self::$u[$lca] ) ) {
+					if ( self::$u[$lca] !== false )
+						$updates->response[$info['base']] = self::$u[$lca];
+					if ( $this->p->debug->enabled )
+						$this->p->debug->log( 'using pre-existing update status' );
+					continue;
+				}
 				
 				// remove existing plugin information to make sure it is correct
 				if ( isset( $updates->response[$info['base']] ) ) {
@@ -187,10 +203,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$this->p->debug->log( 'previous update information found (and removed)' );
 						$this->p->debug->log( $updates->response[$info['base']] );
 					}
-					unset( $updates->response[$info['base']] );	// nextgen-facebook/nextgen-facebook.php
+					unset( $updates->response[$info['base']] );			// nextgen-facebook/nextgen-facebook.php
 				}
 
 				$option_data = get_site_option( $info['opt_name'], false, true );	// use_cache = true
+
 				if ( empty( $option_data ) ) {
 					if ( $this->p->debug->enabled )
 						$this->p->debug->log( 'update option is empty' );
@@ -201,15 +218,18 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					if ( $this->p->debug->enabled )
 						$this->p->debug->log( 'update property is not an object' );
 				} elseif ( version_compare( $option_data->update->version, $this->get_installed_version( $lca ), '>' ) ) {
-					$updates->response[$info['base']] = $option_data->update->json_to_wp();
+					self::$u[$lca] = $updates->response[$info['base']] = $option_data->update->json_to_wp();
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( 'update version ('.$option_data->update->version.') '.
 							'for '.$lca.' is newer than installed ('.$this->get_installed_version( $lca ).')' );
 						$this->p->debug->log( $updates->response[$info['base']], 5 );
 					}
-				} elseif ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'installed version for '.$lca.' is current - no update required' );
-					$this->p->debug->log( $option_data->update->json_to_wp(), 5 );
+				} else {
+					self::$u[$lca] = false;
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( 'installed version for '.$lca.' is current - no update required' );
+						$this->p->debug->log( $option_data->update->json_to_wp(), 5 );
+					}
 				}
 			}
 			return $updates;
@@ -226,6 +246,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 	
 		public function check_for_updates( $lca = null, $notice = false, $use_cache = true ) {
+
 			if ( empty( $lca ) )
 				$plugins = self::$c;				// check all plugins defined
 			elseif ( isset( self::$c[$lca] ) )
@@ -233,8 +254,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			else $plugins = array();
 
 			foreach ( $plugins as $lca => $info ) {
-				if ( empty( $info['slug'] ) )
+
+				if ( empty( $info['opt_name'] ) ) {
+					if ( $this->p->debug->enabled )
+						$this->p->debug->log( 'missing \'opt_name\' in plugin configuration' );
 					continue;
+				}
 
 				$option_data = get_site_option( $info['opt_name'], false, true );	// use_cache = true
 
