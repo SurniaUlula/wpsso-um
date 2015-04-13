@@ -257,7 +257,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				if ( empty( $info['opt_name'] ) ) {
 					if ( $this->p->debug->enabled )
-						$this->p->debug->log( 'missing \'opt_name\' in plugin configuration' );
+						$this->p->debug->log( $lca.': missing \'opt_name\' in plugin configuration' );
 					continue;
 				}
 
@@ -276,7 +276,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				if ( $option_data === get_site_option( $info['opt_name'], false, true ) ) {
 					if ( $this->p->debug->enabled )
-						$this->p->debug->log( 'update information ignored - the '.
+						$this->p->debug->log( $lca.': update information ignored - '.
 							$info['opt_name'].' site option is current' );
 					if ( $notice === true || $this->p->debug->enabled )
 						$this->p->notice->inf( 'Plugin update information ('.
@@ -285,14 +285,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$saved = update_site_option( $info['opt_name'], $option_data );
 					if ( $saved === true ) {
 						if ( $this->p->debug->enabled )
-							$this->p->debug->log( 'update information saved in the '.
+							$this->p->debug->log( $lca.': update information saved in '.
 								$info['opt_name'].' site option' );
 						if ( $notice === true || $this->p->debug->enabled )
 							$this->p->notice->inf( 'Plugin update information ('.
 								$info['opt_name'].') has been retrieved and saved.', true );
 					} else {
 						if ( $this->p->debug->enabled ) {
-							$this->p->debug->log( 'failed saving plugin information in the '.
+							$this->p->debug->log( $lca.': failed saving plugin information in '.
 								$info['opt_name'].' site option' );
 							$this->p->debug->log( $option_data );
 						}
@@ -310,7 +310,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$plugin_data = $this->get_json( $lca, $use_cache );
 			if ( empty( $plugin_data ) ) {
 				if ( $this->p->debug->enabled )
-					$this->p->debug->log( 'update data from get_json() is empty' );
+					$this->p->debug->log( $lca.': update data from get_json() is empty' );
 				return null;
 			} else return SucomPluginUpdate::from_plugin_data( $plugin_data );
 		}
@@ -326,7 +326,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			if ( empty( $json_url ) ) {
 				if ( $this->p->debug->enabled )
-					$this->p->debug->log( 'exiting early: empty json_url' );
+					$this->p->debug->log( $lca.': exiting early - empty json_url' );
 				return null;
 			}
 			
@@ -364,7 +364,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			$plugin_data = null;
 			if ( $this->p->debug->enabled )
-				$this->p->debug->log( 'calling wp_remote_get() for '.$json_url );
+				$this->p->debug->log( $lca.': calling wp_remote_get() for '.$json_url );
 			$result = wp_remote_get( $json_url, $options );
 			if ( is_wp_error( $result ) ) {
 
