@@ -68,13 +68,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				if ( $auth_type === 'tid' && empty( $this->p->options[$opt_name] ) ) {
 					if ( $this->p->debug->enabled )
-						$this->p->debug->log( 'skipping update config for '.$lca.' - empty '.$opt_name );
+						$this->p->debug->log( $lca.': skipping update config - empty '.$opt_name );
 				} elseif ( empty( $info['slug'] ) || empty( $info['base'] ) || empty( $info['url']['update'] ) ) {
 					if ( $this->p->debug->enabled )
-						$this->p->debug->log( 'skipping update checks for '.$lca.' - incomplete plugin config array' );
+						$this->p->debug->log( $lca.': skipping update checks - incomplete plugin config array' );
 				} else {
 					if ( $this->p->debug->enabled )
-						$this->p->debug->log( 'update config for '.$lca.' defined (auth_type = '.
+						$this->p->debug->log( $lca.': update config defined (auth_type = '.
 							( empty( $auth_type ) ? 'none' : $auth_type ).')' );
 					self::$c[$lca] = array(
 						'slug' => $info['slug'],				// nextgen-facebook
@@ -185,7 +185,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				if ( empty( $info['base'] ) ) {
 					if ( $this->p->debug->enabled )
-						$this->p->debug->log( 'missing \'base\' in plugin configuration' );
+						$this->p->debug->log( $lca.': missing \'base\' in plugin configuration' );
 					continue;
 				}
 
@@ -193,14 +193,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					if ( self::$u[$lca] !== false )
 						$updates->response[$info['base']] = self::$u[$lca];
 					if ( $this->p->debug->enabled )
-						$this->p->debug->log( 'using pre-existing update status' );
+						$this->p->debug->log( $lca.': using pre-existing update status' );
 					continue;
 				}
 				
 				// remove existing plugin information to make sure it is correct
 				if ( isset( $updates->response[$info['base']] ) ) {
 					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( 'previous update information found (and removed)' );
+						$this->p->debug->log( $lca.': previous update information found and removed' );
 						$this->p->debug->log( $updates->response[$info['base']] );
 					}
 					unset( $updates->response[$info['base']] );			// nextgen-facebook/nextgen-facebook.php
@@ -210,24 +210,24 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				if ( empty( $option_data ) ) {
 					if ( $this->p->debug->enabled )
-						$this->p->debug->log( 'update option is empty' );
+						$this->p->debug->log( $lca.': update option is empty' );
 				} elseif ( empty( $option_data->update ) ) {
 					if ( $this->p->debug->enabled )
-						$this->p->debug->log( 'no update information' );
+						$this->p->debug->log( $lca.': no update information' );
 				} elseif ( ! is_object( $option_data->update ) ) {
 					if ( $this->p->debug->enabled )
-						$this->p->debug->log( 'update property is not an object' );
+						$this->p->debug->log( $lca.': update property is not an object' );
 				} elseif ( version_compare( $option_data->update->version, $this->get_installed_version( $lca ), '>' ) ) {
 					self::$u[$lca] = $updates->response[$info['base']] = $option_data->update->json_to_wp();
 					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( 'update version ('.$option_data->update->version.') '.
-							'for '.$lca.' is newer than installed ('.$this->get_installed_version( $lca ).')' );
+						$this->p->debug->log( $lca.': update version ('.$option_data->update->version.') '.
+							' is newer than installed ('.$this->get_installed_version( $lca ).')' );
 						$this->p->debug->log( $updates->response[$info['base']], 5 );
 					}
 				} else {
 					self::$u[$lca] = false;
 					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( 'installed version for '.$lca.' is current - no update required' );
+						$this->p->debug->log( $lca.': installed version is current - no update required' );
 						$this->p->debug->log( $option_data->update->json_to_wp(), 5 );
 					}
 				}
@@ -408,7 +408,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					if ( array_key_exists( 'Version', $plugins[$base] ) ) {
 						$version = $plugins[$base]['Version'];
 						if ( $this->p->debug->enabled )
-							$this->p->debug->log( 'installed version for '.$lca.': '.$version );
+							$this->p->debug->log( $lca.': installed version is '.$version );
 					} elseif ( $this->p->debug->enabled )
 						$this->p->debug->log( $base.' does not have a Version key' );
 				} elseif ( $this->p->debug->enabled )
