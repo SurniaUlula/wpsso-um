@@ -49,8 +49,8 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 
 = Free / Basic Version Repository =
 
-* GitHub: https://github.com/SurniaUlula/wpsso-um
-* WordPress.org: https://wordpress.org/plugins/wpsso-um/developers/
+* [GitHub](https://github.com/SurniaUlula/wpsso-um)
+* [WordPress.org](https://wordpress.org/plugins/wpsso-um/developers/)
 
 = Version 1.0 (2015/04/12) =
 
