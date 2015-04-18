@@ -8,7 +8,7 @@
 <strong>License URI</strong>: http://www.gnu.org/licenses/gpl.txt<br/>
 <strong>Requires At Least</strong>: 3.0<br/>
 <strong>Tested Up To</strong>: 4.2<br/>
-<strong>Stable Tag</strong>: 1.0<br/>
+<strong>Stable Tag</strong>: 1.0.1<br/>
 </blockquote>
 
 <p>
@@ -49,7 +49,15 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 
 <h3>Frequently Asked Questions</h3>
 
+<h4>Frequently Asked Questions</h4>
+
+* *None*
+
 <h3>Other Notes</h3>
+
+<h4>Additional Documentation</h4>
+
+* *None*
 
 <h3>Screenshots</h3>
 
