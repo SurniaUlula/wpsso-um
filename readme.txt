@@ -65,7 +65,7 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 * **New Features**
 	* *None*
 * **Improvements**
-	* Added a 'plugin' field to the plugin update data for WordPress v4.2.
+	* Added a 'plugin' attribute to the plugin update data for WordPress v4.2.
 * **Bugfixes**
 	* *None*
 
@@ -82,7 +82,7 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 
 = 1.0.1 =
 
-Added a 'plugin' field to the plugin update data for WordPress v4.2.
+Added a 'plugin' attribute to the plugin update data for WordPress v4.2.
 
 = 1.0 =
 
