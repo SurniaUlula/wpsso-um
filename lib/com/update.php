@@ -428,6 +428,7 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 		public $id = 0;
 		public $name;
 		public $slug;
+		public $plugin;
 		public $version;
 		public $banners;
 		public $homepage;
@@ -466,6 +467,7 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 			$fields = array(
 				'name', 
 				'slug', 
+				'plugin', 
 				'version', 
 				'tested', 
 				'num_ratings', 
@@ -515,6 +517,8 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 	
 		public $id = 0;
 		public $slug;
+		public $plugin;
+		public $qty_used;
 		public $version = 0;
 		public $homepage;
 		public $download_url;
@@ -532,6 +536,7 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 			$fields = array(
 				'id', 
 				'slug', 
+				'plugin', 
 				'qty_used', 
 				'version', 
 				'homepage', 
@@ -549,6 +554,7 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 			$fields = array(
 				'id' => 'id',
 				'slug' => 'slug',
+				'plugin' => 'plugin',
 				'qty_used' => 'qty_used',
 				'new_version' => 'version',
 				'url' => 'homepage',
