@@ -80,19 +80,26 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 			$check_hours = empty( $this->p->cf['update_check_hours'] ) ? 
 				24 : $this->p->cf['update_check_hours'];
+
 			$this->update = new SucomUpdate( $this->p, $this->p->cf['plugin'], $check_hours );
 
 			if ( is_admin() ) {
 				foreach ( $this->p->cf['plugin'] as $lca => $info ) {
+
+					// skip plugins that have an auth type, but no auth string
 					if ( ! empty( $info['update_auth'] ) &&
 						empty( $this->p->options['plugin_'.$lca.'_'.$info['update_auth']] ) )
 							continue;
 
 					$last_update = get_option( $lca.'_utime' );
+
+					// check_hours of 24 * 7200 = 2 days
 					if ( empty( $last_update ) || $last_update + ( $check_hours * 7200 ) < time() ) {
+
 						if ( $this->p->debug->enabled )
 							$this->p->debug->log( 'requesting update check for '.$lca );
 						$this->p->notice->inf( 'Performing an update check for the '.$info['name'].' plugin.' );
+
 						$this->update->check_for_updates( $lca );
 					}
 				}
