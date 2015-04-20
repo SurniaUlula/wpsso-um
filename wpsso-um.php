@@ -64,7 +64,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			if ( ! class_exists( 'Wpsso' ) ) {
 				require_once( ABSPATH.'wp-admin/includes/plugin.php' );
 				deactivate_plugins( WPSSOUM_PLUGINBASE );
-				wp_die( '<p>'. sprintf( __( 'The WPSSO Pro Update Manager (WPSSO UM) extension requires the WordPress Social Sharing Optimization (WPSSO) plugin &mdash; Please install and activate WPSSO before re-activating this extension.', WPSSOAM_TEXTDOM ) ).'</p>' );
+				wp_die( '<p>'. sprintf( __( 'The WPSSO Pro Update Manager (WPSSO UM) extension requires the WordPress Social Sharing Optimization (WPSSO) plugin &mdash; Please install and activate WPSSO before re-activating this extension.', WPSSOUM_TEXTDOM ) ).'</p>' );
 			}
 		}
 
