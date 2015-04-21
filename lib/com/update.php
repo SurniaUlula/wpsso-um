@@ -118,8 +118,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			if ( $this->sched_hours > 0 && ! empty( $this->sched_name ) ) {
 				if ( $this->p->debug->enabled )
 					$this->p->debug->log( 'adding schedule '.$this->cron_hook.' for '.$this->sched_name );
-				add_filter( 'cron_schedules', array( &$this, 'custom_schedule' ) );
 				add_action( $this->cron_hook, array( &$this, 'check_for_updates' ) );
+				add_filter( 'cron_schedules', array( &$this, 'custom_schedule' ) );
 
 				$schedule = wp_get_schedule( $this->cron_hook );
 				if ( ! empty( $schedule ) && $schedule !== $this->sched_name ) {

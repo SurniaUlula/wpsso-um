@@ -17,7 +17,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 			'allow_update_host' => 'surniaulula.com',
 			'plugin' => array(
 				'wpssoum' => array(
-					'version' => '1.0.1',		// plugin version
+					'version' => '1.1',		// plugin version
 					'short' => 'WPSSO UM',
 					'name' => 'WPSSO Pro Update Manager (WPSSO UM)',
 					'desc' => 'WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its extensions.',
@@ -65,6 +65,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 
 		public static function require_libs( $plugin_filepath ) {
 			require_once( WPSSOUM_PLUGINDIR.'lib/com/update.php' );
+			require_once( WPSSOUM_PLUGINDIR.'lib/register.php' );
 		}
 	}
 }

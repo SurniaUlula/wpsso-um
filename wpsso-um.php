@@ -9,7 +9,7 @@
  * Description: Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its extensions
  * Requires At Least: 3.0
  * Tested Up To: 4.2
- * Version: 1.0.1
+ * Version: 1.1
  * 
  * Copyright 2015 - Jean-Sebastien Morisset - http://surniaulula.com/
  */
@@ -27,7 +27,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 		protected static $instance = null;
 
-		private $wpsso_min_version = '3.0dev1';
+		private $wpsso_min_version = '3.0.5';
 		private $wpsso_has_min_ver = true;
 
 		public static function &get_instance() {
@@ -37,21 +37,23 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		}
 
 		public function __construct() {
+
 			require_once ( dirname( __FILE__ ).'/lib/config.php' );
 			WpssoUmConfig::set_constants( __FILE__ );
-			WpssoUmConfig::require_libs( __FILE__ );
+			WpssoUmConfig::require_libs( __FILE__ );		// includes the register.php class library
 
-			add_filter( 'wpsso_get_config', array( &$this, 'filter_get_config' ), 10, 1 );
+			$this->reg = new WpssoUmRegister( $this );		// activate, deactivate, uninstall hooks
 
 			if ( is_admin() )
-				add_action( 'admin_init', array( &$this, 'check_for_wpsso' ) );
+				add_action( 'admin_init', array( &$this, 'wp_check_for_wpsso' ) );
 
-			add_action( 'wpsso_init_plugin', array( &$this, 'init_plugin' ), 10 );
+			add_filter( 'wpsso_get_config', array( &$this, 'wpsso_get_config' ), 10, 1 );
+			add_action( 'wpsso_init_plugin', array( &$this, 'wpsso_init_plugin' ), 10 );
 		}
 
 		// merge our config with the wpsso config
 		// this filter is executed at wp init priority -1
-		public function filter_get_config( $cf ) {
+		public function wpsso_get_config( $cf ) {
 			if ( version_compare( $cf['plugin']['wpsso']['version'], $this->wpsso_min_version, '<' ) ) {
 				$this->wpsso_has_min_ver = false;
 				return $cf;
@@ -60,20 +62,28 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			return $cf;
 		}
 
-		public function check_for_wpsso() {
-			if ( ! class_exists( 'Wpsso' ) ) {
-				require_once( ABSPATH.'wp-admin/includes/plugin.php' );
-				deactivate_plugins( WPSSOUM_PLUGINBASE );
-				wp_die( '<p>'. sprintf( __( 'The WPSSO Pro Update Manager (WPSSO UM) extension requires the WordPress Social Sharing Optimization (WPSSO) plugin &mdash; Please install and activate WPSSO before re-activating this extension.', WPSSOUM_TEXTDOM ) ).'</p>' );
-			}
+		public function wp_check_for_wpsso() {
+			if ( ! class_exists( 'Wpsso' ) )
+				add_action( 'all_admin_notices', array( &$this, 'wp_notice_missing_wpsso' ) );
+		}
+
+		public function wp_notice_missing_wpsso() {
+			$ext_name = WpssoUmConfig::$cf['plugin']['wpssoum']['name'];
+			$req_name = 'WordPress Social Sharing Optimization (WPSSO)';
+			$req_uca = 'WPSSO';
+			echo '<div class="error"><p>';
+			echo sprintf( __( 'The %s extension requires the %s plugin &mdash; '.
+				'Please install and activate the %s plugin.', WPSSOUM_TEXTDOM ),
+					$ext_name, $req_name, $req_uca );
+			echo '</p></div>';
 		}
 
 		// executed once all class objects have been defined and modules have been loaded
-		public function init_plugin() {
+		public function wpsso_init_plugin() {
 			$this->p =& Wpsso::get_instance();
 
 			if ( $this->wpsso_has_min_ver === false )
-				return $this->min_version_warning( WpssoUmConfig::$cf['plugin']['wpssoum'] );
+				return $this->warning_wpsso_version( WpssoUmConfig::$cf['plugin']['wpssoum'] );
 
 			require_once( WPSSOUM_PLUGINDIR.'lib/filters.php' );
 			$this->filters = new WpssoUmFilters( $this->p, __FILE__ );
@@ -106,14 +116,15 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			}
 		}
 
-		private function min_version_warning( $info ) {
+		private function warning_wpsso_version( $info ) {
 			$wpsso_version = $this->p->cf['plugin']['wpsso']['version'];
 			if ( $this->p->debug->enabled )
 				$this->p->debug->log( $info['name'].' requires WPSSO version '.$this->wpsso_min_version.
 					' or newer ('.$wpsso_version.' installed)' );
 			if ( is_admin() )
-				$this->p->notice->err( $info['name'].' v'.$info['version'].' requires WPSSO v'.$this->wpsso_min_version.
-					' or newer ('.$wpsso_version.' is currently installed).', true );
+				$this->p->notice->err( 'The '.$info['name'].' version '.$info['version'].
+					' extension requires WPSSO version '.$this->wpsso_min_version.
+					' or newer (version '.$wpsso_version.' is currently installed).', true );
 		}
 	}
 
