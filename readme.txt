@@ -60,6 +60,16 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 * [GitHub](https://github.com/SurniaUlula/wpsso-um)
 * [WordPress.org](https://wordpress.org/plugins/wpsso-um/developers/)
 
+= Version 1.0.2 =
+
+* **New Features**
+	* *None*
+* **Improvements**
+	* Replaced self-deactivation when WPSSO is not found by a warning notice instead.
+	* Added deactivate and uninstall methods to remove the cron schedule and plugin options.
+* **Bugfixes**
+	* *None*
+
 = Version 1.0.1 (2015/04/18) =
 
 * **New Features**
