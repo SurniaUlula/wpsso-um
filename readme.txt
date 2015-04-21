@@ -65,7 +65,7 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 * **New Features**
 	* *None*
 * **Improvements**
-	* Replaced self-deactivation when WPSSO is not found by a warning notice instead.
+	* Replaced self-deactivation by a warning notice if the WPSSO plugin is not found.
 	* Added deactivate and uninstall methods to remove the cron schedule and plugin options.
 * **Bugfixes**
 	* *None*
