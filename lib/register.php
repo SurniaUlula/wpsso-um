@@ -68,7 +68,7 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 		}
 
 		private function activate_plugin() {
-			// nothing to do
+			self::delete_update_options();
 		}
 
 		private function deactivate_plugin() {
@@ -80,6 +80,10 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 		}
 
 		private static function uninstall_plugin() {
+			self::delete_update_options();
+		}
+
+		private static function delete_update_options() {
 			if ( class_exists( 'WpssoConfig' ) ) {
 				$cf = WpssoConfig::get_config();
 				foreach ( $cf['plugin'] as $lca => $info ) {
