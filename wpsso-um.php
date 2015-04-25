@@ -106,10 +106,10 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 					// check_hours of 24 * 7200 = 2 days
 					if ( empty( $last_update ) || $last_update + ( $check_hours * 7200 ) < time() ) {
 
-						if ( $this->p->debug->enabled )
+						if ( $this->p->debug->enabled ) {
 							$this->p->debug->log( 'requesting update check for '.$lca );
-						$this->p->notice->inf( 'Performing an update check for the '.$info['name'].' plugin.' );
-
+							$this->p->notice->inf( 'Performing an update check for the '.$info['name'].' plugin.' );
+						}
 						$this->update->check_for_updates( $lca );
 					}
 				}
