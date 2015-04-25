@@ -58,7 +58,9 @@
 
 <ul>
 <li><em>None</em></li>
-</ul><h3>Changelog</h3>
+</ul><h3>Screenshots</h3>
+
+<h3>Changelog</h3>
 
 <h4>Free / Basic Version Repository</h4>
 
