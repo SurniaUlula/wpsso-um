@@ -18,6 +18,8 @@
 <p align="center"><img src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png" width="256" height="256" /></p><p>The WPSSO Pro Update Manager (WPSSO UM) extension plugin is required to enable and update the <a href="https://surniaulula.com/extend/plugins/wpsso/">WordPress Social Sharing Optimization (WPSSO) Pro</a> version, including all its licensed extension plugins.</p>
 
 <p>Simply <em>download</em>, <em>install</em>, and <em>activate</em> the plugin &mdash; there are no plugin settings to review or adjust.</p>
+
+
 <h3>Installation</p>
 
 <h4>Semi-Automated Install</h4>
@@ -44,6 +46,8 @@
 <li>Select the <em>Installed Plugins</em> sub-menu</li>
 <li>Scroll down to the "WPSSO Pro Update Manager (WPSSO UM)" plugin, and click its <em>Activate</em> link</li>
 </ul>
+
+
 <h3>Frequently Asked Questions</h3>
 
 <h4>Frequently Asked Questions</h4>
@@ -51,6 +55,8 @@
 <ul>
 <li><em>None</em></li>
 </ul>
+
+
 <h3>Other Notes</h3>
 
 <h3>Other Notes</h3>
@@ -58,85 +64,5 @@
 
 <ul>
 <li><em>None</em></li>
-</ul><h3>Screenshots</h3>
-
-<h3>Changelog</h3>
-
-<h4>Free / Basic Version Repository</h4>
-
-<ul>
-<li><a href="https://github.com/SurniaUlula/wpsso-um">GitHub</a></li>
-<li><a href="https://wordpress.org/plugins/wpsso-um/developers/">WordPress.org</a></li>
 </ul>
-
-<h4>Version 1.1 (2015/04/21)</h4>
-
-<ul>
-<li><strong>New Features</strong>
-
-<ul>
-<li><em>None</em></li>
-</ul></li>
-<li><strong>Improvements</strong>
-
-<ul>
-<li>Replaced self-deactivation by a warning notice if the WPSSO plugin is not found.</li>
-<li>Added deactivate and uninstall methods to remove the cron schedule and plugin options.</li>
-</ul></li>
-<li><strong>Bugfixes</strong>
-
-<ul>
-<li><em>None</em></li>
-</ul></li>
-</ul>
-
-<h4>Version 1.0.1 (2015/04/18)</h4>
-
-<ul>
-<li><strong>New Features</strong>
-
-<ul>
-<li><em>None</em></li>
-</ul></li>
-<li><strong>Improvements</strong>
-
-<ul>
-<li>Added a 'plugin' attribute to the plugin update data for WordPress v4.2.</li>
-</ul></li>
-<li><strong>Bugfixes</strong>
-
-<ul>
-<li><em>None</em></li>
-</ul></li>
-</ul>
-
-<h4>Version 1.0 (2015/04/12)</h4>
-
-<ul>
-<li><strong>New Features</strong>
-
-<ul>
-<li>Initial plugin release.</li>
-</ul></li>
-<li><strong>Improvements</strong>
-
-<ul>
-<li><em>None</em></li>
-</ul></li>
-<li><strong>Bugfixes</strong>
-
-<ul>
-<li><em>None</em></li>
-</ul></li>
-</ul>
-<h3>Upgrade Notice</h3>
-
-<h4>1.1</h4>
-<p>Replaced self-deactivation by a warning if the WPSSO plugin is not found, and added plugin deactivate and uninstall methods.</p>
-
-<h4>1.0.1</h4>
-<p>Added a &#039;plugin&#039; attribute to the plugin update data for WordPress v4.2.</p>
-
-<h4>1.0</h4>
-<p>Initial plugin released on 2015/04/12.</p>
 
