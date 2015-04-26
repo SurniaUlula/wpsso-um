@@ -1,14 +1,14 @@
 <h1>WPSSO Pro Update Manager</h1>
 
 <table>
+<tr><th align="right" valign="top" nowrap>Plugin Name</th><td>WPSSO Pro Update Manager (WPSSO UM)</td></tr>
+<tr><th align="right" valign="top" nowrap>Stable Version</th><td>1.1</td></tr>
 <tr><th align="right" valign="top" nowrap>Contributors</th><td>jsmoriss</td></tr>
-<tr><th align="right" valign="top" nowrap>Donate Link</th><td><a href="https://surniaulula.com/extend/plugins/wpsso-um/">https://surniaulula.com/extend/plugins/wpsso-um/</a></td></tr>
-<tr><th align="right" valign="top" nowrap>Tags</th><td>wpsso, update, manager</td></tr>
-<tr><th align="right" valign="top" nowrap>License</th><td>GPLv3</td></tr>
-<tr><th align="right" valign="top" nowrap>License URI</th><td><a href="http://www.gnu.org/licenses/gpl.txt">http://www.gnu.org/licenses/gpl.txt</a></td></tr>
-<tr><th align="right" valign="top" nowrap>Requires At Least</th><td>3.0</td></tr>
-<tr><th align="right" valign="top" nowrap>Tested Up To</th><td>4.2</td></tr>
-<tr><th align="right" valign="top" nowrap>Stable Tag</th><td>1.1</td></tr>
+<tr><th align="right" valign="top" nowrap>Donate / Purchase</th><td><a href="https://surniaulula.com/extend/plugins/wpsso-um/">https://surniaulula.com/extend/plugins/wpsso-um/</a></td></tr>
+<tr><th align="right" valign="top" nowrap>Tags / Keywords</th><td>wpsso, update, manager</td></tr>
+<tr><th align="right" valign="top" nowrap>License</th><td><a href="http://www.gnu.org/licenses/gpl.txt">GPLv3</a></td></tr>
+<tr><th align="right" valign="top" nowrap>Requires At Least</th><td>WordPress 3.0</td></tr>
+<tr><th align="right" valign="top" nowrap>Tested Up To</th><td>WordPress 4.2</td></tr>
 </table>
 
 <p>Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its extensions.</p>

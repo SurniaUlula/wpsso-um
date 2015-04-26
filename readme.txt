@@ -1,4 +1,5 @@
 === WPSSO Pro Update Manager ===
+Plugin Name: WPSSO Pro Update Manager (WPSSO UM)
 Plugin Slug: wpsso-um
 Contributors: jsmoriss
 Donate Link: https://surniaulula.com/extend/plugins/wpsso-um/
