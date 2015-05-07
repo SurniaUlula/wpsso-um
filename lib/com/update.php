@@ -327,7 +327,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				return null;
 
 			global $wp_version;
-			$site_url = get_bloginfo( 'url' );
+			$home_url = get_bloginfo( 'url' );	// equivalent to get_home_url()
 			$json_url = empty( self::$c[$lca]['json_url'] ) ? '' : self::$c[$lca]['json_url'];
 			$query = array( 'installed_version' => $this->get_installed_version( $lca ) );
 
@@ -341,7 +341,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$json_url = add_query_arg( $query, $json_url );
 
 			if ( ! empty( $this->p->is_avail['cache']['transient'] ) ) {
-				$cache_salt = __METHOD__.'(json_url:'.$json_url.'_site_url:'.$site_url.')';
+				$cache_salt = __METHOD__.'(json_url:'.$json_url.'_home_url:'.$home_url.')';
 				$cache_id = $this->p->cf['lca'].'_'.md5( $cache_salt );
 				$cache_type = 'object cache';
 				if ( $this->p->debug->enabled )
@@ -359,7 +359,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				return self::$j[$lca];
 
 			$uaplus = 'WordPress/'.$wp_version.' ('.( apply_filters( $lca.'_ua_plugin', 
-				self::$c[$lca]['slug'].'/'.$query['installed_version'] ) ).'); '.$site_url;
+				self::$c[$lca]['slug'].'/'.$query['installed_version'] ) ).'); '.$home_url;
 
 			$options = array(
 				'timeout' => 10, 

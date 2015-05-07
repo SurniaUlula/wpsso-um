@@ -8,7 +8,7 @@
  * License URI: http://www.gnu.org/licenses/gpl.txt
  * Description: Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its extensions
  * Requires At Least: 3.0
- * Tested Up To: 4.2
+ * Tested Up To: 4.2.2
  * Version: 1.1
  * 
  * Copyright 2015 - Jean-Sebastien Morisset - http://surniaulula.com/
