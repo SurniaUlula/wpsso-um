@@ -8,7 +8,7 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.txt
 Requires At Least: 3.0
 Tested Up To: 4.2.2
-Stable Tag: 1.1
+Stable Tag: 1.1.1
 
 Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its extensions.
 
@@ -78,24 +78,6 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 * **Improvements**
 	* Replaced self-deactivation by a warning notice if the WPSSO plugin is not found.
 	* Added deactivate and uninstall methods to remove the cron schedule and plugin options.
-* **Bugfixes**
-	* *None*
-
-= Version 1.0.1 (2015/04/18) =
-
-* **New Features**
-	* *None*
-* **Improvements**
-	* Added a 'plugin' attribute to the plugin update data for WordPress v4.2.
-* **Bugfixes**
-	* *None*
-
-= Version 1.0 (2015/04/12) =
-
-* **New Features**
-	* Initial plugin release.
-* **Improvements**
-	* *None*
 * **Bugfixes**
 	* *None*
 
