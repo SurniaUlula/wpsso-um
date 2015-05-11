@@ -62,6 +62,15 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 * [GitHub](https://github.com/SurniaUlula/wpsso-um)
 * [WordPress.org](https://wordpress.org/plugins/wpsso-um/developers/)
 
+= Version 1.1.1 (2015/05/11) =
+
+* **New Features**
+	* *None*
+* **Improvements**
+	* *None*
+* **Bugfixes**
+	* Added a check for the Wpsso::get_instance() method, with a fallback to the $wpsso global variable for older WPSSO versions.
+
 = Version 1.1 (2015/04/21) =
 
 * **New Features**
@@ -92,15 +101,7 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 
 == Upgrade Notice ==
 
-= 1.1 =
+= 1.1.1 =
 
-Replaced self-deactivation by a warning if the WPSSO plugin is not found, and added plugin deactivate and uninstall methods.
-
-= 1.0.1 =
-
-Added a 'plugin' attribute to the plugin update data for WordPress v4.2.
-
-= 1.0 =
-
-Initial plugin released on 2015/04/12.
+Added a check for Wpsso::get_instance() with a fallback to the $wpsso global variable for older WPSSO versions.
 
