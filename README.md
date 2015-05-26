@@ -7,14 +7,14 @@
 <tr><th align="right" valign="top" nowrap>Requires At Least</th><td>WordPress 3.0</td></tr>
 <tr><th align="right" valign="top" nowrap>Tested Up To</th><td>WordPress 4.2.2</td></tr>
 <tr><th align="right" valign="top" nowrap>Contributors</th><td>jsmoriss</td></tr>
-<tr><th align="right" valign="top" nowrap>Website URL</th><td><a href="https://surniaulula.com/extend/plugins/wpsso-um/">https://surniaulula.com/extend/plugins/wpsso-um/</a></td></tr>
+<tr><th align="right" valign="top" nowrap>Website URL</th><td><a href="https://wpsso.com/extend/plugins/wpsso-um/">https://wpsso.com/extend/plugins/wpsso-um/</a></td></tr>
 <tr><th align="right" valign="top" nowrap>License</th><td><a href="http://www.gnu.org/licenses/gpl.txt">GPLv3</a></td></tr>
 <tr><th align="right" valign="top" nowrap>Tags / Keywords</th><td>wpsso, update, manager</td></tr>
 </table>
 
 <h2>Description</h2>
 
-<p align="center"><img src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png" width="256" height="256" /></p><p>The WPSSO Pro Update Manager (WPSSO UM) extension plugin is required to enable and update the <a href="https://surniaulula.com/extend/plugins/wpsso/">WordPress Social Sharing Optimization (WPSSO) Pro</a> version, including all its licensed extension plugins.</p>
+<p align="center"><img src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png" width="256" height="256" /></p><p>The WPSSO Pro Update Manager (WPSSO UM) extension plugin is required to enable and update the <a href="https://wpsso.com/extend/plugins/wpsso/">WordPress Social Sharing Optimization (WPSSO) Pro</a> version, including all its licensed extension plugins.</p>
 
 <p>Simply <em>download</em>, <em>install</em>, and <em>activate</em> the plugin &mdash; there are no plugin settings to review or adjust.</p>
 
@@ -24,7 +24,7 @@
 <h4>Semi-Automated Install</h4>
 
 <ul>
-<li><a href="http://surniaulula.com/extend/plugins/wpsso-um/latest/">Download the latest plugin archive file</a></li>
+<li><a href="http://wpsso.com/extend/plugins/wpsso-um/latest/">Download the latest plugin archive file</a></li>
 <li>Go to the wp-admin/ section of your website</li>
 <li>Select the <em>Plugins</em> menu item</li>
 <li>Select the <em>Add New</em> sub-menu item</li>
@@ -38,7 +38,7 @@
 <h4>Manual Install</h4>
 
 <ul>
-<li><a href="http://surniaulula.com/extend/plugins/wpsso-um/latest/">Download and unzip the latest plugin archive file</a></li>
+<li><a href="http://wpsso.com/extend/plugins/wpsso-um/latest/">Download and unzip the latest plugin archive file</a></li>
 <li>Upload the entire wpsso-um/ folder to your website's wordpress/wp-content/plugins/ directory</li>
 <li>Go to the wp-admin/ section of your website</li>
 <li>Select the <em>Plugins</em> menu item</li>
