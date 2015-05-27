@@ -2,7 +2,7 @@
 Plugin Name: WPSSO Pro Update Manager (WPSSO UM)
 Plugin Slug: wpsso-um
 Contributors: jsmoriss
-Donate Link: https://wpsso.com/extend/plugins/wpsso-um/
+Donate Link: https://wpsso.com/
 Tags: wpsso, update, manager
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.txt
