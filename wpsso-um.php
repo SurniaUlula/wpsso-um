@@ -72,9 +72,8 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			$req_name = 'WordPress Social Sharing Optimization (WPSSO)';
 			$req_uca = 'WPSSO';
 			echo '<div class="error"><p>';
-			echo sprintf( __( 'The %s extension requires the %s plugin &mdash; '.
-				'Please install and activate the %s plugin.', WPSSOUM_TEXTDOM ),
-					$ext_name, $req_name, $req_uca );
+			echo sprintf( __( 'The %s extension requires the %s plugin &mdash; Please install and activate the %s plugin.', 
+				WPSSOUM_TEXTDOM ), $ext_name, $req_name, $req_uca );
 			echo '</p></div>';
 		}
 
@@ -98,6 +97,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			$this->update = new SucomUpdate( $this->p, $this->p->cf['plugin'], $check_hours );
 
 			if ( is_admin() ) {
+				// force check if no update in past 2 days
 				foreach ( $this->p->cf['plugin'] as $lca => $info ) {
 
 					// skip plugins that have an auth type, but no auth string
@@ -107,9 +107,8 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 					$last_update = get_option( $lca.'_utime' );
 
-					// check_hours of 24 * 7200 = 2 days
+					// 24 hours * 7200 = 2 days
 					if ( empty( $last_update ) || $last_update + ( $check_hours * 7200 ) < time() ) {
-
 						if ( $this->p->debug->enabled ) {
 							$this->p->debug->log( 'requesting update check for '.$lca );
 							$this->p->notice->inf( 'Performing an update check for the '.$info['name'].' plugin.' );

@@ -2,7 +2,7 @@
 /*
  * License: GPLv3
  * License URI: http://www.gnu.org/licenses/gpl.txt
- * Copyright 2015 - Jean-Sebastien Morisset - http://surniaulula.com/
+ * Copyright 2015 - Jean-Sebastien Morisset - http://wpsso.com/
  */
 
 if ( ! defined( 'ABSPATH' ) ) 
@@ -14,7 +14,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 
 		public static $cf = array(
 			'update_check_hours' => 24,
-			'allow_update_host' => 'surniaulula.com',
+			'allow_update_host' => 'wpsso.com',
 			'plugin' => array(
 				'wpssoum' => array(
 					'version' => '1.1.1',		// plugin version
@@ -29,20 +29,19 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 						'icon_medium' => 'images/icon-256x256.png',
 					),
 					'url' => array(
-						'download' => 'http://surniaulula.com/extend/plugins/wpsso-um/',
-						'latest_zip' => 'http://surniaulula.com/extend/plugins/wpsso-um/latest/',
+						'download' => 'http://wpsso.com/extend/plugins/wpsso-um/',
+						'latest_zip' => 'http://wpsso.com/extend/plugins/wpsso-um/latest/',
 						'review' => '',
 						'readme' => 'https://raw.githubusercontent.com/SurniaUlula/wpsso-um/master/readme.txt',
 						'wp_support' => '',
-						'update' => 'http://surniaulula.com/extend/plugins/wpsso-um/update/',
+						'update' => 'http://wpsso.com/extend/plugins/wpsso-um/update/',
 						'purchase' => '',
-						'changelog' => 'http://surniaulula.com/extend/plugins/wpsso-um/changelog/',
+						'changelog' => 'http://wpsso.com/extend/plugins/wpsso-um/changelog/',
 						'codex' => '',
 						'faq' => '',
 						'notes' => '',
 						'feed' => '',
 						'pro_support' => '',
-						'pro_ticket' => '',
 					),
 					'lib' => array(
 						'gpl' => array(		// required for WpssoAdmin::show_metabox_status_gpl()
