@@ -62,6 +62,17 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 * [GitHub](https://github.com/SurniaUlula/wpsso-um)
 * [WordPress.org](https://wordpress.org/plugins/wpsso-um/developers/)
 
+= Version 1.1.2 (2015/06/18) =
+
+* **New Features**
+	* *None*
+* **Improvements**
+	* *None*
+* **Bugfixes**
+	* Fixed a possible condition where the Free update information would be returned if/when newer than the cached Pro update information.
+* **Developer Notes**
+	* *None*
+
 = Version 1.1.1 (2015/05/11) =
 
 * **New Features**
@@ -82,6 +93,10 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 	* *None*
 
 == Upgrade Notice ==
+
+= 1.1.2 =
+
+Fixed a possible condition where the Free update information would be returned if/when newer than the cached Pro update information.
 
 = 1.1.1 =
 
