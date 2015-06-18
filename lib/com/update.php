@@ -190,28 +190,22 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					continue;
 				}
 
+				// remove existing information to make sure it is correct (not from wordpress.org)
+				if ( isset( $updates->response[$info['base']] ) )
+					unset( $updates->response[$info['base']] );		// nextgen-facebook/nextgen-facebook.php
+
 				if ( isset( self::$u[$lca] ) ) {
-					// false when installed version is current
 					// only return update information when an update is required
-					if ( self::$u[$lca] !== false )
+					if ( self::$u[$lca] !== false )		// false when installed version is current
 						$updates->response[$info['base']] = self::$u[$lca];
 
 					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $lca.': mark', 5 );		// show calling method/function
+						$this->p->debug->log( $lca.': mark', 5 );	// show calling method/function
 						$this->p->debug->log( $lca.': using saved update status' );
 					}
 					continue;	// get the next plugin
 				}
 				
-				// remove existing plugin information to make sure it is correct
-				if ( isset( $updates->response[$info['base']] ) ) {
-					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $lca.': previous update information found and removed' );
-						$this->p->debug->log( $updates->response[$info['base']] );
-					}
-					unset( $updates->response[$info['base']] );			// nextgen-facebook/nextgen-facebook.php
-				}
-
 				$option_data = get_site_option( $info['opt_name'], false, true );	// use_cache = true
 
 				if ( empty( $option_data ) ) {
@@ -228,12 +222,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					self::$u[$lca] = $updates->response[$info['base']] = $option_data->update->json_to_wp();
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $lca.': update version ('.$option_data->update->version.') '.
-							' is newer than installed ('.$this->get_installed_version( $lca ).')' );
+							' is different than installed ('.$this->get_installed_version( $lca ).')' );
 						$this->p->debug->log( $updates->response[$info['base']], 5 );
 					}
 				} else {
-					// false when installed version is current
-					self::$u[$lca] = false;
+					self::$u[$lca] = false;			// false when installed version is current
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $lca.': installed version is current - no update required' );
 						$this->p->debug->log( $option_data->update->json_to_wp(), 5 );
