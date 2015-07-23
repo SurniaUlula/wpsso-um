@@ -7,7 +7,7 @@ Tags: wpsso, update, manager
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.txt
 Requires At Least: 3.0
-Tested Up To: 4.2.2
+Tested Up To: 4.2.3
 Stable Tag: 1.1.2
 
 Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its extensions.
