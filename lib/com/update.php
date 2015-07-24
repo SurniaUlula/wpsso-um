@@ -252,13 +252,20 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$plugins = self::$c;				// check all plugins defined
 			elseif ( isset( self::$c[$lca] ) )
 				$plugins = array( $lca => self::$c[$lca] );	// check only one specific plugin
-			else $plugins = array();
+			else {
+				if ( $this->p->debug->enabled )
+					$this->p->debug->log( 'no plugins to check' );
+				return;
+			}
 
 			foreach ( $plugins as $lca => $info ) {
 
+				if ( $this->p->debug->enabled )
+					$this->p->debug->log( 'checking for '.$lca.' update' );
+
 				if ( empty( $info['opt_name'] ) ) {
 					if ( $this->p->debug->enabled )
-						$this->p->debug->log( $lca.': missing "opt_name" in plugin configuration' );
+						$this->p->debug->log( 'missing opt_name in '.$lca.' plugin config' );
 					continue;
 				}
 
