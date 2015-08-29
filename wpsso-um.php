@@ -27,7 +27,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 		protected static $instance = null;
 
-		private $wpsso_min_version = '3.0.5';
+		private $wpsso_min_version = '3.7.4';
 		private $wpsso_has_min_ver = true;
 
 		public static function &get_instance() {
