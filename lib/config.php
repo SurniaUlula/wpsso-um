@@ -17,7 +17,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 			'allow_update_host' => 'wpsso.com',
 			'plugin' => array(
 				'wpssoum' => array(
-					'version' => '1.1.2',		// plugin version
+					'version' => '1.1.3',		// plugin version
 					'short' => 'WPSSO UM',
 					'name' => 'WPSSO Pro Update Manager (WPSSO UM)',
 					'desc' => 'WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its extensions.',
@@ -56,7 +56,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 			$slug = self::$cf['plugin'][$lca]['slug'];
 
 			define( 'WPSSOUM_FILEPATH', $plugin_filepath );						
-			define( 'WPSSOUM_PLUGINDIR', trailingslashit( plugin_dir_path( $plugin_filepath ) ) );
+			define( 'WPSSOUM_PLUGINDIR', trailingslashit( realpath( dirname( $plugin_filepath ) ) ) );
 			define( 'WPSSOUM_PLUGINBASE', plugin_basename( $plugin_filepath ) );
 			define( 'WPSSOUM_TEXTDOM', $slug );
 			define( 'WPSSOUM_URLPATH', trailingslashit( plugins_url( '', $plugin_filepath ) ) );

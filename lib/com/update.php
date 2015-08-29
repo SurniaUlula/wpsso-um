@@ -358,15 +358,18 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			} elseif ( $use_cache && isset( self::$j[$lca] ) && self::$j[$lca] !== false )
 				return self::$j[$lca];
 
-			$uaplus = 'WordPress/'.$wp_version.' ('.( apply_filters( $lca.'_ua_plugin', 
-				self::$c[$lca]['slug'].'/'.$query['installed_version'] ) ).'); '.$home_url;
+			$ua_plugin = self::$c[$lca]['slug'].'/'.$query['installed_version'];
+			if ( has_filter( $lca.'_ua_plugin' ) )
+				$ua_plugin = apply_filters( $lca.'_ua_plugin', $ua_plugin );
+			else $ua_plugin = apply_filters( 'sucom_ua_plugin', $ua_plugin, $lca );
+			$ua_wpid = 'WordPress/'.$wp_version.' ('.$ua_plugin.'); '.$home_url;
 
 			$options = array(
 				'timeout' => 10, 
-				'user-agent' => $uaplus,
+				'user-agent' => $ua_wpid,
 				'headers' => array( 
 					'Accept' => 'application/json',
-					'X-WordPress-Id' => $uaplus,
+					'X-WordPress-Id' => $ua_wpid,
 				),
 			);
 
@@ -431,7 +434,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				} elseif ( $this->p->debug->enabled )
 					$this->p->debug->log( $base.' missing from the plugins array' );
 			}
-			return apply_filters( $lca.'_installed_version', $version );
+			if ( has_filter( $lca.'_installed_version' ) )
+				return apply_filters( $lca.'_installed_version', $version );
+			else return apply_filters( 'sucom_installed_version', $version, $lca );
 		}
 	}
 }
