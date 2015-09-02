@@ -60,7 +60,17 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 = Free / Basic Version Repository =
 
 * [GitHub](https://github.com/SurniaUlula/wpsso-um)
-* [WordPress.org](https://wordpress.org/plugins/wpsso-um/developers/)
+
+= Version 1.1.4 =
+
+* **New Features**
+	* *None*
+* **Improvements**
+	* *None*
+* **Bugfixes**
+	* *None*
+* **Developer Notes**
+	* Updated the tooltip message filter hooks for WPSSO v3.8.
 
 = Version 1.1.3 (2015/08/29) =
 
