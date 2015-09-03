@@ -9,7 +9,7 @@
  * Description: Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its extensions
  * Requires At Least: 3.0
  * Tested Up To: 4.3
- * Version: 1.1.3
+ * Version: 1.1.4
  * 
  * Copyright 2015 - Jean-Sebastien Morisset - http://surniaulula.com/
  */
@@ -27,7 +27,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 		protected static $instance = null;
 
-		private $wpsso_min_version = '3.7.4';
+		private $wpsso_min_version = '3.8';
 		private $wpsso_has_min_ver = true;
 
 		public static function &get_instance() {

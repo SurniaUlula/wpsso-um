@@ -20,7 +20,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			$this->plugin_filepath = $plugin_filepath;
 			if ( is_admin() ) {
 				$this->p->util->add_plugin_filters( $this, array( 
-					'tooltip_side' => 2,            // tooltip messages for side boxes
+					'messages_tooltip_side' => 2,	// tooltip messages for side boxes
 				) );
 				$this->p->util->add_plugin_filters( $this, array( 
 					'status_gpl_features' => 3,
@@ -28,7 +28,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			}
 		}
 
-		public function filter_tooltip_side( $text, $idx ) {
+		public function filter_messages_tooltip_side( $text, $idx ) {
 			switch ( $idx ) {
 				case 'tooltip-side-update-check-schedule':
 					$short = $this->p->cf['plugin']['wpsso']['short'];
