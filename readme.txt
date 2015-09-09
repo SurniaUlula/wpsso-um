@@ -61,6 +61,18 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 
 * [GitHub](https://github.com/SurniaUlula/wpsso-um)
 
+= Version 1.1.5 (2015/09/09) =
+
+* **New Features**
+	* *None*
+* **Improvements**
+	* *None*
+* **Bugfixes**
+	* *None*
+* **Developer Notes**
+	* Minor code optimization.
+	* Added `WpssoUtil::save_time()` calls during activation to save install / activation / update timestamps.
+
 = Version 1.1.4 (2015/09/03) =
 
 * **New Features**
@@ -115,6 +127,10 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 	* *None*
 
 == Upgrade Notice ==
+
+= 1.1.5 =
+
+Minor code optimization and addition of method calls during activation to save install / activation / update timestamps.
 
 = 1.1.4 =
 
