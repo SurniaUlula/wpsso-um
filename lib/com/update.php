@@ -36,16 +36,15 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		public static function get_umsg( $lca ) {
-			if ( ! isset( self::$c[$lca] ) )
-				self::$c[$lca] = array();
-			if ( ! array_key_exists( 'umsg', self::$c[$lca] ) ) {
-				self::$c[$lca]['umsg'] = get_option( $lca.'_umsg' );
-				if ( self::$c[$lca]['umsg'] !== false && self::$c[$lca]['umsg'] !== true )
-					self::$c[$lca]['umsg'] = base64_decode( get_option( $lca.'_umsg' ) );
-				if ( empty( self::$c[$lca]['umsg'] ) )
-					self::$c[$lca]['umsg'] = false;
+			$kn = $lca.'_umsg';
+			if ( ! isset( self::$c[$kn] ) ) {
+				self::$c[$kn] = $enc = get_option( $kn );
+				if ( $enc !== false && $enc !== true )
+					self::$c[$kn] = base64_decode( $enc );
+				if ( empty( self::$c[$kn] ) )
+					self::$c[$kn] = false;
 			}
-			return self::$c[$lca]['umsg'];
+			return self::$c[$kn];
 		}
 
 		public static function get_option( $lca, $idx = false ) {

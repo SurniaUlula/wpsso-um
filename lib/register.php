@@ -12,16 +12,16 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 
 	class WpssoUmRegister {
 
-		protected $p;
+		public function __construct() {
 
-		public function __construct( &$plugin ) {
-			$this->p =& $plugin;
 			register_activation_hook( WPSSOUM_FILEPATH, array( &$this, 'network_activate' ) );
 			register_deactivation_hook( WPSSOUM_FILEPATH, array( &$this, 'network_deactivate' ) );
 			register_uninstall_hook( WPSSOUM_FILEPATH, array( __CLASS__, 'network_uninstall' ) );
 
-			add_action( 'wpmu_new_blog', array( &$this, 'wpmu_new_blog' ), 10, 6 );
-			add_action( 'wpmu_activate_blog', array( &$this, 'wpmu_activate_blog' ), 10, 5 );
+			if ( is_multisite() ) {
+				add_action( 'wpmu_new_blog', array( &$this, 'wpmu_new_blog' ), 10, 6 );
+				add_action( 'wpmu_activate_blog', array( &$this, 'wpmu_activate_blog' ), 10, 5 );
+			}
 		}
 
 		// fires immediately after a new site is created
@@ -68,24 +68,33 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 		}
 
 		private function activate_plugin() {
-			self::delete_update_options();
+
+			$lca = 'wpssoum';
+			$version = WpssoUmConfig::$cf['plugin'][$lca]['version'];	// only our config
+
+			WpssoUtil::save_time( $lca, $version, 'install', true );	// $protect = true
+			WpssoUtil::save_time( $lca, $version, 'update', $version );	// $protect only if same version
+			WpssoUtil::save_time( $lca, $version, 'activate' );		// always update timestamp
+
+			self::delete_options();
 		}
 
 		private function deactivate_plugin() {
-			if ( isset( $this->p->cf['lca'] ) ) {
-				$lca = $this->p->cf['lca'];
-				$slug = $this->p->cf['plugin'][$lca]['slug'];
-				wp_clear_scheduled_hook( 'plugin_updates-'.$slug );
+			if ( class_exists( 'WpssoConfig' ) ) {
+				$cf = WpssoConfig::get_config();	// get all plugins / extensions
+				foreach ( $cf['plugin'] as $lca => $info ) {
+					wp_clear_scheduled_hook( 'plugin_updates-'.$info['slug'] );
+				}
 			}
 		}
 
 		private static function uninstall_plugin() {
-			self::delete_update_options();
+			self::delete_options();
 		}
 
-		private static function delete_update_options() {
+		private static function delete_options() {
 			if ( class_exists( 'WpssoConfig' ) ) {
-				$cf = WpssoConfig::get_config();
+				$cf = WpssoConfig::get_config();	// get all plugins / extensions
 				foreach ( $cf['plugin'] as $lca => $info ) {
 					delete_option( $lca.'_umsg' );
 					delete_option( $lca.'_utime' );

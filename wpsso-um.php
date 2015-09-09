@@ -9,7 +9,7 @@
  * Description: Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its extensions
  * Requires At Least: 3.0
  * Tested Up To: 4.3
- * Version: 1.1.4
+ * Version: 1.1.5
  * 
  * Copyright 2015 - Jean-Sebastien Morisset - http://surniaulula.com/
  */
@@ -22,12 +22,13 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 	class WpssoUm {
 
 		public $p;			// Wpsso
+		public $reg;			// WpssoUmRegister
 		public $filters;		// WpssoUmFilters
 		public $update;			// SucomUpdate
 
 		protected static $instance = null;
 
-		private $wpsso_min_version = '3.8';
+		private $wpsso_min_version = '3.9';
 		private $wpsso_has_min_ver = true;
 
 		public static function &get_instance() {
@@ -41,25 +42,13 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			require_once ( dirname( __FILE__ ).'/lib/config.php' );
 			WpssoUmConfig::set_constants( __FILE__ );
 			WpssoUmConfig::require_libs( __FILE__ );		// includes the register.php class library
-
-			$this->reg = new WpssoUmRegister( $this );		// activate, deactivate, uninstall hooks
+			$this->reg = new WpssoUmRegister();			// activate, deactivate, uninstall hooks
 
 			if ( is_admin() )
 				add_action( 'admin_init', array( &$this, 'wp_check_for_wpsso' ) );
 
 			add_filter( 'wpsso_get_config', array( &$this, 'wpsso_get_config' ), 10, 1 );
 			add_action( 'wpsso_init_plugin', array( &$this, 'wpsso_init_plugin' ), 10 );
-		}
-
-		// merge our config with the wpsso config
-		// this filter is executed at wp init priority -1
-		public function wpsso_get_config( $cf ) {
-			if ( version_compare( $cf['plugin']['wpsso']['version'], $this->wpsso_min_version, '<' ) ) {
-				$this->wpsso_has_min_ver = false;
-				return $cf;
-			}
-			$cf = SucomUtil::array_merge_recursive_distinct( $cf, WpssoUmConfig::$cf );
-			return $cf;
 		}
 
 		public function wp_check_for_wpsso() {
@@ -77,10 +66,17 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			echo '</p></div>';
 		}
 
-		// executed once all class objects have been defined and modules have been loaded
+		public function wpsso_get_config( $cf ) {
+			if ( version_compare( $cf['plugin']['wpsso']['version'], $this->wpsso_min_version, '<' ) ) {
+				$this->wpsso_has_min_ver = false;
+				return $cf;
+			}
+			$cf = SucomUtil::array_merge_recursive_distinct( $cf, WpssoUmConfig::$cf );
+			return $cf;
+		}
+
 		public function wpsso_init_plugin() {
 
-			// fallback to global variable for older versions
 			if ( method_exists( 'Wpsso', 'get_instance' ) )
 				$this->p =& Wpsso::get_instance();
 			else $this->p =& $GLOBALS['wpsso'];
