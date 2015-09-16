@@ -8,7 +8,7 @@
  * License URI: http://www.gnu.org/licenses/gpl.txt
  * Description: Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its extensions
  * Requires At Least: 3.1
- * Tested Up To: 4.3
+ * Tested Up To: 4.3.1
  * Version: 1.1.5
  * 
  * Copyright 2015 - Jean-Sebastien Morisset - http://surniaulula.com/
@@ -93,10 +93,12 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			$this->update = new SucomUpdate( $this->p, $this->p->cf['plugin'], $check_hours );
 
 			if ( is_admin() ) {
-				// force check if no update in past 2 days
+				/*
+				 * Force immediate check if no update check for past 2 days
+				 */
 				foreach ( $this->p->cf['plugin'] as $lca => $info ) {
 
-					// skip plugins that have an auth type, but no auth string
+					// skip plugins that have an auth type but no auth string
 					if ( ! empty( $info['update_auth'] ) &&
 						empty( $this->p->options['plugin_'.$lca.'_'.$info['update_auth']] ) )
 							continue;

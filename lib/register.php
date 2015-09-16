@@ -100,6 +100,19 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 					delete_option( $lca.'_utime' );
 					delete_option( 'external_updates-'.$info['slug'] );
 				}
+			} else {	// in case wpsso is deactivated
+				foreach ( array(
+					'wpsso' => 'wpsso',
+					'wpssoam' => 'wpsso-am',
+					'wpssoplm' => 'wpsso-plm',
+					'wpssorrssb' => 'wpsso-rrssb',
+					'wpssossb' => 'wpsso-ssb',
+					'wpssoum' => 'wpsso-um',
+				) as $lca => $slug ) {
+					delete_option( $lca.'_umsg' );
+					delete_option( $lca.'_utime' );
+					delete_option( 'external_updates-'.$slug );
+				}
 			}
 		}
 	}
