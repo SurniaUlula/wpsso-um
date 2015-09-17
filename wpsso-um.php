@@ -103,15 +103,15 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 						empty( $this->p->options['plugin_'.$lca.'_'.$info['update_auth']] ) )
 							continue;
 
-					$last_update = get_option( $lca.'_utime' );
+					$last_utime = get_option( $lca.'_utime' );
 
 					// 24 hours * 7200 = 2 days
-					if ( empty( $last_update ) || $last_update + ( $check_hours * 7200 ) < time() ) {
+					if ( empty( $last_utime ) || $last_utime + ( $check_hours * 7200 ) < time() ) {
 						if ( $this->p->debug->enabled ) {
 							$this->p->debug->log( 'requesting update check for '.$lca );
 							$this->p->notice->inf( 'Performing an update check for the '.$info['name'].' plugin.' );
 						}
-						$this->update->check_for_updates( $lca );
+						$this->update->check_for_updates( $lca, false, false );	// $use_cache = false
 					}
 				}
 			}
