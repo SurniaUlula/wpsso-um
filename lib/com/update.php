@@ -275,7 +275,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			foreach ( $plugins as $lca => $info ) {
 
 				if ( $this->p->debug->enabled )
-					$this->p->debug->log( 'checking for '.$lca.' update' );
+					$this->p->debug->log( 'checking for '.$lca.' plugin update' );
 
 				$option_data = self::get_option_data( $lca );
 
@@ -357,6 +357,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( $this->p->debug->enabled )
 					$this->p->debug->log( $cache_type.': transient salt '.$cache_salt );
 				$last_update = get_option( $lca.'_utime' );
+
 				if ( $use_cache && $last_update !== false ) {
 					$plugin_data = get_transient( $cache_id );
 					if ( $plugin_data !== false ) {
@@ -394,7 +395,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( $this->p->debug->enabled )
 					$this->p->debug->log( 'update error: '.$result->get_error_message() );
 
-			} elseif ( isset( $result['response']['code'] ) && ( $result['response']['code'] == 200 ) && ! empty( $result['body'] ) ) {
+			} elseif ( isset( $result['response']['code'] ) && 
+				$result['response']['code'] == 200 && ! empty( $result['body'] ) ) {
 
 				if ( ! empty( $result['headers']['x-smp-error'] ) ) {
 					self::$c[$lca]['umsg'] = json_decode( $result['body'] );
@@ -474,6 +476,9 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 		public $downloaded;
 		public $last_updated;
 	
+		public function __construct() {
+		}
+
 		public static function from_json( $json ) {
 			$json_data = json_decode( $json );
 			if ( empty( $json_data ) || 
@@ -553,7 +558,10 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 		public $homepage;
 		public $download_url;
 		public $upgrade_notice;
-	
+
+		public function __construct() {
+		}
+
 		public function from_json( $json ) {
 			$plugin_data = SucomPluginData::from_json( $json );
 			if ( $plugin_data !== null ) 
