@@ -69,7 +69,7 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 	* *None*
 * **Bugfixes**
 	* Fixed an internal cache array pointer for status messages.
-	* Added `is_multisite()` checks to use non-multisite functions for single-site installs.
+	* Changed from multisite to single-site options table to get / save update information.
 * **Developer Notes**
 	* *None*
 
@@ -153,7 +153,7 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 
 = 1.1.7 =
 
-2015/09/23 Fixed an internal cache array pointer for status messages. Added is_multisite() checks to use non-multisite functions for single-site installs.
+2015/09/23 Fixed an internal cache array pointer for status messages. Changed from multisite to single-site options table to get / save update information.
 
 = 1.1.6 =
 
