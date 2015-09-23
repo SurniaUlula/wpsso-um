@@ -265,7 +265,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$this->p->debug->log( 'no plugins to check' );
 				return;
 			}
-
 			foreach ( $plugins as $lca => $info ) {
 				if ( $this->p->debug->enabled )
 					$this->p->debug->log( 'checking for '.$lca.' plugin update' );
