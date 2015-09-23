@@ -63,24 +63,16 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		private static function get_option_data( $lca, $default = false, $use_cache = true ) {
 			if ( ! isset( self::$c[$lca]['opt_data'] ) ) {
 				self::$c[$lca]['opt_data'] = $default;
-				if ( ! empty( self::$c[$lca]['opt_name'] ) ) {
-					if ( is_multisite() )
-						self::$c[$lca]['opt_data'] = get_site_option( self::$c[$lca]['opt_name'], $default, $use_cache );
-					else self::$c[$lca]['opt_data'] = get_option( self::$c[$lca]['opt_name'], $default );
-				} elseif ( $this->p->debug->enabled )
-					$this->p->debug->log( 'missing opt_name value in '.$lca.' plugin config' );
+				if ( ! empty( self::$c[$lca]['opt_name'] ) )
+					self::$c[$lca]['opt_data'] = get_option( self::$c[$lca]['opt_name'], $default );
 			}
 			return self::$c[$lca]['opt_data'];
 		}
 
 		private static function update_option_data( $lca, $opt_data, $use_cache = true ) {
 			self::$c[$lca]['opt_data'] = $opt_data;
-			if ( ! empty( self::$c[$lca]['opt_name'] ) ) {
-				if ( is_multisite() )
-					return update_site_option( self::$c[$lca]['opt_name'], $opt_data );
-				else return update_option( self::$c[$lca]['opt_name'], $opt_data, $use_cache );	// $use_cache aka "autoload"
-			} elseif ( $this->p->debug->enabled )
-				$this->p->debug->log( 'missing opt_name value in '.$lca.' plugin config' );
+			if ( ! empty( self::$c[$lca]['opt_name'] ) )
+				return update_option( self::$c[$lca]['opt_name'], $opt_data, $use_cache );	// $use_cache aka "autoload"
 			return false;
 		}
 
