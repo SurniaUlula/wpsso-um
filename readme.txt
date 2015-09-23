@@ -61,6 +61,18 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 
 * [GitHub](https://github.com/SurniaUlula/wpsso-um)
 
+= Version 1.1.7 (2015/09/23) =
+
+* **New Features**
+	* *None*
+* **Improvements**
+	* *None*
+* **Bugfixes**
+	* Fixed an internal cache array pointer for status messages.
+	* Added `is_multisite()` checks to use non-multisite functions for single-site installs.
+* **Developer Notes**
+	* *None*
+
 = Version 1.1.6 (2015/09/19) =
 
 * **New Features**
@@ -139,27 +151,11 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 
 == Upgrade Notice ==
 
+= 1.1.7 =
+
+2015/09/23 Fixed an internal cache array pointer for status messages. Added is_multisite() checks to use non-multisite functions for single-site installs.
+
 = 1.1.6 =
 
-Added a self-deactivation feature when WPSSO UM is activated and WPSSO is missing. 
-
-= 1.1.5 =
-
-Minor code optimization and addition of method calls during activation to save install / activation / update timestamps.
-
-= 1.1.4 =
-
-Updated the tooltip message filter names for WPSSO v3.8.
-
-= 1.1.3 =
-
-Minor update to optimize internal function calls and filter hooks.
-
-= 1.1.2 =
-
-Fixed a possible condition where the Free update information would be returned if/when newer than the cached Pro update information.
-
-= 1.1.1 =
-
-Added a check for Wpsso::get_instance() with a fallback to the $wpsso global variable for older WPSSO versions.
+2015/09/19 Added a self-deactivation feature when WPSSO UM is activated and WPSSO is missing. 
 
