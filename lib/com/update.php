@@ -66,10 +66,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return self::$c[$lca]['opt_data'];
 		}
 
-		private static function update_option_data( $lca, $opt_data, $autoload = true ) {
+		private static function update_option_data( $lca, $opt_data ) {
 			self::$c[$lca]['opt_data'] = $opt_data;
 			if ( ! empty( self::$c[$lca]['opt_name'] ) )
-				return update_option( self::$c[$lca]['opt_name'], $opt_data, $autoload );
+				return update_option( self::$c[$lca]['opt_name'], $opt_data );
 			return false;
 		}
 
