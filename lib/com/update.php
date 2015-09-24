@@ -59,9 +59,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 		private static function get_option_data( $lca, $default = false ) {
 			if ( ! isset( self::$c[$lca]['opt_data'] ) ) {
-				self::$c[$lca]['opt_data'] = $default;
 				if ( ! empty( self::$c[$lca]['opt_name'] ) )
 					self::$c[$lca]['opt_data'] = get_option( self::$c[$lca]['opt_name'], $default );
+				else self::$c[$lca]['opt_data'] = $default;
 			}
 			return self::$c[$lca]['opt_data'];
 		}
@@ -141,7 +141,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 				if ( ! defined('WP_INSTALLING') &&
 					! wp_next_scheduled( $this->cron_hook ) )
-						wp_schedule_event( time(), $this->sched_name, $this->cron_hook );	// since wp 2.1.0
+						wp_schedule_event( time(), $this->sched_name, $this->cron_hook );
 			} else wp_clear_scheduled_hook( $this->cron_hook );
 		}
 
@@ -335,8 +335,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						return $plugin_data;
 					}
 				}
-			} elseif ( $use_cache && isset( self::$c[$lca]['plugin_data'] ) )
-				return self::$c[$lca]['plugin_data'];
+			} elseif ( $use_cache ) {
+				if ( isset( self::$c[$lca]['plugin_data'] ) )
+					return self::$c[$lca]['plugin_data'];
+			}
 
 			$ua_plugin = self::$c[$lca]['slug'].'/'.$query['installed_version'];
 			if ( has_filter( $lca.'_ua_plugin' ) )
@@ -374,19 +376,20 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					self::$c[$lca]['umsg'] = false;
 					delete_option( $lca.'_umsg' );
 					$plugin_data = SucomPluginData::from_json( $result['body'] );
+
 					if ( empty( $plugin_data->plugin ) ) {
 						if ( $this->p->debug->enabled )
 							$this->p->debug->log( 'missing data: plugin property missing from json' );
 					} elseif ( $plugin_data->plugin !== self::$c[$lca]['base'] ) {
 						if ( $this->p->debug->enabled )
 							$this->p->debug->log( 'incorrect data: plugin property '.$plugin_data->plugin.
-								' does not match the '.self::$c[$lca]['base'].' base' );
+								' does not match '.self::$c[$lca]['base'] );
+						$plugin_data = null;
 					}
 				}
 			}
 
 			self::$c[$lca]['utime'] = time();
-			self::$c[$lca]['plugin_data'] = $plugin_data;
 			update_option( $lca.'_utime', self::$c[$lca]['utime'] );
 
 			if ( ! empty( $this->p->is_avail['cache']['transient'] ) ) {
@@ -394,7 +397,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( $this->p->debug->enabled )
 					$this->p->debug->log( $cache_type.': plugin data saved to transient '.$cache_id.
 						' ('.self::$c[$lca]['expire'].' seconds)');
-			}
+			} elseif ( $use_cache )
+				self::$c[$lca]['plugin_data'] = $plugin_data;
 
 			return $plugin_data;
 		}
