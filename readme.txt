@@ -61,6 +61,17 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 
 * [GitHub](https://github.com/SurniaUlula/wpsso-um)
 
+= Version 1.1.8 =
+
+* **New Features**
+	* *None*
+* **Improvements**
+	* *None*
+* **Bugfixes**
+	* *None*
+* **Developer Notes**
+	* Removed unnecessary current/new comparison before saving plugin update information (which may be incorrectly reported as current by some database caching solutions).
+
 = Version 1.1.7 (2015/09/23) =
 
 * **New Features**
