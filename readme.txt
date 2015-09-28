@@ -70,7 +70,7 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 * **Bugfixes**
 	* *None*
 * **Developer Notes**
-	* Removed unnecessary current/new comparison before saving plugin update information (which may be incorrectly reported as current by some database caching solutions).
+	* Removed unnecessary current/new comparison before saving plugin update information (current options may have been incorrectly reported as new by some caching solutions).
 
 = Version 1.1.7 (2015/09/23) =
 
