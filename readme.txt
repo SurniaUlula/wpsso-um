@@ -63,6 +63,18 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 
 * [GitHub](https://github.com/SurniaUlula/wpsso-um)
 
+= Version 1.1.9 =
+
+* **New Features**
+	* *None*
+* **Improvements**
+	* Updated the text domain in preparation for plugin import to translate.wordpress.org.
+	* Added the translation function to status and warning messages.
+* **Bugfixes**
+	* *None*
+* **Developer Notes**
+	* Added a POT (Portable Object Template) file with translation strings in wpsso-um/languages/wpsso-um.pot.
+
 = Version 1.1.8 2015/09/29 =
 
 * **New Features**
@@ -167,12 +179,4 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 = 1.1.8 =
 
 2015/09/29 Removed unnecessary current/new comparison before saving plugin update information.
-
-= 1.1.7 =
-
-2015/09/23 Fixed an internal cache array pointer for status messages. Changed from multisite to single-site options table to get / save update information.
-
-= 1.1.6 =
-
-2015/09/19 Added a self-deactivation feature when WPSSO UM is activated and WPSSO is missing. 
 
