@@ -1,6 +1,8 @@
 === WPSSO Pro Update Manager ===
 Plugin Name: WPSSO Pro Update Manager (WPSSO UM)
 Plugin Slug: wpsso-um
+Text Domain: wpsso-um
+Domain Path: /languages
 Contributors: jsmoriss
 Donate Link: https://wpsso.com/
 Tags: wpsso, update, manager
