@@ -68,12 +68,12 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 * **New Features**
 	* *None*
 * **Improvements**
+	* Added translation function calls to all status and warning messages.
 	* Updated the text domain in preparation for plugin import to translate.wordpress.org.
-	* Added the translation function to status and warning messages.
 * **Bugfixes**
 	* *None*
 * **Developer Notes**
-	* Added a POT (Portable Object Template) file with translation strings in wpsso-um/languages/wpsso-um.pot.
+	* Added a POT (Portable Object Template) file with translation strings in languages/wpsso-um.pot.
 
 = Version 1.1.8 2015/09/29 =
 
