@@ -10,7 +10,7 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.txt
 Requires At Least: 3.1
 Tested Up To: 4.3.1
-Stable Tag: 1.1.8
+Stable Tag: 1.1.9
 
 WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
 
