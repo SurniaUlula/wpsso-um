@@ -12,13 +12,13 @@ Requires At Least: 3.1
 Tested Up To: 4.3.1
 Stable Tag: 1.1.8
 
-Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its extensions.
+WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
 
 == Description ==
 
-<p><img src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png" width="256" height="256" style="width:33%;min-width:128px;max-width:256px;float:left;margin:0 40px 20px 0;" />The WPSSO Pro Update Manager (WPSSO UM) extension plugin is required to enable and update the <a href="https://wpsso.com/extend/plugins/wpsso/">WordPress Social Sharing Optimization (WPSSO) Pro</a> version, including all its licensed extension plugins.</p>
+<p><img src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png" width="256" height="256" style="width:33%;min-width:128px;max-width:256px;float:left;margin:0 40px 20px 0;" />The WPSSO Pro Update Manager (WPSSO UM) extension plugin is required to enable and update the <a href="https://wpsso.com/extend/plugins/wpsso/">WordPress Social Sharing Optimization (WPSSO) Pro</a> version plugin, including all its licensed Pro extensions.</p>
 
-<p>Simply <em>download</em>, <em>install</em>, and <em>activate</em> the plugin &mdash; there are no plugin settings to review or adjust.</p>
+Simply *download*, *install*, and *activate* the plugin &mdash; there are no plugin settings to review or adjust.
 
 == Installation ==
 
@@ -63,13 +63,12 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 
 * [GitHub](https://github.com/SurniaUlula/wpsso-um)
 
-= Version 1.1.9 =
+= Version 1.1.9 2015/10/10 =
 
 * **New Features**
-	* *None*
+	* Added a French language (fr_FR) translation.
 * **Improvements**
 	* Added translation function calls to all status and warning messages.
-	* Updated the text domain in preparation for plugin import to translate.wordpress.org.
 * **Bugfixes**
 	* *None*
 * **Developer Notes**
@@ -176,7 +175,7 @@ Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin 
 
 == Upgrade Notice ==
 
-= 1.1.8 =
+= 1.1.9 =
 
-2015/09/29 Removed unnecessary current/new comparison before saving plugin update information.
+2015/10/10 Added translation function calls to all status and warning messages. Added a French language (fr_FR) translation.
 
