@@ -25,8 +25,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$lca = $this->p->cf['lca'];						// ngfb
 			$slug = $this->p->cf['plugin'][$lca]['slug'];				// nextgen-facebook
 			$this->cron_hook = 'plugin_updates-'.$slug;				// plugin_updates-nextgen-facebook
-			$this->sched_hours = ( empty( $hours ) ? 0 : $hours );			// 24
-			$this->sched_name = ( empty( $hours ) ? '' : 'every'.$hours.'hours' );	// every24hours
+			$this->sched_hours = empty( $hours ) ? 0 : $hours;			// 24
+			$this->sched_name = empty( $hours ) ? '' : 'every'.$hours.'hours';	// every24hours
 			$this->set_config( $ext );
 			$this->install_hooks();
 			if ( $this->p->debug->enabled )
