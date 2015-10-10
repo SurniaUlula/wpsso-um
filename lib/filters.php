@@ -35,7 +35,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 					$um_name = $this->p->cf['plugin']['wpssoum']['name'];
 					$check_hours = empty( $this->p->cf['update_check_hours'] ) ? 
 						24 : $this->p->cf['update_check_hours'];
-					$text = 'When the '.$um_name.' extension is active, an update check is scheduled every '.$check_hours.' hours to retrieve update information for '.$short.' '.$this->p->util->get_admin_url( 'licenses', 'Extension Plugins and Pro Licenses' ).'.';
+					$text = sprintf( __( 'When the %1$s extension is active, an update check is scheduled every %2$d hours to retrieve update information for <em>installed and licensed</em> %3$s extensions.', 'nextgen-facebook-um' ), $um_name, $check_hours, $short );
 					break;
 			}
 			return $text;

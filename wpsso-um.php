@@ -1,15 +1,18 @@
 <?php
 /*
  * Plugin Name: WPSSO Pro Update Manager (WPSSO UM)
+ * Plugin Slug: wpsso-um
+ * Text Domain: wpsso-um
+ * Domain Path: /languages
  * Plugin URI: http://surniaulula.com/extend/plugins/wpsso-um/
  * Author: Jean-Sebastien Morisset
  * Author URI: http://surniaulula.com/
  * License: GPLv3
  * License URI: http://www.gnu.org/licenses/gpl.txt
- * Description: Update Manager for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its extensions
+ * Description: WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
  * Requires At Least: 3.1
  * Tested Up To: 4.3.1
- * Version: 1.1.8
+ * Version: 1.1.9
  * 
  * Copyright 2015 - Jean-Sebastien Morisset - http://surniaulula.com/
  */
@@ -30,7 +33,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 		private static $wpsso_short = 'WPSSO';
 		private static $wpsso_name = 'WordPress Social Sharing Optimization (WPSSO)';
-		private static $wpsso_min_version = '3.10.1';
+		private static $wpsso_min_version = '3.11.0';
 		private static $wpsso_has_min_ver = true;
 
 		public static function &get_instance() {
@@ -60,17 +63,16 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 		public static function wpsso_missing_notice( $deactivate = false ) {
 			$lca = 'wpssoum';
-			$name = WpssoUmConfig::$cf['plugin'][$lca]['name'];
-			$short = WpssoUmConfig::$cf['plugin'][$lca]['short'];
+			$info = WpssoUmConfig::$cf['plugin'][$lca];
+			load_plugin_textdomain( $info['text_domain'], false, $info['slug'].$info['domain_path'] );
+
 			if ( $deactivate === true ) {
 				require_once( ABSPATH.'wp-admin/includes/plugin.php' );
-				deactivate_plugins( WPSSOUM_PLUGINBASE );
-				wp_die( '<p>'.sprintf( __( 'The %s extension requires the %s plugin &mdash; please install and '.
-					'activate the %s plugin before trying to re-activate the %s extension.', WPSSOUM_TEXTDOM ), 
-						$name, self::$wpsso_name, self::$wpsso_short, $short ).'</p>' );
-			} else echo '<div class="error"><p>'.sprintf( __( 'The %s extension requires the %s plugin &mdash; '.
-					'please install and activate the %s plugin.', WPSSOUM_TEXTDOM ), 
-						$name, self::$wpsso_name, self::$wpsso_short ).'</p></div>';
+				deactivate_plugins( $info['base'] );
+
+				wp_die( '<p>'.sprintf( __( 'The %1$s extension requires the %2$s plugin &mdash; please install and activate the %3$s plugin before trying to re-activate the %4$s extension.', 'wpsso-um' ), $info['name'], self::$wpsso_name, self::$wpsso_short, $info['short'] ).'</p>' );
+
+			} else echo '<div class="error"><p>'.sprintf( __( 'The %1$s extension requires the %2$s plugin &mdash; please install and activate the %3$s plugin.', 'wpsso-um' ), $info['name'], self::$wpsso_name, self::$wpsso_short ).'</p></div>';
 		}
 
 		public function wpsso_get_config( $cf ) {
@@ -84,12 +86,12 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 		public function wpsso_init_plugin() {
 
+			if ( self::$wpsso_has_min_ver === false )
+				return $this->warning_wpsso_version( WpssoUmConfig::$cf['plugin']['wpssoum'] );
+
 			if ( method_exists( 'Wpsso', 'get_instance' ) )
 				$this->p =& Wpsso::get_instance();
 			else $this->p =& $GLOBALS['wpsso'];
-
-			if ( self::$wpsso_has_min_ver === false )
-				return $this->warning_wpsso_version( WpssoUmConfig::$cf['plugin']['wpssoum'] );
 
 			require_once( WPSSOUM_PLUGINDIR.'lib/filters.php' );
 			$this->filters = new WpssoUmFilters( $this->p, __FILE__ );
@@ -126,13 +128,14 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 		private function warning_wpsso_version( $info ) {
 			$wpsso_version = $this->p->cf['plugin']['wpsso']['version'];
+			load_plugin_textdomain( $info['text_domain'], false, $info['slug'].$info['domain_path'] );
+
 			if ( ! empty( $this->p->debug->enabled ) )
-				$this->p->debug->log( $info['name'].' requires WPSSO version '.self::$wpsso_min_version.
-					' or newer ('.$wpsso_version.' installed)' );
+				$this->p->debug->log( $info['name'].' requires '.self::$wpsso_short.' version '.
+					self::$wpsso_min_version.' or newer ('.$wpsso_version.' installed)' );
+
 			if ( is_admin() )
-				$this->p->notice->err( 'The '.$info['name'].' version '.$info['version'].
-					' extension requires WPSSO version '.self::$wpsso_min_version.
-					' or newer (version '.$wpsso_version.' is currently installed).', true );
+				$this->p->notice->err( sprintf( __( 'The %1$s extension version %2$s requires the use of %3$s version %4$s or newer (version %5$s is currently installed).', 'wpsso-um' ), $info['name'], $info['version'], self::$wpsso_short, self::$wpsso_min_version, $wpsso_version ), true );
 		}
 	}
 

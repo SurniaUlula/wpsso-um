@@ -79,9 +79,8 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 		private function deactivate_plugin() {
 			if ( class_exists( 'WpssoConfig' ) ) {
 				$cf = WpssoConfig::get_config();	// get all plugins / extensions
-				foreach ( $cf['plugin'] as $lca => $info ) {
+				foreach ( $cf['plugin'] as $lca => $info )
 					wp_clear_scheduled_hook( 'plugin_updates-'.$info['slug'] );
-				}
 			}
 		}
 
