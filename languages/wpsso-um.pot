@@ -4,13 +4,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.1.9\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2015-10-10 16:38:38+00:00\n"
+"POT-Creation-Date: 2015-10-10 18:03:08+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: lib/com/update.php:289
+msgid "Plugin update information for %s has been retrieved and saved."
+msgstr ""
+
+#: lib/com/update.php:368
+msgid "Update error: %s"
+msgstr ""
 
 #: lib/config-gettext-extract.php:3
 msgctxt "plugin description"
@@ -26,19 +34,19 @@ msgid ""
 "$s extensions."
 msgstr ""
 
-#: wpsso-um.php:73
+#: wpsso-um.php:72
 msgid ""
 "The %1$s extension requires the %2$s plugin &mdash; please install and "
 "activate the %3$s plugin before trying to re-activate the %4$s extension."
 msgstr ""
 
-#: wpsso-um.php:75
+#: wpsso-um.php:74
 msgid ""
 "The %1$s extension requires the %2$s plugin &mdash; please install and "
 "activate the %3$s plugin."
 msgstr ""
 
-#: wpsso-um.php:138
+#: wpsso-um.php:132
 msgid ""
 "The %1$s extension version %2$s requires the use of %3$s version %4$s or "
 "newer (version %5$s is currently installed)."

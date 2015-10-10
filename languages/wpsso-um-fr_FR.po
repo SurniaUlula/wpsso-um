@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.1.9\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2015-10-10 12:00-0400\n"
-"PO-Revision-Date: 2015-10-10 12:02-0400\n"
+"POT-Creation-Date: 2015-10-10 13:58-0400\n"
+"PO-Revision-Date: 2015-10-10 13:59-0400\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -14,6 +14,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.5\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: lib/com/update.php:289
+msgid "Plugin update information for %s has been retrieved and saved."
+msgstr "L'information de mise à jour pour l'extension %s a été récupérée et sauvegardée."
+
+#: lib/com/update.php:368
+msgid "Update error: %s"
+msgstr "Erreur de mise à jour: %s"
 
 #: lib/config-gettext-extract.php:3
 msgctxt "plugin description"
@@ -33,7 +41,7 @@ msgstr ""
 "pour récupérer les informations de mise à jour pour les extensions %3$s <em>installé et ayant un "
 "ID d'authentification</em>."
 
-#: wpsso-um.php:73
+#: wpsso-um.php:72
 msgid ""
 "The %1$s extension requires the %2$s plugin &mdash; please install and activate the %3$s plugin "
 "before trying to re-activate the %4$s extension."
@@ -41,13 +49,13 @@ msgstr ""
 "L'extension %1$s requiert %2$s &mdash; s'il vous plaît installer et activer l'extension %3$s avant "
 "d'essayer de re-activer %4$s."
 
-#: wpsso-um.php:75
+#: wpsso-um.php:74
 msgid ""
 "The %1$s extension requires the %2$s plugin &mdash; please install and activate the %3$s plugin."
 msgstr ""
 "L'extension %1$s requiert %2$s &mdash; s'il vous plaît installer et activer l'extension %3$s."
 
-#: wpsso-um.php:138
+#: wpsso-um.php:132
 msgid ""
 "The %1$s extension version %2$s requires the use of %3$s version %4$s or newer (version %5$s is "
 "currently installed)."

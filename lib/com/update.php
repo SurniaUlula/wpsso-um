@@ -16,17 +16,18 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		private $cron_hook = '';
 		private $sched_hours = 0;
 		private $sched_name = '';
+		private $text_dom = 'sucom';
 		private static $c = array();
 
-		public function __construct( &$plugin, &$ext, $hours = 24 ) {
+		public function __construct( &$plugin, &$ext, $text_dom = 'sucom' ) {
 			$this->p =& $plugin;
 			if ( $this->p->debug->enabled )
 				$this->p->debug->mark( 'update setup' );
-			$lca = $this->p->cf['lca'];						// ngfb
-			$slug = $this->p->cf['plugin'][$lca]['slug'];				// nextgen-facebook
-			$this->cron_hook = 'plugin_updates-'.$slug;				// plugin_updates-nextgen-facebook
-			$this->sched_hours = empty( $hours ) ? 0 : $hours;			// 24
-			$this->sched_name = empty( $hours ) ? '' : 'every'.$hours.'hours';	// every24hours
+			$lca = $this->p->cf['lca'];					// ngfb
+			$this->cron_hook = 'plugin_updates-'.$ext[$lca]['slug'];	// plugin_updates-nextgen-facebook
+			$this->sched_hours = $this->p->cf['update_check_hours'];	// 24
+			$this->sched_name = 'every'.$this->sched_hours.'hours';		// every24hours
+			$this->text_dom = $text_dom;					// nextgen-facebook-um
 			$this->set_config( $ext );
 			$this->install_hooks();
 			if ( $this->p->debug->enabled )
@@ -90,6 +91,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$this->p->debug->log( $lca.' plugin: update config defined (auth_type = '.
 							( empty( $auth_type ) ? 'none' : $auth_type ).')' );
 					self::$c[$lca] = array(
+						'name' => $info['name'],
 						'slug' => $info['slug'],				// nextgen-facebook
 						'base' => $info['base'],				// nextgen-facebook/nextgen-facebook.php
 						'opt_name' => 'external_updates-'.$info['slug'],	// external_updates-nextgen-facebook
@@ -284,7 +286,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					if ( $this->p->debug->enabled )
 						$this->p->debug->log( $lca.' plugin: update information saved in '.$info['opt_name'].' option' );
 					if ( $notice === true || $this->p->debug->enabled )
-						$this->p->notice->inf( 'Plugin update information ('.$info['opt_name'].') has been saved.', true );
+						$this->p->notice->inf( sprintf( __( 'Plugin update information for %s has been retrieved and saved.',
+							$this->text_dom ), $info['name'] ), true );
 				} elseif ( $this->p->debug->enabled ) {
 					$this->p->debug->log( $lca.' plugin: failed saving update information in '.$info['opt_name'].' option' );
 					$this->p->debug->log( $option_data );
@@ -362,7 +365,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			if ( is_wp_error( $result ) ) {
 
 				if ( isset( $this->p->notice ) && is_object( $this->p->notice ) )
-					$this->p->notice->err( 'Update error &ndash; '.$result->get_error_message().'.' );
+					$this->p->notice->err( sprintf( __( 'Update error: %s',
+						$this->text_dom ), $result->get_error_message() ) );
 				if ( $this->p->debug->enabled )
 					$this->p->debug->log( 'update error: '.$result->get_error_message() );
 

@@ -62,8 +62,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		}
 
 		public static function wpsso_missing_notice( $deactivate = false ) {
-			$lca = 'wpssoum';
-			$info = WpssoUmConfig::$cf['plugin'][$lca];
+			$info = WpssoUmConfig::$cf['plugin']['wpssoum'];
 			load_plugin_textdomain( $info['text_domain'], false, $info['slug'].$info['domain_path'] );
 
 			if ( $deactivate === true ) {
@@ -86,35 +85,29 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 		public function wpsso_init_plugin() {
 
-			if ( self::$wpsso_has_min_ver === false )
-				return $this->warning_wpsso_version( WpssoUmConfig::$cf['plugin']['wpssoum'] );
-
 			if ( method_exists( 'Wpsso', 'get_instance' ) )
 				$this->p =& Wpsso::get_instance();
 			else $this->p =& $GLOBALS['wpsso'];
 
+			if ( self::$wpsso_has_min_ver === false )
+				return $this->warning_wpsso_version();
+
 			require_once( WPSSOUM_PLUGINDIR.'lib/filters.php' );
 			$this->filters = new WpssoUmFilters( $this->p, __FILE__ );
+			$this->update = new SucomUpdate( $this->p, $this->p->cf['plugin'], 'wpsso-um' );
 
-			$check_hours = empty( $this->p->cf['update_check_hours'] ) ? 
-				24 : $this->p->cf['update_check_hours'];
-
-			$this->update = new SucomUpdate( $this->p, $this->p->cf['plugin'], $check_hours );
-
+			/*
+			 * Force immediate check if no update check for past 2 days
+			 */
 			if ( is_admin() ) {
-				/*
-				 * Force immediate check if no update check for past 2 days
-				 */
 				foreach ( $this->p->cf['plugin'] as $lca => $info ) {
-
 					// skip plugins that have an auth type but no auth string
 					if ( ! empty( $info['update_auth'] ) &&
 						empty( $this->p->options['plugin_'.$lca.'_'.$info['update_auth']] ) )
 							continue;
 
+					// force check if no update in update_check_hours of 24 hours * 7200 = 2 days
 					$last_utime = get_option( $lca.'_utime' );
-
-					// 24 hours * 7200 = 2 days
 					if ( empty( $last_utime ) || $last_utime + ( $check_hours * 7200 ) < time() ) {
 						if ( $this->p->debug->enabled ) {
 							$this->p->debug->log( 'requesting update check for '.$lca );
@@ -126,11 +119,12 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			}
 		}
 
-		private function warning_wpsso_version( $info ) {
+		private function warning_wpsso_version() {
+			$info = WpssoUmConfig::$cf['plugin']['wpssoum'];
 			$wpsso_version = $this->p->cf['plugin']['wpsso']['version'];
 			load_plugin_textdomain( $info['text_domain'], false, $info['slug'].$info['domain_path'] );
 
-			if ( ! empty( $this->p->debug->enabled ) )
+			if ( $this->p->debug->enabled )
 				$this->p->debug->log( $info['name'].' requires '.self::$wpsso_short.' version '.
 					self::$wpsso_min_version.' or newer ('.$wpsso_version.' installed)' );
 
