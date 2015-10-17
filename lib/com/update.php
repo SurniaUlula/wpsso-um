@@ -232,7 +232,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					// save to local static cache as well
 					self::$c[$lca]['inject_update'] = $updates->response[$info['base']] = $option_data->update->json_to_wp();
 					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $lca.' plugin: update version ('.$option_data->update->version.') '.
+						$this->p->debug->log( $lca.' plugin: update version ('.$option_data->update->version.')'.
 							' is different than installed ('.$this->get_installed_version( $lca ).')' );
 						$this->p->debug->log( $updates->response[$info['base']], 5 );
 					}
