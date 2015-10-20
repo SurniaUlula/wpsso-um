@@ -28,26 +28,26 @@
 <h4>Semi-Automated Install</h4>
 
 <ul>
-<li><a href="http://wpsso.com/extend/plugins/wpsso-um/latest/">Download the latest plugin archive file</a></li>
-<li>Go to the wp-admin/ section of your website</li>
-<li>Select the <em>Plugins</em> menu item</li>
-<li>Select the <em>Add New</em> sub-menu item</li>
-<li>Click on <em>Upload Plugin</em> link (next to the <em>Add Plugins</em> page title)</li>
-<li>Click the <em>Browse...</em> button</li>
-<li>Navigate your local folders / directories and choose the zip file you downloaded previously</li>
-<li>Click on the <em>Install Now</em> button</li>
-<li>Click the <em>Activate Plugin</em> link</li>
+<li><a href="http://wpsso.com/extend/plugins/wpsso-um/latest/">Download the latest plugin archive ZIP file</a>.</li>
+<li>Go to the wp-admin/ section of your website.</li>
+<li>Select the <em>Plugins</em> menu item.</li>
+<li>Select the <em>Add New</em> sub-menu item.</li>
+<li>Click on <em>Upload Plugin</em> link (next to the <em>Add Plugins</em> page title).</li>
+<li>Click the <em>Browse...</em> button.</li>
+<li>Navigate your local folders / directories and choose the ZIP file you downloaded previously.</li>
+<li>Click on the <em>Install Now</em> button.</li>
+<li>Click the <em>Activate Plugin</em> link.</li>
 </ul>
 
 <h4>Manual Install</h4>
 
 <ul>
-<li><a href="http://wpsso.com/extend/plugins/wpsso-um/latest/">Download and unzip the latest plugin archive file</a></li>
-<li>Upload the entire wpsso-um/ folder to your website's wordpress/wp-content/plugins/ directory</li>
-<li>Go to the wp-admin/ section of your website</li>
-<li>Select the <em>Plugins</em> menu item</li>
-<li>Select the <em>Installed Plugins</em> sub-menu</li>
-<li>Scroll down to the "WPSSO Pro Update Manager (WPSSO UM)" plugin, and click its <em>Activate</em> link</li>
+<li><a href="http://wpsso.com/extend/plugins/wpsso-um/latest/">Download and unzip the latest plugin archive ZIP file</a></li>
+<li>Upload the entire wpsso-um/ folder to your website's wordpress/wp-content/plugins/ directory.</li>
+<li>Go to the wp-admin/ section of your website.</li>
+<li>Select the <em>Plugins</em> menu item.</li>
+<li>Select the <em>Installed Plugins</em> sub-menu.</li>
+<li>Scroll down to the "WPSSO Pro Update Manager (WPSSO UM)" plugin, and click its <em>Activate</em> link.</li>
 </ul>
 
 
