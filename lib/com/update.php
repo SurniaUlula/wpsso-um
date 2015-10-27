@@ -13,9 +13,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 	class SucomUpdate {
 	
 		private $p;
-		private $cron_hook = '';
-		private $sched_hours = 0;
-		private $sched_name = '';
+		private $cron_hook;
+		private $sched_hours;
+		private $sched_name;
 		private $text_dom = 'sucom';
 		private static $c = array();
 
@@ -322,25 +322,20 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			if ( ! empty( $query ) ) 
 				$json_url = add_query_arg( $query, $json_url );
 
-			if ( ! empty( $this->p->is_avail['cache']['transient'] ) ) {
-				$cache_salt = __METHOD__.'(json_url:'.$json_url.'_home_url:'.$home_url.')';
-				$cache_id = $this->p->cf['lca'].'_'.md5( $cache_salt );
-				$cache_type = 'object cache';
-				if ( $this->p->debug->enabled )
-					$this->p->debug->log( $cache_type.': transient salt '.$cache_salt );
-				$last_update = get_option( $lca.'_utime' );
+			$cache_salt = __METHOD__.'(json_url:'.$json_url.'_home_url:'.$home_url.')';
+			$cache_id = $this->p->cf['lca'].'_'.md5( $cache_salt );
+			$cache_type = 'object cache';
 
-				if ( $use_cache && $last_update !== false ) {
+			if ( $use_cache ) {
+				$last_utime = get_option( $lca.'_utime' );
+				if ( $this->p->is_avail['cache']['transient'] && $last_utime ) {
 					$plugin_data = get_transient( $cache_id );
-					if ( $plugin_data !== false ) {
-						if ( $this->p->debug->enabled )
-							$this->p->debug->log( $cache_type.': plugin data retrieved from transient '.$cache_id );
-						return $plugin_data;
-					}
-				}
-			} elseif ( $use_cache ) {
-				if ( isset( self::$c[$lca]['plugin_data'] ) )
-					return self::$c[$lca]['plugin_data'];
+				} elseif ( $this->p->is_avail['cache']['object'] && $last_utime ) {
+					$plugin_data = wp_cache_get( $cache_id, __METHOD__ );
+				} elseif ( isset( self::$c[$lca]['plugin_data'] ) )
+					$plugin_data = self::$c[$lca]['plugin_data'];
+				if ( $plugin_data !== false )
+					return $plugin_data;
 			}
 
 			$ua_plugin = self::$c[$lca]['slug'].'/'.$query['installed_version'];
@@ -396,13 +391,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			self::$c[$lca]['utime'] = time();
 			update_option( $lca.'_utime', self::$c[$lca]['utime'] );
 
-			if ( ! empty( $this->p->is_avail['cache']['transient'] ) ) {
-				set_transient( $cache_id, ( $plugin_data === null ? '' : $plugin_data ), self::$c[$lca]['expire'] );
-				if ( $this->p->debug->enabled )
-					$this->p->debug->log( $cache_type.': plugin data saved to transient '.$cache_id.
-						' ('.self::$c[$lca]['expire'].' seconds)');
-			} elseif ( $use_cache )
-				self::$c[$lca]['plugin_data'] = $plugin_data;
+			if ( $this->p->is_avail['cache']['transient'] )
+				set_transient( $cache_id, ( $plugin_data === null ?
+					'' : $plugin_data ), self::$c[$lca]['expire'] );
+			elseif ( $this->p->is_avail['cache']['object'] )
+				wp_cache_set( $cache_id, ( $plugin_data === null ?
+					'' : $plugin_data ), __METHOD__, self::$c[$lca]['expire'] );
+			else self::$c[$lca]['plugin_data'] = $plugin_data;
 
 			return $plugin_data;
 		}
