@@ -149,7 +149,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 		public function check_wpua( $current_wpua ) {
 			global $wp_version;
-			$default_wpua = 'WordPress/'.$wp_version.'; '.get_bloginfo( 'url' );
+			$default_wpua = 'WordPress/'.$wp_version.'; '.$this->home_url();
 			if ( $default_wpua !== $current_wpua ) {
 				if ( $this->p->debug->enabled )
 					$this->p->debug->log( 'incorrect wpua found: '.$current_wpua );
@@ -309,7 +309,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				return null;
 
 			global $wp_version;
-			$home_url = get_bloginfo( 'url' );	// equivalent to get_home_url()
+			$home_url = $this->home_url();
+			if ( $this->p->debug->enabled )
+				$this->p->debug->log( 'home_url = '.$home_url );
 			$json_url = empty( self::$c[$lca]['json_url'] ) ? '' : self::$c[$lca]['json_url'];
 			$query = array( 'installed_version' => $this->get_installed_version( $lca ) );
 
@@ -422,6 +424,59 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			if ( has_filter( $lca.'_installed_version' ) )
 				return apply_filters( $lca.'_installed_version', $version );
 			else return apply_filters( 'sucom_installed_version', $version, $lca );
+		}
+
+		// an unfiltered version of the same wordpress function
+		private function home_url( $path = '', $scheme = null ) {
+			return $this->get_home_url( null, $path, $scheme );
+		}
+
+		// an unfiltered version of the same wordpress function
+		private function get_home_url( $blog_id = null, $path = '', $scheme = null ) {
+
+			if ( empty( $blog_id ) || ! is_multisite() )
+				$url = get_option( 'home' );
+			else {
+				switch_to_blog( $blog_id );
+				$url = get_option( 'home' );
+				restore_current_blog();
+			}
+
+			if ( ! in_array( $scheme, array( 'http', 'https', 'relative' ) ) ) {
+				if ( is_ssl() && ! is_admin() && 'wp-login.php' !== $GLOBALS['pagenow'] )
+					$scheme = 'https';
+				else $scheme = parse_url( $url, PHP_URL_SCHEME );
+			}
+
+			$url = $this->set_url_scheme( $url, $scheme );
+
+			if ( $path && is_string( $path ) )
+				$url .= '/'.ltrim( $path, '/' );
+
+			return $url;
+		}
+
+		// an unfiltered version of the same wordpress function
+		private function set_url_scheme( $url, $scheme = null ) {
+
+			if ( ! $scheme )
+				$scheme = is_ssl() ? 'https' : 'http';
+			elseif ( $scheme === 'admin' || $scheme === 'login' || $scheme === 'login_post' || $scheme === 'rpc' )
+				$scheme = is_ssl() || force_ssl_admin() ? 'https' : 'http';
+			elseif ( $scheme !== 'http' && $scheme !== 'https' && $scheme !== 'relative' )
+				$scheme = is_ssl() ? 'https' : 'http';
+
+			$url = trim( $url );
+			if ( substr( $url, 0, 2 ) === '//' )
+				$url = 'http:' . $url;
+
+			if ( 'relative' == $scheme ) {
+				$url = ltrim( preg_replace( '#^\w+://[^/]*#', '', $url ) );
+				if ( $url !== '' && $url[0] === '/' )
+					$url = '/'.ltrim( $url, "/ \t\n\r\0\x0B" );
+			} else $url = preg_replace( '#^\w+://#', $scheme . '://', $url );
+
+			return $url;
 		}
 	}
 }
