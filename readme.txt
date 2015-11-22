@@ -10,7 +10,7 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.txt
 Requires At Least: 3.1
 Tested Up To: 4.3.1
-Stable Tag: 1.1.9
+Stable Tag: 1.2.0
 
 WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
 
@@ -67,7 +67,18 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 
 * [GitHub](https://github.com/SurniaUlula/wpsso-um)
 
-= Version 1.1.9 2015/10/10 =
+= Version 1.2.0 (2015/11/22) =
+
+* **New Features**
+	* *None*
+* **Improvements**
+	* Added unfiltered versions of the WordPress home_url(), get_home_url(), and set_url_scheme() functions.
+* **Bugfixes**
+	* *None*
+* **Developer Notes**
+	* *None*
+
+= Version 1.1.9 (2015/10/10) =
 
 * **New Features**
 	* Added a French language (fr_FR) translation.
@@ -78,7 +89,7 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 * **Developer Notes**
 	* Added a POT (Portable Object Template) file with translation strings in languages/wpsso-um.pot.
 
-= Version 1.1.8 2015/09/29 =
+= Version 1.1.8 (2015/09/29) =
 
 * **New Features**
 	* *None*
@@ -178,6 +189,10 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 	* *None*
 
 == Upgrade Notice ==
+
+= 1.2.0 =
+
+2015/11/22 Added unfiltered versions of the WordPress home_url(), get_home_url(), and set_url_scheme() functions.
 
 = 1.1.9 =
 
