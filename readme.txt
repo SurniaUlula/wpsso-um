@@ -67,6 +67,18 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 
 * [GitHub](https://github.com/SurniaUlula/wpsso-um)
 
+= Version 1.2.1 (2015/12/09) =
+
+* **New Features**
+	* *None*
+* **Improvements**
+	* *None*
+* **Bugfixes**
+	* *None*
+* **Developer Notes**
+	* Updated tested up to WP v4.4.
+	* Updated minimum required version to WPSSO v3.18.0.
+
 = Version 1.2.0 (2015/11/22) =
 
 * **New Features**
@@ -78,18 +90,11 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 * **Developer Notes**
 	* *None*
 
-= Version 1.1.9 (2015/10/10) =
-
-* **New Features**
-	* Added a French language (fr_FR) translation.
-* **Improvements**
-	* Added translation function calls to all status and warning messages.
-* **Bugfixes**
-	* *None*
-* **Developer Notes**
-	* Added a POT (Portable Object Template) file with translation strings in languages/wpsso-um.pot.
-
 == Upgrade Notice ==
+
+= 1.2.1 =
+
+2015/12/09 Updated the required and tested version strings.
 
 = 1.2.0 =
 
