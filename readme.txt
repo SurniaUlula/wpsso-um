@@ -94,9 +94,9 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 
 = 1.2.1 =
 
-2015/12/09 Updated the required and tested version strings.
+2015/12/09 - Updated the required and tested version strings.
 
 = 1.2.0 =
 
-2015/11/22 Added unfiltered versions of the WordPress home_url(), get_home_url(), and set_url_scheme() functions.
+2015/11/22 - Added unfiltered versions of the WordPress home_url(), get_home_url(), and set_url_scheme() functions.
 
