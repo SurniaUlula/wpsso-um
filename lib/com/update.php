@@ -22,7 +22,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		public function __construct( &$plugin, &$ext, $text_dom = 'sucom' ) {
 			$this->p =& $plugin;
 			if ( $this->p->debug->enabled )
-				$this->p->debug->mark( 'update setup' );
+				$this->p->debug->mark( 'update manager setup' );	// begin timer
+
 			$lca = $this->p->cf['lca'];					// ngfb
 			$this->cron_hook = 'plugin_updates-'.$ext[$lca]['slug'];	// plugin_updates-nextgen-facebook
 			$this->sched_hours = $this->p->cf['update_check_hours'];	// 24
@@ -30,8 +31,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$this->text_dom = $text_dom;					// nextgen-facebook-um
 			$this->set_config( $ext );
 			$this->install_hooks();
+
 			if ( $this->p->debug->enabled )
-				$this->p->debug->mark( 'update setup' );
+				$this->p->debug->mark( 'update manager setup' );	// end timer
 		}
 
 		public static function get_umsg( $lca ) {
@@ -204,14 +206,15 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				// remove existing information to make sure it is correct (not from wordpress.org)
 				if ( isset( $updates->response[$info['base']] ) )
-					unset( $updates->response[$info['base']] );		// nextgen-facebook/nextgen-facebook.php
+					unset( $updates->response[$info['base']] );					// nextgen-facebook/nextgen-facebook.php
 
 				if ( isset( self::$c[$lca]['inject_update'] ) ) {
 					// only return update information when an update is required
-					if ( self::$c[$lca]['inject_update'] !== false )	// false when installed version is current
+					if ( self::$c[$lca]['inject_update'] !== false )				// false when installed is current
 						$updates->response[$info['base']] = self::$c[$lca]['inject_update'];
 					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $lca.' plugin: mark', 5 );	// show calling method/function
+						$this->p->debug->mark();
+						$this->p->debug->log( $lca.' plugin: calling method/function', 5 );	// show calling method/function
 						$this->p->debug->log( $lca.' plugin: using saved update status' );
 					}
 					continue;	// get the next plugin
@@ -237,7 +240,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$this->p->debug->log( $updates->response[$info['base']], 5 );
 					}
 				} else {
-					self::$c[$lca]['inject_update'] = false;	// false when installed version is current
+					self::$c[$lca]['inject_update'] = false;					// false when installed is current
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $lca.' plugin: installed version is current - no update required' );
 						$this->p->debug->log( $option_data->update->json_to_wp(), 5 );

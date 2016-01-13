@@ -1,22 +1,22 @@
-# Copyright (C) 2015 WPSSO Pro Update Manager (WPSSO UM)
+# Copyright (C) 2016 WPSSO Pro Update Manager (WPSSO UM)
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
 "Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.2.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2015-12-09 16:00:30+00:00\n"
+"POT-Creation-Date: 2016-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: lib/com/update.php:289
+#: lib/com/update.php:292
 msgid "Plugin update information for %s has been retrieved and saved."
 msgstr ""
 
-#: lib/com/update.php:365
+#: lib/com/update.php:368
 msgid "Update error: %s"
 msgstr ""
 
@@ -30,8 +30,8 @@ msgstr ""
 #: lib/filters.php:38
 msgid ""
 "When the %1$s extension is active, an update check is scheduled every %2$d "
-"hours to retrieve update information for <em>installed and licensed</em> %3"
-"$s extensions."
+"hours to retrieve update information for <em>installed and licensed</em> "
+"%3$s extensions."
 msgstr ""
 
 #: wpsso-um.php:73
