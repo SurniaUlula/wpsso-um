@@ -12,7 +12,7 @@
  * Description: WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
  * Requires At Least: 3.1
  * Tested Up To: 4.4
- * Version: 1.2.1
+ * Version: 1.2.2
  * 
  * Copyright 2015 - Jean-Sebastien Morisset - http://surniaulula.com/
  */

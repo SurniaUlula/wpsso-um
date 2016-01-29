@@ -36,16 +36,21 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->mark( 'update manager setup' );	// end timer
 		}
 
+		// deprecated 2016/01/29
 		public static function get_umsg( $lca ) {
-			if ( ! isset( self::$c[$lca]['umsg'] ) ) {
-				$val = get_option( $lca.'_umsg' );
+			return self::get_uerr( $lca );
+		}
+
+		public static function get_uerr( $lca ) {
+			if ( ! isset( self::$c[$lca]['uerr'] ) ) {
+				$val = get_option( $lca.'_uerr' );
 				if ( $val !== false && $val !== true )
 					$val = base64_decode( $val );
 				if ( empty( $val ) )
-					self::$c[$lca]['umsg'] = false;
-				else self::$c[$lca]['umsg'] = $val;
+					self::$c[$lca]['uerr'] = false;
+				else self::$c[$lca]['uerr'] = $val;
 			}
-			return self::$c[$lca]['umsg'];
+			return self::$c[$lca]['uerr'];
 		}
 
 		public static function get_option( $lca, $idx = false ) {
@@ -374,11 +379,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$result['response']['code'] == 200 && ! empty( $result['body'] ) ) {
 
 				if ( ! empty( $result['headers']['x-smp-error'] ) ) {
-					self::$c[$lca]['umsg'] = json_decode( $result['body'] );
-					update_option( $lca.'_umsg', base64_encode( self::$c[$lca]['umsg'] ) );
+					self::$c[$lca]['uerr'] = json_decode( $result['body'] );
+					update_option( $lca.'_uerr', base64_encode( self::$c[$lca]['uerr'] ) );
 				} else {
-					self::$c[$lca]['umsg'] = false;
-					delete_option( $lca.'_umsg' );
+					self::$c[$lca]['uerr'] = false;
+					delete_option( $lca.'_uerr' );
 					$plugin_data = SucomPluginData::from_json( $result['body'] );
 
 					if ( empty( $plugin_data->plugin ) ) {

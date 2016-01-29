@@ -92,7 +92,7 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 			if ( class_exists( 'WpssoConfig' ) ) {
 				$cf = WpssoConfig::get_config();	// get all plugins / extensions
 				foreach ( $cf['plugin'] as $lca => $info ) {
-					delete_option( $lca.'_umsg' );
+					delete_option( $lca.'_uerr' );
 					delete_option( $lca.'_utime' );
 					delete_option( 'external_updates-'.$info['slug'] );
 				}
@@ -105,7 +105,7 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 					'wpssossb' => 'wpsso-ssb',
 					'wpssoum' => 'wpsso-um',
 				) as $lca => $slug ) {
-					delete_option( $lca.'_umsg' );
+					delete_option( $lca.'_uerr' );
 					delete_option( $lca.'_utime' );
 					delete_option( 'external_updates-'.$slug );
 				}
