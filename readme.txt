@@ -67,6 +67,17 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 
 * [GitHub](https://github.com/SurniaUlula/wpsso-um)
 
+= Version 1.2.2 (2016/01/29) =
+
+* **New Features**
+	* *None*
+* **Improvements**
+	* *None*
+* **Bugfixes**
+	* *None*
+* **Developer Notes**
+	* Renamed the get_umsg() method to get_uerr().
+
 = Version 1.2.1 (2015/12/09) =
 
 * **New Features**
@@ -92,7 +103,7 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 
 == Upgrade Notice ==
 
-= 1.2.1 =
+= 1.2.2 =
 
-2015/12/09 - Updated the required and tested version strings.
+2016/01/29 - Renamed the get_umsg() method to get_uerr().
 
