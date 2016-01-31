@@ -219,7 +219,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$updates->response[$info['base']] = self::$c[$lca]['inject_update'];
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->mark();
-						$this->p->debug->log( $lca.' plugin: calling method/function', 5 );	// show calling method/function
+						$this->p->debug->log( $lca.' plugin: calling method/function', 4 );	// show calling method/function
 						$this->p->debug->log( $lca.' plugin: using saved update status' );
 					}
 					continue;	// get the next plugin
