@@ -5,16 +5,16 @@
  * Text Domain: wpsso-um
  * Domain Path: /languages
  * Plugin URI: http://surniaulula.com/extend/plugins/wpsso-um/
- * Author: Jean-Sebastien Morisset
+ * Author: JS Morisset
  * Author URI: http://surniaulula.com/
  * License: GPLv3
  * License URI: http://www.gnu.org/licenses/gpl.txt
  * Description: WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
  * Requires At Least: 3.1
- * Tested Up To: 4.4
+ * Tested Up To: 4.4.2
  * Version: 1.2.2
  * 
- * Copyright 2015 - Jean-Sebastien Morisset - http://surniaulula.com/
+ * Copyright 2015-2016 Jean-Sebastien Morisset (http://surniaulula.com/)
  */
 
 if ( ! defined( 'ABSPATH' ) ) 

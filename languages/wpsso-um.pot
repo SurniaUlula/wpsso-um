@@ -67,7 +67,7 @@ msgid ""
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "Jean-Sebastien Morisset"
+msgid "JS Morisset"
 msgstr ""
 
 #. Author URI of the plugin/theme
