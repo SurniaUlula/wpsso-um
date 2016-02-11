@@ -67,7 +67,22 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 
 * [GitHub](https://github.com/SurniaUlula/wpsso-um)
 
+= Version 1.3.0 (TBD) =
+
+Official announcement: N/A
+
+* **New Features**
+	* *None*
+* **Improvements**
+	* *None*
+* **Bugfixes**
+	* *None*
+* **Developer Notes**
+	* *None*
+
 = Version 1.2.2 (2016/01/29) =
+
+Official announcement: N/A
 
 * **New Features**
 	* *None*
@@ -80,6 +95,8 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 
 = Version 1.2.1 (2015/12/09) =
 
+Official announcement: N/A
+
 * **New Features**
 	* *None*
 * **Improvements**
@@ -91,6 +108,8 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 	* Updated minimum required version to WPSSO v3.18.0.
 
 = Version 1.2.0 (2015/11/22) =
+
+Official announcement: N/A
 
 * **New Features**
 	* *None*
