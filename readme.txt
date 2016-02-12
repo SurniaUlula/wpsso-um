@@ -51,13 +51,13 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 
 = Frequently Asked Questions =
 
-* *None*
+* None
 
 == Other Notes ==
 
 = Additional Documentation =
 
-* *None*
+* None
 
 == Screenshots ==
 
@@ -75,14 +75,14 @@ Official announcement: N/A
 
 Maintenance release for WordPress Social Sharing Optimization (WPSSO) v3.24.0.
 
-* **New Features**
-	* *None*
-* **Improvements**
-	* *None*
-* **Bugfixes**
-	* *None*
-* **Developer Notes**
-	* *None*
+* *New Features*
+	* None
+* *Improvements*
+	* None
+* *Bugfixes*
+	* None
+* *Developer Notes*
+	* None
 
 == Upgrade Notice ==
 

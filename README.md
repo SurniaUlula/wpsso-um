@@ -56,7 +56,7 @@
 <h4>Frequently Asked Questions</h4>
 
 <ul>
-<li><em>None</em></li>
+<li>None</li>
 </ul>
 
 
@@ -66,6 +66,6 @@
 <h4>Additional Documentation</h4>
 
 <ul>
-<li><em>None</em></li>
+<li>None</li>
 </ul>
 
