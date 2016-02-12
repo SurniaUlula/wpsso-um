@@ -67,54 +67,16 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 
 * [GitHub](https://github.com/SurniaUlula/wpsso-um)
 
-= Version 1.3.0 (TBD) =
+= Version 1.3.0 (2016/02/13) =
 
 Official announcement: N/A
+
+Maintenance release for WordPress Social Sharing Optimization (WPSSO) v3.24.0.
 
 * **New Features**
 	* *None*
 * **Improvements**
 	* *None*
-* **Bugfixes**
-	* *None*
-* **Developer Notes**
-	* *None*
-
-= Version 1.2.2 (2016/01/29) =
-
-Official announcement: N/A
-
-* **New Features**
-	* *None*
-* **Improvements**
-	* *None*
-* **Bugfixes**
-	* *None*
-* **Developer Notes**
-	* Renamed the get_umsg() method to get_uerr().
-
-= Version 1.2.1 (2015/12/09) =
-
-Official announcement: N/A
-
-* **New Features**
-	* *None*
-* **Improvements**
-	* *None*
-* **Bugfixes**
-	* *None*
-* **Developer Notes**
-	* Updated tested up to WP v4.4.
-	* Updated minimum required version to WPSSO v3.18.0.
-
-= Version 1.2.0 (2015/11/22) =
-
-Official announcement: N/A
-
-* **New Features**
-	* *None*
-* **Improvements**
-	* Added unfiltered versions of the WordPress home_url(), get_home_url(), and set_url_scheme() functions.
 * **Bugfixes**
 	* *None*
 * **Developer Notes**
@@ -122,7 +84,7 @@ Official announcement: N/A
 
 == Upgrade Notice ==
 
-= 1.2.2 =
+= 1.3.0 =
 
-2016/01/29 - Renamed the get_umsg() method to get_uerr().
+2016/02/13 - Maintenance release for WordPress Social Sharing Optimization (WPSSO) v3.24.0.
 
