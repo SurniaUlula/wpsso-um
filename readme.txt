@@ -20,7 +20,7 @@ WPSSO extension to provide updates for the WordPress Social Sharing Optimization
 
 Simply *download*, *install*, and *activate* the plugin &mdash; there are no plugin settings to review or adjust.
 
-= Uses the WPSSO Framework =
+= Extends the WPSSO Social Plugin =
 
 The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the WPSSO UM extension.
 

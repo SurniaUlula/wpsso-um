@@ -18,7 +18,7 @@
 
 <p>Simply <em>download</em>, <em>install</em>, and <em>activate</em> the plugin &mdash; there are no plugin settings to review or adjust.</p>
 
-<h4>Uses the WPSSO Framework</h4>
+<h4>Extends the WPSSO Social Plugin</h4>
 
 <p>The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the WPSSO UM extension.</p>
 
