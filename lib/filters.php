@@ -15,9 +15,9 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		protected $p;
 		protected $plugin_filepath;
 
-		public function __construct( &$plugin, $plugin_filepath = WPSSOUM_FILEPATH ) {
+		public function __construct( &$plugin ) {
 			$this->p =& $plugin;
-			$this->plugin_filepath = $plugin_filepath;
+
 			if ( is_admin() ) {
 				$this->p->util->add_plugin_filters( $this, array( 
 					'messages_tooltip_side' => 2,	// tooltip messages for side boxes

@@ -11,8 +11,8 @@
  * License URI: http://www.gnu.org/licenses/gpl.txt
  * Description: WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
  * Requires At Least: 3.1
- * Tested Up To: 4.4.2
- * Version: 1.3.0
+ * Tested Up To: 4.5
+ * Version: 1.4.0
  * 
  * Copyright 2015-2016 Jean-Sebastien Morisset (http://surniaulula.com/)
  */
@@ -33,7 +33,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 		private static $wpsso_short = 'WPSSO';
 		private static $wpsso_name = 'WordPress Social Sharing Optimization (WPSSO)';
-		private static $wpsso_min_version = '3.24.0';
+		private static $wpsso_min_version = '3.28.5';
 		private static $wpsso_has_min_ver = true;
 
 		public static function &get_instance() {
@@ -80,8 +80,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 				self::$wpsso_has_min_ver = false;
 				return $cf;
 			}
-			$cf = SucomUtil::array_merge_recursive_distinct( $cf, WpssoUmConfig::$cf );
-			return $cf;
+			return SucomUtil::array_merge_recursive_distinct( $cf, WpssoUmConfig::$cf );
 		}
 
 		public function wpsso_init_plugin() {
@@ -93,8 +92,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			if ( self::$wpsso_has_min_ver === false )
 				return $this->warning_wpsso_version();
 
-			require_once( WPSSOUM_PLUGINDIR.'lib/filters.php' );
-			$this->filters = new WpssoUmFilters( $this->p, __FILE__ );
+			$this->filters = new WpssoUmFilters( $this->p );
 			$this->update = new SucomUpdate( $this->p, $this->p->cf['plugin'], 'wpsso-um' );
 
 			/*
@@ -108,7 +106,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 							continue;
 
 					// force check if no update in update_check_hours of 24 hours * 7200 = 2 days
-					$last_utime = get_option( $lca.'_utime' );
+					$last_utime = $this->update->get_umsg( $lca, 'time' );
 					if ( empty( $last_utime ) || 
 						$last_utime + ( $this->p->cf['update_check_hours'] * 7200 ) < time() ) {
 						if ( $this->p->debug->enabled ) {

@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.3.0\n"
+"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.4.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2016-02-12 08:30-0400\n"
-"PO-Revision-Date: 2016-02-12 08:30-0400\n"
+"POT-Creation-Date: 2016-03-22 08:38-0400\n"
+"PO-Revision-Date: 2016-03-22 08:38-0400\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -15,13 +15,13 @@ msgstr ""
 "X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: lib/com/update.php:297
+#: lib/com/update.php:320
 msgid "Plugin update information for %s has been retrieved and saved."
 msgstr ""
 "L'information de mise à jour pour l'extension %s a été récupérée et "
 "sauvegardée."
 
-#: lib/com/update.php:373
+#: lib/com/update.php:396
 msgid "Update error: %s"
 msgstr "Erreur de mise à jour: %s"
 
@@ -60,7 +60,7 @@ msgstr ""
 "L'extension %1$s requiert %2$s &mdash; s'il vous plaît installer et activer "
 "l'extension %3$s."
 
-#: wpsso-um.php:133
+#: wpsso-um.php:131
 msgid ""
 "The %1$s extension version %2$s requires the use of %3$s version %4$s or "
 "newer (version %5$s is currently installed)."

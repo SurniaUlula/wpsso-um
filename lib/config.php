@@ -17,7 +17,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 			'allow_update_host' => 'wpsso.com',
 			'plugin' => array(
 				'wpssoum' => array(
-					'version' => '1.3.0',		// plugin version
+					'version' => '1.4.0',		// plugin version
 					'short' => 'WPSSO UM',
 					'name' => 'WPSSO Pro Update Manager (WPSSO UM)',
 					'desc' => 'WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.',
@@ -47,7 +47,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 						'pro_support' => '',
 					),
 					'lib' => array(
-						'gpl' => array(		// required for WpssoAdmin::show_metabox_status_gpl()
+						'gpl' => array(
 						),
 					),
 				),
@@ -65,6 +65,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		public static function require_libs( $plugin_filepath ) {
 			require_once( WPSSOUM_PLUGINDIR.'lib/com/update.php' );
 			require_once( WPSSOUM_PLUGINDIR.'lib/register.php' );
+			require_once( WPSSOUM_PLUGINDIR.'lib/filters.php' );
 		}
 	}
 }
