@@ -74,7 +74,7 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 Official announcement: N/A
 
 * *New Features*
-	* None
+	* Added support for a new 'WPSSOUM_CHECK_HOURS' constant. You can define this constant in your wp-config.php file to increase the default schedule of 24 hours.
 * *Improvements*
 	* None
 * *Bugfixes*
@@ -102,7 +102,7 @@ Maintenance release for WordPress Social Sharing Optimization (WPSSO) v3.24.0.
 
 = 1.4.0 =
 
-ETA 2016/04/02 - Tested with WordPress v4.5-RC1-37079. Updated json for the update API v2.
+ETA 2016/04/02 - Tested with WordPress v4.5-RC1-37079. Updated json for the update API v2. Added support for a new 'WPSSOUM_CHECK_HOURS' constant.
 
 = 1.3.0 =
 
