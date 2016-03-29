@@ -20,17 +20,18 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		private static $api_version = 2;
 		private static $config = array();
 
-		public function __construct( &$plugin, &$ext, $text_dom = 'sucom' ) {
+		public function __construct( &$plugin, &$extensions, $check_hours = 24, $text_dom = 'sucom' ) {
 			$this->p =& $plugin;
 			if ( $this->p->debug->enabled )
 				$this->p->debug->mark( 'update manager setup' );	// begin timer
 
-			$lca = $this->p->cf['lca'];					// ngfb
-			$this->cron_hook = 'plugin_updates-'.$ext[$lca]['slug'];	// plugin_updates-nextgen-facebook
-			$this->sched_hours = $this->p->cf['update_check_hours'];	// 24
-			$this->sched_name = 'every'.$this->sched_hours.'hours';		// every24hours
-			$this->text_dom = $text_dom;					// nextgen-facebook-um
-			$this->set_config( $ext );
+			$lca = $this->p->cf['lca'];					// example: ngfb
+			$slug = $extensions[$lca]['slug'];				// example: nextgen-facebook
+			$this->cron_hook = 'plugin_updates-'.$slug;			// example: plugin_updates-nextgen-facebook
+			$this->sched_hours = $check_hours >= 24 ? $check_hours : 24;	// example: 24 (minimum)
+			$this->sched_name = 'every'.$this->sched_hours.'hours';		// example: every24hours
+			$this->text_dom = $text_dom;					// example: nextgen-facebook-um
+			$this->set_config( $extensions );
 			$this->install_hooks();
 
 			if ( $this->p->debug->enabled )
@@ -84,11 +85,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return false;
 		}
 
-		public function set_config( &$ext ) {
+		public function set_config( &$extensions ) {
 			if ( $this->p->debug->enabled )
 				$this->p->debug->mark();
 
-			foreach ( $ext as $lca => $info ) {
+			foreach ( $extensions as $lca => $info ) {
 
 				// make sure we have all basic info for the plugin / extension
 				if ( empty( $info['slug'] ) || empty( $info['base'] ) || empty( $info['url']['update'] ) ) {

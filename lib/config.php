@@ -13,7 +13,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 	class WpssoUmConfig {
 
 		public static $cf = array(
-			'update_check_hours' => 24,
+			'default_check_hours' => 24,
 			'allow_update_host' => 'wpsso.com',
 			'plugin' => array(
 				'wpssoum' => array(

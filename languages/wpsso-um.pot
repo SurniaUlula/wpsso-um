@@ -12,11 +12,11 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: lib/com/update.php:324
+#: lib/com/update.php:325
 msgid "Plugin update information for %s has been retrieved and saved."
 msgstr ""
 
-#: lib/com/update.php:400
+#: lib/com/update.php:401
 msgid "Update error: %s"
 msgstr ""
 
@@ -34,19 +34,19 @@ msgid ""
 "%3$s extensions."
 msgstr ""
 
-#: wpsso-um.php:73
+#: wpsso-um.php:74
 msgid ""
 "The %1$s extension requires the %2$s plugin &mdash; please install and "
 "activate the %3$s plugin before trying to re-activate the %4$s extension."
 msgstr ""
 
-#: wpsso-um.php:75
+#: wpsso-um.php:76
 msgid ""
 "The %1$s extension requires the %2$s plugin &mdash; please install and "
 "activate the %3$s plugin."
 msgstr ""
 
-#: wpsso-um.php:131
+#: wpsso-um.php:135
 msgid ""
 "The %1$s extension version %2$s requires the use of %3$s version %4$s or "
 "newer (version %5$s is currently installed)."
