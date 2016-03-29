@@ -69,7 +69,7 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 
 = Changelog / Release Notes =
 
-**Version 1.4.0 (2016/03/29)**
+**Version 1.4.0 (ETA 2016/04/02)**
 
 Official announcement: N/A
 
@@ -102,7 +102,7 @@ Maintenance release for WordPress Social Sharing Optimization (WPSSO) v3.24.0.
 
 = 1.4.0 =
 
-2016/03/29 - Tested with WordPress v4.5-RC1-37079. Updated json for the update API v2.
+ETA 2016/04/02 - Tested with WordPress v4.5-RC1-37079. Updated json for the update API v2.
 
 = 1.3.0 =
 
