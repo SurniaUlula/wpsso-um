@@ -12,7 +12,14 @@
  * Description: WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
  * Requires At Least: 3.1
  * Tested Up To: 4.5
- * Version: 1.4.0
+ * Version: 1.4.0-1
+ * 
+ * Version Numbers: {major}.{minor}.{bugfix}-{stage}{level}
+ *
+ *	{major}		Major code changes and/or significant feature changes.
+ *	{minor}		New features added and/or improvements included.
+ *	{bugfix}	Bugfixes and/or very minor improvements.
+ *	{stage}{level}	dev# (development), rc# (release candidate), # (production release)
  * 
  * Copyright 2015-2016 Jean-Sebastien Morisset (http://surniaulula.com/)
  */
@@ -29,13 +36,14 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		public $filters;		// WpssoUmFilters
 		public $update;			// SucomUpdate
 
-		protected static $instance = null;
-
-		public static $check_hours = 24;
-		public static $req_short = 'WPSSO';
-		public static $req_name = 'WordPress Social Sharing Optimization (WPSSO)';
-		public static $req_min_version = '3.28.5';
-		public static $req_has_min_ver = true;
+		private static $instance = null;
+		private static $check_hours = 24;
+		private static $allow_host = 'wpsso.com';
+		private static $text_domain = 'wpsso-um';
+		private static $req_short = 'WPSSO';
+		private static $req_name = 'WordPress Social Sharing Optimization (WPSSO)';
+		private static $req_min_version = '3.28.5-1';
+		private static $req_has_min_ver = true;
 
 		public static function &get_instance() {
 			if ( self::$instance === null )
@@ -55,7 +63,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 				add_action( 'admin_init', array( &$this, 'check_for_wpsso' ) );
 			}
 
-			add_filter( 'wpsso_get_config', array( &$this, 'wpsso_get_config' ), 10, 1 );
+			add_filter( 'wpsso_get_config', array( &$this, 'wpsso_get_config' ), 10, 1 );	// merge first
 			add_action( 'wpsso_init_plugin', array( &$this, 'wpsso_init_plugin' ), 10 );
 		}
 
@@ -93,11 +101,11 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			if ( self::$req_has_min_ver === false )
 				return $this->warning_wpsso_version();
 
-			self::$check_hours = SucomUtil::get_const( 'WPSSOUM_CHECK_HOURS', 0 ) > 24 ?
-				WPSSOUM_CHECK_HOURS : $this->p->cf['default_check_hours'];
+			self::$check_hours = $this->get_update_check_hours();
 
 			$this->filters = new WpssoUmFilters( $this->p );
-			$this->update = new SucomUpdate( $this->p, $this->p->cf['plugin'], self::$check_hours, 'wpsso-um' );
+			$this->update = new SucomUpdate( $this->p, $this->p->cf['plugin'],
+				self::$check_hours, self::$allow_host, self::$text_domain );
 
 			/*
 			 * Force immediate check if no update check for past 2 days
@@ -134,10 +142,20 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			if ( is_admin() )
 				$this->p->notice->err( sprintf( __( 'The %1$s extension version %2$s requires the use of %3$s version %4$s or newer (version %5$s is currently installed).', 'wpsso-um' ), $info['name'], $info['version'], self::$req_short, self::$req_min_version, $have_version ), true );
 		}
+
+		public static function get_update_check_hours() {
+			$wpsso =& Wpsso::get_instance();
+			if ( SucomUtil::get_const( 'WPSSOUM_CHECK_HOURS', 0 ) >= 24 )
+				return WPSSOUM_CHECK_HOURS;
+			elseif ( isset( $wpsso->options['update_check_hours'] ) &&
+				$wpsso->options['update_check_hours'] >= 24 )
+					return $wpsso->options['update_check_hours'];
+			else return 24;	// default value
+		}
 	}
 
         global $wpssoum;
-	$wpssoum = WpssoUm::get_instance();
+	$wpssoum =& WpssoUm::get_instance();
 }
 
 ?>

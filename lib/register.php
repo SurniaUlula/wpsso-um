@@ -89,24 +89,23 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 		}
 
 		private static function delete_options() {
+			$api_version = SucomUpdate::get_api_version();
 			if ( class_exists( 'WpssoConfig' ) ) {
 				$cf = WpssoConfig::get_config();	// get all plugins / extensions
 				foreach ( $cf['plugin'] as $lca => $info ) {
-					delete_option( $lca.'_uerr' );
-					delete_option( $lca.'_utime' );
+					delete_option( $lca.'_uapi'.$api_version.'err' );
+					delete_option( $lca.'_uapi'.$api_version.'inf' );
+					delete_option( $lca.'_uapi'.$api_version.'time' );
 					delete_option( 'external_updates-'.$info['slug'] );
 				}
 			} else {	// in case wpsso is deactivated
 				foreach ( array(
 					'wpsso' => 'wpsso',
-					'wpssoam' => 'wpsso-am',
-					'wpssoplm' => 'wpsso-plm',
-					'wpssorrssb' => 'wpsso-rrssb',
-					'wpssossb' => 'wpsso-ssb',
 					'wpssoum' => 'wpsso-um',
 				) as $lca => $slug ) {
-					delete_option( $lca.'_uerr' );
-					delete_option( $lca.'_utime' );
+					delete_option( $lca.'_uapi'.$api_version.'err' );
+					delete_option( $lca.'_uapi'.$api_version.'inf' );
+					delete_option( $lca.'_uapi'.$api_version.'time' );
 					delete_option( 'external_updates-'.$slug );
 				}
 			}

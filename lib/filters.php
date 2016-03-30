@@ -15,12 +15,28 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		protected $p;
 		protected $plugin_filepath;
 
+		public static $cf = array(
+			'opt' => array(				// options
+				'defaults' => array(
+					'update_check_hours' => 24,
+				),
+			),
+		);
+
 		public function __construct( &$plugin ) {
 			$this->p =& $plugin;
 
+			$this->p->util->add_plugin_filters( $this, array( 
+				'get_defaults' => 1,			// option defaults
+			) );
+
 			if ( is_admin() ) {
 				$this->p->util->add_plugin_filters( $this, array( 
+					'readme_upgrade_notices' => 2, 
+					'newer_version_available' => 5, 
+					'option_type' => 2,		// define the value type for each option
 					'messages_tooltip_side' => 2,	// tooltip messages for side boxes
+					'messages_tooltip' => 2,	// tooltip messages filter
 				) );
 				$this->p->util->add_plugin_filters( $this, array( 
 					'status_gpl_features' => 3,
@@ -28,14 +44,78 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			}
 		}
 
+		public function filter_get_defaults( $def_opts ) {
+			$def_opts = array_merge( $def_opts, self::$cf['opt']['defaults'] );
+
+			foreach ( $this->p->cf['plugin'] as $ext => $info )
+				$def_opts['update_filter_for_'.$ext] = 'stable';
+
+			return $def_opts;
+		}
+
+		public function filter_readme_upgrade_notices( $upgrade_notices, $ext ) {
+
+			$filter_name = isset( $this->p->options['update_filter_for_'.$ext] ) ?
+				$this->p->options['update_filter_for_'.$ext] : 'stable';
+
+			$filter_regex = isset( $this->p->cf['update']['version_regex'][$filter_name] ) ?
+				$this->p->cf['update']['version_regex'][$filter_name] :
+				$this->p->cf['update']['version_regex']['stable'];
+
+			foreach ( $upgrade_notices as $version => $info ) {
+				if ( ! preg_match( $filter_regex, $version ) )
+					unset ( $upgrade_notices[$version] );
+			}
+
+			return $upgrade_notices;
+		}
+
+		public function filter_newer_version_available( $is_older, $ext, $installed_version, $stable_version, $latest_version ) {
+			if ( ! $is_older ) {
+				if ( isset( $this->p->options['update_filter_for_'.$ext] ) &&
+					$this->p->options['update_filter_for_'.$ext] !== 'stable' &&
+						version_compare( $installed_version, $latest_version, '<' ) )
+							return true;
+			} else return $is_older;
+		}
+
+		public function filter_option_type( $type, $key ) {
+			if ( ! empty( $type ) )
+				return $type;
+
+			// remove localization for more generic match
+			if ( strpos( $key, '#' ) !== false )
+				$key = preg_replace( '/#.*$/', '', $key );
+
+			switch ( $key ) {
+				case 'update_check_hours':
+					return 'pos_num';
+					break;
+				case ( strpos( $key, 'update_filter_for_' ) === 0 ? true : false ):
+					return 'not_blank';
+					break;
+			}
+			return $type;
+		}
+
 		public function filter_messages_tooltip_side( $text, $idx ) {
 			switch ( $idx ) {
 				case 'tooltip-side-update-check-schedule':
-					$short = $this->p->cf['plugin']['wpsso']['short'];
-					$um_name = $this->p->cf['plugin']['wpssoum']['name'];
-					$check_hours = empty( $this->p->cf['update_check_hours'] ) ? 
-						24 : $this->p->cf['update_check_hours'];
-					$text = sprintf( __( 'When the %1$s extension is active, an update check is scheduled every %2$d hours to retrieve update information for <em>installed and licensed</em> %3$s extensions.', 'wpsso-um' ), $um_name, $check_hours, $short );
+					$text = sprintf( __( 'When the %1$s extension is active, an update check is scheduled every %2$d hours to retrieve update information for <em>installed and licensed</em> %3$s extensions.', 'wpsso-um' ), $this->p->cf['plugin']['wpssoum']['name'], WpssoUm::get_update_check_hours(), $this->p->cf['plugin']['wpsso']['short'] );
+					break;
+			}
+			return $text;
+		}
+
+		public function filter_messages_tooltip( $text, $idx ) {
+			if ( strpos( $idx, 'tooltip-update_' ) !== 0 )
+				return $text;
+			switch ( $idx ) {
+				case 'tooltip-update_check_hours':
+					$text = '123';
+					break;
+				case 'tooltip-update_version_filter':
+					$text = '123';
 					break;
 			}
 			return $text;

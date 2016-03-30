@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.4.0\n"
+"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.4.0-1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2016-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -12,11 +12,11 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: lib/com/update.php:325
+#: lib/com/update.php:333
 msgid "Plugin update information for %s has been retrieved and saved."
 msgstr ""
 
-#: lib/com/update.php:401
+#: lib/com/update.php:410
 msgid "Update error: %s"
 msgstr ""
 
@@ -27,26 +27,41 @@ msgid ""
 "Optimization (WPSSO) Pro plugin and its Pro extensions."
 msgstr ""
 
-#: lib/filters.php:38
+#: lib/filters.php:104
 msgid ""
 "When the %1$s extension is active, an update check is scheduled every %2$d "
 "hours to retrieve update information for <em>installed and licensed</em> "
 "%3$s extensions."
 msgstr ""
 
-#: wpsso-um.php:74
+#: lib/submenu/um-general.php:29
+msgctxt "metabox title"
+msgid "Pro Update Manager"
+msgstr ""
+
+#: lib/submenu/um-general.php:47
+msgctxt "option label"
+msgid "Pro Update Check Schedule"
+msgstr ""
+
+#: lib/submenu/um-general.php:58
+msgctxt "option label"
+msgid "Pro Update Version Filter"
+msgstr ""
+
+#: wpsso-um.php:82
 msgid ""
 "The %1$s extension requires the %2$s plugin &mdash; please install and "
 "activate the %3$s plugin before trying to re-activate the %4$s extension."
 msgstr ""
 
-#: wpsso-um.php:76
+#: wpsso-um.php:84
 msgid ""
 "The %1$s extension requires the %2$s plugin &mdash; please install and "
 "activate the %3$s plugin."
 msgstr ""
 
-#: wpsso-um.php:135
+#: wpsso-um.php:143
 msgid ""
 "The %1$s extension version %2$s requires the use of %3$s version %4$s or "
 "newer (version %5$s is currently installed)."

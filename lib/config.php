@@ -13,11 +13,10 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 	class WpssoUmConfig {
 
 		public static $cf = array(
-			'default_check_hours' => 24,
-			'allow_update_host' => 'wpsso.com',
 			'plugin' => array(
 				'wpssoum' => array(
-					'version' => '1.4.0',		// plugin version
+					'version' => '1.4.0-1',		// plugin version
+					'opt_version' => '2',		// increment when changing default options
 					'short' => 'WPSSO UM',
 					'name' => 'WPSSO Pro Update Manager (WPSSO UM)',
 					'desc' => 'WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.',
@@ -47,9 +46,41 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 						'pro_support' => '',
 					),
 					'lib' => array(
+						// submenu items must have unique keys
+						'submenu' => array (
+							'um-general' => 'Pro Update Manager',
+						),
 						'gpl' => array(
 						),
 					),
+				),
+			),
+			'update' => array(
+				'check_hours' => array(
+					24 => 'Every day',
+					48 => 'Every two days',
+					72 => 'Every three days',
+					96 => 'Every four days',
+					120 => 'Every five days',
+					144 => 'Every six days',
+					168 => 'Every week',
+					336 => 'Every two weeks',
+					504 => 'Every three weeks',
+					720 => 'Every month',
+				),
+				'version_filter' => array(
+					'dev' => 'Development and Up',
+					'alpha' => 'Alpha and Up',
+					'beta' => 'Beta and Up',
+					'rc' => 'Release Candidate and Up',
+					'stable' => 'Stable / Production',
+				),
+				'version_regex' => array(
+					'dev' => '/[\.\-](dev|a|alpha|b|beta|rc)?[0-9]+$/',
+					'alpha' => '/[\.\-](a|alpha|b|beta|rc)?[0-9]+$/',
+					'beta' => '/[\.\-](b|beta|rc)?[0-9]+$/',
+					'rc' => '/[\.\-](rc)?[0-9]+$/',
+					'stable' => '/[\.\-][0-9]+$/',
 				),
 			),
 		);
@@ -66,6 +97,21 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 			require_once( WPSSOUM_PLUGINDIR.'lib/com/update.php' );
 			require_once( WPSSOUM_PLUGINDIR.'lib/register.php' );
 			require_once( WPSSOUM_PLUGINDIR.'lib/filters.php' );
+
+			add_filter( 'wpssoum_load_lib', array( 'WpssoUmConfig', 'load_lib' ), 10, 3 );
+		}
+
+		public static function load_lib( $ret = false, $filespec = '', $classname = '' ) {
+			if ( $ret === false && ! empty( $filespec ) ) {
+				$filepath = WPSSOUM_PLUGINDIR.'lib/'.$filespec.'.php';
+				if ( file_exists( $filepath ) ) {
+					require_once( $filepath );
+					if ( empty( $classname ) )
+						return SucomUtil::sanitize_classname( 'wpssoum'.$filespec );
+					else return $classname;
+				}
+			}
+			return $ret;
 		}
 	}
 }
