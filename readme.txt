@@ -69,42 +69,26 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 
 = Changelog / Release Notes =
 
-**Version 1.4.0-dev1 (ETA 2016/04/02)**
+**Version 1.4.0-1 (ETA 2016/03/31)**
 
 Official announcement: N/A
 
 * *New Features*
-	* Added support for a new 'WPSSOUM_CHECK_HOURS' constant. You can define this constant in your wp-config.php file to increase the default schedule of 24 hours.
+	* Added a new "Pro Update Manager" settings page with "Pro Update Check Schedule" and "Pro Update Version Filter" options.
+	* Added a new 'WPSSOUM_CHECK_HOURS' constant. You can define this constant in your wp-config.php file to increase the default schedule of 24 hours.
 * *Improvements*
 	* None
 * *Bugfixes*
 	* None
 * *Developer Notes*
+	* Changes to support the new plugin update API v2.
 	* Tested with WordPress v4.5-RC1-37079.
-	* Updated json for the update API v2.
-
-**Version 1.3.0 (2016/02/14)**
-
-Official announcement: N/A
-
-Maintenance release for WordPress Social Sharing Optimization (WPSSO) v3.24.0.
-
-* *New Features*
-	* None
-* *Improvements*
-	* None
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* None
+	* Adopted a standard version numbering system:
+		* `{major}.{minor}.{bugfix}-{stage}{level}`
 
 == Upgrade Notice ==
 
-= 1.4.0-dev1 =
+= 1.4.0-1 =
 
-ETA 2016/04/02 - Tested with WordPress v4.5-RC1-37079. Updated json for the update API v2. Added support for a new 'WPSSOUM_CHECK_HOURS' constant.
-
-= 1.3.0 =
-
-2016/02/14 - Maintenance release for WordPress Social Sharing Optimization (WPSSO) v3.24.0.
+1.4.0-1 ETA 2016/03/31 - Added a new "Pro Update Manager" settings page with "Pro Update Check Schedule" and "Pro Update Version Filter" options.
 
