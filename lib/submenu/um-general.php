@@ -50,10 +50,13 @@ if ( ! class_exists( 'WpssoUmSubmenuUmgeneral' ) && class_exists( 'WpssoAdmin' )
 						$this->p->cf['update']['check_hours'], 'update_filter', '', true ).'</td>';
 
 					$update_filter_select = '';
-					foreach ( $this->p->cf['plugin'] as $ext => $info )
+					foreach ( $this->p->cf['plugin'] as $ext => $info ) {
+						if ( ! SucomUpdate::is_configured( $ext ) )
+							continue;
 						$update_filter_select .= '<p>'.$this->form->get_select( 'update_filter_for_'.$ext,
 							$this->p->cf['update']['version_filter'], 'update_filter', '', true ).
 								' for '.$info['name'].'</p>'."\n";
+					}
 
 					$table_rows['update_version_filter'] = $this->form->get_th_html( _x( 'Pro Update Version Filter',
 						'option label', 'wpsso-um' ), '', 'update_version_filter' ).

@@ -12,11 +12,11 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: lib/com/update.php:333
+#: lib/com/update.php:332
 msgid "Plugin update information for %s has been retrieved and saved."
 msgstr ""
 
-#: lib/com/update.php:410
+#: lib/com/update.php:409
 msgid "Update error: %s"
 msgstr ""
 
@@ -44,7 +44,7 @@ msgctxt "option label"
 msgid "Pro Update Check Schedule"
 msgstr ""
 
-#: lib/submenu/um-general.php:58
+#: lib/submenu/um-general.php:61
 msgctxt "option label"
 msgid "Pro Update Version Filter"
 msgstr ""
@@ -61,7 +61,7 @@ msgid ""
 "activate the %3$s plugin."
 msgstr ""
 
-#: wpsso-um.php:143
+#: wpsso-um.php:142
 msgid ""
 "The %1$s extension version %2$s requires the use of %3$s version %4$s or "
 "newer (version %5$s is currently installed)."

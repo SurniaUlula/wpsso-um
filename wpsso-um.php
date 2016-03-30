@@ -112,15 +112,14 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			 */
 			if ( is_admin() ) {
 				foreach ( $this->p->cf['plugin'] as $ext => $info ) {
-					// skip plugins that have an auth type but no auth string
-					if ( ! empty( $info['update_auth'] ) &&
-						empty( $this->p->options['plugin_'.$ext.'_'.$info['update_auth']] ) )
-							continue;
+
+					if ( ! SucomUpdate::is_configured( $ext ) )
+						continue;
 
 					$last_utime = $this->update->get_umsg( $ext, 'time' );		// last update check
-					$next_utime = $last_utime + ( self::$check_hours * 3600 );	// next update check
+					$next_utime = $last_utime + ( self::$check_hours * 3600 );	// next scheduled check
 
-					if ( empty( $last_utime ) || $next_utime + 86400 < time() ) {
+					if ( empty( $last_utime ) || $next_utime + 86400 < time() ) {	// plus one day
 						if ( $this->p->debug->enabled ) {
 							$this->p->debug->log( 'requesting update check for '.$ext );
 							$this->p->notice->inf( 'Performing an update check for the '.$info['name'].' plugin.' );

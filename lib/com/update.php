@@ -95,14 +95,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			foreach ( $extensions as $ext => $info ) {
 
-				// make sure we have all basic info for the plugin / extension
-				if ( empty( $info['slug'] ) || empty( $info['base'] ) || empty( $info['url']['update'] ) ) {
-					if ( $this->p->debug->enabled )
-						$this->p->debug->log( $ext.' plugin: update config skipped - '.
-							'incomplete config array' );
-					continue;
-				}
-
 				$auth_type = empty( $info['update_auth'] ) ?
 					'none' : $info['update_auth'];
 				$auth_key = 'plugin_'.$ext.'_'.$auth_type;
@@ -111,8 +103,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				if ( $auth_type !== 'none' && empty( $auth_id ) ) {
 					if ( $this->p->debug->enabled )
-						$this->p->debug->log( $ext.' plugin: update config skipped - '.
-							'empty '.$auth_key.' option value' );
+						$this->p->debug->log( $ext.' plugin: update config skipped - empty '.$auth_key.' option value' );
+					continue;
+				} elseif ( empty( $info['slug'] ) || empty( $info['base'] ) || empty( $info['url']['update'] ) ) {
+					if ( $this->p->debug->enabled )
+						$this->p->debug->log( $ext.' plugin: update config skipped - incomplete config array' );
 					continue;
 				}
 
@@ -147,8 +142,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				false : true;
 		}
 
-		public static function is_configured() {
-			return count( self::$config );
+		public static function is_configured( $ext = null ) {
+			if ( empty( $ext ) )
+				return count( self::$config );
+			elseif ( isset( self::$config[$ext] ) )
+				return true;
+			else return false;
 		}
 
 		public function install_hooks() {
@@ -329,7 +328,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( self::update_option_data( $ext, $option_data ) ) {
 					if ( $this->p->debug->enabled )
 						$this->p->debug->log( $ext.' plugin: update information saved in '.$info['opt_name'].' option' );
-					if ( $notice === true || $this->p->debug->enabled )
+					if ( $notice || $this->p->debug->enabled )
 						$this->p->notice->inf( sprintf( __( 'Plugin update information for %s has been retrieved and saved.',
 							$this->text_domain ), $info['name'] ), true );
 				} elseif ( $this->p->debug->enabled ) {
