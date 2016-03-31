@@ -69,7 +69,7 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 
 = Changelog / Release Notes =
 
-**Version 1.4.0-1 (ETA 2016/03/31)**
+**Version 1.4.0-1 (2016/03/31)**
 
 Official announcement: N/A
 
@@ -90,5 +90,5 @@ Official announcement: N/A
 
 = 1.4.0-1 =
 
-1.4.0-1 ETA 2016/03/31 - Added a new "Pro Update Manager" settings page with "Pro Update Check Schedule" and "Pro Update Version Filter" options.
+(2016/03/31) Added a new "Pro Update Manager" settings page with "Pro Update Check Schedule" and "Pro Update Version Filter" options.
 
