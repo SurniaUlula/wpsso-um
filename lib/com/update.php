@@ -39,7 +39,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->mark( 'update manager setup' );	// end timer
 		}
 
-		private static function get_api_version() {
+		public static function get_api_version() {
 			return self::$api_version;
 		}
 
