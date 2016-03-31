@@ -112,10 +112,10 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				return $text;
 			switch ( $idx ) {
 				case 'tooltip-update_check_hours':
-					$text = '123';
+					$text = sprintf( __( 'How often would you like the %1$s to check for new updates? You can also use the "%2$s" button to manually check for new updates at any time.', 'wpsso-um' ), $this->p->cf['plugin']['ngfbum']['name'], _x( 'Check for Pro Update(s)', 'submit button', 'wpsso-um' ) );
 					break;
 				case 'tooltip-update_version_filter':
-					$text = '123';
+					$text = __( 'Please select the type of updates you would like to receive and install for each licensed Pro version plugin / extension.', 'wpsso-um' );
 					break;
 			}
 			return $text;
