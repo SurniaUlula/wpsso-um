@@ -82,7 +82,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					'beta' => '/[\.\-](b|beta|rc)?[0-9]+$/',
 					'rc' => '/[\.\-](rc)?[0-9]+$/',
 					'stable' => '/[\.\-][0-9]+$/',
-					'stable_one' => '/-1+$/',
+					'stable_one' => '/-1$/',
 				),
 			),
 		);
