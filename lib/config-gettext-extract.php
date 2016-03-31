@@ -13,7 +13,6 @@ _x( 'Every three weeks', 'option value', 'wpsso-um' );
 _x( 'Every two days', 'option value', 'wpsso-um' );
 _x( 'Every two weeks', 'option value', 'wpsso-um' );
 _x( 'Every week', 'option value', 'wpsso-um' );
-_x( 'First Stable Only', 'option value', 'wpsso-um' );
 _x( 'Pro Update Manager', 'lib file description', 'wpsso-um' );
 _x( 'Release Candidate and Up', 'option value', 'wpsso-um' );
 _x( 'Stable / Production', 'option value', 'wpsso-um' );

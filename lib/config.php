@@ -74,7 +74,6 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					'beta' => 'Beta and Up',
 					'rc' => 'Release Candidate and Up',
 					'stable' => 'Stable / Production',
-					'stable_one' => 'First Stable Only',
 				),
 				'version_regex' => array(
 					'dev' => '/[\.\-](dev|a|alpha|b|beta|rc)?[0-9]+$/',

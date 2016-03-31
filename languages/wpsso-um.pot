@@ -86,26 +86,21 @@ msgid "Every week"
 msgstr ""
 
 #: lib/config-gettext-extract.php:16
-msgctxt "option value"
-msgid "First Stable Only"
-msgstr ""
-
-#: lib/config-gettext-extract.php:17
 msgctxt "lib file description"
 msgid "Pro Update Manager"
 msgstr ""
 
-#: lib/config-gettext-extract.php:18
+#: lib/config-gettext-extract.php:17
 msgctxt "option value"
 msgid "Release Candidate and Up"
 msgstr ""
 
-#: lib/config-gettext-extract.php:19
+#: lib/config-gettext-extract.php:18
 msgctxt "option value"
 msgid "Stable / Production"
 msgstr ""
 
-#: lib/config-gettext-extract.php:20
+#: lib/config-gettext-extract.php:19
 msgctxt "plugin description"
 msgid ""
 "WPSSO extension to provide updates for the WordPress Social Sharing "
