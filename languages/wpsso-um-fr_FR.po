@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.4.0\n"
+"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.4.0-1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2016-03-22 08:38-0400\n"
-"PO-Revision-Date: 2016-03-22 08:38-0400\n"
+"POT-Creation-Date: 2016-03-31 03:33-0400\n"
+"PO-Revision-Date: 2016-03-31 03:33-0400\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -15,13 +15,13 @@ msgstr ""
 "X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: lib/com/update.php:320
+#: lib/com/update.php:332
 msgid "Plugin update information for %s has been retrieved and saved."
 msgstr ""
 "L'information de mise à jour pour l'extension %s a été récupérée et "
 "sauvegardée."
 
-#: lib/com/update.php:396
+#: lib/com/update.php:409
 msgid "Update error: %s"
 msgstr "Erreur de mise à jour: %s"
 
@@ -34,7 +34,7 @@ msgstr ""
 "Une extension WPSSO pour fournir des mises à jour a WordPress Social Sharing "
 "Optimization (WPSSO) Pro et ses extensions Pro."
 
-#: lib/filters.php:38
+#: lib/filters.php:104
 msgid ""
 "When the %1$s extension is active, an update check is scheduled every %2$d "
 "hours to retrieve update information for <em>installed and licensed</em> "
@@ -44,7 +44,22 @@ msgstr ""
 "prévue chaque %2$d heures pour récupérer les informations de mise à jour "
 "pour les extensions %3$s <em>installé et ayant un ID d'authentification</em>."
 
-#: wpsso-um.php:73
+#: lib/submenu/um-general.php:29
+msgctxt "metabox title"
+msgid "Pro Update Manager"
+msgstr "Gestion Mise à Jour"
+
+#: lib/submenu/um-general.php:47
+msgctxt "option label"
+msgid "Pro Update Check Schedule"
+msgstr "Horaire de Verif. pour Mise à Jour"
+
+#: lib/submenu/um-general.php:61
+msgctxt "option label"
+msgid "Pro Update Version Filter"
+msgstr "Filtre de Version pour Mise à Jour"
+
+#: wpsso-um.php:82
 msgid ""
 "The %1$s extension requires the %2$s plugin &mdash; please install and "
 "activate the %3$s plugin before trying to re-activate the %4$s extension."
@@ -52,7 +67,7 @@ msgstr ""
 "L'extension %1$s requiert %2$s &mdash; s'il vous plaît installer et activer "
 "l'extension %3$s avant d'essayer de re-activer %4$s."
 
-#: wpsso-um.php:75
+#: wpsso-um.php:84
 msgid ""
 "The %1$s extension requires the %2$s plugin &mdash; please install and "
 "activate the %3$s plugin."
@@ -60,7 +75,7 @@ msgstr ""
 "L'extension %1$s requiert %2$s &mdash; s'il vous plaît installer et activer "
 "l'extension %3$s."
 
-#: wpsso-um.php:131
+#: wpsso-um.php:142
 msgid ""
 "The %1$s extension version %2$s requires the use of %3$s version %4$s or "
 "newer (version %5$s is currently installed)."
