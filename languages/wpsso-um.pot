@@ -127,8 +127,8 @@ msgstr ""
 
 #: lib/filters.php:118
 msgid ""
-"Please select the type of updates you would like to receive and install for "
-"each licensed Pro version plugin / extension."
+"For each licensed Pro version plugin / extension, select the type of version "
+"releases you would like to receive and install."
 msgstr ""
 
 #: lib/submenu/um-general.php:29

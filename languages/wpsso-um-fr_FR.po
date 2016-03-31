@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.4.0-1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2016-03-31 03:33-0400\n"
-"PO-Revision-Date: 2016-03-31 03:33-0400\n"
+"POT-Creation-Date: 2016-03-31 11:44-0400\n"
+"PO-Revision-Date: 2016-03-31 11:46-0400\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -26,6 +26,86 @@ msgid "Update error: %s"
 msgstr "Erreur de mise à jour: %s"
 
 #: lib/config-gettext-extract.php:3
+msgctxt "option value"
+msgid "Alpha and Up"
+msgstr "Alpha et plus"
+
+#: lib/config-gettext-extract.php:4
+msgctxt "option value"
+msgid "Beta and Up"
+msgstr "Bêta et plus"
+
+#: lib/config-gettext-extract.php:5
+msgctxt "option value"
+msgid "Development and Up"
+msgstr "Développement et plus"
+
+#: lib/config-gettext-extract.php:6
+msgctxt "option value"
+msgid "Every day"
+msgstr "Chaque jour"
+
+#: lib/config-gettext-extract.php:7
+msgctxt "option value"
+msgid "Every five days"
+msgstr "Aux cinq jours"
+
+#: lib/config-gettext-extract.php:8
+msgctxt "option value"
+msgid "Every four days"
+msgstr "Aux quatre jours"
+
+#: lib/config-gettext-extract.php:9
+msgctxt "option value"
+msgid "Every month"
+msgstr "Chaque mois"
+
+#: lib/config-gettext-extract.php:10
+msgctxt "option value"
+msgid "Every six days"
+msgstr "Aux six jours"
+
+#: lib/config-gettext-extract.php:11
+msgctxt "option value"
+msgid "Every three days"
+msgstr "Aux trois jours"
+
+#: lib/config-gettext-extract.php:12
+msgctxt "option value"
+msgid "Every three weeks"
+msgstr "Aux trois semaines"
+
+#: lib/config-gettext-extract.php:13
+msgctxt "option value"
+msgid "Every two days"
+msgstr "Aux deux jours"
+
+#: lib/config-gettext-extract.php:14
+msgctxt "option value"
+msgid "Every two weeks"
+msgstr "Aux deux semaines"
+
+#: lib/config-gettext-extract.php:15
+msgctxt "option value"
+msgid "Every week"
+msgstr "Chaque semaine"
+
+#: lib/config-gettext-extract.php:16
+msgctxt "lib file description"
+msgid "Pro Update Manager"
+msgstr "Gestion Mises à Jour"
+
+#: lib/config-gettext-extract.php:17
+msgctxt "option value"
+msgid "Release Candidate and Up"
+msgstr "Candidat Stable et plus"
+
+#: lib/config-gettext-extract.php:18
+msgctxt "option value"
+msgid "Stable / Production"
+msgstr "Stable / Production"
+
+#: lib/config-gettext-extract.php:19
 msgctxt "plugin description"
 msgid ""
 "WPSSO extension to provide updates for the WordPress Social Sharing "
@@ -44,20 +124,42 @@ msgstr ""
 "prévue chaque %2$d heures pour récupérer les informations de mise à jour "
 "pour les extensions %3$s <em>installé et ayant un ID d'authentification</em>."
 
+#: lib/filters.php:115
+msgid ""
+"How often would you like the %1$s to check for new updates? You can also use "
+"the \"%2$s\" button to manually check for new updates at any time."
+msgstr ""
+"Comment souvent vous voulez que %1$s vérifie pour des nouvelles mises à "
+"jour? Vous pouvez également utiliser le \"%2$s\" bouton pour vérifier "
+"manuellement."
+
+#: lib/filters.php:115
+msgctxt "submit button"
+msgid "Check for Pro Update(s)"
+msgstr "Vérifier pour mises à jour"
+
+#: lib/filters.php:118
+msgid ""
+"For each licensed Pro version plugin / extension, select the type of version "
+"releases you would like to receive and install."
+msgstr ""
+"Pour chaque extension Pro ayant un ID d'authentification, sélectionnez les "
+"types de mises à jour que vous aimeriez recevoir et installer."
+
 #: lib/submenu/um-general.php:29
 msgctxt "metabox title"
 msgid "Pro Update Manager"
-msgstr "Gestion Mise à Jour"
+msgstr "Gestion Mises à Jour"
 
 #: lib/submenu/um-general.php:47
 msgctxt "option label"
 msgid "Pro Update Check Schedule"
-msgstr "Horaire de Verif. pour Mise à Jour"
+msgstr "Horaire de Verif. pour Mises à Jour"
 
 #: lib/submenu/um-general.php:61
 msgctxt "option label"
 msgid "Pro Update Version Filter"
-msgstr "Filtre de Version pour Mise à Jour"
+msgstr "Filtre de Version pour Mises à Jour"
 
 #: wpsso-um.php:82
 msgid ""
