@@ -28,26 +28,10 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 
 == Installation ==
 
-= Semi-Automated Install =
+= Install and Uninstall =
 
-* [Download the latest plugin archive ZIP file](http://wpsso.com/extend/plugins/wpsso-um/latest/).
-* Go to the wp-admin/ section of your website.
-* Select the *Plugins* menu item.
-* Select the *Add New* sub-menu item.
-* Click on *Upload Plugin* link (next to the *Add Plugins* page title).
-* Click the *Browse...* button.
-* Navigate your local folders / directories and choose the ZIP file you downloaded previously.
-* Click on the *Install Now* button.
-* Click the *Activate Plugin* link.
-
-= Manual Install =
-
-* [Download and unzip the latest plugin archive ZIP file](http://wpsso.com/extend/plugins/wpsso-um/latest/)
-* Upload the entire wpsso-um/ folder to your website's wordpress/wp-content/plugins/ directory.
-* Go to the wp-admin/ section of your website.
-* Select the *Plugins* menu item.
-* Select the *Installed Plugins* sub-menu.
-* Scroll down to the "WPSSO Pro Update Manager (WPSSO UM)" plugin, and click its *Activate* link.
+* [Install the Plugin](http://wpsso.com/codex/plugins/wpsso-um/installation/install-the-plugin/)
+* [Uninstall the Plugin](http://wpsso.com/codex/plugins/wpsso-um/installation/uninstall-the-plugin/)
 
 == Frequently Asked Questions ==
 
