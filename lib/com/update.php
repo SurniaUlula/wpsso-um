@@ -94,7 +94,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->mark();
 
 			foreach ( $extensions as $ext => $info ) {
-
 				$auth_type = empty( $info['update_auth'] ) ?
 					'none' : $info['update_auth'];
 				$auth_key = 'plugin_'.$ext.'_'.$auth_type;
@@ -265,13 +264,18 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( empty( $option_data ) ) {
 					if ( $this->p->debug->enabled )
 						$this->p->debug->log( $ext.' plugin: update option is empty' );
+
 				} elseif ( empty( $option_data->update ) ) {
 					if ( $this->p->debug->enabled )
 						$this->p->debug->log( $ext.' plugin: no update information' );
+
 				} elseif ( ! is_object( $option_data->update ) ) {
 					if ( $this->p->debug->enabled )
 						$this->p->debug->log( $ext.' plugin: update property is not an object' );
-				} elseif ( version_compare( $option_data->update->version, $this->get_installed_version( $ext ), '>' ) ) {
+
+				} elseif ( version_compare( $option_data->update->version, 
+					$this->get_installed_version( $ext ), '>' ) ) {
+
 					// save to local static cache as well
 					self::$config[$ext]['inject_update'] = $updates->response[$info['base']] = $option_data->update->json_to_wp();
 					if ( $this->p->debug->enabled ) {
@@ -384,10 +388,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					return $plugin_data;
 			}
 
-			$ua_plugin = self::$config[$ext]['slug'].'/'.$query_args['installed_version'];
-			if ( has_filter( $ext.'_ua_plugin' ) )
-				$ua_plugin = apply_filters( $ext.'_ua_plugin', $ua_plugin );
-			else $ua_plugin = apply_filters( 'sucom_ua_plugin', $ua_plugin, $ext );
+			$ua_plugin = self::$config[$ext]['slug'].'/'.$query_args['installed_version'].'/'.
+				( $this->p->check->aop( $ext ) ? 'L' :
+				( $this->p->check->aop( $ext, false ) ? 'U' : 'G' ) );
 			$ua_wpid = 'WordPress/'.$wp_version.' ('.$ua_plugin.'); '.$home_url;
 
 			$options = array(
@@ -473,9 +476,37 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				} elseif ( $this->p->debug->enabled )
 					$this->p->debug->log( $base.' missing from the plugins array' );
 			}
-			if ( has_filter( $ext.'_installed_version' ) )
-				return apply_filters( $ext.'_installed_version', $version );
-			else return apply_filters( 'sucom_installed_version', $version, $ext );
+			$filter_regex = $this->get_version_filter_regex( $ext );
+			if ( ! preg_match( $filter_regex, $version ) )
+				$version = '0.'.$version;
+			elseif ( isset( $this->p->cf['plugin'][$ext] ) ) {
+				$info = $this->p->cf['plugin'][$ext];
+				$auth_type = empty( $info['update_auth'] ) ?
+					'none' : $info['update_auth'];
+				$auth_key = 'plugin_'.$ext.'_'.$auth_type;
+				$auth_id = empty( $this->p->options[$auth_key] ) ?
+					'' : $this->p->options[$auth_key];
+				if ( $auth_type !== 'none' ) {
+					if ( $this->p->check->aop( $ext, false ) ) {
+						if ( empty( $auth_id ) )
+							$version = '0.'.$version;
+					} elseif ( ! empty( $auth_id ) )
+						$version = '0.'.$version;
+				}
+			}
+			return $version;
+		}
+
+		public function get_version_filter_regex( $ext ) {
+
+			$filter_name = isset( $this->p->options['update_filter_for_'.$ext] ) ?
+				$this->p->options['update_filter_for_'.$ext] : 'stable';
+
+			$filter_regex = isset( $this->p->cf['update']['version_regex'][$filter_name] ) ?
+				$this->p->cf['update']['version_regex'][$filter_name] :
+				$this->p->cf['update']['version_regex']['stable'];
+
+			return $filter_regex;
 		}
 
 		// an unfiltered version of the same wordpress function

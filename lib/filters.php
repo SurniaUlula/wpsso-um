@@ -46,27 +46,18 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 		public function filter_get_defaults( $def_opts ) {
 			$def_opts = array_merge( $def_opts, self::$cf['opt']['defaults'] );
-
 			foreach ( $this->p->cf['plugin'] as $ext => $info )
 				$def_opts['update_filter_for_'.$ext] = 'stable';
-
 			return $def_opts;
 		}
 
 		public function filter_readme_upgrade_notices( $upgrade_notices, $ext ) {
-
-			$filter_name = isset( $this->p->options['update_filter_for_'.$ext] ) ?
-				$this->p->options['update_filter_for_'.$ext] : 'stable';
-
-			$filter_regex = isset( $this->p->cf['update']['version_regex'][$filter_name] ) ?
-				$this->p->cf['update']['version_regex'][$filter_name] :
-				$this->p->cf['update']['version_regex']['stable'];
-
+			$wpssoum =& WpssoUm::get_instance();
+			$filter_regex = $wpssoum->update->get_version_filter_regex( $ext );
 			foreach ( $upgrade_notices as $version => $info ) {
 				if ( ! preg_match( $filter_regex, $version ) )
 					unset ( $upgrade_notices[$version] );
 			}
-
 			return $upgrade_notices;
 		}
 

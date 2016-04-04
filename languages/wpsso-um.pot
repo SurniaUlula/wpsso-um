@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.4.0-1\n"
+"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.4.1-dev1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2016-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -12,11 +12,11 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: lib/com/update.php:332
+#: lib/com/update.php:336
 msgid "Plugin update information for %s has been retrieved and saved."
 msgstr ""
 
-#: lib/com/update.php:409
+#: lib/com/update.php:412
 msgid "Update error: %s"
 msgstr ""
 
@@ -107,25 +107,25 @@ msgid ""
 "Optimization (WPSSO) Pro plugin and its Pro extensions."
 msgstr ""
 
-#: lib/filters.php:104
+#: lib/filters.php:95
 msgid ""
 "When the %1$s extension is active, an update check is scheduled every %2$d "
 "hours to retrieve update information for <em>installed and licensed</em> "
 "%3$s extensions."
 msgstr ""
 
-#: lib/filters.php:115
+#: lib/filters.php:106
 msgid ""
 "How often would you like the %1$s to check for new updates? You can also use "
 "the \"%2$s\" button to manually check for new updates at any time."
 msgstr ""
 
-#: lib/filters.php:115
+#: lib/filters.php:106
 msgctxt "submit button"
 msgid "Check for Pro Update(s)"
 msgstr ""
 
-#: lib/filters.php:118
+#: lib/filters.php:109
 msgid ""
 "For each licensed Pro version plugin / extension, select the type of version "
 "releases you would like to receive and install."
