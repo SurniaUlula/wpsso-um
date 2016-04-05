@@ -510,12 +510,15 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		// an unfiltered version of the same wordpress function
+		// last synchronized with wordpress v4.5 on 2016/04/05
 		private function home_url( $path = '', $scheme = null ) {
 			return $this->get_home_url( null, $path, $scheme );
 		}
 
 		// an unfiltered version of the same wordpress function
+		// last synchronized with wordpress v4.5 on 2016/04/05
 		private function get_home_url( $blog_id = null, $path = '', $scheme = null ) {
+			global $pagenow;
 
 			if ( empty( $blog_id ) || ! is_multisite() )
 				$url = get_option( 'home' );
@@ -526,7 +529,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			if ( ! in_array( $scheme, array( 'http', 'https', 'relative' ) ) ) {
-				if ( is_ssl() && ! is_admin() && 'wp-login.php' !== $GLOBALS['pagenow'] )
+				if ( is_ssl() && ! is_admin() && 'wp-login.php' !== $pagenow )
 					$scheme = 'https';
 				else $scheme = parse_url( $url, PHP_URL_SCHEME );
 			}
@@ -540,6 +543,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		// an unfiltered version of the same wordpress function
+		// last synchronized with wordpress v4.5 on 2016/04/05
 		private function set_url_scheme( $url, $scheme = null ) {
 
 			if ( ! $scheme )
