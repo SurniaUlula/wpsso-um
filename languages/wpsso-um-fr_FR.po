@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.4.0-1\n"
+"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.4.1-dev1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2016-03-31 11:44-0400\n"
-"PO-Revision-Date: 2016-03-31 11:46-0400\n"
+"POT-Creation-Date: 2016-04-05 17:05-0400\n"
+"PO-Revision-Date: 2016-04-05 17:05-0400\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -15,13 +15,13 @@ msgstr ""
 "X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: lib/com/update.php:332
+#: lib/com/update.php:336
 msgid "Plugin update information for %s has been retrieved and saved."
 msgstr ""
 "L'information de mise à jour pour l'extension %s a été récupérée et "
 "sauvegardée."
 
-#: lib/com/update.php:409
+#: lib/com/update.php:412
 msgid "Update error: %s"
 msgstr "Erreur de mise à jour: %s"
 
@@ -114,7 +114,7 @@ msgstr ""
 "Une extension WPSSO pour fournir des mises à jour a WordPress Social Sharing "
 "Optimization (WPSSO) Pro et ses extensions Pro."
 
-#: lib/filters.php:104
+#: lib/filters.php:95
 msgid ""
 "When the %1$s extension is active, an update check is scheduled every %2$d "
 "hours to retrieve update information for <em>installed and licensed</em> "
@@ -124,7 +124,7 @@ msgstr ""
 "prévue chaque %2$d heures pour récupérer les informations de mise à jour "
 "pour les extensions %3$s <em>installé et ayant un ID d'authentification</em>."
 
-#: lib/filters.php:115
+#: lib/filters.php:106
 msgid ""
 "How often would you like the %1$s to check for new updates? You can also use "
 "the \"%2$s\" button to manually check for new updates at any time."
@@ -133,12 +133,12 @@ msgstr ""
 "jour? Vous pouvez également utiliser le \"%2$s\" bouton pour vérifier "
 "manuellement."
 
-#: lib/filters.php:115
+#: lib/filters.php:106
 msgctxt "submit button"
 msgid "Check for Pro Update(s)"
 msgstr "Vérifier pour mises à jour"
 
-#: lib/filters.php:118
+#: lib/filters.php:109
 msgid ""
 "For each licensed Pro version plugin / extension, select the type of version "
 "releases you would like to receive and install."
