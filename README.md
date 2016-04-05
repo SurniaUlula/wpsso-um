@@ -18,7 +18,7 @@
 
 <p>Simply <em>download</em>, <em>install</em>, and <em>activate</em>.</p>
 
-<p>The WPSSO UM extension has only two options under the SSO &gt; Pro Update Manager settings page &mdash; one option to customize the update check frequency (once a day by default) and another to install one of the development versions (development and up, alpha and up, beta and up, release-candidate and up, or stable).</p>
+<p>The WPSSO UM extension has only two options under the SSO &gt; Pro Update Manager settings page &mdash; one option to customize the update check frequency (once a day by default) and another to install development and pre-release versions.</p>
 
 <h4>Extends the WPSSO Social Plugin</h4>
 

@@ -20,7 +20,7 @@ WPSSO extension to provide updates for the WordPress Social Sharing Optimization
 
 Simply *download*, *install*, and *activate*.
 
-The WPSSO UM extension has only two options under the SSO &gt; Pro Update Manager settings page &mdash; one option to customize the update check frequency (once a day by default) and another to install one of the development versions (development and up, alpha and up, beta and up, release-candidate and up, or stable).
+The WPSSO UM extension has only two options under the SSO &gt; Pro Update Manager settings page &mdash; one option to customize the update check frequency (once a day by default) and another to install development and pre-release versions.
 
 = Extends the WPSSO Social Plugin =
 
@@ -57,7 +57,7 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 
 = Changelog / Release Notes =
 
-**Version 1.4.1-dev1 (2016/04/03)**
+**Version 1.4.1-alpha1 (2016/04/03)**
 
 Official announcement: N/A
 
@@ -91,7 +91,7 @@ Official announcement: N/A
 
 == Upgrade Notice ==
 
-= 1.4.1-dev1 =
+= 1.4.1-alpha1 =
 
 (2016/04/03) Added a check for an installed version not included by the chosen version filter, to allow downgrading from a development version to an earlier stable version.
 
