@@ -15,7 +15,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		public static $cf = array(
 			'plugin' => array(
 				'wpssoum' => array(
-					'version' => '1.4.1-alpha1',		// plugin version
+					'version' => '1.4.1-alpha2',		// plugin version
 					'opt_version' => '2',		// increment when changing default options
 					'short' => 'WPSSO UM',
 					'name' => 'WPSSO Pro Update Manager (WPSSO UM)',
