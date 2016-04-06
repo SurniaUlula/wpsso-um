@@ -12,7 +12,7 @@
  * Description: WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
  * Requires At Least: 3.1
  * Tested Up To: 4.5
- * Version: 1.4.1-alpha2
+ * Version: 1.4.1-alpha3
  * 
  * Version Numbers: {major}.{minor}.{bugfix}-{stage}{level}
  *
@@ -42,7 +42,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		private static $text_domain = 'wpsso-um';
 		private static $req_short = 'WPSSO';
 		private static $req_name = 'WordPress Social Sharing Optimization (WPSSO)';
-		private static $req_min_version = '3.29.0-alpha2';
+		private static $req_min_version = '3.29.0-alpha3';
 		private static $req_has_min_ver = true;
 
 		public static function &get_instance() {
@@ -142,9 +142,10 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 				$this->p->notice->err( sprintf( __( 'The %1$s extension version %2$s requires the use of %3$s version %4$s or newer (version %5$s is currently installed).', 'wpsso-um' ), $info['name'], $info['version'], self::$req_short, self::$req_min_version, $have_version ), true );
 		}
 
+		// minimum value is 12 hours for the constant, 24 hours otherwise
 		public static function get_update_check_hours() {
 			$wpsso =& Wpsso::get_instance();
-			if ( SucomUtil::get_const( 'WPSSOUM_CHECK_HOURS', 0 ) >= 24 )
+			if ( SucomUtil::get_const( 'WPSSOUM_CHECK_HOURS', 0 ) >= 12 )
 				return WPSSOUM_CHECK_HOURS;
 			elseif ( isset( $wpsso->options['update_check_hours'] ) &&
 				$wpsso->options['update_check_hours'] >= 24 )
