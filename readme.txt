@@ -57,7 +57,7 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 
 = Changelog / Release Notes =
 
-**Version 1.4.1-rc1 (2016/04/08)**
+**Version 1.4.1-1 (2016/04/08)**
 
 Official announcement: N/A
 
@@ -68,7 +68,7 @@ Official announcement: N/A
 * *Bugfixes*
 	* None
 * *Developer Notes*
-	* Added a check for an installed version not included by the chosen version filter, to allow downgrading from a development version to an earlier stable version.
+	* Added check for installed version not covered by the chosen version filter -- allows downgrading from a development version to an earlier stable version.
 	* Added a new SucomUpdate `get_version_filter_regex()` method.
 	* Merged the NgfbUtil 'sucom_installed_version' and 'sucom_ua_plugin' filters into the SucomUpdate class.
 
@@ -91,9 +91,9 @@ Official announcement: N/A
 
 == Upgrade Notice ==
 
-= 1.4.1-rc1 =
+= 1.4.1-1 =
 
-(2016/04/08) Added a check for an installed version not included by the chosen version filter, to allow downgrading from a development version to an earlier stable version.
+(2016/04/08) Added check for installed version not covered by the chosen version filter -- allows downgrading from a development version to an earlier stable version.
 
 = 1.4.0-1 =
 
