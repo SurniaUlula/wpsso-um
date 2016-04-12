@@ -20,6 +20,10 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				'defaults' => array(
 					'update_check_hours' => 24,
 				),
+				'site_defaults' => array(
+					'update_check_hours' => 24,
+					'update_check_hours:use' => 'default',
+				),
 			),
 		);
 
@@ -28,6 +32,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 			$this->p->util->add_plugin_filters( $this, array( 
 				'get_defaults' => 1,			// option defaults
+				'get_site_defaults' => 1,		// site option defaults
 			) );
 
 			if ( is_admin() ) {
@@ -46,8 +51,18 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 		public function filter_get_defaults( $def_opts ) {
 			$def_opts = array_merge( $def_opts, self::$cf['opt']['defaults'] );
-			foreach ( $this->p->cf['plugin'] as $ext => $info )
+			foreach ( $this->p->cf['plugin'] as $ext => $info ) {
 				$def_opts['update_filter_for_'.$ext] = 'stable';
+			}
+			return $def_opts;
+		}
+
+		public function filter_get_site_defaults( $def_opts ) {
+			$def_opts = array_merge( $def_opts, self::$cf['opt']['site_defaults'] );
+			foreach ( $this->p->cf['plugin'] as $ext => $info ) {
+				$def_opts['update_filter_for_'.$ext] = 'stable';
+				$def_opts['update_filter_for_'.$ext.':use'] = 'default';
+			}
 			return $def_opts;
 		}
 

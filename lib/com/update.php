@@ -110,8 +110,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					continue;
 				}
 
-				$auth_url = apply_filters( 'sucom_update_url', 
-					$info['url']['update'], $info['slug'] );
+				$auth_url = apply_filters( 'sucom_update_url', $info['url']['update'], $info['slug'] );
 
 				$auth_url = add_query_arg( array( 
 					'api_version' => self::$api_version,
@@ -273,14 +272,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					if ( $this->p->debug->enabled )
 						$this->p->debug->log( $ext.' plugin: update property is not an object' );
 
-				} elseif ( version_compare( $option_data->update->version, 
-					$this->get_installed_version( $ext ), '>' ) ) {
+				} elseif ( ( $installed_version = $this->get_installed_version( $ext ) ) &&
+					version_compare( $option_data->update->version, $installed_version, '>' ) ) {
 
 					// save to local static cache as well
 					self::$config[$ext]['inject_update'] = $updates->response[$info['base']] = $option_data->update->json_to_wp();
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext.' plugin: update version ('.$option_data->update->version.')'.
-							' is different than installed ('.$this->get_installed_version( $ext ).')' );
+							' is different than installed ('.$installed_version.')' );
 						$this->p->debug->log( $updates->response[$info['base']], 5 );
 					}
 				} else {
@@ -378,12 +377,15 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			if ( $use_cache ) {
 				$last_utime = self::get_umsg( $ext, 'time' );
+				$plugin_data = false;
+
 				if ( $this->p->is_avail['cache']['transient'] && $last_utime ) {
 					$plugin_data = get_transient( $cache_id );
 				} elseif ( $this->p->is_avail['cache']['object'] && $last_utime ) {
 					$plugin_data = wp_cache_get( $cache_id, __METHOD__ );
 				} elseif ( isset( self::$config[$ext]['plugin_data'] ) )
 					$plugin_data = self::$config[$ext]['plugin_data'];
+
 				if ( $plugin_data !== false )
 					return $plugin_data;
 			}
@@ -403,9 +405,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			);
 
 			$plugin_data = null;
+
 			if ( $this->p->debug->enabled )
 				$this->p->debug->log( $ext.' plugin: calling wp_remote_get() for '.$json_url );
+
 			$result = wp_remote_get( $json_url, $options );
+
 			if ( is_wp_error( $result ) ) {
 
 				if ( isset( $this->p->notice ) && is_object( $this->p->notice ) )
@@ -448,13 +453,17 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			// save timestamp of last update check
 			self::$config[$ext]['utime'] = self::set_umsg( $ext, 'time', time() );
 
-			if ( $this->p->is_avail['cache']['transient'] )
-				set_transient( $cache_id, ( $plugin_data === null ?
-					'' : $plugin_data ), self::$config[$ext]['expire'] );
-			elseif ( $this->p->is_avail['cache']['object'] )
-				wp_cache_set( $cache_id, ( $plugin_data === null ?
-					'' : $plugin_data ), __METHOD__, self::$config[$ext]['expire'] );
-			else self::$config[$ext]['plugin_data'] = $plugin_data;
+			if ( $this->p->is_avail['cache']['transient'] ) {
+				wp_cache_delete( $cache_id, __METHOD__ );	// just in case
+				set_transient( $cache_id, ( $plugin_data === null ? '' : $plugin_data ), self::$config[$ext]['expire'] );
+			} elseif ( $this->p->is_avail['cache']['object'] ) {
+				delete_transient( $cache_id );			// just in case
+				wp_cache_set( $cache_id, ( $plugin_data === null ? '' : $plugin_data ), __METHOD__, self::$config[$ext]['expire'] );
+			} else {
+				delete_transient( $cache_id );			// just in case
+				wp_cache_delete( $cache_id, __METHOD__ );	// just in case
+				self::$config[$ext]['plugin_data'] = $plugin_data;
+			}
 
 			return $plugin_data;
 		}
@@ -477,9 +486,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$this->p->debug->log( $base.' missing from the plugins array' );
 			}
 			$filter_regex = $this->get_version_filter_regex( $ext );
-			if ( ! preg_match( $filter_regex, $version ) )
+			if ( ! preg_match( $filter_regex, $version ) ) {
+				if ( $this->p->debug->enabled )
+					$this->p->debug->log( $ext.' plugin: '.$version.' does not match filter' );
 				$version = '0.'.$version;
-			elseif ( isset( $this->p->cf['plugin'][$ext] ) ) {
+			} elseif ( isset( $this->p->cf['plugin'][$ext] ) ) {
 				$info = $this->p->cf['plugin'][$ext];
 				$auth_type = empty( $info['update_auth'] ) ?
 					'none' : $info['update_auth'];
@@ -498,14 +509,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		public function get_version_filter_regex( $ext ) {
-
 			$filter_name = isset( $this->p->options['update_filter_for_'.$ext] ) ?
 				$this->p->options['update_filter_for_'.$ext] : 'stable';
-
 			$filter_regex = isset( $this->p->cf['update']['version_regex'][$filter_name] ) ?
 				$this->p->cf['update']['version_regex'][$filter_name] :
 				$this->p->cf['update']['version_regex']['stable'];
-
 			return $filter_regex;
 		}
 

@@ -23,6 +23,18 @@ if ( ! class_exists( 'WpssoUmSubmenuUmgeneral' ) && class_exists( 'WpssoAdmin' )
 				$this->p->debug->mark();
 		}
 
+		protected function add_side_meta_boxes() {
+
+			// show the help metabox on all pages
+			add_meta_box( $this->pagehook.'_help',
+				_x( 'Help and Support', 'metabox title (side)', 'wpsso-um' ), 
+					array( &$this, 'show_metabox_help' ), $this->pagehook, 'side' );
+
+			add_meta_box( $this->pagehook.'_version_info',
+				_x( 'Version Information', 'metabox title (side)', 'wpsso-um' ), 
+					array( &$this, 'show_metabox_version_info' ), $this->pagehook, 'side' );
+		}
+
 		protected function add_meta_boxes() {
 			// add_meta_box( $id, $title, $callback, $post_type, $context, $priority, $callback_args );
 			add_meta_box( $this->pagehook.'_general', 
@@ -49,18 +61,25 @@ if ( ! class_exists( 'WpssoUmSubmenuUmgeneral' ) && class_exists( 'WpssoAdmin' )
 					'<td>'.$this->form->get_select( 'update_check_hours',
 						$this->p->cf['update']['check_hours'], 'update_filter', '', true ).'</td>';
 
-					$update_filter_select = '';
+					$row_number = 1;
+					$version_filter = $this->p->cf['update']['version_filter'];
+
 					foreach ( $this->p->cf['plugin'] as $ext => $info ) {
+
 						if ( ! SucomUpdate::is_configured( $ext ) )
 							continue;
-						$update_filter_select .= '<p>'.$this->form->get_select( 'update_filter_for_'.$ext,
-							$this->p->cf['update']['version_filter'], 'update_filter', '', true ).
-								' for '.$info['name'].'</p>'."\n";
-					}
 
-					$table_rows['update_version_filter'] = $this->form->get_th_html( _x( 'Pro Update Version Filter',
-						'option label', 'wpsso-um' ), '', 'update_version_filter' ).
-					'<td>'.$update_filter_select.'</td>';
+						if ( $row_number === 1 )
+							$th_cell = $this->form->get_th_html( _x( 'Pro Update Version Filter',
+								'option label', 'wpsso-um' ), '', 'update_version_filter' );
+						else $th_cell = '<th></th>';
+
+						$table_rows[] = $th_cell.'<td>'.$this->form->get_select( 'update_filter_for_'.$ext,
+							$this->p->cf['update']['version_filter'], 'update_filter', '', true ).
+								' for '.$info['name'].'</td>';
+
+						$row_number++;
+					}
 
 					break;
 			}
