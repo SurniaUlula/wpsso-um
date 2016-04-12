@@ -57,12 +57,12 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 
 = Changelog / Release Notes =
 
-**Version 1.5.0-dev1 (TBD)**
+**Version 1.5.0-1 (2016/04/12)**
 
 Official announcement: N/A
 
 * *New Features*
-	* None
+	* Added a multisite "Pro Update Manager" settings page under the NGFB network admin menu.
 * *Improvements*
 	* None
 * *Bugfixes*
@@ -102,6 +102,10 @@ Official announcement: N/A
 	* Adopted a new version numbering system: `{major}.{minor}.{bugfix}-{stage}{level}`
 
 == Upgrade Notice ==
+
+= 1.5.0-1 =
+
+(2016/04/12) Added a multisite "Pro Update Manager" settings page under the NGFB network admin menu.
 
 = 1.4.1-1 =
 
