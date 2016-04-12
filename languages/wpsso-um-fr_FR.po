@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.4.1-dev1\n"
+"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.0-1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2016-04-08 08:07-0400\n"
-"PO-Revision-Date: 2016-04-08 08:07-0400\n"
+"POT-Creation-Date: 2016-04-12 09:51-0400\n"
+"PO-Revision-Date: 2016-04-12 09:51-0400\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -15,13 +15,11 @@ msgstr ""
 "X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: lib/com/update.php:336
+#: lib/com/update.php:335
 msgid "Plugin update information for %s has been retrieved and saved."
-msgstr ""
-"L'information de mise à jour pour l'extension %s a été récupérée et "
-"sauvegardée."
+msgstr "L'information de mise à jour pour l'extension %s a été récupérée et sauvegardée."
 
-#: lib/com/update.php:412
+#: lib/com/update.php:417
 msgid "Update error: %s"
 msgstr "Erreur de mise à jour: %s"
 
@@ -107,83 +105,67 @@ msgstr "Stable / Production"
 
 #: lib/config-gettext-extract.php:19
 msgctxt "plugin description"
-msgid ""
-"WPSSO extension to provide updates for the WordPress Social Sharing "
-"Optimization (WPSSO) Pro plugin and its Pro extensions."
-msgstr ""
-"Une extension WPSSO pour fournir des mises à jour a WordPress Social Sharing "
-"Optimization (WPSSO) Pro et ses extensions Pro."
+msgid "WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions."
+msgstr "Une extension WPSSO pour fournir des mises à jour a WordPress Social Sharing Optimization (WPSSO) Pro et ses extensions Pro."
 
-#: lib/filters.php:95
-msgid ""
-"When the %1$s extension is active, an update check is scheduled every %2$d "
-"hours to retrieve update information for <em>installed and licensed</em> "
-"%3$s extensions."
-msgstr ""
-"Lorsque l'extension %1$s est active, une vérification de mise à jour est "
-"prévue chaque %2$d heures pour récupérer les informations de mise à jour "
-"pour les extensions %3$s <em>installé et ayant un ID d'authentification</em>."
+#: lib/filters.php:110
+msgid "When the %1$s extension is active, an update check is scheduled every %2$d hours to retrieve update information for <em>installed and licensed</em> %3$s extensions."
+msgstr "Lorsque l'extension %1$s est active, une vérification de mise à jour est prévue chaque %2$d heures pour récupérer les informations de mise à jour pour les extensions %3$s <em>installé et ayant un ID d'authentification</em>."
 
-#: lib/filters.php:106
-msgid ""
-"How often would you like the %1$s to check for new updates? You can also use "
-"the \"%2$s\" button to manually check for new updates at any time."
-msgstr ""
-"Comment souvent vous voulez que %1$s vérifie pour des nouvelles mises à "
-"jour? Vous pouvez également utiliser le \"%2$s\" bouton pour vérifier "
-"manuellement."
+#: lib/filters.php:121
+msgid "How often would you like the %1$s to check for new updates? You can also use the \"%2$s\" button to manually check for new updates at any time."
+msgstr "Comment souvent vous voulez que %1$s vérifie pour des nouvelles mises à jour? Vous pouvez également utiliser le \"%2$s\" bouton pour vérifier manuellement."
 
-#: lib/filters.php:106
+#: lib/filters.php:121
 msgctxt "submit button"
 msgid "Check for Pro Update(s)"
 msgstr "Vérifier pour mises à jour"
 
-#: lib/filters.php:109
-msgid ""
-"For each licensed Pro version plugin / extension, select the type of version "
-"releases you would like to receive and install."
-msgstr ""
-"Pour chaque extension Pro ayant un ID d'authentification, sélectionnez les "
-"types de mises à jour que vous aimeriez recevoir et installer."
+#: lib/filters.php:124
+msgid "For each licensed Pro version plugin / extension, select the type of version releases you would like to receive and install."
+msgstr "Pour chaque extension Pro ayant un ID d'authentification, sélectionnez les types de mises à jour que vous aimeriez recevoir et installer."
 
-#: lib/submenu/um-general.php:29
+#: lib/sitesubmenu/site-um-general.php:35 lib/submenu/um-general.php:30
+msgctxt "metabox title (side)"
+msgid "Help and Support"
+msgstr "Assistance et Soutien"
+
+#: lib/sitesubmenu/site-um-general.php:39 lib/submenu/um-general.php:34
+msgctxt "metabox title (side)"
+msgid "Version Information"
+msgstr "Information de Version"
+
+#: lib/sitesubmenu/site-um-general.php:46
 msgctxt "metabox title"
-msgid "Pro Update Manager"
-msgstr "Gestion Mises à Jour"
+msgid "Network Pro Update Manager"
+msgstr "Gestion Mises à Jour Réseau"
 
-#: lib/submenu/um-general.php:47
+#: lib/sitesubmenu/site-um-general.php:73 lib/submenu/um-general.php:59
 msgctxt "option label"
 msgid "Pro Update Check Schedule"
 msgstr "Horaire de Verif. pour Mises à Jour"
 
-#: lib/submenu/um-general.php:61
+#: lib/sitesubmenu/site-um-general.php:88 lib/submenu/um-general.php:73
 msgctxt "option label"
 msgid "Pro Update Version Filter"
 msgstr "Filtre de Version pour Mises à Jour"
 
+#: lib/submenu/um-general.php:41
+msgctxt "metabox title"
+msgid "Pro Update Manager"
+msgstr "Gestion Mises à Jour"
+
 #: wpsso-um.php:82
-msgid ""
-"The %1$s extension requires the %2$s plugin &mdash; please install and "
-"activate the %3$s plugin before trying to re-activate the %4$s extension."
-msgstr ""
-"L'extension %1$s requiert %2$s &mdash; s'il vous plaît installer et activer "
-"l'extension %3$s avant d'essayer de re-activer %4$s."
+msgid "The %1$s extension requires the %2$s plugin &mdash; please install and activate the %3$s plugin before trying to re-activate the %4$s extension."
+msgstr "L'extension %1$s requiert %2$s &mdash; s'il vous plaît installer et activer l'extension %3$s avant d'essayer de re-activer %4$s."
 
 #: wpsso-um.php:84
-msgid ""
-"The %1$s extension requires the %2$s plugin &mdash; please install and "
-"activate the %3$s plugin."
-msgstr ""
-"L'extension %1$s requiert %2$s &mdash; s'il vous plaît installer et activer "
-"l'extension %3$s."
+msgid "The %1$s extension requires the %2$s plugin &mdash; please install and activate the %3$s plugin."
+msgstr "L'extension %1$s requiert %2$s &mdash; s'il vous plaît installer et activer l'extension %3$s."
 
 #: wpsso-um.php:142
-msgid ""
-"The %1$s extension version %2$s requires the use of %3$s version %4$s or "
-"newer (version %5$s is currently installed)."
-msgstr ""
-"L'extension %1$s version %2$s requiert l'utilisation de %3$s version %4$s ou "
-"plus récente (la version %5$s est actuellement installée)."
+msgid "The %1$s extension version %2$s requires the use of %3$s version %4$s or newer (version %5$s is currently installed)."
+msgstr "L'extension %1$s version %2$s requiert l'utilisation de %3$s version %4$s ou plus récente (la version %5$s est actuellement installée)."
 
 #. Plugin Name of the plugin/theme
 msgid "WPSSO Pro Update Manager (WPSSO UM)"
@@ -194,12 +176,8 @@ msgid "http://surniaulula.com/extend/plugins/wpsso-um/"
 msgstr "http://surniaulula.com/extend/plugins/wpsso-um/"
 
 #. Description of the plugin/theme
-msgid ""
-"WPSSO extension to provide updates for the WordPress Social Sharing "
-"Optimization (WPSSO) Pro plugin and its Pro extensions."
-msgstr ""
-"Une extension WPSSO pour fournir des mises à jour a WordPress Social Sharing "
-"Optimization (WPSSO) Pro et ses extensions Pro."
+msgid "WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions."
+msgstr "Une extension WPSSO pour fournir des mises à jour a WordPress Social Sharing Optimization (WPSSO) Pro et ses extensions Pro."
 
 #. Author of the plugin/theme
 msgid "JS Morisset"
