@@ -83,7 +83,7 @@ Official announcement: N/A
 * *Developer Notes*
 	* Added check for installed version not covered by the chosen version filter -- allows downgrading from a development version to an earlier stable version.
 	* Added a new SucomUpdate `get_version_filter_regex()` method.
-	* Merged the NgfbUtil 'sucom_installed_version' and 'sucom_ua_plugin' filters into the SucomUpdate class.
+	* Merged the WpssoUtil 'sucom_installed_version' and 'sucom_ua_plugin' filters into the SucomUpdate class.
 
 **Version 1.4.0-1 (2016/03/31)**
 
