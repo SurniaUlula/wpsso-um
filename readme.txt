@@ -57,6 +57,19 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 
 = Changelog / Release Notes =
 
+**Version 1.5.1-1 (2016/04/21)**
+
+Official announcement: N/A
+
+* *New Features*
+	* None
+* *Improvements*
+	* Updated several help / tooltip messages and option labels.
+* *Bugfixes*
+	* None
+* *Developer Notes*
+	* None
+
 **Version 1.5.0-1 (2016/04/12)**
 
 Official announcement: N/A
@@ -70,48 +83,9 @@ Official announcement: N/A
 * *Developer Notes*
 	* None
 
-**Version 1.4.1-1 (2016/04/08)**
-
-Official announcement: N/A
-
-* *New Features*
-	* None
-* *Improvements*
-	* None
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* Added check for installed version not covered by the chosen version filter -- allows downgrading from a development version to an earlier stable version.
-	* Added a new SucomUpdate `get_version_filter_regex()` method.
-	* Merged the WpssoUtil 'sucom_installed_version' and 'sucom_ua_plugin' filters into the SucomUpdate class.
-
-**Version 1.4.0-1 (2016/03/31)**
-
-Official announcement: N/A
-
-* *New Features*
-	* Added a new "Pro Update Manager" settings page with "Pro Update Check Schedule" and "Pro Update Version Filter" options.
-	* Added a new 'WPSSOUM_CHECK_HOURS' constant. You can define this constant in your wp-config.php file to increase the default schedule of 24 hours.
-* *Improvements*
-	* None
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* Changes to support the new plugin update API v2.
-	* Tested with WordPress v4.5-RC1-37079.
-	* Adopted a new version numbering system: `{major}.{minor}.{bugfix}-{stage}{level}`
-
 == Upgrade Notice ==
 
-= 1.5.0-1 =
+= 1.5.1-1 =
 
-(2016/04/12) Added a multisite "Pro Update Manager" settings page under the NGFB network admin menu.
-
-= 1.4.1-1 =
-
-(2016/04/08) Added check for installed version not covered by the chosen version filter -- allows downgrading from a development version to an earlier stable version.
-
-= 1.4.0-1 =
-
-(2016/03/31) Added a new "Pro Update Manager" settings page with "Pro Update Check Schedule" and "Pro Update Version Filter" options.
+(2016/04/21) Updated several help / tooltip messages and option labels.
 
