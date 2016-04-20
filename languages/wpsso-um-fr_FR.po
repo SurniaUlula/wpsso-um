@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.0-1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2016-04-12 09:51-0400\n"
-"PO-Revision-Date: 2016-04-12 09:51-0400\n"
+"POT-Creation-Date: 2016-04-20 19:48-0400\n"
+"PO-Revision-Date: 2016-04-20 19:48-0400\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -89,19 +89,19 @@ msgid "Every week"
 msgstr "Chaque semaine"
 
 #: lib/config-gettext-extract.php:16
-msgctxt "lib file description"
-msgid "Pro Update Manager"
-msgstr "Gestion Mises à Jour"
-
-#: lib/config-gettext-extract.php:17
 msgctxt "option value"
 msgid "Release Candidate and Up"
 msgstr "Candidat Stable et plus"
 
-#: lib/config-gettext-extract.php:18
+#: lib/config-gettext-extract.php:17
 msgctxt "option value"
 msgid "Stable / Production"
 msgstr "Stable / Production"
+
+#: lib/config-gettext-extract.php:18
+msgctxt "lib file description"
+msgid "Update Manager"
+msgstr "Gestionnaire de mise a jour"
 
 #: lib/config-gettext-extract.php:19
 msgctxt "plugin description"
@@ -113,7 +113,7 @@ msgid "When the %1$s extension is active, an update check is scheduled every %2$
 msgstr "Lorsque l'extension %1$s est active, une vérification de mise à jour est prévue chaque %2$d heures pour récupérer les informations de mise à jour pour les extensions %3$s <em>installé et ayant un ID d'authentification</em>."
 
 #: lib/filters.php:121
-msgid "How often would you like the %1$s to check for new updates? You can also use the \"%2$s\" button to manually check for new updates at any time."
+msgid "How often would you like the %1$s to check for new updates? You can also use the \"%2$s\" button to refresh the update information manually."
 msgstr "Comment souvent vous voulez que %1$s vérifie pour des nouvelles mises à jour? Vous pouvez également utiliser le \"%2$s\" bouton pour vérifier manuellement."
 
 #: lib/filters.php:121
@@ -122,8 +122,8 @@ msgid "Check for Pro Update(s)"
 msgstr "Vérifier pour mises à jour"
 
 #: lib/filters.php:124
-msgid "For each licensed Pro version plugin / extension, select the type of version releases you would like to receive and install."
-msgstr "Pour chaque extension Pro ayant un ID d'authentification, sélectionnez les types de mises à jour que vous aimeriez recevoir et installer."
+msgid "Select the type of version updates you would like to receive and install."
+msgstr "Sélectionnez les types de mises à jour que vous aimeriez recevoir et installer."
 
 #: lib/sitesubmenu/site-um-general.php:35 lib/submenu/um-general.php:30
 msgctxt "metabox title (side)"
@@ -135,25 +135,15 @@ msgctxt "metabox title (side)"
 msgid "Version Information"
 msgstr "Information de Version"
 
-#: lib/sitesubmenu/site-um-general.php:46
-msgctxt "metabox title"
-msgid "Network Pro Update Manager"
-msgstr "Gestion Mises à Jour Réseau"
-
-#: lib/sitesubmenu/site-um-general.php:73 lib/submenu/um-general.php:59
+#: lib/sitesubmenu/site-um-general.php:76 lib/submenu/um-general.php:62
 msgctxt "option label"
-msgid "Pro Update Check Schedule"
-msgstr "Horaire de Verif. pour Mises à Jour"
+msgid "Refresh Update Information"
+msgstr "Actualiser informations de mise à jour"
 
-#: lib/sitesubmenu/site-um-general.php:88 lib/submenu/um-general.php:73
+#: lib/sitesubmenu/site-um-general.php:91 lib/submenu/um-general.php:76
 msgctxt "option label"
 msgid "Pro Update Version Filter"
 msgstr "Filtre de Version pour Mises à Jour"
-
-#: lib/submenu/um-general.php:41
-msgctxt "metabox title"
-msgid "Pro Update Manager"
-msgstr "Gestion Mises à Jour"
 
 #: wpsso-um.php:82
 msgid "The %1$s extension requires the %2$s plugin &mdash; please install and activate the %3$s plugin before trying to re-activate the %4$s extension."
@@ -186,3 +176,15 @@ msgstr "JS Morisset"
 #. Author URI of the plugin/theme
 msgid "http://surniaulula.com/"
 msgstr "http://surniaulula.com/"
+
+#~ msgctxt "metabox title"
+#~ msgid "Network Pro Update Manager"
+#~ msgstr "Gestion Mises à Jour Réseau"
+
+#~ msgctxt "option label"
+#~ msgid "Pro Update Check Schedule"
+#~ msgstr "Horaire de Verif. pour Mises à Jour"
+
+#~ msgctxt "metabox title"
+#~ msgid "Pro Update Manager"
+#~ msgstr "Gestion Mises à Jour"
