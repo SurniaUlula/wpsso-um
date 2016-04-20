@@ -118,10 +118,10 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				return $text;
 			switch ( $idx ) {
 				case 'tooltip-update_check_hours':
-					$text = sprintf( __( 'How often would you like the %1$s to check for new updates? You can also use the "%2$s" button to manually check for new updates at any time.', 'wpsso-um' ), $this->p->cf['plugin']['wpssoum']['name'], _x( 'Check for Pro Update(s)', 'submit button', 'wpsso-um' ) );
+					$text = sprintf( __( 'How often would you like the %1$s to check for new updates? You can also use the "%2$s" button to refresh the update information manually.', 'nextgen-facebook-um' ), $this->p->cf['plugin']['wpssoum']['name'], _x( 'Check for Pro Update(s)', 'submit button', 'nextgen-facebook-um' ) );
 					break;
 				case 'tooltip-update_version_filter':
-					$text = __( 'For each licensed Pro version plugin / extension, select the type of version releases you would like to receive and install.', 'wpsso-um' );
+					$text = __( 'Select the type of version updates you would like to receive and install.', 'wpsso-um' );
 					break;
 			}
 			return $text;

@@ -15,7 +15,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		public static $cf = array(
 			'plugin' => array(
 				'wpssoum' => array(
-					'version' => '1.5.0-1',		// plugin version
+					'version' => '1.5.1-1',		// plugin version
 					'opt_version' => '2',		// increment when changing default options
 					'short' => 'WPSSO UM',
 					'name' => 'WPSSO Pro Update Manager (WPSSO UM)',
@@ -48,10 +48,10 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					'lib' => array(
 						// submenu items must have unique keys
 						'submenu' => array (
-							'um-general' => 'Pro Update Manager',
+							'um-general' => 'Update Manager',
 						),
 						'sitesubmenu' => array (
-							'site-um-general' => 'Pro Update Manager',
+							'site-um-general' => 'Update Manager',
 						),
 						'gpl' => array(
 						),

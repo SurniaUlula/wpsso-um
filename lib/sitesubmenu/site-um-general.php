@@ -41,9 +41,12 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 		}
 
 		protected function add_meta_boxes() {
+			$lca = $this->p->cf['lca'];
+			$short = $this->p->cf['plugin'][$lca]['short'];
+
 			// add_meta_box( $id, $title, $callback, $post_type, $context, $priority, $callback_args );
 			add_meta_box( $this->pagehook.'_general', 
-				_x( 'Network Pro Update Manager', 'metabox title', 'wpsso-um' ),
+				_x( 'Network '.$short.' Pro Update Manager', 'metabox title', 'wpsso-um' ),
 				array( &$this, 'show_metabox_general' ), $this->pagehook, 'normal' );
 
 			// add a class to set a minimum width for the network postboxes
@@ -70,7 +73,7 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 			switch ( $metabox.'-'.$key ) {
 				case 'um-general':
 
-					$table_rows[] = $this->form->get_th_html( _x( 'Pro Update Check Schedule',
+					$table_rows['update_check_hours'] = $this->form->get_th_html( _x( 'Refresh Update Information',
 						'option label', 'wpsso-um' ), '', 'update_check_hours' ).
 					'<td>'.$this->form->get_select( 'update_check_hours',
 						$this->p->cf['update']['check_hours'], 'update_filter', '', true ).'</td>'.

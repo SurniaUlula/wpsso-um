@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.0-1\n"
+"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.1-1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2016-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -86,18 +86,18 @@ msgid "Every week"
 msgstr ""
 
 #: lib/config-gettext-extract.php:16
-msgctxt "lib file description"
-msgid "Pro Update Manager"
-msgstr ""
-
-#: lib/config-gettext-extract.php:17
 msgctxt "option value"
 msgid "Release Candidate and Up"
 msgstr ""
 
-#: lib/config-gettext-extract.php:18
+#: lib/config-gettext-extract.php:17
 msgctxt "option value"
 msgid "Stable / Production"
+msgstr ""
+
+#: lib/config-gettext-extract.php:18
+msgctxt "lib file description"
+msgid "Update Manager"
 msgstr ""
 
 #: lib/config-gettext-extract.php:19
@@ -117,7 +117,7 @@ msgstr ""
 #: lib/filters.php:121
 msgid ""
 "How often would you like the %1$s to check for new updates? You can also use "
-"the \"%2$s\" button to manually check for new updates at any time."
+"the \"%2$s\" button to refresh the update information manually."
 msgstr ""
 
 #: lib/filters.php:121
@@ -127,8 +127,7 @@ msgstr ""
 
 #: lib/filters.php:124
 msgid ""
-"For each licensed Pro version plugin / extension, select the type of version "
-"releases you would like to receive and install."
+"Select the type of version updates you would like to receive and install."
 msgstr ""
 
 #: lib/sitesubmenu/site-um-general.php:35 lib/submenu/um-general.php:30
@@ -141,24 +140,14 @@ msgctxt "metabox title (side)"
 msgid "Version Information"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:46
-msgctxt "metabox title"
-msgid "Network Pro Update Manager"
-msgstr ""
-
-#: lib/sitesubmenu/site-um-general.php:73 lib/submenu/um-general.php:59
+#: lib/sitesubmenu/site-um-general.php:76 lib/submenu/um-general.php:62
 msgctxt "option label"
-msgid "Pro Update Check Schedule"
+msgid "Refresh Update Information"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:88 lib/submenu/um-general.php:73
+#: lib/sitesubmenu/site-um-general.php:91 lib/submenu/um-general.php:76
 msgctxt "option label"
 msgid "Pro Update Version Filter"
-msgstr ""
-
-#: lib/submenu/um-general.php:41
-msgctxt "metabox title"
-msgid "Pro Update Manager"
 msgstr ""
 
 #: wpsso-um.php:82
