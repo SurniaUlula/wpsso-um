@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.0-1\n"
+"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.1-1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2016-04-20 19:48-0400\n"
-"PO-Revision-Date: 2016-04-20 19:48-0400\n"
+"PO-Revision-Date: 2016-04-21 07:25-0400\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -176,15 +176,3 @@ msgstr "JS Morisset"
 #. Author URI of the plugin/theme
 msgid "http://surniaulula.com/"
 msgstr "http://surniaulula.com/"
-
-#~ msgctxt "metabox title"
-#~ msgid "Network Pro Update Manager"
-#~ msgstr "Gestion Mises à Jour Réseau"
-
-#~ msgctxt "option label"
-#~ msgid "Pro Update Check Schedule"
-#~ msgstr "Horaire de Verif. pour Mises à Jour"
-
-#~ msgctxt "metabox title"
-#~ msgid "Pro Update Manager"
-#~ msgstr "Gestion Mises à Jour"
