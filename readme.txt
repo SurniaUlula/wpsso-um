@@ -57,6 +57,19 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 
 = Changelog / Release Notes =
 
+**Version 1.5.3-dev1 (2016/05/10)**
+
+Official announcement: N/A
+
+* *New Features*
+	* None
+* *Improvements*
+	* Categorized the display of Free / Pro features in the sidebar metabox.
+* *Bugfixes*
+	* None
+* *Developer Notes*
+	* None
+
 **Version 1.5.2-1 (2016/04/27)**
 
 Official announcement: N/A
@@ -70,39 +83,13 @@ Official announcement: N/A
 * *Developer Notes*
 	* Refactored code to centralize the installed_version query argument.
 
-**Version 1.5.1-1 (2016/04/21)**
-
-Official announcement: N/A
-
-* *New Features*
-	* None
-* *Improvements*
-	* Updated several help / tooltip messages and option labels.
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* None
-
-**Version 1.5.0-1 (2016/04/12)**
-
-Official announcement: N/A
-
-* *New Features*
-	* Added a multisite "Pro Update Manager" settings page under the NGFB network admin menu.
-* *Improvements*
-	* None
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* None
-
 == Upgrade Notice ==
+
+= 1.5.3-dev1 =
+
+(2016/05/10) Categorized the display of Free / Pro features in the sidebar metabox.
 
 = 1.5.2-1 =
 
 (2016/04/27) Refactored code to centralize the installed_version query argument.
-
-= 1.5.1-1 =
-
-(2016/04/21) Updated several help / tooltip messages and option labels.
 
