@@ -40,7 +40,6 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 					'readme_upgrade_notices' => 2, 
 					'newer_version_available' => 5, 
 					'option_type' => 2,		// define the value type for each option
-					'messages_tooltip_side' => 2,	// tooltip messages for side boxes
 					'messages_tooltip' => 2,	// tooltip messages filter
 				) );
 				$this->p->util->add_plugin_filters( $this, array( 
@@ -104,15 +103,6 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			return $type;
 		}
 
-		public function filter_messages_tooltip_side( $text, $idx ) {
-			switch ( $idx ) {
-				case 'tooltip-side-update-check-schedule':
-					$text = sprintf( __( 'When the %1$s extension is active, an update check is scheduled every %2$d hours to retrieve update information for <em>installed and licensed</em> %3$s extensions.', 'wpsso-um' ), $this->p->cf['plugin']['wpssoum']['name'], WpssoUm::get_update_check_hours(), $this->p->cf['plugin']['wpsso']['short'] );
-					break;
-			}
-			return $text;
-		}
-
 		public function filter_messages_tooltip( $text, $idx ) {
 			if ( strpos( $idx, 'tooltip-update_' ) !== 0 )
 				return $text;
@@ -128,7 +118,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		}
 
 		public function filter_status_gpl_features( $features, $lca, $info ) {
-			$features['Update Check Schedule'] = array( 
+			$features['(api) Update Check Schedule'] = array( 
 				'status' => SucomUpdate::is_enabled() ? 'on' : 'off'
 			);
 			return $features;
