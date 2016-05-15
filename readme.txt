@@ -70,26 +70,9 @@ Official announcement: N/A
 * *Developer Notes*
 	* None
 
-**Version 1.5.2-1 (2016/04/27)**
-
-Official announcement: N/A
-
-* *New Features*
-	* None
-* *Improvements*
-	* None
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* Refactored code to centralize the installed_version query argument.
-
 == Upgrade Notice ==
 
 = 1.5.3-1 =
 
 (2016/05/14) Categorized the display of Free / Pro features in the sidebar metabox.
-
-= 1.5.2-1 =
-
-(2016/04/27) Refactored code to centralize the installed_version query argument.
 
