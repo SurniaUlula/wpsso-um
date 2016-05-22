@@ -22,85 +22,115 @@ msgstr ""
 
 #: lib/config-gettext-extract.php:3
 msgctxt "option value"
-msgid "Alpha and Up"
+msgid "/[\\.\\-][0-9]+$/"
 msgstr ""
 
 #: lib/config-gettext-extract.php:4
 msgctxt "option value"
-msgid "Beta and Up"
+msgid "/-1$/"
 msgstr ""
 
 #: lib/config-gettext-extract.php:5
 msgctxt "option value"
-msgid "Development and Up"
+msgid "/[\\.\\-](a|alpha|b|beta|rc)?[0-9]+$/"
 msgstr ""
 
 #: lib/config-gettext-extract.php:6
 msgctxt "option value"
-msgid "Every day"
+msgid "Alpha and Up"
 msgstr ""
 
 #: lib/config-gettext-extract.php:7
 msgctxt "option value"
-msgid "Every five days"
+msgid "/[\\.\\-](b|beta|rc)?[0-9]+$/"
 msgstr ""
 
 #: lib/config-gettext-extract.php:8
 msgctxt "option value"
-msgid "Every four days"
+msgid "Beta and Up"
 msgstr ""
 
 #: lib/config-gettext-extract.php:9
 msgctxt "option value"
-msgid "Every month"
+msgid "/[\\.\\-](dev|a|alpha|b|beta|rc)?[0-9]+$/"
 msgstr ""
 
 #: lib/config-gettext-extract.php:10
 msgctxt "option value"
-msgid "Every six days"
+msgid "Development and Up"
 msgstr ""
 
 #: lib/config-gettext-extract.php:11
 msgctxt "option value"
-msgid "Every three days"
+msgid "Every day"
 msgstr ""
 
 #: lib/config-gettext-extract.php:12
 msgctxt "option value"
-msgid "Every three weeks"
+msgid "Every five days"
 msgstr ""
 
 #: lib/config-gettext-extract.php:13
 msgctxt "option value"
-msgid "Every two days"
+msgid "Every four days"
 msgstr ""
 
 #: lib/config-gettext-extract.php:14
 msgctxt "option value"
-msgid "Every two weeks"
+msgid "Every month"
 msgstr ""
 
 #: lib/config-gettext-extract.php:15
 msgctxt "option value"
-msgid "Every week"
+msgid "Every six days"
 msgstr ""
 
 #: lib/config-gettext-extract.php:16
 msgctxt "option value"
-msgid "Release Candidate and Up"
+msgid "Every three days"
 msgstr ""
 
 #: lib/config-gettext-extract.php:17
 msgctxt "option value"
-msgid "Stable / Production"
+msgid "Every three weeks"
 msgstr ""
 
 #: lib/config-gettext-extract.php:18
+msgctxt "option value"
+msgid "Every two days"
+msgstr ""
+
+#: lib/config-gettext-extract.php:19
+msgctxt "option value"
+msgid "Every two weeks"
+msgstr ""
+
+#: lib/config-gettext-extract.php:20
+msgctxt "option value"
+msgid "Every week"
+msgstr ""
+
+#: lib/config-gettext-extract.php:21
+msgctxt "option value"
+msgid "/[\\.\\-](rc)?[0-9]+$/"
+msgstr ""
+
+#: lib/config-gettext-extract.php:22
+msgctxt "option value"
+msgid "Release Candidate and Up"
+msgstr ""
+
+#: lib/config-gettext-extract.php:23
+msgctxt "option value"
+msgid "Stable / Production"
+msgstr ""
+
+#: lib/config-gettext-extract.php:24
 msgctxt "lib file description"
 msgid "Update Manager"
 msgstr ""
 
-#: lib/config-gettext-extract.php:19
+#: lib/config-gettext-extract.php:25
 msgctxt "plugin description"
 msgid ""
 "WPSSO extension to provide updates for the WordPress Social Sharing "
