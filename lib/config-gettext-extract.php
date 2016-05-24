@@ -1,12 +1,7 @@
 <?php die( 'These aren\'t the droids you\'re looking for...' );
 // extract of translatable text strings from static config array(s)
-_x( '/[\.\-][0-9]+$/', 'option value', 'wpsso-um' );
-_x( '/-1$/', 'option value', 'wpsso-um' );
-_x( '/[\.\-](a|alpha|b|beta|rc)?[0-9]+$/', 'option value', 'wpsso-um' );
 _x( 'Alpha and Up', 'option value', 'wpsso-um' );
-_x( '/[\.\-](b|beta|rc)?[0-9]+$/', 'option value', 'wpsso-um' );
 _x( 'Beta and Up', 'option value', 'wpsso-um' );
-_x( '/[\.\-](dev|a|alpha|b|beta|rc)?[0-9]+$/', 'option value', 'wpsso-um' );
 _x( 'Development and Up', 'option value', 'wpsso-um' );
 _x( 'Every day', 'option value', 'wpsso-um' );
 _x( 'Every five days', 'option value', 'wpsso-um' );
@@ -18,7 +13,6 @@ _x( 'Every three weeks', 'option value', 'wpsso-um' );
 _x( 'Every two days', 'option value', 'wpsso-um' );
 _x( 'Every two weeks', 'option value', 'wpsso-um' );
 _x( 'Every week', 'option value', 'wpsso-um' );
-_x( '/[\.\-](rc)?[0-9]+$/', 'option value', 'wpsso-um' );
 _x( 'Release Candidate and Up', 'option value', 'wpsso-um' );
 _x( 'Stable / Production', 'option value', 'wpsso-um' );
 _x( 'Update Manager', 'lib file description', 'wpsso-um' );
