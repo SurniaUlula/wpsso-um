@@ -20,7 +20,7 @@
 
 <p>The WPSSO UM extension has only two options under the SSO &gt; Pro Update Manager settings page &mdash; one option to customize the update check frequency (once a day by default) and another to install development and pre-release versions.</p>
 
-<h4>Extends the WPSSO Social Plugin</h4>
+<h4>Extends the WPSSO Plugin</h4>
 
 <p>The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the WPSSO UM extension.</p>
 
