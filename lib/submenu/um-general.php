@@ -8,9 +8,9 @@
 if ( ! defined( 'ABSPATH' ) ) 
 	die( 'These aren\'t the droids you\'re looking for...' );
 
-if ( ! class_exists( 'WpssoUmSubmenuUmgeneral' ) && class_exists( 'WpssoAdmin' ) ) {
+if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' ) ) {
 
-	class WpssoUmSubmenuUmgeneral extends WpssoAdmin {
+	class WpssoUmSubmenuUmGeneral extends WpssoAdmin {
 
 		public function __construct( &$plugin, $id, $name, $lib, $ext ) {
 			$this->p =& $plugin;
