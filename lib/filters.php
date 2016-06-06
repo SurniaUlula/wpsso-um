@@ -85,12 +85,11 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		}
 
 		public function filter_option_type( $type, $key ) {
+
 			if ( ! empty( $type ) )
 				return $type;
-
-			// remove localization for more generic match
-			if ( strpos( $key, '#' ) !== false )
-				$key = preg_replace( '/#.*$/', '', $key );
+			elseif ( strpos( $key, 'update_' ) !== 0 )
+				return $type;
 
 			switch ( $key ) {
 				case 'update_check_hours':
