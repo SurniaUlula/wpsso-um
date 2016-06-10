@@ -42,7 +42,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		private static $text_domain = 'wpsso-um';
 		private static $req_short = 'WPSSO';
 		private static $req_name = 'WordPress Social Sharing Optimization (WPSSO)';
-		private static $req_min_version = '3.31.0-1';
+		private static $req_min_version = '3.32.4-dev5';
 		private static $req_has_min_ver = true;
 
 		public static function &get_instance() {
