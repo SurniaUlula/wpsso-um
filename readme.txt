@@ -10,7 +10,7 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.txt
 Requires At Least: 3.1
 Tested Up To: 4.5.2
-Stable Tag: 1.5.3-1
+Stable Tag: 1.5.4-1
 
 WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
 
@@ -57,7 +57,7 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 
 = Changelog / Release Notes =
 
-**Version 1.5.4-1 (2016/06/13)**
+**Version 1.5.4-1 (2016/06/14)**
 
 Official announcement: N/A
 
@@ -87,7 +87,7 @@ Official announcement: N/A
 
 = 1.5.4-1 =
 
-(2016/06/13) Optimized the 'filter_option_type()' filter for a small performance gain when saving options.
+(2016/06/14) Optimized the 'filter_option_type()' filter for a small performance gain when saving options.
 
 = 1.5.3-1 =
 
