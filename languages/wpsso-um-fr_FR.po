@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.4-1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2016-05-12 12:21-0400\n"
-"PO-Revision-Date: 2016-06-10 18:10-0400\n"
+"POT-Creation-Date: 2016-06-14 15:55-0400\n"
+"PO-Revision-Date: 2016-06-14 15:55-0400\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -108,16 +108,16 @@ msgctxt "plugin description"
 msgid "WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions."
 msgstr "Une extension WPSSO pour fournir des mises à jour a WordPress Social Sharing Optimization (WPSSO) Pro et ses extensions Pro."
 
-#: lib/filters.php:111
+#: lib/filters.php:110
 msgid "How often would you like the %1$s to check for new updates? You can also use the \"%2$s\" button to refresh the update information manually."
 msgstr "Comment souvent vous voulez que %1$s vérifie pour des nouvelles mises à jour? Vous pouvez également utiliser le \"%2$s\" bouton pour vérifier manuellement."
 
-#: lib/filters.php:111
+#: lib/filters.php:110
 msgctxt "submit button"
 msgid "Check for Pro Update(s)"
 msgstr "Vérifier pour mises à jour"
 
-#: lib/filters.php:114
+#: lib/filters.php:113
 msgid "Select the type of version updates you would like to receive and install."
 msgstr "Sélectionnez les types de mises à jour que vous aimeriez recevoir et installer."
 
