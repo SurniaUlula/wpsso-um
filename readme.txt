@@ -57,27 +57,14 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 
 = Changelog / Release Notes =
 
-**Version 1.5.4-1 (2016/06/14)**
+**Version 1.5.5-1 (2016/06/16)**
 
 Official announcement: N/A
 
 * *New Features*
 	* None
 * *Improvements*
-	* None
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* Optimized the 'filter_option_type()' filter for a small performance gain when saving options.
-
-**Version 1.5.3-1 (2016/05/14)**
-
-Official announcement: N/A
-
-* *New Features*
-	* None
-* *Improvements*
-	* Categorized the display of Free / Pro features in the sidebar metabox.
+	* Added a check to better handle empty API responses.
 * *Bugfixes*
 	* None
 * *Developer Notes*
@@ -85,11 +72,7 @@ Official announcement: N/A
 
 == Upgrade Notice ==
 
-= 1.5.4-1 =
+= 1.5.5-1 =
 
-(2016/06/14) Optimized the 'filter_option_type()' filter for a small performance gain when saving options.
-
-= 1.5.3-1 =
-
-(2016/05/14) Categorized the display of Free / Pro features in the sidebar metabox.
+(2016/06/16) Added a check to better handle empty API responses.
 
