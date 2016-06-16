@@ -44,17 +44,21 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		private static function set_umsg( $ext, $msg, $val ) {
-			wp_cache_delete( 'alloptions', 'options' );
-			update_option( $ext.'_uapi'.self::$api_version.$msg,
-				base64_encode( $val ) );	// save value as string
-			return $val;
+			if ( empty( $val ) ) {
+				delete_option( $ext.'_uapi'.self::$api_version.$msg );
+				return false;
+			} else { 
+				update_option( $ext.'_uapi'.self::$api_version.$msg, base64_encode( $val ) );	// save as string
+				//wp_cache_delete( 'alloptions', 'options' );	// just in case
+				return $val;
+			}
 		}
 
 		public static function get_umsg( $ext, $msg = 'err', $def = false ) {
 			if ( ! isset( self::$config[$ext]['u'.$msg] ) ) {
 				$val = get_option( $ext.'_uapi'.self::$api_version.$msg, $def );
 				if ( ! is_bool( $val ) )
-					$val = base64_decode( $val );	// value saved as string
+					$val = base64_decode( $val );	// value is saved as a string
 				if ( empty( $val ) )
 					self::$config[$ext]['u'.$msg] = false;
 				else self::$config[$ext]['u'.$msg] = $val;
@@ -424,18 +428,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				$payload = json_decode( $result['body'], true, 32 );	// create an associative array
 
-				if ( ! empty( $payload['api_response'] ) ) {
-					foreach ( array( 'err', 'inf' ) as $msg ) {
-						if ( ! empty( $payload['api_response'][$msg] ) ) {
-							self::$config[$ext]['u'.$msg] = self::set_umsg( $ext,
-								$msg, $payload['api_response'][$msg] );
-						}
-					}
-				}
+				if ( ! empty( $payload['api_response'] ) )
+					foreach ( array( 'err', 'inf' ) as $msg )
+						self::$config[$ext]['u'.$msg] = self::set_umsg( $ext, $msg,
+							( empty( $payload['api_response'][$msg] ) ? 
+								false : $payload['api_response'][$msg] ) );
 
 				if ( empty( $result['headers']['x-smp-error'] ) ) {
 					self::$config[$ext]['uerr'] = false;
-					delete_option( $ext.'_uerr' );
 					$plugin_data = SucomPluginData::from_json( $result['body'] );
 
 					if ( empty( $plugin_data->plugin ) ) {
