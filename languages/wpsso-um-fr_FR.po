@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.4-1\n"
+"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.5-1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2016-06-14 15:55-0400\n"
-"PO-Revision-Date: 2016-06-14 15:55-0400\n"
+"POT-Creation-Date: 2016-06-16 07:33-0400\n"
+"PO-Revision-Date: 2016-06-16 07:33-0400\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -15,11 +15,11 @@ msgstr ""
 "X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: lib/com/update.php:338
+#: lib/com/update.php:342
 msgid "Plugin update information for %s has been retrieved and saved."
 msgstr "L'information de mise à jour pour l'extension %s a été récupérée et sauvegardée."
 
-#: lib/com/update.php:417
+#: lib/com/update.php:421
 msgid "Update error: %s"
 msgstr "Erreur de mise à jour: %s"
 
