@@ -47,7 +47,7 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 
 == Screenshots ==
 
-01. The WPSSO Pro Update Manager settings &mdash; customize the update check frequency (once a day by default) and/or choose to install one of the development versions (development and up, alpha and up, beta and up, release-candidate and up, or stable).
+01. Update Manager settings &mdash; customize the update check frequency (once a day by default) and/or choose to install one of the development versions (development and up, alpha and up, beta and up, release-candidate and up, or stable).
 
 == Changelog ==
 
