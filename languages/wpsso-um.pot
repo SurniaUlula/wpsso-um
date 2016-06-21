@@ -12,11 +12,11 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: lib/com/update.php:342
+#: lib/com/update.php:341
 msgid "Plugin update information for %s has been retrieved and saved."
 msgstr ""
 
-#: lib/com/update.php:421
+#: lib/com/update.php:420
 msgid "Update error: %s"
 msgstr ""
 

@@ -49,7 +49,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				return false;
 			} else { 
 				update_option( $ext.'_uapi'.self::$api_version.$msg, base64_encode( $val ) );	// save as string
-				//wp_cache_delete( 'alloptions', 'options' );	// just in case
 				return $val;
 			}
 		}
