@@ -17,7 +17,7 @@ msgid "Plugin update information for %s has been retrieved and saved."
 msgstr ""
 
 #: lib/com/update.php:420
-msgid "Update error: %s"
+msgid "Update error &mdash; %s"
 msgstr ""
 
 #: lib/config-gettext-extract.php:3

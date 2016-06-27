@@ -417,7 +417,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			if ( is_wp_error( $result ) ) {
 
 				if ( isset( $this->p->notice ) && is_object( $this->p->notice ) )
-					$this->p->notice->err( sprintf( __( 'Update error: %s',
+					$this->p->notice->err( sprintf( __( 'Update error &mdash; %s',
 						$this->text_domain ), $result->get_error_message() ) );
 				if ( $this->p->debug->enabled )
 					$this->p->debug->log( 'update error: '.$result->get_error_message() );
