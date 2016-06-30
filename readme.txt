@@ -4,7 +4,7 @@ Plugin Slug: wpsso-um
 Text Domain: wpsso-um
 Domain Path: /languages
 Contributors: jsmoriss
-Donate Link: https://wpsso.com/
+Donate Link: https://wpsso.com/?utm_source=wpssoum-readme-donate
 Tags: wpsso, update, manager
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.txt
