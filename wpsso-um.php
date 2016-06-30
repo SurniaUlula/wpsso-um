@@ -60,19 +60,19 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 			if ( is_admin() ) {
 				load_plugin_textdomain( 'wpsso-um', false, 'wpsso-um/languages/' );
-				add_action( 'admin_init', array( &$this, 'check_for_wpsso' ) );
+				add_action( 'admin_init', array( &$this, 'required_check' ) );
 			}
 
 			add_filter( 'wpsso_get_config', array( &$this, 'wpsso_get_config' ), 10, 1 );	// merge first
 			add_action( 'wpsso_init_plugin', array( &$this, 'wpsso_init_plugin' ), 10 );
 		}
 
-		public function check_for_wpsso() {
+		public function required_check() {
 			if ( ! class_exists( 'Wpsso' ) )
-				add_action( 'all_admin_notices', array( &$this, 'wpsso_missing_notice' ) );
+				add_action( 'all_admin_notices', array( &$this, 'required_notice' ) );
 		}
 
-		public static function wpsso_missing_notice( $deactivate = false ) {
+		public static function required_notice( $deactivate = false ) {
 			$info = WpssoUmConfig::$cf['plugin']['wpssoum'];
 
 			if ( $deactivate === true ) {
@@ -99,7 +99,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			else $this->p =& $GLOBALS['wpsso'];
 
 			if ( self::$req_has_min_ver === false )
-				return $this->warning_wpsso_version();
+				return $this->min_version_notice();
 
 			self::$check_hours = $this->get_update_check_hours();
 
@@ -130,7 +130,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			}
 		}
 
-		private function warning_wpsso_version() {
+		private function min_version_notice() {
 			$info = WpssoUmConfig::$cf['plugin']['wpssoum'];
 			$have_version = $this->p->cf['plugin']['wpsso']['version'];
 
