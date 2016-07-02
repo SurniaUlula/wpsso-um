@@ -122,7 +122,8 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 					if ( empty( $last_utime ) || $next_utime + 86400 < time() ) {	// plus one day
 						if ( $this->p->debug->enabled ) {
 							$this->p->debug->log( 'requesting update check for '.$ext );
-							$this->p->notice->inf( 'Performing an update check for the '.$info['name'].' plugin.' );
+							$this->p->notice->inf( 'Performing an update check for the '.$info['name'].' plugin.',
+								true, true, __FUNCTION__.'_'.$ext.'_update_check', true );
 						}
 						$this->update->check_for_updates( $ext, false, false );	// $notice = false, $use_cache = false
 					}
