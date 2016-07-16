@@ -63,8 +63,8 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 				add_action( 'admin_init', array( &$this, 'required_check' ) );
 			}
 
-			add_filter( 'wpsso_get_config', array( &$this, 'wpsso_get_config' ), 10, 1 );	// merge first
-			add_action( 'wpsso_init_plugin', array( &$this, 'wpsso_init_plugin' ), 10 );
+			add_filter( 'wpsso_get_config', array( &$this, 'wpsso_get_config' ), 10, 1 );
+			add_action( 'wpsso_init_plugin', array( &$this, 'wpsso_init_plugin' ), -100 );
 		}
 
 		public function required_check() {
@@ -93,6 +93,8 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		}
 
 		public function wpsso_init_plugin() {
+			if ( $this->p->debug->enabled )
+				$this->p->debug->mark();
 
 			if ( method_exists( 'Wpsso', 'get_instance' ) )
 				$this->p =& Wpsso::get_instance();
