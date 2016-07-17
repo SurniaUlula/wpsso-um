@@ -57,7 +57,7 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 
 = Changelog / Release Notes =
 
-**Version 1.5.6-rc1 (2016/07/17)**
+**Version 1.5.6-1 (2016/07/17)**
 
 Official announcement: N/A
 
@@ -85,7 +85,7 @@ Official announcement: N/A
 
 == Upgrade Notice ==
 
-= 1.5.6-rc1 =
+= 1.5.6-1 =
 
 (2016/07/17) Added 'wpsso_init_options' and 'wpsso_init_objects' hooks to load the filters library earlier.
 
