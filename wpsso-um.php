@@ -12,7 +12,7 @@
  * Description: WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
  * Requires At Least: 3.1
  * Tested Up To: 4.5.3
- * Version: 1.5.5-1
+ * Version: 1.5.6-rc1
  * 
  * Version Numbers: {major}.{minor}.{bugfix}-{stage}{level}
  *
@@ -42,7 +42,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		private static $text_domain = 'wpsso-um';
 		private static $req_short = 'WPSSO';
 		private static $req_name = 'WordPress Social Sharing Optimization (WPSSO)';
-		private static $req_min_version = '3.32.4-1';
+		private static $req_min_version = '3.33.5-rc1';
 		private static $req_has_min_ver = true;
 
 		public static function &get_instance() {
@@ -63,7 +63,9 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 				add_action( 'admin_init', array( &$this, 'required_check' ) );
 			}
 
-			add_filter( 'wpsso_get_config', array( &$this, 'wpsso_get_config' ), 10, 1 );
+			add_filter( 'wpsso_get_config', array( &$this, 'wpsso_get_config' ), 10, 2 );
+			add_action( 'wpsso_init_options', array( &$this, 'wpsso_init_options' ), 10 );
+			add_action( 'wpsso_init_objects', array( &$this, 'wpsso_init_objects' ), 10 );
 			add_action( 'wpsso_init_plugin', array( &$this, 'wpsso_init_plugin' ), -100 );
 		}
 
@@ -84,30 +86,46 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			} else echo '<div class="error"><p>'.sprintf( __( 'The %1$s extension requires the %2$s plugin &mdash; please install and activate the %3$s plugin.', 'wpsso-um' ), $info['name'], self::$req_name, self::$req_short ).'</p></div>';
 		}
 
-		public function wpsso_get_config( $cf ) {
-			if ( version_compare( $cf['plugin']['wpsso']['version'], self::$req_min_version, '<' ) ) {
+		public function wpsso_get_config( $cf, $version ) {
+			if ( version_compare( $version, self::$req_min_version, '<' ) ) {
 				self::$req_has_min_ver = false;
 				return $cf;
 			}
 			return SucomUtil::array_merge_recursive_distinct( $cf, WpssoUmConfig::$cf );
 		}
 
-		public function wpsso_init_plugin() {
-			if ( $this->p->debug->enabled )
-				$this->p->debug->mark();
-
+		public function wpsso_init_options() {
 			if ( method_exists( 'Wpsso', 'get_instance' ) )
 				$this->p =& Wpsso::get_instance();
 			else $this->p =& $GLOBALS['wpsso'];
 
+			if ( $this->p->debug->enabled )
+				$this->p->debug->mark();
+
 			if ( self::$req_has_min_ver === false )
-				return $this->min_version_notice();
+				return;		// stop here
+		}
+
+		public function wpsso_init_objects() {
+			if ( $this->p->debug->enabled )
+				$this->p->debug->mark();
+
+			if ( self::$req_has_min_ver === false )
+				return;		// stop here
 
 			self::$check_hours = $this->get_update_check_hours();
 
 			$this->filters = new WpssoUmFilters( $this->p );
 			$this->update = new SucomUpdate( $this->p, $this->p->cf['plugin'],
 				self::$check_hours, self::$allow_host, self::$text_domain );
+		}
+
+		public function wpsso_init_plugin() {
+			if ( $this->p->debug->enabled )
+				$this->p->debug->mark();
+
+			if ( self::$req_has_min_ver === false )
+				return $this->min_version_notice();
 
 			/*
 			 * Force immediate check if no update check for past 2 days
