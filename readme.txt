@@ -53,7 +53,7 @@ The WordPress Social Sharing Optimization (WPSSO) plugin is required to use the 
 
 = Free / Basic Version Repository =
 
-* [GitHub](https://github.com/SurniaUlula/wpsso-um)
+* [GitHub](https://surniaulula.github.io/wpsso-um/)
 
 = Changelog / Release Notes =
 
