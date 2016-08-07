@@ -3,11 +3,12 @@ Plugin Name: WPSSO Pro Update Manager (WPSSO UM)
 Plugin Slug: wpsso-um
 Text Domain: wpsso-um
 Domain Path: /languages
-Contributors: jsmoriss
-Donate Link: https://wpsso.com/?utm_source=wpssoum-readme-donate
-Tags: wpsso, update, manager
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.txt
+Donate Link: https://wpsso.com/?utm_source=wpssoum-readme-donate
+Assets URI: https://surniaulula.github.io/wpsso-um/assets/
+Tags: wpsso, update, manager
+Contributors: jsmoriss
 Requires At Least: 3.1
 Tested Up To: 4.6
 Stable Tag: 1.5.6-1
