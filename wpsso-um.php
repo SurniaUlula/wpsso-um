@@ -56,8 +56,8 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 			require_once ( dirname( __FILE__ ).'/lib/config.php' );
 			WpssoUmConfig::set_constants( __FILE__ );
-			WpssoUmConfig::require_libs( __FILE__ );		// includes the register.php class library
-			$this->reg = new WpssoUmRegister();			// activate, deactivate, uninstall hooks
+			WpssoUmConfig::require_libs( __FILE__ );	// includes the register.php class library
+			$this->reg = new WpssoUmRegister();		// activate, deactivate, uninstall hooks
 
 			if ( is_admin() ) {
 				load_plugin_textdomain( 'wpsso-um', false, 'wpsso-um/languages/' );
