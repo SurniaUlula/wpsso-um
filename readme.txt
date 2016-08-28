@@ -56,6 +56,19 @@ Simply *download*, *install*, and *activate*.
 
 = Changelog / Release Notes =
 
+**Version 1.5.7-dev1 (TBD)**
+
+Official announcement: N/A
+
+* *New Features*
+	* None
+* *Improvements*
+	* None
+* *Bugfixes*
+	* None
+* *Developer Notes*
+	* Replaced the `register_uninstall_hook()` function call with an uninstall.php file.
+
 **Version 1.5.6-1 (2016/07/18)**
 
 Official announcement: N/A
