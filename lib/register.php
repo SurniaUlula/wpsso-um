@@ -72,7 +72,7 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 			$version = WpssoUmConfig::$cf['plugin'][$lca]['version'];	// only our config
 			if ( class_exists( 'WpssoUtil' ) )
 				WpssoUtil::save_all_times( $lca, $version );
-			else WpssoUm::wpsso_missing_notice( true );			// $deactivate = true
+			else WpssoUm::required_notice( true );			// $deactivate = true
 			self::delete_options();
 		}
 
@@ -101,6 +101,12 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 			} else {	// in case wpsso is deactivated
 				foreach ( array(
 					'wpsso' => 'wpsso',
+					'wpssoam' => 'wpsso-am',
+					'wpssojson' => 'wpsso-schema-json-ld',
+					'wpssoorg' => 'wpsso-organization',
+					'wpssoplm' => 'wpsso-plm',
+					'wpssorrssb' => 'wpsso-rrssb',
+					'wpssossb' => 'wpsso-ssb',
 					'wpssoum' => 'wpsso-um',
 				) as $lca => $slug ) {
 					delete_option( $lca.'_uapi'.$api_version.'err' );

@@ -339,7 +339,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$this->p->debug->log( $ext.' plugin: update information saved in '.$info['opt_name'].' option' );
 					if ( $notice || $this->p->debug->enabled )
 						$this->p->notice->inf( sprintf( __( 'Plugin update information for %s has been retrieved and saved.',
-							$this->text_domain ), $info['name'] ), true, true, __FUNCTION__.'_'.$ext.'_'.$info['opt_name'], true );
+							$this->text_domain ), $info['name'] ), true, __FUNCTION__.'_'.$ext.'_'.$info['opt_name'], true );
 				} elseif ( $this->p->debug->enabled ) {
 					$this->p->debug->log( $ext.' plugin: failed saving update information in '.$info['opt_name'].' option' );
 					$this->p->debug->log( $option_data );
