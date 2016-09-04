@@ -67,6 +67,7 @@ Official announcement: N/A
 * *Bugfixes*
 	* None
 * *Developer Notes*
+	* Updated the SucomNotice method calls for WPSSO v3.35.0-1.
 	* Replaced the `register_uninstall_hook()` function call with an uninstall.php file.
 
 **Version 1.5.6-1 (2016/07/18)**
@@ -83,6 +84,10 @@ Official announcement: N/A
 	* None
 
 == Upgrade Notice ==
+
+= 1.5.7-dev1 =
+
+(2016/09/04) Updated the SucomNotice method calls for WPSSO v3.35.0-1. Added an uninstall.php file.
 
 = 1.5.6-1 =
 
