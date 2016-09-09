@@ -56,7 +56,7 @@ Simply *download*, *install*, and *activate*.
 
 = Changelog / Release Notes =
 
-**Version 1.5.7-rc1 (2016/09/05)**
+**Version 1.5.7-rc2 (2016/09/09)**
 
 Official announcement: N/A
 
@@ -85,9 +85,9 @@ Official announcement: N/A
 
 == Upgrade Notice ==
 
-= 1.5.7-rc1 =
+= 1.5.7-rc2 =
 
-(2016/09/05) Updated the SucomNotice method calls for WPSSO v3.35.0-1. Added an uninstall.php file.
+(2016/09/09) Updated the SucomNotice method calls for WPSSO v3.35.0-1. Added an uninstall.php file.
 
 = 1.5.6-1 =
 
