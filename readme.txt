@@ -70,26 +70,9 @@ Official announcement: N/A
 	* Updated the SucomNotice method calls for WPSSO v3.35.0-1.
 	* Replaced the `register_uninstall_hook()` function call with an uninstall.php file.
 
-**Version 1.5.6-1 (2016/07/18)**
-
-Official announcement: N/A
-
-* *New Features*
-	* None
-* *Improvements*
-	* Added 'wpsso_init_options' and 'wpsso_init_objects' hooks to load the filters library earlier.
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* None
-
 == Upgrade Notice ==
 
 = 1.5.7-1 =
 
 (2016/09/10) Updated the SucomNotice method calls for WPSSO v3.35.0-1. Added an uninstall.php file.
-
-= 1.5.6-1 =
-
-(2016/07/18) Added 'wpsso_init_options' and 'wpsso_init_objects' hooks to load the filters library earlier.
 
