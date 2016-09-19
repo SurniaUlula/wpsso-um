@@ -12,7 +12,7 @@
  * License URI: http://www.gnu.org/licenses/gpl.txt
  * Description: WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
  * Requires At Least: 3.1
- * Tested Up To: 4.6
+ * Tested Up To: 4.6.1
  * Version: 1.5.7-1
  * 
  * Version Numbers: {major}.{minor}.{bugfix}-{stage}{level}
