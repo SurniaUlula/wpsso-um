@@ -470,28 +470,52 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		public function get_installed_version( $ext ) {
 			$version = 0;
 
-			if ( isset( $this->p->cf['plugin'][$ext] ) )
+			if ( isset( $this->p->cf['plugin'][$ext] ) ) {
 				$info = $this->p->cf['plugin'][$ext];
-			else {
-				if ( $this->p->debug->enabled )
-					$this->p->debug->log( $ext.' plugin: configuration not found' );
-				return $version;
 			}
 
-			if ( ! function_exists( 'get_plugins' ) ) 
-				require_once( ABSPATH.'/wp-admin/includes/plugin.php' );
+			if ( isset( $info['version'] ) ) {	// plugin is active
+				$version = $info['version'];
 
-			$plugins = get_plugins();
+			} elseif ( isset( $info['base'] ) ) {	// plugin is not active
+				$base = $info['base'];
 
-			if ( isset( $plugins[$info['base']] ) ) {
-				if ( isset( $plugins[$info['base']]['Version'] ) ) {
-					$version = $plugins[$info['base']]['Version'];
+				if ( ! function_exists( 'get_plugins' ) ) {
+					if ( file_exists( ABSPATH.'/wp-admin/includes/plugin.php') )
+						require_once( ABSPATH.'/wp-admin/includes/plugin.php' );
+					else $this->p->notice->err( 'The WordPress library file '.ABSPATH.'/wp-admin/includes/plugin.php is missing' );
+				}
+	
+				if ( function_exists( 'get_plugins' ) )
+					$plugins = get_plugins();
+				else {
+					$this->p->notice->err( 'The WordPress get_plugins() function is missing &mdash; plugin information is not available.' );
+					$plugins = array();
+				}
+
+				if ( isset( $plugins[$base] ) ) {
+					if ( isset( $plugins[$base]['Version'] ) ) {
+						$version = $plugins[$base]['Version'];
+						if ( $this->p->debug->enabled )
+							$this->p->debug->log( $ext.' plugin: installed version is '.$version );
+					} else {
+						$version = '0-no-version';
+						$this->p->notice->err( 'The '.$base.' version key is missing from the WordPress installed plugins list.' );
+						if ( $this->p->debug->enabled )
+							$this->p->debug->log( $ext.' plugin: '.$base.' version key missing from plugins array' );
+					}
+				} else {
+					$version = '0-no-plugin';
+					$this->p->notice->err( 'The '.$base.' plugin is missing from the WordPress installed plugins list.' );
 					if ( $this->p->debug->enabled )
-						$this->p->debug->log( $ext.' plugin: installed version is '.$version );
-				} elseif ( $this->p->debug->enabled )
-					$this->p->debug->log( $info['base'].' array does not have a version key' );
-			} elseif ( $this->p->debug->enabled )
-				$this->p->debug->log( $info['base'].' missing from the plugins array' );
+						$this->p->debug->log( $ext.' plugin: '.$base.' plugin missing from plugins array' );
+				}
+
+			} else {				// plugin not installed
+				$version = '0-no-config';
+				if ( $this->p->debug->enabled )
+					$this->p->debug->log( $ext.' plugin: extension config not found' );
+			}
 
 			$filter_regex = $this->get_version_filter_regex( $ext );
 
@@ -502,9 +526,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			} else {
 				$auth_type = empty( $info['update_auth'] ) ?
 					'none' : $info['update_auth'];
+
 				$auth_key = 'plugin_'.$ext.'_'.$auth_type;
+
 				$auth_id = empty( $this->p->options[$auth_key] ) ?
 					'' : $this->p->options[$auth_key];
+
 				if ( $auth_type !== 'none' ) {
 					if ( $this->p->check->aop( $ext, false ) ) {
 						if ( empty( $auth_id ) )
@@ -518,11 +545,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		public function get_version_filter_regex( $ext ) {
+
 			$filter_name = isset( $this->p->options['update_filter_for_'.$ext] ) ?
 				$this->p->options['update_filter_for_'.$ext] : 'stable';
+
 			$filter_regex = isset( $this->p->cf['update']['version_regex'][$filter_name] ) ?
 				$this->p->cf['update']['version_regex'][$filter_name] :
 				$this->p->cf['update']['version_regex']['stable'];
+
 			return $filter_regex;
 		}
 
