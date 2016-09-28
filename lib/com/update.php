@@ -338,8 +338,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					if ( $this->p->debug->enabled )
 						$this->p->debug->log( $ext.' plugin: update information saved in '.$info['opt_name'].' option' );
 					if ( $notice || $this->p->debug->enabled )
-						$this->p->notice->inf( sprintf( __( 'Plugin update information for %s has been retrieved and saved.',
-							$this->text_domain ), $info['name'] ), true, __FUNCTION__.'_'.$ext.'_'.$info['opt_name'], true );
+						$this->p->notice->inf( sprintf( __( 'Update information for the %s plugin has been retrieved and saved.',
+							$this->text_domain ), $info['name'] ), true, 'check_for_updates_'.$ext.'_'.$info['opt_name'], true );
 				} elseif ( $this->p->debug->enabled ) {
 					$this->p->debug->log( $ext.' plugin: failed saving update information in '.$info['opt_name'].' option' );
 					$this->p->debug->log( $option_data );
@@ -417,7 +417,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			if ( is_wp_error( $result ) ) {
 
 				if ( isset( $this->p->notice ) && is_object( $this->p->notice ) )
-					$this->p->notice->err( sprintf( __( 'Update error &mdash; %s',
+					$this->p->notice->err( sprintf( __( 'WordPress remote get error &mdash; %s',
 						$this->text_domain ), $result->get_error_message() ) );
 				if ( $this->p->debug->enabled )
 					$this->p->debug->log( 'update error: '.$result->get_error_message() );
@@ -470,45 +470,54 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		public function get_installed_version( $ext ) {
 			$version = 0;
 
-			if ( isset( $this->p->cf['plugin'][$ext] ) ) {
+			if ( isset( $this->p->cf['plugin'][$ext] ) )
 				$info = $this->p->cf['plugin'][$ext];
-			}
 
 			if ( isset( $info['version'] ) ) {	// plugin is active
 				$version = $info['version'];
+				if ( $this->p->debug->enabled )
+					$this->p->debug->log( $ext.' plugin: extension config version is '.$version );
 
 			} elseif ( isset( $info['base'] ) ) {	// plugin is not active
-				$base = $info['base'];
 
 				if ( ! function_exists( 'get_plugins' ) ) {
-					if ( file_exists( ABSPATH.'/wp-admin/includes/plugin.php') )
-						require_once( ABSPATH.'/wp-admin/includes/plugin.php' );
-					else $this->p->notice->err( 'The WordPress library file '.ABSPATH.'/wp-admin/includes/plugin.php is missing' );
+					$plugin_lib = trailingslashit( ABSPATH ).'wp-admin/includes/plugin.php';
+					if ( file_exists( $plugin_lib ) )
+						require_once( $plugin_lib );
+					else {
+						$this->p->notice->err( sprintf( __( 'The WordPress library file %s is required and missing.', 
+							$this->text_domain ), '<code>'.$plugin_lib.'</code>' ), true, 'wp_plugin_lib_missing', true );
+						if ( $this->p->debug->enabled )
+							$this->p->debug->log( $ext.' plugin: '.$plugin_lib.' missing' );
+					}
 				}
 	
 				if ( function_exists( 'get_plugins' ) )
 					$plugins = get_plugins();
 				else {
-					$this->p->notice->err( 'The WordPress get_plugins() function is missing &mdash; plugin information is not available.' );
+					$this->p->notice->err( sprintf( __( 'The WordPress %s function is not available &mdash; unable to retrieve installed plugin information.',
+						$this->text_domain ), '<code>get_plugins()</code>' ), true, 'wp_get_plugins_missing', true );
 					$plugins = array();
 				}
 
-				if ( isset( $plugins[$base] ) ) {
-					if ( isset( $plugins[$base]['Version'] ) ) {
-						$version = $plugins[$base]['Version'];
+				if ( isset( $plugins[$info['base']] ) ) {
+					if ( isset( $plugins[$info['base']]['Version'] ) ) {
+						$version = $plugins[$info['base']]['Version'];
 						if ( $this->p->debug->enabled )
 							$this->p->debug->log( $ext.' plugin: installed version is '.$version );
 					} else {
 						$version = '0-no-version';
-						$this->p->notice->err( 'The '.$base.' version key is missing from the WordPress installed plugins list.' );
+						$this->p->notice->err( sprintf( __( 'The %1$s plugin (%2$s) version number is missing from the WordPress installed plugins list.',
+							$this->text_domain ), $info['name'], $info['base'] ), true, 'plugins_'.$info['base'].'_no_version', true );
 						if ( $this->p->debug->enabled )
-							$this->p->debug->log( $ext.' plugin: '.$base.' version key missing from plugins array' );
+							$this->p->debug->log( $ext.' plugin: '.$info['base'].' version key missing from plugins array' );
 					}
 				} else {
 					$version = '0-no-plugin';
-					$this->p->notice->err( 'The '.$base.' plugin is missing from the WordPress installed plugins list.' );
+					$this->p->notice->err( sprintf( __( 'The %1$s plugin (%2$s) is missing from the WordPress installed plugins list.',
+						$this->text_domain ), $info['name'], $info['base'] ), true, 'plugins_'.$info['base'].'_missing', true );
 					if ( $this->p->debug->enabled )
-						$this->p->debug->log( $ext.' plugin: '.$base.' plugin missing from plugins array' );
+						$this->p->debug->log( $ext.' plugin: '.$info['base'].' plugin missing from plugins array' );
 				}
 
 			} else {				// plugin not installed
