@@ -56,6 +56,19 @@ Simply *download*, *install*, and *activate*.
 
 = Changelog / Release Notes =
 
+**Version 1.5.8-dev2 (2016/09/28)**
+
+Official announcement: N/A
+
+* *New Features*
+	* None
+* *Improvements*
+	* Added notice messages for missing WordPress plugin library and/or get_plugins() function.
+* *Bugfixes*
+	* None
+* *Developer Notes*
+	* None
+
 **Version 1.5.7-1 (2016/09/10)**
 
 Official announcement: N/A
@@ -71,6 +84,10 @@ Official announcement: N/A
 	* Replaced the `register_uninstall_hook()` function call with an uninstall.php file.
 
 == Upgrade Notice ==
+
+= 1.5.8-dev2 =
+
+(2016/09/28) Added notice messages for missing WordPress plugin library and/or get_plugins() function.
 
 = 1.5.7-1 =
 
