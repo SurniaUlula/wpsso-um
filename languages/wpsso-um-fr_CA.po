@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.7-1\n"
+"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.8-1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2016-07-09 15:43-0400\n"
-"PO-Revision-Date: 2016-09-05 09:17-0400\n"
+"POT-Creation-Date: 2016-09-30 09:26-0700\n"
+"PO-Revision-Date: 2016-09-30 09:27-0700\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -16,12 +16,28 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: lib/com/update.php:341
-msgid "Plugin update information for %s has been retrieved and saved."
+msgid "Update information for the %s plugin has been retrieved and saved."
 msgstr "L'information de mise à jour pour l'extension %s a été récupérée et sauvegardée."
 
 #: lib/com/update.php:420
-msgid "Update error &mdash; %s"
-msgstr "Erreur de mise à jour &mdash; %s"
+msgid "WordPress error getting remote content &mdash; %s"
+msgstr "Erreur WordPress d’obtention de contenu distant &mdash; %s"
+
+#: lib/com/update.php:488
+msgid "The WordPress library file %s is missing and required."
+msgstr "Le fichier de bibliothèque WordPress %s est manquant et requis."
+
+#: lib/com/update.php:498
+msgid "The WordPress %s function is not available &mdash; unable to retrieve installed plugin information."
+msgstr "La fonction WordPress %s n’est pas disponible &mdash; impossible de récupérer les informations des extensions installée."
+
+#: lib/com/update.php:510
+msgid "The %1$s plugin (%2$s) version number is missing from the WordPress installed plugins list."
+msgstr "Le numéro de version de l'extension %1$s (%2$s) est absente de la liste WordPress des extensions installée."
+
+#: lib/com/update.php:517
+msgid "The %1$s plugin (%2$s) is missing from the WordPress installed plugins list."
+msgstr "L'extension %1$s (%2$s) est absente de la liste WordPress des extensions installée."
 
 #: lib/config-gettext-extract.php:3
 msgctxt "option value"
@@ -141,15 +157,15 @@ msgctxt "option label"
 msgid "Pro Update Version Filter"
 msgstr "Filtre de Version pour Mises à Jour"
 
-#: wpsso-um.php:82
+#: wpsso-um.php:85
 msgid "The %1$s extension requires the %2$s plugin &mdash; please install and activate the %3$s plugin before trying to re-activate the %4$s extension."
 msgstr "L'extension %1$s requiert %2$s &mdash; s'il vous plaît installer et activer l'extension %3$s avant d'essayer de re-activer %4$s."
 
-#: wpsso-um.php:84
+#: wpsso-um.php:87
 msgid "The %1$s extension requires the %2$s plugin &mdash; please install and activate the %3$s plugin."
 msgstr "L'extension %1$s requiert %2$s &mdash; s'il vous plaît installer et activer l'extension %3$s."
 
-#: wpsso-um.php:143
+#: wpsso-um.php:164
 msgid "The %1$s extension version %2$s requires the use of %3$s version %4$s or newer (version %5$s is currently installed)."
 msgstr "L'extension %1$s version %2$s requiert l'utilisation de %3$s version %4$s ou plus récente (la version %5$s est actuellement installée)."
 
