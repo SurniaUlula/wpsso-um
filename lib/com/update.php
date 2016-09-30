@@ -485,7 +485,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					if ( file_exists( $plugin_lib ) )
 						require_once( $plugin_lib );
 					else {
-						$this->p->notice->err( sprintf( __( 'The WordPress library file %s is required and missing.', 
+						$this->p->notice->err( sprintf( __( 'The WordPress library file %s is missing and required.', 
 							$this->text_domain ), '<code>'.$plugin_lib.'</code>' ), true, 'wp_plugin_lib_missing', true );
 						if ( $this->p->debug->enabled )
 							$this->p->debug->log( $ext.' plugin: '.$plugin_lib.' missing' );

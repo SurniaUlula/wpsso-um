@@ -21,7 +21,7 @@ msgid "WordPress error getting remote content &mdash; %s"
 msgstr ""
 
 #: lib/com/update.php:488
-msgid "The WordPress library file %s is required and missing."
+msgid "The WordPress library file %s is missing and required."
 msgstr ""
 
 #: lib/com/update.php:498
