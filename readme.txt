@@ -11,7 +11,7 @@ Tags: wpsso, update, manager
 Contributors: jsmoriss
 Requires At Least: 3.1
 Tested Up To: 4.6.1
-Stable Tag: 1.5.7-1
+Stable Tag: 1.5.8-1
 
 WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
 
@@ -69,27 +69,9 @@ Official announcement: N/A
 * *Developer Notes*
 	* None
 
-**Version 1.5.7-1 (2016/09/10)**
-
-Official announcement: N/A
-
-* *New Features*
-	* None
-* *Improvements*
-	* None
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* Updated the SucomNotice method calls for WPSSO v3.35.0-1.
-	* Replaced the `register_uninstall_hook()` function call with an uninstall.php file.
-
 == Upgrade Notice ==
 
 = 1.5.8-1 =
 
 (2016/10/01) Added notice messages for missing WordPress plugin library and/or get_plugins() function.
-
-= 1.5.7-1 =
-
-(2016/09/10) Updated the SucomNotice method calls for WPSSO v3.35.0-1. Added an uninstall.php file.
 
