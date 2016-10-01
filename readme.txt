@@ -56,7 +56,7 @@ Simply *download*, *install*, and *activate*.
 
 = Changelog / Release Notes =
 
-**Version 1.5.8-b1 (2016/09/29)**
+**Version 1.5.8-1 (2016/10/01)**
 
 Official announcement: N/A
 
@@ -85,9 +85,9 @@ Official announcement: N/A
 
 == Upgrade Notice ==
 
-= 1.5.8-b1 =
+= 1.5.8-1 =
 
-(2016/09/29) Added notice messages for missing WordPress plugin library and/or get_plugins() function.
+(2016/10/01) Added notice messages for missing WordPress plugin library and/or get_plugins() function.
 
 = 1.5.7-1 =
 
