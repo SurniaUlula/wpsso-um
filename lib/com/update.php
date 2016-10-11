@@ -44,13 +44,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		private static function set_umsg( $ext, $msg, $val ) {
-			if ( empty( $val ) ) {
-				delete_option( $ext.'_uapi'.self::$api_version.$msg );
+			if ( $this->p->debug->enabled )
+				$this->p->debug->log( 'deleting option '.$ext.'_uapi'.self::$api_version.$msg );
+			delete_option( $ext.'_uapi'.self::$api_version.$msg );	// just in case
+			if ( empty( $val ) )
 				return false;
-			} else { 
-				update_option( $ext.'_uapi'.self::$api_version.$msg, base64_encode( $val ) );	// save as string
-				return $val;
-			}
+			else update_option( $ext.'_uapi'.self::$api_version.$msg, base64_encode( $val ) );	// save as string
+			return self::$config[$ext]['u'.$msg] = $val;
 		}
 
 		public static function get_umsg( $ext, $msg = 'err', $def = false ) {
@@ -423,7 +423,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$this->p->debug->log( 'update error: '.$result->get_error_message() );
 
 			} elseif ( isset( $result['response']['code'] ) && 
-				$result['response']['code'] == 200 && ! empty( $result['body'] ) ) {
+				(int) $result['response']['code'] === 200 &&
+					! empty( $result['body'] ) ) {
 
 				$payload = json_decode( $result['body'], true, 32 );	// create an associative array
 
@@ -452,17 +453,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			// save timestamp of last update check
 			self::$config[$ext]['utime'] = self::set_umsg( $ext, 'time', time() );
 
-			if ( $this->p->is_avail['cache']['transient'] ) {
-				wp_cache_delete( $cache_id, __METHOD__ );	// just in case
+			delete_transient( $cache_id );			// just in case
+			wp_cache_delete( $cache_id, __METHOD__ );	// just in case
+
+			if ( $this->p->is_avail['cache']['transient'] )
 				set_transient( $cache_id, ( $plugin_data === null ? '' : $plugin_data ), self::$config[$ext]['expire'] );
-			} elseif ( $this->p->is_avail['cache']['object'] ) {
-				delete_transient( $cache_id );			// just in case
+			elseif ( $this->p->is_avail['cache']['object'] )
 				wp_cache_set( $cache_id, ( $plugin_data === null ? '' : $plugin_data ), __METHOD__, self::$config[$ext]['expire'] );
-			} else {
-				delete_transient( $cache_id );			// just in case
-				wp_cache_delete( $cache_id, __METHOD__ );	// just in case
-				self::$config[$ext]['plugin_data'] = $plugin_data;
-			}
+			else self::$config[$ext]['plugin_data'] = $plugin_data;
 
 			return $plugin_data;
 		}
