@@ -43,6 +43,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return self::$api_version;
 		}
 
+		// called by get_json() when the transient / object cache is empty and/or not used
 		private static function set_umsg( $ext, $msg, $val ) {
 			delete_option( $ext.'_uapi'.self::$api_version.$msg );	// just in case
 			if ( empty( $val ) )
