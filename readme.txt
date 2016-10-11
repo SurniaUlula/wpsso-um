@@ -56,6 +56,19 @@ Simply *download*, *install*, and *activate*.
 
 = Changelog / Release Notes =
 
+**Version 1.5.9-dev1 (2016/10/11)**
+
+Official announcement: N/A
+
+* *New Features*
+	* None
+* *Improvements*
+	* None
+* *Bugfixes*
+	* None
+* *Developer Notes*
+	* Added a delete_transient() and wp_cache_delete() call before updating the transient or object cache.
+
 **Version 1.5.8-1 (2016/10/01)**
 
 Official announcement: N/A
@@ -70,6 +83,10 @@ Official announcement: N/A
 	* None
 
 == Upgrade Notice ==
+
+= 1.5.9-dev1 =
+
+(2016/10/11) Added a delete_transient() and wp_cache_delete() call before updating the transient or object cache.
 
 = 1.5.8-1 =
 
