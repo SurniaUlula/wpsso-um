@@ -44,12 +44,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		private static function set_umsg( $ext, $msg, $val ) {
-			if ( $this->p->debug->enabled )
-				$this->p->debug->log( 'deleting option '.$ext.'_uapi'.self::$api_version.$msg );
 			delete_option( $ext.'_uapi'.self::$api_version.$msg );	// just in case
 			if ( empty( $val ) )
 				return false;
-			else update_option( $ext.'_uapi'.self::$api_version.$msg, base64_encode( $val ) );	// save as string
+			else update_option( $ext.'_uapi'.self::$api_version.$msg, 
+				base64_encode( $val ) );	// save as string
 			return self::$config[$ext]['u'.$msg] = $val;
 		}
 
