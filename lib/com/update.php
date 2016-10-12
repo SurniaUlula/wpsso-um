@@ -39,6 +39,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->mark( 'update manager setup' );	// end timer
 		}
 
+		// called by delete_options() in the register class
 		public static function get_api_version() {
 			return self::$api_version;
 		}
@@ -53,6 +54,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return self::$config[$ext]['u'.$msg] = $val;
 		}
 
+		// called by various plugin methods, including SucomNotice::show_admin_notices()
 		public static function get_umsg( $ext, $msg = 'err', $def = false ) {
 			if ( ! isset( self::$config[$ext]['u'.$msg] ) ) {
 				$val = get_option( $ext.'_uapi'.self::$api_version.$msg, $def );
