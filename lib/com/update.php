@@ -384,12 +384,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$last_utime = self::get_umsg( $ext, 'time' );
 				$plugin_data = false;
 
-				if ( $this->p->is_avail['cache']['transient'] && $last_utime ) {
-					$plugin_data = get_transient( $cache_id );
-				} elseif ( $this->p->is_avail['cache']['object'] && $last_utime ) {
-					$plugin_data = wp_cache_get( $cache_id, __METHOD__ );
-				} elseif ( isset( self::$config[$ext]['plugin_data'] ) )
+				if ( isset( self::$config[$ext]['plugin_data'] ) )
 					$plugin_data = self::$config[$ext]['plugin_data'];
+				elseif ( $this->p->is_avail['cache']['transient'] && $last_utime )
+					$plugin_data = get_transient( $cache_id );
+				elseif ( $this->p->is_avail['cache']['object'] && $last_utime )
+					$plugin_data = wp_cache_get( $cache_id, __METHOD__ );
 
 				if ( $plugin_data !== false )
 					return $plugin_data;
@@ -452,8 +452,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 			}
 
-			// save timestamp of last update check
 			self::$config[$ext]['utime'] = self::set_umsg( $ext, 'time', time() );
+			self::$config[$ext]['plugin_data'] = $plugin_data;
 
 			delete_transient( $cache_id );			// just in case
 			wp_cache_delete( $cache_id, __METHOD__ );	// just in case
@@ -462,7 +462,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				set_transient( $cache_id, ( $plugin_data === null ? '' : $plugin_data ), self::$config[$ext]['expire'] );
 			elseif ( $this->p->is_avail['cache']['object'] )
 				wp_cache_set( $cache_id, ( $plugin_data === null ? '' : $plugin_data ), __METHOD__, self::$config[$ext]['expire'] );
-			else self::$config[$ext]['plugin_data'] = $plugin_data;
 
 			return $plugin_data;
 		}
