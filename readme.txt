@@ -56,18 +56,18 @@ Simply *download*, *install*, and *activate*.
 
 = Changelog / Release Notes =
 
-**Version 1.5.9-dev1 (2016/10/12)**
+**Version 1.5.9-dev2 (2016/10/13)**
 
 Official announcement: N/A
 
 * *New Features*
 	* None
 * *Improvements*
-	* None
+	* Added a check for plugin data in the class property cache (faster) before falling back to the WordPress transient / object cache.
 * *Bugfixes*
 	* None
 * *Developer Notes*
-	* Added a delete_transient() and wp_cache_delete() call before updating the transient or object cache.
+	* Added a delete_transient(), wp_cache_delete(), delete_option() call before updating to force a WordPress cache refresh.
 
 **Version 1.5.8-1 (2016/10/01)**
 
@@ -84,9 +84,9 @@ Official announcement: N/A
 
 == Upgrade Notice ==
 
-= 1.5.9-dev1 =
+= 1.5.9-dev2 =
 
-(2016/10/12) Added a delete_transient() and wp_cache_delete() call before updating the transient or object cache.
+(2016/10/13) Added a check for plugin data in the class property cache (faster). Added delete function calls before updating to force a WordPress cache refresh.
 
 = 1.5.8-1 =
 
