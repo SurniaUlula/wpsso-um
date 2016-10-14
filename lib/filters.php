@@ -13,7 +13,6 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 	class WpssoUmFilters {
 
 		protected $p;
-		protected $plugin_filepath;
 
 		public static $cf = array(
 			'opt' => array(				// options
