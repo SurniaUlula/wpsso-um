@@ -4,14 +4,14 @@ Plugin Slug: wpsso-um
 Text Domain: wpsso-um
 Domain Path: /languages
 License: GPLv3
-License URI: http://www.gnu.org/licenses/gpl.txt
+License URI: https://www.gnu.org/licenses/gpl.txt
 Donate Link: https://wpsso.com/?utm_source=wpssoum-readme-donate
 Assets URI: https://surniaulula.github.io/wpsso-um/assets/
 Tags: wpsso, update, manager
 Contributors: jsmoriss
 Requires At Least: 3.1
 Tested Up To: 4.6.1
-Stable Tag: 1.5.8-1
+Stable Tag: 1.5.9-1
 
 WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
 
@@ -87,8 +87,4 @@ Official announcement: N/A
 = 1.5.9-1 =
 
 (2016/10/15) Added a check for plugin data in the class property cache (faster). Added delete function calls before updating to force a WordPress cache refresh.
-
-= 1.5.8-1 =
-
-(2016/10/01) Added notice messages for missing WordPress plugin library and/or get_plugins() function.
 
