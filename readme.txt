@@ -56,7 +56,7 @@ Simply *download*, *install*, and *activate*.
 
 = Changelog / Release Notes =
 
-**Version 1.5.9-rc1 (2016/10/13)**
+**Version 1.5.9-1 (2016/10/15)**
 
 Official announcement: N/A
 
@@ -84,9 +84,9 @@ Official announcement: N/A
 
 == Upgrade Notice ==
 
-= 1.5.9-rc1 =
+= 1.5.9-1 =
 
-(2016/10/13) Added a check for plugin data in the class property cache (faster). Added delete function calls before updating to force a WordPress cache refresh.
+(2016/10/15) Added a check for plugin data in the class property cache (faster). Added delete function calls before updating to force a WordPress cache refresh.
 
 = 1.5.8-1 =
 
