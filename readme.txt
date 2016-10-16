@@ -22,7 +22,7 @@ WPSSO extension to provide updates for the WordPress Social Sharing Optimization
 Simply *download*, *install*, and *activate*.
 
 <blockquote>
-<p><strong>Prerequisite</strong> &mdash; WPSSO Pro Update Manager (WPSSO UM) is an extension for the <a href="https://wordpress.org/plugins/wpsso/">WordPress Social Sharing Optimization (WPSSO)</a> plugin.</p>
+<p><strong>Prerequisite</strong> &mdash; WPSSO Pro Update Manager (WPSSO UM) is an extension for the <a href="https://wordpress.org/plugins/wpsso/">WordPress Social Sharing Optimization (WPSSO)</a> plugin, which <em>automatically</em> creates complete and accurate meta tags and Schema markup for Social Sharing Optimization (SSO) and SEO.</p>
 </blockquote>
 
 == Installation ==
