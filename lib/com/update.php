@@ -511,10 +511,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						if ( $this->p->debug->enabled )
 							$this->p->debug->log( $ext.' plugin: '.$info['base'].' version key missing from plugins array' );
 					}
-				} else {
+				} else {	// plugin is not installed
 					$version = '0-no-plugin';
-					$this->p->notice->err( sprintf( __( 'The %1$s plugin (%2$s) is missing from the WordPress installed plugins list.',
-						$this->text_domain ), $info['name'], $info['base'] ), true, 'plugins_'.$info['base'].'_missing', true );
 					if ( $this->p->debug->enabled )
 						$this->p->debug->log( $ext.' plugin: '.$info['base'].' plugin missing from plugins array' );
 				}

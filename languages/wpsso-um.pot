@@ -36,11 +36,6 @@ msgid ""
 "installed plugins list."
 msgstr ""
 
-#: lib/com/update.php:516
-msgid ""
-"The %1$s plugin (%2$s) is missing from the WordPress installed plugins list."
-msgstr ""
-
 #: lib/config-gettext-extract.php:3
 msgctxt "option value"
 msgid "Alpha and Up"
