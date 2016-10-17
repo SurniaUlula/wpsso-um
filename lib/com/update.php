@@ -514,10 +514,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				} else {	// plugin is not installed
 					$version = '0-no-plugin';
 					if ( $this->p->debug->enabled )
-						$this->p->debug->log( $ext.' plugin: '.$info['base'].' plugin missing from plugins array' );
+						$this->p->debug->log( $ext.' plugin: '.$info['base'].' plugin not installed' );
 				}
 
-			} else {				// plugin not installed
+			} else {	// plugin is not configured
 				$version = '0-no-config';
 				if ( $this->p->debug->enabled )
 					$this->p->debug->log( $ext.' plugin: extension config not found' );
