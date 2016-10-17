@@ -30,19 +30,20 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 						'icon_medium' => 'images/icon-256x256.png',
 					),
 					'url' => array(
-						// surniaulula
-						'download' => 'http://wpsso.com/extend/plugins/wpsso-um/',
-						'latest_zip' => 'http://wpsso.com/extend/plugins/wpsso-um/latest/',
-						'review' => '',
+						// github
 						'readme' => 'https://raw.githubusercontent.com/SurniaUlula/wpsso-um/master/readme.txt',
+						// surniaulula
+						'download' => 'https://wpsso.com/extend/plugins/wpsso-um/',
+						'latest_zip' => 'https://wpsso.com/extend/plugins/wpsso-um/latest/',
+						'review' => '',
 						'wp_support' => '',
-						'update' => 'http://wpsso.com/extend/plugins/wpsso-um/update/',
+						'update' => 'https://wpsso.com/extend/plugins/wpsso-um/update/',
 						'purchase' => '',
-						'changelog' => 'http://wpsso.com/extend/plugins/wpsso-um/changelog/',
-						'codex' => '',
-						'faq' => '',
-						'notes' => '',
-						'feed' => '',
+						'changelog' => 'https://wpsso.com/extend/plugins/wpsso-um/changelog/',
+						'codex' => 'https://wpsso.com/codex/plugins/wpsso-um/',
+						'faq' => 'https://wpsso.com/codex/plugins/wpsso-um/faq/',
+						'notes' => 'https://wpsso.com/codex/plugins/wpsso-um/notes/',
+						'feed' => 'https://wpsso.com/category/application/wordpress/wp-plugins/wpsso-um/feed/',
 						'pro_support' => '',
 					),
 					'lib' => array(
