@@ -103,7 +103,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				$auth_type = empty( $info['update_auth'] ) ?
 					'none' : $info['update_auth'];
+
 				$auth_key = 'plugin_'.$ext.'_'.$auth_type;
+
 				$auth_id = empty( $this->p->options[$auth_key] ) ?
 					'' : $this->p->options[$auth_key];
 
@@ -122,11 +124,19 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( $auth_type !== 'none' )
 					$auth_url = add_query_arg( array( $auth_type => $auth_id ), $auth_url );
 
+				$installed_version = $this->get_installed_version( $ext );
+
+				if ( strpos( $installed_version, '-no-plugin' ) !== false ) {
+					if ( $this->p->debug->enabled )
+						$this->p->debug->log( $ext.' plugin: update config skipped - plugin not installed' );
+					continue;
+				}
+
 				$auth_url = add_query_arg( array( 
 					'api_version' => self::$api_version,
 					'version_filter' => isset( $this->p->options['update_filter_for_'.$ext] ) ?
 						$this->p->options['update_filter_for_'.$ext] : 'stable',
-					'installed_version' => $this->get_installed_version( $ext ),
+					'installed_version' => $installed_version,
 				), $auth_url );
 
 				if ( $this->p->debug->enabled )
@@ -505,22 +515,22 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						if ( $this->p->debug->enabled )
 							$this->p->debug->log( $ext.' plugin: installed version is '.$version );
 					} else {
-						$version = '0-no-version';
 						$this->p->notice->err( sprintf( __( 'The %1$s plugin (%2$s) version number is missing from the WordPress installed plugins list.',
 							$this->text_domain ), $info['name'], $info['base'] ), true, 'plugins_'.$info['base'].'_no_version', true );
 						if ( $this->p->debug->enabled )
 							$this->p->debug->log( $ext.' plugin: '.$info['base'].' version key missing from plugins array' );
+						return '0.0-no-version';	// stop here
 					}
 				} else {	// plugin is not installed
-					$version = '0-no-plugin';
 					if ( $this->p->debug->enabled )
 						$this->p->debug->log( $ext.' plugin: '.$info['base'].' plugin not installed' );
+					return '0.0-no-plugin';	// stop here
 				}
 
 			} else {	// plugin is not configured
-				$version = '0-no-config';
 				if ( $this->p->debug->enabled )
 					$this->p->debug->log( $ext.' plugin: extension config not found' );
+				return '0.0-no-config';	// stop here
 			}
 
 			$filter_regex = $this->get_version_filter_regex( $ext );
