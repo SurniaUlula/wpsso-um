@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.9-1\n"
+"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.10-1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2016-10-17 09:58-0700\n"
-"PO-Revision-Date: 2016-10-17 09:58-0700\n"
+"POT-Creation-Date: 2016-10-17 12:16-0700\n"
+"PO-Revision-Date: 2016-10-17 12:16-0700\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -15,29 +15,25 @@ msgstr ""
 "X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: lib/com/update.php:343
+#: lib/com/update.php:353
 msgid "Update information for the %s plugin has been retrieved and saved."
 msgstr "L'information de mise à jour pour l'extension %s a été récupérée et sauvegardée."
 
-#: lib/com/update.php:422
+#: lib/com/update.php:432
 msgid "WordPress error getting remote content &mdash; %s"
 msgstr "Erreur WordPress d’obtention de contenu distant &mdash; %s"
 
-#: lib/com/update.php:487
+#: lib/com/update.php:497
 msgid "The WordPress library file %s is missing and required."
 msgstr "Le fichier de bibliothèque WordPress %s est manquant et requis."
 
-#: lib/com/update.php:497
+#: lib/com/update.php:507
 msgid "The WordPress %s function is not available &mdash; unable to retrieve installed plugin information."
 msgstr "La fonction WordPress %s n’est pas disponible &mdash; impossible de récupérer les informations des extensions installée."
 
-#: lib/com/update.php:509
+#: lib/com/update.php:518
 msgid "The %1$s plugin (%2$s) version number is missing from the WordPress installed plugins list."
 msgstr "Le numéro de version de l'extension %1$s (%2$s) est absente de la liste WordPress des extensions installée."
-
-#: lib/com/update.php:516
-msgid "The %1$s plugin (%2$s) is missing from the WordPress installed plugins list."
-msgstr "L'extension %1$s (%2$s) est absente de la liste WordPress des extensions installée."
 
 #: lib/config-gettext-extract.php:3
 msgctxt "option value"
