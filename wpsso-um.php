@@ -4,10 +4,10 @@
  * Plugin Slug: wpsso-um
  * Text Domain: wpsso-um
  * Domain Path: /languages
- * Plugin URI: http://surniaulula.com/extend/plugins/wpsso-um/
+ * Plugin URI: https://surniaulula.com/extend/plugins/wpsso-um/
  * Assets URI: https://surniaulula.github.io/wpsso-um/assets/
  * Author: JS Morisset
- * Author URI: http://surniaulula.com/
+ * Author URI: https://surniaulula.com/
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl.txt
  * Description: WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
@@ -22,7 +22,7 @@
  *	{bugfix}	Bugfixes and/or very minor improvements.
  *	{stage}{level}	dev# (development), rc# (release candidate), # (production release)
  * 
- * Copyright 2015-2016 Jean-Sebastien Morisset (http://surniaulula.com/)
+ * Copyright 2015-2016 Jean-Sebastien Morisset (https://surniaulula.com/)
  */
 
 if ( ! defined( 'ABSPATH' ) ) 
