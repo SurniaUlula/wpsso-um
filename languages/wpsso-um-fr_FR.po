@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.9-1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2016-09-30 09:26-0700\n"
-"PO-Revision-Date: 2016-10-13 09:55-0700\n"
+"POT-Creation-Date: 2016-10-17 09:58-0700\n"
+"PO-Revision-Date: 2016-10-17 09:58-0700\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -15,27 +15,27 @@ msgstr ""
 "X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: lib/com/update.php:341
+#: lib/com/update.php:343
 msgid "Update information for the %s plugin has been retrieved and saved."
 msgstr "L'information de mise à jour pour l'extension %s a été récupérée et sauvegardée."
 
-#: lib/com/update.php:420
+#: lib/com/update.php:422
 msgid "WordPress error getting remote content &mdash; %s"
 msgstr "Erreur WordPress d’obtention de contenu distant &mdash; %s"
 
-#: lib/com/update.php:488
+#: lib/com/update.php:487
 msgid "The WordPress library file %s is missing and required."
 msgstr "Le fichier de bibliothèque WordPress %s est manquant et requis."
 
-#: lib/com/update.php:498
+#: lib/com/update.php:497
 msgid "The WordPress %s function is not available &mdash; unable to retrieve installed plugin information."
 msgstr "La fonction WordPress %s n’est pas disponible &mdash; impossible de récupérer les informations des extensions installée."
 
-#: lib/com/update.php:510
+#: lib/com/update.php:509
 msgid "The %1$s plugin (%2$s) version number is missing from the WordPress installed plugins list."
 msgstr "Le numéro de version de l'extension %1$s (%2$s) est absente de la liste WordPress des extensions installée."
 
-#: lib/com/update.php:517
+#: lib/com/update.php:516
 msgid "The %1$s plugin (%2$s) is missing from the WordPress installed plugins list."
 msgstr "L'extension %1$s (%2$s) est absente de la liste WordPress des extensions installée."
 
@@ -124,16 +124,16 @@ msgctxt "plugin description"
 msgid "WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions."
 msgstr "Extension WPSSO pour fournir des mises à jour a WordPress Social Sharing Optimization (WPSSO) Pro et ses extensions Pro."
 
-#: lib/filters.php:110
+#: lib/filters.php:109
 msgid "How often would you like the %1$s to check for new updates? You can also use the \"%2$s\" button to refresh the update information manually."
 msgstr "Comment souvent vous voulez que %1$s vérifie pour des nouvelles mises à jour? Vous pouvez également utiliser le \"%2$s\" bouton pour vérifier manuellement."
 
-#: lib/filters.php:110
+#: lib/filters.php:109
 msgctxt "submit button"
 msgid "Check for Pro Update(s)"
 msgstr "Vérifier pour mises à jour"
 
-#: lib/filters.php:113
+#: lib/filters.php:112
 msgid "Select the type of version updates you would like to receive and install."
 msgstr "Sélectionnez les types de mises à jour que vous aimeriez recevoir et installer."
 
@@ -174,8 +174,8 @@ msgid "WPSSO Pro Update Manager (WPSSO UM)"
 msgstr "WPSSO Pro Update Manager (WPSSO UM)"
 
 #. Plugin URI of the plugin/theme
-msgid "http://surniaulula.com/extend/plugins/wpsso-um/"
-msgstr "http://surniaulula.com/extend/plugins/wpsso-um/"
+msgid "https://surniaulula.com/extend/plugins/wpsso-um/"
+msgstr "https://surniaulula.com/extend/plugins/wpsso-um/"
 
 #. Description of the plugin/theme
 msgid "WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions."
@@ -186,5 +186,5 @@ msgid "JS Morisset"
 msgstr "JS Morisset"
 
 #. Author URI of the plugin/theme
-msgid "http://surniaulula.com/"
-msgstr "http://surniaulula.com/"
+msgid "https://surniaulula.com/"
+msgstr "https://surniaulula.com/"
