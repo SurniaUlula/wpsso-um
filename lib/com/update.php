@@ -640,19 +640,19 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 		public $slug;
 		public $plugin;
 		public $version;
-		public $banners;
+		public $tested;
+		public $requires;
 		public $homepage;
-		public $sections;
 		public $download_url;
 		public $author;
 		public $author_homepage;
-		public $requires;
-		public $tested;
 		public $upgrade_notice;
+		public $downloaded;
 		public $rating;
 		public $num_ratings;
-		public $downloaded;
 		public $last_updated;
+		public $sections;
+		public $banners;
 	
 		public function __construct() {
 		}
@@ -662,11 +662,8 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 			if ( empty( $json_data ) || 
 				! is_object( $json_data ) ) 
 					return null;
-			if ( isset( $json_data->name ) && 
-				! empty( $json_data->name ) && 
-				isset( $json_data->version ) && 
-				! empty( $json_data->version ) ) {
-
+			if ( isset( $json_data->name ) && ! empty( $json_data->name ) && 
+				isset( $json_data->version ) && ! empty( $json_data->version ) ) {
 				$plugin_data = new SucomPluginData();
 				foreach( get_object_vars( $json_data ) as $key => $value)
 					$plugin_data->$key = $value;
@@ -675,35 +672,32 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 		}
 	
 		public function json_to_wp(){
-
-			$fields = array(
+			$data = new StdClass;
+			foreach ( array(
 				'name', 
 				'slug', 
 				'plugin', 
 				'version', 
 				'tested', 
-				'num_ratings', 
+				'requires', 
 				'homepage', 
 				'download_url',
 				'author_homepage',
-				'requires', 
 				'upgrade_notice',
-				'rating', 
 				'downloaded', 
+				'rating', 
+				'num_ratings', 
 				'last_updated',
-			);
-			$data = new StdClass;
-
-			foreach ( $fields as $field ) {
-				if ( isset( $this->$field ) ) {
-					if ( $field == 'download_url' ) {
+			) as $prop_name ) {
+				if ( isset( $this->$prop_name ) ) {
+					if ( $prop_name === 'download_url' ) {
 						$data->download_link = $this->download_url; }
-					elseif ( $field == 'author_homepage' ) {
+					elseif ( $prop_name === 'author_homepage' ) {
 						$data->author = strpos( $this->author, '<a href=' ) === false ?
 							sprintf( '<a href="%s">%s</a>', $this->author_homepage, $this->author ) :
 							$this->author;
-					} else { $data->$field = $this->$field; }
-				} elseif ( $field == 'author_homepage' )
+					} else { $data->$prop_name = $this->$prop_name; }
+				} elseif ( $prop_name === 'author_homepage' )
 					$data->author = $this->author;
 			}
 
@@ -730,11 +724,11 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 		public $id = 0;
 		public $slug;
 		public $plugin;
-		public $qty_used;
 		public $version = 0;
 		public $homepage;
 		public $download_url;
 		public $upgrade_notice;
+		public $qty_used;
 
 		public function __construct() {
 		}
@@ -748,37 +742,38 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 	
 		public static function from_plugin_data( $data ){
 			$plugin_update = new SucomPluginUpdate();
-			$fields = array(
+			foreach ( array(
 				'id', 
 				'slug', 
 				'plugin', 
-				'qty_used', 
 				'version', 
 				'homepage', 
 				'download_url', 
-				'upgrade_notice'
-			);
-			foreach( $fields as $field )
-				if ( isset( $data->$field ) )
-					$plugin_update->$field = $data->$field;
+				'upgrade_notice',
+				'qty_used', 
+			) as $prop_name ) {
+				if ( isset( $data->$prop_name ) ) {
+					$plugin_update->$prop_name = $data->$prop_name;
+				}
+			}
 			return $plugin_update;
 		}
 	
 		public function json_to_wp() {
 			$data = new StdClass;
-			$fields = array(
+			foreach ( array(
 				'id' => 'id',
 				'slug' => 'slug',
 				'plugin' => 'plugin',
+				'version' => 'new_version',
+				'homepage' => 'url',
+				'download_url' => 'package',
+				'upgrade_notice' => 'upgrade_notice',
 				'qty_used' => 'qty_used',
-				'new_version' => 'version',
-				'url' => 'homepage',
-				'package' => 'download_url',
-				'upgrade_notice' => 'upgrade_notice'
-			);
-			foreach ( $fields as $new_field => $old_field ) {
-				if ( isset( $this->$old_field ) )
-					$data->$new_field = $this->$old_field;
+			) as $old_prop => $new_prop ) {
+				if ( isset( $this->$old_prop ) ) {
+					$data->$new_prop = $this->$old_prop;
+				}
 			}
 			return $data;
 		}
