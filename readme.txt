@@ -9,7 +9,7 @@ Donate Link: https://wpsso.com/?utm_source=wpssoum-readme-donate
 Assets URI: https://surniaulula.github.io/wpsso-um/assets/
 Tags: wpsso, update, manager
 Contributors: jsmoriss
-Requires At Least: 3.1
+Requires At Least: 3.5
 Tested Up To: 4.6.1
 Stable Tag: 1.5.10-1
 
