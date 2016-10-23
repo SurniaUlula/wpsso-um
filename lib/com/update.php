@@ -298,13 +298,19 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext.' plugin: update version ('.$option_data->update->version.')'.
 							' is different than installed ('.$installed_version.')' );
-						$this->p->debug->log( $updates->response[$info['base']], 5 );
+						/*
+						 * class index 1 => SucomUpdate::inject_update()
+						 * class index 2 => apply_filters()
+						 * class index 3 => get_site_transient()
+						 * class index 4 => wp_get_update_data()
+						 */
+						$this->p->debug->log( get_object_vars( $updates->response[$info['base']] ), 4 );
 					}
 				} else {
-					self::$config[$ext]['inject_update'] = false;					// false when installed is current
+					self::$config[$ext]['inject_update'] = false;	// false when installed is current
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext.' plugin: installed version is current - no update required' );
-						$this->p->debug->log( $option_data->update->json_to_wp(), 5 );
+						$this->p->debug->log( get_object_vars( $option_data->update->json_to_wp() ), 4 );
 					}
 				}
 			}
