@@ -304,14 +304,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						 * class index 3 => get_site_transient()
 						 * class index 4 => wp_get_update_data()
 						 */
-						$this->p->debug->log_arr( 'option_data stdClass properties', 
+						$this->p->debug->log_arr( 'option_data stdClass object vars', 
 							get_object_vars( $updates->response[$info['base']] ), 4 );
 					}
 				} else {
 					self::$config[$ext]['inject_update'] = false;	// false when installed is current
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext.' plugin: installed version is current - no update required' );
-						$this->p->debug->log_arr( 'option_data stdClass properties', 
+						$this->p->debug->log_arr( 'option_data stdClass object vars', 
 							get_object_vars( $option_data->update->json_to_wp() ), 4 );
 					}
 				}
