@@ -56,7 +56,7 @@ Simply *download*, *install*, and *activate*.
 
 = Changelog / Release Notes =
 
-**Version 1.5.10-1 (2016/10/17)**
+**Version 1.5.10-2 (2016/10/23)**
 
 Official announcement: N/A
 
@@ -97,9 +97,9 @@ Official announcement: N/A
 
 == Upgrade Notice ==
 
-= 1.5.10-1 =
+= 1.5.10-2 =
 
-(2016/10/17) Fixed a "missing extension" error for configured extensions that are not yet installed.
+(2016/10/23) Fixed a "missing extension" error for configured extensions that are not yet installed.
 
 = 1.5.9-1 =
 
