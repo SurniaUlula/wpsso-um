@@ -101,7 +101,3 @@ Official announcement: N/A
 
 (2016/10/23) Fixed a "missing extension" error for configured extensions that are not yet installed.
 
-= 1.5.9-1 =
-
-(2016/10/15) Added a check for plugin data in the class property cache (faster). Added delete function calls before updating to force a WordPress cache refresh.
-
