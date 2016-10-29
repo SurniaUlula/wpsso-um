@@ -293,7 +293,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				} elseif ( ( $installed_version = $this->get_installed_version( $ext ) ) &&
 					version_compare( $option_data->update->version, $installed_version, '>' ) ) {
 
-					// save to local static cache as well
+					// save to local static cache
 					self::$config[$ext]['inject_update'] = $updates->response[$info['base']] = $option_data->update->json_to_wp();
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext.' plugin: update version ('.$option_data->update->version.')'.
@@ -469,7 +469,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			self::$config[$ext]['utime'] = self::set_umsg( $ext, 'time', time() );
-			self::$config[$ext]['plugin_data'] = $plugin_data;
+			self::$config[$ext]['plugin_data'] = $plugin_data;	// save to local static cache
 
 			delete_transient( $cache_id );			// just in case
 			wp_cache_delete( $cache_id, __METHOD__ );	// just in case
