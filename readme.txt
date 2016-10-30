@@ -56,6 +56,19 @@ Simply *download*, *install*, and *activate*.
 
 = Changelog / Release Notes =
 
+**Version 1.5.11-dev3 (2016/10/30)**
+
+Official announcement: N/A
+
+* *New Features*
+	* None
+* *Improvements*
+	* None
+* *Bugfixes*
+	* None
+* *Developer Notes*
+	* Minor code changes required for WPSSO v3.37.0-1.
+
 **Version 1.5.10-2 (2016/10/23)**
 
 Official announcement: N/A
@@ -96,6 +109,10 @@ Official announcement: N/A
 	* None
 
 == Upgrade Notice ==
+
+= 1.5.11-dev3 =
+
+(2016/10/30) Minor code changes required for WPSSO v3.37.0-1.
 
 = 1.5.10-2 =
 
