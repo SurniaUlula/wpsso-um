@@ -67,6 +67,7 @@ Official announcement: N/A
 * *Bugfixes*
 	* None
 * *Developer Notes*
+	* Refactored the SucomUpdate class to optimize caching performance.
 	* Minor code changes required for WPSSO v3.37.0-1.
 
 **Version 1.5.10-2 (2016/10/23)**
