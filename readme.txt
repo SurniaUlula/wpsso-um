@@ -68,7 +68,6 @@ Official announcement: N/A
 	* None
 * *Developer Notes*
 	* Refactored the SucomUpdate class to optimize caching performance.
-	* Minor code changes required for WPSSO v3.37.0-1.
 
 **Version 1.5.10-2 (2016/10/23)**
 
@@ -113,7 +112,7 @@ Official announcement: N/A
 
 = 1.5.11-b1 =
 
-(2016/10/31) Minor code changes required for WPSSO v3.37.0-1. Refactored the SucomUpdate class to optimize caching performance.
+(2016/10/31) Refactored the SucomUpdate class to optimize caching performance.
 
 = 1.5.10-2 =
 
