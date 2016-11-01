@@ -13,7 +13,7 @@
  * Description: WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
  * Requires At Least: 3.5
  * Tested Up To: 4.6.1
- * Version: 1.5.11-dev4
+ * Version: 1.5.11-b1
  * 
  * Version Numbers: {major}.{minor}.{bugfix}-{stage}{level}
  *
@@ -43,7 +43,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		private static $text_domain = 'wpsso-um';
 		private static $req_short = 'WPSSO';
 		private static $req_name = 'WordPress Social Sharing Optimization (WPSSO)';
-		private static $req_min_version = '3.37.0-dev4';
+		private static $req_min_version = '3.37.0-b1';
 		private static $req_has_min_ver = true;
 
 		public static function &get_instance() {
