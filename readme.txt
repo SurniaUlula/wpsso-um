@@ -11,7 +11,7 @@ Tags: wpsso, update, manager
 Contributors: jsmoriss
 Requires At Least: 3.5
 Tested Up To: 4.6.1
-Stable Tag: 1.5.10-2
+Stable Tag: 1.5.11-1
 
 WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
 
@@ -113,8 +113,4 @@ Official announcement: N/A
 = 1.5.11-1 =
 
 (2016/11/01) Refactored the SucomUpdate class to optimize caching performance.
-
-= 1.5.10-2 =
-
-(2016/10/23) Fixed a "missing extension" error for configured extensions that are not yet installed.
 
