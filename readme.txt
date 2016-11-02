@@ -56,7 +56,7 @@ Simply *download*, *install*, and *activate*.
 
 = Changelog / Release Notes =
 
-**Version 1.5.11-1 (2016/11/01)**
+**Version 1.5.11-1 (2016/11/02)**
 
 Official announcement: N/A
 
@@ -112,5 +112,5 @@ Official announcement: N/A
 
 = 1.5.11-1 =
 
-(2016/11/01) Refactored the SucomUpdate class to optimize caching performance.
+(2016/11/02) Refactored the SucomUpdate class to optimize caching performance.
 
