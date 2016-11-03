@@ -31,20 +31,15 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					),
 					'url' => array(
 						// github
-						'readme' => 'https://raw.githubusercontent.com/SurniaUlula/wpsso-um/master/readme.txt',
-						// surniaulula
+						'readme_txt' => 'https://raw.githubusercontent.com/SurniaUlula/wpsso-um/master/readme.txt',
+						// wpsso
 						'download' => 'https://wpsso.com/extend/plugins/wpsso-um/',
-						'latest_zip' => 'https://wpsso.com/extend/plugins/wpsso-um/latest/',
-						'review' => '',
-						'wp_support' => '',
+						'latest' => 'https://wpsso.com/extend/plugins/wpsso-um/latest/',
 						'update' => 'https://wpsso.com/extend/plugins/wpsso-um/update/',
-						'purchase' => '',
 						'changelog' => 'https://wpsso.com/extend/plugins/wpsso-um/changelog/',
 						'codex' => 'https://wpsso.com/codex/plugins/wpsso-um/',
 						'faq' => '',
 						'notes' => '',
-						'feed' => 'https://wpsso.com/category/application/wordpress/wp-plugins/wpsso-um/feed/',
-						'pro_support' => '',
 					),
 					'lib' => array(
 						// submenu items must have unique keys
