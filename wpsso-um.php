@@ -17,9 +17,9 @@
  * 
  * Version Numbers: {major}.{minor}.{bugfix}-{stage}{level}
  *
- *	{major}		Major code changes and/or significant feature changes.
- *	{minor}		New features added and/or improvements included.
- *	{bugfix}	Bugfixes and/or very minor improvements.
+ *	{major}		Major code changes or significant feature changes.
+ *	{minor}		New features added or improvements included.
+ *	{bugfix}	Bugfixes or very minor improvements.
  *	{stage}{level}	dev# (development), rc# (release candidate), # (production release)
  * 
  * Copyright 2015-2016 Jean-Sebastien Morisset (https://surniaulula.com/)
