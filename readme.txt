@@ -80,45 +80,6 @@ Official announcement: N/A
 * *Developer Notes*
 	* Refactored the SucomUpdate class to optimize caching performance.
 
-**Version 1.5.10-2 (2016/10/23)**
-
-Official announcement: N/A
-
-* *New Features*
-	* None
-* *Improvements*
-	* None
-* *Bugfixes*
-	* Fixed a "missing extension" error for configured extensions that are not yet installed.
-* *Developer Notes*
-	* None
-
-**Version 1.5.9-1 (2016/10/15)**
-
-Official announcement: N/A
-
-* *New Features*
-	* None
-* *Improvements*
-	* Added a check for plugin data in the class property cache (faster) before falling back to the WordPress transient / object cache.
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* Added a delete_transient(), wp_cache_delete(), delete_option() call before updating to force a WordPress cache refresh.
-
-**Version 1.5.8-1 (2016/10/01)**
-
-Official announcement: N/A
-
-* *New Features*
-	* None
-* *Improvements*
-	* Added notice messages for missing WordPress plugin library and/or get_plugins() function.
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* None
-
 == Upgrade Notice ==
 
 = 1.5.11-1 =
