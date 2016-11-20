@@ -67,6 +67,19 @@ Note that the production stage level can be incremented on occasion for simple t
 
 = Changelog / Release Notes =
 
+**Version 1.5.12-dev1 (2016/11/20)**
+
+Official announcement: N/A
+
+* *New Features*
+	* None
+* *Improvements*
+	* None
+* *Bugfixes*
+	* None
+* *Developer Notes*
+	* Refactored the min_version_notice() method and moved variables to config class.
+
 **Version 1.5.11-1 (2016/11/03)**
 
 Official announcement: N/A
@@ -81,6 +94,10 @@ Official announcement: N/A
 	* Refactored the SucomUpdate class to optimize caching performance.
 
 == Upgrade Notice ==
+
+= 1.5.12-dev1 =
+
+(2016/11/20) Refactored the min_version_notice() method.
 
 = 1.5.11-1 =
 
