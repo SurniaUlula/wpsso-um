@@ -15,7 +15,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		public static $cf = array(
 			'plugin' => array(
 				'wpssoum' => array(
-					'version' => '1.5.11-1',		// plugin version
+					'version' => '1.5.12-dev1',		// plugin version
 					'opt_version' => '3',		// increment when changing default options
 					'short' => 'WPSSO UM',
 					'name' => 'WPSSO Pro Update Manager (WPSSO UM)',
@@ -25,6 +25,11 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					'update_auth' => '',
 					'text_domain' => 'wpsso-um',
 					'domain_path' => '/languages',
+					'req' => array(
+						'short' => 'WPSSO',
+						'name' => 'WordPress Social Sharing Optimization (WPSSO)',
+						'min_version' => '3.37.3-1',
+					),
 					'img' => array(
 						'icon_small' => 'images/icon-128x128.png',
 						'icon_medium' => 'images/icon-256x256.png',

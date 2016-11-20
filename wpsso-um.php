@@ -13,7 +13,7 @@
  * Description: WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
  * Requires At Least: 3.7
  * Tested Up To: 4.6.1
- * Version: 1.5.11-1
+ * Version: 1.5.12-dev1
  * 
  * Version Numbering Scheme: {major}.{minor}.{bugfix}-{stage}{level}
  *
@@ -41,12 +41,8 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 		private static $instance = null;
 		private static $check_hours = 24;
-		private static $allow_host = 'wpsso.com';
-		private static $text_domain = 'wpsso-um';
-		private static $req_short = 'WPSSO';
-		private static $req_name = 'WordPress Social Sharing Optimization (WPSSO)';
-		private static $req_min_version = '3.36.0-1';
-		private static $req_has_min_ver = true;
+		private static $update_host = 'wpsso.com';
+		private static $have_min = true;
 
 		public static function &get_instance() {
 			if ( self::$instance === null )
@@ -83,17 +79,20 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			if ( $deactivate === true ) {
 				require_once( ABSPATH.'wp-admin/includes/plugin.php' );
 				deactivate_plugins( $info['base'] );
-
-				wp_die( '<p>'.sprintf( __( 'The %1$s extension requires the %2$s plugin &mdash; please install and activate the %3$s plugin before trying to re-activate the %4$s extension.', 'wpsso-um' ), $info['name'], self::$req_name, self::$req_short, $info['short'] ).'</p>' );
-
-			} else echo '<div class="error"><p>'.sprintf( __( 'The %1$s extension requires the %2$s plugin &mdash; please install and activate the %3$s plugin.', 'wpsso-um' ), $info['name'], self::$req_name, self::$req_short ).'</p></div>';
+				wp_die( '<p>'.sprintf( __( '%1$s is an extension for the %2$s plugin &mdash; please install and activate the %3$s plugin before activating the %4$s extension.', 'wpsso-um' ), $info['name'], $info['req']['name'], $info['req']['short'], $info['short'] ).'</p>' );
+			} else echo '<div class="notice notice-error error"><p>'.
+				sprintf( __( 'The %1$s extension requires the %2$s plugin &mdash; please install and activate the %3$s plugin.',
+					'wpsso-um' ), $info['name'], $info['req']['name'], $info['req']['short'] ).'</p></div>';
 		}
 
 		public function wpsso_get_config( $cf, $plugin_version = 0 ) {
-			if ( version_compare( $plugin_version, self::$req_min_version, '<' ) ) {
-				self::$req_has_min_ver = false;
+			$info = WpssoUmConfig::$cf['plugin']['wpssoum'];
+
+			if ( version_compare( $plugin_version, $info['req']['min_version'], '<' ) ) {
+				self::$have_min = false;
 				return $cf;
 			}
+
 			return SucomUtil::array_merge_recursive_distinct( $cf, WpssoUmConfig::$cf );
 		}
 
@@ -105,7 +104,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			if ( $this->p->debug->enabled )
 				$this->p->debug->mark();
 
-			if ( self::$req_has_min_ver === false )
+			if ( self::$have_min === false )
 				return;		// stop here
 		}
 
@@ -113,29 +112,25 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			if ( $this->p->debug->enabled )
 				$this->p->debug->mark();
 
-			if ( self::$req_has_min_ver === false )
+			if ( self::$have_min === false )
 				return;		// stop here
 
+			$info = WpssoUmConfig::$cf['plugin']['wpssoum'];
 			self::$check_hours = $this->get_update_check_hours();
-
 			$this->filters = new WpssoUmFilters( $this->p );
 			$this->update = new SucomUpdate( $this->p, $this->p->cf['plugin'],
-				self::$check_hours, self::$allow_host, self::$text_domain );
+				self::$check_hours, self::$update_host, $info['text_domain'] );
 		}
 
 		public function wpsso_init_plugin() {
 			if ( $this->p->debug->enabled )
 				$this->p->debug->mark();
 
-			if ( self::$req_has_min_ver === false )
+			if ( self::$have_min === false )
 				return $this->min_version_notice();
 
-			/*
-			 * Force immediate check if no update check for past 2 days
-			 */
 			if ( is_admin() ) {
 				foreach ( $this->p->cf['plugin'] as $ext => $info ) {
-
 					if ( ! SucomUpdate::is_configured( $ext ) )
 						continue;
 
@@ -156,14 +151,17 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 		private function min_version_notice() {
 			$info = WpssoUmConfig::$cf['plugin']['wpssoum'];
-			$have_version = $this->p->cf['plugin']['wpsso']['version'];
+			$wpsso_version = WpssoConfig::get_version();
 
-			if ( $this->p->debug->enabled )
-				$this->p->debug->log( $info['name'].' requires '.self::$req_short.' version '.
-					self::$req_min_version.' or newer ('.$have_version.' installed)' );
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->log( $info['name'].' requires '.$info['req']['short'].' v'.
+					$info['req']['min_version'].' or newer ('.$wpsso_version.' installed)' );
+			}
 
-			if ( is_admin() )
-				$this->p->notice->err( sprintf( __( 'The %1$s extension version %2$s requires the use of %3$s version %4$s or newer (version %5$s is currently installed).', 'wpsso-um' ), $info['name'], $info['version'], self::$req_short, self::$req_min_version, $have_version ) );
+			if ( is_admin() ) {
+				$this->p->notice->err( sprintf( __( 'The %1$s extension v%2$s requires %3$s v%4$s or newer (v%5$s currently installed).',
+					'wpsso-um' ), $info['name'], $info['version'], $info['req']['short'], $info['req']['min_version'], $wpsso_version ) );
+			}
 		}
 
 		// minimum value is 12 hours for the constant, 24 hours otherwise
