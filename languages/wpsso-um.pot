@@ -153,12 +153,12 @@ msgctxt "metabox title (side)"
 msgid "Version Information"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:76 lib/submenu/um-general.php:62
+#: lib/sitesubmenu/site-um-general.php:73 lib/submenu/um-general.php:59
 msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:91 lib/submenu/um-general.php:76
+#: lib/sitesubmenu/site-um-general.php:88 lib/submenu/um-general.php:73
 msgctxt "option label"
 msgid "Pro Update Version Filter"
 msgstr ""

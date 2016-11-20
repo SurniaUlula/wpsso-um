@@ -47,11 +47,8 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 
 		public function show_metabox_general() {
 			$metabox = 'um';
-			echo '<table class="sucom-setting">';
-			foreach ( apply_filters( $this->p->cf['lca'].'_'.$metabox.'_general_rows', 
-				$this->get_table_rows( $metabox, 'general' ), $this->form ) as $row )
-					echo '<tr>'.$row.'</tr>';
-			echo '</table>';
+			$this->p->util->do_table_rows( apply_filters( $this->p->cf['lca'].'_'.$metabox.'_general_rows', 
+				$this->get_table_rows( $metabox, 'general' ), $this->form ), 'metabox-'.$metabox.'-general' );
 		}
 
 		protected function get_table_rows( $metabox, $key ) {
