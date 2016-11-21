@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.11-1\n"
+"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.12-1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2016-10-31 17:29-0700\n"
-"PO-Revision-Date: 2016-10-31 17:29-0700\n"
+"POT-Creation-Date: 2016-11-20 15:13-0800\n"
+"PO-Revision-Date: 2016-11-20 15:13-0800\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -147,27 +147,27 @@ msgctxt "metabox title (side)"
 msgid "Version Information"
 msgstr "Information de Version"
 
-#: lib/sitesubmenu/site-um-general.php:76 lib/submenu/um-general.php:62
+#: lib/sitesubmenu/site-um-general.php:73 lib/submenu/um-general.php:59
 msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr "Actualiser informations de mise à jour"
 
-#: lib/sitesubmenu/site-um-general.php:91 lib/submenu/um-general.php:76
+#: lib/sitesubmenu/site-um-general.php:88 lib/submenu/um-general.php:73
 msgctxt "option label"
 msgid "Pro Update Version Filter"
 msgstr "Filtre de Version pour Mises à Jour"
 
-#: wpsso-um.php:85
-msgid "The %1$s extension requires the %2$s plugin &mdash; please install and activate the %3$s plugin before trying to re-activate the %4$s extension."
-msgstr "L'extension %1$s requiert %2$s &mdash; s'il vous plaît installer et activer l'extension %3$s avant d'essayer de re-activer %4$s."
+#: wpsso-um.php:82
+msgid "%1$s is an extension for the %2$s plugin &mdash; please install and activate the %3$s plugin before activating the %4$s extension."
+msgstr "%1$s est une extension pour %2$s &mdash; s'il vous plaît installer et activer %3$s avant d'essayer de re-activer l'extension %4$s."
 
-#: wpsso-um.php:87
+#: wpsso-um.php:84
 msgid "The %1$s extension requires the %2$s plugin &mdash; please install and activate the %3$s plugin."
 msgstr "L'extension %1$s requiert %2$s &mdash; s'il vous plaît installer et activer l'extension %3$s."
 
-#: wpsso-um.php:164
-msgid "The %1$s extension version %2$s requires the use of %3$s version %4$s or newer (version %5$s is currently installed)."
-msgstr "L'extension %1$s version %2$s requiert l'utilisation de %3$s version %4$s ou plus récente (la version %5$s est actuellement installée)."
+#: wpsso-um.php:162
+msgid "The %1$s extension v%2$s requires %3$s v%4$s or newer (v%5$s currently installed)."
+msgstr "L'extension %1$s v%2$s requiert l'utilisation de %3$s v%4$s ou plus récente (v%5$s est actuellement installée)."
 
 #. Plugin Name of the plugin/theme
 msgid "WPSSO Pro Update Manager (WPSSO UM)"
