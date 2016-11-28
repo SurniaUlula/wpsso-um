@@ -10,7 +10,7 @@ Assets URI: https://surniaulula.github.io/wpsso-um/assets/
 Tags: wpsso, update, manager
 Contributors: jsmoriss
 Requires At Least: 3.7
-Tested Up To: 4.6.1
+Tested Up To: 4.7
 Stable Tag: 1.5.12-1
 
 WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
