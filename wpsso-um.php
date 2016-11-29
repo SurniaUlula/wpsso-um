@@ -151,7 +151,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 		private function min_version_notice() {
 			$info = WpssoUmConfig::$cf['plugin']['wpssoum'];
-			$wpsso_version = WpssoConfig::get_version();
+			$wpsso_version = $this->p->cf['plugin']['wpsso']['version'];
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->log( $info['name'].' requires '.$info['req']['short'].' v'.
