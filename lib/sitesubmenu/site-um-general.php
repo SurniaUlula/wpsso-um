@@ -85,13 +85,14 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 							continue;
 
 						if ( $row_number === 1 )
-							$table_rows[] = $this->form->get_th_html( _x( 'Pro Update Version Filter',
-								'option label', 'wpsso-um' ), '', 'update_version_filter' ).
-								'<td colspan="3">'.$info['name'].'</td>';
-						else $table_rows[] = '<th></th><td colspan="3">'.$info['name'].'</td>';
+							$th_cell = $this->form->get_th_html( _x( 'Pro Update Version Filter',
+								'option label', 'wpsso-um' ), '', 'update_version_filter' );
+						else $th_cell = '<th></th>';
 
-						$table_rows[] = '<th></th><td>'.
-						$this->form->get_select( 'update_filter_for_'.$ext, $version_filter, 'update_filter', '', true ).'</td>'.
+						$table_rows[] = $th_cell.'<td colspan="2" align="right">'.$info['name'].'</td>'.
+						'<td>'.$this->form->get_select( 'update_filter_for_'.$ext, $version_filter, 'update_filter', '', true ).'</td>';
+
+						$table_rows[] = '<th></th><td></td>'.
 						$this->p->admin->get_site_use( $this->form, true, 'update_filter_for_'.$ext, true );	// $network = true
 
 						$row_number++;
