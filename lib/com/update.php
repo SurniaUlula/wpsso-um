@@ -445,7 +445,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			if ( is_wp_error( $result ) ) {
 				if ( $this->p->debug->enabled )
 					$this->p->debug->log( $ext.' plugin: update error - '.$result->get_error_message() );
-				$this->p->notice->err( sprintf( __( 'WordPress error getting remote content &mdash; %s',
+				$this->p->notice->err( sprintf( __( 'Update error from the WordPress wp_remote_get() function &mdash; %s',
 					$this->text_domain ), $result->get_error_message() ) );
 
 			} elseif ( isset( $result['response']['code'] ) && 

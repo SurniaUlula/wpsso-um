@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.13-1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2016-12-07 08:35+1000\n"
-"PO-Revision-Date: 2016-12-07 08:35+1000\n"
+"POT-Creation-Date: 2016-12-18 10:57+1100\n"
+"PO-Revision-Date: 2016-12-18 10:57+1100\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -24,8 +24,8 @@ msgid "Failed saving retrieved update information for %s."
 msgstr "Erreur lors de l'enregistrement des informations de mise à jour pour %s."
 
 #: lib/com/update.php:448
-msgid "WordPress error getting remote content &mdash; %s"
-msgstr "Erreur WordPress d’obtention de contenu distant &mdash; %s"
+msgid "Update error from the WordPress wp_remote_get() function &mdash; %s"
+msgstr "Erreur de mise à jour de la fonction WordPress wp_remote_get() &mdash; %s"
 
 #: lib/com/update.php:517
 msgid "The WordPress library file %s is missing and required."
@@ -188,3 +188,6 @@ msgstr "JS Morisset"
 #. Author URI of the plugin/theme
 msgid "https://surniaulula.com/"
 msgstr "https://surniaulula.com/"
+
+#~ msgid "WordPress error getting remote content &mdash; %s"
+#~ msgstr "Erreur WordPress d’obtention de contenu distant &mdash; %s"

@@ -21,7 +21,7 @@ msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
 #: lib/com/update.php:448
-msgid "WordPress error getting remote content &mdash; %s"
+msgid "Update error from the WordPress wp_remote_get() function &mdash; %s"
 msgstr ""
 
 #: lib/com/update.php:517
