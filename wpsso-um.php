@@ -39,13 +39,13 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		public $filters;		// WpssoUmFilters
 		public $update;			// SucomUpdate
 
-		private static $instance = null;
+		private static $instance;
 		private static $check_hours = 24;
 		private static $update_host = 'wpsso.com';
 		private static $have_min = true;
 
 		public static function &get_instance() {
-			if ( self::$instance === null )
+			if ( ! isset( self::$instance ) )
 				self::$instance = new self;
 			return self::$instance;
 		}
