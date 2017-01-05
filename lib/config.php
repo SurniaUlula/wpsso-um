@@ -56,6 +56,8 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 						),
 						'gpl' => array(
 						),
+						'pro' => array(
+						),
 					),
 				),
 			),
