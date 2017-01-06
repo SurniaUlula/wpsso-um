@@ -42,7 +42,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		private static $instance;
 		private static $check_hours = 24;
 		private static $update_host = 'wpsso.com';
-		private static $have_min = true;
+		private static $have_req_min = true;	// have at least minimum wpsso version
 
 		public function __construct() {
 
@@ -93,7 +93,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			$info = WpssoUmConfig::$cf['plugin']['wpssoum'];
 
 			if ( version_compare( $plugin_version, $info['req']['min_version'], '<' ) ) {
-				self::$have_min = false;
+				self::$have_req_min = false;
 				return $cf;
 			}
 
@@ -108,7 +108,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			if ( $this->p->debug->enabled )
 				$this->p->debug->mark();
 
-			if ( self::$have_min === false )
+			if ( self::$have_req_min === false )
 				return;		// stop here
 		}
 
@@ -116,7 +116,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			if ( $this->p->debug->enabled )
 				$this->p->debug->mark();
 
-			if ( self::$have_min === false )
+			if ( self::$have_req_min === false )
 				return;		// stop here
 
 			$info = WpssoUmConfig::$cf['plugin']['wpssoum'];
@@ -130,7 +130,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			if ( $this->p->debug->enabled )
 				$this->p->debug->mark();
 
-			if ( self::$have_min === false )
+			if ( self::$have_req_min === false )
 				return $this->min_version_notice();
 
 			if ( is_admin() ) {
