@@ -45,6 +45,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 						'codex' => 'https://wpsso.com/codex/plugins/wpsso-um/',
 						'faq' => '',
 						'notes' => '',
+						'support' => '',
 					),
 					'lib' => array(
 						// submenu items must have unique keys
