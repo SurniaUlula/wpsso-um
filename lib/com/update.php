@@ -26,11 +26,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			if ( $this->p->debug->enabled )
 				$this->p->debug->mark( 'update manager setup' );	// begin timer
 
-			$slug = $extensions[$this->p->cf['lca']]['slug'];		// example: nextgen-facebook
-			$this->cron_hook = 'plugin_updates-'.$slug;			// example: plugin_updates-nextgen-facebook
+			$slug = $extensions[$this->p->cf['lca']]['slug'];		// example: wpsso
+			$this->cron_hook = 'plugin_updates-'.$slug;			// example: plugin_updates-wpsso
 			$this->sched_hours = $check_hours >= 24 ? $check_hours : 24;	// example: 24 (minimum)
 			$this->sched_name = 'every'.$this->sched_hours.'hours';		// example: every24hours
-			$this->text_domain = $text_domain;				// example: nextgen-facebook-um
+			$this->text_domain = $text_domain;				// example: wpsso-um
 			$this->update_host = $update_host;				// example: surniaulula.com
 			$this->set_config( $extensions );
 			$this->install_hooks();
@@ -135,9 +135,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				self::$config[$ext] = array(
 					'name' => $info['name'],
-					'slug' => $info['slug'],				// nextgen-facebook
-					'base' => $info['base'],				// nextgen-facebook/nextgen-facebook.php
-					'opt_name' => 'external_updates-'.$info['slug'],	// external_updates-nextgen-facebook
+					'slug' => $info['slug'],				// wpsso
+					'base' => $info['base'],				// wpsso/wpsso.php
+					'opt_name' => 'external_updates-'.$info['slug'],	// external_updates-wpsso
 					'json_url' => $auth_url,
 					'expire' => 86100,					// almost 24 hours
 				);
@@ -269,7 +269,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				// remove existing information to make sure it is correct (not from wordpress.org)
 				if ( isset( $updates->response[$info['base']] ) )
-					unset( $updates->response[$info['base']] );					// nextgen-facebook/nextgen-facebook.php
+					unset( $updates->response[$info['base']] );					// wpsso/wpsso.php
 
 				if ( isset( self::$config[$ext]['inject_update'] ) ) {
 					// only return update information when an update is required

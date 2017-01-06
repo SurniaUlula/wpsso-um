@@ -41,7 +41,7 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 
 			// add_meta_box( $id, $title, $callback, $post_type, $context, $priority, $callback_args );
 			add_meta_box( $this->pagehook.'_general', 
-				_x( $short.' Pro Update Manager', 'metabox title', 'nextgen-facebook-um' ),
+				_x( $short.' Pro Update Manager', 'metabox title', 'wpsso-um' ),
 					array( &$this, 'show_metabox_general' ), $this->pagehook, 'normal' );
 		}
 

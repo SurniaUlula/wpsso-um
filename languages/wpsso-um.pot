@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.13-3\n"
+"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.14-dev1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2017-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -163,19 +163,19 @@ msgctxt "option label"
 msgid "Pro Update Version Filter"
 msgstr ""
 
-#: wpsso-um.php:82
+#: wpsso-um.php:86
 msgid ""
 "%1$s is an extension for the %2$s plugin &mdash; please install and activate "
 "the %3$s plugin before activating the %4$s extension."
 msgstr ""
 
-#: wpsso-um.php:84
+#: wpsso-um.php:88
 msgid ""
 "The %1$s extension requires the %2$s plugin &mdash; please install and "
 "activate the %3$s plugin."
 msgstr ""
 
-#: wpsso-um.php:162
+#: wpsso-um.php:166
 msgid ""
 "The %1$s extension v%2$s requires %3$s v%4$s or newer (v%5$s currently "
 "installed)."
