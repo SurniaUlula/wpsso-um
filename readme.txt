@@ -67,7 +67,7 @@ Note that the production stage level can be incremented on occasion for simple t
 
 = Changelog / Release Notes =
 
-**Version 1.5.14-dev1 (2017/01/06)**
+**Version 1.5.14-rc1 (2017/01/07)**
 
 * *New Features*
 	* None
@@ -91,9 +91,9 @@ Note that the production stage level can be incremented on occasion for simple t
 
 == Upgrade Notice ==
 
-= 1.5.14-dev1 =
+= 1.5.14-rc1 =
 
-(2017/01/06) Added a 'plugins_loaded' action hook to load the plugin text domain.
+(2017/01/07) Added a 'plugins_loaded' action hook to load the plugin text domain.
 
 = 1.5.13-3 =
 
