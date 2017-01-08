@@ -7,9 +7,9 @@
 <tr><th align="right" valign="top" nowrap>Requires At Least</th><td>WordPress 3.7</td></tr>
 <tr><th align="right" valign="top" nowrap>Tested Up To</th><td>WordPress 4.7</td></tr>
 <tr><th align="right" valign="top" nowrap>Contributors</th><td>jsmoriss</td></tr>
-<tr><th align="right" valign="top" nowrap>Website URL</th><td><a href="https://wpsso.com/?utm_source=wpssoum-readme-donate">https://wpsso.com/?utm_source=wpssoum-readme-donate</a></td></tr>
+<tr><th align="right" valign="top" nowrap>Website URL</th><td><a href="https://www.paypal.me/surniaulula">https://www.paypal.me/surniaulula</a></td></tr>
 <tr><th align="right" valign="top" nowrap>License</th><td><a href="https://www.gnu.org/licenses/gpl.txt">GPLv3</a></td></tr>
-<tr><th align="right" valign="top" nowrap>Tags / Keywords</th><td>wpsso, update, manager</td></tr>
+<tr><th align="right" valign="top" nowrap>Tags / Keywords</th><td>wpsso, update, manager, pro version</td></tr>
 </table>
 
 <h2>Description</h2>

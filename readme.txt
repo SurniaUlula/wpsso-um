@@ -5,9 +5,9 @@ Text Domain: wpsso-um
 Domain Path: /languages
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl.txt
-Donate Link: https://wpsso.com/?utm_source=wpssoum-readme-donate
+Donate Link: https://www.paypal.me/surniaulula
 Assets URI: https://surniaulula.github.io/wpsso-um/assets/
-Tags: wpsso, update, manager
+Tags: wpsso, update, manager, pro version
 Contributors: jsmoriss
 Requires At Least: 3.7
 Tested Up To: 4.7
