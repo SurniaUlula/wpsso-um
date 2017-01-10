@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.13-1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2016-12-24 08:50+1100\n"
-"PO-Revision-Date: 2016-12-24 08:50+1100\n"
+"PO-Revision-Date: 2017-01-10 12:52+1100\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -150,7 +150,7 @@ msgstr "Information de Version"
 #: lib/sitesubmenu/site-um-general.php:73 lib/submenu/um-general.php:59
 msgctxt "option label"
 msgid "Refresh Update Information"
-msgstr "Actualiser informations de mise à jour"
+msgstr "Actualiser info. de mise à jour"
 
 #: lib/sitesubmenu/site-um-general.php:88 lib/submenu/um-general.php:73
 msgctxt "option label"
