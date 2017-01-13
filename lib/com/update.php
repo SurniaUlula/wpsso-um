@@ -414,9 +414,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			if ( $use_cache ) {
 				$plugin_data = false;
+
 				if ( isset( self::$config[$ext]['plugin_data']->plugin ) )
 					$plugin_data = self::$config[$ext]['plugin_data'];
 				else $plugin_data = self::$config[$ext]['plugin_data'] = get_transient( $cache_id );
+
 				if ( $plugin_data !== false ) {	// false if transient is expired or not found
 					if ( $this->p->debug->enabled )
 						$this->p->debug->log( $ext.' plugin: returning plugin data from cache' );

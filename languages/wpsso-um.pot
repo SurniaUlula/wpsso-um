@@ -20,21 +20,21 @@ msgstr ""
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:448
+#: lib/com/update.php:450
 msgid "Update error from the WordPress wp_remote_get() function &mdash; %s"
 msgstr ""
 
-#: lib/com/update.php:517
+#: lib/com/update.php:519
 msgid "The WordPress library file %s is missing and required."
 msgstr ""
 
-#: lib/com/update.php:525
+#: lib/com/update.php:527
 msgid ""
 "The WordPress %s function is not available &mdash; unable to retrieve "
 "installed plugin information."
 msgstr ""
 
-#: lib/com/update.php:538
+#: lib/com/update.php:540
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress "
 "installed plugins list."
