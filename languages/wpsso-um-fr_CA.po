@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.13-1\n"
+"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.14-1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2016-12-24 08:50+1100\n"
-"PO-Revision-Date: 2017-01-10 12:52+1100\n"
+"POT-Creation-Date: 2017-01-21 07:30+0800\n"
+"PO-Revision-Date: 2017-01-21 07:30+0800\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -23,19 +23,19 @@ msgstr "L'information de mise à jour pour %s a été récupérée et sauvegard�
 msgid "Failed saving retrieved update information for %s."
 msgstr "Erreur lors de l'enregistrement des informations de mise à jour pour %s."
 
-#: lib/com/update.php:448
+#: lib/com/update.php:450
 msgid "Update error from the WordPress wp_remote_get() function &mdash; %s"
 msgstr "Erreur de mise à jour de la fonction WordPress wp_remote_get() &mdash; %s"
 
-#: lib/com/update.php:517
+#: lib/com/update.php:519
 msgid "The WordPress library file %s is missing and required."
 msgstr "Le fichier de bibliothèque WordPress %s est manquant et requis."
 
-#: lib/com/update.php:525
+#: lib/com/update.php:527
 msgid "The WordPress %s function is not available &mdash; unable to retrieve installed plugin information."
 msgstr "La fonction WordPress %s n’est pas disponible &mdash; impossible de récupérer les informations des extensions installée."
 
-#: lib/com/update.php:538
+#: lib/com/update.php:540
 msgid "The %1$s plugin (%2$s) version number is missing from the WordPress installed plugins list."
 msgstr "Le numéro de version de l'extension %1$s (%2$s) est absente de la liste WordPress des extensions installée."
 
@@ -157,15 +157,15 @@ msgctxt "option label"
 msgid "Pro Update Version Filter"
 msgstr "Filtre de Version pour Mises à Jour"
 
-#: wpsso-um.php:82
+#: wpsso-um.php:86
 msgid "%1$s is an extension for the %2$s plugin &mdash; please install and activate the %3$s plugin before activating the %4$s extension."
 msgstr "%1$s est une extension pour %2$s &mdash; s'il vous plaît installer et activer %3$s avant d'essayer de re-activer l'extension %4$s."
 
-#: wpsso-um.php:84
+#: wpsso-um.php:88
 msgid "The %1$s extension requires the %2$s plugin &mdash; please install and activate the %3$s plugin."
 msgstr "L'extension %1$s requiert %2$s &mdash; s'il vous plaît installer et activer l'extension %3$s."
 
-#: wpsso-um.php:162
+#: wpsso-um.php:166
 msgid "The %1$s extension v%2$s requires %3$s v%4$s or newer (v%5$s currently installed)."
 msgstr "L'extension %1$s v%2$s requiert l'utilisation de %3$s v%4$s ou plus récente (v%5$s est actuellement installée)."
 
@@ -188,6 +188,3 @@ msgstr "JS Morisset"
 #. Author URI of the plugin/theme
 msgid "https://surniaulula.com/"
 msgstr "https://surniaulula.com/"
-
-#~ msgid "WordPress error getting remote content &mdash; %s"
-#~ msgstr "Erreur WordPress d’obtention de contenu distant &mdash; %s"
