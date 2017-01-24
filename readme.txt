@@ -67,35 +67,20 @@ Note that the production stage level can be incremented on occasion for simple t
 
 = Changelog / Release Notes =
 
-**Version 1.5.14-1 (2017/01/08)**
+**Version 1.5.15-1 (2017/01/24)**
 
 * *New Features*
 	* None
 * *Improvements*
-	* None
+	* Improved clearing of error and information messages on successful update checks.
 * *Bugfixes*
 	* None
-* *Developer Notes*
-	* Added a 'plugins_loaded' action hook to load the plugin text domain.
-
-**Version 1.5.13-3 (2016/12/05)**
-
-* *New Features*
-	* None
-* *Improvements*
-	* None
-* *Bugfixes*
-	* Fixed the readme_txt URL in the config class.
 * *Developer Notes*
 	* None
 
 == Upgrade Notice ==
 
-= 1.5.14-1 =
+= 1.5.15-1 =
 
-(2017/01/08) Added a 'plugins_loaded' action hook to load the plugin text domain.
-
-= 1.5.13-3 =
-
-(2016/12/05) Fixed the readme_txt URL in the config class.
+(2017/01/24) Improved clearing of error and information messages on successful update checks.
 
