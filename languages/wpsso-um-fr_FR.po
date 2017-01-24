@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.14-1\n"
+"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.15-1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2017-01-21 07:30+0800\n"
-"PO-Revision-Date: 2017-01-21 07:30+0800\n"
+"POT-Creation-Date: 2017-01-24 09:49+0800\n"
+"PO-Revision-Date: 2017-01-24 09:49+0800\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -15,27 +15,27 @@ msgstr ""
 "X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: lib/com/update.php:372
+#: lib/com/update.php:375
 msgid "Update information for %s has been retrieved and saved."
 msgstr "L'information de mise à jour pour %s a été récupérée et sauvegardée."
 
-#: lib/com/update.php:378
+#: lib/com/update.php:381
 msgid "Failed saving retrieved update information for %s."
 msgstr "Erreur lors de l'enregistrement des informations de mise à jour pour %s."
 
-#: lib/com/update.php:450
+#: lib/com/update.php:453
 msgid "Update error from the WordPress wp_remote_get() function &mdash; %s"
 msgstr "Erreur de mise à jour de la fonction WordPress wp_remote_get() &mdash; %s"
 
-#: lib/com/update.php:519
+#: lib/com/update.php:520
 msgid "The WordPress library file %s is missing and required."
 msgstr "Le fichier de bibliothèque WordPress %s est manquant et requis."
 
-#: lib/com/update.php:527
+#: lib/com/update.php:528
 msgid "The WordPress %s function is not available &mdash; unable to retrieve installed plugin information."
 msgstr "La fonction WordPress %s n’est pas disponible &mdash; impossible de récupérer les informations des extensions installée."
 
-#: lib/com/update.php:540
+#: lib/com/update.php:541
 msgid "The %1$s plugin (%2$s) version number is missing from the WordPress installed plugins list."
 msgstr "Le numéro de version de l'extension %1$s (%2$s) est absente de la liste WordPress des extensions installée."
 
