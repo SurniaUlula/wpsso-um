@@ -46,12 +46,15 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 		// called by get_json() when the transient / object cache is empty and/or not used
 		private static function set_umsg( $ext, $msg, $val ) {
-			delete_option( $ext.'_uapi'.self::$api_version.$msg );	// just in case
-			if ( empty( $val ) )
-				return false;
-			else update_option( $ext.'_uapi'.self::$api_version.$msg, 
-				base64_encode( $val ) );	// save as string
-			return self::$config[$ext]['u'.$msg] = $val;
+			if ( empty( $val ) ) {
+				delete_option( $ext.'_uapi'.self::$api_version.$msg );
+				self::$config[$ext]['u'.$msg] = false;	// just in case
+			} else {
+				update_option( $ext.'_uapi'.self::$api_version.$msg, 
+					base64_encode( $val ) );	// save as string
+				self::$config[$ext]['u'.$msg] = $val;
+			}
+			return self::$config[$ext]['u'.$msg];
 		}
 
 		// called by various plugin methods, including SucomNotice::show_admin_notices()
@@ -454,12 +457,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				(int) $result['response']['code'] === 200 && ! empty( $result['body'] ) ) {
 
 				$payload = json_decode( $result['body'], true, 32 );	// create an associative array
-				if ( ! empty( $payload['api_response'] ) ) {	// check for possible notices
-					foreach ( array( 'err', 'inf' ) as $msg ) {
-						self::$config[$ext]['u'.$msg] = self::set_umsg( $ext, $msg,
-							( empty( $payload['api_response'][$msg] ) ? 
-								false : $payload['api_response'][$msg] ) );
-					}
+				foreach ( array( 'err', 'inf' ) as $msg ) {	// add new or remove existing response messages
+					self::$config[$ext]['u'.$msg] = self::set_umsg( $ext, $msg,
+						( empty( $payload['api_response'][$msg] ) ? 
+							false : $payload['api_response'][$msg] ) );
 				}
 
 				if ( empty( $result['headers']['x-smp-error'] ) ) {
