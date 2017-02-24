@@ -163,13 +163,13 @@ msgctxt "option label"
 msgid "Pro Update Version Filter"
 msgstr ""
 
-#: wpsso-um.php:84
+#: wpsso-um.php:80
 msgid ""
 "%1$s is an extension for the %2$s plugin &mdash; please install and activate "
 "the %3$s plugin before activating %4$s."
 msgstr ""
 
-#: wpsso-um.php:85
+#: wpsso-um.php:81
 msgid ""
 "The %1$s extension requires the %2$s plugin &mdash; please install and "
 "activate the %3$s plugin."
