@@ -13,7 +13,7 @@
  * Description: WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
  * Requires At Least: 3.8
  * Tested Up To: 4.7.2
- * Version: 1.5.15-1
+ * Version: 1.5.16-rc1
  * 
  * Version Numbering Scheme: {major}.{minor}.{bugfix}-{stage}{level}
  *
@@ -52,8 +52,8 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			$this->reg = new WpssoUmRegister();		// activate, deactivate, uninstall hooks
 
 			if ( is_admin() ) {
-				add_action( 'plugins_loaded', array( __CLASS__, 'load_textdomain' ) );
 				add_action( 'admin_init', array( __CLASS__, 'required_check' ) );
+				add_action( 'wpsso_init_debug', array( __CLASS__, 'load_textdomain' ) );
 			}
 
 			add_filter( 'wpsso_get_config', array( &$this, 'wpsso_get_config' ), 10, 2 );
@@ -77,16 +77,19 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 				add_action( 'all_admin_notices', array( __CLASS__, 'required_notice' ) );
 		}
 
+		// also called from the activate_plugin method with $deactivate = true
 		public static function required_notice( $deactivate = false ) {
+			self::load_textdomain();
 			$info = WpssoUmConfig::$cf['plugin']['wpssoum'];
+			$die_msg = __( '%1$s is an extension for the %2$s plugin &mdash; please install and activate the %3$s plugin before activating %4$s.', 'wpsso-um' );
+			$err_msg = __( 'The %1$s extension requires the %2$s plugin &mdash; please install and activate the %3$s plugin.', 'wpsso-um' );
 
 			if ( $deactivate === true ) {
 				require_once( ABSPATH.'wp-admin/includes/plugin.php' );
 				deactivate_plugins( $info['base'] );
-				wp_die( '<p>'.sprintf( __( '%1$s is an extension for the %2$s plugin &mdash; please install and activate the %3$s plugin before activating the %4$s extension.', 'wpsso-um' ), $info['name'], $info['req']['name'], $info['req']['short'], $info['short'] ).'</p>' );
+				wp_die( '<p>'.sprintf( $die_msg, $info['name'], $info['req']['name'], $info['req']['short'], $info['short'] ).'</p>' );
 			} else echo '<div class="notice notice-error error"><p>'.
-				sprintf( __( 'The %1$s extension requires the %2$s plugin &mdash; please install and activate the %3$s plugin.',
-					'wpsso-um' ), $info['name'], $info['req']['name'], $info['req']['short'] ).'</p></div>';
+				sprintf( $err_msg, $info['name'], $info['req']['name'], $info['req']['short'] ).'</p></div>';
 		}
 
 		public function wpsso_get_config( $cf, $plugin_version = 0 ) {
@@ -144,8 +147,8 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 					if ( empty( $last_utime ) || $next_utime + 86400 < time() ) {	// plus one day
 						if ( $this->p->debug->enabled ) {
 							$this->p->debug->log( 'requesting update check for '.$ext );
-							$this->p->notice->inf( 'Performing an update check for the '.$info['name'].' plugin.',
-								true, __FUNCTION__.'_'.$ext.'_update_check', true );
+							$this->p->notice->inf( sprintf( __( 'Performing an update check for the %s plugin.',
+								'wpsso-um' ), $info['name'] ), true, __FUNCTION__.'_'.$ext.'_update_check', true );
 						}
 						$this->update->check_for_updates( $ext, false, false );	// $notice = false, $use_cache = false
 					}
