@@ -78,7 +78,7 @@ Note that the production stage level can be incremented on occasion for simple t
 * *Developer Notes*
 	* None
 
-**Version 1.5.15-1 (2017/01/24)**
+**Version 1.5.15-1 (2017/01/22)**
 
 * *New Features*
 	* None
@@ -93,9 +93,9 @@ Note that the production stage level can be incremented on occasion for simple t
 
 = 1.5.16-rc1 =
 
-(2017/01/22) Improved loading sequence of the plugin textdomain for WPSSO v3.40.0-1.
+(2017/02/24) Improved loading sequence of the plugin textdomain for WPSSO v3.40.0-1.
 
 = 1.5.15-1 =
 
-(2017/01/24) Improved clearing of error and information messages on successful update checks.
+(2017/01/22) Improved clearing of error and information messages on successful update checks.
 
