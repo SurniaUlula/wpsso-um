@@ -1,7 +1,7 @@
-<h1>WPSSO Pro Update Manager</h1>
+<h1>WPSSO Update Manager</h1>
 
 <table>
-<tr><th align="right" valign="top" nowrap>Plugin Name</th><td>WPSSO Pro Update Manager (WPSSO UM)</td></tr>
+<tr><th align="right" valign="top" nowrap>Plugin Name</th><td>WPSSO Update Manager (WPSSO UM)</td></tr>
 <tr><th align="right" valign="top" nowrap>Summary</th><td>WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.</td></tr>
 <tr><th align="right" valign="top" nowrap>Stable Version</th><td>1.5.17-1</td></tr>
 <tr><th align="right" valign="top" nowrap>Requires At Least</th><td>WordPress 3.8</td></tr>
@@ -14,12 +14,12 @@
 
 <h2>Description</h2>
 
-<p align="center"><img src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png" width="256" height="256" /></p><p>The WPSSO Pro Update Manager (WPSSO UM) extension plugin is required to enable and update the <a href="https://wpsso.com/extend/plugins/wpsso/">WordPress Social Sharing Optimization (WPSSO) Pro</a> version plugin, including all its licensed Pro extensions.</p>
+<p align="center"><img src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png" width="256" height="256" /></p><p>The WPSSO Update Manager (WPSSO UM) extension plugin is required to enable and update the <a href="https://wpsso.com/extend/plugins/wpsso/">WordPress Social Sharing Optimization (WPSSO) Pro</a> version plugin, including all its licensed Pro extensions.</p>
 
 <p>Simply <em>download</em>, <em>install</em>, and <em>activate</em>.</p>
 
 <blockquote>
-<p><strong>Prerequisite</strong> &mdash; WPSSO Pro Update Manager (WPSSO UM) is an extension for the <a href="https://wordpress.org/plugins/wpsso/">WordPress Social Sharing Optimization (WPSSO)</a> plugin, which <em>automatically</em> creates complete and accurate meta tags and Schema markup for Social Sharing Optimization (SSO) and SEO.</p>
+<p><strong>Prerequisite</strong> &mdash; WPSSO Update Manager (WPSSO UM) is an extension for the <a href="https://wordpress.org/plugins/wpsso/">WordPress Social Sharing Optimization (WPSSO)</a> plugin, which <em>automatically</em> creates complete and accurate meta tags and Schema markup for Social Sharing Optimization (SSO) and SEO.</p>
 </blockquote>
 
 
