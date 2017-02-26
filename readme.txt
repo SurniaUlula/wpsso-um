@@ -67,6 +67,17 @@ Note that the production stage level can be incremented on occasion for simple t
 
 = Changelog / Release Notes =
 
+**Version 1.5.17-1 (2017/02/26)**
+
+* *New Features*
+	* None
+* *Improvements*
+	* Improved the layout of options in the site and network Update Manager settings page.
+* *Bugfixes*
+	* None
+* *Developer Notes*
+	* None
+
 **Version 1.5.16-1 (2017/02/26)**
 
 * *New Features*
@@ -90,6 +101,10 @@ Note that the production stage level can be incremented on occasion for simple t
 	* None
 
 == Upgrade Notice ==
+
+= 1.5.17-1 =
+
+(2017/02/26) Improved the layout of options in the site and network Update Manager settings page.
 
 = 1.5.16-1 =
 
