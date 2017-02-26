@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name: WPSSO Pro Update Manager (WPSSO UM)
+ * Plugin Name: WPSSO Update Manager (WPSSO UM)
  * Plugin Slug: wpsso-um
  * Text Domain: wpsso-um
  * Domain Path: /languages

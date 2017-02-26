@@ -46,7 +46,7 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 
 			// add_meta_box( $id, $title, $callback, $post_type, $context, $priority, $callback_args );
 			add_meta_box( $this->pagehook.'_general', 
-				_x( 'Network '.$short.' Pro Update Manager', 'metabox title', 'wpsso-um' ),
+				_x( 'Network '.$short.' Update Manager', 'metabox title', 'wpsso-um' ),
 				array( &$this, 'show_metabox_general' ), $this->pagehook, 'normal' );
 
 			// add a class to set a minimum width for the network postboxes

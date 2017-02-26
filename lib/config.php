@@ -18,7 +18,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					'version' => '1.5.17-1',	// plugin version
 					'opt_version' => '3',		// increment when changing default options
 					'short' => 'WPSSO UM',
-					'name' => 'WPSSO Pro Update Manager (WPSSO UM)',
+					'name' => 'WPSSO Update Manager (WPSSO UM)',
 					'desc' => 'WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.',
 					'slug' => 'wpsso-um',
 					'base' => 'wpsso-um/wpsso-um.php',
