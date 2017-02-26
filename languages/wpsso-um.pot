@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.16-1\n"
+"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.17-1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2017-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -127,22 +127,6 @@ msgid ""
 "Optimization (WPSSO) Pro plugin and its Pro extensions."
 msgstr ""
 
-#: lib/filters.php:109
-msgid ""
-"How often would you like the %1$s to check for new updates? You can also use "
-"the \"%2$s\" button to refresh the update information manually."
-msgstr ""
-
-#: lib/filters.php:109
-msgctxt "submit button"
-msgid "Check for Pro Update(s)"
-msgstr ""
-
-#: lib/filters.php:112
-msgid ""
-"Select the type of version updates you would like to receive and install."
-msgstr ""
-
 #: lib/sitesubmenu/site-um-general.php:35 lib/submenu/um-general.php:30
 msgctxt "metabox title (side)"
 msgid "Help and Support"
@@ -158,9 +142,9 @@ msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:88 lib/submenu/um-general.php:73
-msgctxt "option label"
-msgid "Pro Update Version Filter"
+#: lib/sitesubmenu/site-um-general.php:80 lib/submenu/um-general.php:65
+msgctxt "metabox title"
+msgid "Update Version Filters"
 msgstr ""
 
 #: wpsso-um.php:80

@@ -39,7 +39,6 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 					'readme_upgrade_notices' => 2, 
 					'newer_version_available' => 5, 
 					'option_type' => 2,		// define the value type for each option
-					'messages_tooltip' => 2,	// tooltip messages filter
 				) );
 				$this->p->util->add_plugin_filters( $this, array( 
 					'status_gpl_features' => 3,
@@ -99,20 +98,6 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 					break;
 			}
 			return $type;
-		}
-
-		public function filter_messages_tooltip( $text, $idx ) {
-			if ( strpos( $idx, 'tooltip-update_' ) !== 0 )
-				return $text;
-			switch ( $idx ) {
-				case 'tooltip-update_check_hours':
-					$text = sprintf( __( 'How often would you like the %1$s to check for new updates? You can also use the "%2$s" button to refresh the update information manually.', 'wpsso-um' ), $this->p->cf['plugin']['wpssoum']['name'], _x( 'Check for Pro Update(s)', 'submit button', 'wpsso-um' ) );
-					break;
-				case 'tooltip-update_version_filter':
-					$text = __( 'Select the type of version updates you would like to receive and install.', 'wpsso-um' );
-					break;
-			}
-			return $text;
 		}
 
 		public function filter_status_gpl_features( $features, $lca, $info ) {

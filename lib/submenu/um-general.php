@@ -61,24 +61,18 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 					'<td>'.$this->form->get_select( 'update_check_hours',
 						$this->p->cf['update']['check_hours'], 'update_filter', '', true ).'</td>';
 
-					$row_number = 1;
+					$table_rows['subsection_version_filters'] = '<td></td><td class="subsection"><h4>'.
+						_x( 'Update Version Filters', 'metabox title', 'nextgen-facebook' ).'</h4></td>';
+
 					$version_filter = $this->p->cf['update']['version_filter'];
-
 					foreach ( $this->p->cf['plugin'] as $ext => $info ) {
-
 						if ( ! SucomUpdate::is_configured( $ext ) )
 							continue;
 
-						if ( $row_number === 1 )
-							$th_cell = $this->form->get_th_html( _x( 'Pro Update Version Filter',
-								'option label', 'wpsso-um' ), '', 'update_version_filter' );
-						else $th_cell = '<th></th>';
-
-						$table_rows[] = $th_cell.'<td>'.$this->form->get_select( 'update_filter_for_'.$ext,
-							$this->p->cf['update']['version_filter'], 'update_filter', '', true ).
-								' for '.$info['name'].'</td>';
-
-						$row_number++;
+						$ext_name = preg_replace( '/\([A-Z ]+\)$/', '', $info['name'] );	// remove the short name
+						$table_rows[] = $this->form->get_th_html( $ext_name, '', 'update_version_filter' ).
+						'<td>'.$this->form->get_select( 'update_filter_for_'.$ext,
+							$version_filter, 'update_filter', '', true ).'</td>';
 					}
 
 					break;
