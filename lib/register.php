@@ -66,10 +66,9 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 		}
 
 		private function activate_plugin() {
-			$lca = 'wpssoum';
-			$version = WpssoUmConfig::$cf['plugin'][$lca]['version'];	// only our config
+			$version = WpssoUmConfig::$cf['plugin']['wpssoum']['version'];	// only our config
 			if ( class_exists( 'WpssoUtil' ) )
-				WpssoUtil::save_all_times( $lca, $version );
+				WpssoUtil::save_all_times( 'wpssoum', $version );
 			else WpssoUm::required_notice( true );			// $deactivate = true
 			self::delete_options();
 		}
@@ -77,7 +76,7 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 		private function deactivate_plugin() {
 			if ( class_exists( 'WpssoConfig' ) ) {
 				$cf = WpssoConfig::get_config();	// get all plugins / extensions
-				foreach ( $cf['plugin'] as $lca => $info )
+				foreach ( $cf['plugin'] as $ext => $info )
 					wp_clear_scheduled_hook( 'plugin_updates-'.$info['slug'] );
 			}
 		}
@@ -90,10 +89,10 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 			$api_version = SucomUpdate::get_api_version();
 			if ( class_exists( 'WpssoConfig' ) ) {
 				$cf = WpssoConfig::get_config();	// get all plugins / extensions
-				foreach ( $cf['plugin'] as $lca => $info ) {
-					delete_option( $lca.'_uapi'.$api_version.'err' );
-					delete_option( $lca.'_uapi'.$api_version.'inf' );
-					delete_option( $lca.'_uapi'.$api_version.'time' );
+				foreach ( $cf['plugin'] as $ext => $info ) {
+					delete_option( $ext.'_uapi'.$api_version.'err' );
+					delete_option( $ext.'_uapi'.$api_version.'inf' );
+					delete_option( $ext.'_uapi'.$api_version.'time' );
 					delete_option( 'external_updates-'.$info['slug'] );
 				}
 			} else {	// in case wpsso is deactivated
@@ -106,10 +105,10 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 					'wpssorrssb' => 'wpsso-rrssb',
 					'wpssossb' => 'wpsso-ssb',
 					'wpssoum' => 'wpsso-um',
-				) as $lca => $slug ) {
-					delete_option( $lca.'_uapi'.$api_version.'err' );
-					delete_option( $lca.'_uapi'.$api_version.'inf' );
-					delete_option( $lca.'_uapi'.$api_version.'time' );
+				) as $ext => $slug ) {
+					delete_option( $ext.'_uapi'.$api_version.'err' );
+					delete_option( $ext.'_uapi'.$api_version.'inf' );
+					delete_option( $ext.'_uapi'.$api_version.'time' );
 					delete_option( 'external_updates-'.$slug );
 				}
 			}
