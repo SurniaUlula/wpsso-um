@@ -14,7 +14,9 @@
 
 <h2>Description</h2>
 
-<p align="center"><img src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png" width="256" height="256" /></p><p>The WPSSO Update Manager (WPSSO UM) extension plugin is required to enable and update the <a href="https://wpsso.com/extend/plugins/wpsso/">WordPress Social Sharing Optimization (WPSSO) Pro</a> version plugin, including all its licensed Pro extensions.</p>
+<p align="center"><img src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png" /></p><p></p>
+
+<p>The WPSSO Update Manager (WPSSO UM) extension plugin is required to enable and update the <a href="https://wpsso.com/extend/plugins/wpsso/">WordPress Social Sharing Optimization (WPSSO) Pro</a> version plugin, including all its licensed Pro extensions.</p>
 
 <p>Simply <em>download</em>, <em>install</em>, and <em>activate</em>.</p>
 
