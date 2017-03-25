@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager (WPSSO UM) 1.5.17-1\n"
+"Project-Id-Version: WPSSO Update Manager (WPSSO UM) 1.5.18-rc2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2017-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -12,29 +12,29 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: lib/com/update.php:376
+#: lib/com/update.php:393
 msgid "Update information for %s has been retrieved and saved."
 msgstr ""
 
-#: lib/com/update.php:382
+#: lib/com/update.php:399
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:454
+#: lib/com/update.php:471
 msgid "Update error from the WordPress wp_remote_get() function &mdash; %s"
 msgstr ""
 
-#: lib/com/update.php:521
+#: lib/com/update.php:538
 msgid "The WordPress library file %s is missing and required."
 msgstr ""
 
-#: lib/com/update.php:529
+#: lib/com/update.php:546
 msgid ""
 "The WordPress %s function is not available &mdash; unable to retrieve "
 "installed plugin information."
 msgstr ""
 
-#: lib/com/update.php:542
+#: lib/com/update.php:559
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress "
 "installed plugins list."
@@ -147,23 +147,23 @@ msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
 
-#: wpsso-um.php:80
+#: wpsso-um.php:81
 msgid ""
 "%1$s is an extension for the %2$s plugin &mdash; please install and activate "
 "the %3$s plugin before activating %4$s."
 msgstr ""
 
-#: wpsso-um.php:81
+#: wpsso-um.php:83
 msgid ""
 "The %1$s extension requires the %2$s plugin &mdash; please install and "
 "activate the %3$s plugin."
 msgstr ""
 
-#: wpsso-um.php:150
+#: wpsso-um.php:156
 msgid "Performing an update check for the %s plugin."
 msgstr ""
 
-#: wpsso-um.php:169
+#: wpsso-um.php:175
 msgid ""
 "The %1$s extension v%2$s requires %3$s v%4$s or newer (v%5$s currently "
 "installed)."

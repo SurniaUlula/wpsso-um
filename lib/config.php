@@ -15,7 +15,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		public static $cf = array(
 			'plugin' => array(
 				'wpssoum' => array(
-					'version' => '1.5.17-1',	// plugin version
+					'version' => '1.5.18-rc2',	// plugin version
 					'opt_version' => '3',		// increment when changing default options
 					'short' => 'WPSSO UM',
 					'name' => 'WPSSO Update Manager (WPSSO UM)',
@@ -106,9 +106,9 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		}
 
 		public static function require_libs( $plugin_filepath ) {
-			require_once( WPSSOUM_PLUGINDIR.'lib/com/update.php' );
-			require_once( WPSSOUM_PLUGINDIR.'lib/register.php' );
-			require_once( WPSSOUM_PLUGINDIR.'lib/filters.php' );
+			require_once WPSSOUM_PLUGINDIR.'lib/com/update.php';
+			require_once WPSSOUM_PLUGINDIR.'lib/register.php';
+			require_once WPSSOUM_PLUGINDIR.'lib/filters.php';
 
 			add_filter( 'wpssoum_load_lib', array( 'WpssoUmConfig', 'load_lib' ), 10, 3 );
 		}
@@ -117,7 +117,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 			if ( $ret === false && ! empty( $filespec ) ) {
 				$filepath = WPSSOUM_PLUGINDIR.'lib/'.$filespec.'.php';
 				if ( file_exists( $filepath ) ) {
-					require_once( $filepath );
+					require_once $filepath;
 					if ( empty( $classname ) )
 						return SucomUtil::sanitize_classname( 'wpssoum'.$filespec, false );	// $underscore = false
 					else return $classname;

@@ -24,8 +24,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 		public function __construct( &$plugin, &$extensions, $check_hours = 24, $update_host = '', $text_domain = 'sucom' ) {
 			$this->p =& $plugin;
-			if ( $this->p->debug->enabled )
+
+			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark( 'update manager setup' );	// begin timer
+			}
 
 			$slug = $extensions[$this->p->cf['lca']]['slug'];		// example: wpsso
 			$this->cron_hook = 'plugin_updates-'.$slug;			// example: plugin_updates-wpsso
@@ -36,8 +38,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$this->set_config( $extensions );
 			$this->install_hooks();
 
-			if ( $this->p->debug->enabled )
+			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark( 'update manager setup' );	// end timer
+			}
 		}
 
 		// called by delete_options() in the register class
@@ -179,6 +182,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			add_filter( 'pre_site_transient_update_plugins', array( &$this, 'enable_update' ), 1000, 1 );
 			add_filter( 'http_headers_useragent', array( &$this, 'check_wpua' ), 9000, 1 );
 			add_filter( 'http_request_host_is_external', array( &$this, 'allow_download_url' ), 1000, 3 );
+			add_filter( 'http_request_args', array( &$this, 'preempt_expect_header' ), 1000, 1 );	// add Expect header
 
 			if ( $this->sched_hours > 0 && ! empty( $this->sched_name ) ) {
 				if ( $this->p->debug->enabled )
@@ -222,7 +226,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			} else return $cur_wpua;
 		}
 	
-		// check if the url matches a known plugin download url
+		/*
+		 * Check if the url matches a known plugin download url.
+		 */
 		public function allow_download_url( $is_allowed, $ip, $url ) {
 			if ( ! empty( $this->update_host ) && strpos( $url, '/'.$this->update_host.'/' ) !== false ) {
 				foreach ( self::$config as $ext => $info ) {
@@ -238,6 +244,17 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						( $is_allowed ? 'allowed' : 'denied' ).'.' );
 			}
 			return $is_allowed;
+		}
+
+		/*
+		 * The Requests class doesn't explicitly set the "Expect" header, which 
+		 * allows cURL to automatically set it to "Expect: 100-continue".
+		 */
+		public function preempt_expect_header( $req ) {
+			if ( ! isset( $req['headers']['Expect'] ) ) {
+				$req['headers']['Expect'] = '';
+			}
+			return $req;
 		}
 
 		public function inject_data( $result, $action = null, $args = null ) {
@@ -514,7 +531,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( ! function_exists( 'get_plugins' ) ) {
 					$plugin_lib = trailingslashit( ABSPATH ).'wp-admin/includes/plugin.php';
 					if ( file_exists( $plugin_lib ) ) {
-						require_once( $plugin_lib );
+						require_once $plugin_lib;
 					} else {
 						if ( $this->p->debug->enabled )
 							$this->p->debug->log( $ext.' plugin: '.$plugin_lib.' missing' );

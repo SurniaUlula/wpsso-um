@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ||
 
 $plugin_filepath = dirname( __FILE__ ).'/wpsso-um.php';
 
-require_once( dirname( __FILE__ ).'/lib/config.php' );
+require_once dirname( __FILE__ ).'/lib/config.php';
 
 WpssoUmConfig::set_constants( $plugin_filepath );
 WpssoUmConfig::require_libs( $plugin_filepath );	// includes the register.php class library

@@ -67,9 +67,11 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 
 		private function activate_plugin() {
 			$version = WpssoUmConfig::$cf['plugin']['wpssoum']['version'];	// only our config
-			if ( class_exists( 'WpssoUtil' ) )
+			if ( class_exists( 'WpssoUtil' ) ) {
 				WpssoUtil::save_all_times( 'wpssoum', $version );
-			else WpssoUm::required_notice( true );			// $deactivate = true
+			} else {
+				WpssoUm::required_notice( true );			// $deactivate = true
+			}
 			self::delete_options();
 		}
 
