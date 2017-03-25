@@ -68,7 +68,7 @@ Note that the production stage level can be incremented on occasion for simple t
 
 = Changelog / Release Notes =
 
-**Version 1.5.18-rc2 (2017/03/25)**
+**Version 1.5.18-1 (2017/03/25)**
 
 * *New Features*
 	* None
@@ -114,7 +114,7 @@ Note that the production stage level can be incremented on occasion for simple t
 
 == Upgrade Notice ==
 
-= 1.5.18-rc2 =
+= 1.5.18-1 =
 
 (2017/03/25) Added an empty HTTP Expect: header to avoid "cURL error 52: Empty reply from server".
 
