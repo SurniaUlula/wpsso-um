@@ -8,7 +8,7 @@ License URI: https://www.gnu.org/licenses/gpl.txt
 Assets URI: https://surniaulula.github.io/wpsso-um/assets/
 Tags: wpsso, update, manager, pro version
 Contributors: jsmoriss
-Requires At Least: 3.8
+Requires At Least: 3.7
 Tested Up To: 4.7.3
 Stable Tag: 1.5.17-1
 
@@ -68,6 +68,17 @@ Note that the production stage level can be incremented on occasion for simple t
 
 = Changelog / Release Notes =
 
+**Version 1.5.18-rc2 (2017/03/25)**
+
+* *New Features*
+	* None
+* *Improvements*
+	* Added an empty HTTP `Expect:` header to avoid "cURL error 52: Empty reply from server" when using the WordPress wp_remote_get() function.
+* *Bugfixes*
+	* None
+* *Developer Notes*
+	* None
+
 **Version 1.5.17-1 (2017/02/26)**
 
 * *New Features*
@@ -102,6 +113,10 @@ Note that the production stage level can be incremented on occasion for simple t
 	* None
 
 == Upgrade Notice ==
+
+= 1.5.18-rc2 =
+
+(2017/03/25) Added an empty HTTP Expect: header to avoid "cURL error 52: Empty reply from server".
 
 = 1.5.17-1 =
 
