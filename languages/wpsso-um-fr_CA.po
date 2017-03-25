@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.17-1\n"
+"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.18-1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2017-02-26 17:13+0700\n"
-"PO-Revision-Date: 2017-02-26 17:13+0700\n"
+"POT-Creation-Date: 2017-03-25 10:52+0200\n"
+"PO-Revision-Date: 2017-03-25 10:54+0200\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -15,27 +15,27 @@ msgstr ""
 "X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: lib/com/update.php:375
+#: lib/com/update.php:393
 msgid "Update information for %s has been retrieved and saved."
 msgstr "L'information de mise à jour pour %s a été récupérée et sauvegardée."
 
-#: lib/com/update.php:381
+#: lib/com/update.php:399
 msgid "Failed saving retrieved update information for %s."
 msgstr "Erreur lors de l'enregistrement des informations de mise à jour pour %s."
 
-#: lib/com/update.php:453
+#: lib/com/update.php:471
 msgid "Update error from the WordPress wp_remote_get() function &mdash; %s"
 msgstr "Erreur de mise à jour de la fonction WordPress wp_remote_get() &mdash; %s"
 
-#: lib/com/update.php:520
+#: lib/com/update.php:538
 msgid "The WordPress library file %s is missing and required."
 msgstr "Le fichier de bibliothèque WordPress %s est manquant et requis."
 
-#: lib/com/update.php:528
+#: lib/com/update.php:546
 msgid "The WordPress %s function is not available &mdash; unable to retrieve installed plugin information."
 msgstr "La fonction WordPress %s n’est pas disponible &mdash; impossible de récupérer les informations des extensions installée."
 
-#: lib/com/update.php:541
+#: lib/com/update.php:559
 msgid "The %1$s plugin (%2$s) version number is missing from the WordPress installed plugins list."
 msgstr "Le numéro de version de l'extension %1$s (%2$s) est absente de la liste WordPress des extensions installée."
 
@@ -140,30 +140,29 @@ msgid "Refresh Update Information"
 msgstr "Actualiser info. de mise à jour"
 
 #: lib/sitesubmenu/site-um-general.php:80 lib/submenu/um-general.php:65
-#, fuzzy
 msgctxt "metabox title"
 msgid "Update Version Filters"
-msgstr "Filtres de version pour mises à jour"
+msgstr "Filtres de Version pour Mises à Jour"
 
-#: wpsso-um.php:80
+#: wpsso-um.php:81
 msgid "%1$s is an extension for the %2$s plugin &mdash; please install and activate the %3$s plugin before activating %4$s."
 msgstr "%1$s est une extension pour %2$s &mdash; s'il vous plaît installer et activer %3$s avant d'activer l'extension %4$s."
 
-#: wpsso-um.php:81
+#: wpsso-um.php:83
 msgid "The %1$s extension requires the %2$s plugin &mdash; please install and activate the %3$s plugin."
 msgstr "L'extension %1$s requiert %2$s &mdash; s'il vous plaît installer et activer l'extension %3$s."
 
-#: wpsso-um.php:150
+#: wpsso-um.php:156
 msgid "Performing an update check for the %s plugin."
 msgstr "Vérification de mise à jour pour l'extension %s."
 
-#: wpsso-um.php:169
+#: wpsso-um.php:175
 msgid "The %1$s extension v%2$s requires %3$s v%4$s or newer (v%5$s currently installed)."
 msgstr "L'extension %1$s v%2$s requiert l'utilisation de %3$s v%4$s ou plus récente (v%5$s est actuellement installée)."
 
 #. Plugin Name of the plugin/theme
-msgid "WPSSO Pro Update Manager (WPSSO UM)"
-msgstr "WPSSO Pro Update Manager (WPSSO UM)"
+msgid "WPSSO Update Manager (WPSSO UM)"
+msgstr "WPSSO Update Manager (WPSSO UM)"
 
 #. Plugin URI of the plugin/theme
 msgid "https://surniaulula.com/extend/plugins/wpsso-um/"
