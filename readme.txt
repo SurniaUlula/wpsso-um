@@ -6,7 +6,7 @@ Domain Path: /languages
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl.txt
 Assets URI: https://surniaulula.github.io/wpsso-um/assets/
-Tags: wpsso, update, manager, pro version
+Tags: wpsso, update, manager, schedule, update check, extension, pro version, development version, pre-release
 Contributors: jsmoriss
 Requires At Least: 3.7
 Tested Up To: 4.7.3
