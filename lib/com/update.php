@@ -135,8 +135,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				$auth_url = add_query_arg( array( 
 					'api_version' => self::$api_version,
-					'version_filter' => isset( $this->p->options['update_filter_for_'.$ext] ) ?
-						$this->p->options['update_filter_for_'.$ext] : 'stable',
+					'version_filter' => empty( $this->p->options['update_filter_for_'.$ext] ) ?	// just in case
+						'stable' : $this->p->options['update_filter_for_'.$ext],
 					'installed_version' => $installed_version,
 				), $auth_url );
 
@@ -595,13 +595,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		public function get_version_filter_regex( $ext ) {
+	
+			$filter_name = empty( $this->p->options['update_filter_for_'.$ext] ) ?	// just in case
+				'stable' : $this->p->options['update_filter_for_'.$ext];
 
-			$filter_name = isset( $this->p->options['update_filter_for_'.$ext] ) ?
-				$this->p->options['update_filter_for_'.$ext] : 'stable';
-
-			$filter_regex = isset( $this->p->cf['update']['version_regex'][$filter_name] ) ?
-				$this->p->cf['update']['version_regex'][$filter_name] :
-				$this->p->cf['update']['version_regex']['stable'];
+			$filter_regex = empty( $this->p->cf['update']['version_regex'][$filter_name] ) ?	// just in case
+				$this->p->cf['update']['version_regex']['stable'] :
+				$this->p->cf['update']['version_regex'][$filter_name];
 
 			return $filter_regex;
 		}

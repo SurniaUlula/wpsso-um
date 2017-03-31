@@ -75,20 +75,20 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 		public function filter_newer_version_available( $is_older, $ext, $installed_version, $stable_version, $latest_version ) {
 			if ( ! $is_older ) {
-				if ( isset( $this->p->options['update_filter_for_'.$ext] ) &&
+				if ( ! empty( $this->p->options['update_filter_for_'.$ext] ) &&
 					$this->p->options['update_filter_for_'.$ext] !== 'stable' &&
-						version_compare( $installed_version, $latest_version, '<' ) )
-							return true;
+					version_compare( $installed_version, $latest_version, '<' ) ) {
+					return true;
+				}
 			} else return $is_older;
 		}
 
 		public function filter_option_type( $type, $key ) {
-
-			if ( ! empty( $type ) )
+			if ( ! empty( $type ) ) {
 				return $type;
-			elseif ( strpos( $key, 'update_' ) !== 0 )
+			} elseif ( strpos( $key, 'update_' ) !== 0 ) {
 				return $type;
-
+			}
 			switch ( $key ) {
 				case 'update_check_hours':
 					return 'pos_num';
