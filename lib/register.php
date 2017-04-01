@@ -45,6 +45,7 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 			self::do_multisite( $sitewide, array( &$this, 'deactivate_plugin' ) );
 		}
 
+		// uninstall.php defines constants before calling network_uninstall()
 		public static function network_uninstall() {
 			$sitewide = true;
 
@@ -83,6 +84,7 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 			}
 		}
 
+		// uninstall.php defines constants before calling network_uninstall()
 		private static function uninstall_plugin() {
 			self::delete_options();
 		}
