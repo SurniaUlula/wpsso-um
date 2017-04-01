@@ -91,7 +91,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			}
 			switch ( $key ) {
 				case 'update_check_hours':
-					return 'pos_num';
+					return 'pos_int';
 					break;
 				case ( strpos( $key, 'update_filter_for_' ) === 0 ? true : false ):
 					return 'not_blank';
