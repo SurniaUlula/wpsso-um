@@ -15,7 +15,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		public static $cf = array(
 			'plugin' => array(
 				'wpssoum' => array(
-					'version' => '1.5.18-1',	// plugin version
+					'version' => '1.5.19-dev1',	// plugin version
 					'opt_version' => '3',		// increment when changing default options
 					'short' => 'WPSSO UM',
 					'name' => 'WPSSO Update Manager (WPSSO UM)',
@@ -42,7 +42,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 						'latest' => 'https://wpsso.com/extend/plugins/wpsso-um/latest/',
 						'update' => 'https://wpsso.com/extend/plugins/wpsso-um/update/',
 						'changelog' => 'https://wpsso.com/extend/plugins/wpsso-um/changelog/',
-						'codex' => 'https://wpsso.com/codex/plugins/wpsso-um/',
+						'docs' => 'https://wpsso.com/docs/plugins/wpsso-um/',
 						'faqs' => '',
 						'notes' => '',
 						'support' => '',
