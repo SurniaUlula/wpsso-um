@@ -43,7 +43,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 						'update' => 'https://wpsso.com/extend/plugins/wpsso-um/update/',
 						'changelog' => 'https://wpsso.com/extend/plugins/wpsso-um/changelog/',
 						'codex' => 'https://wpsso.com/codex/plugins/wpsso-um/',
-						'faq' => '',
+						'faqs' => '',
 						'notes' => '',
 						'support' => '',
 					),
