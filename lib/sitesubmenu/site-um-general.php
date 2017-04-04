@@ -14,18 +14,21 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 
 		public function __construct( &$plugin, $id, $name, $lib, $ext ) {
 			$this->p =& $plugin;
+
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+
 			$this->menu_id = $id;
 			$this->menu_name = $name;
 			$this->menu_lib = $lib;
-			$this->menu_ext = $ext;
-
-			if ( $this->p->debug->enabled )
-				$this->p->debug->mark();
+			$this->menu_ext = $ext;	// lowercase acronyn for plugin or extension
 		}
 
-		protected function set_form_property( $menu_ext ) {
+		protected function set_form_object( $menu_ext ) {
 			$def_site_opts = $this->p->opt->get_site_defaults();
-			$this->form = new SucomForm( $this->p, WPSSO_SITE_OPTIONS_NAME, $this->p->site_options, $def_site_opts, $menu_ext );
+			$this->form = new SucomForm( $this->p, WPSSO_SITE_OPTIONS_NAME,
+				$this->p->site_options, $def_site_opts, $menu_ext );
 		}
 
 		protected function add_side_meta_boxes() {
@@ -74,21 +77,21 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 						'option label', 'wpsso-um' ), '', 'update_check_hours' ).
 					'<td>'.$this->form->get_select( 'update_check_hours',
 						$this->p->cf['update']['check_hours'], 'update_filter', '', true ).'</td>'.
-					$this->p->admin->get_site_use( $this->form, true, 'update_check_hours', true );	// $network = true
+					WpssoAdmin::get_option_site_use( 'update_check_hours', $this->form, true, true );
 
 					$table_rows['subsection_version_filters'] = '<td></td><td class="subsection" colspan="3"><h4>'.
 						_x( 'Update Version Filters', 'metabox title', 'nextgen-facebook' ).'</h4></td>';
 
 					$version_filter = $this->p->cf['update']['version_filter'];
 					foreach ( $this->p->cf['plugin'] as $ext => $info ) {
-						if ( ! SucomUpdate::is_configured( $ext ) )
+						if ( ! SucomUpdate::is_configured( $ext ) ) {
 							continue;
-
+						}
 						$ext_name = preg_replace( '/\([A-Z ]+\)$/', '', $info['name'] );	// remove the short name
 						$table_rows[] = $this->form->get_th_html( $ext_name, '', 'update_version_filter' ).
 						'<td>'.$this->form->get_select( 'update_filter_for_'.$ext,
 							$version_filter, 'update_filter', '', true ).'</td>'.
-						$this->p->admin->get_site_use( $this->form, true, 'update_filter_for_'.$ext, true );	// $network = true
+						WpssoAdmin::get_option_site_use( 'update_filter_for_'.$ext, $this->form, true, true );
 					}
 
 					break;

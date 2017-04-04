@@ -14,13 +14,15 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 
 		public function __construct( &$plugin, $id, $name, $lib, $ext ) {
 			$this->p =& $plugin;
+
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+
 			$this->menu_id = $id;
 			$this->menu_name = $name;
 			$this->menu_lib = $lib;
-			$this->menu_ext = $ext;
-
-			if ( $this->p->debug->enabled )
-				$this->p->debug->mark();
+			$this->menu_ext = $ext;	// lowercase acronyn for plugin or extension
 		}
 
 		protected function add_side_meta_boxes() {
@@ -66,9 +68,9 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 
 					$version_filter = $this->p->cf['update']['version_filter'];
 					foreach ( $this->p->cf['plugin'] as $ext => $info ) {
-						if ( ! SucomUpdate::is_configured( $ext ) )
+						if ( ! SucomUpdate::is_configured( $ext ) ) {
 							continue;
-
+						}
 						$ext_name = preg_replace( '/\([A-Z ]+\)$/', '', $info['name'] );	// remove the short name
 						$table_rows[] = $this->form->get_th_html( $ext_name, '', 'update_version_filter' ).
 						'<td>'.$this->form->get_select( 'update_filter_for_'.$ext,
