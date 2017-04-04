@@ -68,7 +68,7 @@ Note that the production stage level can be incremented on occasion for simple t
 
 = Changelog / Release Notes =
 
-**Version 1.5.19-dev2 (2017/04/03)**
+**Version 1.5.19-dev2 (2017/04/04)**
 
 * *New Features*
 	* None
@@ -77,7 +77,7 @@ Note that the production stage level can be incremented on occasion for simple t
 * *Bugfixes*
 	* None
 * *Developer Notes*
-	* None
+	* Renamed WpssoAdmin get_site_use() to get_option_site_use() for WPSSO v3.40.11-1.
 
 **Version 1.5.18-1 (2017/03/25)**
 
@@ -127,7 +127,7 @@ Note that the production stage level can be incremented on occasion for simple t
 
 = 1.5.19-dev2 =
 
-(2017/04/03) Updated the plugin documentation and FAQ URLs.
+(2017/04/04) Updated the plugin documentation and FAQ URLs.
 
 = 1.5.18-1 =
 
