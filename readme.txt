@@ -10,7 +10,7 @@ Tags: wpsso, update, manager, schedule, update check, extension, pro version, de
 Contributors: jsmoriss
 Requires At Least: 3.7
 Tested Up To: 4.7.3
-Stable Tag: 1.5.18-1
+Stable Tag: 1.5.19-1
 
 WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
 
@@ -127,7 +127,7 @@ Note that the production stage level can be incremented on occasion for simple t
 
 = 1.5.19-1 =
 
-(2017/04/05) Updated the plugin icon images and the documentation URLs.
+(2017/04/05) Updated the plugin icon images and the documentation URLs. Renamed a WpssoAdmin class method for WPSSO v3.40.11-1.
 
 = 1.5.18-1 =
 
