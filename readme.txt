@@ -55,7 +55,7 @@ Simply *download*, *install*, and *activate*.
 
 * [GitHub](https://surniaulula.github.io/wpsso-um/)
 
-= Version Numbering Scheme =
+= Version Numbering =
 
 Version components: `{major}.{minor}.{bugfix}-{stage}{level}`
 
