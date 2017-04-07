@@ -68,6 +68,17 @@ Note that the production stage level can be incremented on occasion for simple t
 
 = Changelog / Release Notes =
 
+**Version 1.5.20-dev1 (2017/04/07)**
+
+* *New Features*
+	* None
+* *Improvements*
+	* Updated the version filters to allow for both {stage}# and {stage}.#.
+* *Bugfixes*
+	* None
+* *Developer Notes*
+	* None
+
 **Version 1.5.19-1 (2017/04/05)**
 
 * *New Features*
@@ -124,6 +135,10 @@ Note that the production stage level can be incremented on occasion for simple t
 	* None
 
 == Upgrade Notice ==
+
+= 1.5.20-dev1 =
+
+(2017/04/07) Updated the version filters to allow for both {stage}# and {stage}.#.
 
 = 1.5.19-1 =
 
