@@ -15,7 +15,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		public static $cf = array(
 			'plugin' => array(
 				'wpssoum' => array(
-					'version' => '1.5.19-1',	// plugin version
+					'version' => '1.5.20-dev1',	// plugin version
 					'opt_version' => '3',		// increment when changing default options
 					'short' => 'WPSSO UM',
 					'name' => 'WPSSO Update Manager (WPSSO UM)',
@@ -83,12 +83,11 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					'stable' => 'Stable / Production',
 				),
 				'version_regex' => array(
-					'dev' => '/[\.\-](dev|a|alpha|b|beta|rc)?[0-9]+$/',
-					'alpha' => '/[\.\-](a|alpha|b|beta|rc)?[0-9]+$/',
-					'beta' => '/[\.\-](b|beta|rc)?[0-9]+$/',
-					'rc' => '/[\.\-](rc)?[0-9]+$/',
-					'stable' => '/[\.\-][0-9]+$/',
-					'stable_one' => '/-1$/',
+					'dev' => '/^[0-9\.\-]+(dev|a|alpha|b|beta|rc)?[0-9\.\+]+$/',
+					'alpha' => '/^[0-9\.\-]+(a|alpha|b|beta|rc)?[0-9\.\+]+$/',
+					'beta' => '/^[0-9\.\-]+(b|beta|rc)?[0-9\.\+]+$/',
+					'rc' => '/^[0-9\.\-]+(rc)?[0-9\.\+]+$/',
+					'stable' => '/^[0-9\.\-\+]+$/',
 				),
 			),
 		);
