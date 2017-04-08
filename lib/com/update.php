@@ -48,7 +48,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return self::$api_version;
 		}
 
-		// called by get_json() when the transient / object cache is empty and/or not used
+		// called by get_plugin_json() when the transient / object cache is empty and/or not used
 		private static function set_umsg( $ext, $msg, $val ) {
 			if ( empty( $val ) ) {
 				delete_option( $ext.'_uapi'.self::$api_version.$msg );
@@ -256,7 +256,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		public function allow_download_url( $is_allowed, $ip, $url ) {
 			if ( ! empty( $this->update_host ) && strpos( $url, '/'.$this->update_host.'/' ) !== false ) {
 				foreach ( self::$config as $ext => $info ) {
-					$plugin_data = $this->get_json( $ext, true );	// $use_cache = true
+					$plugin_data = $this->get_plugin_json( $ext, true );	// $use_cache = true
 					if ( isset( $plugin_data->download_url ) && $url === $plugin_data->download_url ) {
 						if ( $this->p->debug->enabled ) {
 							$this->p->debug->log( 'allowing external host url '.$url );
@@ -284,15 +284,18 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		public function inject_plugin_data( $result, $action = null, $args = null ) {
+
+			// only provide plugin data for the thickbox installer
 		    	if ( $action !== 'plugin_information' || empty( $args->slug ) ) {
 				return $result;
+			// check that the plugin slug is ours
 			} elseif ( empty( $this->p->cf['*']['slug'][$args->slug] ) ) {
 				return $result;
+			} else { 
+				$ext = $this->p->cf['*']['slug'][$args->slug];
 			}
 
-			$ext = $this->p->cf['*']['slug'][$args->slug];
-			$plugin_data = $this->get_json( $ext, true );	// $use_cache = true
-
+			$plugin_data = $this->get_plugin_json( $ext, true );	// $use_cache = true
 			if ( is_object( $plugin_data ) && 
 				method_exists( $plugin_data, 'json_to_wp' ) ) {	// just in case
 				return $plugin_data->json_to_wp();
@@ -445,7 +448,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 	
 		public function get_update_data( $ext, $use_cache = true ) {
-			$plugin_data = $this->get_json( $ext, $use_cache );
+			$plugin_data = $this->get_plugin_json( $ext, $use_cache );
 			if ( empty( $plugin_data ) ) {
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( $ext.' plugin: returned update data is empty' );
@@ -456,7 +459,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 		}
 	
-		public function get_json( $ext, $use_cache = true ) {
+		public function get_plugin_json( $ext, $use_cache = true ) {
 
 			if ( empty( self::$config[$ext]['slug'] ) ) {
 				return null;
@@ -483,15 +486,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$cache_id = $lca.'_'.md5( $cache_salt );
 
 			if ( $use_cache ) {
-				$plugin_data = false;
-
 				if ( isset( self::$config[$ext]['plugin_data']->plugin ) ) {
 					$plugin_data = self::$config[$ext]['plugin_data'];
 				} else {
 					$plugin_data = self::$config[$ext]['plugin_data'] = get_transient( $cache_id );
 				}
-
-				if ( $plugin_data !== false ) {	// false if transient is expired or not found
+				// false if transient is expired or not found
+				if ( $plugin_data !== false ) {
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext.' plugin: returning plugin data from cache' );
 					}
@@ -526,10 +527,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$this->text_domain ), $result->get_error_message() ) );
 
 			} elseif ( isset( $result['response']['code'] ) && 
-				(int) $result['response']['code'] === 200 && ! empty( $result['body'] ) ) {
+				(int) $result['response']['code'] === 200 && 
+					! empty( $result['body'] ) ) {
 
-				$payload = json_decode( $result['body'], true, 32 );	// create an associative array
-				foreach ( array( 'err', 'inf' ) as $msg ) {	// add new or remove existing response messages
+				// create an associative array
+				$payload = json_decode( $result['body'], true, 32 );
+
+				// add new or remove existing response messages
+				foreach ( array( 'err', 'inf' ) as $msg ) {
 					self::$config[$ext]['u'.$msg] = self::set_umsg( $ext, $msg,
 						( empty( $payload['api_response'][$msg] ) ? 
 							false : $payload['api_response'][$msg] ) );

@@ -12,29 +12,29 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: lib/com/update.php:432
+#: lib/com/update.php:435
 msgid "Update information for %s has been retrieved and saved."
 msgstr ""
 
-#: lib/com/update.php:440
+#: lib/com/update.php:443
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:525
+#: lib/com/update.php:526
 msgid "Update error from the WordPress wp_remote_get() function &mdash; %s"
 msgstr ""
 
-#: lib/com/update.php:597
+#: lib/com/update.php:602
 msgid "The WordPress library file %s is missing and required."
 msgstr ""
 
-#: lib/com/update.php:605
+#: lib/com/update.php:610
 msgid ""
 "The WordPress %s function is not available &mdash; unable to retrieve "
 "installed plugin information."
 msgstr ""
 
-#: lib/com/update.php:620
+#: lib/com/update.php:625
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress "
 "installed plugins list."
