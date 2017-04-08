@@ -15,9 +15,9 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		public static $cf = array(
 			'plugin' => array(
 				'wpssoum' => array(
-					'version' => '1.5.20-dev4',	// plugin version
+					'version' => '1.5.20',		// plugin version
 					'opt_version' => '3',		// increment when changing default options
-					'short' => 'WPSSO UM',
+					'short' => 'WPSSO UM',		// short plugin name
 					'name' => 'WPSSO Update Manager (WPSSO UM)',
 					'desc' => 'WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.',
 					'slug' => 'wpsso-um',
