@@ -284,16 +284,20 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		public function inject_plugin_data( $result, $action = null, $args = null ) {
-		    	if ( $action !== 'plugin_information' || isset( $args->slug ) ) {
+		    	if ( $action !== 'plugin_information' || empty( $args->slug ) ) {
 				return $result;
 			} elseif ( empty( $this->p->cf['*']['slug'][$args->slug] ) ) {
 				return $result;
 			}
+
 			$ext = $this->p->cf['*']['slug'][$args->slug];
 			$plugin_data = $this->get_json( $ext, true );	// $use_cache = true
-			if ( ! empty( $plugin_data ) ) {
+
+			if ( is_object( $plugin_data ) && 
+				method_exists( $plugin_data, 'json_to_wp' ) ) {	// just in case
 				return $plugin_data->json_to_wp();
 			}
+
 			return $result;
 		}
 
@@ -447,7 +451,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$this->p->debug->log( $ext.' plugin: returned update data is empty' );
 				}
 				return null;
-			} else return SucomPluginUpdate::from_plugin_data( $plugin_data );
+			} else {	
+				return SucomPluginUpdate::from_plugin_data( $plugin_data );
+			}
 		}
 	
 		public function get_json( $ext, $use_cache = true ) {
