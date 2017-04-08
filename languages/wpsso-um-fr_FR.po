@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.19-1\n"
+"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.5.20-1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2017-03-31 17:58+0200\n"
-"PO-Revision-Date: 2017-04-04 16:31+0200\n"
+"POT-Creation-Date: 2017-04-08 06:05+0200\n"
+"PO-Revision-Date: 2017-04-08 06:05+0200\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -124,39 +124,39 @@ msgctxt "plugin description"
 msgid "WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions."
 msgstr "Extension WPSSO pour fournir des mises à jour a WordPress Social Sharing Optimization (WPSSO) Pro et ses extensions Pro."
 
-#: lib/sitesubmenu/site-um-general.php:35 lib/submenu/um-general.php:30
+#: lib/sitesubmenu/site-um-general.php:38 lib/submenu/um-general.php:32
 msgctxt "metabox title (side)"
 msgid "Help and Support"
 msgstr "Assistance et Soutien"
 
-#: lib/sitesubmenu/site-um-general.php:39 lib/submenu/um-general.php:34
+#: lib/sitesubmenu/site-um-general.php:42 lib/submenu/um-general.php:36
 msgctxt "metabox title (side)"
 msgid "Version Information"
 msgstr "Information de Version"
 
-#: lib/sitesubmenu/site-um-general.php:73 lib/submenu/um-general.php:59
+#: lib/sitesubmenu/site-um-general.php:76 lib/submenu/um-general.php:61
 msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr "Actualiser info. de mise à jour"
 
-#: lib/sitesubmenu/site-um-general.php:80 lib/submenu/um-general.php:65
+#: lib/sitesubmenu/site-um-general.php:83 lib/submenu/um-general.php:67
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr "Filtres de Version pour Mises à Jour"
 
-#: wpsso-um.php:81
+#: wpsso-um.php:79
 msgid "%1$s is an extension for the %2$s plugin &mdash; please install and activate the %3$s plugin before activating %4$s."
 msgstr "%1$s est une extension pour %2$s &mdash; s'il vous plaît installer et activer %3$s avant d'activer l'extension %4$s."
 
-#: wpsso-um.php:83
+#: wpsso-um.php:81
 msgid "The %1$s extension requires the %2$s plugin &mdash; please install and activate the %3$s plugin."
 msgstr "L'extension %1$s requiert %2$s &mdash; s'il vous plaît installer et activer l'extension %3$s."
 
-#: wpsso-um.php:156
+#: wpsso-um.php:154
 msgid "Performing an update check for the %s plugin."
 msgstr "Vérification de mise à jour pour l'extension %s."
 
-#: wpsso-um.php:175
+#: wpsso-um.php:173
 msgid "The %1$s extension v%2$s requires %3$s v%4$s or newer (v%5$s currently installed)."
 msgstr "L'extension %1$s v%2$s requiert l'utilisation de %3$s v%4$s ou plus récente (v%5$s est actuellement installée)."
 

@@ -28,11 +28,13 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					'req' => array(
 						'short' => 'WPSSO',
 						'name' => 'WordPress Social Sharing Optimization (WPSSO)',
-						'min_version' => '3.40.11-1',
+						'min_version' => '3.40.12-dev3',
 					),
 					'img' => array(
-						'icon_small' => 'images/icon-128x128.png',
-						'icon_medium' => 'images/icon-256x256.png',
+						'icons' => array(
+							'low' => 'images/icon-128x128.png',
+							'high' => 'images/icon-256x256.png',
+						),
 					),
 					'lib' => array(
 						// submenu items must have unique keys
@@ -47,34 +49,6 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 						'pro' => array(
 						),
 					),
-				),
-			),
-			'update' => array(
-				'check_hours' => array(
-					24 => 'Every day',
-					48 => 'Every two days',
-					72 => 'Every three days',
-					96 => 'Every four days',
-					120 => 'Every five days',
-					144 => 'Every six days',
-					168 => 'Every week',
-					336 => 'Every two weeks',
-					504 => 'Every three weeks',
-					720 => 'Every month',
-				),
-				'version_filter' => array(
-					'dev' => 'Development and Up',
-					'alpha' => 'Alpha and Up',
-					'beta' => 'Beta and Up',
-					'rc' => 'Release Candidate and Up',
-					'stable' => 'Stable / Production',
-				),
-				'version_regex' => array(
-					'dev' => '/^[0-9\.\-]+(dev|a|alpha|b|beta|rc)?[0-9\.\+]+$/',
-					'alpha' => '/^[0-9\.\-]+(a|alpha|b|beta|rc)?[0-9\.\+]+$/',
-					'beta' => '/^[0-9\.\-]+(b|beta|rc)?[0-9\.\+]+$/',
-					'rc' => '/^[0-9\.\-]+(rc)?[0-9\.\+]+$/',
-					'stable' => '/^[0-9\.\-\+]+$/',
 				),
 			),
 		);

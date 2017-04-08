@@ -61,12 +61,13 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 					$table_rows['update_check_hours'] = $this->form->get_th_html( _x( 'Refresh Update Information',
 						'option label', 'wpsso-um' ), '', 'update_check_hours' ).
 					'<td>'.$this->form->get_select( 'update_check_hours',
-						$this->p->cf['update']['check_hours'], 'update_filter', '', true ).'</td>';
+						$this->p->cf['um']['check_hours'], 'update_filter', '', true ).'</td>';
 
 					$table_rows['subsection_version_filters'] = '<td></td><td class="subsection"><h4>'.
 						_x( 'Update Version Filters', 'metabox title', 'nextgen-facebook' ).'</h4></td>';
 
-					$version_filter = $this->p->cf['update']['version_filter'];
+					$version_filter = $this->p->cf['um']['version_filter'];
+
 					foreach ( $this->p->cf['plugin'] as $ext => $info ) {
 						if ( ! SucomUpdate::is_configured( $ext ) ) {
 							continue;
