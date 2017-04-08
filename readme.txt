@@ -66,16 +66,18 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = Changelog / Release Notes =
 
-**Version 1.5.20-dev4 (2017/04/08)**
+**Version 1.5.20 (2017/04/08)**
 
 * *New Features*
 	* None
 * *Improvements*
-	* Updated the version filters to allow for both {stage}# and {stage}.#.
+	* None
 * *Bugfixes*
 	* None
 * *Developer Notes*
-	* None
+	* Minor code optimization for the plugin data filters.
+	* Updated the version filters to allow for both {stage}# and {stage}.#.
+	* Dropped the package number from the production version string.
 
 **Version 1.5.19-1 (2017/04/05)**
 
@@ -134,9 +136,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.5.20-dev4 =
+= 1.5.20 =
 
-(2017/04/08) Updated the version filters to allow for both {stage}# and {stage}.#.
+(2017/04/08) Minor code optimization for the plugin data filters. Updated the version filters to allow for both {stage}# and {stage}.#. 
 
 = 1.5.19-1 =
 
