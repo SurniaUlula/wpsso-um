@@ -48,7 +48,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return self::$api_version;
 		}
 
-		// called by get_plugin_json() when the transient / object cache is empty and/or not used
+		// called by get_plugin_data() when the transient / object cache is empty and/or not used
 		private static function set_umsg( $ext, $msg, $val ) {
 			if ( empty( $val ) ) {
 				delete_option( $ext.'_uapi'.self::$api_version.$msg );
@@ -256,7 +256,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		public function allow_download_url( $is_allowed, $ip, $url ) {
 			if ( ! empty( $this->update_host ) && strpos( $url, '/'.$this->update_host.'/' ) !== false ) {
 				foreach ( self::$config as $ext => $info ) {
-					$plugin_data = $this->get_plugin_json( $ext, true );	// $use_cache = true
+					$plugin_data = $this->get_plugin_data( $ext, true );	// $use_cache = true
 					if ( isset( $plugin_data->download_url ) && $url === $plugin_data->download_url ) {
 						if ( $this->p->debug->enabled ) {
 							$this->p->debug->log( 'allowing external host url '.$url );
@@ -295,7 +295,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$ext = $this->p->cf['*']['slug'][$args->slug];
 			}
 
-			$plugin_data = $this->get_plugin_json( $ext, true );	// $use_cache = true
+			$plugin_data = $this->get_plugin_data( $ext, true );	// $use_cache = true
 			if ( is_object( $plugin_data ) && 
 				method_exists( $plugin_data, 'json_to_wp' ) ) {	// just in case
 				return $plugin_data->json_to_wp();
@@ -448,7 +448,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 	
 		public function get_update_data( $ext, $use_cache = true ) {
-			$plugin_data = $this->get_plugin_json( $ext, $use_cache );
+			$plugin_data = $this->get_plugin_data( $ext, $use_cache );
 			if ( empty( $plugin_data ) ) {
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( $ext.' plugin: returned update data is empty' );
@@ -459,7 +459,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 		}
 	
-		public function get_plugin_json( $ext, $use_cache = true ) {
+		public function get_plugin_data( $ext, $use_cache = true ) {
 
 			if ( empty( self::$config[$ext]['slug'] ) ) {
 				return null;
@@ -542,7 +542,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				if ( empty( $result['headers']['x-smp-error'] ) ) {
 					self::$config[$ext]['uerr'] = false;
-					$plugin_data = SucomPluginData::from_json( $result['body'] );	// returns null on error
+					$plugin_data = SucomPluginData::data_from_json( $result['body'] );	// returns null on error
 					if ( empty( $plugin_data->plugin ) ) {
 						if ( $this->p->debug->enabled ) {
 							$this->p->debug->log( $ext.' plugin: returned plugin data is incomplete' );
@@ -770,14 +770,13 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 		public function __construct() {
 		}
 
-		public static function from_json( $json ) {
+		public static function data_from_json( $json ) {
 			$json_data = json_decode( $json );
 			if ( empty( $json_data ) || ! is_object( $json_data ) )  {
 				return null;
 			}
 			if ( isset( $json_data->plugin ) && ! empty( $json_data->plugin ) && 
 				isset( $json_data->version ) && ! empty( $json_data->version ) ) {
-
 				$plugin_data = new SucomPluginData();
 				foreach( get_object_vars( $json_data ) as $key => $value ) {
 					$plugin_data->$key = $value;
@@ -856,8 +855,8 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 		public function __construct() {
 		}
 
-		public function from_json( $json ) {
-			$plugin_data = SucomPluginData::from_json( $json );
+		public static function data_from_json( $json ) {
+			$plugin_data = SucomPluginData::data_from_json( $json );
 			if ( $plugin_data !== null )  {
 				return self::from_plugin_data( $plugin_data );
 			} else {
