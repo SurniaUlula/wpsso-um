@@ -66,7 +66,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = Changelog / Release Notes =
 
-**Version 1.5.20-dev1 (2017/04/07)**
+**Version 1.5.20-dev3 (2017/04/08)**
 
 * *New Features*
 	* None
@@ -134,9 +134,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.5.20-dev1 =
+= 1.5.20-dev3 =
 
-(2017/04/07) Updated the version filters to allow for both {stage}# and {stage}.#.
+(2017/04/08) Updated the version filters to allow for both {stage}# and {stage}.#.
 
 = 1.5.19-1 =
 
