@@ -15,7 +15,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		public static $cf = array(
 			'plugin' => array(
 				'wpssoum' => array(
-					'version' => '1.5.20-dev1',	// plugin version
+					'version' => '1.5.20-dev3',	// plugin version
 					'opt_version' => '3',		// increment when changing default options
 					'short' => 'WPSSO UM',
 					'name' => 'WPSSO Update Manager (WPSSO UM)',
@@ -33,19 +33,6 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					'img' => array(
 						'icon_small' => 'images/icon-128x128.png',
 						'icon_medium' => 'images/icon-256x256.png',
-					),
-					'url' => array(
-						// github
-						'readme_txt' => 'https://raw.githubusercontent.com/SurniaUlula/wpsso-um/master/readme.txt',
-						// wpsso
-						'download' => 'https://wpsso.com/extend/plugins/wpsso-um/',
-						'latest' => 'https://wpsso.com/extend/plugins/wpsso-um/latest/',
-						'update' => 'https://wpsso.com/extend/plugins/wpsso-um/update/',
-						'changelog' => 'https://wpsso.com/extend/plugins/wpsso-um/changelog/',
-						'docs' => 'https://wpsso.com/docs/plugins/wpsso-um/',
-						'faqs' => '',
-						'notes' => '',
-						'support' => '',
 					),
 					'lib' => array(
 						// submenu items must have unique keys
