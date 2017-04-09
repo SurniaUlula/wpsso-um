@@ -62,12 +62,12 @@ msgctxt "metabox title (side)"
 msgid "Version Information"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:76 lib/submenu/um-general.php:61
+#: lib/sitesubmenu/site-um-general.php:76 lib/submenu/um-general.php:62
 msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:83 lib/submenu/um-general.php:67
+#: lib/sitesubmenu/site-um-general.php:83 lib/submenu/um-general.php:68
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
