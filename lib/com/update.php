@@ -18,11 +18,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		private $sched_hours;
 		private $sched_name;
 		private $text_domain = 'sucom';
-		private $update_host = '';
 		private static $api_version = 2;
 		private static $config = array();
 
-		public function __construct( &$plugin, &$extensions, $check_hours = 24, $update_host = '', $text_domain = 'sucom' ) {
+		public function __construct( &$plugin, &$extensions, $check_hours = 24, $text_domain = 'sucom' ) {
 			$this->p =& $plugin;
 
 			if ( $this->p->debug->enabled ) {
@@ -34,7 +33,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$this->sched_hours = $check_hours >= 24 ? $check_hours : 24;	// example: 24 (minimum)
 			$this->sched_name = 'every'.$this->sched_hours.'hours';		// example: every24hours
 			$this->text_domain = $text_domain;				// example: wpsso-um
-			$this->update_host = $update_host;				// example: surniaulula.com
 			$this->set_config( $extensions );
 			$this->install_hooks();
 
@@ -196,7 +194,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			add_filter( 'site_transient_update_plugins', array( &$this, 'inject_plugin_update' ), 1000, 1 );
 			add_filter( 'pre_site_transient_update_plugins', array( &$this, 'enable_plugin_update' ), 1000, 1 );
 			add_filter( 'http_headers_useragent', array( &$this, 'check_wpua_value' ), PHP_INT_MAX, 1 );
-			add_filter( 'http_request_host_is_external', array( &$this, 'allow_download_url' ), 1000, 3 );
 			add_filter( 'http_request_args', array( &$this, 'preempt_expect_header' ), 1000, 1 );	// add Expect header
 
 			if ( $this->sched_hours > 0 && ! empty( $this->sched_name ) ) {
@@ -248,28 +245,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			} else {
 				return $cur_wpua;
 			}
-		}
-	
-		/*
-		 * Check if the url matches a known plugin download url.
-		 */
-		public function allow_download_url( $is_allowed, $ip, $url ) {
-			if ( ! empty( $this->update_host ) && strpos( $url, '/'.$this->update_host.'/' ) !== false ) {
-				foreach ( self::$config as $ext => $info ) {
-					$plugin_data = $this->get_plugin_data( $ext, true );	// $use_cache = true
-					if ( isset( $plugin_data->download_url ) && $url === $plugin_data->download_url ) {
-						if ( $this->p->debug->enabled ) {
-							$this->p->debug->log( 'allowing external host url '.$url );
-						}
-						return true;
-					}
-				}
-				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'external host url '.$url.' is '.
-						( $is_allowed ? 'allowed' : 'denied' ).'.' );
-				}
-			}
-			return $is_allowed;
 		}
 
 		/*
