@@ -295,6 +295,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		public function maybe_add_plugin_update( $updates = false ) {
 
 			foreach ( self::$config as $ext => $info ) {
+
 				if ( empty( $info['base'] ) ) {
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext.' plugin: missing base in configuration' );
@@ -314,8 +315,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$updates->response[$info['base']] = self::$config[$ext]['plugin_update'];
 					}
 					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $ext.' plugin: calling method/function', 4 );	// show calling method/function
 						$this->p->debug->log( $ext.' plugin: using saved update information' );
+						$this->p->debug->log( $ext.' plugin: calling method/function', 5 );
 					}
 					continue;	// get the next plugin from the config
 				}
@@ -343,20 +344,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext.' plugin: installed version ('.$installed_version.') '.
 							'different than update version ('.$option_data->update->version.')' );
-						/*
-						 * class index 1 => SucomUpdate::plugin_update()
-						 * class index 2 => apply_filters()
-						 * class index 3 => get_site_transient()
-						 * class index 4 => wp_get_update_data()
-						 */
-						$this->p->debug->log_arr( 'option_data', $updates->response[$info['base']], 4 );
+						$this->p->debug->log_arr( 'option_data', $updates->response[$info['base']], 5 );
 					}
 				} else {
 					self::$config[$ext]['plugin_update'] = false;	// false when installed is current
 
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext.' plugin: installed version is current (or newer) than update version' );
-						$this->p->debug->log_arr( 'option_data', $option_data->update->json_to_wp(), 4 );
+						$this->p->debug->log_arr( 'option_data', $option_data->update->json_to_wp(), 5 );
 					}
 				}
 			}
