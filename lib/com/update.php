@@ -194,7 +194,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			add_filter( 'site_transient_update_plugins', array( &$this, 'inject_plugin_update' ), 1000, 1 );
 			add_filter( 'pre_site_transient_update_plugins', array( &$this, 'enable_plugin_update' ), 1000, 1 );
 			add_filter( 'http_headers_useragent', array( &$this, 'check_wpua_value' ), PHP_INT_MAX, 1 );
-			add_filter( 'http_request_args', array( &$this, 'preempt_expect_header' ), 1000, 1 );	// add Expect header
 
 			if ( $this->sched_hours > 0 && ! empty( $this->sched_name ) ) {
 
@@ -234,28 +233,17 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 		}
 
-		public function check_wpua_value( $cur_wpua ) {
+		public function check_wpua_value( $wpua ) {
 			global $wp_version;
-			$def_wpua = 'WordPress/'.$wp_version.'; '.$this->home_url();
-			if ( $def_wpua !== $cur_wpua ) {
+			$correct = 'WordPress/'.$wp_version.'; '.$this->home_url();
+			if ( $correct !== $wpua ) {
 				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'incorrect wpua for '.$cur_wpua );
+					$this->p->debug->log( 'incorrect wpua for '.$wpua );
 				}
-				return $def_wpua;
+				return $correct;
 			} else {
-				return $cur_wpua;
+				return $wpua;
 			}
-		}
-
-		/*
-		 * The Requests class doesn't explicitly set the "Expect" header, which 
-		 * allows cURL to automatically set it to "Expect: 100-continue".
-		 */
-		public function preempt_expect_header( $req ) {
-			if ( ! isset( $req['headers']['Expect'] ) ) {
-				$req['headers']['Expect'] = '';
-			}
-			return $req;
 		}
 
 		public function inject_plugin_data( $result, $action = null, $args = null ) {

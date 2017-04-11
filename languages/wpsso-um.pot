@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager (WPSSO UM) 1.6.0-dev.1\n"
+"Project-Id-Version: WPSSO Update Manager (WPSSO UM) 1.6.0-dev.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2017-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -12,29 +12,29 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: lib/com/update.php:410
+#: lib/com/update.php:398
 msgid "Update information for %s has been retrieved and saved."
 msgstr ""
 
-#: lib/com/update.php:418
+#: lib/com/update.php:406
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:501
+#: lib/com/update.php:489
 msgid "Update error from the WordPress wp_remote_get() function &mdash; %s"
 msgstr ""
 
-#: lib/com/update.php:577
+#: lib/com/update.php:565
 msgid "The WordPress library file %s is missing and required."
 msgstr ""
 
-#: lib/com/update.php:585
+#: lib/com/update.php:573
 msgid ""
 "The WordPress %s function is not available &mdash; unable to retrieve "
 "installed plugin information."
 msgstr ""
 
-#: lib/com/update.php:600
+#: lib/com/update.php:588
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress "
 "installed plugins list."
