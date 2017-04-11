@@ -66,7 +66,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = Changelog / Release Notes =
 
-**Version 1.6.0-dev.1 (2017/04/10)**
+**Version 1.6.0-dev.2 (2017/04/10)**
 
 * *New Features*
 	* None
@@ -147,7 +147,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.6.0-dev.1 =
+= 1.6.0-dev.2 =
 
 (2017/04/10) Moved the 'http_request_host_is_external' filter to the WPSSO v3.40.13 plugin.
 
