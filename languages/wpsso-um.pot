@@ -84,11 +84,11 @@ msgid ""
 "activate the %3$s plugin."
 msgstr ""
 
-#: wpsso-um.php:154
+#: wpsso-um.php:162
 msgid "Performing an update check for the %s plugin."
 msgstr ""
 
-#: wpsso-um.php:173
+#: wpsso-um.php:181
 msgid ""
 "The %1$s extension v%2$s requires %3$s v%4$s or newer (v%5$s currently "
 "installed)."

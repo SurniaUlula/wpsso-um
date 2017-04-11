@@ -39,7 +39,6 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 		private static $instance;
 		private static $check_hours = 24;
-		private static $update_host = 'wpsso.com';
 		private static $have_req_min = true;	// have at least minimum wpsso version
 
 		public function __construct() {
@@ -61,8 +60,9 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		}
 
 		public static function &get_instance() {
-			if ( ! isset( self::$instance ) )
+			if ( ! isset( self::$instance ) ) {
 				self::$instance = new self;
+			}
 			return self::$instance;
 		}
 
@@ -108,43 +108,51 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		}
 
 		public function wpsso_init_options() {
-			if ( method_exists( 'Wpsso', 'get_instance' ) )
+			if ( method_exists( 'Wpsso', 'get_instance' ) ) {
 				$this->p =& Wpsso::get_instance();
-			else $this->p =& $GLOBALS['wpsso'];
+			} else {
+				$this->p =& $GLOBALS['wpsso'];
+			}
 
-			if ( $this->p->debug->enabled )
+			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
+			}
 
-			if ( self::$have_req_min === false )
+			if ( self::$have_req_min === false ) {
 				return;		// stop here
+			}
 		}
 
 		public function wpsso_init_objects() {
-			if ( $this->p->debug->enabled )
+			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
+			}
 
-			if ( self::$have_req_min === false )
+			if ( self::$have_req_min === false ) {
 				return;		// stop here
+			}
 
 			$info = WpssoUmConfig::$cf['plugin']['wpssoum'];
 			self::$check_hours = $this->get_update_check_hours();
 			$this->filters = new WpssoUmFilters( $this->p );
 			$this->update = new SucomUpdate( $this->p, $this->p->cf['plugin'],
-				self::$check_hours, self::$update_host, $info['text_domain'] );
+				self::$check_hours, $info['text_domain'] );
 		}
 
 		public function wpsso_init_plugin() {
-			if ( $this->p->debug->enabled )
+			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
+			}
 
-			if ( self::$have_req_min === false )
+			if ( self::$have_req_min === false ) {
 				return $this->min_version_notice();
+			}
 
 			if ( is_admin() ) {
 				foreach ( $this->p->cf['plugin'] as $ext => $info ) {
-					if ( ! SucomUpdate::is_configured( $ext ) )
+					if ( ! SucomUpdate::is_configured( $ext ) ) {
 						continue;
-
+					}
 					$last_utime = $this->update->get_umsg( $ext, 'time' );		// last update check
 					$next_utime = $last_utime + ( self::$check_hours * 3600 );	// next scheduled check
 
@@ -171,19 +179,24 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 			if ( is_admin() ) {
 				$this->p->notice->err( sprintf( __( 'The %1$s extension v%2$s requires %3$s v%4$s or newer (v%5$s currently installed).',
-					'wpsso-um' ), $info['name'], $info['version'], $info['req']['short'], $info['req']['min_version'], $wpsso_version ) );
+					'wpsso-um' ), $info['name'], $info['version'], $info['req']['short'],
+						$info['req']['min_version'], $wpsso_version ) );
 			}
 		}
 
 		// minimum value is 12 hours for the constant, 24 hours otherwise
 		public static function get_update_check_hours() {
+
 			$wpsso =& Wpsso::get_instance();
-			if ( SucomUtil::get_const( 'WPSSOUM_CHECK_HOURS', 0 ) >= 12 )
+
+			if ( SucomUtil::get_const( 'WPSSOUM_CHECK_HOURS', 0 ) >= 12 ) {
 				return WPSSOUM_CHECK_HOURS;
-			elseif ( isset( $wpsso->options['update_check_hours'] ) &&
-				$wpsso->options['update_check_hours'] >= 24 )
-					return $wpsso->options['update_check_hours'];
-			else return 24;	// default value
+			} elseif ( isset( $wpsso->options['update_check_hours'] ) &&
+				$wpsso->options['update_check_hours'] >= 24 ) {
+				return $wpsso->options['update_check_hours'];
+			} else {
+				return 24;	// default value
+			}
 		}
 	}
 
