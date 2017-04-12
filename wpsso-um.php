@@ -13,7 +13,7 @@
  * Description: WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
  * Requires At Least: 3.7
  * Tested Up To: 4.7.3
- * Version: 1.6.0-dev.3
+ * Version: 1.6.0-a.1
  * 
  * Version Numbering: {major}.{minor}.{bugfix}[-{stage}.{level}]
  *
@@ -39,7 +39,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 		private static $instance;
 		private static $check_hours = 24;
-		private static $have_req_min = true;	// have at least minimum wpsso version
+		private static $have_req_min = true;	// have minimum wpsso version
 
 		public function __construct() {
 
@@ -118,8 +118,10 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 				$this->p->debug->mark();
 			}
 
-			if ( self::$have_req_min === false ) {
-				return;		// stop here
+			if ( self::$have_req_min ) {
+				$this->p->is_avail['p_ext']['um'] = true;
+			} else {
+				$this->p->is_avail['p_ext']['um'] = false;	// just in case
 			}
 		}
 
@@ -128,15 +130,13 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 				$this->p->debug->mark();
 			}
 
-			if ( self::$have_req_min === false ) {
-				return;		// stop here
+			if ( self::$have_req_min ) {
+				$info = WpssoUmConfig::$cf['plugin']['wpssoum'];
+				self::$check_hours = $this->get_update_check_hours();
+				$this->filters = new WpssoUmFilters( $this->p );
+				$this->update = new SucomUpdate( $this->p, $this->p->cf['plugin'],
+					self::$check_hours, $info['text_domain'] );
 			}
-
-			$info = WpssoUmConfig::$cf['plugin']['wpssoum'];
-			self::$check_hours = $this->get_update_check_hours();
-			$this->filters = new WpssoUmFilters( $this->p );
-			$this->update = new SucomUpdate( $this->p, $this->p->cf['plugin'],
-				self::$check_hours, $info['text_domain'] );
 		}
 
 		public function wpsso_init_plugin() {
@@ -144,8 +144,8 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 				$this->p->debug->mark();
 			}
 
-			if ( self::$have_req_min === false ) {
-				return $this->min_version_notice();
+			if ( ! self::$have_req_min ) {
+				return $this->min_version_notice();	// stop here
 			}
 
 			if ( is_admin() ) {
@@ -160,7 +160,8 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 						if ( $this->p->debug->enabled ) {
 							$this->p->debug->log( 'requesting update check for '.$ext );
 							$this->p->notice->inf( sprintf( __( 'Performing an update check for the %s plugin.',
-								'wpsso-um' ), $info['name'] ), true, __FUNCTION__.'_'.$ext.'_update_check', true );
+								'wpsso-um' ), $info['name'] ), true, 
+									__FUNCTION__.'_'.$ext.'_update_check', true );	// dismissable
 						}
 						$this->update->check_for_updates( $ext, false, false );	// $notice = false, $use_cache = false
 					}
