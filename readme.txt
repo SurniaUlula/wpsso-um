@@ -75,7 +75,8 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *Bugfixes*
 	* None
 * *Developer Notes*
-	* Moved the 'http_request_host_is_external' filter to the WPSSO v3.40.13 plugin.
+	* Moved the 'http_request_host_is_external' filter hook to the WPSSO v3.40.13 plugin.
+	* Refactored the plugin init filters and moved/renamed the registration boolean from `is_avail[$name]` to `is_avail['p_ext'][$name]`.
 
 **Version 1.5.20 (2017/04/08)**
 
@@ -149,7 +150,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = 1.6.0-a.1 =
 
-(2017/04/12) Moved the 'http_request_host_is_external' filter to the WPSSO v3.40.13 plugin.
+(2017/04/12) Moved the 'http_request_host_is_external' filter hook to the WPSSO v3.40.13 plugin. Refactored the plugin init filters and moved/renamed the registration boolean.
 
 = 1.5.20 =
 
