@@ -273,7 +273,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				return $res;
 			}
 
-			// get the config extension acronym
+			// get the extension acronym for the config
 			$ext = $this->p->cf['*']['slug'][$args->slug];
 
 			// make sure we have a config for that slug
