@@ -445,7 +445,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				return null;
 			}
 
-			return SucomPluginUpdate::from_plugin_data( $plugin_data );
+			return SucomPluginUpdate::update_from_data( $plugin_data );
 		}
 	
 		public function get_plugin_data( $ext, $use_cache = true ) {
@@ -766,16 +766,22 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 		}
 
 		public static function data_from_json( $json ) {
+
 			$json_data = json_decode( $json );
+
 			if ( empty( $json_data ) || ! is_object( $json_data ) )  {
 				return null;
 			}
+
 			if ( isset( $json_data->plugin ) && ! empty( $json_data->plugin ) && 
 				isset( $json_data->version ) && ! empty( $json_data->version ) ) {
+
 				$plugin_data = new SucomPluginData();
+
 				foreach( get_object_vars( $json_data ) as $key => $value ) {
 					$plugin_data->$key = $value;
 				}
+
 				return $plugin_data;
 			} else {
 				return null;
@@ -783,7 +789,9 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 		}
 	
 		public function json_to_wp(){
-			$data = new StdClass;
+
+			$plugin_data = new StdClass;
+
 			foreach ( array(
 				'name', 
 				'slug', 
@@ -802,34 +810,34 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 			) as $prop_name ) {
 				if ( isset( $this->$prop_name ) ) {
 					if ( $prop_name === 'download_url' ) {
-						$data->download_link = $this->download_url;
+						$plugin_data->download_link = $this->download_url;
 					} elseif ( $prop_name === 'author_homepage' ) {
-						$data->author = strpos( $this->author, '<a href=' ) === false ?
+						$plugin_data->author = strpos( $this->author, '<a href=' ) === false ?
 							sprintf( '<a href="%s">%s</a>', $this->author_homepage, $this->author ) :
 							$this->author;
 					} else {
-						$data->$prop_name = $this->$prop_name;
+						$plugin_data->$prop_name = $this->$prop_name;
 					}
 				} elseif ( $prop_name === 'author_homepage' ) {
-					$data->author = $this->author;
+					$plugin_data->author = $this->author;
 				}
 			}
 
 			if ( is_array( $this->sections ) )  {
-				$data->sections = $this->sections;
+				$plugin_data->sections = $this->sections;
 			} elseif ( is_object( $this->sections ) ) {
-				$data->sections = get_object_vars( $this->sections );
+				$plugin_data->sections = get_object_vars( $this->sections );
 			} else {
-				$data->sections = array( 'description' => '' );
+				$plugin_data->sections = array( 'description' => '' );
 			}
 
 			if ( is_array( $this->banners ) ) {
-				$data->banners = $this->banners;
+				$plugin_data->banners = $this->banners;
 			} elseif ( is_object( $this->banners ) ) {
-				$data->banners = get_object_vars( $this->banners );
+				$plugin_data->banners = get_object_vars( $this->banners );
 			}
 
-			return $data;
+			return $plugin_data;
 		}
 	}
 }
@@ -850,17 +858,21 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 		public function __construct() {
 		}
 
-		public static function data_from_json( $json ) {
+		public static function update_from_json( $json ) {
+
 			$plugin_data = SucomPluginData::data_from_json( $json );
+
 			if ( $plugin_data !== null )  {
-				return self::from_plugin_data( $plugin_data );
+				return self::update_from_data( $plugin_data );
 			} else {
 				return null;
 			}
 		}
 	
-		public static function from_plugin_data( $data ){
+		public static function update_from_data( $plugin_data ){
+
 			$plugin_update = new SucomPluginUpdate();
+
 			foreach ( array(
 				'id', 
 				'slug', 
@@ -871,15 +883,18 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 				'upgrade_notice',
 				'qty_used', 
 			) as $prop_name ) {
-				if ( isset( $data->$prop_name ) ) {
-					$plugin_update->$prop_name = $data->$prop_name;
+				if ( isset( $plugin_data->$prop_name ) ) {
+					$plugin_update->$prop_name = $plugin_data->$prop_name;
 				}
 			}
+
 			return $plugin_update;
 		}
 	
 		public function json_to_wp() {
-			$data = new StdClass;
+
+			$plugin_update = new StdClass;
+
 			foreach ( array(
 				'id' => 'id',
 				'slug' => 'slug',
@@ -889,12 +904,13 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 				'download_url' => 'package',
 				'upgrade_notice' => 'upgrade_notice',
 				'qty_used' => 'qty_used',
-			) as $old_prop => $new_prop ) {
-				if ( isset( $this->$old_prop ) ) {
-					$data->$new_prop = $this->$old_prop;
+			) as $json_update_prop => $wp_update_prop ) {
+				if ( isset( $this->$json_update_prop ) ) {
+					$plugin_update->$wp_update_prop = $this->$json_update_prop;
 				}
 			}
-			return $data;
+
+			return $plugin_update;
 		}
 	}
 }
