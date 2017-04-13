@@ -80,7 +80,7 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 					WpssoAdmin::get_option_site_use( 'update_check_hours', $this->form, true, true );
 
 					$table_rows['subsection_version_filters'] = '<td></td><td class="subsection" colspan="3"><h4>'.
-						_x( 'Update Version Filters', 'metabox title', 'nextgen-facebook' ).'</h4></td>';
+						_x( 'Update Version Filters', 'metabox title', 'wpsso-um' ).'</h4></td>';
 
 					$version_filter = $this->p->cf['um']['version_filter'];
 

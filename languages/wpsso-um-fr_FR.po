@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.6.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2017-04-13 08:11+0200\n"
-"PO-Revision-Date: 2017-04-13 08:11+0200\n"
+"PO-Revision-Date: 2017-04-13 10:05+0200\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -42,7 +42,7 @@ msgstr "Le numéro de version de l'extension %1$s (%2$s) est absente de la liste
 #: lib/config-gettext-extract.php:3
 msgctxt "lib file description"
 msgid "Update Manager"
-msgstr "Gestionnaire de mise a jour"
+msgstr "Gestionnaire de Mises à Jour"
 
 #: lib/config-gettext-extract.php:4
 msgctxt "plugin description"
@@ -67,7 +67,7 @@ msgstr "Pro"
 #: lib/sitesubmenu/site-um-general.php:52
 msgctxt "metabox title"
 msgid "Network Update Manager for %s"
-msgstr "Gestionnaire de mise à jour réseau pour %s"
+msgstr "Gestion de Mises à Jour Réseau pour %s"
 
 #: lib/sitesubmenu/site-um-general.php:76 lib/submenu/um-general.php:62
 msgctxt "option label"
@@ -82,7 +82,7 @@ msgstr "Filtres de Version pour Mises à Jour"
 #: lib/submenu/um-general.php:46
 msgctxt "metabox title"
 msgid "Update Manager for %s"
-msgstr "Gestionnaire de mise à jour pour %s"
+msgstr "Gestion de Mises à Jour pour %s"
 
 #: wpsso-um.php:80
 msgid "%1$s is an extension for the %2$s plugin &mdash; please install and activate the %3$s plugin before activating %4$s."

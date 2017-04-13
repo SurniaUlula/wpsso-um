@@ -65,7 +65,7 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 						$this->p->cf['um']['check_hours'], 'update_filter', '', true ).'</td>';
 
 					$table_rows['subsection_version_filters'] = '<td></td><td class="subsection"><h4>'.
-						_x( 'Update Version Filters', 'metabox title', 'nextgen-facebook' ).'</h4></td>';
+						_x( 'Update Version Filters', 'metabox title', 'wpsso-um' ).'</h4></td>';
 
 					$version_filter = $this->p->cf['um']['version_filter'];
 
