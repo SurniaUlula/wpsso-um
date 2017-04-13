@@ -45,12 +45,12 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 
 		protected function add_meta_boxes() {
 			$lca = $this->p->cf['lca'];
-			$short = $this->p->cf['plugin'][$lca]['short'];
+			$short_pro = $this->p->cf['plugin'][$lca]['short'].' '._x( 'Pro', 'package type', 'wpsso-um' );
 
 			// add_meta_box( $id, $title, $callback, $post_type, $context, $priority, $callback_args );
 			add_meta_box( $this->pagehook.'_general', 
-				_x( 'Network '.$short.' Update Manager', 'metabox title', 'wpsso-um' ),
-				array( &$this, 'show_metabox_general' ), $this->pagehook, 'normal' );
+				sprintf( _x( 'Network Update Manager for %s', 'metabox title', 'wpsso-um' ), $short_pro ),
+					array( &$this, 'show_metabox_general' ), $this->pagehook, 'normal' );
 
 			// add a class to set a minimum width for the network postboxes
 			add_filter( 'postbox_classes_'.$this->pagehook.'_'.$this->pagehook.'_general', 

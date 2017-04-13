@@ -13,7 +13,7 @@
  * Description: WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
  * Requires At Least: 3.7
  * Tested Up To: 4.7.3
- * Version: 1.6.0-a.2
+ * Version: 1.6.0-b.1
  * 
  * Version Numbering: {major}.{minor}.{bugfix}[-{stage}.{level}]
  *
@@ -25,8 +25,9 @@
  * Copyright 2015-2017 Jean-Sebastien Morisset (https://surniaulula.com/)
  */
 
-if ( ! defined( 'ABSPATH' ) ) 
+if ( ! defined( 'ABSPATH' ) ) {
 	die( 'These aren\'t the droids you\'re looking for...' );
+}
 
 if ( ! class_exists( 'WpssoUm' ) ) {
 
@@ -37,8 +38,8 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		public $filters;		// WpssoUmFilters
 		public $update;			// SucomUpdate
 
+		private $check_hours = 24;
 		private static $instance;
-		private static $check_hours = 24;
 		private static $have_req_min = true;	// have minimum wpsso version
 
 		public function __construct() {
@@ -132,10 +133,9 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 			if ( self::$have_req_min ) {
 				$info = WpssoUmConfig::$cf['plugin']['wpssoum'];
-				self::$check_hours = $this->get_update_check_hours();
+				$this->check_hours = $this->get_update_check_hours();
 				$this->filters = new WpssoUmFilters( $this->p );
-				$this->update = new SucomUpdate( $this->p, $this->p->cf['plugin'],
-					self::$check_hours, $info['text_domain'] );
+				$this->update = new SucomUpdate( $this->p, $this->check_hours, $info['text_domain'] );
 			}
 		}
 
@@ -154,7 +154,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 						continue;
 					}
 					$last_utime = $this->update->get_umsg( $ext, 'time' );		// last update check
-					$next_utime = $last_utime + ( self::$check_hours * 3600 );	// next scheduled check
+					$next_utime = $last_utime + ( $this->check_hours * 3600 );	// next scheduled check
 
 					if ( empty( $last_utime ) || $next_utime + 86400 < time() ) {	// plus one day
 						if ( $this->p->debug->enabled ) {
@@ -186,15 +186,12 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		}
 
 		// minimum value is 12 hours for the constant, 24 hours otherwise
-		public static function get_update_check_hours() {
-
-			$wpsso =& Wpsso::get_instance();
-
+		public function get_update_check_hours() {
 			if ( SucomUtil::get_const( 'WPSSOUM_CHECK_HOURS', 0 ) >= 12 ) {
 				return WPSSOUM_CHECK_HOURS;
-			} elseif ( isset( $wpsso->options['update_check_hours'] ) &&
-				$wpsso->options['update_check_hours'] >= 24 ) {
-				return $wpsso->options['update_check_hours'];
+			} elseif ( isset( $this->p->options['update_check_hours'] ) &&
+				$this->p->options['update_check_hours'] >= 24 ) {
+				return $this->p->options['update_check_hours'];
 			} else {
 				return 24;	// default value
 			}

@@ -20,21 +20,24 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		private $text_domain = 'sucom';
 		private static $api_version = 2;
 		private static $config = array();
+		private static $versions = array();
 
-		public function __construct( &$plugin, &$extensions, $check_hours = 24, $text_domain = 'sucom' ) {
+		public function __construct( &$plugin, $check_hours = 24, $text_domain = 'sucom' ) {
 			$this->p =& $plugin;
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark( 'update manager setup' );	// begin timer
 			}
 
-			$slug = $extensions[$this->p->cf['lca']]['slug'];		// example: wpsso
+			$lca = $this->p->cf['lca'];
+			$slug = $this->p->cf['plugin'][$lca]['slug'];			// example: wpsso
+
 			$this->cron_hook = 'plugin_update-'.$slug;			// example: plugin_update-wpsso
 			$this->sched_hours = $check_hours >= 24 ? $check_hours : 24;	// example: 24 (minimum)
 			$this->sched_name = 'every'.$this->sched_hours.'hours';		// example: every24hours
 			$this->text_domain = $text_domain;				// example: wpsso-um
 
-			$this->set_config( $extensions );
+			$this->set_config();
 			$this->install_hooks();
 
 			if ( $this->p->debug->enabled ) {
@@ -42,85 +45,24 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 		}
 
-		// called by delete_options() in the register class
-		public static function get_api_version() {
-			return self::$api_version;
-		}
-
-		// called by get_plugin_data() when the transient / object cache is empty and/or not used
-		private static function set_umsg( $ext, $msg, $val ) {
-			if ( empty( $val ) ) {
-				delete_option( $ext.'_uapi'.self::$api_version.$msg );
-				self::$config[$ext]['u'.$msg] = false;	// just in case
-			} else {
-				update_option( $ext.'_uapi'.self::$api_version.$msg, base64_encode( $val ) );	// save as string
-				self::$config[$ext]['u'.$msg] = $val;
-			}
-			return self::$config[$ext]['u'.$msg];
-		}
-
-		public static function get_umsg( $ext, $msg = 'err', $def = false ) {
-			if ( ! isset( self::$config[$ext]['u'.$msg] ) ) {
-				$val = get_option( $ext.'_uapi'.self::$api_version.$msg, $def );
-				if ( ! is_bool( $val ) ) {
-					$val = base64_decode( $val );	// value is saved as a string
-				}
-				if ( empty( $val ) ) {
-					self::$config[$ext]['u'.$msg] = false;
-				} else {
-					self::$config[$ext]['u'.$msg] = $val;
-				}
-			}
-			return self::$config[$ext]['u'.$msg];
-		}
-
-		public static function get_option( $ext, $idx = false ) {
-			if ( ! empty( self::$config[$ext]['opt_name'] ) ) {
-				$opt_data = self::get_option_data( $ext );
-				if ( $idx !== false ) {
-					if ( is_object( $opt_data->update ) &&
-						isset( $opt_data->update->$idx ) ) {
-						return $opt_data->update->$idx;
-					}
-				} else {
-					return $opt_data;
-				}
-			}
-			return false;
-		}
-
-		private static function get_option_data( $ext, $def = false ) {
-			if ( ! isset( self::$config[$ext]['opt_data'] ) ) {
-				if ( ! empty( self::$config[$ext]['opt_name'] ) ) {
-					self::$config[$ext]['opt_data'] = get_option( self::$config[$ext]['opt_name'], $def );
-				} else {
-					self::$config[$ext]['opt_data'] = $def;
-				}
-			}
-			return self::$config[$ext]['opt_data'];
-		}
-
-		private static function update_option_data( $ext, $opt_data ) {
-			self::$config[$ext]['opt_data'] = $opt_data;
-			if ( ! empty( self::$config[$ext]['opt_name'] ) ) {
-				return update_option( self::$config[$ext]['opt_name'], $opt_data );
-			}
-			return false;
-		}
-
-		public function set_config( &$extensions ) {
+		public function set_config() {
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
 			}
 
-			foreach ( $extensions as $ext => $info ) {
+			$lca = $this->p->cf['lca'];
+			$aop = $this->p->check->aop( $lca, true, $this->p->is_avail['aop'] );
+
+			foreach ( $this->p->cf['plugin'] as $ext => $info ) {
 
 				$auth_type = empty( $info['update_auth'] ) ? 'none' : $info['update_auth'];
 				$auth_key = 'plugin_'.$ext.'_'.$auth_type;
 				$auth_id = empty( $this->p->options[$auth_key] ) ? '' : $this->p->options[$auth_key];
 
-				if ( $auth_type !== 'none' && empty( $auth_id ) ) {
+				if ( $ext !== $lca && $ext !== $lca.'um' && ! $aop ) {
+					continue;
+				} elseif ( $auth_type !== 'none' && empty( $auth_id ) ) {
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext.' plugin: extension skipped - empty '.$auth_key.' option value' );
 					}
@@ -134,24 +76,22 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				$auth_url = apply_filters( 'sucom_update_url', $info['url']['update'], $info['slug'] );
 
+				// add the auth type and id to the update url
 				if ( $auth_type !== 'none' ) {
 					$auth_url = add_query_arg( array( $auth_type => $auth_id ), $auth_url );
 				}
 
-				$installed_version = $this->get_installed_version( $ext );
+				$ext_version = $this->get_ext_version( $ext );
 
-				if ( strpos( $installed_version, '-no-plugin' ) !== false ) {
-					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $ext.' plugin: extension skipped - plugin not installed' );
-					}
-					continue;
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( $ext.' plugin: installed_version is '.$ext_version );
 				}
 
 				$auth_url = add_query_arg( array( 
 					'api_version' => self::$api_version,
 					'version_filter' => empty( $this->p->options['update_filter_for_'.$ext] ) ?	// just in case
 						'stable' : $this->p->options['update_filter_for_'.$ext],
-					'installed_version' => $installed_version,
+					'installed_version' => $ext_version,
 				), $auth_url );
 
 				self::$config[$ext] = array(
@@ -166,20 +106,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( $ext.' plugin: extension defined for update (auth_type is '.$auth_type.')' );
 				}
-			}
-		}
-
-		public static function is_enabled() {
-			return empty( self::$config ) ? false : true;
-		}
-
-		public static function is_configured( $ext = null ) {
-			if ( empty( $ext ) ) {
-				return count( self::$config );
-			} elseif ( isset( self::$config[$ext] ) ) {
-				return true;
-			} else {
-				return false;
 			}
 		}
 
@@ -335,14 +261,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext.' plugin: update property is not an object' );
 					}
-				} elseif ( ( $installed_version = $this->get_installed_version( $ext ) ) &&
-					version_compare( $option_data->update->version, $installed_version, '>' ) ) {
+				} elseif ( ( $ext_version = $this->get_ext_version( $ext ) ) &&
+					version_compare( $option_data->update->version, $ext_version, '>' ) ) {
 
 					// save to the local static property cache
 					self::$config[$ext]['plugin_update'] = $updates->response[$info['base']] = $option_data->update->json_to_wp();
 
 					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $ext.' plugin: installed version ('.$installed_version.') '.
+						$this->p->debug->log( $ext.' plugin: installed version ('.$ext_version.') '.
 							'different than update version ('.$option_data->update->version.')' );
 						$this->p->debug->log_arr( 'option_data', $updates->response[$info['base']], 5 );
 					}
@@ -410,7 +336,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 
 				$option_data->lastCheck = time();
-				$option_data->checkedVersion = $this->get_installed_version( $ext );
+				$option_data->checkedVersion = $this->get_ext_version( $ext );
 				$option_data->update = $this->get_update_data( $ext, $use_cache );
 
 				if ( self::update_option_data( $ext, $option_data ) ) {
@@ -457,12 +383,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			global $wp_version;
 			$home_url = $this->home_url();
+
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->log( 'home url = '.$home_url );
 			}
-			$json_url = empty( self::$config[$ext]['json_url'] ) ?
-				'' : self::$config[$ext]['json_url'];
-			$installed_version = $this->get_installed_version( $ext );
+
+			$json_url = empty( self::$config[$ext]['json_url'] ) ? '' : self::$config[$ext]['json_url'];
 
 			if ( empty( $json_url ) ) {
 				if ( $this->p->debug->enabled ) {
@@ -472,6 +398,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			$lca = $this->p->cf['lca'];
+			$ext_version = $this->get_ext_version( $ext );
 			$cache_salt = __METHOD__.'(json_url:'.$json_url.'_home_url:'.$home_url.')';
 			$cache_id = $lca.'_'.md5( $cache_salt );
 
@@ -490,12 +417,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 			}
 
-			$ua_plugin = self::$config[$ext]['slug'].'/'.$installed_version.'/'.
-				( $this->p->check->aop( $ext ) ? 'L' :
-				( $this->p->check->aop( $ext, false ) ? 'U' : 'G' ) );
-			$ua_wpid = 'WordPress/'.$wp_version.' ('.$ua_plugin.'); '.$home_url;
+			$ua_wpid = 'WordPress/'.$wp_version.' ('.self::$config[$ext]['slug'].'/'.$ext_version.'/'.
+				( $this->p->check->aop( $ext, true, $this->p->is_avail['aop'] ) ? 'L' :
+				( $this->p->check->aop( $ext, false ) ? 'U' : 'G' ) ).'); '.$home_url;
 			$get_options = array(
-				'timeout' => 10, 
+				'timeout' => 15, 
 				'user-agent' => $ua_wpid,
 				'headers' => array( 
 					'Accept' => 'application/json',
@@ -565,22 +491,37 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return $plugin_data;
 		}
 	
-		public function get_installed_version( $ext ) {
-			$version = 0;
+		public function get_ext_version( $ext ) {
+
 			$info = array();
+
+			if ( isset( self::$versions[$ext] ) ) {
+				return self::$versions[$ext];	// return from cache
+			} else {
+				self::$versions[$ext] = 0;
+				$version =& self::$versions[$ext];	// shortcut
+			}
 
 			if ( isset( $this->p->cf['plugin'][$ext] ) ) {
 				$info = $this->p->cf['plugin'][$ext];
 			}
 
-			if ( isset( $info['version'] ) ) {	// plugin is active
+			// extension is active
+			// get the plugin version from the config array
+			if ( isset( $info['version'] ) ) {
 
 				$version = $info['version'];
 				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( $ext.' plugin: extension config version is '.$version );
+					$this->p->debug->log( $ext.' plugin: version from extension config' );
 				}
 
-			} elseif ( isset( $info['base'] ) ) {	// plugin is not active
+			// extension is not active or not installed
+			// use the get_plugins() function to get the plugin version
+			} elseif ( isset( $info['base'] ) ) {
+
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( $ext.' plugin: extension is not active / installed' );
+				}
 
 				if ( ! function_exists( 'get_plugins' ) ) {
 					$plugin_lib = trailingslashit( ABSPATH ).'wp-admin/includes/plugin.php';
@@ -594,19 +535,25 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 							$this->text_domain ), '<code>'.$plugin_lib.'</code>' ) );
 					}
 				}
-	
+
 				if ( function_exists( 'get_plugins' ) ) {
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( $ext.' plugin: getting plugins list from WordPress' );
+					}
 					$plugins = get_plugins();
 				} else {
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext.' plugin: '.$plugin_lib.' functions is not available' );
 					}
-					$this->p->notice->err( sprintf( __( 'The WordPress %s function is not available and required.',
+					$this->p->notice->err( sprintf( __( 'The WordPress %s function is not available and is required.',
 						$this->text_domain ), '<code>get_plugins()</code>' ) );
 					$plugins = array();
 				}
 
+				// the plugin is installed
 				if ( isset( $plugins[$info['base']] ) ) {
+
+					// use the version found in the plugins array
 					if ( isset( $plugins[$info['base']]['Version'] ) ) {
 						$version = $plugins[$info['base']]['Version'];
 						if ( $this->p->debug->enabled ) {
@@ -618,20 +565,27 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						}
 						$this->p->notice->err( sprintf( __( 'The %1$s plugin (%2$s) version number is missing from the WordPress plugins array.',
 							$this->text_domain ), $info['name'], $info['base'] ) );
-						return '0.0-no-version';	// stop here
+
+						// save to cache and stop here
+						return $version = '0.0-no-version';
 					}
-				} else {	// plugin is not installed
+
+				// plugin is not installed
+				} else {
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext.' plugin: '.$info['base'].' plugin not installed' );
 					}
-					return '0.0-no-plugin';	// stop here
+					// save to cache and stop here
+					return $version = '0.0-no-plugin';
 				}
 
-			} else {	// plugin is not configured
+			// extension not found in config array
+			} else {
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( $ext.' plugin: extension config not found' );
 				}
-				return '0.0-no-config';	// stop here
+				// save to cache and stop here
+				return $version = '0.0-no-config';
 			}
 
 			$filter_regex = $this->get_version_filter_regex( $ext );
@@ -640,19 +594,32 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( $ext.' plugin: '.$version.' does not match filter' );
 				}
-				$version = '0.'.$version;
+				// save to cache and stop here
+				return $version = '0.'.$version;
 			} else {
 				$auth_type = empty( $info['update_auth'] ) ? 'none' : $info['update_auth'];
 				$auth_key = 'plugin_'.$ext.'_'.$auth_type;
 				$auth_id = empty( $this->p->options[$auth_key] ) ? '' : $this->p->options[$auth_key];
 
 				if ( $auth_type !== 'none' ) {
-					if ( $this->p->check->aop( $ext, false ) ) {
-						if ( empty( $auth_id ) ) {
-							$version = '0.'.$version;
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( $ext.' plugin: auth type is defined' );
+					}
+					if ( $this->p->check->aop( $ext, false, $this->p->is_avail['aop'] ) ) {
+						if ( empty( $auth_id ) ) {	// pdir without an auth_id
+							if ( $this->p->debug->enabled ) {
+								$this->p->debug->log( $ext.' plugin: pdir without an auth_id' );
+							}
+							// save to cache and stop here
+							return $version = '0.'.$version;
 						}
-					} elseif ( ! empty( $auth_id ) )
-						$version = '0.'.$version;
+					} elseif ( ! empty( $auth_id ) ) {	// free with an auth_id
+						if ( $this->p->debug->enabled ) {
+							$this->p->debug->log( $ext.' plugin: free with an auth_id' );
+						}
+						// save to cache and stop here
+						return $version = '0.'.$version;
+					}
 				}
 			}
 
@@ -735,6 +702,86 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			return $url;
+		}
+
+		public static function is_enabled() {
+			return empty( self::$config ) ? false : true;
+		}
+
+		public static function is_configured( $ext = null ) {
+			if ( empty( $ext ) ) {
+				return count( self::$config );
+			} elseif ( isset( self::$config[$ext] ) ) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		// called by delete_options() in the register class
+		public static function get_api_version() {
+			return self::$api_version;
+		}
+
+		// called by get_plugin_data() when the transient / object cache is empty and/or not used
+		private static function set_umsg( $ext, $msg, $val ) {
+			if ( empty( $val ) ) {
+				delete_option( $ext.'_uapi'.self::$api_version.$msg );
+				self::$config[$ext]['u'.$msg] = false;	// just in case
+			} else {
+				update_option( $ext.'_uapi'.self::$api_version.$msg, base64_encode( $val ) );	// save as string
+				self::$config[$ext]['u'.$msg] = $val;
+			}
+			return self::$config[$ext]['u'.$msg];
+		}
+
+		public static function get_umsg( $ext, $msg = 'err', $def = false ) {
+			if ( ! isset( self::$config[$ext]['u'.$msg] ) ) {
+				$val = get_option( $ext.'_uapi'.self::$api_version.$msg, $def );
+				if ( ! is_bool( $val ) ) {
+					$val = base64_decode( $val );	// value is saved as a string
+				}
+				if ( empty( $val ) ) {
+					self::$config[$ext]['u'.$msg] = false;
+				} else {
+					self::$config[$ext]['u'.$msg] = $val;
+				}
+			}
+			return self::$config[$ext]['u'.$msg];
+		}
+
+		public static function get_option( $ext, $idx = false ) {
+			if ( ! empty( self::$config[$ext]['opt_name'] ) ) {
+				$opt_data = self::get_option_data( $ext );
+				if ( $idx !== false ) {
+					if ( is_object( $opt_data->update ) &&
+						isset( $opt_data->update->$idx ) ) {
+						return $opt_data->update->$idx;
+					}
+				} else {
+					return $opt_data;
+				}
+			}
+			return false;
+		}
+
+		private static function get_option_data( $ext, $def = false ) {
+			if ( ! isset( self::$config[$ext]['opt_data'] ) ) {
+				if ( ! empty( self::$config[$ext]['opt_name'] ) ) {
+					self::$config[$ext]['opt_data'] = get_option( self::$config[$ext]['opt_name'], $def );
+				} else {
+					self::$config[$ext]['opt_data'] = $def;
+				}
+			}
+			return self::$config[$ext]['opt_data'];
+		}
+
+		private static function update_option_data( $ext, $opt_data ) {
+			self::$config[$ext]['opt_data'] = $opt_data;
+			if ( ! empty( self::$config[$ext]['opt_name'] ) ) {
+				return update_option( self::$config[$ext]['opt_name'], $opt_data );
+			}
+			return false;
 		}
 	}
 }

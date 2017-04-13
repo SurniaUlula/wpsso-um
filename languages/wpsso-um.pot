@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager (WPSSO UM) 1.6.0-a.2\n"
+"Project-Id-Version: WPSSO Update Manager (WPSSO UM) 1.6.0-b.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2017-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -12,27 +12,27 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: lib/com/update.php:421
+#: lib/com/update.php:347
 msgid "Update information for %s has been retrieved and saved."
 msgstr ""
 
-#: lib/com/update.php:429
+#: lib/com/update.php:355
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:516
+#: lib/com/update.php:442
 msgid "Update error from the WordPress wp_remote_get() function &mdash; %s"
 msgstr ""
 
-#: lib/com/update.php:593
+#: lib/com/update.php:534
 msgid "The WordPress library file %s is missing and required."
 msgstr ""
 
-#: lib/com/update.php:604
-msgid "The WordPress %s function is not available and required."
+#: lib/com/update.php:548
+msgid "The WordPress %s function is not available and is required."
 msgstr ""
 
-#: lib/com/update.php:619
+#: lib/com/update.php:566
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."
@@ -60,6 +60,16 @@ msgctxt "metabox title (side)"
 msgid "Version Information"
 msgstr ""
 
+#: lib/sitesubmenu/site-um-general.php:48 lib/submenu/um-general.php:42
+msgctxt "package type"
+msgid "Pro"
+msgstr ""
+
+#: lib/sitesubmenu/site-um-general.php:52
+msgctxt "metabox title"
+msgid "Network Update Manager for %s"
+msgstr ""
+
 #: lib/sitesubmenu/site-um-general.php:76 lib/submenu/um-general.php:62
 msgctxt "option label"
 msgid "Refresh Update Information"
@@ -70,13 +80,18 @@ msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
 
-#: wpsso-um.php:79
+#: lib/submenu/um-general.php:46
+msgctxt "metabox title"
+msgid "Update Manager for %s"
+msgstr ""
+
+#: wpsso-um.php:80
 msgid ""
 "%1$s is an extension for the %2$s plugin &mdash; please install and activate "
 "the %3$s plugin before activating %4$s."
 msgstr ""
 
-#: wpsso-um.php:81
+#: wpsso-um.php:82
 msgid ""
 "The %1$s extension requires the %2$s plugin &mdash; please install and "
 "activate the %3$s plugin."
