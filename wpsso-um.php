@@ -13,7 +13,7 @@
  * Description: WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
  * Requires At Least: 3.7
  * Tested Up To: 4.7.3
- * Version: 1.6.0-rc.1
+ * Version: 1.6.0-rc.2
  * 
  * Version Numbering: {major}.{minor}.{bugfix}[-{stage}.{level}]
  *
@@ -161,7 +161,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 							$this->p->debug->log( 'requesting update check for '.$ext );
 							$this->p->notice->inf( sprintf( __( 'Performing an update check for the %s plugin.',
 								'wpsso-um' ), $info['name'] ), true, 
-									__FUNCTION__.'_'.$ext.'_update_check', true );	// dismissable
+									__FUNCTION__.'_'.$ext.'_update_check', true );	// can be dismissed
 						}
 						$this->update->check_for_updates( $ext, false, false );	// $notice = false, $use_cache = false
 					}

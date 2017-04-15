@@ -345,7 +345,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					}
 					if ( $notice || $this->p->debug->enabled ) {
 						$this->p->notice->inf( sprintf( __( 'Update information for %s has been retrieved and saved.',
-							$this->text_domain ), $info['name'] ), true, 'check_for_updates_'.$ext.'_'.$info['opt_name'], true );
+							$this->text_domain ), $info['name'] ), true,
+								'check_for_updates_'.$ext.'_'.$info['opt_name'], true );	// can be dismissed
 					}
 				} else {
 					if ( $this->p->debug->enabled ) {
