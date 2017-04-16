@@ -12,27 +12,27 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: lib/com/update.php:347
+#: lib/com/update.php:372
 msgid "Update information for %s has been retrieved and saved."
 msgstr ""
 
-#: lib/com/update.php:356
+#: lib/com/update.php:381
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:443
+#: lib/com/update.php:468
 msgid "Update error from the WordPress wp_remote_get() function &mdash; %s"
 msgstr ""
 
-#: lib/com/update.php:535
+#: lib/com/update.php:560
 msgid "The WordPress library file %s is missing and required."
 msgstr ""
 
-#: lib/com/update.php:549
+#: lib/com/update.php:574
 msgid "The WordPress %s function is not available and is required."
 msgstr ""
 
-#: lib/com/update.php:567
+#: lib/com/update.php:592
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."
@@ -112,7 +112,7 @@ msgid "WPSSO Update Manager (WPSSO UM)"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "https://surniaulula.com/extend/plugins/wpsso-um/"
+msgid "https://wpsso.com/extend/plugins/wpsso-um/"
 msgstr ""
 
 #. Description of the plugin/theme

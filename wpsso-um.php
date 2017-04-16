@@ -4,7 +4,7 @@
  * Plugin Slug: wpsso-um
  * Text Domain: wpsso-um
  * Domain Path: /languages
- * Plugin URI: https://surniaulula.com/extend/plugins/wpsso-um/
+ * Plugin URI: https://wpsso.com/extend/plugins/wpsso-um/
  * Assets URI: https://surniaulula.github.io/wpsso-um/assets/
  * Author: JS Morisset
  * Author URI: https://surniaulula.com/
@@ -40,7 +40,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 		private $check_hours = 24;
 		private static $instance;
-		private static $have_req_min = true;	// have minimum wpsso version
+		private static $have_min = true;	// have minimum wpsso version
 
 		public function __construct() {
 
@@ -101,7 +101,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			$info = WpssoUmConfig::$cf['plugin']['wpssoum'];
 
 			if ( version_compare( $plugin_version, $info['req']['min_version'], '<' ) ) {
-				self::$have_req_min = false;
+				self::$have_min = false;
 				return $cf;
 			}
 
@@ -119,7 +119,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 				$this->p->debug->mark();
 			}
 
-			if ( self::$have_req_min ) {
+			if ( self::$have_min ) {
 				$this->p->is_avail['p_ext']['um'] = true;
 			} else {
 				$this->p->is_avail['p_ext']['um'] = false;	// just in case
@@ -131,7 +131,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 				$this->p->debug->mark();
 			}
 
-			if ( self::$have_req_min ) {
+			if ( self::$have_min ) {
 				$info = WpssoUmConfig::$cf['plugin']['wpssoum'];
 				$this->check_hours = $this->get_update_check_hours();
 				$this->filters = new WpssoUmFilters( $this->p );
@@ -144,7 +144,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 				$this->p->debug->mark();
 			}
 
-			if ( ! self::$have_req_min ) {
+			if ( ! self::$have_min ) {
 				return $this->min_version_notice();	// stop here
 			}
 
