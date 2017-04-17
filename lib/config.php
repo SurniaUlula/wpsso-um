@@ -67,9 +67,11 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		}
 
 		public static function require_libs( $plugin_filepath ) {
+
 			require_once WPSSOUM_PLUGINDIR.'lib/com/update.php';
-			require_once WPSSOUM_PLUGINDIR.'lib/register.php';
+
 			require_once WPSSOUM_PLUGINDIR.'lib/filters.php';
+			require_once WPSSOUM_PLUGINDIR.'lib/register.php';
 
 			add_filter( 'wpssoum_load_lib', array( 'WpssoUmConfig', 'load_lib' ), 10, 3 );
 		}

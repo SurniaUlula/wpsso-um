@@ -85,7 +85,7 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 					$version_filter = $this->p->cf['um']['version_filter'];
 
 					foreach ( $this->p->cf['plugin'] as $ext => $info ) {
-						if ( ! SucomUpdate::is_configured( $ext ) ) {
+						if ( ! SucomUpdate::is_installed( $ext ) ) {
 							continue;
 						}
 						$ext_name = preg_replace( '/\([A-Z ]+\)$/', '', $info['name'] );	// remove the short name

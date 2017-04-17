@@ -75,13 +75,13 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		}
 
 		public function filter_newer_version_available( $is_older, $ext, $installed_version, $stable_version, $latest_version ) {
-			if ( ! $is_older ) {
-				$wpssoum =& WpssoUm::get_instance();
-				$filter_name = $wpssoum->update->get_filter_name( $ext );
-				if ( $filter_name !== 'stable' && 
-					version_compare( $installed_version, $latest_version, '<' ) ) {
-					return true;
-				}
+			if ( $is_older ) {
+				return $is_older;
+			}
+			$wpssoum =& WpssoUm::get_instance();
+			$filter_name = $wpssoum->update->get_filter_name( $ext );
+			if ( $filter_name !== 'stable' && version_compare( $installed_version, $latest_version, '<' ) ) {
+				return true;
 			}
 			return $is_older;
 		}
