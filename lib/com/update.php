@@ -82,12 +82,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 
 				$ext_version = $this->get_ext_version( $ext );
-				$filter_name = $this->get_filter_name( $ext );
 
-				// config is missing version and plugin base keys
-				if ( strpos( $ext_version, '-config-error' ) !== false ) {	// just in case
+				if ( $ext_version === false ) {
 					continue;
 				}
+
+				$filter_name = $this->get_filter_name( $ext );
 
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( $ext.' plugin: installed_version is '.$ext_version.' with '.$filter_name.' filter' );
@@ -627,7 +627,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$this->p->debug->log( $ext.' plugin: '.$info['base'].' plugin not installed' );
 					}
 					// save to cache and stop here
-					return $version = '0-not-installed';
+					return $version = 'not-installed';
 				}
 
 			// extension missing version and/or slug
@@ -636,7 +636,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$this->p->debug->log( $ext.' plugin: config is missing version and plugin base keys' );
 				}
 				// save to cache and stop here
-				return $version = '0-config-error';
+				return $version = false;
 			}
 
 			$filter_regex = $this->get_filter_regex( $ext );
@@ -805,7 +805,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$info = self::$upd_config[$ext];
 				if ( ! isset( $info['installed_version'] ) ) {	// just in case
 					return false;
-				} elseif ( strpos( $info['installed_version'], '-not-installed' ) !== false ) {
+				} elseif ( strpos( $info['installed_version'], 'not-installed' ) !== false ) {
 					return false;
 				}
 			}
