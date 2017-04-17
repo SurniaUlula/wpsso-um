@@ -150,7 +150,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 			if ( is_admin() ) {
 				foreach ( $this->p->cf['plugin'] as $ext => $info ) {
-					if ( ! SucomUpdate::is_configured( $ext ) ) {
+					if ( ! SucomUpdate::is_installed( $ext ) ) {	// plugin must be installed for updates
 						continue;
 					}
 					$last_utime = $this->update->get_umsg( $ext, 'time' );		// last update check

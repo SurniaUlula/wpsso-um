@@ -65,22 +65,25 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 		public function filter_readme_upgrade_notices( $upgrade_notices, $ext ) {
 			$wpssoum =& WpssoUm::get_instance();
-			$filter_regex = $wpssoum->update->get_version_filter_regex( $ext );
+			$filter_regex = $wpssoum->update->get_filter_regex( $ext );
 			foreach ( $upgrade_notices as $version => $info ) {
-				if ( ! preg_match( $filter_regex, $version ) )
+				if ( ! preg_match( $filter_regex, $version ) ) {
 					unset ( $upgrade_notices[$version] );
+				}
 			}
 			return $upgrade_notices;
 		}
 
 		public function filter_newer_version_available( $is_older, $ext, $installed_version, $stable_version, $latest_version ) {
 			if ( ! $is_older ) {
-				if ( ! empty( $this->p->options['update_filter_for_'.$ext] ) &&
-					$this->p->options['update_filter_for_'.$ext] !== 'stable' &&
+				$wpssoum =& WpssoUm::get_instance();
+				$filter_name = $wpssoum->update->get_filter_name( $ext );
+				if ( $filter_name !== 'stable' && 
 					version_compare( $installed_version, $latest_version, '<' ) ) {
 					return true;
 				}
-			} else return $is_older;
+			}
+			return $is_older;
 		}
 
 		public function filter_option_type( $type, $key ) {
