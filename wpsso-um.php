@@ -154,9 +154,9 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 						continue;
 					}
 					$last_utime = $this->update->get_umsg( $ext, 'time' );		// last update check
-					$next_utime = $last_utime + ( $this->check_hours * 3600 );	// next scheduled check
+					$next_utime = $last_utime + ( $this->check_hours * HOUR_IN_SECONDS );	// next scheduled check
 
-					if ( empty( $last_utime ) || $next_utime + 86400 < time() ) {	// plus one day
+					if ( empty( $last_utime ) || $next_utime + DAY_IN_SECONDS < time() ) {	// plus one day
 						if ( $this->p->debug->enabled ) {
 							$this->p->debug->log( 'requesting update check for '.$ext );
 							$this->p->notice->inf( sprintf( __( 'Performing an update check for the %s plugin.',

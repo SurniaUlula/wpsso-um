@@ -323,7 +323,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		public function add_custom_schedule( $schedules ) {
 			if ( $this->sched_hours > 0 ) {
 				$schedules[$this->sched_name] = array(
-					'interval' => $this->sched_hours * 3600,
+					'interval' => $this->sched_hours * HOUR_IN_SECONDS,
 					'display' => sprintf( 'Every %d hours', $this->sched_hours )
 				);
 			}
