@@ -66,6 +66,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = Changelog / Release Notes =
 
+**Version 1.6.0 (2017/04/17)**
+
+* *New Features*
+	* None
+* *Improvements*
+	* None
+* *Bugfixes*
+	* Fixed update notices for plugins that are not installed. ;-)
+* *Developer Notes*
+	* None
+
 **Version 1.6.0 (2017/04/16)**
 
 * *New Features*
