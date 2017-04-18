@@ -66,6 +66,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = Changelog / Release Notes =
 
+**Version 1.6.2-dev.4 (2017/04/18)**
+
+* *New Features*
+	* None
+* *Improvements*
+	* None
+* *Bugfixes*
+	* Removed the side metaboxes for WPSSO v3.41.0, which includes a new dashboard settings page.
+* *Developer Notes*
+	* None
+
 **Version 1.6.1 (2017/04/17)**
 
 * *New Features*
@@ -158,6 +169,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* None
 
 == Upgrade Notice ==
+
+= 1.6.2-dev.4 =
+
+(2017/04/18) Removed the side metaboxes for WPSSO v3.41.0, which includes a new dashboard settings page.
 
 = 1.6.1 =
 
