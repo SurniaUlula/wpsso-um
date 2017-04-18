@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.6.0\n"
+"Project-Id-Version: WPSSO Pro Update Manager (WPSSO UM) 1.6.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2017-04-13 08:11+0200\n"
-"PO-Revision-Date: 2017-04-13 10:05+0200\n"
+"POT-Creation-Date: 2017-04-18 10:48+0200\n"
+"PO-Revision-Date: 2017-04-18 10:48+0200\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -15,27 +15,27 @@ msgstr ""
 "X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: lib/com/update.php:347
+#: lib/com/update.php:394
 msgid "Update information for %s has been retrieved and saved."
 msgstr "L'information de mise à jour pour %s a été récupérée et sauvegardée."
 
-#: lib/com/update.php:355
+#: lib/com/update.php:406
 msgid "Failed saving retrieved update information for %s."
 msgstr "Erreur lors de l'enregistrement des informations de mise à jour pour %s."
 
-#: lib/com/update.php:442
+#: lib/com/update.php:493
 msgid "Update error from the WordPress wp_remote_get() function &mdash; %s"
 msgstr "Erreur de mise à jour de la fonction WordPress wp_remote_get() &mdash; %s"
 
-#: lib/com/update.php:534
+#: lib/com/update.php:585
 msgid "The WordPress library file %s is missing and required."
 msgstr "Le fichier de bibliothèque WordPress %s est manquant et requis."
 
-#: lib/com/update.php:548
+#: lib/com/update.php:599
 msgid "The WordPress %s function is not available and is required."
 msgstr "La fonction WordPress %s n’est pas disponible et est requise."
 
-#: lib/com/update.php:566
+#: lib/com/update.php:617
 msgid "The %1$s plugin (%2$s) version number is missing from the WordPress plugins array."
 msgstr "Le numéro de version de l'extension %1$s (%2$s) est absente de la liste d'extensions de WordPress."
 
@@ -105,8 +105,8 @@ msgid "WPSSO Update Manager (WPSSO UM)"
 msgstr "WPSSO Update Manager (WPSSO UM)"
 
 #. Plugin URI of the plugin/theme
-msgid "https://surniaulula.com/extend/plugins/wpsso-um/"
-msgstr "https://surniaulula.com/extend/plugins/wpsso-um/"
+msgid "https://wpsso.com/extend/plugins/wpsso-um/"
+msgstr "https://wpsso.com/extend/plugins/wpsso-um/"
 
 #. Description of the plugin/theme
 msgid "WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions."
