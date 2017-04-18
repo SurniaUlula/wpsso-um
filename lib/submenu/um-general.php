@@ -25,18 +25,6 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 			$this->menu_ext = $ext;	// lowercase acronyn for plugin or extension
 		}
 
-		protected function add_side_meta_boxes() {
-
-			// show the help metabox on all pages
-			add_meta_box( $this->pagehook.'_help',
-				_x( 'Help and Support', 'metabox title (side)', 'wpsso-um' ), 
-					array( &$this, 'show_metabox_help' ), $this->pagehook, 'side' );
-
-			add_meta_box( $this->pagehook.'_version_info',
-				_x( 'Version Information', 'metabox title (side)', 'wpsso-um' ), 
-					array( &$this, 'show_metabox_version_info' ), $this->pagehook, 'side' );
-		}
-
 		protected function add_meta_boxes() {
 			$lca = $this->p->cf['lca'];
 			$short_pro = $this->p->cf['plugin'][$lca]['short'].' '._x( 'Pro', 'package type', 'wpsso-um' );
