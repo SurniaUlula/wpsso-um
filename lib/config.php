@@ -15,7 +15,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		public static $cf = array(
 			'plugin' => array(
 				'wpssoum' => array(
-					'version' => '1.6.2-dev.4',		// plugin version
+					'version' => '1.6.2-dev.5',		// plugin version
 					'opt_version' => '3',		// increment when changing default options
 					'short' => 'WPSSO UM',		// short plugin name
 					'name' => 'WPSSO Update Manager (WPSSO UM)',
@@ -29,7 +29,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 						'short' => 'WPSSO',
 						'name' => 'WordPress Social Sharing Optimization (WPSSO)',
 						'min_version' => '3.11.0',
-						'rec_version' => '3.41.0-dev.4',
+						'rec_version' => '3.41.0-dev.5',
 					),
 					'img' => array(
 						'icons' => array(

@@ -25,14 +25,27 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 			$this->menu_ext = $ext;	// lowercase acronyn for plugin or extension
 		}
 
+		protected function add_plugin_hooks() {
+			$this->p->util->add_plugin_filters( $this, array(
+				'action_buttons' => 1,
+			) );
+		}
+
 		protected function add_meta_boxes() {
 			$lca = $this->p->cf['lca'];
-			$short_pro = $this->p->cf['plugin'][$lca]['short'].' '._x( 'Pro', 'package type', 'wpsso-um' );
+			$short_pro = $this->p->cf['plugin'][$lca]['short'].' '.
+				_x( 'Pro', 'package type', 'wpsso-um' );
 
 			// add_meta_box( $id, $title, $callback, $post_type, $context, $priority, $callback_args );
 			add_meta_box( $this->pagehook.'_general', 
 				sprintf( _x( 'Update Manager for %s', 'metabox title', 'wpsso-um' ), $short_pro ),
 					array( &$this, 'show_metabox_general' ), $this->pagehook, 'normal' );
+		}
+
+		public function filter_action_buttons( $action_buttons ) {
+			$action_buttons[0]['check_for_updates'] = _x( 'Check for Updates',
+				'submit button', 'wpsso-um' );
+			return $action_buttons;
 		}
 
 		public function show_metabox_general() {

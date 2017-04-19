@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager (WPSSO UM) 1.6.2-dev.4\n"
+"Project-Id-Version: WPSSO Update Manager (WPSSO UM) 1.6.2-dev.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2017-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -50,27 +50,32 @@ msgid ""
 "Optimization (WPSSO) Pro plugin and its Pro extensions."
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:36 lib/submenu/um-general.php:30
+#: lib/sitesubmenu/site-um-general.php:43 lib/submenu/um-general.php:37
 msgctxt "package type"
 msgid "Pro"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:40
+#: lib/sitesubmenu/site-um-general.php:47
 msgctxt "metabox title"
 msgid "Network Update Manager for %s"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:64 lib/submenu/um-general.php:50
+#: lib/sitesubmenu/site-um-general.php:56 lib/submenu/um-general.php:46
+msgctxt "submit button"
+msgid "Check for Updates"
+msgstr ""
+
+#: lib/sitesubmenu/site-um-general.php:78 lib/submenu/um-general.php:63
 msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:71 lib/submenu/um-general.php:56
+#: lib/sitesubmenu/site-um-general.php:85 lib/submenu/um-general.php:69
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
 
-#: lib/submenu/um-general.php:34
+#: lib/submenu/um-general.php:41
 msgctxt "metabox title"
 msgid "Update Manager for %s"
 msgstr ""

@@ -31,9 +31,16 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 				$this->p->site_options, $def_site_opts, $menu_ext );
 		}
 
+		protected function add_plugin_hooks() {
+			$this->p->util->add_plugin_filters( $this, array(
+				'action_buttons' => 1,
+			) );
+		}
+
 		protected function add_meta_boxes() {
 			$lca = $this->p->cf['lca'];
-			$short_pro = $this->p->cf['plugin'][$lca]['short'].' '._x( 'Pro', 'package type', 'wpsso-um' );
+			$short_pro = $this->p->cf['plugin'][$lca]['short'].' '.
+				_x( 'Pro', 'package type', 'wpsso-um' );
 
 			// add_meta_box( $id, $title, $callback, $post_type, $context, $priority, $callback_args );
 			add_meta_box( $this->pagehook.'_general', 
@@ -45,6 +52,12 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 				array( &$this, 'add_class_postbox_network' ) );
 		}
 
+		public function filter_action_buttons( $action_buttons ) {
+			$action_buttons[0]['check_for_updates'] = _x( 'Check for Updates',
+				'submit button', 'wpsso-um' );
+			return $action_buttons;
+		}
+
 		public function add_class_postbox_network( $classes ) {
 			$classes[] = 'postbox-network';
 			return $classes;
@@ -52,6 +65,7 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 
 		public function show_metabox_general() {
 			$metabox = 'um';
+			$this->form->set_text_domain( 'wpsso' );	// translate option values using wpsso text_domain
 			$this->p->util->do_table_rows( apply_filters( $this->p->cf['lca'].'_'.$metabox.'_general_rows', 
 				$this->get_table_rows( $metabox, 'general' ), $this->form ), 'metabox-'.$metabox.'-general' );
 		}
