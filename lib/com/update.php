@@ -53,6 +53,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			$lca = $this->p->cf['lca'];
 			$aop = $this->p->check->aop( $lca, true, $this->p->is_avail['aop'] );
+			$dev_selected = false;
 
 			foreach ( $this->p->cf['plugin'] as $ext => $info ) {
 				if ( $ext !== $lca && $ext !== $lca.'um' && ! $aop ) {
@@ -89,6 +90,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				$filter_name = $this->get_filter_name( $ext );
 
+				if ( $filter_name !== 'stable' ) {
+					$dev_selected = true;
+				}
+
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( $ext.' plugin: installed_version is '.$ext_version.' with '.$filter_name.' filter' );
 				}
@@ -114,6 +119,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( $ext.' plugin: extension defined for update (auth_type is '.$auth_type.')' );
 				}
+			}
+
+			if ( is_admin() && $dev_selected ) {
+				$warn_dis_key = 'non-stable-update-version-filters-selected';
+				$this->p->notice->warn( sprintf( __( 'Please note that one or more non-stable / development %s has been selected.',
+					$this->text_domain ), $this->p->util->get_admin_url( 'um-general', _x( 'Update Version Filters', 'metabox title', 'wpsso-um' ) ) ),
+						true, $warn_dis_key, MONTH_IN_SECONDS, true );	// $silent = true
 			}
 		}
 
