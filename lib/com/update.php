@@ -123,7 +123,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			if ( is_admin() && $dev_selected ) {
 				$warn_dis_key = 'non-stable-update-version-filters-selected';
-				$this->p->notice->warn( sprintf( __( 'Please note that one or more non-stable / development %s has been selected.',
+				$this->p->notice->warn( sprintf( __( 'Please note that one or more non-stable / development %s have been selected.',
 					$this->text_domain ), $this->p->util->get_admin_url( 'um-general', _x( 'Update Version Filters', 'metabox title', 'wpsso-um' ) ) ),
 						true, $warn_dis_key, MONTH_IN_SECONDS, true );	// $silent = true
 			}

@@ -14,7 +14,7 @@ msgstr ""
 
 #: lib/com/update.php:126
 msgid ""
-"Please note that one or more non-stable / development %s has been selected."
+"Please note that one or more non-stable / development %s have been selected."
 msgstr ""
 
 #: lib/com/update.php:127 lib/sitesubmenu/site-um-general.php:85
