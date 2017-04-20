@@ -71,7 +71,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *New Features*
 	* None
 * *Improvements*
-	* None
+	* Added a warning message if one or more non-stable / development update version filters is selected. The notice can be dismissed for one month.
 * *Bugfixes*
 	* Removed the side metaboxes for WPSSO v3.41.0, which includes a new dashboard settings page.
 * *Developer Notes*
