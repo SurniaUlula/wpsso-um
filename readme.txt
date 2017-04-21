@@ -71,7 +71,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *New Features*
 	* None
 * *Improvements*
-	* Added a warning message if one or more non-stable / development update version filters is selected. The notice can be dismissed for one month.
+	* Added a warning message if one or more non-stable / development update version filters is selected (the notice can be dismissed for one month).
 * *Bugfixes*
 	* Removed the side metaboxes for WPSSO v3.41.0, which includes a new dashboard settings page.
 * *Developer Notes*
@@ -172,7 +172,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = 1.6.2-rc.1 =
 
-(2017/04/21) Removed the side metaboxes for WPSSO v3.41.0, which includes a new dashboard settings page.
+(2017/04/21) Removed the side metaboxes for WPSSO v3.41.0, which includes a new dashboard settings page. Added a warning message if one or more non-stable / development update version filters is selected (the notice can be dismissed for one month).
 
 = 1.6.1 =
 
