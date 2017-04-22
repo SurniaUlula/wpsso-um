@@ -66,7 +66,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = Changelog / Release Notes =
 
-**Version 1.6.2-rc.1 (2017/04/21)**
+**Version 1.6.2-rc.2 (2017/04/21)**
 
 * *New Features*
 	* None
@@ -170,7 +170,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.6.2-rc.1 =
+= 1.6.2-rc.2 =
 
 (2017/04/21) Removed the side metaboxes for WPSSO v3.41.0, which includes a new dashboard settings page. Added a warning message if one or more non-stable / development update version filters is selected (the notice can be dismissed for one month).
 
