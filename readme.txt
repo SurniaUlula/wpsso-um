@@ -10,7 +10,7 @@ Tags: wpsso, update, manager, schedule, update check, extension, pro version, de
 Contributors: jsmoriss
 Requires At Least: 3.7
 Tested Up To: 4.7.4
-Stable Tag: 1.6.1
+Stable Tag: 1.6.2
 
 WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.
 
@@ -71,7 +71,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *New Features*
 	* None
 * *Improvements*
-	* Added a warning message if one or more non-stable / development update version filters is selected (the notice can be dismissed for one month).
+	* Added a warning message if one or more non-stable / development update version filters is selected (the notice can be dismissed for three months).
 * *Bugfixes*
 	* Removed the side metaboxes for WPSSO v3.41.0, which includes a new dashboard settings page.
 * *Developer Notes*
@@ -172,7 +172,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = 1.6.2 =
 
-(2017/04/22) Removed the side metaboxes for WPSSO v3.41.0, which includes a new dashboard settings page. Added a warning message if one or more non-stable / development update version filters is selected (the notice can be dismissed for one month).
+(2017/04/22) Removed the side metaboxes for WPSSO v3.41.0, which includes a new dashboard settings page. Added a warning message if one or more non-stable / development update version filters is selected.
 
 = 1.6.1 =
 
