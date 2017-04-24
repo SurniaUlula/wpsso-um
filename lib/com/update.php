@@ -52,7 +52,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			$lca = $this->p->cf['lca'];
-			$aop = $this->p->check->aop( $lca, true, $this->p->is_avail['aop'] );
+			$aop = $this->p->check->aop( $lca, true, $this->p->avail['*']['p_dir'] );
 			$dev_selected = false;
 
 			foreach ( $this->p->cf['plugin'] as $ext => $info ) {
@@ -481,7 +481,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			$ua_wpid = 'WordPress/'.$wp_version.' ('.self::$upd_config[$ext]['slug'].'/'.$ext_version.'/'.
-				( $this->p->check->aop( $ext, true, $this->p->is_avail['aop'] ) ? 'L' :
+				( $this->p->check->aop( $ext, true, $this->p->avail['*']['p_dir'] ) ? 'L' :
 				( $this->p->check->aop( $ext, false ) ? 'U' : 'G' ) ).'); '.$home_url;
 			$get_options = array(
 				'timeout' => 15, 
@@ -667,7 +667,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext.' plugin: auth type is defined' );
 					}
-					if ( $this->p->check->aop( $ext, false, $this->p->is_avail['aop'] ) ) {
+					if ( $this->p->check->aop( $ext, false, $this->p->avail['*']['p_dir'] ) ) {
 						if ( empty( $auth_id ) ) {	// pdir without an auth_id
 							if ( $this->p->debug->enabled ) {
 								$this->p->debug->log( $ext.' plugin: pdir without an auth_id' );
