@@ -56,6 +56,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$dev_selected = false;
 
 			foreach ( $this->p->cf['plugin'] as $ext => $info ) {
+
 				if ( $ext !== $lca && $ext !== $lca.'um' && ! $aop ) {
 					continue;
 				}
@@ -221,6 +222,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		 */
 		public function external_plugin_data( $res, $action = null, $args = null ) {
 
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+
 			// this filter only provides plugin data
 			if ( $action !== 'plugin_information' ) {
 				return $res;
@@ -250,6 +255,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			// make sure we have a config for that slug
 			if ( empty( self::$upd_config[$ext]['slug'] ) ) {
 				return $res;
+			}
+
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->log( 'getting plugin data for '.$ext );
 			}
 
 			// get plugin data from the json api
