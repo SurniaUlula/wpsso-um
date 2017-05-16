@@ -19,7 +19,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					'opt_version' => '3',		// increment when changing default options
 					'short' => 'WPSSO UM',		// short plugin name
 					'name' => 'WPSSO Update Manager (WPSSO UM)',
-					'desc' => 'WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions.',
+					'desc' => 'WPSSO extension to provide updates for the WPSSO (WordPress Social Sharing Optimization) Pro plugin and its Pro extensions.',
 					'slug' => 'wpsso-um',
 					'base' => 'wpsso-um/wpsso-um.php',
 					'update_auth' => '',
@@ -27,7 +27,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					'domain_path' => '/languages',
 					'req' => array(
 						'short' => 'WPSSO',
-						'name' => 'WordPress Social Sharing Optimization (WPSSO)',
+						'name' => 'WPSSO (WordPress Social Sharing Optimization)',
 						'min_version' => '3.11.0',
 						'rec_version' => '3.42.0',
 					),
