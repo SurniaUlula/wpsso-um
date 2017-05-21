@@ -12,7 +12,7 @@ Requires At Least: 3.7
 Tested Up To: 4.7.5
 Stable Tag: 1.6.3
 
-WPSSO extension to provide updates for the WPSSO (Social Sharing Optimization) Pro plugin and its Pro extensions.
+WPSSO extension to provide updates for the WPSSO Pro plugin and its Pro extensions.
 
 == Description ==
 
