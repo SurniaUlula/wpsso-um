@@ -10,7 +10,7 @@
  * Author URI: https://surniaulula.com/
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl.txt
- * Description: WPSSO extension to provide updates for the WPSSO (Social Sharing Optimization) Pro plugin and its Pro extensions.
+ * Description: WPSSO extension to provide updates for the WPSSO Pro plugin and its Pro extensions.
  * Requires At Least: 3.7
  * Tested Up To: 4.7.5
  * Version: 1.6.3

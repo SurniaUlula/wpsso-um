@@ -57,8 +57,8 @@ msgstr ""
 #: lib/config-gettext-extract.php:4
 msgctxt "plugin description"
 msgid ""
-"WPSSO extension to provide updates for the WPSSO (Social Sharing "
-"Optimization) Pro plugin and its Pro extensions."
+"WPSSO extension to provide updates for the WPSSO Pro plugin and its Pro "
+"extensions."
 msgstr ""
 
 #: lib/sitesubmenu/site-um-general.php:43 lib/submenu/um-general.php:37
@@ -118,8 +118,8 @@ msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
-"WPSSO extension to provide updates for the WPSSO (Social Sharing "
-"Optimization) Pro plugin and its Pro extensions."
+"WPSSO extension to provide updates for the WPSSO Pro plugin and its Pro "
+"extensions."
 msgstr ""
 
 #. Author of the plugin/theme
