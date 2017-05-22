@@ -1,5 +1,5 @@
 === WPSSO Update Manager ===
-Plugin Name: WPSSO Update Manager (WPSSO UM)
+Plugin Name: WPSSO Update Manager
 Plugin Slug: wpsso-um
 Text Domain: wpsso-um
 Domain Path: /languages
@@ -18,12 +18,12 @@ WPSSO extension to provide updates for the WPSSO Pro plugin and its Pro extensio
 
 <img class="readme-icon" src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png">
 
-<p>The WPSSO Update Manager (WPSSO UM) extension plugin is required to enable and update the <a href="https://wpsso.com/extend/plugins/wpsso/">WPSSO Pro</a> version plugin, including all its licensed Pro extensions.</p>
+<p>The WPSSO Update Manager extension plugin is required to enable and update the <a href="https://wpsso.com/extend/plugins/wpsso/">WPSSO Pro</a> version plugin, including all its licensed Pro extensions.</p>
 
 Simply *download*, *install*, and *activate*.
 
 <blockquote>
-<p><strong>Prerequisite</strong> &mdash; WPSSO Update Manager (WPSSO UM) is an extension for the <a href="https://wordpress.org/plugins/wpsso/">WPSSO</a> plugin, which <em>automatically</em> generates complete and accurate meta tags + Schema markup from your content for Social Sharing Optimization (SSO) and Search Engine Optimization (SEO).</p>
+<p><strong>Prerequisite</strong> &mdash; WPSSO Update Manager is an extension for the <a href="https://wordpress.org/plugins/wpsso/">WPSSO</a> plugin, which <em>automatically</em> generates complete and accurate meta tags + Schema markup from your content for Social Sharing Optimization (SSO) and Search Engine Optimization (SEO).</p>
 </blockquote>
 
 == Installation ==
