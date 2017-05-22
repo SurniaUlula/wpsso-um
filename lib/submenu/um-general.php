@@ -74,7 +74,10 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 						if ( ! SucomUpdate::is_installed( $ext ) ) {
 							continue;
 						}
-						$ext_name = preg_replace( '/\([A-Z ]+\)$/', '', $info['name'] );	// remove the short name
+
+						// remove the short name if possible (all upper case acronym, with an optional space)
+						$ext_name = preg_replace( '/ \([A-Z ]+\)$/', '', $info['name'] );
+
 						$table_rows[] = $this->form->get_th_html( $ext_name, '', 'update_version_filter' ).
 						'<td>'.$this->form->get_select( 'update_filter_for_'.$ext,
 							$version_filter, 'update_filter', '', true ).'</td>';

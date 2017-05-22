@@ -18,7 +18,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					'version' => '1.6.3',		// plugin version
 					'opt_version' => '3',		// increment when changing default options
 					'short' => 'WPSSO UM',		// short plugin name
-					'name' => 'WPSSO Update Manager (WPSSO UM)',
+					'name' => 'WPSSO Update Manager',
 					'desc' => 'WPSSO extension to provide updates for the WPSSO Pro plugin and its Pro extensions.',
 					'slug' => 'wpsso-um',
 					'base' => 'wpsso-um/wpsso-um.php',
