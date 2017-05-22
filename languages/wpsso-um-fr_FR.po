@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPSSO Update Manager (WPSSO UM) 1.6.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2017-04-22 09:12+0200\n"
-"PO-Revision-Date: 2017-04-24 15:13+0200\n"
+"POT-Creation-Date: 2017-05-22 09:10-0400\n"
+"PO-Revision-Date: 2017-05-22 09:11-0400\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -15,37 +15,37 @@ msgstr ""
 "X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: lib/com/update.php:126
+#: lib/com/update.php:127
 msgid "Please note that one or more non-stable / development %s have been selected."
 msgstr "Veuillez noter que l'un ou plusieurs %s non-stable / de développement ont été sélectionnés."
 
-#: lib/com/update.php:127 lib/sitesubmenu/site-um-general.php:85
+#: lib/com/update.php:128 lib/sitesubmenu/site-um-general.php:85
 #: lib/submenu/um-general.php:69
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr "Filtres de Version pour Mises à Jour"
 
-#: lib/com/update.php:406
+#: lib/com/update.php:415
 msgid "Update information for %s has been retrieved and saved."
 msgstr "L'information de mise à jour pour %s a été récupérée et sauvegardée."
 
-#: lib/com/update.php:418
+#: lib/com/update.php:427
 msgid "Failed saving retrieved update information for %s."
 msgstr "Erreur lors de l'enregistrement des informations de mise à jour pour %s."
 
-#: lib/com/update.php:505
+#: lib/com/update.php:514
 msgid "Update error from the WordPress wp_remote_get() function &mdash; %s"
 msgstr "Erreur de mise à jour de la fonction WordPress wp_remote_get() &mdash; %s"
 
-#: lib/com/update.php:597
+#: lib/com/update.php:606
 msgid "The WordPress library file %s is missing and required."
 msgstr "Le fichier de bibliothèque WordPress %s est manquant et requis."
 
-#: lib/com/update.php:611
+#: lib/com/update.php:620
 msgid "The WordPress %s function is not available and is required."
 msgstr "La fonction WordPress %s n’est pas disponible et est requise."
 
-#: lib/com/update.php:629
+#: lib/com/update.php:638
 msgid "The %1$s plugin (%2$s) version number is missing from the WordPress plugins array."
 msgstr "Le numéro de version de l'extension %1$s (%2$s) est absente de la liste d'extensions de WordPress."
 
@@ -56,8 +56,8 @@ msgstr "Gestionnaire de Mises à Jour"
 
 #: lib/config-gettext-extract.php:4
 msgctxt "plugin description"
-msgid "WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions."
-msgstr "Extension WPSSO pour fournir des mises à jour a WordPress Social Sharing Optimization (WPSSO) Pro et ses extensions Pro."
+msgid "WPSSO extension to provide updates for the WPSSO Pro plugin and its Pro extensions."
+msgstr "Extension WPSSO pour fournir des mises à jour a WPSSO Pro et ses extensions Pro."
 
 #: lib/sitesubmenu/site-um-general.php:43 lib/submenu/um-general.php:37
 msgctxt "package type"
@@ -109,8 +109,8 @@ msgid "https://wpsso.com/extend/plugins/wpsso-um/"
 msgstr "https://wpsso.com/extend/plugins/wpsso-um/"
 
 #. Description of the plugin/theme
-msgid "WPSSO extension to provide updates for the WordPress Social Sharing Optimization (WPSSO) Pro plugin and its Pro extensions."
-msgstr "Extension WPSSO pour fournir des mises à jour a WordPress Social Sharing Optimization (WPSSO) Pro et ses extensions Pro."
+msgid "WPSSO extension to provide updates for the WPSSO Pro plugin and its Pro extensions."
+msgstr "Extension WPSSO pour fournir des mises à jour a WPSSO Pro et ses extensions Pro."
 
 #. Author of the plugin/theme
 msgid "JS Morisset"
