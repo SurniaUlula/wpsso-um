@@ -1015,6 +1015,7 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 		public $homepage;
 		public $download_url;
 		public $upgrade_notice;
+		public $exp_date;
 		public $qty_used;
 
 		public function __construct() {
@@ -1043,6 +1044,7 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 				'homepage', 
 				'download_url', 
 				'upgrade_notice',
+				'exp_date', 
 				'qty_used', 
 			) as $prop_name ) {
 				if ( isset( $plugin_data->$prop_name ) ) {
@@ -1065,6 +1067,7 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 				'homepage' => 'url',			// plugin homepage url
 				'download_url' => 'package',		// update download url
 				'upgrade_notice' => 'upgrade_notice',
+				'exp_date' => 'exp_date',
 				'qty_used' => 'qty_used',
 			) as $json_update_prop => $wp_update_prop ) {
 				if ( isset( $this->$json_update_prop ) ) {

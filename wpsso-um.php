@@ -13,7 +13,7 @@
  * Description: WPSSO extension to provide updates for the WPSSO Pro plugin and its Pro extensions.
  * Requires At Least: 3.7
  * Tested Up To: 4.7.5
- * Version: 1.6.3
+ * Version: 1.6.4-dev.1
  * 
  * Version Numbering: {major}.{minor}.{bugfix}[-{stage}.{level}]
  *
