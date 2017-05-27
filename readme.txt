@@ -66,7 +66,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = Changelog / Release Notes =
 
-**Version 1.6.4-dev.2 (2017/05/26)**
+**Version 1.6.4-dev.3 (2017/05/27)**
 
 * *New Features*
 	* None
@@ -192,9 +192,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.6.4-dev.2 =
+= 1.6.4-dev.3 =
 
-(2017/05/26) Added saving of the license expiration date from the update API.
+(2017/05/27) Added saving of the license expiration date from the update API.
 
 = 1.6.3 =
 
