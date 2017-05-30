@@ -10,7 +10,7 @@ Tags: wpsso, update, manager, schedule, update check, extension, pro version, de
 Contributors: jsmoriss
 Requires At Least: 3.7
 Tested Up To: 4.7.5
-Stable Tag: 1.6.3
+Stable Tag: 1.6.4
 
 WPSSO extension to provide updates for the WPSSO Pro plugin and its Pro extensions.
 
@@ -122,74 +122,6 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* Moved the 'http_request_host_is_external' filter hook to the WPSSO v3.40.13 plugin.
 	* Refactored the plugin init filters and moved/renamed the registration boolean from `is_avail[$name]` to `is_avail['p_ext'][$name]`.
 
-**Version 1.5.20 (2017/04/08)**
-
-* *New Features*
-	* None
-* *Improvements*
-	* None
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* Minor code optimization for the plugin data filters.
-	* Updated the version filters to allow for both {stage}# and {stage}.#.
-	* Dropped the package number from the production version string.
-
-**Version 1.5.19-1 (2017/04/05)**
-
-* *New Features*
-	* None
-* *Improvements*
-	* Updated the plugin icon images and the documentation URLs.
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* Renamed WpssoAdmin get_site_use() to get_option_site_use() for WPSSO v3.40.11-1.
-
-**Version 1.5.18-1 (2017/03/25)**
-
-* *New Features*
-	* None
-* *Improvements*
-	* Added an empty HTTP `Expect:` header to avoid "cURL error 52: Empty reply from server" when using the WordPress wp_remote_get() function.
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* None
-
-**Version 1.5.17-1 (2017/02/26)**
-
-* *New Features*
-	* None
-* *Improvements*
-	* Improved the layout of options in the site and network Update Manager settings page.
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* None
-
-**Version 1.5.16-1 (2017/02/26)**
-
-* *New Features*
-	* None
-* *Improvements*
-	* Improved loading sequence of the plugin textdomain for WPSSO v3.40.0-1.
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* None
-
-**Version 1.5.15-1 (2017/01/22)**
-
-* *New Features*
-	* None
-* *Improvements*
-	* Improved clearing of error and information messages on successful update checks.
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* None
-
 == Upgrade Notice ==
 
 = 1.6.4 =
@@ -211,28 +143,4 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 = 1.6.0 =
 
 (2017/04/16) Moved the 'http_request_host_is_external' filter hook to the WPSSO v3.40.13 plugin. Refactored the plugin init filters and moved/renamed the registration boolean.
-
-= 1.5.20 =
-
-(2017/04/08) Minor code optimization for the plugin data filters. Updated the version filters to allow for both {stage}# and {stage}.#. 
-
-= 1.5.19-1 =
-
-(2017/04/05) Updated the plugin icon images and the documentation URLs. Renamed a WpssoAdmin class method for WPSSO v3.40.11-1.
-
-= 1.5.18-1 =
-
-(2017/03/25) Added an empty HTTP Expect: header to avoid "cURL error 52: Empty reply from server".
-
-= 1.5.17-1 =
-
-(2017/02/26) Improved the layout of options in the site and network Update Manager settings page.
-
-= 1.5.16-1 =
-
-(2017/02/26) Improved loading sequence of the plugin textdomain for WPSSO v3.40.0-1.
-
-= 1.5.15-1 =
-
-(2017/01/22) Improved clearing of error and information messages on successful update checks.
 
