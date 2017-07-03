@@ -17,8 +17,8 @@ msgid ""
 "Please note that one or more non-stable / development %s have been selected."
 msgstr ""
 
-#: lib/com/update.php:128 lib/sitesubmenu/site-um-general.php:85
-#: lib/submenu/um-general.php:69
+#: lib/com/update.php:128 lib/sitesubmenu/site-um-general.php:86
+#: lib/submenu/um-general.php:70
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
@@ -61,27 +61,27 @@ msgid ""
 "extensions."
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:43 lib/submenu/um-general.php:37
+#: lib/sitesubmenu/site-um-general.php:44 lib/submenu/um-general.php:38
 msgctxt "package type"
 msgid "Pro"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:47
+#: lib/sitesubmenu/site-um-general.php:48
 msgctxt "metabox title"
 msgid "Network Update Manager for %s"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:56 lib/submenu/um-general.php:46
+#: lib/sitesubmenu/site-um-general.php:57 lib/submenu/um-general.php:47
 msgctxt "submit button"
 msgid "Check for Updates"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:78 lib/submenu/um-general.php:63
+#: lib/sitesubmenu/site-um-general.php:79 lib/submenu/um-general.php:64
 msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr ""
 
-#: lib/submenu/um-general.php:41
+#: lib/submenu/um-general.php:42
 msgctxt "metabox title"
 msgid "Update Manager for %s"
 msgstr ""
