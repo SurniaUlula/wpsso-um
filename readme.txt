@@ -9,7 +9,7 @@ Assets URI: https://surniaulula.github.io/wpsso-um/assets/
 Tags: wpsso, update, manager, schedule, update check, extension, pro version, development version, pre-release
 Contributors: jsmoriss
 Requires At Least: 3.7
-Tested Up To: 4.8
+Tested Up To: 4.8.1
 Stable Tag: 1.6.4
 
 WPSSO extension to provide updates for the WPSSO Pro plugin and its Pro extensions.
