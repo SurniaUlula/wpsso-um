@@ -67,6 +67,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = Changelog / Release Notes =
 
+**Version 1.6.5 (2017/08/31)**
+
+* *New Features*
+	* None
+* *Improvements*
+	* None
+* *Bugfixes*
+	* None
+* *Developer Notes*
+	* Added a new 'wpsso_um_sslverify' filter for wp_remote_get() (returns true by default).
+
 **Version 1.6.4 (2017/05/30)**
 
 * *New Features*
@@ -124,6 +135,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* Refactored the plugin init filters and moved/renamed the registration boolean from `is_avail[$name]` to `is_avail['p_ext'][$name]`.
 
 == Upgrade Notice ==
+
+= 1.6.5 =
+
+(2017/08/31) Added a new 'wpsso_um_sslverify' filter for wp_remote_get() (returns true by default).
 
 = 1.6.4 =
 
