@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires At Least: 3.7
 Tested Up To: 4.8.1
 Requires PHP: 5.3
-Stable Tag: 1.6.4
+Stable Tag: 1.6.5
 
 WPSSO extension to provide updates for the WPSSO Pro plugin and its Pro extensions.
 
