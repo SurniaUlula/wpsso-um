@@ -492,12 +492,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$ua_wpid = 'WordPress/'.$wp_version.' ('.self::$upd_config[$ext]['slug'].'/'.$ext_version.'/'.
 				( $this->p->check->aop( $ext, true, $this->p->avail['*']['p_dir'] ) ? 'L' :
 				( $this->p->check->aop( $ext, false ) ? 'U' : 'G' ) ).'); '.$home_url;
-			$get_options = array( 'timeout' => 15, 'sslverify' => apply_filters( $lca.'_um_sslverify', true ),
-				'user-agent' => $ua_wpid, 'headers' => array( 'Accept' => 'application/json',
-					'X-WordPress-Id' => $ua_wpid ) );
+			$ssl_verify = apply_filters( $lca.'_um_sslverify', true );
+			$get_options = array( 'timeout' => 15, 'sslverify' => $ssl_verify, 'user-agent' => $ua_wpid,
+				'headers' => array( 'Accept' => 'application/json', 'X-WordPress-Id' => $ua_wpid ) );
 			$plugin_data = null;
 
 			if ( $this->p->debug->enabled ) {
+				$this->p->debug->log( $ext.' plugin: sslverify is '.( $ssl_verify ? 'true' : 'false' ) );
 				$this->p->debug->log( $ext.' plugin: calling wp_remote_get() for '.$json_url );
 			}
 			$res = wp_remote_get( $json_url, $get_options );
