@@ -76,11 +76,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					continue;
 				}
 
-				$auth_url = apply_filters( 'sucom_update_url', $info['url']['update'], $info['slug'] );
-
 				// add the auth type and id to the update url
 				if ( $auth_type !== 'none' ) {
-					$auth_url = add_query_arg( array( $auth_type => $auth_id ), $auth_url );
+					$auth_url = add_query_arg( array( $auth_type => $auth_id ), $info['url']['update'] );
+				} else {
+					$auth_url = $info['url']['update'];
 				}
 
 				$ext_version = $this->get_ext_version( $ext );
@@ -492,14 +492,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$ua_wpid = 'WordPress/'.$wp_version.' ('.self::$upd_config[$ext]['slug'].'/'.$ext_version.'/'.
 				( $this->p->check->aop( $ext, true, $this->p->avail['*']['p_dir'] ) ? 'L' :
 				( $this->p->check->aop( $ext, false ) ? 'U' : 'G' ) ).'); '.$home_url;
-			$get_options = array(
-				'timeout' => 15, 
-				'user-agent' => $ua_wpid,
-				'headers' => array( 
-					'Accept' => 'application/json',
-					'X-WordPress-Id' => $ua_wpid,
-				),
-			);
+			$get_options = array( 'timeout' => 15, 'sslverify' => apply_filters( $lca.'_um_sslverify', true ),
+				'user-agent' => $ua_wpid, 'headers' => array( 'Accept' => 'application/json',
+					'X-WordPress-Id' => $ua_wpid ) );
 			$plugin_data = null;
 
 			if ( $this->p->debug->enabled ) {
@@ -508,6 +503,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$res = wp_remote_get( $json_url, $get_options );
 
 			if ( is_wp_error( $res ) ) {
+
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( $ext.' plugin: update error - '.$res->get_error_message() );
 				}
