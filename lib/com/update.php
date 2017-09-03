@@ -232,7 +232,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			// make sure we have a slug in the request
 			} elseif ( empty( $args->slug ) ) {
 				return $res;
-			// check for pre-v3.40.12 config without that array
+			// flag for the update manager filter
+			} elseif ( ! empty( $args->raw_wp_result ) ) {
+				return $res;
+			// check for pre-v3.40.12 config without this array
 			} elseif ( ! isset( $this->p->cf['*']['slug'] ) ) {
 				foreach ( self::$upd_config as $ext => $info ) {
 					if ( ! empty( $info['slug'] ) && $info['slug'] === $args->slug ) {

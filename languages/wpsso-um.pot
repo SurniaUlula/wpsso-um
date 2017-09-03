@@ -23,27 +23,27 @@ msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
 
-#: lib/com/update.php:415
+#: lib/com/update.php:418
 msgid "Update information for %s has been retrieved and saved."
 msgstr ""
 
-#: lib/com/update.php:427
+#: lib/com/update.php:430
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:512
+#: lib/com/update.php:515
 msgid "Update error from the WordPress wp_remote_get() function &mdash; %s"
 msgstr ""
 
-#: lib/com/update.php:604
+#: lib/com/update.php:607
 msgid "The WordPress library file %s is missing and required."
 msgstr ""
 
-#: lib/com/update.php:618
+#: lib/com/update.php:621
 msgid "The WordPress %s function is not available and is required."
 msgstr ""
 
-#: lib/com/update.php:636
+#: lib/com/update.php:639
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."
