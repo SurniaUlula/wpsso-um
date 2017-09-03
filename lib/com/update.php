@@ -501,6 +501,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->log( $ext.' plugin: sslverify is '.( $ssl_verify ? 'true' : 'false' ) );
 				$this->p->debug->log( $ext.' plugin: calling wp_remote_get() for '.$json_url );
 			}
+
 			$res = wp_remote_get( $json_url, $get_options );
 
 			if ( is_wp_error( $res ) ) {
