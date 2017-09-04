@@ -29,8 +29,8 @@
 <h4>Install and Uninstall</h4>
 
 <ul>
-<li><a href="https://wpsso.com/docs/plugins/wpsso-um/installation/install-the-plugin/">Install the Plugin</a></li>
-<li><a href="https://wpsso.com/docs/plugins/wpsso-um/installation/uninstall-the-plugin/">Uninstall the Plugin</a></li>
+<li><a href="https://wpsso.com/docs/plugins/wpsso-um/installation/install-the-plugin/">Install the WPSSO UM Plugin</a></li>
+<li><a href="https://wpsso.com/docs/plugins/wpsso-um/installation/uninstall-the-plugin/">Uninstall the WPSSO UM Plugin</a></li>
 </ul>
 
 

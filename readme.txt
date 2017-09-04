@@ -31,8 +31,8 @@ Simply *download*, *install*, and *activate*.
 
 = Install and Uninstall =
 
-* [Install the Plugin](https://wpsso.com/docs/plugins/wpsso-um/installation/install-the-plugin/)
-* [Uninstall the Plugin](https://wpsso.com/docs/plugins/wpsso-um/installation/uninstall-the-plugin/)
+* [Install the WPSSO UM Plugin](https://wpsso.com/docs/plugins/wpsso-um/installation/install-the-plugin/)
+* [Uninstall the WPSSO UM Plugin](https://wpsso.com/docs/plugins/wpsso-um/installation/uninstall-the-plugin/)
 
 == Frequently Asked Questions ==
 
