@@ -233,7 +233,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			} elseif ( empty( $args->slug ) ) {
 				return $res;
 			// flag for the update manager filter
-			} elseif ( ! empty( $args->raw_wp_result ) ) {
+			} elseif ( ! empty( $args->unfiltered ) ) {
 				return $res;
 			// check for pre-v3.40.12 config without this array
 			} elseif ( ! isset( $this->p->cf['*']['slug'] ) ) {
