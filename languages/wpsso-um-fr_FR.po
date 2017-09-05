@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPSSO Update Manager 1.6.6\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2017-09-05 14:00-0400\n"
-"PO-Revision-Date: 2017-09-05 14:32-0400\n"
+"POT-Creation-Date: 2017-09-05 15:21-0400\n"
+"PO-Revision-Date: 2017-09-05 15:21-0400\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -23,7 +23,7 @@ msgstr "Veuillez noter que l'un ou plusieurs %s non-stable / de développement o
 #: lib/submenu/um-general.php:71
 msgctxt "metabox title"
 msgid "Update Version Filters"
-msgstr "Filtres de Version pour Mises à Jour"
+msgstr "Filtres de version pour mises à jour"
 
 #: lib/com/update.php:418
 msgid "Update information for %s has been retrieved and saved."
@@ -52,7 +52,7 @@ msgstr "Le numéro de version de l'extension %1$s (%2$s) est absente de la liste
 #: lib/config-gettext-extract.php:3
 msgctxt "lib file description"
 msgid "Update Manager"
-msgstr "Gestion Mises à Jour"
+msgstr "Gestion mises à jour"
 
 #: lib/config-gettext-extract.php:4
 msgctxt "plugin description"
@@ -67,7 +67,7 @@ msgstr "Pro"
 #: lib/sitesubmenu/site-um-general.php:49
 msgctxt "metabox title"
 msgid "Network Update Manager for %s"
-msgstr "Gestion Mises à Jour Réseau pour %s"
+msgstr "Gestion mises à jour réseau pour %s"
 
 #: lib/sitesubmenu/site-um-general.php:58 lib/submenu/um-general.php:48
 msgctxt "submit button"
@@ -82,7 +82,7 @@ msgstr "Actualiser info. de mise à jour"
 #: lib/submenu/um-general.php:43
 msgctxt "metabox title"
 msgid "Update Manager for %s"
-msgstr "Gestion Mises à Jour pour %s"
+msgstr "Gestion mises à jour pour %s"
 
 #: wpsso-um.php:81
 msgid "%1$s is an extension for the %2$s plugin &mdash; please install and activate the %3$s plugin before activating %4$s."
