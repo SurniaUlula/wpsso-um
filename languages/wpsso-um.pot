@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Update Manager package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 1.6.5\n"
+"Project-Id-Version: WPSSO Update Manager 1.6.6-dev.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2017-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -17,8 +17,8 @@ msgid ""
 "Please note that one or more non-stable / development %s have been selected."
 msgstr ""
 
-#: lib/com/update.php:128 lib/sitesubmenu/site-um-general.php:86
-#: lib/submenu/um-general.php:70
+#: lib/com/update.php:128 lib/sitesubmenu/site-um-general.php:87
+#: lib/submenu/um-general.php:71
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
@@ -61,27 +61,27 @@ msgid ""
 "extensions."
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:44 lib/submenu/um-general.php:38
+#: lib/sitesubmenu/site-um-general.php:46 lib/submenu/um-general.php:40
 msgctxt "package type"
 msgid "Pro"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:48
+#: lib/sitesubmenu/site-um-general.php:49
 msgctxt "metabox title"
 msgid "Network Update Manager for %s"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:57 lib/submenu/um-general.php:47
+#: lib/sitesubmenu/site-um-general.php:58 lib/submenu/um-general.php:48
 msgctxt "submit button"
 msgid "Check for Updates"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:79 lib/submenu/um-general.php:64
+#: lib/sitesubmenu/site-um-general.php:80 lib/submenu/um-general.php:65
 msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr ""
 
-#: lib/submenu/um-general.php:42
+#: lib/submenu/um-general.php:43
 msgctxt "metabox title"
 msgid "Update Manager for %s"
 msgstr ""
