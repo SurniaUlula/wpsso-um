@@ -220,7 +220,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		/*
 		 * Provide plugin data from the json api for free / pro extensions not hosted on wordpress.org.
 		 */
-		public function external_plugin_data( $res, $action = null, $args = null ) {
+		public function external_plugin_data( $result, $action = null, $args = null ) {
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
@@ -228,13 +228,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			// this filter only provides plugin data
 			if ( $action !== 'plugin_information' ) {
-				return $res;
+				return $result;
 			// make sure we have a slug in the request
 			} elseif ( empty( $args->slug ) ) {
-				return $res;
+				return $result;
 			// flag for the update manager filter
 			} elseif ( ! empty( $args->unfiltered ) ) {
-				return $res;
+				return $result;
 			// check for pre-v3.40.12 config without this array
 			} elseif ( ! isset( $this->p->cf['*']['slug'] ) ) {
 				foreach ( self::$upd_config as $ext => $info ) {
@@ -245,11 +245,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					}
 				}
 				if ( empty ( $ext ) ) {	// no matching slug found
-					return $res;
+					return $result;
 				}
 			// check that the plugin slug is known
 			} elseif ( empty( $this->p->cf['*']['slug'][$args->slug] ) ) {	// since wpsso v3.40.12
-				return $res;
+				return $result;
 			} else {
 				// get the extension acronym for the config
 				$ext = $this->p->cf['*']['slug'][$args->slug];
@@ -257,7 +257,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			// make sure we have a config for that slug
 			if ( empty( self::$upd_config[$ext]['slug'] ) ) {
-				return $res;
+				return $result;
 			}
 
 			if ( $this->p->debug->enabled ) {
@@ -269,7 +269,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			// make sure we have something to return
 			if ( ! is_object( $plugin_data ) || ! method_exists( $plugin_data, 'json_to_wp' ) ) {
-				return $res;
+				return $result;
 			}
 
 			return $plugin_data->json_to_wp();
@@ -505,20 +505,20 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->log( $ext.' plugin: calling wp_remote_get() for '.$json_url );
 			}
 
-			$res = wp_remote_get( $json_url, $get_options );
+			$request = wp_remote_get( $json_url, $get_options );
 
-			if ( is_wp_error( $res ) ) {
+			if ( is_wp_error( $request ) ) {
 
 				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( $ext.' plugin: update error - '.$res->get_error_message() );
+					$this->p->debug->log( $ext.' plugin: update error - '.$request->get_error_message() );
 				}
 				$this->p->notice->err( sprintf( __( 'Update error from the WordPress wp_remote_get() function &mdash; %s',
-					$this->text_domain ), $res->get_error_message() ) );
+					$this->text_domain ), $request->get_error_message() ) );
 
-			} elseif ( isset( $res['response']['code'] ) && (int) $res['response']['code'] === 200 && ! empty( $res['body'] ) ) {
+			} elseif ( isset( $request['response']['code'] ) && (int) $request['response']['code'] === 200 && ! empty( $request['body'] ) ) {
 
 				// create an associative array
-				$payload = json_decode( $res['body'], true, 32 );
+				$payload = json_decode( $request['body'], true, 32 );
 
 				// add new or remove existing response messages
 				foreach ( array( 'err', 'inf' ) as $msg ) {
@@ -526,9 +526,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						( empty( $payload['api_response'][$msg] ) ? false : $payload['api_response'][$msg] ) );
 				}
 
-				if ( empty( $res['headers']['x-smp-error'] ) ) {
+				if ( empty( $request['headers']['x-smp-error'] ) ) {
 					self::$upd_config[$ext]['uerr'] = false;
-					$plugin_data = SucomPluginData::data_from_json( $res['body'] );	// returns null on error
+					$plugin_data = SucomPluginData::data_from_json( $request['body'] );	// returns null on error
 					if ( empty( $plugin_data->plugin ) ) {
 						if ( $this->p->debug->enabled ) {
 							$this->p->debug->log( $ext.' plugin: returned plugin data is incomplete' );
