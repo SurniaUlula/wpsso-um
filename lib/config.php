@@ -16,7 +16,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		public static $cf = array(
 			'plugin' => array(
 				'wpssoum' => array(
-					'version' => '1.6.6-dev.3',		// plugin version
+					'version' => '1.6.6-b.1',		// plugin version
 					'opt_version' => '3',		// increment when changing default options
 					'short' => 'WPSSO UM',		// short plugin name
 					'name' => 'WPSSO Update Manager',
@@ -30,7 +30,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 						'short' => 'WPSSO',
 						'name' => 'WPSSO',
 						'min_version' => '3.11.0',
-						'rec_version' => '3.45.10-dev.3',
+						'rec_version' => '3.45.10-b.1',
 					),
 					'img' => array(
 						'icons' => array(
@@ -60,6 +60,10 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		}
 
 		public static function set_constants( $plugin_filepath ) { 
+			if ( defined( 'WPSSOUM_VERSION' ) ) {			// execute and define constants only once
+				return;
+			}
+			define( 'WPSSOUM_VERSION', self::$cf['plugin']['wpssoum']['version'] );						
 			define( 'WPSSOUM_FILEPATH', $plugin_filepath );						
 			define( 'WPSSOUM_PLUGINDIR', trailingslashit( realpath( dirname( $plugin_filepath ) ) ) );
 			define( 'WPSSOUM_PLUGINSLUG', self::$cf['plugin']['wpssoum']['slug'] );		// wpsso-um
