@@ -67,7 +67,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = Changelog / Release Notes =
 
-**Version 1.6.6-rc.1 (2017/09/09)**
+**Version 1.6.6 (2017/09/10)**
 
 * *New Features*
 	* None
@@ -147,9 +147,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.6.6-rc.1 =
+= 1.6.6 =
 
-(2017/09/09) Minor code refactoring for WPSSO v3.46.0.
+(2017/09/10) Minor code refactoring for WPSSO v3.46.0.
 
 = 1.6.5 =
 
