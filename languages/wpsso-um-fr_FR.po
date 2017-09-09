@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPSSO Update Manager 1.6.6\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2017-09-05 15:21-0400\n"
-"PO-Revision-Date: 2017-09-05 17:25-0400\n"
+"POT-Creation-Date: 2017-09-08 20:40-0400\n"
+"PO-Revision-Date: 2017-09-08 20:40-0400\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -34,8 +34,8 @@ msgid "Failed saving retrieved update information for %s."
 msgstr "Erreur lors de l'enregistrement des informations de mise à jour pour %s."
 
 #: lib/com/update.php:515
-msgid "Update error from the WordPress wp_remote_get() function &mdash; %s"
-msgstr "Erreur de mise à jour de la fonction WordPress wp_remote_get() &mdash; %s"
+msgid "Update error from the WordPress wp_remote_get() function: %s"
+msgstr "Erreur de mise à jour de la fonction WordPress wp_remote_get(): %s"
 
 #: lib/com/update.php:607
 msgid "The WordPress library file %s is missing and required."
@@ -88,15 +88,15 @@ msgstr "Gestionnaire de mises à jour pour %s"
 msgid "%1$s is an extension for the %2$s plugin &mdash; please install and activate the %3$s plugin before activating %4$s."
 msgstr "%1$s est une extension pour %2$s &mdash; s'il vous plaît installer et activer %3$s avant d'activer l'extension %4$s."
 
-#: wpsso-um.php:83
-msgid "The %1$s extension requires the %2$s plugin &mdash; please install and activate the %3$s plugin."
-msgstr "L'extension %1$s requiert %2$s &mdash; s'il vous plaît installer et activer l'extension %3$s."
+#: wpsso-um.php:82
+msgid "The %1$s extension requires the %2$s plugin &mdash; install and activate the %3$s plugin or <a href=\"%4$s\">deactivate the %5$s extension</a>."
+msgstr "L'extension %1$s requiert %2$s &mdash; installer et activer %3$s ou <a href=\"%4$s\">désactiver l'extension %5$s</a>."
 
-#: wpsso-um.php:163
+#: wpsso-um.php:166
 msgid "Performing an update check for the %s plugin."
 msgstr "Vérification de mise à jour pour l'extension %s."
 
-#: wpsso-um.php:183
+#: wpsso-um.php:186
 msgid "The %1$s extension v%2$s requires %3$s v%4$s or newer (v%5$s currently installed)."
 msgstr "L'extension %1$s v%2$s requiert l'utilisation de %3$s v%4$s ou plus récente (v%5$s est actuellement installée)."
 
