@@ -369,15 +369,15 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return $schedules;
 		}
 	
-		public function check_for_updates( $ext = null, $notice = false, $use_cache = true ) {
+		public function check_for_updates( $check_ext = null, $show_notice = false, $use_cache = true ) {
 
-			if ( empty( $ext ) ) {
+			if ( empty( $check_ext ) ) {
 				$plugins = self::$upd_config;	// check all plugins defined
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( 'checking all extensions for updates' );
 				}
-			} elseif ( isset( self::$upd_config[$ext] ) ) {
-				$plugins = array( $ext => self::$upd_config[$ext] );	// check only one specific plugin
+			} elseif ( isset( self::$upd_config[$check_ext] ) ) {
+				$plugins = array( $check_ext => self::$upd_config[$check_ext] );	// check only one specific plugin
 			} else {
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( 'exiting early: invalid extension value' );
@@ -414,7 +414,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$this->p->debug->log( $ext.' plugin: update information saved in '.$info['option_name'] );
 					}
 
-					if ( $notice || $this->p->debug->enabled ) {
+					if ( $show_notice || $this->p->debug->enabled ) {
 						$this->p->notice->inf( sprintf( __( 'Update information for %s has been retrieved and saved.',
 							$this->text_domain ), $info['name'] ), true,
 								'check_for_updates_'.$ext.'_'.$info['option_name'], true );	// can be dismissed
@@ -426,7 +426,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$this->p->debug->log( $ext.' plugin: failed saving update information in '.$info['option_name'] );
 					}
 
-					if ( $notice || $this->p->debug->enabled ) {
+					if ( $show_notice || $this->p->debug->enabled ) {
 						$this->p->notice->err( sprintf( __( 'Failed saving retrieved update information for %s.',
 							$this->text_domain ), $info['name'] ) );
 					}
