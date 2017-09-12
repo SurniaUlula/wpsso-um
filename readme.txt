@@ -23,9 +23,9 @@ WPSSO extension to provide updates for the WPSSO Pro plugin and its Pro extensio
 
 Simply *download*, *install*, and *activate*.
 
-<blockquote>
-<p><strong>Prerequisite</strong> &mdash; WPSSO Update Manager is an extension for the WPSSO (Core Plugin), which <em>automatically</em> generates complete and accurate meta tags and Schema markup from your content for Social Media Optimization (SMO) and Search Engine Optimization (SEO).</p>
-</blockquote>
+= WPSSO (Core Plugin) Prerequisite =
+
+WPSSO Update Manager is an extension for the WPSSO (Core Plugin), which automatically generates complete and accurate meta tags and Schema markup from your content for Social Media Optimization (SMO) and Search Engine Optimization (SEO).
 
 == Installation ==
 
