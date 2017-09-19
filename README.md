@@ -21,7 +21,7 @@
 
 <h4>WPSSO (Core Plugin) Prerequisite</h4>
 
-<p>WPSSO Update Manager is an extension for the WPSSO (Core Plugin), which automatically generates complete and accurate meta tags and Schema markup from your content for Social Media Optimization (SMO) and Search Engine Optimization (SEO).</p>
+<p>WPSSO Update Manager is an extension for the WPSSO (Core Plugin) &mdash; which creates complete and accurate meta tags and Schema markup from your content for social sharing, social media, search / SEO and rich cards.</p>
 
 
 <h2>Installation</h2>
