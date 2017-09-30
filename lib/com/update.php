@@ -14,10 +14,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 	class SucomUpdate {
 	
 		private $p;
+		private $text_domain = 'sucom';
 		private $cron_hook;
 		private $sched_hours;
 		private $sched_name;
-		private $text_domain = 'sucom';
 		private static $api_version = 2;
 		private static $upd_config = array();
 		private static $ext_versions = array();
@@ -32,10 +32,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$lca = $this->p->cf['lca'];
 			$slug = $this->p->cf['plugin'][$lca]['slug'];			// example: wpsso
 
+			$this->text_domain = $text_domain;				// example: wpsso-um
 			$this->cron_hook = 'plugin_update-'.$slug;			// example: plugin_update-wpsso
 			$this->sched_hours = $check_hours >= 24 ? $check_hours : 24;	// example: 24 (minimum)
 			$this->sched_name = 'every'.$this->sched_hours.'hours';		// example: every24hours
-			$this->text_domain = $text_domain;				// example: wpsso-um
 
 			$this->set_config();
 			$this->install_hooks();
@@ -125,8 +125,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			if ( $dev_selected && $this->p->notice->is_admin_pre_notices() ) {
 				$warn_dis_key = 'non-stable-update-version-filters-selected';
 				$this->p->notice->warn( sprintf( __( 'Please note that one or more non-stable / development %s have been selected.',
-					$this->text_domain ), $this->p->util->get_admin_url( 'um-general', _x( 'Update Version Filters', 'metabox title', 'wpsso-um' ) ) ),
-						true, $warn_dis_key, MONTH_IN_SECONDS * 3, true );	// $silent = true
+					$this->text_domain ), $this->p->util->get_admin_url( 'um-general', _x( 'Update Version Filters',
+						'metabox title', $this->text_domain ) ) ), true, $warn_dis_key, MONTH_IN_SECONDS * 3, true );	// $silent = true
 			}
 		}
 
@@ -416,8 +416,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 					if ( $show_notice || $this->p->debug->enabled ) {
 						$this->p->notice->inf( sprintf( __( 'Update information for %s has been retrieved and saved.',
-							$this->text_domain ), $info['name'] ), true,
-								'check_for_updates_'.$ext.'_'.$info['option_name'], true );	// can be dismissed
+							$this->text_domain ), $info['name'] ), true, 'check_for_updates_'.$ext.'_'.$info['option_name'], true );
 					}
 
 				} else {
