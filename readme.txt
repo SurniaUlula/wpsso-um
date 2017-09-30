@@ -67,6 +67,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = Changelog / Release Notes =
 
+**Version 1.6.7-dev.1 (2017/09/30)**
+
+* *New Features*
+	* None
+* *Improvements*
+	* None
+* *Bugfixes*
+	* None
+* *Developer Notes*
+	* Minor code refactoring for NGFB v8.46.3.
+
 **Version 1.6.6 (2017/09/10)**
 
 * *New Features*
@@ -78,100 +89,13 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *Developer Notes*
 	* Minor code refactoring for WPSSO v3.46.0.
 
-**Version 1.6.5 (2017/08/31)**
-
-* *New Features*
-	* None
-* *Improvements*
-	* None
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* Added a new 'wpsso_um_sslverify' filter for wp_remote_get() (returns true by default).
-
-**Version 1.6.4 (2017/05/30)**
-
-* *New Features*
-	* None
-* *Improvements*
-	* Added saving of the license expiration date from the update API.
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* None
-
-**Version 1.6.3 (2017/04/30)**
-
-* *New Features*
-	* None
-* *Improvements*
-	* None
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* Code refactoring to rename the $is_avail array to $avail for WPSSO v3.42.0.
-
-**Version 1.6.2 (2017/04/22)**
-
-* *New Features*
-	* None
-* *Improvements*
-	* Added a warning message if one or more non-stable / development update version filters is selected (the notice can be dismissed for three months).
-* *Bugfixes*
-	* Removed the side metaboxes for WPSSO v3.41.0, which includes a new dashboard settings page.
-* *Developer Notes*
-	* None
-
-**Version 1.6.1 (2017/04/17)**
-
-* *New Features*
-	* None
-* *Improvements*
-	* None
-* *Bugfixes*
-	* Fixed update notices for plugins that are not installed. ;-)
-* *Developer Notes*
-	* None
-
-**Version 1.6.0 (2017/04/16)**
-
-* *New Features*
-	* None
-* *Improvements*
-	* None
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* Moved the 'http_request_host_is_external' filter hook to the WPSSO v3.40.13 plugin.
-	* Refactored the plugin init filters and moved/renamed the registration boolean from `is_avail[$name]` to `is_avail['p_ext'][$name]`.
-
 == Upgrade Notice ==
+
+= 1.6.7-dev.1 =
+
+(2017/09/30) Minor code refactoring for NGFB v8.46.3.
 
 = 1.6.6 =
 
 (2017/09/10) Minor code refactoring for WPSSO v3.46.0.
-
-= 1.6.5 =
-
-(2017/08/31) Added a new 'wpsso_um_sslverify' filter for wp_remote_get() (returns true by default).
-
-= 1.6.4 =
-
-(2017/05/30) Added saving of the license expiration date from the update API.
-
-= 1.6.3 =
-
-(2017/04/30) Code refactoring to rename the $is_avail array to $avail for WPSSO v3.42.0.
-
-= 1.6.2 =
-
-(2017/04/22) Removed the side metaboxes for WPSSO v3.41.0, which includes a new dashboard settings page. Added a warning message if one or more non-stable / development update version filters is selected.
-
-= 1.6.1 =
-
-(2017/04/17) Fixed update notices for plugins that are not installed. ;-)
-
-= 1.6.0 =
-
-(2017/04/16) Moved the 'http_request_host_is_external' filter hook to the WPSSO v3.40.13 plugin. Refactored the plugin init filters and moved/renamed the registration boolean.
 
