@@ -67,7 +67,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = Changelog / Release Notes =
 
-**Version 1.6.7-dev.1 (2017/09/30)**
+**Version 1.6.7-dev.2 (2017/09/30)**
 
 * *New Features*
 	* None
@@ -76,7 +76,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *Bugfixes*
 	* None
 * *Developer Notes*
-	* Minor code refactoring for NGFB v8.46.3.
+	* Minor code refactoring / standardizing for WPSSO v3.46.3.
 
 **Version 1.6.6 (2017/09/10)**
 
@@ -91,9 +91,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.6.7-dev.1 =
+= 1.6.7-dev.2 =
 
-(2017/09/30) Minor code refactoring for NGFB v8.46.3.
+(2017/09/30) Minor code refactoring / standardizing for WPSSO v3.46.3.
 
 = 1.6.6 =
 
