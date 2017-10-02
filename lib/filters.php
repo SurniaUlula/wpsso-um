@@ -30,6 +30,10 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		public function __construct( &$plugin ) {
 			$this->p =& $plugin;
 
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+
 			$this->p->util->add_plugin_filters( $this, array( 
 				'get_defaults' => 1,			// option defaults
 				'get_site_defaults' => 1,		// site option defaults
