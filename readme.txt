@@ -13,7 +13,7 @@ Tested Up To: 4.8.2
 Requires PHP: 5.3
 Stable Tag: 1.6.7
 
-WPSSO extension to provide updates for the WPSSO Pro plugin and its Pro extensions.
+WPSSO extension to provide updates for the WPSSO Pro (Core Plugin) and its Pro extensions.
 
 == Description ==
 
