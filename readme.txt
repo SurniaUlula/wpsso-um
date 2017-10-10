@@ -13,7 +13,7 @@ Tested Up To: 4.8.2
 Requires PHP: 5.3
 Stable Tag: 1.6.7
 
-WPSSO extension to provide updates for the WPSSO Pro (Core Plugin) and its Pro extensions.
+WPSSO extension to provide updates for the WPSSO Core Pro plugin and its Pro extensions.
 
 == Description ==
 
@@ -23,26 +23,26 @@ WPSSO extension to provide updates for the WPSSO Pro (Core Plugin) and its Pro e
 
 Simply *download*, *install*, and *activate*.
 
-= WPSSO (Core Plugin) Prerequisite =
+<h3>WPSSO Core Plugin Prerequisite</h3>
 
-WPSSO Update Manager is an extension for the WPSSO (Core Plugin) &mdash; which creates complete &amp; accurate meta tags and Schema markup from your content for social sharing, social media / SMO, search / SEO / rich cards, and more.
+WPSSO Update Manager is an extension for the WPSSO Core plugin &mdash; which creates complete &amp; accurate meta tags and Schema markup from your content for social sharing, social media / SMO, search / SEO / rich cards, and more.
 
 == Installation ==
 
-= Install and Uninstall =
+<h3>Install and Uninstall</h3>
 
 * [Install the WPSSO UM Plugin](https://wpsso.com/docs/plugins/wpsso-um/installation/install-the-plugin/)
 * [Uninstall the WPSSO UM Plugin](https://wpsso.com/docs/plugins/wpsso-um/installation/uninstall-the-plugin/)
 
 == Frequently Asked Questions ==
 
-= Frequently Asked Questions =
+<h3>Frequently Asked Questions</h3>
 
 * None
 
 == Other Notes ==
 
-= Additional Documentation =
+<h3>Additional Documentation</h3>
 
 * None
 
@@ -52,11 +52,11 @@ WPSSO Update Manager is an extension for the WPSSO (Core Plugin) &mdash; which c
 
 == Changelog ==
 
-= Free / Basic Version Repository =
+<h3>Free / Basic Version Repositories</h3>
 
 * [GitHub](https://surniaulula.github.io/wpsso-um/)
 
-= Version Numbering =
+<h3>Version Numbering</h3>
 
 Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
@@ -65,7 +65,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * {bugfix} = Backwards-compatible bug fixes or small improvements.
 * {stage}.{level} = Pre-production release: dev < a (alpha) < b (beta) < rc (release candidate).
 
-= Changelog / Release Notes =
+<h3>Changelog / Release Notes</h3>
 
 **Version 1.6.7 (2017/10/02)**
 

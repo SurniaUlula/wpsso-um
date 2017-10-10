@@ -2,7 +2,7 @@
 
 <table>
 <tr><th align="right" valign="top" nowrap>Plugin Name</th><td>WPSSO Update Manager</td></tr>
-<tr><th align="right" valign="top" nowrap>Summary</th><td>WPSSO extension to provide updates for the WPSSO Pro (Core Plugin) and its Pro extensions.</td></tr>
+<tr><th align="right" valign="top" nowrap>Summary</th><td>WPSSO extension to provide updates for the WPSSO Core Pro plugin and its Pro extensions.</td></tr>
 <tr><th align="right" valign="top" nowrap>Stable Version</th><td>1.6.7</td></tr>
 <tr><th align="right" valign="top" nowrap>Requires At Least</th><td>WordPress 3.7</td></tr>
 <tr><th align="right" valign="top" nowrap>Tested Up To</th><td>WordPress 4.8.2</td></tr>
@@ -19,14 +19,14 @@
 
 <p>Simply <em>download</em>, <em>install</em>, and <em>activate</em>.</p>
 
-<h4>WPSSO (Core Plugin) Prerequisite</h4>
+<h3>WPSSO Core Plugin Prerequisite</h3>
 
-<p>WPSSO Update Manager is an extension for the WPSSO (Core Plugin) &mdash; which creates complete &amp; accurate meta tags and Schema markup from your content for social sharing, social media / SMO, search / SEO / rich cards, and more.</p>
+<p>WPSSO Update Manager is an extension for the WPSSO Core plugin &mdash; which creates complete &amp; accurate meta tags and Schema markup from your content for social sharing, social media / SMO, search / SEO / rich cards, and more.</p>
 
 
 <h2>Installation</h2>
 
-<h4>Install and Uninstall</h4>
+<h3>Install and Uninstall</h3>
 
 <ul>
 <li><a href="https://wpsso.com/docs/plugins/wpsso-um/installation/install-the-plugin/">Install the WPSSO UM Plugin</a></li>
@@ -36,7 +36,7 @@
 
 <h2>Frequently Asked Questions</h2>
 
-<h4>Frequently Asked Questions</h4>
+<h3>Frequently Asked Questions</h3>
 
 <ul>
 <li>None</li>
@@ -46,7 +46,7 @@
 <h2>Other Notes</h2>
 
 <h3>Other Notes</h3>
-<h4>Additional Documentation</h4>
+<h3>Additional Documentation</h3>
 
 <ul>
 <li>None</li>
