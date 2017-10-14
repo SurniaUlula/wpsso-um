@@ -376,12 +376,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		public function check_for_updates( $check_ext = null, $show_notice = false, $use_cache = true ) {
 
 			if ( empty( $check_ext ) ) {
-				$plugins = self::$upd_config;	// check all plugins defined
+				$ext_plugins = self::$upd_config;	// check all plugins defined
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( 'checking all extensions for updates' );
 				}
 			} elseif ( isset( self::$upd_config[$check_ext] ) ) {
-				$plugins = array( $check_ext => self::$upd_config[$check_ext] );	// check only one specific plugin
+				$ext_plugins = array( $check_ext => self::$upd_config[$check_ext] );	// check only one specific plugin
 			} else {
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( 'exiting early: invalid extension value' );
@@ -389,7 +389,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				return;
 			}
 
-			foreach ( $plugins as $ext => $info ) {
+			foreach ( $ext_plugins as $ext => $info ) {
 
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( $ext.' plugin: checking for update' );
@@ -599,49 +599,54 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$this->p->debug->log( $ext.' plugin: extension is not active / installed' );
 				}
 
-				if ( ! function_exists( 'get_plugins' ) ) {
-					$plugin_lib = trailingslashit( ABSPATH ).'wp-admin/includes/plugin.php';
-					if ( file_exists( $plugin_lib ) ) {	// just in case
-						require_once $plugin_lib;
-					} else {
-						if ( $this->p->debug->enabled ) {
-							$this->p->debug->log( $ext.' plugin: '.$plugin_lib.' file is missing' );
-						}
-						$this->p->notice->err( sprintf( __( 'The WordPress library file %s is missing and required.', 
-							$this->text_domain ), '<code>'.$plugin_lib.'</code>' ) );
-					}
-				}
-
-				static $plugins = null;	// get the plugins list from WordPress only once
-
-				if ( function_exists( 'get_plugins' ) ) {
-					if ( $plugins === null ) {
-						if ( $this->p->debug->enabled ) {
-							$this->p->debug->log( $ext.' plugin: getting plugins list from WordPress' );
-						}
-						$plugins = get_plugins();
-					} else {
-						if ( $this->p->debug->enabled ) {
-							$this->p->debug->log( $ext.' plugin: using cached static plugins list' );
-						}
-					}
-				} else {
+				if ( method_exists( 'SucomUtil', 'get_wp_plugins' ) ) {	// uses a common cache for all plugin extensions
 					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $ext.' plugin: '.$plugin_lib.' functions is not available' );
+						$this->p->debug->log( $ext.' plugin: getting plugins list from common class method' );
 					}
-					$this->p->notice->err( sprintf( __( 'The WordPress %s function is not available and is required.',
-						$this->text_domain ), '<code>get_plugins()</code>' ) );
-					$plugins = array();
+					$wp_plugins = SucomUtil::get_wp_plugins();
+				} else {
+					if ( ! function_exists( 'get_plugins' ) ) {	// load the library if necessary
+						$plugin_lib = trailingslashit( ABSPATH ).'wp-admin/includes/plugin.php';
+						if ( file_exists( $plugin_lib ) ) {	// just in case
+							require_once $plugin_lib;
+						} else {
+							if ( $this->p->debug->enabled ) {
+								$this->p->debug->log( $ext.' plugin: library file '.$plugin_lib.' is missing' );
+							}
+							$this->p->notice->err( sprintf( __( 'WordPress library file %s is missing and required.', 
+								$this->text_domain ), '<code>'.$plugin_lib.'</code>' ) );
+						}
+					}
+					if ( function_exists( 'get_plugins' ) ) {	// just in case
+						static $wp_plugins = null;	// get the plugins list from wordpress only once
+						if ( $wp_plugins === null ) {
+							if ( $this->p->debug->enabled ) {
+								$this->p->debug->log( $ext.' plugin: getting plugins list from wordpress' );
+							}
+							$wp_plugins = get_plugins();	// save to static cache
+						} else {
+							if ( $this->p->debug->enabled ) {
+								$this->p->debug->log( $ext.' plugin: getting plugins list from static cache' );
+							}
+						}
+					} else {
+						if ( $this->p->debug->enabled ) {
+							$this->p->debug->log( $ext.' plugin: function get_plugins() is missing' );
+						}
+						$this->p->notice->err( sprintf( __( 'WordPress function %s is missing and required.',
+							$this->text_domain ), '<code>get_plugins()</code>' ) );
+						$wp_plugins = array();
+					}
 				}
 
 				// the plugin is installed
-				if ( isset( $plugins[$info['base']] ) ) {
+				if ( isset( $wp_plugins[$info['base']] ) ) {
 
 					// use the version found in the plugins array
-					if ( isset( $plugins[$info['base']]['Version'] ) ) {
-						$version = $plugins[$info['base']]['Version'];
+					if ( isset( $wp_plugins[$info['base']]['Version'] ) ) {
+						$version = $wp_plugins[$info['base']]['Version'];
 						if ( $this->p->debug->enabled ) {
-							$this->p->debug->log( $ext.' plugin: installed version is '.$version.' according to WordPress' );
+							$this->p->debug->log( $ext.' plugin: installed version is '.$version.' according to wordpress' );
 						}
 					} else {
 						if ( $this->p->debug->enabled ) {
