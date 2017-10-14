@@ -61,6 +61,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					continue;
 				}
 
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->mark();
+				}
+
 				$auth_type = $this->get_auth_type( $ext );
 				$auth_id = $this->get_auth_id( $ext );
 
@@ -96,7 +100,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 
 				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( $ext.' plugin: installed_version is '.$ext_version.' with '.$filter_name.' filter' );
+					$this->p->debug->log( $ext.' plugin: installed version is '.$ext_version.' with '.$filter_name.' filter' );
 				}
 
 				$auth_url = add_query_arg( array( 
@@ -608,11 +612,19 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					}
 				}
 
+				static $plugins = null;	// get the plugins list from WordPress only once
+
 				if ( function_exists( 'get_plugins' ) ) {
-					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $ext.' plugin: getting plugins list from WordPress' );
+					if ( $plugins === null ) {
+						if ( $this->p->debug->enabled ) {
+							$this->p->debug->log( $ext.' plugin: getting plugins list from WordPress' );
+						}
+						$plugins = get_plugins();
+					} else {
+						if ( $this->p->debug->enabled ) {
+							$this->p->debug->log( $ext.' plugin: using cached static plugins list' );
+						}
 					}
-					$plugins = get_plugins();
 				} else {
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext.' plugin: '.$plugin_lib.' functions is not available' );
@@ -629,7 +641,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					if ( isset( $plugins[$info['base']]['Version'] ) ) {
 						$version = $plugins[$info['base']]['Version'];
 						if ( $this->p->debug->enabled ) {
-							$this->p->debug->log( $ext.' plugin: installed version is '.$version );
+							$this->p->debug->log( $ext.' plugin: installed version is '.$version.' according to WordPress' );
 						}
 					} else {
 						if ( $this->p->debug->enabled ) {
@@ -677,12 +689,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$this->p->debug->log( $ext.' plugin: auth type is defined' );
 					}
 					if ( $this->p->check->aop( $ext, false, $this->p->avail['*']['p_dir'] ) ) {
-						if ( empty( $auth_id ) ) {	// pdir without an auth_id
+						if ( empty( $auth_id ) ) {	// p_dir without an auth_id
 							if ( $this->p->debug->enabled ) {
-								$this->p->debug->log( $ext.' plugin: pdir without an auth_id' );
+								$this->p->debug->log( $ext.' plugin: have p_dir but no auth_id' );
 							}
 							// save to cache and stop here
 							return $version = '0.'.$version;
+						} elseif ( $this->p->debug->enabled ) {
+							$this->p->debug->log( $ext.' plugin: have p_dir with an auth_id' );
 						}
 					} elseif ( ! empty( $auth_id ) ) {	// free with an auth_id
 						if ( $this->p->debug->enabled ) {
@@ -691,6 +705,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						// save to cache and stop here
 						return $version = '0.'.$version;
 					}
+				} elseif ( $this->p->debug->enabled ) {
+					$this->p->debug->log( $ext.' plugin: no auth type' );
 				}
 			}
 
