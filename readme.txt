@@ -67,6 +67,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 1.6.8-rc.10 (2017/10/14)**
+
+* *New Features*
+	* None
+* *Improvements*
+	* Minor speed improvement when getting information for installed / non-active extensions. 
+* *Bugfixes*
+	* None
+* *Developer Notes*
+	* Added a check for SucomUtil::get_wp_plugins() to use it instead of the (slower) WordPress get_plugins() function.
+
 **Version 1.6.7 (2017/10/02)**
 
 * *New Features*
@@ -90,6 +101,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* Minor code refactoring for WPSSO v3.46.0.
 
 == Upgrade Notice ==
+
+= 1.6.8-rc.10 =
+
+(2017/10/14) Minor speed improvement when getting information for installed / non-active extensions. 
 
 = 1.6.7 =
 
