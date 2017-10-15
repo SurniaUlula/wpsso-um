@@ -67,7 +67,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.6.8-rc.10 (2017/10/14)**
+**Version 1.6.8 (2017/10/15)**
 
 * *New Features*
 	* None
@@ -102,9 +102,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.6.8-rc.10 =
+= 1.6.8 =
 
-(2017/10/14) Minor speed improvement when getting information for installed / non-active extensions. 
+(2017/10/15) Minor speed improvement when getting information for installed / non-active extensions. 
 
 = 1.6.7 =
 
