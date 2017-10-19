@@ -2,7 +2,7 @@
 
 <table>
 <tr><th align="right" valign="top" nowrap>Plugin Name</th><td>WPSSO Update Manager</td></tr>
-<tr><th align="right" valign="top" nowrap>Summary</th><td>WPSSO extension to provide updates for the WPSSO Core Pro plugin and its Pro extensions.</td></tr>
+<tr><th align="right" valign="top" nowrap>Summary</th><td>WPSSO Core extension to provide updates for the WPSSO Core Pro plugin and its Pro extensions.</td></tr>
 <tr><th align="right" valign="top" nowrap>Stable Version</th><td>1.6.8</td></tr>
 <tr><th align="right" valign="top" nowrap>Requires At Least</th><td>WordPress 3.7</td></tr>
 <tr><th align="right" valign="top" nowrap>Tested Up To</th><td>WordPress 4.8.2</td></tr>
