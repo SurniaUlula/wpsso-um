@@ -20,7 +20,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					'opt_version' => '3',		// increment when changing default options
 					'short' => 'WPSSO UM',		// short plugin name
 					'name' => 'WPSSO Update Manager',
-					'desc' => 'WPSSO extension to provide updates for the WPSSO Core Pro plugin and its Pro extensions.',
+					'desc' => 'WPSSO Core extension to provide updates for the WPSSO Core Pro plugin and its Pro extensions.',
 					'slug' => 'wpsso-um',
 					'base' => 'wpsso-um/wpsso-um.php',
 					'update_auth' => '',
