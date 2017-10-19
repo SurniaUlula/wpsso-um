@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPSSO Update Manager 1.6.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2017-10-14 07:51-0600\n"
-"PO-Revision-Date: 2017-10-14 07:53-0600\n"
+"POT-Creation-Date: 2017-10-19 16:19-0600\n"
+"PO-Revision-Date: 2017-10-19 16:19-0600\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -56,8 +56,8 @@ msgstr "Gestionnaire de mises à jour"
 
 #: lib/config-gettext-extract.php:4
 msgctxt "plugin description"
-msgid "WPSSO extension to provide updates for the WPSSO Core Pro plugin and its Pro extensions."
-msgstr "Extension WPSSO pour fournir des mises à jour a WPSSO Core Pro et ses extensions Pro."
+msgid "WPSSO Core extension to provide updates for the WPSSO Core Pro plugin and its Pro extensions."
+msgstr "Extension WPSSO Core pour fournir des mises à jour a WPSSO Core Pro et ses extensions Pro."
 
 #: lib/sitesubmenu/site-um-general.php:46 lib/submenu/um-general.php:40
 msgctxt "package type"
@@ -109,8 +109,8 @@ msgid "https://wpsso.com/extend/plugins/wpsso-um/"
 msgstr "https://wpsso.com/extend/plugins/wpsso-um/"
 
 #. Description of the plugin/theme
-msgid "WPSSO extension to provide updates for the WPSSO Core Pro plugin and its Pro extensions."
-msgstr "Extension WPSSO pour fournir des mises à jour a WPSSO Core Pro et ses extensions Pro."
+msgid "WPSSO Core extension to provide updates for the WPSSO Core Pro plugin and its Pro extensions."
+msgstr "Extension WPSSO Core pour fournir des mises à jour a WPSSO Core Pro et ses extensions Pro."
 
 #. Author of the plugin/theme
 msgid "JS Morisset"
