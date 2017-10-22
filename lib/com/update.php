@@ -759,16 +759,18 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return '/^[0-9][0-9\.\+\-]+$/';	// stable regex
 		}
 
-		// an unfiltered version of the same wordpress function
-		// last synchronized with wordpress v4.5 on 2016/04/05
+		/*
+		 * Unfiltered versions of home_url() and get_home_url() from wordpress/wp-includes/link-template.php
+		 * Last synchronized with WordPress v4.8.2 on 2017/10/22.
+		 */
 		private function home_url( $path = '', $scheme = null ) {
 			return $this->get_home_url( null, $path, $scheme );
 		}
 
-		// an unfiltered version of the same wordpress function
-		// last synchronized with wordpress v4.5 on 2016/04/05
 		private function get_home_url( $blog_id = null, $path = '', $scheme = null ) {
 			global $pagenow;
+
+			SucomUtil::protect_filter_value( 'pre_option_home' );	// just in case
 
 			if ( empty( $blog_id ) || ! is_multisite() ) {
 				$url = get_option( 'home' );
@@ -873,7 +875,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 		public static function get_umsg( $ext, $msg = 'err', $def = false ) {
 			if ( ! isset( self::$upd_config[$ext]['u'.$msg] ) ) {
-				$val = get_option( $ext.'_uapi'.self::$api_version.$msg, $def );
+				$opt_name = $ext.'_uapi'.self::$api_version.$msg;
+				SucomUtil::protect_filter_value( 'pre_option_'.$opt_name );	// just in case
+				$val = get_option( $opt_name, $def );
 				if ( ! is_bool( $val ) ) {
 					$val = base64_decode( $val );	// value is saved as a string
 				}
@@ -904,7 +908,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		private static function get_option_data( $ext, $def = false ) {
 			if ( ! isset( self::$upd_config[$ext]['option_data'] ) ) {
 				if ( ! empty( self::$upd_config[$ext]['option_name'] ) ) {
-					self::$upd_config[$ext]['option_data'] = get_option( self::$upd_config[$ext]['option_name'], $def );
+					$opt_name = self::$upd_config[$ext]['option_name'];
+					SucomUtil::protect_filter_value( 'pre_option_'.$opt_name );	// just in case
+					self::$upd_config[$ext]['option_data'] = get_option( $opt_name, $def );
 				} else {
 					self::$upd_config[$ext]['option_data'] = $def;
 				}
