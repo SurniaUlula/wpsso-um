@@ -67,6 +67,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 1.7.0-dev.4 (2017/10/22)**
+
+* *New Features*
+	* None
+* *Improvements*
+	* Added WordPress Site Address value protection for improved compatibility with the WordPress MU Domain Mapping plugin.
+* *Bugfixes*
+	* None
+* *Developer Notes*
+	* None
+
 **Version 1.6.8 (2017/10/15)**
 
 * *New Features*
@@ -101,6 +112,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* Minor code refactoring for WPSSO v3.46.0.
 
 == Upgrade Notice ==
+
+= 1.7.0-dev.4 =
+
+(2017/10/22) Added WordPress Site Address value protection for improved compatibility with the WordPress MU Domain Mapping plugin.
 
 = 1.6.8 =
 
