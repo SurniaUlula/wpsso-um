@@ -760,18 +760,22 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		/*
-		 * Unfiltered versions of home_url() and get_home_url() from wordpress/wp-includes/link-template.php
+		 * Unfiltered version of home_url() from wordpress/wp-includes/link-template.php
 		 * Last synchronized with WordPress v4.8.2 on 2017/10/22.
 		 */
 		private function home_url( $path = '', $scheme = null ) {
 			return $this->get_home_url( null, $path, $scheme );
 		}
 
+		/*
+		 * Unfiltered version of get_home_url() from wordpress/wp-includes/link-template.php
+		 * Last synchronized with WordPress v4.8.2 on 2017/10/22.
+		 */
 		private function get_home_url( $blog_id = null, $path = '', $scheme = null ) {
 			global $pagenow;
-
-			SucomUtil::protect_filter_value( 'pre_option_home' );	// just in case
-
+			if ( method_exists( 'SucomUtil', 'protect_filter_value' ) ) {
+				SucomUtil::protect_filter_value( 'pre_option_home' );
+			}
 			if ( empty( $blog_id ) || ! is_multisite() ) {
 				$url = get_option( 'home' );
 			} else {
@@ -779,7 +783,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$url = get_option( 'home' );
 				restore_current_blog();
 			}
-
 			if ( ! in_array( $scheme, array( 'http', 'https', 'relative' ) ) ) {
 				if ( is_ssl() && ! is_admin() && 'wp-login.php' !== $pagenow ) {
 					$scheme = 'https';
@@ -787,20 +790,18 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$scheme = parse_url( $url, PHP_URL_SCHEME );
 				}
 			}
-
 			$url = $this->set_url_scheme( $url, $scheme );
-
 			if ( $path && is_string( $path ) ) {
 				$url .= '/'.ltrim( $path, '/' );
 			}
-
 			return $url;
 		}
 
-		// an unfiltered version of the same wordpress function
-		// last synchronized with wordpress v4.5 on 2016/04/05
+		/*
+		 * Unfiltered version of set_url_scheme() from wordpress/wp-includes/link-template.php
+		 * Last synchronized with WordPress v4.8.2 on 2017/10/22.
+		 */
 		private function set_url_scheme( $url, $scheme = null ) {
-
 			if ( ! $scheme ) {
 				$scheme = is_ssl() ? 'https' : 'http';
 			} elseif ( $scheme === 'admin' || $scheme === 'login' || $scheme === 'login_post' || $scheme === 'rpc' ) {
@@ -808,14 +809,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			} elseif ( $scheme !== 'http' && $scheme !== 'https' && $scheme !== 'relative' ) {
 				$scheme = is_ssl() ? 'https' : 'http';
 			}
-
 			$url = trim( $url );
-
 			if ( substr( $url, 0, 2 ) === '//' ) {
 				$url = 'http:' . $url;
 			}
-
-			if ( 'relative' == $scheme ) {
+			if ( 'relative' === $scheme ) {
 				$url = ltrim( preg_replace( '#^\w+://[^/]*#', '', $url ) );
 				if ( $url !== '' && $url[0] === '/' ) {
 					$url = '/'.ltrim( $url, "/ \t\n\r\0\x0B" );
@@ -823,7 +821,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			} else {
 				$url = preg_replace( '#^\w+://#', $scheme . '://', $url );
 			}
-
 			return $url;
 		}
 
@@ -876,7 +873,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		public static function get_umsg( $ext, $msg = 'err', $def = false ) {
 			if ( ! isset( self::$upd_config[$ext]['u'.$msg] ) ) {
 				$opt_name = $ext.'_uapi'.self::$api_version.$msg;
-				SucomUtil::protect_filter_value( 'pre_option_'.$opt_name );	// just in case
+				if ( method_exists( 'SucomUtil', 'protect_filter_value' ) ) {
+					SucomUtil::protect_filter_value( 'pre_option_'.$opt_name );
+				}
 				$val = get_option( $opt_name, $def );
 				if ( ! is_bool( $val ) ) {
 					$val = base64_decode( $val );	// value is saved as a string
@@ -909,7 +908,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			if ( ! isset( self::$upd_config[$ext]['option_data'] ) ) {
 				if ( ! empty( self::$upd_config[$ext]['option_name'] ) ) {
 					$opt_name = self::$upd_config[$ext]['option_name'];
-					SucomUtil::protect_filter_value( 'pre_option_'.$opt_name );	// just in case
+					if ( method_exists( 'SucomUtil', 'protect_filter_value' ) ) {
+						SucomUtil::protect_filter_value( 'pre_option_'.$opt_name );
+					}
 					self::$upd_config[$ext]['option_data'] = get_option( $opt_name, $def );
 				} else {
 					self::$upd_config[$ext]['option_data'] = $def;
