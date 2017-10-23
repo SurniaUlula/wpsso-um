@@ -23,7 +23,7 @@ WPSSO Core extension to provide updates for the WPSSO Core Pro plugin and its Pr
 
 <p>The WPSSO Update Manager supports WordPress Network / Multisite installations and WordPress MU Domain Mapping.</p>
 
-<p>Simply <em>download</em>, <em>install</em>, and <em>activate</em>.
+<p>Simply <em>download</em>, <em>install</em>, and <em>activate</em>.</p>
 
 <h3>WPSSO Core Plugin Prerequisite</h3>
 

@@ -19,9 +19,7 @@
 
 <p>The WPSSO Update Manager supports WordPress Network / Multisite installations and WordPress MU Domain Mapping.</p>
 
-<p>&lt;</p>
-
-<p>p>Simply <em>download</em>, <em>install</em>, and <em>activate</em>.</p>
+<p>Simply <em>download</em>, <em>install</em>, and <em>activate</em>.</p>
 
 <h3>WPSSO Core Plugin Prerequisite</h3>
 
