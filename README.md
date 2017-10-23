@@ -15,7 +15,7 @@
 
 <p><img class="readme-icon" src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png"></p>
 
-<p>The WPSSO Update Manager extension plugin is required to enable and update the <a href="https://wpsso.com/extend/plugins/wpsso/">WPSSO Pro</a> version plugin, including all its licensed Pro extensions.</p>
+<p>The WPSSO Update Manager extension plugin is required to enable and update the <a href="https://wpsso.com/extend/plugins/wpsso/">WPSSO Core Pro</a> version plugin, including all its licensed Pro extensions.</p>
 
 <p>Simply <em>download</em>, <em>install</em>, and <em>activate</em>.</p>
 
