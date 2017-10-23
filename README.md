@@ -15,9 +15,9 @@
 
 <p><img class="readme-icon" src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png"></p>
 
-<p>The WPSSO Update Manager extension plugin is required to enable and update the <a href="https://wpsso.com/extend/plugins/wpsso/">WPSSO Core Pro (Main Plugin)</a> version plugin, including all its licensed Pro extensions.</p>
+<p>The WPSSO Update Manager extension is required to enable and update the <a href="https://wpsso.com/extend/plugins/wpsso/">WPSSO Core Pro (Main Plugin)</a>, including all its licensed Pro extensions.</p>
 
-<p>The WPSSO Update Manager extension is required to enable and update the <a href="https://surniaulula.com/extend/plugins/nextgen-facebook/">NextGEN Facebook Pro</a> version plugin, including all its licensed Pro extensions.</p>
+<p>The WPSSO Update Manager supports WordPress Network / Multisite installations and WordPress MU Domain Mapping.</p>
 
 <p>&lt;</p>
 
