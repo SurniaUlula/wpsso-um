@@ -19,9 +19,11 @@ WPSSO Core extension to provide updates for the WPSSO Core Pro plugin and its Pr
 
 <img class="readme-icon" src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png">
 
-<p>The WPSSO Update Manager extension plugin is required to enable and update the <a href="https://wpsso.com/extend/plugins/wpsso/">WPSSO Core Pro</a> version plugin, including all its licensed Pro extensions.</p>
+<p>The WPSSO Update Manager extension plugin is required to enable and update the <a href="https://wpsso.com/extend/plugins/wpsso/">WPSSO Core Pro (Main Plugin)</a> version plugin, including all its licensed Pro extensions.</p>
 
-Simply *download*, *install*, and *activate*.
+<p>The WPSSO Update Manager extension is required to enable and update the <a href="https://surniaulula.com/extend/plugins/nextgen-facebook/">NextGEN Facebook Pro</a> version plugin, including all its licensed Pro extensions.</p>
+
+<p>Simply <em>download</em>, <em>install</em>, and <em>activate</em>.
 
 <h3>WPSSO Core Plugin Prerequisite</h3>
 
@@ -48,7 +50,7 @@ WPSSO Update Manager is an extension for the WPSSO Core plugin &mdash; which cre
 
 == Screenshots ==
 
-01. Update Manager settings &mdash; customize the update check frequency (once a day by default) and/or choose to install one of the development versions (development and up, alpha and up, beta and up, release-candidate and up, or stable).
+01. Update Manager settings &mdash; customize the update check frequency (once a day by default) and/or choose to install one of the development versions.
 
 == Changelog ==
 
