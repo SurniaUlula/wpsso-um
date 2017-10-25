@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 1.6.8\n"
+"Project-Id-Version: WPSSO Update Manager 1.7.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2017-10-19 16:19-0600\n"
-"PO-Revision-Date: 2017-10-19 16:19-0600\n"
+"POT-Creation-Date: 2017-10-25 07:11-0600\n"
+"PO-Revision-Date: 2017-10-25 07:11-0600\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -20,7 +20,7 @@ msgid "Please note that one or more non-stable / development %s have been select
 msgstr "Veuillez noter que l'un ou plusieurs %s non-stable / de développement ont été sélectionnés."
 
 #: lib/com/update.php:132 lib/com-gettext-extract.php:10
-#: lib/sitesubmenu/site-um-general.php:87 lib/submenu/um-general.php:71
+#: lib/sitesubmenu/site-um-general.php:90 lib/submenu/um-general.php:71
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr "Filtres de version pour mises à jour"
@@ -59,22 +59,22 @@ msgctxt "plugin description"
 msgid "WPSSO Core extension to provide updates for the WPSSO Core Pro plugin and its Pro extensions."
 msgstr "Extension WPSSO Core pour fournir des mises à jour a WPSSO Core Pro et ses extensions Pro."
 
-#: lib/sitesubmenu/site-um-general.php:46 lib/submenu/um-general.php:40
+#: lib/sitesubmenu/site-um-general.php:49 lib/submenu/um-general.php:40
 msgctxt "package type"
 msgid "Pro"
 msgstr "Pro"
 
-#: lib/sitesubmenu/site-um-general.php:49
+#: lib/sitesubmenu/site-um-general.php:52
 msgctxt "metabox title"
 msgid "Network Update Manager for %s"
 msgstr "Gestionnaire de mises à jour réseau pour %s"
 
-#: lib/sitesubmenu/site-um-general.php:58 lib/submenu/um-general.php:48
+#: lib/sitesubmenu/site-um-general.php:61 lib/submenu/um-general.php:48
 msgctxt "submit button"
 msgid "Check for Updates"
 msgstr "Vérifier pour mises à jour"
 
-#: lib/sitesubmenu/site-um-general.php:80 lib/submenu/um-general.php:65
+#: lib/sitesubmenu/site-um-general.php:83 lib/submenu/um-general.php:65
 msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr "Actualiser info. de mise à jour"
