@@ -78,7 +78,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *Bugfixes*
 	* None
 * *Developer Notes*
-	* None
+	* Added a new SucomUpdate get_config_keys() method to return configured extension acronyms.
 
 **Version 1.6.8 (2017/10/15)**
 
