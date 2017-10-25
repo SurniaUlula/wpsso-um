@@ -45,7 +45,52 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 		}
 
-		public function set_config() {
+		// returns an array of configured plugin / extension lowercase acronyms
+		public function get_config_keys( $include = null, $exclude = null, $reset_config = false ) {
+
+			$keys = array();
+
+			if ( $reset_config ) {
+				$this->p->check->rc();		// reset the aop cache
+				$this->set_config( false );	// $show_notice = false
+			}
+
+			// optionally include only some extension keys
+			if ( ! empty( $include ) ) {
+				if ( ! is_array( $include ) ) {
+					$include = array( $include );
+				}
+				foreach ( $include as $ext ) {
+					if ( isset( self::$upd_config[$ext] ) ) {
+						$keys[] = $ext;
+					}
+				}
+			} elseif ( is_array( self::$upd_config ) ) {
+				$keys = array_keys( self::$upd_config );	// include all keys
+			}
+
+			// optionally exclude some extension keys
+			if ( ! empty( $exclude ) ) {
+				if ( ! is_array( $exclude ) ) {
+					$exclude = array( $exclude );
+				}
+				$old_keys = $keys;
+				$keys = array();	// start a new array
+				foreach ( $old_keys as $old_key ) {
+					foreach ( $exclude as $ext ) {
+						if ( $old_key === $ext ) {
+							continue 2;	// skip this key
+						}
+					}
+					$keys[] = $old_key;
+				}
+				unset( $old_keys );	// cleanup
+			}
+
+			return $keys;
+		}
+
+		public function set_config( $show_notice = true ) {
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
@@ -53,7 +98,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			$lca = $this->p->cf['lca'];
 			$aop = $this->p->check->aop( $lca, true, $this->p->avail['*']['p_dir'] );
-			$dev_selected = false;
+			$has_dev_filter = false;
+			self::$upd_config = array();	// set / reset the config array
 
 			foreach ( $this->p->cf['plugin'] as $ext => $info ) {
 
@@ -96,7 +142,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$filter_name = $this->get_filter_name( $ext );
 
 				if ( $filter_name !== 'stable' ) {
-					$dev_selected = true;
+					$has_dev_filter = true;
 				}
 
 				if ( $this->p->debug->enabled ) {
@@ -126,11 +172,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 			}
 
-			if ( $dev_selected && $this->p->notice->is_admin_pre_notices() ) {
-				$warn_dis_key = 'non-stable-update-version-filters-selected';
-				$this->p->notice->warn( sprintf( __( 'Please note that one or more non-stable / development %s have been selected.',
-					$this->text_domain ), $this->p->util->get_admin_url( 'um-general', _x( 'Update Version Filters',
-						'metabox title', $this->text_domain ) ) ), true, $warn_dis_key, MONTH_IN_SECONDS * 3, true );	// $silent = true
+			if ( $show_notice || $this->p->debug->enabled ) {
+				if ( $has_dev_filter && $this->p->notice->is_admin_pre_notices() ) {
+					$warn_dis_key = 'non-stable-update-version-filters-selected';
+					$this->p->notice->warn( sprintf( __( 'Please note that one or more non-stable / development %s have been selected.',
+						$this->text_domain ), $this->p->util->get_admin_url( 'um-general', _x( 'Update Version Filters',
+							'metabox title', $this->text_domain ) ) ), true, $warn_dis_key, MONTH_IN_SECONDS * 3, true );	// $silent = true
+				}
 			}
 		}
 
@@ -155,12 +203,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			add_filter( 'http_headers_useragent', array( &$this, 'check_wpua_value' ), PHP_INT_MAX, 1 );
 
 			if ( $this->sched_hours > 0 && ! empty( $this->sched_name ) ) {
+
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( 'adding cron actions and '.
 						$this->cron_hook.' schedule for '.$this->sched_name );
 				}
 
 				add_action( $this->cron_hook, array( &$this, 'check_for_updates' ) );
+
 				add_filter( 'cron_schedules', array( &$this, 'add_custom_schedule' ) );
 
 				$schedule = wp_get_schedule( $this->cron_hook );
@@ -199,8 +249,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		public function allow_update_package( $is_allowed, $ip, $url ) {
 			if ( ! $is_allowed ) {	// don't bother if already allowed
 				foreach ( self::$upd_config as $ext => $info ) {
-					if ( ! empty( $info['plugin_update']->package ) &&
-						$info['plugin_update']->package === $url ) {
+					if ( ! empty( $info['plugin_update']->package ) && $info['plugin_update']->package === $url ) {
 						return true;
 					}
 				}
@@ -239,7 +288,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			// flag for the update manager filter
 			} elseif ( ! empty( $args->unfiltered ) ) {
 				return $result;
-			// check for pre-v3.40.12 config without this array
+			// check for wpsso pre-v3.40.12 config without this array
 			} elseif ( ! isset( $this->p->cf['*']['slug'] ) ) {
 				foreach ( self::$upd_config as $ext => $info ) {
 					if ( ! empty( $info['slug'] ) && $info['slug'] === $args->slug ) {
@@ -375,16 +424,28 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 	
 		public function check_for_updates( $check_ext = null, $show_notice = false, $use_cache = true ) {
 
+			$ext_plugins = array();
+
 			if ( empty( $check_ext ) ) {
 				$ext_plugins = self::$upd_config;	// check all plugins defined
 				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'checking all extensions for updates' );
+					$this->p->debug->log( 'checking all known extensions for updates' );
 				}
-			} elseif ( isset( self::$upd_config[$check_ext] ) ) {
-				$ext_plugins = array( $check_ext => self::$upd_config[$check_ext] );	// check only one specific plugin
-			} else {
+			} elseif ( is_array( $check_ext ) ) {
+				foreach ( $check_ext as $ext ) {
+					if ( isset( self::$upd_config[$ext] ) ) {
+						$ext_plugins[$ext] = self::$upd_config[$ext];
+					}
+				}
+			} elseif ( is_string( $check_ext ) ) {
+				if ( isset( self::$upd_config[$check_ext] ) ) {
+					$ext_plugins[$check_ext] = self::$upd_config[$check_ext];
+				}
+			}
+
+			if ( empty( $ext_plugins ) ) {
 				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'exiting early: invalid extension value' );
+					$this->p->debug->log( 'exiting early: no extensions to check for updates' );
 				}
 				return;
 			}
@@ -493,6 +554,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					}
 					return $plugin_data;
 				}
+			} else {
+				delete_transient( $cache_id );
 			}
 
 			$ua_wpid = 'WordPress/'.$wp_version.' ('.self::$upd_config[$ext]['slug'].'/'.$ext_version.'/'.
@@ -549,8 +612,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			self::$upd_config[$ext]['utime'] = self::set_umsg( $ext, 'time', time() );
 			self::$upd_config[$ext]['plugin_data'] = $plugin_data;	// save to local static property cache
-
-			delete_transient( $cache_id );	// just in case
 
 			if ( $plugin_data === null ) {
 				if ( $this->p->debug->enabled ) {
