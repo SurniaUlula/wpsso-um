@@ -69,7 +69,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.7.0-b.1 (2017/10/25)**
+**Version 1.7.0-b.2 (2017/10/25)**
 
 * *New Features*
 	* None
@@ -115,7 +115,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.7.0-b.1 =
+= 1.7.0-b.2 =
 
 (2017/10/25) Added WordPress Site Address value protection for improved compatibility with the WordPress MU Domain Mapping plugin.
 
