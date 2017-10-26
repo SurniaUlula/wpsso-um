@@ -45,14 +45,102 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 		}
 
+		// called by the wordpress cron
+		public function check_all_for_updates( $quiet = true, $use_cache = true ) {
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+			$lca = $this->p->cf['lca'];
+			$check_ext = null;						// check all ext by default
+			$this->check_ext_for_updates( $lca, $quiet, false );		// check lca first
+			$check_ext = $this->get_config_keys( $check_ext, $lca, false );	// reset config and get ext array (exclude lca)
+			$this->check_ext_for_updates( $check_ext, $quiet, false );	// check all remaining extensions
+		}
+
+		public function check_ext_for_updates( $check_ext = null, $quiet = true, $use_cache = true ) {
+
+			$ext_plugins = array();
+
+			if ( empty( $check_ext ) ) {
+				$ext_plugins = self::$upd_config;	// check all plugins defined
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( 'checking all known extensions for updates' );
+				}
+			} elseif ( is_array( $check_ext ) ) {
+				foreach ( $check_ext as $ext ) {
+					if ( isset( self::$upd_config[$ext] ) ) {
+						$ext_plugins[$ext] = self::$upd_config[$ext];
+					}
+				}
+			} elseif ( is_string( $check_ext ) ) {
+				if ( isset( self::$upd_config[$check_ext] ) ) {
+					$ext_plugins[$check_ext] = self::$upd_config[$check_ext];
+				}
+			}
+
+			if ( empty( $ext_plugins ) ) {
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( 'exiting early: no extensions to check for updates' );
+				}
+				return;
+			}
+
+			foreach ( $ext_plugins as $ext => $info ) {
+
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( $ext.' plugin: checking for update' );
+				}
+
+				if ( $use_cache ) {
+					$update_data = self::get_option_data( $ext );
+				} else {
+					$update_data = false;
+				}
+
+				if ( empty( $update_data ) ) {
+					$update_data = new StdClass;
+					$update_data->lastCheck = 0;
+					$update_data->checkedVersion = 0;
+					$update_data->update = null;
+				}
+
+				$update_data->lastCheck = time();
+				$update_data->checkedVersion = $this->get_ext_version( $ext );
+				$update_data->update = $this->get_update_data( $ext, $use_cache );
+
+				if ( self::update_option_data( $ext, $update_data ) ) {
+
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( $ext.' plugin: update information saved in '.$info['option_name'] );
+					}
+
+					if ( ! $quiet || $this->p->debug->enabled ) {
+						$this->p->notice->inf( sprintf( __( 'Update information for %s has been retrieved and saved.',
+							$this->text_domain ), $info['name'] ), true, __FUNCTION__.'_'.$ext.'_'.$info['option_name'], true );
+					}
+
+				} else {
+
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( $ext.' plugin: failed saving update information in '.$info['option_name'] );
+					}
+
+					if ( ! $quiet || $this->p->debug->enabled ) {
+						$this->p->notice->err( sprintf( __( 'Failed saving retrieved update information for %s.',
+							$this->text_domain ), $info['name'] ) );
+					}
+				}
+			}
+		}
+	
 		// returns an array of configured plugin / extension lowercase acronyms
-		public function get_config_keys( $include = null, $exclude = null, $reset_config = false ) {
+		public function get_config_keys( $include = null, $exclude = null, $use_cache = true ) {
 
 			$keys = array();
 
-			if ( $reset_config ) {
-				$this->p->check->rc();		// reset the aop cache
-				$this->set_config( false );	// $show_notice = false
+			if ( ! $use_cache ) {
+				$this->p->check->rc();		// clear the aop static cache
+				$this->set_config( true );	// $quiet = true
 			}
 
 			// optionally include only some extension keys
@@ -90,7 +178,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return $keys;
 		}
 
-		public function set_config( $show_notice = true ) {
+		// $quiet is false by default to show a warning if (one or more) dev filters are selected
+		public function set_config( $quiet = false ) {
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
@@ -99,16 +188,16 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$lca = $this->p->cf['lca'];
 			$aop = $this->p->check->aop( $lca, true, $this->p->avail['*']['p_dir'] );
 			$has_dev_filter = false;
+
 			self::$upd_config = array();	// set / reset the config array
 
 			foreach ( $this->p->cf['plugin'] as $ext => $info ) {
 
-				if ( $ext !== $lca && $ext !== $lca.'um' && ! $aop ) {
+				if ( ! $aop && $ext !== $lca && $ext !== $lca.'um' ) {
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( $ext.' plugin: extension skipped - aop required' );
+					}
 					continue;
-				}
-
-				if ( $this->p->debug->enabled ) {
-					$this->p->debug->mark();
 				}
 
 				$auth_type = $this->get_auth_type( $ext );
@@ -116,7 +205,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				if ( $auth_type !== 'none' && empty( $auth_id ) ) {
 					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $ext.' plugin: extension skipped - auth_id is empty' );
+						$this->p->debug->log( $ext.' plugin: extension skipped - auth type without id' );
 					}
 					continue;
 				} elseif ( empty( $info['slug'] ) || empty( $info['base'] ) || empty( $info['url']['update'] ) ) {
@@ -126,16 +215,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					continue;
 				}
 
-				// add the auth type and id to the update url
-				if ( $auth_type !== 'none' ) {
-					$auth_url = add_query_arg( array( $auth_type => $auth_id ), $info['url']['update'] );
-				} else {
-					$auth_url = $info['url']['update'];
-				}
-
 				$ext_version = $this->get_ext_version( $ext );
 
 				if ( $ext_version === false ) {
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( $ext.' plugin: extension skipped - version is false' );
+					}
 					continue;
 				}
 
@@ -147,6 +232,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( $ext.' plugin: installed version is '.$ext_version.' with '.$filter_name.' filter' );
+				}
+
+				// add the auth type and id to the update url
+				if ( $auth_type !== 'none' ) {
+					$auth_url = add_query_arg( array( $auth_type => $auth_id ), $info['url']['update'] );
+				} else {
+					$auth_url = $info['url']['update'];
 				}
 
 				$auth_url = add_query_arg( array( 
@@ -172,7 +264,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 			}
 
-			if ( $show_notice || $this->p->debug->enabled ) {
+			if ( ! $quiet || $this->p->debug->enabled ) {
 				if ( $has_dev_filter && $this->p->notice->is_admin_pre_notices() ) {
 					$warn_dis_key = 'non-stable-update-version-filters-selected';
 					$this->p->notice->warn( sprintf( __( 'Please note that one or more non-stable / development %s have been selected.',
@@ -209,7 +301,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$this->cron_hook.' schedule for '.$this->sched_name );
 				}
 
-				add_action( $this->cron_hook, array( &$this, 'check_for_updates' ) );
+				add_action( $this->cron_hook, array( &$this, 'check_all_for_updates' ) );
 
 				add_filter( 'cron_schedules', array( &$this, 'add_custom_schedule' ) );
 
@@ -420,82 +512,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				);
 			}
 			return $schedules;
-		}
-	
-		public function check_for_updates( $check_ext = null, $show_notice = false, $use_cache = true ) {
-
-			$ext_plugins = array();
-
-			if ( empty( $check_ext ) ) {
-				$ext_plugins = self::$upd_config;	// check all plugins defined
-				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'checking all known extensions for updates' );
-				}
-			} elseif ( is_array( $check_ext ) ) {
-				foreach ( $check_ext as $ext ) {
-					if ( isset( self::$upd_config[$ext] ) ) {
-						$ext_plugins[$ext] = self::$upd_config[$ext];
-					}
-				}
-			} elseif ( is_string( $check_ext ) ) {
-				if ( isset( self::$upd_config[$check_ext] ) ) {
-					$ext_plugins[$check_ext] = self::$upd_config[$check_ext];
-				}
-			}
-
-			if ( empty( $ext_plugins ) ) {
-				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'exiting early: no extensions to check for updates' );
-				}
-				return;
-			}
-
-			foreach ( $ext_plugins as $ext => $info ) {
-
-				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( $ext.' plugin: checking for update' );
-				}
-
-				if ( $use_cache ) {
-					$update_data = self::get_option_data( $ext );
-				} else {
-					$update_data = false;
-				}
-
-				if ( empty( $update_data ) ) {
-					$update_data = new StdClass;
-					$update_data->lastCheck = 0;
-					$update_data->checkedVersion = 0;
-					$update_data->update = null;
-				}
-
-				$update_data->lastCheck = time();
-				$update_data->checkedVersion = $this->get_ext_version( $ext );
-				$update_data->update = $this->get_update_data( $ext, $use_cache );
-
-				if ( self::update_option_data( $ext, $update_data ) ) {
-
-					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $ext.' plugin: update information saved in '.$info['option_name'] );
-					}
-
-					if ( $show_notice || $this->p->debug->enabled ) {
-						$this->p->notice->inf( sprintf( __( 'Update information for %s has been retrieved and saved.',
-							$this->text_domain ), $info['name'] ), true, 'check_for_updates_'.$ext.'_'.$info['option_name'], true );
-					}
-
-				} else {
-
-					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $ext.' plugin: failed saving update information in '.$info['option_name'] );
-					}
-
-					if ( $show_notice || $this->p->debug->enabled ) {
-						$this->p->notice->err( sprintf( __( 'Failed saving retrieved update information for %s.',
-							$this->text_domain ), $info['name'] ) );
-					}
-				}
-			}
 		}
 	
 		public function get_update_data( $ext, $use_cache = true ) {

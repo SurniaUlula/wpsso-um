@@ -14,7 +14,7 @@
  * Requires At Least: 3.7
  * Tested Up To: 4.8.2
  * Requires PHP: 5.3
- * Version: 1.7.0-b.2
+ * Version: 1.7.0-b.3
  * 
  * Version Numbering: {major}.{minor}.{bugfix}[-{stage}.{level}]
  *
@@ -154,20 +154,19 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 			if ( is_admin() ) {
 				foreach ( $this->p->cf['plugin'] as $ext => $info ) {
-					if ( ! SucomUpdate::is_installed( $ext ) ) {	// plugin must be installed for updates
+					if ( ! SucomUpdate::is_installed( $ext ) ) {				// plugin must be installed for updates
 						continue;
 					}
-					$last_utime = $this->update->get_umsg( $ext, 'time' );		// last update check
-					$next_utime = $last_utime + ( $this->check_hours * HOUR_IN_SECONDS );	// next scheduled check
-
-					if ( empty( $last_utime ) || $next_utime + DAY_IN_SECONDS < time() ) {	// plus one day
+					$last_utime = $this->update->get_umsg( $ext, 'time' );			// get the last update check
+					$next_utime = $last_utime + ( $this->check_hours * HOUR_IN_SECONDS );	// get the next scheduled check
+					if ( empty( $last_utime ) || $next_utime + DAY_IN_SECONDS < time() ) {	// check if more than 1 day overdue
 						if ( $this->p->debug->enabled ) {
+							$dis_key = __FUNCTION__.'_'.$ext.'_update_check';
 							$this->p->debug->log( 'requesting update check for '.$ext );
 							$this->p->notice->inf( sprintf( __( 'Performing an update check for the %s plugin.',
-								'wpsso-um' ), $info['name'] ), true, 
-									__FUNCTION__.'_'.$ext.'_update_check', true );	// can be dismissed
+								'wpsso-um' ), $info['name'] ), true, $dis_key, true );
 						}
-						$this->update->check_for_updates( $ext, false, false );	// $notice = false, $use_cache = false
+						$this->update->check_ext_for_updates( $ext, true, false );	// $quiet = true, $use_cache = false
 					}
 				}
 			}

@@ -45,8 +45,7 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 		}
 
 		public function filter_action_buttons( $action_buttons ) {
-			$action_buttons[0]['check_for_updates'] = _x( 'Check for Updates',
-				'submit button', 'wpsso-um' );
+			$action_buttons[0]['check_for_updates'] = _x( 'Check for Updates', 'submit button', 'wpsso-um' );
 			return $action_buttons;
 		}
 

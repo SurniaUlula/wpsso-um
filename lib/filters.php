@@ -40,15 +40,57 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			) );
 
 			if ( is_admin() ) {
+
+				add_action( 'update_option_home', array( &$this, 'wp_home_option_updated' ), 100, 2 );
+
+				$this->p->util->add_plugin_actions( $this, array( 
+					'column_metabox_version_info_rows' => 2,
+					'load_setting_page_check_for_updates' => 4,
+				) );
+
 				$this->p->util->add_plugin_filters( $this, array( 
 					'readme_upgrade_notices' => 2, 
 					'newer_version_available' => 5, 
 					'option_type' => 2,		// define the value type for each option
 				) );
+
 				$this->p->util->add_plugin_filters( $this, array( 
 					'status_gpl_features' => 3,
 				), 10, 'wpssoum' );
 			}
+		}
+
+		// executed by the wordpress 'update_option_home' action.
+		public function wp_home_option_updated( $old_value, $new_value ) {
+			$wpssoum =& WpssoUm::get_instance();
+			$wpssoum->update->check_all_for_updates( true, false );		// $quiet = true, $use_cache = false
+		}
+
+		public function action_column_metabox_version_info_rows( $form, $pagehook ) {
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+
+			$lca = $this->p->cf['lca'];
+			$admin_url = $this->p->util->get_admin_url( '?'.$lca.'-action=check_for_updates' );
+			$admin_url = wp_nonce_url( $admin_url, WpssoAdmin::get_nonce_action(), WPSSO_NONCE_NAME );
+			$label_transl = _x( 'Check for Updates', 'submit button', 'wpsso-um' );
+
+			echo '<tr><td colspan="2">';
+			echo $form->get_button( $label_transl, 'button-secondary', 'column-check-for-updates', $admin_url );
+			echo '</td></tr>';
+		}
+
+		public function action_load_setting_page_check_for_updates( $pagehook, $menu_id, $menu_name, $menu_lib ) {
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+			$lca = $this->p->cf['lca'];
+			foreach ( $this->p->cf['plugin'] as $ext => $info ) {
+				$this->p->admin->get_readme_info( $ext, false );	// $use_cache = false
+			}
+			$wpssoum =& WpssoUm::get_instance();
+			$wpssoum->update->check_all_for_updates( false, false );	// $quiet = false, $use_cache = false
 		}
 
 		public function filter_get_defaults( $def_opts ) {
@@ -79,16 +121,16 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			return $upgrade_notices;
 		}
 
-		public function filter_newer_version_available( $is_older, $ext, $installed_version, $stable_version, $latest_version ) {
-			if ( $is_older ) {
-				return $is_older;
+		public function filter_newer_version_available( $newer_avail, $ext, $installed_version, $stable_version, $latest_version ) {
+			if ( $newer_avail ) {
+				return $newer_avail;
 			}
 			$wpssoum =& WpssoUm::get_instance();
 			$filter_name = $wpssoum->update->get_filter_name( $ext );
 			if ( $filter_name !== 'stable' && version_compare( $installed_version, $latest_version, '<' ) ) {
 				return true;
 			}
-			return $is_older;
+			return $newer_avail;
 		}
 
 		public function filter_option_type( $type, $key ) {
