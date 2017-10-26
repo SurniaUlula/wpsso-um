@@ -69,7 +69,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.7.0-b.3 (2017/10/26)**
+**Version 1.7.0-rc.1 (2017/10/26)**
 
 * *New Features*
 	* None
@@ -79,7 +79,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* None
 * *Developer Notes*
 	* Added new SucomUpdate check_all_for_updates() and get_config_keys() methods.
-	* Added action hooks for 'wpsso_column_metabox_version_info_rows' and 'wpsso_load_setting_page_check_for_updates'.
+	* Added action hooks for 'wpsso_column_metabox_version_info_table_rows' and 'wpsso_load_setting_page_check_for_updates'.
 	* Added an action hook for 'update_option_home' to check for updates when the WordPress home option value changes.
 
 **Version 1.6.8 (2017/10/15)**
@@ -117,7 +117,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.7.0-b.3 =
+= 1.7.0-rc.1 =
 
 (2017/10/26) Added WordPress Site Address value protection for improved compatibility with the WordPress MU Domain Mapping plugin.
 
