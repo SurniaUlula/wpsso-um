@@ -57,6 +57,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$this->check_ext_for_updates( $check_ext, $quiet, false );	// check all remaining extensions
 		}
 
+		// deprecated on 2017/10/26
+		public function check_for_updates( $check_ext = null, $show_notice = false, $use_cache = true ) {
+			$quiet = $show_notice ? false : true;
+			return $this->check_ext_for_updates( $check_ext, $quiet, $use_cache );
+		}
+
 		public function check_ext_for_updates( $check_ext = null, $quiet = true, $use_cache = true ) {
 
 			$ext_plugins = array();
