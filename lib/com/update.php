@@ -51,16 +51,15 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->mark();
 			}
 			$lca = $this->p->cf['lca'];
-			$check_ext = null;						// check all ext by default
-			$this->check_ext_for_updates( $lca, $quiet, false );		// check lca first
-			$check_ext = $this->get_config_keys( $check_ext, $lca, false );	// reset config and get ext array (exclude lca)
-			$this->check_ext_for_updates( $check_ext, $quiet, false );	// check all remaining extensions
+			$check_ext = null;							// check all ext by default
+			$this->check_ext_for_updates( $lca, $quiet, $use_cache );		// check lca first
+			$check_ext = $this->get_config_keys( $check_ext, $lca, $use_cache );	// reset config and get ext array (exclude lca)
+			$this->check_ext_for_updates( $check_ext, $quiet, $use_cache );		// check all remaining extensions
 		}
 
 		// deprecated on 2017/10/26
 		public function check_for_updates( $check_ext = null, $show_notice = false, $use_cache = true ) {
-			$quiet = $show_notice ? false : true;
-			return $this->check_ext_for_updates( $check_ext, $quiet, $use_cache );
+			return $this->check_ext_for_updates( $check_ext, ( $show_notice ? false : true ), $use_cache );
 		}
 
 		public function check_ext_for_updates( $check_ext = null, $quiet = true, $use_cache = true ) {
@@ -142,12 +141,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		// returns an array of configured plugin / extension lowercase acronyms
 		public function get_config_keys( $include = null, $exclude = null, $use_cache = true ) {
 
+			$quiet = true;
 			$keys = array();
-
-			if ( ! $use_cache ) {
-				$this->p->check->rc();		// clear the aop static cache
-				$this->set_config( true );	// $quiet = true
-			}
+			$this->set_config( $quiet, $use_cache );
 
 			// optionally include only some extension keys
 			if ( ! empty( $include ) ) {
@@ -185,15 +181,16 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		// $quiet is false by default to show a warning if (one or more) dev filters are selected
-		public function set_config( $quiet = false ) {
+		public function set_config( $quiet = false, $use_cache = true ) {
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
 			}
 
 			$lca = $this->p->cf['lca'];
-			$aop = $this->p->check->aop( $lca, true, $this->p->avail['*']['p_dir'] );
-			$has_dev_filter = false;
+			$pdir = $this->p->avail['*']['p_dir'];
+			$aop = $this->p->check->aop( $lca, true, $pdir, $use_cache );
+			$has_dev = false;
 
 			self::$upd_config = array();	// set / reset the config array
 
@@ -233,7 +230,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$filter_name = $this->get_filter_name( $ext );
 
 				if ( $filter_name !== 'stable' ) {
-					$has_dev_filter = true;
+					$has_dev = true;
 				}
 
 				if ( $this->p->debug->enabled ) {
@@ -271,7 +268,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			if ( ! $quiet || $this->p->debug->enabled ) {
-				if ( $has_dev_filter && $this->p->notice->is_admin_pre_notices() ) {
+				if ( $has_dev && $this->p->notice->is_admin_pre_notices() ) {
 					$warn_dis_key = 'non-stable-update-version-filters-selected';
 					$this->p->notice->warn( sprintf( __( 'Please note that one or more non-stable / development %s have been selected.',
 						$this->text_domain ), $this->p->util->get_admin_url( 'um-general', _x( 'Update Version Filters',
@@ -559,6 +556,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			$lca = $this->p->cf['lca'];
+			$pdir = $this->p->avail['*']['p_dir'];
 			$ext_version = $this->get_ext_version( $ext );
 			$cache_salt = __METHOD__.'(json_url:'.$json_url.'_home_url:'.$home_url.')';
 			$cache_id = $lca.'_'.md5( $cache_salt );
@@ -581,7 +579,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			$ua_wpid = 'WordPress/'.$wp_version.' ('.self::$upd_config[$ext]['slug'].'/'.$ext_version.'/'.
-				( $this->p->check->aop( $ext, true, $this->p->avail['*']['p_dir'] ) ? 'L' :
+				( $this->p->check->aop( $ext, true, $pdir ) ? 'L' :
 				( $this->p->check->aop( $ext, false ) ? 'U' : 'G' ) ).'); '.$home_url;
 			$ssl_verify = apply_filters( $lca.'_um_sslverify', true );
 			$get_options = array( 'timeout' => 15, 'sslverify' => $ssl_verify, 'user-agent' => $ua_wpid,

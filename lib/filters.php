@@ -44,7 +44,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				add_action( 'update_option_home', array( &$this, 'wp_home_option_updated' ), 100, 2 );
 
 				$this->p->util->add_plugin_actions( $this, array( 
-					'column_metabox_version_info_rows' => 2,
+					'column_metabox_version_info_table_rows' => 2,
 					'load_setting_page_check_for_updates' => 4,
 				) );
 
@@ -66,7 +66,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			$wpssoum->update->check_all_for_updates( true, false );		// $quiet = true, $use_cache = false
 		}
 
-		public function action_column_metabox_version_info_rows( $form, $pagehook ) {
+		public function action_column_metabox_version_info_table_rows( $table_cols, $form ) {
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
 			}
@@ -76,7 +76,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			$admin_url = wp_nonce_url( $admin_url, WpssoAdmin::get_nonce_action(), WPSSO_NONCE_NAME );
 			$label_transl = _x( 'Check for Updates', 'submit button', 'wpsso-um' );
 
-			echo '<tr><td colspan="2">';
+			echo '<tr><td colspan="'.$table_cols.'">';
 			echo $form->get_button( $label_transl, 'button-secondary', 'column-check-for-updates', $admin_url );
 			echo '</td></tr>';
 		}
