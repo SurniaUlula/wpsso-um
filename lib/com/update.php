@@ -581,9 +581,20 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$ua_wpid = 'WordPress/'.$wp_version.' ('.self::$upd_config[$ext]['slug'].'/'.$ext_version.'/'.
 				( $this->p->check->aop( $ext, true, $pdir ) ? 'L' :
 				( $this->p->check->aop( $ext, false ) ? 'U' : 'G' ) ).'); '.$home_url;
+
 			$ssl_verify = apply_filters( $lca.'_um_sslverify', true );
-			$get_options = array( 'timeout' => 15, 'sslverify' => $ssl_verify, 'user-agent' => $ua_wpid,
-				'headers' => array( 'Accept' => 'application/json', 'X-WordPress-Id' => $ua_wpid ) );
+
+			$get_options = array(
+				'timeout' => 15,		// default timeout is 5 seconds
+				'redirection' => 5,		// default redirection is 5
+				'sslverify' => $ssl_verify,
+				'user-agent' => $ua_wpid,
+				'headers' => array(
+					'Accept' => 'application/json',
+					'X-WordPress-Id' => $ua_wpid
+				)
+			);
+
 			$plugin_data = null;
 
 			if ( $this->p->debug->enabled ) {
@@ -591,7 +602,18 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->log( $ext.' plugin: calling wp_remote_get() for '.$json_url );
 			}
 
+			SucomUtil::protect_filter_value( 'http_headers_useragent' );
 			$request = wp_remote_get( $json_url, $get_options );
+
+			// retry on cURL error 52: Empty reply from server
+			if ( is_wp_error( $request ) && (int) $request->get_error_code() === 52 ) {
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( $ext.' plugin: update error - '.$request->get_error_message() );
+					$this->p->debug->log( $ext.' plugin: (retry) calling wp_remote_get() for '.$json_url );
+				}
+				SucomUtil::protect_filter_value( 'http_headers_useragent' );
+				$request = wp_remote_get( $json_url, $get_options );
+			}
 
 			if ( is_wp_error( $request ) ) {
 
