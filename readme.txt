@@ -108,7 +108,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = 1.7.1 =
 
-(2017/10/31) Added a missing check for the SucomUtil protect_filter_value() method for older versions of WPSSO.
+(2017/10/31) Added a retry on cURL error 52. Added a missing check for the SucomUtil protect_filter_value() method for older versions of WPSSO.
 
 = 1.7.0 =
 
