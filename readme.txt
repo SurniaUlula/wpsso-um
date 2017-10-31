@@ -69,6 +69,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 1.7.1 (2017/10/31)**
+
+* *New Features*
+	* None
+* *Improvements*
+	* Added a retry on cURL error 52: Empty reply from server.
+* *Bugfixes*
+	* Added a missing check for the SucomUtil protect_filter_value() method for older versions of WPSSO.
+* *Developer Notes*
+	* None
+
 **Version 1.7.0 (2017/10/28)**
 
 * *New Features*
@@ -91,31 +102,13 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *Bugfixes*
 	* None
 * *Developer Notes*
-	* Added a check for SucomUtil::get_wp_plugins() to use it instead of the (slower) WordPress get_plugins() function.
-
-**Version 1.6.7 (2017/10/02)**
-
-* *New Features*
-	* None
-* *Improvements*
-	* None
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* Minor code refactoring / standardizing for WPSSO v3.46.3.
-
-**Version 1.6.6 (2017/09/10)**
-
-* *New Features*
-	* None
-* *Improvements*
-	* None
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* Minor code refactoring for WPSSO v3.46.0.
+	* Added a check for SucomUtil get_wp_plugins() to use it instead of the (slower) WordPress get_plugins() function.
 
 == Upgrade Notice ==
+
+= 1.7.1 =
+
+(2017/10/31) Added a missing check for the SucomUtil protect_filter_value() method for older versions of WPSSO.
 
 = 1.7.0 =
 
