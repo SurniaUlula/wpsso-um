@@ -72,12 +72,12 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			}
 
 			$lca = $this->p->cf['lca'];
-			$admin_url = $this->p->util->get_admin_url( '?'.$lca.'-action=check_for_updates' );
-			$admin_url = wp_nonce_url( $admin_url, WpssoAdmin::get_nonce_action(), WPSSO_NONCE_NAME );
-			$label_transl = _x( 'Check for Updates', 'submit button', 'wpsso-um' );
+			$check_admin_url = $this->p->util->get_admin_url( '?'.$lca.'-action=check_for_updates' );
+			$check_admin_url = wp_nonce_url( $check_admin_url, WpssoAdmin::get_nonce_action(), WPSSO_NONCE_NAME );
+			$check_label_transl = _x( 'Check for Updates', 'submit button', 'wpsso-um' );
 
 			echo '<tr><td colspan="'.$table_cols.'">';
-			echo $form->get_button( $label_transl, 'button-secondary', 'column-check-for-updates', $admin_url );
+			echo $form->get_button( $check_label_transl, 'button-secondary', '', $check_admin_url );
 			echo '</td></tr>';
 		}
 
