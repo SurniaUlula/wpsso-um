@@ -601,8 +601,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->log( $ext.' plugin: sslverify is '.( $ssl_verify ? 'true' : 'false' ) );
 				$this->p->debug->log( $ext.' plugin: calling wp_remote_get() for '.$json_url );
 			}
-
-			SucomUtil::protect_filter_value( 'http_headers_useragent' );
+			if ( method_exists( 'SucomUtil', 'protect_filter_value' ) ) {
+				SucomUtil::protect_filter_value( 'http_headers_useragent' );
+			}
 			$request = wp_remote_get( $json_url, $get_options );
 
 			// retry on cURL error 52: Empty reply from server
@@ -611,7 +612,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$this->p->debug->log( $ext.' plugin: update error - '.$request->get_error_message() );
 					$this->p->debug->log( $ext.' plugin: (retry) calling wp_remote_get() for '.$json_url );
 				}
-				SucomUtil::protect_filter_value( 'http_headers_useragent' );
+				if ( method_exists( 'SucomUtil', 'protect_filter_value' ) ) {
+					SucomUtil::protect_filter_value( 'http_headers_useragent' );
+				}
 				$request = wp_remote_get( $json_url, $get_options );
 			}
 
