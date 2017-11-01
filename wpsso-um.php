@@ -161,10 +161,10 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 					$next_utime = $last_utime + ( $this->check_hours * HOUR_IN_SECONDS );	// get the next scheduled check
 					if ( empty( $last_utime ) || $next_utime + DAY_IN_SECONDS < time() ) {	// check if more than 1 day overdue
 						if ( $this->p->debug->enabled ) {
-							$dis_key = __FUNCTION__.'_'.$ext.'_update_check';
+							$dismiss_key = __FUNCTION__.'_'.$ext.'_update_check';
 							$this->p->debug->log( 'requesting update check for '.$ext );
 							$this->p->notice->inf( sprintf( __( 'Performing an update check for the %s plugin.',
-								'wpsso-um' ), $info['name'] ), true, $dis_key, true );
+								'wpsso-um' ), $info['name'] ), true, $dismiss_key, true );
 						}
 						$this->update->check_ext_for_updates( $ext, true, false );	// $quiet = true, $use_cache = false
 					}
