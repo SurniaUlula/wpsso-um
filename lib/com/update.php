@@ -607,9 +607,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$request = wp_remote_get( $json_url, $get_options );
 
 			// retry on cURL error 52: Empty reply from server
-			if ( is_wp_error( $request ) && (int) $request->get_error_code() === 52 ) {
+			if ( is_wp_error( $request ) && strpos( $request->get_error_message(), 'cURL error 52:' ) === 0 ) {
 				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( $ext.' plugin: update error - '.$request->get_error_message() );
+					$this->p->debug->log( $ext.' plugin: wp error code '.$request->get_error_code().' - '.$request->get_error_message() );
 					$this->p->debug->log( $ext.' plugin: (retry) calling wp_remote_get() for '.$json_url );
 				}
 				if ( method_exists( 'SucomUtil', 'protect_filter_value' ) ) {
@@ -621,7 +621,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			if ( is_wp_error( $request ) ) {
 
 				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( $ext.' plugin: update error - '.$request->get_error_message() );
+					$this->p->debug->log( $ext.' plugin: wp error code '.$request->get_error_code().' - '.$request->get_error_message() );
 				}
 				$this->p->notice->err( sprintf( __( 'Update error from the WordPress wp_remote_get() function: %s',
 					$this->text_domain ), $request->get_error_message() ) );
