@@ -559,9 +559,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$pdir = $this->p->avail['*']['p_dir'];
 			$ext_version = $this->get_ext_version( $ext );
 
-			$cache_pre = $lca.'_';
+			$cache_md5_pre = $lca.'_';
 			$cache_salt = __METHOD__.'(json_url:'.$json_url.'_home_url:'.$home_url.')';
-			$cache_id = $cache_pre.md5( $cache_salt );
+			$cache_id = $cache_md5_pre.md5( $cache_salt );
 
 			if ( $use_cache ) {
 				if ( isset( self::$upd_config[$ext]['plugin_data']->plugin ) ) {
