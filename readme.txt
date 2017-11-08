@@ -19,7 +19,7 @@ WPSSO Core extension to provide updates for the WPSSO Core Pro plugin and its Pr
 
 <img class="readme-icon" src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png">
 
-<p>The WPSSO Update Manager extension is required to enable / update the <a href="https://wpsso.com/">WPSSO Core Pro plugin</a> and any licensed Pro extensions.</p>
+<p>The WPSSO Update Manager extension is required to enable / update the <a href="https://wpsso.com/?utm_source=wpssoum-readme-pro-req">WPSSO Core Pro plugin</a> and any licensed Pro extensions.</p>
 
 <p>The WPSSO Update Manager supports WordPress Network / Multisite installations and WordPress MU Domain Mapping.</p>
 
@@ -33,8 +33,8 @@ WPSSO Update Manager is an extension for the WPSSO Core plugin &mdash; which cre
 
 <h3>Install and Uninstall</h3>
 
-* [Install the WPSSO UM Plugin](https://wpsso.com/docs/plugins/wpsso-um/installation/install-the-plugin/)
-* [Uninstall the WPSSO UM Plugin](https://wpsso.com/docs/plugins/wpsso-um/installation/uninstall-the-plugin/)
+* [Install the WPSSO UM Plugin](https://wpsso.com/docs/plugins/wpsso-um/installation/install-the-plugin/?utm_source=wpssoum-readme-install)
+* [Uninstall the WPSSO UM Plugin](https://wpsso.com/docs/plugins/wpsso-um/installation/uninstall-the-plugin/?utm_source=wpssoum-readme-uninstall)
 
 == Frequently Asked Questions ==
 
