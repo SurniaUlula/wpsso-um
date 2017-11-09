@@ -10,7 +10,7 @@ Tags: wpsso, update, manager, schedule, update check, extension, pro version, de
 Contributors: jsmoriss
 Requires PHP: 5.3
 Requires At Least: 3.7
-Tested Up To: 4.8.3
+Tested Up To: 4.9
 Stable Tag: 1.7.1
 
 WPSSO Core extension to provide updates for the WPSSO Core Pro plugin and its Pro extensions.
