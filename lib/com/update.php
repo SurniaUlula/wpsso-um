@@ -540,6 +540,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			global $wp_version;
+
 			$home_url = self::home_url();
 
 			if ( $this->p->debug->enabled ) {
@@ -1036,7 +1037,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 	}
 }
-	
+
 if ( ! class_exists( 'SucomPluginData' ) ) {
 
 	class SucomPluginData {
