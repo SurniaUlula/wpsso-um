@@ -69,6 +69,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 1.7.2-rc.1 (2017/11/12)**
+
+* *New Features*
+	* None
+* *Improvements*
+	* None
+* *Bugfixes*
+	* None
+* *Developer Notes*
+	* Changed the SucomUpdate home_url() private method to a public static method.
+
 **Version 1.7.1 (2017/10/31)**
 
 * *New Features*
@@ -105,6 +116,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* Added a check for SucomUtil get_wp_plugins() to use it instead of the (slower) WordPress get_plugins() function.
 
 == Upgrade Notice ==
+
+= 1.7.2-rc.1 =
+
+(2017/11/12) Changed the SucomUpdate home_url() private method to a public static method.
 
 = 1.7.1 =
 
