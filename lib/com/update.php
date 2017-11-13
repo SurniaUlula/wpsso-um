@@ -354,7 +354,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 		public function check_wpua_value( $wpua ) {
 			global $wp_version;
-			$correct = 'WordPress/'.$wp_version.'; '.$this->home_url();
+			$correct = 'WordPress/'.$wp_version.'; '.self::home_url();
 			if ( $correct !== $wpua ) {
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( 'incorrect wpua for '.$wpua );
@@ -540,7 +540,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			global $wp_version;
-			$home_url = $this->home_url();
+			$home_url = self::home_url();
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->log( 'home url = '.$home_url );
@@ -871,15 +871,15 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		 * Unfiltered version of home_url() from wordpress/wp-includes/link-template.php
 		 * Last synchronized with WordPress v4.8.2 on 2017/10/22.
 		 */
-		private function home_url( $path = '', $scheme = null ) {
-			return $this->get_home_url( null, $path, $scheme );
+		public static function home_url( $path = '', $scheme = null ) {
+			return self::get_home_url( null, $path, $scheme );
 		}
 
 		/*
 		 * Unfiltered version of get_home_url() from wordpress/wp-includes/link-template.php
 		 * Last synchronized with WordPress v4.8.2 on 2017/10/22.
 		 */
-		private function get_home_url( $blog_id = null, $path = '', $scheme = null ) {
+		public static function get_home_url( $blog_id = null, $path = '', $scheme = null ) {
 			global $pagenow;
 			if ( method_exists( 'SucomUtil', 'protect_filter_value' ) ) {
 				SucomUtil::protect_filter_value( 'pre_option_home' );
@@ -898,7 +898,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$scheme = parse_url( $url, PHP_URL_SCHEME );
 				}
 			}
-			$url = $this->set_url_scheme( $url, $scheme );
+			$url = self::set_url_scheme( $url, $scheme );
 			if ( $path && is_string( $path ) ) {
 				$url .= '/'.ltrim( $path, '/' );
 			}
@@ -909,7 +909,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		 * Unfiltered version of set_url_scheme() from wordpress/wp-includes/link-template.php
 		 * Last synchronized with WordPress v4.8.2 on 2017/10/22.
 		 */
-		private function set_url_scheme( $url, $scheme = null ) {
+		public static function set_url_scheme( $url, $scheme = null ) {
 			if ( ! $scheme ) {
 				$scheme = is_ssl() ? 'https' : 'http';
 			} elseif ( $scheme === 'admin' || $scheme === 'login' || $scheme === 'login_post' || $scheme === 'rpc' ) {
