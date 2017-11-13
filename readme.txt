@@ -78,7 +78,8 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *Bugfixes*
 	* None
 * *Developer Notes*
-	* Changed the SucomUpdate home_url() private method to a public static method.
+	* Added a new SucomUtilWP class for static methods derived from WordPress functions.
+	* Renamed the SucomUpdate home_url() private method to a public static method in SucomUtilWP raw_home_url().
 
 **Version 1.7.1 (2017/10/31)**
 
