@@ -69,7 +69,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.7.2-rc.3 (2017/11/13)**
+**Version 1.7.2 (2017/11/14)**
 
 * *New Features*
 	* None
@@ -118,9 +118,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.7.2-rc.3 =
+= 1.7.2 =
 
-(2017/11/13) Added a new SucomUtilWP class for static methods derived from WordPress functions.
+(2017/11/14) Added a new SucomUtilWP class for static methods derived from WordPress functions.
 
 = 1.7.1 =
 
