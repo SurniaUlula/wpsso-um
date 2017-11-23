@@ -69,7 +69,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.8.0-b.2 (2017/11/23)**
+**Version 1.8.0-rc.1 (2017/11/23)**
 
 * *New Features*
 	* None
@@ -129,7 +129,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.8.0-b.2 =
+= 1.8.0-rc.1 =
 
 (2017/11/23) Added a plugin icon in the Dashboard &gt; Updates page for WordPress version 4.9.
 
