@@ -937,8 +937,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			if ( ! empty( self::$upd_config[$ext]['option_name'] ) ) {
 				$option_data = self::get_option_data( $ext );
 				if ( $idx !== false ) {
-					if ( is_object( $option_data->update ) &&
-						isset( $option_data->update->$idx ) ) {
+					if ( is_object( $option_data->update ) && isset( $option_data->update->$idx ) ) {
 						return $option_data->update->$idx;
 					}
 				} else {
@@ -1095,12 +1094,12 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 		public $author;
 		public $author_homepage;
 		public $upgrade_notice;
-		public $downloaded;
+		public $banners;
+		public $icons;
 		public $rating;
 		public $num_ratings;
 		public $last_updated;
 		public $sections;
-		public $banners;
 	
 		public function __construct() {
 		}
@@ -1143,38 +1142,32 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 				'download_url',
 				'author_homepage',
 				'upgrade_notice',
-				'downloaded', 
+				'banners',
+				'icons',
 				'rating', 
 				'num_ratings', 
 				'last_updated',
+				'sections',
 			) as $prop_name ) {
 				if ( isset( $this->$prop_name ) ) {
 					if ( $prop_name === 'download_url' ) {
 						$plugin_data->download_link = $this->download_url;
 					} elseif ( $prop_name === 'author_homepage' ) {
-						$plugin_data->author = strpos( $this->author, '<a href=' ) === false ?
-							sprintf( '<a href="%s">%s</a>', $this->author_homepage, $this->author ) :
-							$this->author;
+						if ( strpos( $this->author, '<a href' ) === false ) {
+							$plugin_data->author = sprintf( '<a href="%s">%s</a>', $this->author_homepage, $this->author );
+						} else {
+							$plugin_data->author = $this->author;
+						}
+					} elseif ( $prop_name === 'sections' && empty( $this->$prop_name ) ) {
+						$plugin_data->$prop_name = array( 'description' => '' );
+					} elseif ( is_object( $this->$prop_name ) ) {
+						$plugin_data->$prop_name = get_object_vars( $this->$prop_name );
 					} else {
 						$plugin_data->$prop_name = $this->$prop_name;
 					}
 				} elseif ( $prop_name === 'author_homepage' ) {
 					$plugin_data->author = $this->author;
 				}
-			}
-
-			if ( is_array( $this->sections ) )  {
-				$plugin_data->sections = $this->sections;
-			} elseif ( is_object( $this->sections ) ) {
-				$plugin_data->sections = get_object_vars( $this->sections );
-			} else {
-				$plugin_data->sections = array( 'description' => '' );
-			}
-
-			if ( is_array( $this->banners ) ) {
-				$plugin_data->banners = $this->banners;
-			} elseif ( is_object( $this->banners ) ) {
-				$plugin_data->banners = get_object_vars( $this->banners );
 			}
 
 			return $plugin_data;
@@ -1190,9 +1183,11 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 		public $slug;
 		public $plugin;
 		public $version = 0;
+		public $tested;
 		public $homepage;
 		public $download_url;
 		public $upgrade_notice;
+		public $icons;
 		public $exp_date;
 		public $qty_used;
 
@@ -1219,9 +1214,11 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 				'slug', 
 				'plugin', 
 				'version', 
+				'tested', 
 				'homepage', 
 				'download_url', 
 				'upgrade_notice',
+				'icons',
 				'exp_date', 
 				'qty_used', 
 			) as $prop_name ) {
@@ -1242,14 +1239,20 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 				'slug' => 'slug',
 				'plugin' => 'plugin',
 				'version' => 'new_version',
+				'tested' => 'tested',
 				'homepage' => 'url',			// plugin homepage url
 				'download_url' => 'package',		// update download url
 				'upgrade_notice' => 'upgrade_notice',
+				'icons' => 'icons',
 				'exp_date' => 'exp_date',
 				'qty_used' => 'qty_used',
 			) as $json_update_prop => $wp_update_prop ) {
 				if ( isset( $this->$json_update_prop ) ) {
-					$plugin_update->$wp_update_prop = $this->$json_update_prop;
+					if ( is_object( $this->$json_update_prop ) ) {
+						$plugin_update->$wp_update_prop = get_object_vars( $this->$json_update_prop );
+					} else {
+						$plugin_update->$wp_update_prop = $this->$json_update_prop;
+					}
 				}
 			}
 
