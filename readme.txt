@@ -69,6 +69,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 1.8.0-b.2 (2017/11/23)**
+
+* *New Features*
+	* None
+* *Improvements*
+	* Added a plugin icon in the Dashboard &gt; Updates page for WordPress version 4.9.
+* *Bugfixes*
+	* None
+* *Developer Notes*
+	* None
+
 **Version 1.7.2 (2017/11/14)**
 
 * *New Features*
@@ -117,6 +128,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* Added a check for SucomUtil get_wp_plugins() to use it instead of the (slower) WordPress get_plugins() function.
 
 == Upgrade Notice ==
+
+= 1.8.0-b.2 =
+
+(2017/11/23) Added a plugin icon in the Dashboard &gt; Updates page for WordPress version 4.9.
 
 = 1.7.2 =
 
