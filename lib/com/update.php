@@ -64,33 +64,40 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 		public function check_ext_for_updates( $check_ext = null, $quiet = true, $use_cache = true ) {
 
-			$ext_plugins = array();
+			$ext_config = array();
 
 			if ( empty( $check_ext ) ) {
-				$ext_plugins = self::$upd_config;	// check all plugins defined
+				$ext_config = self::$upd_config;	// check all plugins defined
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( 'checking all known extensions for updates' );
 				}
 			} elseif ( is_array( $check_ext ) ) {
 				foreach ( $check_ext as $ext ) {
 					if ( isset( self::$upd_config[$ext] ) ) {
-						$ext_plugins[$ext] = self::$upd_config[$ext];
+						$ext_config[$ext] = self::$upd_config[$ext];
 					}
 				}
 			} elseif ( is_string( $check_ext ) ) {
 				if ( isset( self::$upd_config[$check_ext] ) ) {
-					$ext_plugins[$check_ext] = self::$upd_config[$check_ext];
+					$ext_config[$check_ext] = self::$upd_config[$check_ext];
 				}
 			}
 
-			if ( empty( $ext_plugins ) ) {
+			if ( empty( $ext_config ) ) {
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( 'exiting early: no extensions to check for updates' );
 				}
 				return;
 			}
 
-			foreach ( $ext_plugins as $ext => $info ) {
+			foreach ( $ext_config as $ext => $info ) {
+
+				if ( ! self::is_installed( $ext ) ) {
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( $ext.' plugin: not installed' );
+					}
+					continue;
+				}
 
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( $ext.' plugin: checking for update' );
@@ -223,11 +230,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( $ext_version === false ) {
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext.' plugin: extension skipped - version is false' );
-					}
-					continue;
-				} elseif ( $ext_version === 'not-installed' && strpos( $info['url']['home'], '/wordpress.org/' ) !== false ) {
-					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $ext.' plugin: extension skipped - wp.org plugin not installed' );
 					}
 					continue;
 				}
@@ -432,16 +434,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			foreach ( self::$upd_config as $ext => $info ) {
 
-				if ( empty( $info['base'] ) ) {
-					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $ext.' plugin: missing base in configuration' );
-					}
-					continue;
-				}
-
 				if ( ! self::is_installed( $ext ) ) {
 					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $ext.' plugin: not installed (update check skipped)' );
+						$this->p->debug->log( $ext.' plugin: not installed' );
 					}
 					continue;
 				}
