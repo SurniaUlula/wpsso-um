@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires PHP: 5.4
 Requires At Least: 3.8
 Tested Up To: 4.9
-Stable Tag: 1.7.2
+Stable Tag: 1.8.0
 
 WPSSO Core extension to provide updates for the WPSSO Core Pro plugin and its Pro extensions.
 
@@ -132,28 +132,4 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 = 1.8.0 =
 
 (2017/11/24) Added a plugin icon in the Dashboard &gt; Updates page for WordPress version 4.9.
-
-= 1.7.2 =
-
-(2017/11/14) Added a new SucomUtilWP class for static methods derived from WordPress functions.
-
-= 1.7.1 =
-
-(2017/10/31) Added a retry on cURL error 52. Added a missing check for the SucomUtil protect_filter_value() method for older versions of WPSSO.
-
-= 1.7.0 =
-
-(2017/10/28) Added WordPress Site Address value protection for improved compatibility with the WordPress MU Domain Mapping plugin.
-
-= 1.6.8 =
-
-(2017/10/15) Minor speed improvement when getting information for installed / non-active extensions. 
-
-= 1.6.7 =
-
-(2017/10/02) Minor code refactoring / standardizing for WPSSO v3.46.3.
-
-= 1.6.6 =
-
-(2017/09/10) Minor code refactoring for WPSSO v3.46.0.
 
