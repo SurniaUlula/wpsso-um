@@ -80,53 +80,6 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *Developer Notes*
 	* None
 
-**Version 1.7.2 (2017/11/14)**
-
-* *New Features*
-	* None
-* *Improvements*
-	* None
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* Added a new SucomUtilWP class for static methods derived from WordPress functions.
-	* Renamed the SucomUpdate home_url() private method to a public static method in SucomUtilWP raw_home_url().
-
-**Version 1.7.1 (2017/10/31)**
-
-* *New Features*
-	* None
-* *Improvements*
-	* Added a retry on cURL error 52: Empty reply from server.
-* *Bugfixes*
-	* Added a missing check for the SucomUtil protect_filter_value() method for older versions of WPSSO.
-* *Developer Notes*
-	* None
-
-**Version 1.7.0 (2017/10/28)**
-
-* *New Features*
-	* None
-* *Improvements*
-	* Added WordPress Site Address value protection for improved compatibility with the WordPress MU Domain Mapping plugin.
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* Added new SucomUpdate check_all_for_updates() and get_config_keys() methods.
-	* Added action hooks for 'wpsso_column_metabox_version_info_table_rows' and 'wpsso_load_setting_page_check_for_updates'.
-	* Added an action hook for 'update_option_home' to check for updates when the WordPress home option value changes.
-
-**Version 1.6.8 (2017/10/15)**
-
-* *New Features*
-	* None
-* *Improvements*
-	* Minor speed improvement when getting information for installed / non-active extensions. 
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* Added a check for SucomUtil get_wp_plugins() to use it instead of the (slower) WordPress get_plugins() function.
-
 == Upgrade Notice ==
 
 = 1.8.0 =
