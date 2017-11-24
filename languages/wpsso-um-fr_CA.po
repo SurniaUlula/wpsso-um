@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 1.7.1\n"
+"Project-Id-Version: WPSSO Update Manager 1.8.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2017-11-01 11:35-0600\n"
-"PO-Revision-Date: 2017-11-01 11:35-0600\n"
+"POT-Creation-Date: 2017-11-24 07:16-0600\n"
+"PO-Revision-Date: 2017-11-24 07:16-0600\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -33,19 +33,19 @@ msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr "Filtres de version pour mises à jour"
 
-#: lib/com/update.php:626 lib/com-gettext-extract.php:6
+#: lib/com/update.php:629 lib/com-gettext-extract.php:6
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr "Erreur de mise à jour de la fonction WordPress wp_remote_get(): %s"
 
-#: lib/com/update.php:722 lib/com-gettext-extract.php:9
+#: lib/com/update.php:725 lib/com-gettext-extract.php:9
 msgid "WordPress library file %s is missing and required."
 msgstr "Le fichier de bibliothèque WordPress %s est manquant et requis."
 
-#: lib/com/update.php:742 lib/com-gettext-extract.php:8
+#: lib/com/update.php:745 lib/com-gettext-extract.php:8
 msgid "WordPress function %s is missing and required."
 msgstr "La fonction WordPress %s n'est pas disponible et est requise."
 
-#: lib/com/update.php:761 lib/com-gettext-extract.php:5
+#: lib/com/update.php:764 lib/com-gettext-extract.php:5
 msgid "The %1$s plugin (%2$s) version number is missing from the WordPress plugins array."
 msgstr "Le numéro de version de l'extension %1$s (%2$s) est absente de la liste d'extensions de WordPress."
 
