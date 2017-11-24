@@ -225,6 +225,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$this->p->debug->log( $ext.' plugin: extension skipped - version is false' );
 					}
 					continue;
+				} elseif ( $ext_version === 'not-installed' && strpos( $info['url']['home'], '/wordpress.org/' ) !== false ) {
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( $ext.' plugin: extension skipped - wp.org plugin not installed' );
+					}
+					continue;
 				}
 
 				$filter_name = $this->get_filter_name( $ext );
