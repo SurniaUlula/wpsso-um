@@ -390,25 +390,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			// flag for the update manager filter
 			} elseif ( ! empty( $args->unfiltered ) ) {
 				return $result;
-			// check for wpsso pre-v3.40.12 config without this array
-			} elseif ( ! isset( $this->p->cf['*']['slug'] ) ) {
-				foreach ( self::$upd_config as $ext => $info ) {
-					if ( ! empty( $info['slug'] ) && $info['slug'] === $args->slug ) {
-						break;	// stop here
-					} else {
-						unset( $ext );	// don't leave a value in $ext
-					}
-				}
-				if ( empty ( $ext ) ) {	// no matching slug found
-					return $result;
-				}
-			// check that the plugin slug is known
-			} elseif ( empty( $this->p->cf['*']['slug'][$args->slug] ) ) {	// since wpsso v3.40.12
+			// make sure the plugin slug is one of ours
+			} elseif ( empty( $this->p->cf['*']['slug'][$args->slug] ) ) {
 				return $result;
-			} else {
-				// get the extension acronym for the config
-				$ext = $this->p->cf['*']['slug'][$args->slug];
 			}
+
+			// get the extension acronym for the config
+			$ext = $this->p->cf['*']['slug'][$args->slug];
 
 			// make sure we have a config for that slug
 			if ( empty( self::$upd_config[$ext]['slug'] ) ) {

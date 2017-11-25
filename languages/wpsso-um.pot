@@ -31,19 +31,19 @@ msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
 
-#: lib/com/update.php:629 lib/com-gettext-extract.php:6
+#: lib/com/update.php:617 lib/com-gettext-extract.php:6
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr ""
 
-#: lib/com/update.php:725 lib/com-gettext-extract.php:9
+#: lib/com/update.php:713 lib/com-gettext-extract.php:9
 msgid "WordPress library file %s is missing and required."
 msgstr ""
 
-#: lib/com/update.php:745 lib/com-gettext-extract.php:8
+#: lib/com/update.php:733 lib/com-gettext-extract.php:8
 msgid "WordPress function %s is missing and required."
 msgstr ""
 
-#: lib/com/update.php:764 lib/com-gettext-extract.php:5
+#: lib/com/update.php:752 lib/com-gettext-extract.php:5
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."
