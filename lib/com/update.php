@@ -46,23 +46,23 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		// called by the wordpress cron
-		public function check_all_for_updates( $quiet = true, $use_cache = true ) {
+		public function check_all_for_updates( $quiet = true, $read_cache = true ) {
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
 			}
 			$lca = $this->p->cf['lca'];
 			$check_ext = null;							// check all ext by default
-			$this->check_ext_for_updates( $lca, $quiet, $use_cache );		// check lca first
-			$check_ext = $this->get_config_keys( $check_ext, $lca, $use_cache );	// reset config and get ext array (exclude lca)
-			$this->check_ext_for_updates( $check_ext, $quiet, $use_cache );		// check all remaining extensions
+			$this->check_ext_for_updates( $lca, $quiet, $read_cache );		// check lca first
+			$check_ext = $this->get_config_keys( $check_ext, $lca, $read_cache );	// reset config and get ext array (exclude lca)
+			$this->check_ext_for_updates( $check_ext, $quiet, $read_cache );	// check all remaining extensions
 		}
 
 		// deprecated on 2017/10/26
-		public function check_for_updates( $check_ext = null, $show_notice = false, $use_cache = true ) {
-			return $this->check_ext_for_updates( $check_ext, ( $show_notice ? false : true ), $use_cache );
+		public function check_for_updates( $check_ext = null, $show_notice = false, $read_cache = true ) {
+			return $this->check_ext_for_updates( $check_ext, ( $show_notice ? false : true ), $read_cache );
 		}
 
-		public function check_ext_for_updates( $check_ext = null, $quiet = true, $use_cache = true ) {
+		public function check_ext_for_updates( $check_ext = null, $quiet = true, $read_cache = true ) {
 
 			$ext_config = array();
 
@@ -103,7 +103,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$this->p->debug->log( $ext.' plugin: checking for update' );
 				}
 
-				if ( $use_cache ) {
+				if ( $read_cache ) {
 					$update_data = self::get_option_data( $ext );
 				} else {
 					$update_data = false;
@@ -118,7 +118,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				$update_data->lastCheck = time();
 				$update_data->checkedVersion = $this->get_ext_version( $ext );
-				$update_data->update = $this->get_update_data( $ext, $use_cache );
+				$update_data->update = $this->get_update_data( $ext, $read_cache );
 
 				if ( self::update_option_data( $ext, $update_data ) ) {
 
@@ -146,11 +146,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 	
 		// returns an array of configured plugin / extension lowercase acronyms
-		public function get_config_keys( $include = null, $exclude = null, $use_cache = true ) {
+		public function get_config_keys( $include = null, $exclude = null, $read_cache = true ) {
 
 			$quiet = true;
 			$keys = array();
-			$this->set_config( $quiet, $use_cache );
+			$this->set_config( $quiet, $read_cache );
 
 			// optionally include only some extension keys
 			if ( ! empty( $include ) ) {
@@ -188,7 +188,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		// $quiet is false by default to show a warning if (one or more) dev filters are selected
-		public function set_config( $quiet = false, $use_cache = true ) {
+		public function set_config( $quiet = false, $read_cache = true ) {
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
@@ -196,7 +196,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			$lca = $this->p->cf['lca'];
 			$pdir = $this->p->avail['*']['p_dir'];
-			$aop = $this->p->check->aop( $lca, true, $pdir, $use_cache );
+			$aop = $this->p->check->aop( $lca, true, $pdir, $read_cache );
 			$has_dev = false;
 
 			self::$upd_config = array();	// set / reset the config array
@@ -408,7 +408,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			// get plugin data from the json api
-			$plugin_data = $this->get_plugin_data( $ext, true );	// $use_cache = true
+			$plugin_data = $this->get_plugin_data( $ext, true );	// $read_cache = true
 
 			// make sure we have something to return
 			if ( ! is_object( $plugin_data ) || ! method_exists( $plugin_data, 'json_to_wp' ) ) {
@@ -505,10 +505,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return $schedules;
 		}
 	
-		public function get_update_data( $ext, $use_cache = true ) {
+		public function get_update_data( $ext, $read_cache = true ) {
 
 			// get plugin data from the json api
-			$plugin_data = $this->get_plugin_data( $ext, $use_cache );
+			$plugin_data = $this->get_plugin_data( $ext, $read_cache );
 
 			if ( ! is_object( $plugin_data ) || ! method_exists( $plugin_data, 'json_to_wp' ) ) {
 				if ( $this->p->debug->enabled ) {
@@ -520,7 +520,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return SucomPluginUpdate::update_from_data( $plugin_data );
 		}
 	
-		public function get_plugin_data( $ext, $use_cache = true ) {
+		public function get_plugin_data( $ext, $read_cache = true ) {
 
 			// make sure we have a config for that slug
 			if ( empty( self::$upd_config[$ext]['slug'] ) ) {
@@ -547,12 +547,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$lca = $this->p->cf['lca'];
 			$pdir = $this->p->avail['*']['p_dir'];
 			$ext_version = $this->get_ext_version( $ext );
-
 			$cache_md5_pre = $lca.'_';
 			$cache_salt = __METHOD__.'(json_url:'.$json_url.'_home_url:'.$home_url.')';
 			$cache_id = $cache_md5_pre.md5( $cache_salt );
 
-			if ( $use_cache ) {
+			if ( $read_cache ) {
 				if ( isset( self::$upd_config[$ext]['plugin_data']->plugin ) ) {
 					$plugin_data = self::$upd_config[$ext]['plugin_data'];
 				} else {
