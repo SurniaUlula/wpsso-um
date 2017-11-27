@@ -69,6 +69,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 1.8.1-dev.1 (2017/11/27)**
+
+* *New Features*
+	* None
+* *Improvements*
+	* None
+* *Bugfixes*
+	* None
+* *Developer Notes*
+	* Added an SucomUpdateUtilWP class to extend the SucomUtilWP class if available.
+
 **Version 1.8.0 (2017/11/24)**
 
 * *New Features*
@@ -81,6 +92,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* None
 
 == Upgrade Notice ==
+
+= 1.8.1-dev.4 =
+
+(2017/11/27) Added an SucomUpdateUtilWP class to extend the SucomUtilWP class if available.
 
 = 1.8.0 =
 
