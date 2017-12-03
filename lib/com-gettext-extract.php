@@ -8,4 +8,3 @@ __( 'Update information for %s has been retrieved and saved.', 'wpsso-um' );
 __( 'WordPress function %s is missing and required.', 'wpsso-um' );
 __( 'WordPress library file %s is missing and required.', 'wpsso-um' );
 _x( 'Update Version Filters', 'metabox title', 'wpsso-um' );
-?>

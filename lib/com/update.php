@@ -1221,4 +1221,3 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 	}
 }
 
-?>

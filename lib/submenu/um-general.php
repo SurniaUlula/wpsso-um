@@ -92,4 +92,3 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 	}
 }
 
-?>

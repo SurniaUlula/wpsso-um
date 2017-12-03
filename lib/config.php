@@ -96,4 +96,3 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 	}
 }
 
-?>

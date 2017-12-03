@@ -159,4 +159,3 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 	}
 }
 
-?>

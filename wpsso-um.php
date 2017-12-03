@@ -205,4 +205,3 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 	$wpssoum =& WpssoUm::get_instance();
 }
 
-?>
