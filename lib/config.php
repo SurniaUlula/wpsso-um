@@ -58,11 +58,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		public static function get_version( $add_slug = false ) {
 			$ext = 'wpssoum';
 			$info =& self::$cf['plugin'][$ext];
-			if ( $add_slug ) {
-				return $info['slug'].'-'.$info['version'];
-			} else {
-				return $info['version'];
-			}
+			return $add_slug ? $info['slug'].'-'.$info['version'] : $info['version'];
 		}
 
 		public static function set_constants( $plugin_filepath ) { 
