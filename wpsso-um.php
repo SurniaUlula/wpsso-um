@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Plugin Name: WPSSO Update Manager
  * Plugin Slug: wpsso-um
  * Text Domain: wpsso-um
