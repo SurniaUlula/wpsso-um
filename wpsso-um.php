@@ -83,15 +83,15 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			$err_msg = __( 'The %1$s extension requires the %2$s plugin &mdash; install and activate the %3$s plugin or <a href="%4$s">deactivate the %5$s extension</a>.', 'wpsso-um' );
 			if ( $deactivate === true ) {
 				if ( ! function_exists( 'deactivate_plugins' ) ) {
-					require_once trailingslashit( ABSPATH ).'wp-admin/includes/plugin.php';
+					require_once trailingslashit( ABSPATH ) . 'wp-admin/includes/plugin.php';
 				}
 				deactivate_plugins( $info['base'], true );	// $silent = true
 				wp_die( '<p>'.sprintf( $die_msg, $info['name'], $info['req']['name'],
 					$info['req']['short'], $info['short'] ).'</p>' );
 			} else {
 				$deactivate_url = wp_nonce_url( 'plugins.php?action=deactivate&amp;'.
-					'plugin='.$info['base'].'&amp;plugin_status=active&amp;paged=1&amp;s=',
-						'deactivate-plugin_'.$info['base'] );
+					'plugin=' . $info['base'].'&amp;plugin_status=active&amp;paged=1&amp;s=',
+						'deactivate-plugin_' . $info['base'] );
 				echo '<div class="notice notice-error error"><p>'.
 					sprintf( $err_msg, $info['name'], $info['req']['name'],
 						$info['req']['short'], $deactivate_url, $info['short'] ).'</p></div>';
@@ -162,8 +162,8 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 					$next_utime = $last_utime + ( $this->check_hours * HOUR_IN_SECONDS );	// get the next scheduled check
 					if ( empty( $last_utime ) || $next_utime + DAY_IN_SECONDS < time() ) {	// check if more than 1 day overdue
 						if ( $this->p->debug->enabled ) {
-							$dismiss_key = __FUNCTION__.'_'.$ext.'_update_check';
-							$this->p->debug->log( 'requesting update check for '.$ext );
+							$dismiss_key = __FUNCTION__ . '_' . $ext . '_update_check';
+							$this->p->debug->log( 'requesting update check for ' . $ext );
 							$this->p->notice->inf( sprintf( __( 'Performing an update check for the %s plugin.',
 								'wpsso-um' ), $info['name'] ), true, $dismiss_key, true );
 						}
@@ -178,8 +178,8 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			$wpsso_version = $this->p->cf['plugin']['wpsso']['version'];
 
 			if ( $this->p->debug->enabled ) {
-				$this->p->debug->log( $info['name'].' requires '.$info['req']['short'].' v'.
-					$info['req']['min_version'].' or newer ('.$wpsso_version.' installed)' );
+				$this->p->debug->log( $info['name'] . ' requires ' . $info['req']['short'] . ' v'.
+					$info['req']['min_version'] . ' or newer (' . $wpsso_version . ' installed)' );
 			}
 
 			if ( is_admin() ) {
