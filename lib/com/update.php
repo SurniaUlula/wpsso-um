@@ -648,7 +648,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			self::$upd_config[$ext]['utime'] = self::set_umsg( $ext, 'time', time() );
 			self::$upd_config[$ext]['plugin_data'] = $plugin_data;	// save to local static property cache
 
-			if ( $plugin_data === null ) {
+			if ( null === $plugin_data ) {
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( $ext.' plugin: saving empty stdClass to transient '.$cache_id );
 				}
@@ -715,7 +715,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					}
 					if ( function_exists( 'get_plugins' ) ) {	// just in case
 						static $wp_plugins = null;	// get the plugins list from wordpress only once
-						if ( $wp_plugins === null ) {
+						if ( null === $wp_plugins ) {
 							if ( $this->p->debug->enabled ) {
 								$this->p->debug->log( $ext.' plugin: getting plugins list from wordpress' );
 							}
