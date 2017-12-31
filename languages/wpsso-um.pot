@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 
 #: lib/com/update.php:281 lib/com-gettext-extract.php:10
-#: lib/sitesubmenu/site-um-general.php:90 lib/submenu/um-general.php:71
+#: lib/sitesubmenu/site-um-general.php:89 lib/submenu/um-general.php:70
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
@@ -61,49 +61,49 @@ msgid ""
 "its Pro extensions."
 msgstr ""
 
-#: lib/filters.php:78 lib/sitesubmenu/site-um-general.php:62
-#: lib/submenu/um-general.php:49
+#: lib/filters.php:77 lib/sitesubmenu/site-um-general.php:61
+#: lib/submenu/um-general.php:48
 msgctxt "submit button"
 msgid "Check for Updates"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:50 lib/submenu/um-general.php:41
+#: lib/sitesubmenu/site-um-general.php:49 lib/submenu/um-general.php:40
 msgctxt "package type"
 msgid "Pro"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:53
+#: lib/sitesubmenu/site-um-general.php:52
 msgctxt "metabox title"
 msgid "Network Update Manager for %s"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:83 lib/submenu/um-general.php:65
+#: lib/sitesubmenu/site-um-general.php:82 lib/submenu/um-general.php:64
 msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr ""
 
-#: lib/submenu/um-general.php:44
+#: lib/submenu/um-general.php:43
 msgctxt "metabox title"
 msgid "Update Manager for %s"
 msgstr ""
 
-#: wpsso-um.php:82
+#: wpsso-um.php:81
 msgid ""
 "%1$s is an extension for the %2$s plugin &mdash; please install and activate "
 "the %3$s plugin before activating %4$s."
 msgstr ""
 
-#: wpsso-um.php:83
+#: wpsso-um.php:82
 msgid ""
 "The %1$s extension requires the %2$s plugin &mdash; install and activate the "
 "%3$s plugin or <a href=\"%4$s\">deactivate the %5$s extension</a>."
 msgstr ""
 
-#: wpsso-um.php:167
+#: wpsso-um.php:166
 msgid "Performing an update check for the %s plugin."
 msgstr ""
 
-#: wpsso-um.php:186
+#: wpsso-um.php:185
 msgid ""
 "The %1$s extension v%2$s requires %3$s v%4$s or newer (v%5$s currently "
 "installed)."

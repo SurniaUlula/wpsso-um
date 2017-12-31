@@ -1,5 +1,5 @@
 <?php
-/* 
+/**
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl.txt
  * Copyright 2015-2017 Jean-Sebastien Morisset (https://wpsso.com/)
@@ -227,7 +227,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				$ext_version = $this->get_ext_version( $ext );
 
-				if ( $ext_version === false ) {
+				if ( false === $ext_version ) {
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext.' plugin: extension skipped - version is false' );
 					}
@@ -372,7 +372,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 		}
 
-		/*
+		/**
 		 * Provide plugin data from the json api for free / pro extensions not hosted on wordpress.org.
 		 */
 		public function external_plugin_data( $result, $action = null, $args = null ) {
@@ -484,7 +484,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return $updates;
 		}
 	
-		/*
+		/**
 		 * If the wordpress update system has been disabled and/or manipulated (ie. $updates is not false), 
 		 * then re-enable updates by including our update data (if a new plugin version is available).
 		 */
@@ -970,7 +970,7 @@ if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
 
 		class SucomUpdateUtilWP {
 
-			/*
+			/**
 			 * Unfiltered version of home_url() from wordpress/wp-includes/link-template.php
 			 * Last synchronized with WordPress v4.8.2 on 2017/10/22.
 			 */
@@ -978,7 +978,7 @@ if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
 				return self::raw_get_home_url( null, $path, $scheme );
 			}
 
-			/*
+			/**
 			 * Unfiltered version of get_home_url() from wordpress/wp-includes/link-template.php
 			 * Last synchronized with WordPress v4.8.2 on 2017/10/22.
 			 */
@@ -1008,7 +1008,7 @@ if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
 				return $url;
 			}
 
-			/*
+			/**
 			 * Unfiltered version of set_url_scheme() from wordpress/wp-includes/link-template.php
 			 * Last synchronized with WordPress v4.8.2 on 2017/10/22.
 			 */
@@ -1064,27 +1064,25 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 		public function __construct() {
 		}
 
-		public static function data_from_json( $json ) {
+		public static function data_from_json( $json_encoded ) {
 
-			$json_data = json_decode( $json );
+			$json_data = json_decode( $json_encoded );
 
 			if ( empty( $json_data ) || ! is_object( $json_data ) )  {
 				return null;
 			}
 
-			if ( isset( $json_data->plugin ) && ! empty( $json_data->plugin ) && 
-				isset( $json_data->version ) && ! empty( $json_data->version ) ) {
-
-				$plugin_data = new SucomPluginData();
-
-				foreach( get_object_vars( $json_data ) as $key => $value ) {
-					$plugin_data->$key = $value;
-				}
-
-				return $plugin_data;
-			} else {
+			if ( empty( $json_data->plugin ) || empty( $json_data->version ) ) {
 				return null;
 			}
+
+			$plugin_data = new SucomPluginData();
+
+			foreach( get_object_vars( $json_data ) as $key => $value ) {
+				$plugin_data->$key = $value;
+			}
+
+			return $plugin_data;
 		}
 	
 		public function json_to_wp(){
@@ -1154,9 +1152,9 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 		public function __construct() {
 		}
 
-		public static function update_from_json( $json ) {
+		public static function update_from_json( $json_encoded ) {
 
-			$plugin_data = SucomPluginData::data_from_json( $json );
+			$plugin_data = SucomPluginData::data_from_json( $json_encoded );
 
 			if ( $plugin_data !== null )  {
 				return self::update_from_data( $plugin_data );
@@ -1206,12 +1204,12 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 				'icons' => 'icons',
 				'exp_date' => 'exp_date',
 				'qty_used' => 'qty_used',
-			) as $json_update_prop => $wp_update_prop ) {
-				if ( isset( $this->$json_update_prop ) ) {
-					if ( is_object( $this->$json_update_prop ) ) {
-						$plugin_update->$wp_update_prop = get_object_vars( $this->$json_update_prop );
+			) as $json_prop_name => $wp_prop_name ) {
+				if ( isset( $this->$json_prop_name ) ) {
+					if ( is_object( $this->$json_prop_name ) ) {
+						$plugin_update->$wp_prop_name = get_object_vars( $this->$json_prop_name );
 					} else {
-						$plugin_update->$wp_update_prop = $this->$json_update_prop;
+						$plugin_update->$wp_prop_name = $this->$json_prop_name;
 					}
 				}
 			}

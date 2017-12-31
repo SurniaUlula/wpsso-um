@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Plugin Name: WPSSO Update Manager
  * Plugin Slug: wpsso-um
@@ -19,10 +18,10 @@
  * 
  * Version Numbering: {major}.{minor}.{bugfix}[-{stage}.{level}]
  *
- *	{major}		Major structural code changes / re-writes or incompatible API changes.
- *	{minor}		New functionality was added or improved in a backwards-compatible manner.
- *	{bugfix}	Backwards-compatible bug fixes or small improvements.
- *	{stage}.{level}	Pre-production release: dev < a (alpha) < b (beta) < rc (release candidate).
+ *      {major}		Major structural code changes / re-writes or incompatible API changes.
+ *      {minor}		New functionality was added or improved in a backwards-compatible manner.
+ *      {bugfix}	Backwards-compatible bug fixes or small improvements.
+ *      {stage}.{level}	Pre-production release: dev < a (alpha) < b (beta) < rc (release candidate).
  * 
  * Copyright 2015-2017 Jean-Sebastien Morisset (https://wpsso.com/)
  */
@@ -81,7 +80,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			$info = WpssoUmConfig::$cf['plugin']['wpssoum'];
 			$die_msg = __( '%1$s is an extension for the %2$s plugin &mdash; please install and activate the %3$s plugin before activating %4$s.', 'wpsso-um' );
 			$err_msg = __( 'The %1$s extension requires the %2$s plugin &mdash; install and activate the %3$s plugin or <a href="%4$s">deactivate the %5$s extension</a>.', 'wpsso-um' );
-			if ( $deactivate === true ) {
+			if ( true === $deactivate ) {
 				if ( ! function_exists( 'deactivate_plugins' ) ) {
 					require_once trailingslashit( ABSPATH ) . 'wp-admin/includes/plugin.php';
 				}
