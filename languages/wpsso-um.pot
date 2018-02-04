@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Update Manager package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 1.8.1\n"
+"Project-Id-Version: WPSSO Update Manager 1.8.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2018-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -87,23 +87,23 @@ msgctxt "metabox title"
 msgid "Update Manager for %s"
 msgstr ""
 
-#: wpsso-um.php:81
+#: wpsso-um.php:91
 msgid ""
 "%1$s is an extension for the %2$s plugin &mdash; please install and activate "
 "the %3$s plugin before activating %4$s."
 msgstr ""
 
-#: wpsso-um.php:82
+#: wpsso-um.php:93
 msgid ""
 "The %1$s extension requires the %2$s plugin &mdash; install and activate the "
 "%3$s plugin or <a href=\"%4$s\">deactivate the %5$s extension</a>."
 msgstr ""
 
-#: wpsso-um.php:166
+#: wpsso-um.php:187
 msgid "Performing an update check for the %s plugin."
 msgstr ""
 
-#: wpsso-um.php:185
+#: wpsso-um.php:206
 msgid ""
 "The %1$s extension v%2$s requires %3$s v%4$s or newer (v%5$s currently "
 "installed)."
