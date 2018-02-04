@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires PHP: 5.4
 Requires At Least: 3.8
 Tested Up To: 4.9.3
-Stable Tag: 1.8.1
+Stable Tag: 1.8.2
 
 WPSSO Core extension to provide updates for the WPSSO Core Pro plugin and its Pro extensions.
 
@@ -27,14 +27,14 @@ WPSSO Core extension to provide updates for the WPSSO Core Pro plugin and its Pr
 
 <h3>WPSSO Core Plugin Prerequisite</h3>
 
-WPSSO Update Manager is an extension for the WPSSO Core plugin &mdash; which creates complete &amp; accurate meta tags and Schema markup from your content for social sharing, social media / SMO, search / SEO / rich cards, and more.
+WPSSO Update Manager is an extension for the WPSSO Core plugin &mdash; which creates complete &amp; accurate meta tags and Schema markup from your existing content for social sharing, Social Media Optimization (SMO), Search Engine Optimization (SEO), Google Rich Cards, Pinterest Rich Pins, etc.
 
 == Installation ==
 
 <h3>Install and Uninstall</h3>
 
-* [Install the WPSSO UM Plugin](https://wpsso.com/docs/plugins/wpsso-um/installation/install-the-plugin/?utm_source=wpssoum-readme-install)
-* [Uninstall the WPSSO UM Plugin](https://wpsso.com/docs/plugins/wpsso-um/installation/uninstall-the-plugin/?utm_source=wpssoum-readme-uninstall)
+* [Install the WPSSO UM Extension](https://wpsso.com/docs/plugins/wpsso-um/installation/install-the-plugin/?utm_source=wpssoum-readme-install)
+* [Uninstall the WPSSO UM Extension](https://wpsso.com/docs/plugins/wpsso-um/installation/uninstall-the-plugin/?utm_source=wpssoum-readme-uninstall)
 
 == Frequently Asked Questions ==
 
@@ -69,7 +69,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.8.1 (2017/11/29)**
+**Version 1.8.2 (2018/02/04)**
 
 * *New Features*
 	* None
@@ -78,24 +78,13 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *Bugfixes*
 	* None
 * *Developer Notes*
-	* Added an SucomUpdateUtilWP class to extend the SucomUtilWP class if available.
-
-**Version 1.8.0 (2017/11/24)**
-
-* *New Features*
-	* None
-* *Improvements*
-	* Added a plugin icon in the Dashboard &gt; Updates page for WordPress version 4.9.
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* None
+	* Maintenance release.
 
 == Upgrade Notice ==
 
-= 1.8.1 =
+= 1.8.2 =
 
-(2017/11/29) Added an SucomUpdateUtilWP class to extend the SucomUtilWP class if available.
+(2018/02/04) Maintenance release.
 
 = 1.8.0 =
 
