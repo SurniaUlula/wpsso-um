@@ -86,7 +86,3 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 (2018/02/04) Maintenance release.
 
-= 1.8.0 =
-
-(2017/11/24) Added a plugin icon in the Dashboard &gt; Updates page for WordPress version 4.9.
-
