@@ -27,7 +27,7 @@ WPSSO Core extension to provide updates for the WPSSO Core Pro plugin and its Pr
 
 <h3>WPSSO Core Plugin Prerequisite</h3>
 
-WPSSO Update Manager is an extension for the WPSSO Core plugin &mdash; which creates complete &amp; accurate meta tags and Schema markup from your existing content for social sharing, Social Media Optimization (SMO), Search Engine Optimization (SEO), Google Rich Cards, Pinterest Rich Pins, etc.
+WPSSO Update Manager (aka WPSSO UM) is an extension for the WPSSO Core plugin &mdash; which creates complete &amp; accurate meta tags and Schema markup from your existing content for social sharing, Social Media Optimization (SMO), Search Engine Optimization (SEO), Google Rich Cards, Pinterest Rich Pins, etc.
 
 == Installation ==
 
