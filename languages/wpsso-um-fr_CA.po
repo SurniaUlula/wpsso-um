@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 1.8.0\n"
+"Project-Id-Version: WPSSO Update Manager 1.8.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2017-11-24 07:16-0600\n"
-"PO-Revision-Date: 2017-11-24 07:16-0600\n"
+"POT-Creation-Date: 2018-02-11 16:49-0600\n"
+"PO-Revision-Date: 2018-02-11 16:49-0600\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -15,37 +15,37 @@ msgstr ""
 "X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: lib/com/update.php:123 lib/com-gettext-extract.php:7
+#: lib/com/update.php:130 lib/com-gettext-extract.php:7
 msgid "Update information for %s has been retrieved and saved."
 msgstr "L'information de mise à jour pour %s a été récupérée et sauvegardée."
 
-#: lib/com/update.php:134 lib/com-gettext-extract.php:3
+#: lib/com/update.php:141 lib/com-gettext-extract.php:3
 msgid "Failed saving retrieved update information for %s."
 msgstr "Erreur lors de l'enregistrement des informations de mise à jour pour %s."
 
-#: lib/com/update.php:273 lib/com-gettext-extract.php:4
+#: lib/com/update.php:280 lib/com-gettext-extract.php:4
 msgid "Please note that one or more non-stable / development %s have been selected."
 msgstr "Veuillez noter que l'un ou plusieurs %s non-stable / de développement ont été sélectionnés."
 
-#: lib/com/update.php:274 lib/com-gettext-extract.php:10
+#: lib/com/update.php:281 lib/com-gettext-extract.php:10
 #: lib/sitesubmenu/site-um-general.php:89 lib/submenu/um-general.php:70
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr "Filtres de version pour mises à jour"
 
-#: lib/com/update.php:629 lib/com-gettext-extract.php:6
+#: lib/com/update.php:616 lib/com-gettext-extract.php:6
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr "Erreur de mise à jour de la fonction WordPress wp_remote_get(): %s"
 
-#: lib/com/update.php:725 lib/com-gettext-extract.php:9
+#: lib/com/update.php:712 lib/com-gettext-extract.php:9
 msgid "WordPress library file %s is missing and required."
 msgstr "Le fichier de bibliothèque WordPress %s est manquant et requis."
 
-#: lib/com/update.php:745 lib/com-gettext-extract.php:8
+#: lib/com/update.php:732 lib/com-gettext-extract.php:8
 msgid "WordPress function %s is missing and required."
 msgstr "La fonction WordPress %s n'est pas disponible et est requise."
 
-#: lib/com/update.php:764 lib/com-gettext-extract.php:5
+#: lib/com/update.php:751 lib/com-gettext-extract.php:5
 msgid "The %1$s plugin (%2$s) version number is missing from the WordPress plugins array."
 msgstr "Le numéro de version de l'extension %1$s (%2$s) est absente de la liste d'extensions de WordPress."
 
@@ -85,19 +85,19 @@ msgctxt "metabox title"
 msgid "Update Manager for %s"
 msgstr "Gestionnaire de mises à jour pour %s"
 
-#: wpsso-um.php:81
+#: wpsso-um.php:91
 msgid "%1$s is an extension for the %2$s plugin &mdash; please install and activate the %3$s plugin before activating %4$s."
 msgstr "%1$s est une extension pour %2$s &mdash; s'il vous plaît installer et activer %3$s avant d'activer l'extension %4$s."
 
-#: wpsso-um.php:82
+#: wpsso-um.php:93
 msgid "The %1$s extension requires the %2$s plugin &mdash; install and activate the %3$s plugin or <a href=\"%4$s\">deactivate the %5$s extension</a>."
 msgstr "L'extension %1$s requiert %2$s &mdash; installer et activer %3$s ou <a href=\"%4$s\">désactiver l'extension %5$s</a>."
 
-#: wpsso-um.php:166
+#: wpsso-um.php:187
 msgid "Performing an update check for the %s plugin."
 msgstr "Vérification de mise à jour pour l'extension %s."
 
-#: wpsso-um.php:185
+#: wpsso-um.php:206
 msgid "The %1$s extension v%2$s requires %3$s v%4$s or newer (v%5$s currently installed)."
 msgstr "L'extension %1$s v%2$s requiert l'utilisation de %3$s v%4$s ou plus récente (v%5$s est actuellement installée)."
 
