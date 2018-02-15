@@ -434,7 +434,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					unset( $updates->response[$info['base']] );	// wpsso/wpsso.php
 				}
 
-				// check the local static property cache first
+				// check the local static cache first
 				if ( isset( self::$upd_config[$ext]['plugin_update'] ) ) {
 					// only provide update information when an update is required
 					if ( self::$upd_config[$ext]['plugin_update'] !== false ) {	// false when installed version is current
@@ -464,7 +464,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				} elseif ( ( $ext_version = $this->get_ext_version( $ext ) ) &&
 					version_compare( $update_data->update->version, $ext_version, '>' ) ) {
 
-					// save to the local static property cache
+					// save to the local static cache
 					self::$upd_config[$ext]['plugin_update'] = $updates->response[$info['base']] = $update_data->update->json_to_wp();
 
 					if ( $this->p->debug->enabled ) {
@@ -646,7 +646,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			self::$upd_config[$ext]['utime'] = self::set_umsg( $ext, 'time', time() );
-			self::$upd_config[$ext]['plugin_data'] = $plugin_data;	// save to local static property cache
+			self::$upd_config[$ext]['plugin_data'] = $plugin_data;	// save to local static cache
 
 			if ( null === $plugin_data ) {
 				if ( $this->p->debug->enabled ) {
