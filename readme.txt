@@ -69,7 +69,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.9.0-dev.1 (2018/02/17)**
+**Version 1.9.0-dev.1 (TBD)**
 
 * *New Features*
 	* None
@@ -78,7 +78,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *Bugfixes*
 	* None
 * *Developer Notes*
-	* None
+	* Minor code refactoring.
 
 **Version 1.8.2 (2018/02/04)**
 
@@ -95,7 +95,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = 1.9.0-dev.1 =
 
-(2018/02/17) None.
+(TBD) Minor code refactoring.
 
 = 1.8.2 =
 
