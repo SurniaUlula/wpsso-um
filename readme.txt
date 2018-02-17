@@ -69,6 +69,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 1.9.0-dev.1 (2018/02/17)**
+
+* *New Features*
+	* None
+* *Improvements*
+	* None
+* *Bugfixes*
+	* None
+* *Developer Notes*
+	* None
+
 **Version 1.8.2 (2018/02/04)**
 
 * *New Features*
@@ -81,6 +92,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* Maintenance release.
 
 == Upgrade Notice ==
+
+= 1.9.0-dev.1 =
+
+(2018/02/17) None.
 
 = 1.8.2 =
 
