@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Update Manager package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 1.8.2\n"
+"Project-Id-Version: WPSSO Update Manager 1.9.0-dev.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2018-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -12,38 +12,38 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: lib/com/update.php:130 lib/com-gettext-extract.php:7
+#: lib/com/update.php:136 lib/com-gettext-extract.php:7
 msgid "Update information for %s has been retrieved and saved."
 msgstr ""
 
-#: lib/com/update.php:141 lib/com-gettext-extract.php:3
+#: lib/com/update.php:147 lib/com-gettext-extract.php:3
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:280 lib/com-gettext-extract.php:4
+#: lib/com/update.php:286 lib/com-gettext-extract.php:4
 msgid ""
 "Please note that one or more non-stable / development %s have been selected."
 msgstr ""
 
-#: lib/com/update.php:281 lib/com-gettext-extract.php:10
+#: lib/com/update.php:287 lib/com-gettext-extract.php:10
 #: lib/sitesubmenu/site-um-general.php:89 lib/submenu/um-general.php:70
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
 
-#: lib/com/update.php:616 lib/com-gettext-extract.php:6
+#: lib/com/update.php:619 lib/com-gettext-extract.php:6
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr ""
 
-#: lib/com/update.php:712 lib/com-gettext-extract.php:9
+#: lib/com/update.php:715 lib/com-gettext-extract.php:9
 msgid "WordPress library file %s is missing and required."
 msgstr ""
 
-#: lib/com/update.php:732 lib/com-gettext-extract.php:8
+#: lib/com/update.php:735 lib/com-gettext-extract.php:8
 msgid "WordPress function %s is missing and required."
 msgstr ""
 
-#: lib/com/update.php:751 lib/com-gettext-extract.php:5
+#: lib/com/update.php:754 lib/com-gettext-extract.php:5
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."

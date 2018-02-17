@@ -29,7 +29,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->mark( 'update manager setup' );	// begin timer
 			}
 
-			$lca = $this->p->cf['lca'];
+			$lca = isset( $this->p->lca ) ? $this->p->lca : $this->p->cf['lca'];
 			$slug = $this->p->cf['plugin'][$lca]['slug'];			// example: wpsso
 
 			$this->text_domain = $text_domain;				// example: wpsso-um
@@ -47,13 +47,19 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 		// called by the wordpress cron
 		public function check_all_for_updates( $quiet = true, $read_cache = true ) {
+
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
 			}
-			$lca = $this->p->cf['lca'];
+
+			$lca = isset( $this->p->lca ) ? $this->p->lca : $this->p->cf['lca'];
+
 			$check_ext = null;							// check all ext by default
+
 			$this->check_ext_for_updates( $lca, $quiet, $read_cache );		// check lca first
+
 			$check_ext = $this->get_config_keys( $check_ext, $lca, $read_cache );	// reset config and get ext array (exclude lca)
+
 			$this->check_ext_for_updates( $check_ext, $quiet, $read_cache );	// check all remaining extensions
 		}
 
@@ -194,16 +200,16 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->mark();
 			}
 
-			$lca = $this->p->cf['lca'];
-			$pdir = $this->p->avail['*']['p_dir'];
-			$aop = $this->p->check->aop( $lca, true, $pdir, $read_cache );
+			$lca = isset( $this->p->lca ) ? $this->p->lca : $this->p->cf['lca'];
+			$has_pdir = $this->p->avail['*']['p_dir'];
+			$has_aop = $this->p->check->aop( $lca, true, $has_pdir, $read_cache );
 			$has_dev = false;
 
 			self::$upd_config = array();	// set / reset the config array
 
 			foreach ( $this->p->cf['plugin'] as $ext => $info ) {
 
-				if ( ! $aop && $ext !== $lca && $ext !== $lca.'um' ) {
+				if ( ! $has_aop && $ext !== $lca && $ext !== $lca.'um' ) {
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext.' plugin: extension skipped - aop required' );
 					}
@@ -527,28 +533,23 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				return null;
 			}
 
-			global $wp_version;
-
-			$home_url = SucomUpdateUtilWP::raw_home_url();
-
-			if ( $this->p->debug->enabled ) {
-				$this->p->debug->log( 'home url = '.$home_url );
-			}
-
-			$json_url = empty( self::$upd_config[$ext]['json_url'] ) ? '' : self::$upd_config[$ext]['json_url'];
-
-			if ( empty( $json_url ) ) {
+			if ( empty( self::$upd_config[$ext]['json_url'] ) ) {
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( $ext.' plugin: exiting early - update json_url is empty' );
 				}
 				return null;
 			}
 
-			$lca = $this->p->cf['lca'];
-			$pdir = $this->p->avail['*']['p_dir'];
+			global $wp_version;
+
+			$lca = isset( $this->p->lca ) ? $this->p->lca : $this->p->cf['lca'];
+			$has_pdir = $this->p->avail['*']['p_dir'];
+			$home_url = SucomUpdateUtilWP::raw_home_url();
+			$json_url = self::$upd_config[$ext]['json_url'];
 			$ext_version = $this->get_ext_version( $ext );
+
 			$cache_md5_pre = $lca.'_';
-			$cache_salt = __METHOD__.'(json_url:'.$json_url.'_home_url:'.$home_url.')';
+			$cache_salt = 'SucomUpdate::plugin_data(json_url:'.$json_url.'_home_url:'.$home_url.')';
 			$cache_id = $cache_md5_pre.md5( $cache_salt );
 
 			if ( $read_cache ) {
@@ -569,7 +570,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			$ua_wpid = 'WordPress/'.$wp_version.' ('.self::$upd_config[$ext]['slug'].'/'.$ext_version.'/'.
-				( $this->p->check->aop( $ext, true, $pdir ) ? 'L' :
+				( $this->p->check->aop( $ext, true, $has_pdir ) ? 'L' :
 				( $this->p->check->aop( $ext, false ) ? 'U' : 'G' ) ).'); '.$home_url;
 
 			$ssl_verify = apply_filters( $lca.'_um_sslverify', true );
@@ -591,9 +592,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->log( $ext.' plugin: sslverify is '.( $ssl_verify ? 'true' : 'false' ) );
 				$this->p->debug->log( $ext.' plugin: calling wp_remote_get() for '.$json_url );
 			}
+
 			if ( method_exists( 'SucomUtil', 'protect_filter_value' ) ) {
 				SucomUtil::protect_filter_value( 'http_headers_useragent' );
 			}
+
 			$request = wp_remote_get( $json_url, $get_options );
 
 			// retry on cURL error 52: Empty reply from server
@@ -953,6 +956,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			self::$upd_config[$ext]['option_data'] = $option_data;
 			if ( ! empty( self::$upd_config[$ext]['option_name'] ) ) {
 				return update_option( self::$upd_config[$ext]['option_name'], $option_data );
+			}
+			return false;
+		}
+
+		private static function clear_option_data( $ext ) {
+			unset( self::$upd_config[$ext]['option_data'] );
+			if ( ! empty( self::$upd_config[$ext]['option_name'] ) ) {
+				return delete_option( self::$upd_config[$ext]['option_name'] );
 			}
 			return false;
 		}
