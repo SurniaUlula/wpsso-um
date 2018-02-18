@@ -45,7 +45,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 		}
 
-		// called by the wordpress cron
+		// called by the WordPress cron
 		public function check_all_for_updates( $quiet = true, $read_cache = true ) {
 
 			if ( $this->p->debug->enabled ) {
@@ -491,7 +491,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 	
 		/**
-		 * If the wordpress update system has been disabled and/or manipulated (ie. $updates is not false), 
+		 * If the WordPress update system has been disabled and/or manipulated (ie. $updates is not false), 
 		 * then re-enable updates by including our update data (if a new plugin version is available).
 		 */
 		public function reenable_plugin_update( $updates = false ) {
@@ -717,10 +717,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						}
 					}
 					if ( function_exists( 'get_plugins' ) ) {	// just in case
-						static $wp_plugins = null;	// get the plugins list from wordpress only once
+						static $wp_plugins = null;	// get the plugins list from WordPress only once
 						if ( null === $wp_plugins ) {
 							if ( $this->p->debug->enabled ) {
-								$this->p->debug->log( $ext.' plugin: getting plugins list from wordpress' );
+								$this->p->debug->log( $ext.' plugin: getting plugins list from WordPress' );
 							}
 							$wp_plugins = get_plugins();	// save to static cache
 						} else {
@@ -745,7 +745,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					if ( isset( $wp_plugins[$info['base']]['Version'] ) ) {
 						$version = $wp_plugins[$info['base']]['Version'];
 						if ( $this->p->debug->enabled ) {
-							$this->p->debug->log( $ext.' plugin: installed version is '.$version.' according to wordpress' );
+							$this->p->debug->log( $ext.' plugin: installed version is '.$version.' according to WordPress' );
 						}
 					} else {
 						if ( $this->p->debug->enabled ) {

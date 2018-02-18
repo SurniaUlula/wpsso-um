@@ -60,7 +60,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			}
 		}
 
-		// executed by the wordpress 'update_option_home' action.
+		// executed by the WordPress 'update_option_home' action.
 		public function wp_home_option_updated( $old_value, $new_value ) {
 			$wpssoum =& WpssoUm::get_instance();
 			$wpssoum->update->check_all_for_updates( true, false );		// $quiet = true, $use_cache = false
