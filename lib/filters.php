@@ -71,7 +71,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				$this->p->debug->mark();
 			}
 
-			$lca = $this->p->cf['lca'];
+			$lca = isset( $this->p->lca ) ? $this->p->lca : $this->p->cf['lca'];
 			$check_admin_url = $this->p->util->get_admin_url( '?'.$lca.'-action=check_for_updates' );
 			$check_admin_url = wp_nonce_url( $check_admin_url, WpssoAdmin::get_nonce_action(), WPSSO_NONCE_NAME );
 			$check_label_transl = _x( 'Check for Updates', 'submit button', 'wpsso-um' );
@@ -85,7 +85,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
 			}
-			$lca = $this->p->cf['lca'];
+			$lca = isset( $this->p->lca ) ? $this->p->lca : $this->p->cf['lca'];
 			foreach ( $this->p->cf['plugin'] as $ext => $info ) {
 				$this->p->admin->get_readme_info( $ext, false );	// $use_cache = false
 			}
