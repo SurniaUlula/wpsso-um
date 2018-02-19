@@ -69,7 +69,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.9.0-dev.1 (2018/02/18)**
+**Version 1.9.0-dev.2 (2018/02/19)**
 
 * *New Features*
 	* None
@@ -93,9 +93,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.9.0-dev.1 =
+= 1.9.0-dev.2 =
 
-(2018/02/18) Minor code refactoring.
+(2018/02/19) Minor code refactoring.
 
 = 1.8.2 =
 
