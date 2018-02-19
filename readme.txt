@@ -78,7 +78,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *Bugfixes*
 	* None
 * *Developer Notes*
-	* Minor code refactoring.
+	* Refactored the WpssoUm `min_version_notice()` method to use PHP's `trigger_error()` and include a notice to refresh plugin update information.
 
 **Version 1.8.2 (2018/02/04)**
 
@@ -93,9 +93,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.9.0-dev.2 =
+= l.9.0-dev.2 =
 
-(2018/02/19) Minor code refactoring.
+(2018/02/19) Refactored the WpssoUm min_version_notice() method to use PHP's trigger_error() and include a notice to refresh plugin update information.
 
 = 1.8.2 =
 
