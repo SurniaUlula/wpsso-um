@@ -16,7 +16,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		public static $cf = array(
 			'plugin' => array(
 				'wpssoum' => array(			// Plugin acronym.
-					'version' => '1.9.0-dev.1',		// Plugin version.
+					'version' => '1.9.0-dev.2',		// Plugin version.
 					'opt_version' => '3',		// Increment when changing default option values.
 					'short' => 'WPSSO UM',		// Short plugin name.
 					'name' => 'WPSSO Update Manager',
@@ -27,10 +27,10 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					'text_domain' => 'wpsso-um',
 					'domain_path' => '/languages',
 					'req' => array(
-						'short' => 'WPSSO',
+						'short' => 'WPSSO Core',
 						'name' => 'WPSSO Core',
 						'min_version' => '3.47.0',
-						'rec_version' => '3.53.1-dev.1',
+						'rec_version' => '3.53.1-dev.2',
 					),
 					'img' => array(
 						'icons' => array(
