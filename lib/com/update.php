@@ -14,31 +14,38 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 	class SucomUpdate {
 	
 		private $p;
-		private $text_domain = 'sucom';
-		private $cron_hook;
-		private $sched_hours;
-		private $sched_name;
+		private $plugin_lca = '';
+		private $plugin_slug = '';
+		private $text_domain = '';
+		private $cron_hook = '';
+		private $sched_hours = 24;
+		private $sched_name = 'every24hours';
 		private static $api_version = 2;
 		private static $upd_config = array();
 		private static $ext_versions = array();
 
-		public function __construct( &$plugin, $check_hours = 24, $text_domain = 'sucom' ) {
+		public function __construct( &$plugin, $check_hours = 24, $text_domain = '' ) {
 			$this->p =& $plugin;
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark( 'update manager setup' );	// begin timer
 			}
 
-			$lca = isset( $this->p->lca ) ? $this->p->lca : $this->p->cf['lca'];
-			$slug = $this->p->cf['plugin'][$lca]['slug'];			// example: wpsso
+			if ( isset( $this->p->lca ) ) {
+				$this->plugin_lca = $this->p->lca;
+			} elseif ( isset( $this->p->cf['lca'] ) ) {
+				$this->plugin_lca = $this->p->cf['lca'];
+			}
 
-			$this->text_domain = $text_domain;				// example: wpsso-um
-			$this->cron_hook = 'plugin_update-'.$slug;			// example: plugin_update-wpsso
-			$this->sched_hours = $check_hours < 12 ? 12 : $check_hours;	// example: 12 (12 hours minimum)
-			$this->sched_name = 'every'.$this->sched_hours.'hours';		// example: every24hours
-
-			$this->set_config();
-			$this->install_hooks();
+			if ( ! empty( $this->plugin_lca ) ) {
+				$this->plugin_slug = $this->p->cf['plugin'][$this->plugin_lca]['slug'];	// example: wpsso
+				$this->text_domain = $text_domain;					// example: wpsso-um
+				$this->cron_hook = $this->plugin_lca . '_update_manager_check';		// example: wpsso_update_manager_check
+				$this->sched_hours = $check_hours < 12 ? 12 : $check_hours;		// example: 12 (12 hours minimum)
+				$this->sched_name = 'every' . $this->sched_hours . 'hours';		// example: every24hours
+				$this->set_config();	// private method
+				$this->install_hooks();	// private method
+			}
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark( 'update manager setup' );	// end timer
@@ -52,15 +59,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->mark();
 			}
 
-			$lca = isset( $this->p->lca ) ? $this->p->lca : $this->p->cf['lca'];
+			$check_ext = null; // check all ext by default
 
-			$check_ext = null;							// check all ext by default
+			$this->check_ext_for_updates( $this->plugin_lca, $quiet, $read_cache ); // check lca first
 
-			$this->check_ext_for_updates( $lca, $quiet, $read_cache );		// check lca first
+			$check_ext = $this->get_config_keys( $check_ext, $this->plugin_lca, $read_cache ); // reset config and get ext array (exclude lca)
 
-			$check_ext = $this->get_config_keys( $check_ext, $lca, $read_cache );	// reset config and get ext array (exclude lca)
-
-			$this->check_ext_for_updates( $check_ext, $quiet, $read_cache );	// check all remaining extensions
+			$this->check_ext_for_updates( $check_ext, $quiet, $read_cache ); // check all remaining extensions
 		}
 
 		// deprecated on 2017/10/26
@@ -156,7 +161,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			$quiet = true;
 			$keys = array();
-			$this->set_config( $quiet, $read_cache );
+			$this->set_config( $quiet, $read_cache );	// private method
 
 			// optionally include only some extension keys
 			if ( ! empty( $include ) ) {
@@ -194,22 +199,21 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		// $quiet is false by default to show a warning if (one or more) dev filters are selected
-		public function set_config( $quiet = false, $read_cache = true ) {
+		private function set_config( $quiet = false, $read_cache = true ) {
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
 			}
 
-			$lca = isset( $this->p->lca ) ? $this->p->lca : $this->p->cf['lca'];
 			$has_pdir = $this->p->avail['*']['p_dir'];
-			$has_aop = $this->p->check->aop( $lca, true, $has_pdir, $read_cache );
+			$has_aop = $this->p->check->aop( $this->plugin_lca, true, $has_pdir, $read_cache );
 			$has_dev = false;
 
 			self::$upd_config = array();	// set / reset the config array
 
 			foreach ( $this->p->cf['plugin'] as $ext => $info ) {
 
-				if ( ! $has_aop && $ext !== $lca && $ext !== $lca.'um' ) {
+				if ( ! $has_aop && $ext !== $this->plugin_lca && $ext !== $this->plugin_lca.'um' ) {
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext.' plugin: extension skipped - aop required' );
 					}
@@ -291,7 +295,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 		}
 
-		public function install_hooks() {
+		private function install_hooks() {
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
@@ -311,47 +315,42 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			add_filter( 'http_request_host_is_external', array( &$this, 'allow_update_package' ), 2000, 3 );
 			add_filter( 'http_headers_useragent', array( &$this, 'check_wpua_value' ), PHP_INT_MAX, 1 );
 
-			if ( $this->sched_hours > 0 && ! empty( $this->sched_name ) ) {
+			// remove the old plugin update hook
+			if ( wp_get_schedule( 'plugin_update-' . $this->plugin_slug ) ) {
+				wp_clear_scheduled_hook( 'plugin_update-' . $this->plugin_slug );
+			}
 
-				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'adding cron actions and '.
-						$this->cron_hook.' schedule for '.$this->sched_name );
-				}
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->log( 'adding '.$this->cron_hook.' schedule for '.$this->sched_name );
+			}
 
-				add_action( $this->cron_hook, array( &$this, 'check_all_for_updates' ) );
+			add_action( $this->cron_hook, array( &$this, 'check_all_for_updates' ) );
 
-				add_filter( 'cron_schedules', array( &$this, 'add_custom_schedule' ) );
+			add_filter( 'cron_schedules', array( &$this, 'add_custom_schedule' ) );
 
-				$schedule = wp_get_schedule( $this->cron_hook );
-				$is_scheduled = false;
+			$schedule = wp_get_schedule( $this->cron_hook );
 
-				if ( ! empty( $schedule ) ) {
-					if ( $schedule !== $this->sched_name ) {
-						if ( $this->p->debug->enabled ) {
-							$this->p->debug->log( 'changing '.$this->cron_hook.
-								' schedule from '.$schedule.' to '.$this->sched_name );
-						}
-						wp_clear_scheduled_hook( $this->cron_hook );
-					} else {
-						if ( $this->p->debug->enabled ) {
-							$this->p->debug->log( $this->cron_hook.
-								' already registered for schedule '.$this->sched_name );
-						}
-						$is_scheduled = true;
-					}
-				}
+			$is_scheduled = false;
 
-				if ( ! $is_scheduled && ! defined( 'WP_INSTALLING' ) && ! wp_next_scheduled( $this->cron_hook ) ) {
+			if ( ! empty( $schedule ) ) {
+				if ( $schedule !== $this->sched_name ) {
 					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( 'registering '.$this->cron_hook.' for schedule '.$this->sched_name );
+						$this->p->debug->log( 'changing '.$this->cron_hook.' schedule from '.$schedule.' to '.$this->sched_name );
 					}
-					wp_schedule_event( time(), $this->sched_name, $this->cron_hook );
+					wp_clear_scheduled_hook( $this->cron_hook );
+				} else {
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( $this->cron_hook.' already registered for schedule '.$this->sched_name );
+					}
+					$is_scheduled = true;
 				}
-			} else {
+			}
+
+			if ( ! $is_scheduled && ! defined( 'WP_INSTALLING' ) && ! wp_next_scheduled( $this->cron_hook ) ) {
 				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'clearing the '.$this->cron_hook.' schedule' );
+					$this->p->debug->log( 'registering '.$this->cron_hook.' for schedule '.$this->sched_name );
 				}
-				wp_clear_scheduled_hook( $this->cron_hook );
+				wp_schedule_event( time(), $this->sched_name, $this->cron_hook );
 			}
 		}
 
@@ -543,13 +542,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			global $wp_version;
 
-			$lca = isset( $this->p->lca ) ? $this->p->lca : $this->p->cf['lca'];
 			$has_pdir = $this->p->avail['*']['p_dir'];
 			$home_url = SucomUpdateUtilWP::raw_home_url();
 			$json_url = self::$upd_config[$ext]['json_url'];
 			$ext_version = $this->get_ext_version( $ext );
 
-			$cache_md5_pre = $lca.'_';
+			$cache_md5_pre = $this->plugin_lca.'_';
 			$cache_salt = 'SucomUpdate::plugin_data(json_url:'.$json_url.'_home_url:'.$home_url.')';
 			$cache_id = $cache_md5_pre.md5( $cache_salt );
 
@@ -574,7 +572,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				( $this->p->check->aop( $ext, true, $has_pdir ) ? 'L' :
 				( $this->p->check->aop( $ext, false ) ? 'U' : 'G' ) ).'); '.$home_url;
 
-			$ssl_verify = apply_filters( $lca.'_um_sslverify', true );
+			$ssl_verify = apply_filters( $this->plugin_lca.'_um_sslverify', true );
 
 			$get_options = array(
 				'timeout' => 15,		// default timeout is 5 seconds
@@ -609,6 +607,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( method_exists( 'SucomUtil', 'protect_filter_value' ) ) {
 					SucomUtil::protect_filter_value( 'http_headers_useragent' );
 				}
+				sleep( 1 );	// wait 1 second before retrying
 				$request = wp_remote_get( $json_url, $get_options );
 			}
 

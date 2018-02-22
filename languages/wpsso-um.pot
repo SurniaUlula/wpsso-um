@@ -12,38 +12,38 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: lib/com/update.php:136 lib/com-gettext-extract.php:7
+#: lib/com/update.php:141 lib/com-gettext-extract.php:7
 msgid "Update information for %s has been retrieved and saved."
 msgstr ""
 
-#: lib/com/update.php:147 lib/com-gettext-extract.php:3
+#: lib/com/update.php:152 lib/com-gettext-extract.php:3
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:287 lib/com-gettext-extract.php:4
+#: lib/com/update.php:291 lib/com-gettext-extract.php:4
 msgid ""
 "Please note that one or more non-stable / development %s have been selected."
 msgstr ""
 
-#: lib/com/update.php:288 lib/com-gettext-extract.php:10
+#: lib/com/update.php:292 lib/com-gettext-extract.php:10
 #: lib/sitesubmenu/site-um-general.php:89 lib/submenu/um-general.php:70
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
 
-#: lib/com/update.php:620 lib/com-gettext-extract.php:6
+#: lib/com/update.php:619 lib/com-gettext-extract.php:6
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr ""
 
-#: lib/com/update.php:716 lib/com-gettext-extract.php:9
+#: lib/com/update.php:715 lib/com-gettext-extract.php:9
 msgid "WordPress library file %s is missing and required."
 msgstr ""
 
-#: lib/com/update.php:736 lib/com-gettext-extract.php:8
+#: lib/com/update.php:735 lib/com-gettext-extract.php:8
 msgid "WordPress function %s is missing and required."
 msgstr ""
 
-#: lib/com/update.php:755 lib/com-gettext-extract.php:5
+#: lib/com/update.php:754 lib/com-gettext-extract.php:5
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."
@@ -99,17 +99,17 @@ msgid ""
 "%3$s plugin or <a href=\"%4$s\">deactivate the %5$s extension</a>."
 msgstr ""
 
-#: wpsso-um.php:218
+#: wpsso-um.php:214
 msgid "Performing an update check for the %s plugin."
 msgstr ""
 
-#: wpsso-um.php:235
+#: wpsso-um.php:231
 msgid ""
 "The %1$s version %2$s extension requires %3$s version %4$s or newer (version "
 "%5$s is currently installed)."
 msgstr ""
 
-#: wpsso-um.php:238
+#: wpsso-um.php:234
 msgid "%s warning:"
 msgstr ""
 

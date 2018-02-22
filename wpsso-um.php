@@ -161,9 +161,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			}
 
 			$info = WpssoUmConfig::$cf['plugin']['wpssoum'];
-
 			$this->check_hours = $this->get_update_check_hours();
-
 			$this->filters = new WpssoUmFilters( $this->p );
 			$this->update  = new SucomUpdate( $this->p, $this->check_hours, $info['text_domain'] );
 		}
@@ -199,11 +197,9 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 						continue;
 					}
 
-					$now_time = time();
-
+					$now_time        = time();
 					$last_check_time = $this->update->get_umsg( $ext, 'time' ); // get the last update check timestamp
 					$last_plus_week  = $last_check_time + WEEK_IN_SECONDS;
-
 					$next_sched_time = $last_check_time + ( $this->check_hours * HOUR_IN_SECONDS ); // estimate the next scheduled check
 					$next_plus_day   = $next_sched_time + DAY_IN_SECONDS;
 
@@ -257,8 +253,8 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 				$check_hours = $opt_hours;
 			}
 
-			if ( $check_hours > WEEK_IN_SECONDS ) {	// check at least once a week
-				$check_hours = WEEK_IN_SECONDS;
+			if ( $check_hours > 168 ) {	// check at least once a week
+				$check_hours = 168;
 			}
 
 			return $check_hours;
