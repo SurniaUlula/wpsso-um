@@ -69,7 +69,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.9.0-b.1 (2018/02/21)**
+**Version 1.9.0-rc.1 (2018/02/22)**
 
 * *New Features*
 	* None
@@ -79,6 +79,8 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* None
 * *Developer Notes*
 	* Refactored the WpssoUm `min_version_notice()` method to use PHP's `trigger_error()` and include a notice to refresh plugin update information.
+	* Refactored the WpssoUm `get_update_check_hours()` method to check the scheduled hours value for minimum (12 hours) and maximum (1 week) limits.
+	* Refactored the WpssoUm sanity check to make sure the WordPress cron is operating correctly (and force an update check if required). 
 
 **Version 1.8.2 (2018/02/04)**
 
@@ -93,9 +95,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= l.9.0-b.1 =
+= l.9.0-rc.1 =
 
-(2018/02/21) Refactored the WpssoUm min_version_notice() method to use PHP's trigger_error() and include a notice to refresh plugin update information.
+(2018/02/22) Refactored the WpssoUm min_version_notice() method to use PHP's trigger_error() and include a notice to refresh plugin update information.
 
 = 1.8.2 =
 
