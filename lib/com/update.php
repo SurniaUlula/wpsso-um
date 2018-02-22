@@ -34,7 +34,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			$this->text_domain = $text_domain;				// example: wpsso-um
 			$this->cron_hook = 'plugin_update-'.$slug;			// example: plugin_update-wpsso
-			$this->sched_hours = $check_hours >= 24 ? $check_hours : 24;	// example: 24 (minimum)
+			$this->sched_hours = $check_hours >= 12 ? $check_hours : 12;	// example: 12 (12 hours minimum)
 			$this->sched_name = 'every'.$this->sched_hours.'hours';		// example: every24hours
 
 			$this->set_config();
@@ -261,6 +261,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					'api_version' => self::$api_version,
 					'installed_version' => $ext_version,
 					'version_filter' => $filter_name,
+					'sched_hours' => $this->sched_hours,
 				), $auth_url );
 
 				self::$upd_config[$ext] = array(

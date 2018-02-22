@@ -20,30 +20,30 @@ msgstr ""
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:286 lib/com-gettext-extract.php:4
+#: lib/com/update.php:287 lib/com-gettext-extract.php:4
 msgid ""
 "Please note that one or more non-stable / development %s have been selected."
 msgstr ""
 
-#: lib/com/update.php:287 lib/com-gettext-extract.php:10
+#: lib/com/update.php:288 lib/com-gettext-extract.php:10
 #: lib/sitesubmenu/site-um-general.php:89 lib/submenu/um-general.php:70
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
 
-#: lib/com/update.php:619 lib/com-gettext-extract.php:6
+#: lib/com/update.php:620 lib/com-gettext-extract.php:6
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr ""
 
-#: lib/com/update.php:715 lib/com-gettext-extract.php:9
+#: lib/com/update.php:716 lib/com-gettext-extract.php:9
 msgid "WordPress library file %s is missing and required."
 msgstr ""
 
-#: lib/com/update.php:735 lib/com-gettext-extract.php:8
+#: lib/com/update.php:736 lib/com-gettext-extract.php:8
 msgid "WordPress function %s is missing and required."
 msgstr ""
 
-#: lib/com/update.php:754 lib/com-gettext-extract.php:5
+#: lib/com/update.php:755 lib/com-gettext-extract.php:5
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."
