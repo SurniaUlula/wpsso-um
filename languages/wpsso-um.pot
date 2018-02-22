@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Update Manager package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 1.9.0-b.1\n"
+"Project-Id-Version: WPSSO Update Manager 1.9.0-rc.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2018-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -99,17 +99,17 @@ msgid ""
 "%3$s plugin or <a href=\"%4$s\">deactivate the %5$s extension</a>."
 msgstr ""
 
-#: wpsso-um.php:191
+#: wpsso-um.php:218
 msgid "Performing an update check for the %s plugin."
 msgstr ""
 
-#: wpsso-um.php:205
+#: wpsso-um.php:235
 msgid ""
 "The %1$s version %2$s extension requires %3$s version %4$s or newer (version "
 "%5$s is currently installed)."
 msgstr ""
 
-#: wpsso-um.php:208
+#: wpsso-um.php:238
 msgid "%s warning:"
 msgstr ""
 
