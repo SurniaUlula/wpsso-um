@@ -78,10 +78,11 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *Bugfixes*
 	* None
 * *Developer Notes*
-	* Refactored the WpssoUm `min_version_notice()` method to use PHP's `trigger_error()` and include a notice to refresh plugin update information.
+	* Refactored the WpssoUm `min_version_notice()` method to use PHP's `trigger_error()` and include a notice on how to refresh the update information.
 	* Refactored the WpssoUm `get_update_check_hours()` method to check the scheduled hours value for minimum (12 hours) and maximum (1 week) limits.
-	* Refactored the WpssoUm sanity check to make sure the WordPress cron is operating correctly (and force an update check if required). 
+	* Refactored the WpssoUm sanity check that makes sure the WordPress cron is operating correctly (and force an update check if required). 
 	* Renamed the 'plugin_update-wpsso' cron hook to 'wpsso_update_manager_check'.
+	* Added a check for inconsistencies between the local resolver and DNS IPv4 values.
 
 **Version 1.8.2 (2018/02/04)**
 
@@ -98,7 +99,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = l.9.0-rc.2 =
 
-(2018/02/23) Refactored the WpssoUm min_version_notice() method to use PHP's trigger_error() and include a notice to refresh plugin update information.
+(2018/02/23) Refactored the WpssoUm min_version_notice() method to use PHP's trigger_error() and include a notice on how to refresh the update information.
 
 = 1.8.2 =
 
