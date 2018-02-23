@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPSSO Update Manager 1.9.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2018-02-18 14:12-0600\n"
-"PO-Revision-Date: 2018-02-18 14:12-0600\n"
+"POT-Creation-Date: 2018-02-23 11:56-0600\n"
+"PO-Revision-Date: 2018-02-23 11:56-0600\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -15,37 +15,49 @@ msgstr ""
 "X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: lib/com/update.php:136 lib/com-gettext-extract.php:7
+#: lib/com/update.php:142 lib/com-gettext-extract.php:9
 msgid "Update information for %s has been retrieved and saved."
 msgstr "L'information de mise à jour pour %s a été récupérée et sauvegardée."
 
-#: lib/com/update.php:147 lib/com-gettext-extract.php:3
+#: lib/com/update.php:153 lib/com-gettext-extract.php:4
 msgid "Failed saving retrieved update information for %s."
 msgstr "Erreur lors de l'enregistrement des informations de mise à jour pour %s."
 
-#: lib/com/update.php:286 lib/com-gettext-extract.php:4
+#: lib/com/update.php:296 lib/com-gettext-extract.php:5
 msgid "Please note that one or more non-stable / development %s have been selected."
 msgstr "Veuillez noter que l'un ou plusieurs %s non-stable / de développement ont été sélectionnés."
 
-#: lib/com/update.php:287 lib/com-gettext-extract.php:10
+#: lib/com/update.php:297 lib/com-gettext-extract.php:12
 #: lib/sitesubmenu/site-um-general.php:89 lib/submenu/um-general.php:70
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr "Filtres de version pour mises à jour"
 
-#: lib/com/update.php:619 lib/com-gettext-extract.php:6
+#: lib/com/update.php:593 lib/com-gettext-extract.php:3
+msgid "An inconsistency was found in the %s update server address &mdash; the network address provided by the local host does not match the DNS network address."
+msgstr "Une incohérence a été trouvée dans l'adresse du serveur de mise à jour pour %s &mdash; l'adresse réseau fournie par le serveur local ne correspond pas à l'adresse réseau du DNS."
+
+#: lib/com/update.php:595 lib/com-gettext-extract.php:7
+msgid "Update checks for %s have been disabled while this inconsistency persists."
+msgstr "Les vérifications de mise à jour pour %s sont désactivées tant que cette incohérence persiste."
+
+#: lib/com/update.php:598 lib/com-gettext-extract.php:13
+msgid "You may <a href=\"%s\">open a new support ticket</a> if you believe this error message is incorrect or inaccurate."
+msgstr "Vous pouvez <a href=\"%s\">ouvrir un nouveau billet de soutien</a> si vous pensez que ce message d'erreur est incorrect ou inexact."
+
+#: lib/com/update.php:656 lib/com-gettext-extract.php:8
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr "Erreur de mise à jour de la fonction WordPress wp_remote_get(): %s"
 
-#: lib/com/update.php:715 lib/com-gettext-extract.php:9
+#: lib/com/update.php:752 lib/com-gettext-extract.php:11
 msgid "WordPress library file %s is missing and required."
 msgstr "Le fichier de bibliothèque WordPress %s est manquant et requis."
 
-#: lib/com/update.php:735 lib/com-gettext-extract.php:8
+#: lib/com/update.php:772 lib/com-gettext-extract.php:10
 msgid "WordPress function %s is missing and required."
 msgstr "La fonction WordPress %s n'est pas disponible et est requise."
 
-#: lib/com/update.php:754 lib/com-gettext-extract.php:5
+#: lib/com/update.php:791 lib/com-gettext-extract.php:6
 msgid "The %1$s plugin (%2$s) version number is missing from the WordPress plugins array."
 msgstr "Le numéro de version de l'extension %1$s (%2$s) est absente de la liste d'extensions de WordPress."
 
@@ -93,13 +105,17 @@ msgstr "%1$s est une extension pour %2$s &mdash; s'il vous plaît installer et a
 msgid "The %1$s extension requires the %2$s plugin &mdash; install and activate the %3$s plugin or <a href=\"%4$s\">deactivate the %5$s extension</a>."
 msgstr "L'extension %1$s requiert %2$s &mdash; installer et activer %3$s ou <a href=\"%4$s\">désactiver l'extension %5$s</a>."
 
-#: wpsso-um.php:187
+#: wpsso-um.php:214
 msgid "Performing an update check for the %s plugin."
 msgstr "Vérification de mise à jour pour l'extension %s."
 
-#: wpsso-um.php:206
-msgid "The %1$s extension v%2$s requires %3$s v%4$s or newer (v%5$s currently installed)."
-msgstr "L'extension %1$s v%2$s requiert l'utilisation de %3$s v%4$s ou plus récente (v%5$s est actuellement installée)."
+#: wpsso-um.php:231
+msgid "The %1$s version %2$s extension requires %3$s version %4$s or newer (version %5$s is currently installed)."
+msgstr "L'extension %1$s version %2$s requiert %3$s version %4$s ou plus récente (version %5$s est actuellement installée)."
+
+#: wpsso-um.php:234
+msgid "%s warning:"
+msgstr "Alerte %s:"
 
 #. Plugin Name of the plugin/theme
 msgid "WPSSO Update Manager"
