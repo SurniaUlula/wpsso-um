@@ -266,6 +266,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					'installed_version' => $ext_version,
 					'version_filter' => $filter_name,
 					'sched_hours' => $this->sched_hours,
+					'text_domain' => $this->text_domain,
 				), $auth_url );
 
 				self::$upd_config[$ext] = array(
@@ -568,6 +569,36 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				delete_transient( $cache_id );
 			}
 
+			$plugin_data = null;
+
+			/*
+			$json_host = preg_replace( '/^.*:\/\/([^\/]+)\/.*$/', '$1', $json_url );
+
+			static $host_cache = array();
+
+			if ( ! isset( $host_cache[$json_host]['ip'] ) ) {
+				$host_cache[$json_host]['ip'] = gethostbyname( $json_host );
+			}
+
+			if ( ! isset( $host_cache[$json_host]['a'] ) ) {
+				$dns_rec = dns_get_record( $json_host . '.', DNS_A );
+				$host_cache[$json_host]['a'] = empty( $dns_rec[0]['ip'] ) ? false : $dns_rec[0]['ip'];
+			}
+
+			if ( $host_cache[$json_host]['ip'] !== $host_cache[$json_host]['a'] ) {
+
+				self::$upd_config[$ext]['uerr'] = self::set_umsg( $ext, 'err', 
+					sprintf( __( 'Inconsistency found in the %s update server IP address.', 
+						$this->text_domain ), self::$upd_config[$ext]['name'] ) );
+
+				self::$upd_config[$ext]['plugin_data'] = $plugin_data;
+
+				set_transient( $cache_id, new stdClass, self::$upd_config[$ext]['data_expire'] );
+
+				return $plugin_data;
+			}
+			*/
+
 			$ua_wpid = 'WordPress/'.$wp_version.' ('.self::$upd_config[$ext]['slug'].'/'.$ext_version.'/'.
 				( $this->p->check->aop( $ext, true, $has_pdir ) ? 'L' :
 				( $this->p->check->aop( $ext, false ) ? 'U' : 'G' ) ).'); '.$home_url;
@@ -584,8 +615,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					'X-WordPress-Id' => $ua_wpid
 				)
 			);
-
-			$plugin_data = null;
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->log( $ext.' plugin: sslverify is '.( $ssl_verify ? 'true' : 'false' ) );
@@ -626,8 +655,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				// add new or remove existing response messages
 				foreach ( array( 'err', 'inf' ) as $msg ) {
-					self::$upd_config[$ext]['u'.$msg] = self::set_umsg( $ext, $msg,
-						( empty( $payload['api_response'][$msg] ) ? false : $payload['api_response'][$msg] ) );
+					self::$upd_config[$ext]['u'.$msg] = self::set_umsg( $ext, $msg, ( empty( $payload['api_response'][$msg] ) ?
+						false : $payload['api_response'][$msg] ) );
 				}
 
 				if ( empty( $request['headers']['x-smp-error'] ) ) {

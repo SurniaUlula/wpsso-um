@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: lib/com/update.php:141 lib/com-gettext-extract.php:7
+#: lib/com/update.php:141 lib/com-gettext-extract.php:8
 msgid "Update information for %s has been retrieved and saved."
 msgstr ""
 
@@ -20,33 +20,37 @@ msgstr ""
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:291 lib/com-gettext-extract.php:4
+#: lib/com/update.php:292 lib/com-gettext-extract.php:5
 msgid ""
 "Please note that one or more non-stable / development %s have been selected."
 msgstr ""
 
-#: lib/com/update.php:292 lib/com-gettext-extract.php:10
+#: lib/com/update.php:293 lib/com-gettext-extract.php:11
 #: lib/sitesubmenu/site-um-general.php:89 lib/submenu/um-general.php:70
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
 
-#: lib/com/update.php:619 lib/com-gettext-extract.php:6
+#: lib/com/update.php:648 lib/com-gettext-extract.php:7
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr ""
 
-#: lib/com/update.php:715 lib/com-gettext-extract.php:9
+#: lib/com/update.php:744 lib/com-gettext-extract.php:10
 msgid "WordPress library file %s is missing and required."
 msgstr ""
 
-#: lib/com/update.php:735 lib/com-gettext-extract.php:8
+#: lib/com/update.php:764 lib/com-gettext-extract.php:9
 msgid "WordPress function %s is missing and required."
 msgstr ""
 
-#: lib/com/update.php:754 lib/com-gettext-extract.php:5
+#: lib/com/update.php:783 lib/com-gettext-extract.php:6
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."
+msgstr ""
+
+#: lib/com-gettext-extract.php:4
+msgid "Inconsistency found in the %s update server IP address."
 msgstr ""
 
 #: lib/config-gettext-extract.php:3

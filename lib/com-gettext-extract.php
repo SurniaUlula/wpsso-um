@@ -1,6 +1,7 @@
 <?php die( 'These aren\'t the droids you\'re looking for...' );
 // extract of translatable text strings from common library classes
 __( 'Failed saving retrieved update information for %s.', 'wpsso-um' );
+__( 'Inconsistency found in the %s update server IP address.', 'wpsso-um' );
 __( 'Please note that one or more non-stable / development %s have been selected.', 'wpsso-um' );
 __( 'The %1$s plugin (%2$s) version number is missing from the WordPress plugins array.', 'wpsso-um' );
 __( 'Update error from the WordPress wp_remote_get() function: %s', 'wpsso-um' );
