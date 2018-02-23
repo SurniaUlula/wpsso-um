@@ -138,8 +138,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					}
 
 					if ( ! $quiet || $this->p->debug->enabled ) {
+						$dismiss_key = __FUNCTION__.'_'.$ext.'_'.$info['option_name'];
 						$this->p->notice->inf( sprintf( __( 'Update information for %s has been retrieved and saved.',
-							$this->text_domain ), $info['name'] ), true, __FUNCTION__.'_'.$ext.'_'.$info['option_name'], true );
+							$this->text_domain ), $info['name'] ), true, $dismiss_key, true );
 					}
 
 				} else {
@@ -266,7 +267,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					'installed_version' => $ext_version,
 					'version_filter' => $filter_name,
 					'sched_hours' => $this->sched_hours,
-					'text_domain' => $this->text_domain,
+					'locale' => is_admin() && function_exists( 'get_user_locale' ) ? get_user_locale() : get_locale(),
 				), $auth_url );
 
 				self::$upd_config[$ext] = array(
