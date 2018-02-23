@@ -81,6 +81,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* Refactored the WpssoUm `min_version_notice()` method to use PHP's `trigger_error()` and include a notice to refresh plugin update information.
 	* Refactored the WpssoUm `get_update_check_hours()` method to check the scheduled hours value for minimum (12 hours) and maximum (1 week) limits.
 	* Refactored the WpssoUm sanity check to make sure the WordPress cron is operating correctly (and force an update check if required). 
+	* Renamed the 'plugin_update-wpsso' cron hook to 'wpsso_update_manager_check'.
 
 **Version 1.8.2 (2018/02/04)**
 
