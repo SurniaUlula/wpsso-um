@@ -20,48 +20,48 @@ msgstr ""
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:300 lib/com-gettext-extract.php:5
+#: lib/com/update.php:302 lib/com-gettext-extract.php:5
 msgid ""
 "Please note that one or more non-stable / development %s have been selected."
 msgstr ""
 
-#: lib/com/update.php:301 lib/com-gettext-extract.php:12
+#: lib/com/update.php:303 lib/com-gettext-extract.php:12
 #: lib/sitesubmenu/site-um-general.php:89 lib/submenu/um-general.php:70
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
 
-#: lib/com/update.php:597 lib/com-gettext-extract.php:3
+#. translators: %1$s is the plugin name, %2$s is an IPv4 address, and %3$s is an IPv4 address
+#: lib/com/update.php:601 lib/com-gettext-extract.php:3
 msgid ""
-"An inconsistency was found in the %s update server address &mdash; the "
-"network address provided by the local host does not match the DNS network "
-"address."
+"An inconsistency was found in the %1$s update server address &mdash; the "
+"IPv4 address (%2$s) from the local host does not match the DNS IPv4 address "
+"($3%s)."
 msgstr ""
 
-#: lib/com/update.php:599 lib/com-gettext-extract.php:7
-msgid ""
-"Update checks for %s have been disabled while this inconsistency persists."
+#: lib/com/update.php:603 lib/com-gettext-extract.php:7
+msgid "Update checks for %1$s are disabled while this inconsistency persists."
 msgstr ""
 
-#: lib/com/update.php:602 lib/com-gettext-extract.php:13
+#: lib/com/update.php:606 lib/com-gettext-extract.php:13
 msgid ""
-"You may <a href=\"%s\">open a new support ticket</a> if you believe this "
+"You may <a href=\"%1$s\">open a new support ticket</a> if you believe this "
 "error message is incorrect or inaccurate."
 msgstr ""
 
-#: lib/com/update.php:662 lib/com-gettext-extract.php:8
+#: lib/com/update.php:671 lib/com-gettext-extract.php:8
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr ""
 
-#: lib/com/update.php:758 lib/com-gettext-extract.php:11
+#: lib/com/update.php:769 lib/com-gettext-extract.php:11
 msgid "WordPress library file %s is missing and required."
 msgstr ""
 
-#: lib/com/update.php:778 lib/com-gettext-extract.php:10
+#: lib/com/update.php:789 lib/com-gettext-extract.php:10
 msgid "WordPress function %s is missing and required."
 msgstr ""
 
-#: lib/com/update.php:797 lib/com-gettext-extract.php:6
+#: lib/com/update.php:808 lib/com-gettext-extract.php:6
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."

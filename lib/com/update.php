@@ -203,7 +203,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return $keys;
 		}
 
-		// $quiet is false by default to show a warning if (one or more) dev filters are selected
+		/**
+		 * $quiet is false by default, to show a warning if one or more development version filters are selected.
+		 */
 		private function set_config( $quiet = false, $read_cache = true ) {
 
 			if ( $this->p->debug->enabled ) {
@@ -537,8 +539,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 	
 		public function get_plugin_data( $ext, $read_cache = true ) {
 
-			// make sure we have a config for that slug
-			if ( empty( self::$upd_config[$ext]['slug'] ) ) {
+			if ( empty( self::$upd_config[$ext]['slug'] ) ) { // Make sure we have a config for that slug.
 				return null;
 			}
 
@@ -566,8 +567,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				} else {
 					$plugin_data = self::$upd_config[$ext]['plugin_data'] = get_transient( $cache_id );
 				}
-				// false if transient is expired or not found
-				if ( $plugin_data !== false ) {
+				if ( $plugin_data !== false ) { // False if transient is expired or not found.
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext.' plugin: returning plugin data from cache' );
 					}
@@ -579,31 +579,34 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			$plugin_data = null;
 
+			/**
+			 * Check the local resolver and DNS IPv4 values for inconsistencies.
+			 */
 			$json_host = preg_replace( '/^.*:\/\/([^\/]+)\/.*$/', '$1', $json_url );
 
-			static $host_cache = array();	// Local cache to lookup the host ip only once.
+			static $host_cache = array(); // Local cache to lookup the host ip only once.
 
 			if ( ! isset( $host_cache[$json_host]['ip'] ) ) {
-				$host_cache[$json_host]['ip'] = gethostbyname( $json_host );	// Returns IPv4 address or the hostname on failure.
+				$host_cache[$json_host]['ip'] = gethostbyname( $json_host ); // Returns an IPv4 address, or the hostname on failure.
 			}
 
 			if ( ! isset( $host_cache[$json_host]['a'] ) ) {
-				$dns_rec = dns_get_record( $json_host . '.', DNS_A );
+				$dns_rec = dns_get_record( $json_host . '.', DNS_A ); // Returns an array of associative arrays.
 				$host_cache[$json_host]['a'] = empty( $dns_rec[0]['ip'] ) ? false : $dns_rec[0]['ip'];
 			}
 
 			if ( $host_cache[$json_host]['ip'] !== $host_cache[$json_host]['a'] ) {
 
-				$error_msg = sprintf( __( 'An inconsistency was found in the %s update server address &mdash; the network address provided by the local host does not match the DNS network address.', $this->text_domain ), self::$upd_config[$ext]['name'] );
+				// translators: %1$s is the plugin name, %2$s is an IPv4 address, and %3$s is an IPv4 address
+				$error_msg = sprintf( __( 'An inconsistency was found in the %1$s update server address &mdash; the IPv4 address (%2$s) from the local host does not match the DNS IPv4 address ($3%s).', $this->text_domain ), self::$upd_config[$ext]['name'] );
 				
-				$error_msg .= ' '.sprintf( __( 'Update checks for %s have been disabled while this inconsistency persists.', $this->text_domain ), self::$upd_config[$ext]['short'] );
+				$error_msg .= ' '.sprintf( __( 'Update checks for %1$s are disabled while this inconsistency persists.', $this->text_domain ), self::$upd_config[$ext]['short'] );
 
 				if ( ! empty( self::$upd_config[$ext]['support_url'] ) ) {
-					$error_msg .= ' '.sprintf( __( 'You may <a href="%s">open a new support ticket</a> if you believe this error message is incorrect or inaccurate.', $this->text_domain ), self::$upd_config[$ext]['support_url'] );
+					$error_msg .= ' '.sprintf( __( 'You may <a href="%1$s">open a new support ticket</a> if you believe this error message is incorrect or inaccurate.', $this->text_domain ), self::$upd_config[$ext]['support_url'] );
 				}
 
 				self::$upd_config[$ext]['uerr'] = self::set_umsg( $ext, 'err', $error_msg );
-
 				self::$upd_config[$ext]['plugin_data'] = $plugin_data;
 
 				set_transient( $cache_id, new stdClass, self::$upd_config[$ext]['data_expire'] );
@@ -611,6 +614,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				return $plugin_data;
 			}
 
+			/**
+			 * Set wp_remote_get() options.
+			 */
 			$ua_wpid = 'WordPress/'.$wp_version.' ('.self::$upd_config[$ext]['slug'].'/'.$ext_version.'/'.
 				( $this->p->check->aop( $ext, true, $has_pdir ) ? 'L' :
 				( $this->p->check->aop( $ext, false ) ? 'U' : 'G' ) ).'); '.$home_url;
@@ -618,29 +624,32 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$ssl_verify = apply_filters( $this->plugin_lca.'_um_sslverify', true );
 
 			$get_options = array(
-				'timeout' => 15,		// default timeout is 5 seconds
-				'redirection' => 5,		// default redirection is 5
-				'sslverify' => $ssl_verify,
-				'user-agent' => $ua_wpid,
-				'headers' => array(
+				'timeout'     => 15, // default timeout is 5 seconds
+				'redirection' => 5,  // default redirection is 5
+				'sslverify'   => $ssl_verify,
+				'user-agent'  => $ua_wpid,
+				'headers'     => array(
 					'Accept' => 'application/json',
 					'X-WordPress-Id' => $ua_wpid
 				)
 			);
 
+			/**
+			 * Call wp_remote_get().
+			 */
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->log( $ext.' plugin: sslverify is '.( $ssl_verify ? 'true' : 'false' ) );
 				$this->p->debug->log( $ext.' plugin: calling wp_remote_get() for '.$json_url );
 			}
 
 			if ( method_exists( 'SucomUtil', 'protect_filter_value' ) ) {
-				SucomUtil::protect_filter_value( 'http_headers_useragent' );
+				SucomUtil::protect_filter_value( 'http_headers_useragent' ); // Make sure the user agent does not change.
 			}
 
 			$request = wp_remote_get( $json_url, $get_options );
 
 			/**
-			 * Retry on cURL error 52: Empty reply from server.
+			 * Check for "cURL error 52: Empty reply from server" and retry wp_remote_get() after pausing for 1 second.
 			 */
 			if ( is_wp_error( $request ) && strpos( $request->get_error_message(), 'cURL error 52:' ) === 0 ) {
 				if ( $this->p->debug->enabled ) {
@@ -650,7 +659,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( method_exists( 'SucomUtil', 'protect_filter_value' ) ) {
 					SucomUtil::protect_filter_value( 'http_headers_useragent' );
 				}
-				sleep( 1 );	// wait 1 second before retrying
+				sleep( 1 ); // Pause 1 second before retrying.
 				$request = wp_remote_get( $json_url, $get_options );
 			}
 
@@ -664,18 +673,20 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			} elseif ( isset( $request['response']['code'] ) && (int) $request['response']['code'] === 200 && ! empty( $request['body'] ) ) {
 
-				// create an associative array
-				$payload = json_decode( $request['body'], true, 32 );
+				$payload = json_decode( $request['body'], true, 32 ); // Create an associative array.
 
-				// add new or remove existing response messages
+				/**
+				 * Add or remove existing response messages.
+				 */
 				foreach ( array( 'err', 'inf' ) as $msg ) {
-					self::$upd_config[$ext]['u'.$msg] = self::set_umsg( $ext, $msg, ( empty( $payload['api_response'][$msg] ) ?
-						false : $payload['api_response'][$msg] ) );
+					self::$upd_config[$ext]['u'.$msg] = self::set_umsg( $ext, $msg,
+						( empty( $payload['api_response'][$msg] ) ?
+							false : $payload['api_response'][$msg] ) );
 				}
 
 				if ( empty( $request['headers']['x-smp-error'] ) ) {
 					self::$upd_config[$ext]['uerr'] = false;
-					$plugin_data = SucomPluginData::data_from_json( $request['body'] );	// returns null on error
+					$plugin_data = SucomPluginData::data_from_json( $request['body'] ); // Returns null on error.
 					if ( empty( $plugin_data->plugin ) ) {
 						if ( $this->p->debug->enabled ) {
 							$this->p->debug->log( $ext.' plugin: returned plugin data is incomplete' );
@@ -692,7 +703,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			self::$upd_config[$ext]['utime'] = self::set_umsg( $ext, 'time', time() );
-			self::$upd_config[$ext]['plugin_data'] = $plugin_data;	// save to local static cache
+			self::$upd_config[$ext]['plugin_data'] = $plugin_data; // Save to local static cache.
 
 			if ( null === $plugin_data ) {
 				if ( $this->p->debug->enabled ) {
