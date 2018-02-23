@@ -272,12 +272,15 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				self::$upd_config[$ext] = array(
 					'name' => $info['name'],
+					'short' => $info['short'],
 					'slug' => $info['slug'],				// wpsso
 					'base' => $info['base'],				// wpsso/wpsso.php
 					'api_version' => self::$api_version,
 					'installed_version' => $ext_version,
 					'version_filter' => $filter_name,
 					'json_url' => $auth_url,
+					'support_url' => isset( $info['url']['support'] ) ?
+						$info['url']['support'] : '',
 					'data_expire' => 86100,					// plugin data expiration (almost 24 hours)
 					'option_name' => 'external_update-'.$info['slug'],	// external_update-wpsso
 				);
@@ -572,13 +575,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			$plugin_data = null;
 
-			/*
 			$json_host = preg_replace( '/^.*:\/\/([^\/]+)\/.*$/', '$1', $json_url );
 
-			static $host_cache = array();
+			static $host_cache = array();	// Local cache to lookup the host ip only once.
 
 			if ( ! isset( $host_cache[$json_host]['ip'] ) ) {
-				$host_cache[$json_host]['ip'] = gethostbyname( $json_host );
+				$host_cache[$json_host]['ip'] = gethostbyname( $json_host );	// Returns IPv4 address or the hostname on failure.
 			}
 
 			if ( ! isset( $host_cache[$json_host]['a'] ) ) {
@@ -588,9 +590,15 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			if ( $host_cache[$json_host]['ip'] !== $host_cache[$json_host]['a'] ) {
 
-				self::$upd_config[$ext]['uerr'] = self::set_umsg( $ext, 'err', 
-					sprintf( __( 'Inconsistency found in the %s update server IP address.', 
-						$this->text_domain ), self::$upd_config[$ext]['name'] ) );
+				$error_msg = sprintf( __( 'An inconsistency was found in the %s update server address &mdash; the network address provided by the local host does not match the DNS network address.', $this->text_domain ), self::$upd_config[$ext]['name'] );
+				
+				$error_msg .= ' '.sprintf( __( 'Update checks for %s have been disabled while this inconsistency persists.', $this->text_domain ), self::$upd_config[$ext]['short'] );
+
+				if ( ! empty( self::$upd_config[$ext]['support_url'] ) ) {
+					$error_msg .= ' '.sprintf( __( 'You may <a href="%s">open a new support ticket</a> if you believe this error message is incorrect or inaccurate.', $this->text_domain ), self::$upd_config[$ext]['support_url'] );
+				}
+
+				self::$upd_config[$ext]['uerr'] = self::set_umsg( $ext, 'err', $error_msg );
 
 				self::$upd_config[$ext]['plugin_data'] = $plugin_data;
 
@@ -598,7 +606,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				return $plugin_data;
 			}
-			*/
 
 			$ua_wpid = 'WordPress/'.$wp_version.' ('.self::$upd_config[$ext]['slug'].'/'.$ext_version.'/'.
 				( $this->p->check->aop( $ext, true, $has_pdir ) ? 'L' :
