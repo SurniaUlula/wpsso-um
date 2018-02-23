@@ -52,7 +52,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 		}
 
-		// called by the WordPress cron
+		/**
+		 * Called by the WordPress cron.
+		 */
 		public function check_all_for_updates( $quiet = true, $read_cache = true ) {
 
 			if ( $this->p->debug->enabled ) {
@@ -157,7 +159,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 		}
 	
-		// returns an array of configured plugin / extension lowercase acronyms
+		/**
+		 * Returns an array of configured plugin / extension lowercase acronyms.
+		 */
 		public function get_config_keys( $include = null, $exclude = null, $read_cache = true ) {
 
 			$quiet = true;
@@ -635,7 +639,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			$request = wp_remote_get( $json_url, $get_options );
 
-			// retry on cURL error 52: Empty reply from server
+			/**
+			 * Retry on cURL error 52: Empty reply from server.
+			 */
 			if ( is_wp_error( $request ) && strpos( $request->get_error_message(), 'cURL error 52:' ) === 0 ) {
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( $ext.' plugin: wp error code '.$request->get_error_code().' - '.$request->get_error_message() );
