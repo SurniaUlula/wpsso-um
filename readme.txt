@@ -69,7 +69,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.9.0-rc.3 (2018/02/24)**
+**Version 1.9.0 (2018/02/24)**
 
 * *New Features*
 	* None
@@ -84,24 +84,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* Renamed the 'plugin_update-wpsso' cron hook to 'wpsso_update_manager_check'.
 	* Added a check for inconsistencies between the local resolver and DNS IPv4 values.
 
-**Version 1.8.2 (2018/02/04)**
-
-* *New Features*
-	* None
-* *Improvements*
-	* None
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* Maintenance release.
-
 == Upgrade Notice ==
 
-= l.9.0-rc.3 =
+= l.9.0 =
 
 (2018/02/24) Refactored the WpssoUm min_version_notice() method to use PHP's trigger_error() and include a notice on how to refresh the update information.
-
-= 1.8.2 =
-
-(2018/02/04) Maintenance release.
 
