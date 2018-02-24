@@ -240,7 +240,8 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 				}
 			}
 
-			trigger_error( sprintf( __( '%s warning:', 'wpsso-um' ), $info['short'] ).' '.$error_msg, E_USER_WARNING );
+			// translators: %s is the short plugin name
+			trigger_error( sprintf( __( '%s warning:', 'wpsso-um' ), $info['short'] ).' '.rtrim( $error_msg, '.' ), E_USER_WARNING );
 		}
 
 		public function get_update_check_hours() {
