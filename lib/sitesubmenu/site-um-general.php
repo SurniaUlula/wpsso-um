@@ -45,8 +45,7 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 		protected function add_meta_boxes() {
 
 			$lca = $this->p->cf['lca'];
-			$short_pro = $this->p->cf['plugin'][$lca]['short'].' '.
-				_x( 'Pro', 'package type', 'wpsso-um' );
+			$short_pro = $this->p->cf['plugin'][$lca]['short'].' '._x( 'Pro', 'package type', 'wpsso-um' );
 
 			add_meta_box( $this->pagehook.'_general', 
 				sprintf( _x( 'Network Update Manager for %s', 'metabox title', 'wpsso-um' ), $short_pro ),
