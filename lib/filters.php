@@ -114,7 +114,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			$wpssoum =& WpssoUm::get_instance();
 			$filter_regex = $wpssoum->update->get_filter_regex( $ext );
 			foreach ( $upgrade_notices as $version => $info ) {
-				if ( ! preg_match( $filter_regex, $version ) ) {
+				if ( preg_match( $filter_regex, $version ) === 0 ) {
 					unset ( $upgrade_notices[$version] );
 				}
 			}
