@@ -121,14 +121,14 @@ msgstr ""
 msgid "Performing an update check for the %s plugin."
 msgstr ""
 
-#: wpsso-um.php:231
+#: wpsso-um.php:230
 msgid ""
 "The %1$s version %2$s extension requires %3$s version %4$s or newer (version "
 "%5$s is currently installed)."
 msgstr ""
 
 #. translators: %s is the short plugin name
-#: wpsso-um.php:244
+#: wpsso-um.php:242
 msgid "%s warning:"
 msgstr ""
 
