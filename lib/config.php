@@ -30,7 +30,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 						'short' => 'WPSSO Core',
 						'name' => 'WPSSO Core',
 						'min_version' => '3.46.4',
-						'rec_version' => '3.55.1',
+						'rec_version' => '3.56.0',
 					),
 					'img' => array(
 						'icons' => array(
