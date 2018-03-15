@@ -786,8 +786,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						if ( $this->p->debug->enabled ) {
 							$this->p->debug->log( $ext.' plugin: function get_plugins() is missing' );
 						}
-						$this->p->notice->err( sprintf( __( 'WordPress function %s is missing and required.',
-							$this->text_domain ), '<code>get_plugins()</code>' ) );
+
+						$func_name = 'get_plugins()';
+						$func_url  = __( 'https://developer.wordpress.org/reference/functions/get_plugins/', $this->text_domain );
+
+						$this->p->notice->err( sprintf( __( 'The <a href="%1$s">WordPress %2$s function</a> is missing and required.',
+							$this->text_domain ), $func_url, '<code>'.$func_name.'</code>' ) );
+
 						$wp_plugins = array();
 					}
 				}
