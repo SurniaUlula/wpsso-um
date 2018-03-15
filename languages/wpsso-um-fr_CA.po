@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPSSO Update Manager 1.9.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2018-03-09 12:34-0600\n"
-"PO-Revision-Date: 2018-03-09 12:34-0600\n"
+"POT-Creation-Date: 2018-03-15 05:08-0600\n"
+"PO-Revision-Date: 2018-03-15 05:08-0600\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: lib/com/update.php:144 lib/com-gettext-extract.php:9
+#: lib/com/update.php:144 lib/com-gettext-extract.php:11
 msgid "Update information for %s has been retrieved and saved."
 msgstr "L'information de mise à jour pour %s a été récupérée et sauvegardée."
 
@@ -23,11 +23,11 @@ msgstr "L'information de mise à jour pour %s a été récupérée et sauvegard�
 msgid "Failed saving retrieved update information for %s."
 msgstr "Erreur lors de l'enregistrement des informations de mise à jour pour %s."
 
-#: lib/com/update.php:302 lib/com-gettext-extract.php:5
+#: lib/com/update.php:302 lib/com-gettext-extract.php:6
 msgid "Please note that one or more non-stable / development %s have been selected."
 msgstr "Veuillez noter que l'un ou plusieurs %s non-stable / de développement ont été sélectionnés."
 
-#: lib/com/update.php:303 lib/com-gettext-extract.php:12
+#: lib/com/update.php:303 lib/com-gettext-extract.php:13
 #: lib/sitesubmenu/site-um-general.php:88 lib/submenu/um-general.php:69
 msgctxt "metabox title"
 msgid "Update Version Filters"
@@ -38,27 +38,31 @@ msgstr "Filtres de version pour mises à jour"
 msgid "An inconsistency was found in the %1$s update server address &mdash; the IPv4 address (%2$s) from the local host does not match the DNS IPv4 address ($3%s)."
 msgstr "Une incohérence a été trouvée dans l'adresse du serveur de mise à jour pour %1$s &mdash; l'adresse IPv4 (%2$s) fournie par le serveur local ne correspond pas à l'adresse IPv4 du DNS ($3%s)."
 
-#: lib/com/update.php:603 lib/com-gettext-extract.php:7
+#: lib/com/update.php:603 lib/com-gettext-extract.php:9
 msgid "Update checks for %1$s are disabled while this inconsistency persists."
 msgstr "Les vérifications de mise à jour pour %1$s sont désactivées tant que cette incohérence persiste."
 
-#: lib/com/update.php:606 lib/com-gettext-extract.php:13
+#: lib/com/update.php:606 lib/com-gettext-extract.php:14
 msgid "You may <a href=\"%1$s\">open a new support ticket</a> if you believe this error message is incorrect or inaccurate."
 msgstr "Vous pouvez <a href=\"%1$s\">ouvrir un nouveau billet de soutien</a> si vous pensez que ce message d'erreur est incorrect ou inexact."
 
-#: lib/com/update.php:671 lib/com-gettext-extract.php:8
+#: lib/com/update.php:671 lib/com-gettext-extract.php:10
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr "Erreur de mise à jour de la fonction WordPress wp_remote_get(): %s"
 
-#: lib/com/update.php:769 lib/com-gettext-extract.php:11
+#: lib/com/update.php:769 lib/com-gettext-extract.php:12
 msgid "WordPress library file %s is missing and required."
 msgstr "Le fichier de bibliothèque WordPress %s est manquant et requis."
 
-#: lib/com/update.php:789 lib/com-gettext-extract.php:10
-msgid "WordPress function %s is missing and required."
-msgstr "La fonction WordPress %s n'est pas disponible et est requise."
+#: lib/com/update.php:791 lib/com-gettext-extract.php:5
+msgid "https://developer.wordpress.org/reference/functions/get_plugins/"
+msgstr "https://developer.wordpress.org/reference/functions/get_plugins/"
 
-#: lib/com/update.php:808 lib/com-gettext-extract.php:6
+#: lib/com/update.php:793 lib/com-gettext-extract.php:8
+msgid "The <a href=\"%1$s\">WordPress %2$s function</a> is missing and required."
+msgstr "La <a href=\"%1$s\">fonction WordPress %2$s</a> n'est pas disponible et requise."
+
+#: lib/com/update.php:813 lib/com-gettext-extract.php:7
 msgid "The %1$s plugin (%2$s) version number is missing from the WordPress plugins array."
 msgstr "Le numéro de version de l'extension %1$s (%2$s) est absente de la liste d'extensions de WordPress."
 
