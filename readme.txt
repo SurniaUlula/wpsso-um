@@ -6,20 +6,20 @@ Domain Path: /languages
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl.txt
 Assets URI: https://surniaulula.github.io/wpsso-um/assets/
-Tags: wpsso, update, manager, schedule, update check, extension, pro version, development version, pre-release
+Tags: wpsso, update, manager, schedule, add-on, pro version
 Contributors: jsmoriss
 Requires PHP: 5.4
 Requires At Least: 3.8
 Tested Up To: 4.9.4
 Stable Tag: 1.9.0
 
-WPSSO Core extension to provide updates for the WPSSO Core Pro plugin and its Pro extensions.
+WPSSO Core add-on to provide updates for the WPSSO Core Pro plugin and its Pro add-ons.
 
 == Description ==
 
 <img class="readme-icon" src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png">
 
-<p>The WPSSO Update Manager extension is required to enable / update the <a href="https://wpsso.com/?utm_source=wpssoum-readme-pro-req">WPSSO Core Pro plugin</a> and any licensed Pro extensions.</p>
+<p>The WPSSO Update Manager add-on is required to enable / update the <a href="https://wpsso.com/?utm_source=wpssoum-readme-pro-req">WPSSO Core Pro plugin</a> and any licensed Pro add-ons.</p>
 
 <p>The WPSSO Update Manager supports WordPress Network / Multisite installations and WordPress MU Domain Mapping.</p>
 
@@ -27,14 +27,14 @@ WPSSO Core extension to provide updates for the WPSSO Core Pro plugin and its Pr
 
 <h3>WPSSO Core Plugin Prerequisite</h3>
 
-WPSSO Update Manager (aka WPSSO UM) is an extension for the WPSSO Core plugin &mdash; which creates complete &amp; accurate meta tags and Schema markup from your existing content for social sharing, Social Media Optimization (SMO), Search Engine Optimization (SEO), Google Rich Cards, Pinterest Rich Pins, etc.
+WPSSO Update Manager (aka WPSSO UM) is an add-on for the WPSSO Core plugin &mdash; which creates complete &amp; accurate meta tags and Schema markup from your existing content for social sharing, Social Media Optimization (SMO), Search Engine Optimization (SEO), Google Rich Cards, Pinterest Rich Pins, etc.
 
 == Installation ==
 
 <h3>Install and Uninstall</h3>
 
-* [Install the WPSSO UM Extension](https://wpsso.com/docs/plugins/wpsso-um/installation/install-the-plugin/?utm_source=wpssoum-readme-install)
-* [Uninstall the WPSSO UM Extension](https://wpsso.com/docs/plugins/wpsso-um/installation/uninstall-the-plugin/?utm_source=wpssoum-readme-uninstall)
+* [Install the WPSSO UM Add-on](https://wpsso.com/docs/plugins/wpsso-um/installation/install-the-plugin/)
+* [Uninstall the WPSSO UM Add-on](https://wpsso.com/docs/plugins/wpsso-um/installation/uninstall-the-plugin/)
 
 == Frequently Asked Questions ==
 
@@ -69,6 +69,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 1.9.1-dev.2 (2018/03/21)**
+
+* *New Features*
+	* None
+* *Improvements*
+	* Renamed plugin "Extensions" to "Add-ons" to avoid confusion and improve / simplify translations.
+* *Bugfixes*
+	* None
+* *Developer Notes*
+	* None
+
 **Version 1.9.0 (2018/02/24)**
 
 * *New Features*
@@ -85,6 +96,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* Added a check for inconsistencies between the local resolver and DNS IPv4 values.
 
 == Upgrade Notice ==
+
+= 1.9.1-dev.2 =
+
+(2018/03/21) Renamed plugin "Extensions" to "Add-ons" to avoid confusion and improve / simplify translations.
 
 = 1.9.0 =
 
