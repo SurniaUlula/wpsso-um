@@ -17,4 +17,3 @@ require_once $plugin_dir . 'lib/config.php';
 WpssoUmConfig::set_constants( $plugin_filepath );
 WpssoUmConfig::require_libs( $plugin_filepath );	// includes the register.php class library
 WpssoUmRegister::network_uninstall();
-

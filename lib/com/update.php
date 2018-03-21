@@ -63,11 +63,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			$check_ext = null; // check all ext by default
 
-			$this->check_ext_for_updates( $this->plugin_lca, $quiet, $read_cache ); // check lca first
+			$this->check_ext_for_updates( $this->plugin_lca, $quiet, $read_cache ); // check the lca plugin first
 
 			$check_ext = $this->get_config_keys( $check_ext, $this->plugin_lca, $read_cache ); // reset config and get ext array (exclude lca)
 
-			$this->check_ext_for_updates( $check_ext, $quiet, $read_cache ); // check all remaining extensions
+			$this->check_ext_for_updates( $check_ext, $quiet, $read_cache ); // check all remaining plugins
 		}
 
 		// deprecated on 2017/10/26
@@ -82,7 +82,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			if ( empty( $check_ext ) ) {
 				$ext_config = self::$upd_config;	// check all plugins defined
 				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'checking all known extensions for updates' );
+					$this->p->debug->log( 'checking all known plugins for updates' );
 				}
 			} elseif ( is_array( $check_ext ) ) {
 				foreach ( $check_ext as $ext ) {
@@ -98,7 +98,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			if ( empty( $ext_config ) ) {
 				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'exiting early: no extensions to check for updates' );
+					$this->p->debug->log( 'exiting early: no plugins to check for updates' );
 				}
 				return;
 			}
@@ -160,7 +160,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 	
 		/**
-		 * Returns an array of configured plugin / extension lowercase acronyms.
+		 * Returns an array of configured plugin lowercase acronyms.
 		 */
 		public function get_config_keys( $include = null, $exclude = null, $read_cache = true ) {
 
@@ -168,7 +168,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$keys = array();
 			$this->set_config( $quiet, $read_cache );	// private method
 
-			// optionally include only some extension keys
+			// optionally include only some plugin keys
 			if ( ! empty( $include ) ) {
 				if ( ! is_array( $include ) ) {
 					$include = array( $include );
@@ -182,7 +182,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$keys = array_keys( self::$upd_config );	// include all keys
 			}
 
-			// optionally exclude some extension keys
+			// optionally exclude some plugin keys
 			if ( ! empty( $exclude ) ) {
 				if ( ! is_array( $exclude ) ) {
 					$exclude = array( $exclude );
@@ -222,7 +222,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				if ( ! $has_aop && $ext !== $this->plugin_lca && $ext !== $this->plugin_lca.'um' ) {
 					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $ext.' plugin: extension skipped - aop required' );
+						$this->p->debug->log( $ext.' plugin: skipped - aop required' );
 					}
 					continue;
 				}
@@ -232,12 +232,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				if ( $auth_type !== 'none' && empty( $auth_id ) ) {
 					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $ext.' plugin: extension skipped - auth type without id' );
+						$this->p->debug->log( $ext.' plugin: skipped - auth type without id' );
 					}
 					continue;
 				} elseif ( empty( $info['slug'] ) || empty( $info['base'] ) || empty( $info['url']['update'] ) ) {
 					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $ext.' plugin: extension skipped - incomplete config' );
+						$this->p->debug->log( $ext.' plugin: skipped - incomplete config' );
 					}
 					continue;
 				}
@@ -246,7 +246,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				if ( false === $ext_version ) {
 					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $ext.' plugin: extension skipped - version is false' );
+						$this->p->debug->log( $ext.' plugin: skipped - version is false' );
 					}
 					continue;
 				}
@@ -292,7 +292,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				);
 
 				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( $ext.' plugin: extension defined for update (auth_type is '.$auth_type.')' );
+					$this->p->debug->log( $ext.' plugin: configured for update (auth_type is '.$auth_type.')' );
 				}
 			}
 
@@ -390,7 +390,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		/**
-		 * Provide plugin data from the json api for free / pro extensions not hosted on wordpress.org.
+		 * Provide plugin data from the json api for free / pro add-ons not hosted on wordpress.org.
 		 */
 		public function external_plugin_data( $result, $action = null, $args = null ) {
 
@@ -412,7 +412,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				return $result;
 			}
 
-			// get the extension acronym for the config
+			// get the plugin acronym for the config
 			$ext = $this->p->cf['*']['slug'][$args->slug];
 
 			// make sure we have a config for that slug
@@ -694,7 +694,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$plugin_data = null;
 					} elseif ( $plugin_data->plugin !== self::$upd_config[$ext]['base'] ) {
 						if ( $this->p->debug->enabled ) {
-							$this->p->debug->log( $ext.' plugin: plugin property '.$plugin_data->plugin.
+							$this->p->debug->log( $ext.' plugin: property '.$plugin_data->plugin.
 								' does not match '.self::$upd_config[$ext]['base'] );
 						}
 						$plugin_data = null;
@@ -735,24 +735,24 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$info = $this->p->cf['plugin'][$ext];
 			}
 
-			// extension is active
+			// plugin is active
 			// get the plugin version from the config array
 			if ( isset( $info['version'] ) ) {
 
 				$version = $info['version'];
 				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( $ext.' plugin: version from extension config' );
+					$this->p->debug->log( $ext.' plugin: version from plugin config' );
 				}
 
-			// extension is not active (or not installed)
+			// plugin is not active (or not installed)
 			// use the get_plugins() function to get the plugin version
 			} elseif ( isset( $info['base'] ) ) {
 
 				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( $ext.' plugin: extension is not active / installed' );
+					$this->p->debug->log( $ext.' plugin: not active / installed' );
 				}
 
-				if ( method_exists( 'SucomUtil', 'get_wp_plugins' ) ) {	// uses a common cache for all plugin extensions
+				if ( method_exists( 'SucomUtil', 'get_wp_plugins' ) ) {	// uses a common cache for all plugins
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext.' plugin: getting plugins list from common class method' );
 					}
@@ -826,7 +826,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					return $version = 'not-installed';
 				}
 
-			// extension missing version and/or slug
+			// plugin missing version and/or slug
 			} else {
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( $ext.' plugin: config is missing version and plugin base keys' );

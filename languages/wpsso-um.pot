@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Update Manager package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 1.9.0\n"
+"Project-Id-Version: WPSSO Update Manager 1.9.1-dev.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2018-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -80,8 +80,8 @@ msgstr ""
 #: lib/config-gettext-extract.php:4
 msgctxt "plugin description"
 msgid ""
-"WPSSO Core extension to provide updates for the WPSSO Core Pro plugin and "
-"its Pro extensions."
+"WPSSO Core add-on to provide updates for the WPSSO Core Pro plugin and its "
+"Pro add-ons."
 msgstr ""
 
 #: lib/filters.php:77 lib/sitesubmenu/site-um-general.php:60
@@ -112,14 +112,14 @@ msgstr ""
 
 #: wpsso-um.php:91
 msgid ""
-"%1$s is an extension for the %2$s plugin &mdash; please install and activate "
+"%1$s is an add-on for the %2$s plugin &mdash; please install and activate "
 "the %3$s plugin before activating %4$s."
 msgstr ""
 
 #: wpsso-um.php:93
 msgid ""
-"The %1$s extension requires the %2$s plugin &mdash; install and activate the "
-"%3$s plugin or <a href=\"%4$s\">deactivate the %5$s extension</a>."
+"The %1$s add-on requires the %2$s plugin &mdash; install and activate the "
+"%3$s plugin or <a href=\"%4$s\">deactivate the %5$s add-on</a>."
 msgstr ""
 
 #: wpsso-um.php:214
@@ -128,7 +128,7 @@ msgstr ""
 
 #: wpsso-um.php:230
 msgid ""
-"The %1$s version %2$s extension requires %3$s version %4$s or newer (version "
+"The %1$s version %2$s add-on requires %3$s version %4$s or newer (version "
 "%5$s is currently installed)."
 msgstr ""
 
@@ -147,8 +147,8 @@ msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
-"WPSSO Core extension to provide updates for the WPSSO Core Pro plugin and "
-"its Pro extensions."
+"WPSSO Core add-on to provide updates for the WPSSO Core Pro plugin and its "
+"Pro add-ons."
 msgstr ""
 
 #. Author of the plugin/theme

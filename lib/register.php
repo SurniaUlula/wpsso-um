@@ -79,7 +79,7 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 
 		private function deactivate_plugin() {
 			if ( class_exists( 'WpssoConfig' ) ) {
-				$cf = WpssoConfig::get_config();	// get all plugins / extensions
+				$cf = WpssoConfig::get_config();	// get all plugins / add-ons
 				foreach ( $cf['plugin'] as $ext => $info )
 					wp_clear_scheduled_hook( 'plugin_updates-'.$info['slug'] );
 			}
@@ -93,7 +93,7 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 		private static function delete_options() {
 			$api_version = SucomUpdate::get_api_version();
 			if ( class_exists( 'WpssoConfig' ) ) {
-				$cf = WpssoConfig::get_config();	// get all plugins / extensions
+				$cf = WpssoConfig::get_config();	// get all plugins / add-ons
 				foreach ( $cf['plugin'] as $ext => $info ) {
 					delete_option( $ext.'_uapi'.$api_version.'err' );
 					delete_option( $ext.'_uapi'.$api_version.'inf' );

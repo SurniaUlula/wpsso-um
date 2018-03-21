@@ -23,7 +23,7 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 			$this->menu_id = $id;
 			$this->menu_name = $name;
 			$this->menu_lib = $lib;
-			$this->menu_ext = $ext;	// lowercase acronyn for plugin or extension
+			$this->menu_ext = $ext;
 		}
 
 		protected function set_form_object( $menu_ext ) {
