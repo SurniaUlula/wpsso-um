@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 1.9.0\n"
+"Project-Id-Version: WPSSO Update Manager 1.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2018-03-15 05:08-0600\n"
-"PO-Revision-Date: 2018-03-15 05:08-0600\n"
+"POT-Creation-Date: 2018-03-24 09:05-0400\n"
+"PO-Revision-Date: 2018-03-24 09:55-0400\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -73,8 +73,8 @@ msgstr "Gestionnaire de mises à jour"
 
 #: lib/config-gettext-extract.php:4
 msgctxt "plugin description"
-msgid "WPSSO Core extension to provide updates for the WPSSO Core Pro plugin and its Pro extensions."
-msgstr "Extension WPSSO Core pour fournir des mises à jour a WPSSO Core Pro et ses extensions Pro."
+msgid "WPSSO Core add-on to provide updates for the WPSSO Core Pro plugin and its Pro add-ons."
+msgstr "Extension d'ajout WPSSO Core pour fournir des mises à jour pour l'extension WPSSO Core Pro et ses ajouts Pro."
 
 #: lib/filters.php:77 lib/sitesubmenu/site-um-general.php:60
 #: lib/submenu/um-general.php:47
@@ -103,20 +103,20 @@ msgid "Update Manager for %s"
 msgstr "Gestionnaire de mises à jour pour %s"
 
 #: wpsso-um.php:91
-msgid "%1$s is an extension for the %2$s plugin &mdash; please install and activate the %3$s plugin before activating %4$s."
-msgstr "%1$s est une extension pour %2$s &mdash; s'il vous plaît installer et activer %3$s avant d'activer l'extension %4$s."
+msgid "%1$s is an add-on for the %2$s plugin &mdash; please install and activate the %3$s plugin before activating %4$s."
+msgstr "%1$s est un ajout pour l'extension %2$s &mdash; SVP installer et activer l'extension %3$s avant d'activer %4$s."
 
 #: wpsso-um.php:93
-msgid "The %1$s extension requires the %2$s plugin &mdash; install and activate the %3$s plugin or <a href=\"%4$s\">deactivate the %5$s extension</a>."
-msgstr "L'extension %1$s requiert %2$s &mdash; installer et activer %3$s ou <a href=\"%4$s\">désactiver l'extension %5$s</a>."
+msgid "The %1$s add-on requires the %2$s plugin &mdash; install and activate the %3$s plugin or <a href=\"%4$s\">deactivate the %5$s add-on</a>."
+msgstr "L'ajout %1$s requiert l'extension %2$s &mdash; installer et activer l'extension %3$s ou <a href=\"%4$s\">désactiver l'ajout %5$s</a>."
 
 #: wpsso-um.php:214
 msgid "Performing an update check for the %s plugin."
 msgstr "Vérification de mise à jour pour l'extension %s."
 
 #: wpsso-um.php:230
-msgid "The %1$s version %2$s extension requires %3$s version %4$s or newer (version %5$s is currently installed)."
-msgstr "L'extension %1$s version %2$s requiert %3$s version %4$s ou plus récente (version %5$s est actuellement installée)."
+msgid "The %1$s version %2$s add-on requires %3$s version %4$s or newer (version %5$s is currently installed)."
+msgstr "L'ajout %1$s version %2$s requiert %3$s version %4$s ou plus récente (version %5$s est actuellement installée)."
 
 #. translators: %s is the short plugin name
 #: wpsso-um.php:242
@@ -132,8 +132,8 @@ msgid "https://wpsso.com/extend/plugins/wpsso-um/"
 msgstr "https://wpsso.com/extend/plugins/wpsso-um/"
 
 #. Description of the plugin/theme
-msgid "WPSSO Core extension to provide updates for the WPSSO Core Pro plugin and its Pro extensions."
-msgstr "Extension WPSSO Core pour fournir des mises à jour a WPSSO Core Pro et ses extensions Pro."
+msgid "WPSSO Core add-on to provide updates for the WPSSO Core Pro plugin and its Pro add-ons."
+msgstr "Extension d'ajout WPSSO Core pour fournir des mises à jour pour l'extension WPSSO Core Pro et ses ajouts Pro."
 
 #. Author of the plugin/theme
 msgid "JS Morisset"
