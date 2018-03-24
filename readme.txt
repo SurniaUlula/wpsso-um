@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires PHP: 5.4
 Requires At Least: 3.8
 Tested Up To: 4.9.4
-Stable Tag: 1.9.0
+Stable Tag: 1.9.1
 
 WPSSO Core add-on to provide updates for the WPSSO Core Pro plugin and its Pro add-ons.
 
@@ -100,8 +100,4 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 = 1.9.1 =
 
 (2018/03/24) Renamed plugin "Extensions" to "Add-ons" to avoid confusion and improve / simplify translations.
-
-= 1.9.0 =
-
-(2018/02/24) Refactored the WpssoUm min_version_notice() method to use PHP's trigger_error() and include a notice on how to refresh the update information.
 
