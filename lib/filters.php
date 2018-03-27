@@ -133,20 +133,23 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			return $newer_avail;
 		}
 
-		public function filter_option_type( $type, $key ) {
+		public function filter_option_type( $type, $base_key ) {
+
 			if ( ! empty( $type ) ) {
 				return $type;
-			} elseif ( strpos( $key, 'update_' ) !== 0 ) {
+			} elseif ( strpos( $base_key, 'update_' ) !== 0 ) {
 				return $type;
 			}
-			switch ( $key ) {
+
+			switch ( $base_key ) {
 				case 'update_check_hours':
 					return 'pos_int';
 					break;
-				case ( strpos( $key, 'update_filter_for_' ) === 0 ? true : false ):
+				case ( strpos( $base_key, 'update_filter_for_' ) === 0 ? true : false ):
 					return 'not_blank';
 					break;
 			}
+
 			return $type;
 		}
 

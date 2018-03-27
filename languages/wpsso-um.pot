@@ -32,41 +32,41 @@ msgid "Update Version Filters"
 msgstr ""
 
 #. translators: %1$s is the plugin name, %2$s is an IPv4 address, and %3$s is an IPv4 address
-#: lib/com/update.php:601 lib/com-gettext-extract.php:3
+#: lib/com/update.php:602 lib/com-gettext-extract.php:3
 msgid ""
 "An inconsistency was found in the %1$s update server address &mdash; the "
 "IPv4 address (%2$s) from the local host does not match the DNS IPv4 address "
 "($3%s)."
 msgstr ""
 
-#: lib/com/update.php:603 lib/com-gettext-extract.php:9
+#: lib/com/update.php:604 lib/com-gettext-extract.php:9
 msgid "Update checks for %1$s are disabled while this inconsistency persists."
 msgstr ""
 
-#: lib/com/update.php:606 lib/com-gettext-extract.php:14
+#: lib/com/update.php:607 lib/com-gettext-extract.php:14
 msgid ""
 "You may <a href=\"%1$s\">open a new support ticket</a> if you believe this "
 "error message is incorrect or inaccurate."
 msgstr ""
 
-#: lib/com/update.php:671 lib/com-gettext-extract.php:10
+#: lib/com/update.php:672 lib/com-gettext-extract.php:10
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr ""
 
-#: lib/com/update.php:769 lib/com-gettext-extract.php:12
+#: lib/com/update.php:770 lib/com-gettext-extract.php:12
 msgid "WordPress library file %s is missing and required."
 msgstr ""
 
-#: lib/com/update.php:791 lib/com-gettext-extract.php:5
+#: lib/com/update.php:792 lib/com-gettext-extract.php:5
 msgid "https://developer.wordpress.org/reference/functions/get_plugins/"
 msgstr ""
 
-#: lib/com/update.php:793 lib/com-gettext-extract.php:8
+#: lib/com/update.php:794 lib/com-gettext-extract.php:8
 msgid ""
 "The <a href=\"%1$s\">WordPress %2$s function</a> is missing and required."
 msgstr ""
 
-#: lib/com/update.php:813 lib/com-gettext-extract.php:7
+#: lib/com/update.php:814 lib/com-gettext-extract.php:7
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."
@@ -110,30 +110,30 @@ msgctxt "metabox title"
 msgid "Update Manager for %s"
 msgstr ""
 
-#: wpsso-um.php:91
+#: wpsso-um.php:96
 msgid ""
 "%1$s is an add-on for the %2$s plugin &mdash; please install and activate "
 "the %3$s plugin before activating %4$s."
 msgstr ""
 
-#: wpsso-um.php:93
+#: wpsso-um.php:98
 msgid ""
 "The %1$s add-on requires the %2$s plugin &mdash; install and activate the "
 "%3$s plugin or <a href=\"%4$s\">deactivate the %5$s add-on</a>."
 msgstr ""
 
-#: wpsso-um.php:214
+#: wpsso-um.php:225
 msgid "Performing an update check for the %s plugin."
 msgstr ""
 
-#: wpsso-um.php:230
+#: wpsso-um.php:241
 msgid ""
 "The %1$s version %2$s add-on requires %3$s version %4$s or newer (version "
 "%5$s is currently installed)."
 msgstr ""
 
 #. translators: %s is the short plugin name
-#: wpsso-um.php:242
+#: wpsso-um.php:253
 msgid "%s warning:"
 msgstr ""
 

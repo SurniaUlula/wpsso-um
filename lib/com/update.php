@@ -498,6 +498,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					}
 				}
 			}
+
 			return $updates;
 		}
 	
