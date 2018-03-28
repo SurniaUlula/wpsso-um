@@ -35,8 +35,7 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 		// called by the extended WpssoAdmin class
 		protected function add_meta_boxes() {
 
-			$lca = $this->p->cf['lca'];
-			$short_pro = $this->p->cf['plugin'][$lca]['short'].' '._x( 'Pro', 'package type', 'wpsso-um' );
+			$short_pro = $this->p->cf['plugin'][$this->p->lca]['short'].' '._x( 'Pro', 'package type', 'wpsso-um' );
 
 			add_meta_box( $this->pagehook.'_general', 
 				sprintf( _x( 'Update Manager for %s', 'metabox title', 'wpsso-um' ), $short_pro ),
@@ -51,13 +50,16 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 		public function show_metabox_general() {
 			$metabox_id = 'um';
 			$this->form->set_text_domain( 'wpsso' );	// translate option values using wpsso text_domain
-			$this->p->util->do_table_rows( apply_filters( $this->p->cf['lca'].'_'.$metabox_id.'_general_rows', 
+			$this->p->util->do_table_rows( apply_filters( $this->p->lca.'_'.$metabox_id.'_general_rows', 
 				$this->get_table_rows( $metabox_id, 'general' ), $this->form ), 'metabox-'.$metabox_id.'-general' );
 		}
 
-		protected function get_table_rows( $metabox_id, $key ) {
+		protected function get_table_rows( $metabox_id, $tab_key ) {
+
 			$table_rows = array();
-			switch ( $metabox_id.'-'.$key ) {
+
+			switch ( $metabox_id.'-'.$tab_key ) {
+
 				case 'um-general':
 
 					$table_rows['update_check_hours'] = $this->form->get_th_html( _x( 'Refresh Update Information',
@@ -86,8 +88,8 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 
 					break;
 			}
+
 			return $table_rows;
 		}
 	}
 }
-
