@@ -15,7 +15,7 @@
 
 <p><img class="readme-icon" src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png"></p>
 
-<p>The WPSSO Update Manager add-on is required to enable / update the <a href="https://wpsso.com/?utm_source=wpssoum-readme-pro-req">WPSSO Core Pro plugin</a> and any licensed Pro add-ons.</p>
+<p>The WPSSO Update Manager add-on is required to enable / update the <a href="https://wpsso.com/?utm_source=wpssoum-readme">WPSSO Core Pro plugin</a> and any licensed Pro add-ons.</p>
 
 <p>The WPSSO Update Manager supports WordPress Network / Multisite installations and WordPress MU Domain Mapping.</p>
 
@@ -31,8 +31,8 @@
 <h3>Install and Uninstall</h3>
 
 <ul>
-<li><a href="https://wpsso.com/docs/plugins/wpsso-um/installation/install-the-plugin/">Install the WPSSO UM Add-on</a></li>
-<li><a href="https://wpsso.com/docs/plugins/wpsso-um/installation/uninstall-the-plugin/">Uninstall the WPSSO UM Add-on</a></li>
+<li><a href="https://wpsso.com/docs/plugins/wpsso-um/installation/install-the-plugin/?utm_source=wpssoum-readme">Install the WPSSO UM Add-on</a></li>
+<li><a href="https://wpsso.com/docs/plugins/wpsso-um/installation/uninstall-the-plugin/?utm_source=wpssoum-readme">Uninstall the WPSSO UM Add-on</a></li>
 </ul>
 
 
