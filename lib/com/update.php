@@ -256,11 +256,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext . ' plugin: non-stable filter found' );
 					}
-					if ( SucomUpdate::is_installed( $ext ) ) {
-						$has_dev = true;
-					} elseif ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $ext . ' plugin: not installed - skipping dev filter notice' );
-					}
+					$has_dev = true;
 				}
 
 				if ( $this->p->debug->enabled ) {
@@ -981,12 +977,22 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		public function get_filter_name( $ext ) {
+
 			if ( ! empty( $this->p->options['update_filter_for_' . $ext] ) ) {
+
 				$filter_name = $this->p->options['update_filter_for_' . $ext];
+
+				if ( $filter_name !== 'stable' ) {
+					if ( ! self::is_installed( $ext ) ) {
+						$filter_name = 'stable';
+					}
+				}
+
 				if ( ! empty( $this->p->cf['um']['version_regex'][$filter_name] ) ) {	// make sure the name is valid
 					return $filter_name;
 				}
 			}
+
 			return 'stable';
 		}
 
@@ -1001,7 +1007,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				return $this->p->cf['um']['version_regex'][$filter_name];
 			}
 
-			return '/^[0-9][0-9\.\+\-]+$/';	// stable regex
+			return '/^[0-9][0-9\.\-]+$/';	// stable regex
 		}
 
 		public static function is_enabled() {
