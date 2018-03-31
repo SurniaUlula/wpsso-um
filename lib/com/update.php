@@ -250,7 +250,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					continue;
 				}
 
-				$filter_name = $this->get_filter_name( $ext );
+				if ( strpos( $ext_version, 'not-installed' ) !== false ) {	// anywhere in string
+					$filter_name = 'stable';
+				} else {
+					$filter_name = $this->get_filter_name( $ext );
+				}
 
 				if ( $filter_name !== 'stable' ) {
 					if ( $this->p->debug->enabled ) {
@@ -982,12 +986,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				$filter_name = $this->p->options['update_filter_for_' . $ext];
 
-				if ( $filter_name !== 'stable' ) {
-					if ( ! self::is_installed( $ext ) ) {
-						$filter_name = 'stable';
-					}
-				}
-
 				if ( ! empty( $this->p->cf['um']['version_regex'][$filter_name] ) ) {	// make sure the name is valid
 					return $filter_name;
 				}
@@ -1032,7 +1030,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$info = self::$upd_config[$ext];
 				if ( ! isset( $info['installed_version'] ) ) {	// just in case
 					return false;
-				} elseif ( strpos( $info['installed_version'], 'not-installed' ) !== false ) {
+				} elseif ( strpos( $info['installed_version'], 'not-installed' ) !== false ) {	// anywhere in string
 					return false;
 				}
 			}
