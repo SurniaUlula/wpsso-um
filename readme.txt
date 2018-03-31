@@ -69,6 +69,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 1.9.2 (2018/03/31)**
+
+* *New Features*
+	* None
+* *Improvements*
+	* None
+* *Bugfixes*
+	* Fixed a non-stable version filter warning to skip add-ons that are not installed.
+* *Developer Notes*
+	* None
+
 **Version 1.9.1 (2018/03/24)**
 
 * *New Features*
@@ -97,7 +108,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.9.1 =
+= 1.9.2 =
 
-(2018/03/24) Renamed plugin "Extensions" to "Add-ons" to avoid confusion and improve / simplify translations.
+(2018/03/31) Fixed a non-stable version filter warning to skip add-ons that are not installed.
 
