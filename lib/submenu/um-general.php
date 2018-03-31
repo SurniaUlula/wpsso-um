@@ -32,7 +32,9 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 			) );
 		}
 
-		// called by the extended WpssoAdmin class
+		/**
+		 * Called by the extended WpssoAdmin class.
+		 */
 		protected function add_meta_boxes() {
 
 			$short_pro = $this->p->cf['plugin'][$this->p->lca]['short'].' '._x( 'Pro', 'package type', 'wpsso-um' );
@@ -78,12 +80,13 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 							continue;
 						}
 
-						// remove the short name if possible (all upper case acronym, with an optional space)
+						/**
+						 * Remove the short name if possible (all upper case acronym, with an optional space).
+						 */
 						$ext_name = preg_replace( '/ \([A-Z ]+\)$/', '', $info['name'] );
 
 						$table_rows[] = $this->form->get_th_html( $ext_name, '', 'update_version_filter' ).
-						'<td>'.$this->form->get_select( 'update_filter_for_'.$ext,
-							$version_filter, 'update_filter', '', true ).'</td>';
+						'<td>'.$this->form->get_select( 'update_filter_for_'.$ext, $version_filter, 'update_filter', '', true ).'</td>';
 					}
 
 					break;
