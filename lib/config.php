@@ -61,9 +61,11 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		}
 
 		public static function set_constants( $plugin_filepath ) { 
+
 			if ( defined( 'WPSSOUM_VERSION' ) ) {			// execute and define constants only once
 				return;
 			}
+
 			define( 'WPSSOUM_VERSION', self::$cf['plugin']['wpssoum']['version'] );						
 			define( 'WPSSOUM_FILEPATH', $plugin_filepath );						
 			define( 'WPSSOUM_PLUGINDIR', trailingslashit( realpath( dirname( $plugin_filepath ) ) ) );
@@ -98,4 +100,3 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		}
 	}
 }
-
