@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires PHP: 5.4
 Requires At Least: 3.8
 Tested Up To: 4.9.5
-Stable Tag: 1.9.2
+Stable Tag: 1.9.3
 
 WPSSO Core add-on to provide updates for the WPSSO Core Pro plugin and its Pro add-ons.
 
@@ -122,8 +122,4 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 = 1.9.3 =
 
 (2018/04/05) Renamed some WpssoUtil methods for Gutenberg changes in WPSSO v3.57.0.
-
-= 1.9.2 =
-
-(2018/03/31) Fixed a non-stable version filter warning to skip add-ons that are not installed.
 
