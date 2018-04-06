@@ -247,12 +247,6 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 					$this->p->notice->inf( $this->p->admin->get_check_for_updates_link() );
 				}
 			}
-
-			if ( method_exists( 'SucomUtil', 'safe_trigger_error' ) ) {
-				// translators: %s is the short plugin name
-				$error_prefix = sprintf( __( '%s warning:', 'wpsso-um' ), $info['short'] );
-				SucomUtil::safe_trigger_error( $error_prefix.' '.rtrim( $error_msg, '.' ), E_USER_WARNING );
-			}
 		}
 
 		public function get_update_check_hours() {
