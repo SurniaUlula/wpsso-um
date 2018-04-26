@@ -308,10 +308,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( $has_dev && $this->p->notice->is_admin_pre_notices() ) {
 
 					$dismiss_key = 'non-stable-update-version-filters-selected';
+					$dismiss_time = MONTH_IN_SECONDS * 3;
 
 					$this->p->notice->warn( sprintf( __( 'Please note that one or more non-stable / development %s have been selected.',
 						$this->text_domain ), $this->p->util->get_admin_url( 'um-general', _x( 'Update Version Filters',
-							'metabox title', $this->text_domain ) ) ), true, $dismiss_key, MONTH_IN_SECONDS * 3, true );	// $silent = true
+							'metabox title', $this->text_domain ) ) ), true, $dismiss_key, $dismiss_time, true );	// $no_unhide is true
 				}
 			}
 		}
