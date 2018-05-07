@@ -188,9 +188,9 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 				return;	// stop here
 			}
 
-			$cache_md5_pre = $this->p->lca.'_';
-			$cache_salt = 'WpssoUm::cron_check';
-			$cache_id = $cache_md5_pre.md5( $cache_salt );
+			$cache_md5_pre = $this->p->lca . '_';
+			$cache_salt    = 'WpssoUm::cron_check';
+			$cache_id      = $cache_md5_pre . md5( $cache_salt );
 
 			/**
 			 * Check if the WordPress cron is operating correctly.
