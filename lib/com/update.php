@@ -264,7 +264,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 
 				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( $ext . ' plugin: installed version is ' . $ext_version . ' with ' . $filter_name . ' filter' );
+					$this->p->debug->log( $ext . ' plugin: installed version is ' . $ext_version . ' with ' . $filter_name . ' version filter' );
 				}
 
 				/**
@@ -904,7 +904,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			if ( ! preg_match( $filter_regex, $version ) ) {
 
 				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( $ext . ' plugin: ' . $version . ' does not match filter' );
+					$this->p->debug->log( $ext . ' plugin: ' . $version . ' does not match version filter' );
 				}
 
 				/**
