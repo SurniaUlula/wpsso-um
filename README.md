@@ -15,15 +15,17 @@
 
 <p><img class="readme-icon" src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png"></p>
 
-<p>The WPSSO Update Manager add-on is required to enable / update the <a href="https://wpsso.com/?utm_source=wpssoum-readme">WPSSO Core Pro plugin</a> and any licensed Pro add-ons.</p>
+<p>The WPSSO Update Manager add-on is required to enable / update the <a href="https://wpsso.com/">WPSSO Core Pro plugin</a> and any licensed Pro add-ons.</p>
 
 <p>The WPSSO Update Manager supports WordPress Network / Multisite installations and WordPress MU Domain Mapping.</p>
 
-<p>Simply <em>download</em>, <em>install</em>, and <em>activate</em>.</p>
+<p>Simply <em>download</em>, <em>install</em> and <em>activate</em>.</p>
+
+<div style="clear:both"></div>
 
 <h3>WPSSO Core Plugin Prerequisite</h3>
 
-<p>WPSSO Update Manager (aka WPSSO UM) is an add-on for the WPSSO Core plugin &mdash; which creates complete &amp; accurate meta tags and Schema markup from your existing content for social sharing, Social Media Optimization (SMO), Search Engine Optimization (SEO), Google Rich Cards, Pinterest Rich Pins, etc.</p>
+<p>WPSSO Update Manager (aka WPSSO UM) is an add-on for the WPSSO Core plugin.</p>
 
 
 <h2>Installation</h2>
@@ -31,8 +33,8 @@
 <h3>Install and Uninstall</h3>
 
 <ul>
-<li><a href="https://wpsso.com/docs/plugins/wpsso-um/installation/install-the-plugin/?utm_source=wpssoum-readme">Install the WPSSO UM Add-on</a></li>
-<li><a href="https://wpsso.com/docs/plugins/wpsso-um/installation/uninstall-the-plugin/?utm_source=wpssoum-readme">Uninstall the WPSSO UM Add-on</a></li>
+<li><a href="https://wpsso.com/docs/plugins/wpsso-um/installation/install-the-plugin/">Install the WPSSO UM Add-on</a></li>
+<li><a href="https://wpsso.com/docs/plugins/wpsso-um/installation/uninstall-the-plugin/">Uninstall the WPSSO UM Add-on</a></li>
 </ul>
 
 
