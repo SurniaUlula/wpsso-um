@@ -21,8 +21,6 @@
 
 <p>Simply <em>download</em>, <em>install</em> and <em>activate</em>.</p>
 
-<div style="clear:both"></div>
-
 <h3>WPSSO Core Plugin Prerequisite</h3>
 
 <p>WPSSO Update Manager (aka WPSSO UM) is an add-on for the WPSSO Core plugin.</p>
