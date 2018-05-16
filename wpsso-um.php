@@ -13,7 +13,7 @@
  * Description: WPSSO Core add-on to provide updates for the WPSSO Core Pro plugin and its Pro add-ons.
  * Requires PHP: 5.4
  * Requires At Least: 3.8
- * Tested Up To: 4.9.5
+ * Tested Up To: 4.9.6
  * Version: 1.9.3
  * 
  * Version Numbering: {major}.{minor}.{bugfix}[-{stage}.{level}]
