@@ -69,6 +69,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 1.10.0-dev.3 (2018/06/03)**
+
+* *New Features*
+	* None
+* *Improvements*
+	* None
+* *Bugfixes*
+	* None
+* *Developer Notes*
+	* Added 'qty_count' and 'qty_total' to the update information array.
+
 **Version 1.9.3 (2018/04/05)**
 
 * *New Features*
@@ -81,6 +92,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* Renamed some WpssoUtil methods for Gutenberg related changes in WPSSO v3.57.0.
 
 == Upgrade Notice ==
+
+= 1.10.0-dev.3 =
+
+(2018/06/03) Added 'qty_count' and 'qty_total' to the update information array.
 
 = 1.9.3 =
 
