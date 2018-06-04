@@ -276,12 +276,15 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$auth_url = $info['url']['update'];
 				}
 
+				$locale = is_admin() && function_exists( 'get_user_locale' ) ?
+					get_user_locale() : get_locale();
+
 				$auth_url = add_query_arg( array( 
 					'api_version' => self::$api_version,
 					'installed_version' => $ext_version,
 					'version_filter' => $filter_name,
 					'sched_hours' => $this->sched_hours,
-					'locale' => is_admin() && function_exists( 'get_user_locale' ) ? get_user_locale() : get_locale(),
+					'locale' => $locale,
 				), $auth_url );
 
 				self::$upd_config[$ext] = array(
@@ -379,11 +382,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		public function allow_update_package( $is_allowed, $ip, $url ) {
-			if ( ! $is_allowed ) {	// don't bother if already allowed
-				foreach ( self::$upd_config as $ext => $info ) {
-					if ( ! empty( $info['plugin_update']->package ) && $info['plugin_update']->package === $url ) {
-						return true;
-					}
+			if ( $is_allowed ) {	// Already allowed.
+				return $is_allowed;
+			}
+			foreach ( self::$upd_config as $ext => $info ) {
+				if ( ! empty( $info['plugin_update']->package ) && $info['plugin_update']->package === $url ) {
+					return true;
 				}
 			}
 			return $is_allowed;
@@ -713,19 +717,29 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 							false : $payload['api_response'][$msg] ) );
 				}
 
-				if ( empty( $request['headers']['x-smp-error'] ) ) {
+				if ( empty( $request['headers']['x-error-msg'] ) &&
+					empty( $request['headers']['x-update-error'] &&
+					empty( $request['headers']['x-smp-error'] ) ) ) {	// Deprecated on 2018/06/03.
+
 					self::$upd_config[$ext]['uerr'] = false;
-					$plugin_data = SucomPluginData::data_from_json( $request['body'] ); // Returns null on error.
+
+					$plugin_data = SucomPluginData::data_from_json( $request['body'] ); // Returns null on json error.
+
 					if ( empty( $plugin_data->plugin ) ) {
+
 						if ( $this->p->debug->enabled ) {
 							$this->p->debug->log( $ext . ' plugin: returned plugin data is incomplete' );
 						}
+
 						$plugin_data = null;
+
 					} elseif ( $plugin_data->plugin !== self::$upd_config[$ext]['base'] ) {
+
 						if ( $this->p->debug->enabled ) {
 							$this->p->debug->log( $ext . ' plugin: property ' . $plugin_data->plugin . 
 								' does not match ' . self::$upd_config[$ext]['base'] );
 						}
+
 						$plugin_data = null;
 					}
 				}
@@ -1308,12 +1322,14 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 		public $plugin;
 		public $version = 0;
 		public $tested;
-		public $homepage;
-		public $download_url;
+		public $homepage;	// Plugin homepage URL.
+		public $download_url;	// Update download URL.
 		public $upgrade_notice;
 		public $icons;
-		public $exp_date;
-		public $qty_used;
+		public $exp_date;	// Example: 0000-00-00 00:00:00
+		public $qty_count = 0;	// Example: 1
+		public $qty_total = 0;	// Example: 10
+		public $qty_used = '';	// Example: 1/10
 
 		public function __construct() {
 		}
@@ -1343,7 +1359,9 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 				'download_url', 
 				'upgrade_notice',
 				'icons',
-				'exp_date', 
+				'exp_date',
+				'qty_count', 
+				'qty_total', 
 				'qty_used', 
 			) as $prop_name ) {
 				if ( isset( $plugin_data->$prop_name ) ) {
@@ -1364,11 +1382,13 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 				'plugin' => 'plugin',
 				'version' => 'new_version',
 				'tested' => 'tested',
-				'homepage' => 'url',			// plugin homepage url
-				'download_url' => 'package',		// update download url
+				'homepage' => 'url',			// Plugin homepage URL.
+				'download_url' => 'package',		// Update download URL.
 				'upgrade_notice' => 'upgrade_notice',
 				'icons' => 'icons',
 				'exp_date' => 'exp_date',
+				'qty_count' => 'qty_count',
+				'qty_total' => 'qty_total',
 				'qty_used' => 'qty_used',
 			) as $json_prop_name => $wp_prop_name ) {
 				if ( isset( $this->$json_prop_name ) ) {
