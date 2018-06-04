@@ -69,7 +69,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.10.0-dev.3 (2018/06/03)**
+**Version 1.10.0-dev.4 (2018/06/04)**
 
 * *New Features*
 	* None
@@ -78,7 +78,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *Bugfixes*
 	* None
 * *Developer Notes*
-	* Added 'qty_count' and 'qty_total' to the update information array.
+	* Added 'qty_total' and 'qty_reg' to the update information array.
 
 **Version 1.9.3 (2018/04/05)**
 
@@ -93,9 +93,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.10.0-dev.3 =
+= 1.10.0-dev.4 =
 
-(2018/06/03) Added 'qty_count' and 'qty_total' to the update information array.
+(2018/06/04) Added 'qty_total' and 'qty_reg' to the update information array.
 
 = 1.9.3 =
 
