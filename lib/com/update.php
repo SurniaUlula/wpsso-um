@@ -1092,48 +1092,72 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return self::$upd_config[$ext]['u' . $msg];
 		}
 
+		/**
+		 * Returns null if $idx does not exist (since v1.10.0).
+		 */
 		public static function get_option( $ext, $idx = false ) {
+
+			$not_found = false !== $idx ? null : false;	// Return null if $idx does not exist.
+
 			if ( ! empty( self::$upd_config[$ext]['option_name'] ) ) {
+
 				$option_data = self::get_option_data( $ext );
+
 				if ( $idx !== false ) {
 					if ( is_object( $option_data->update ) && isset( $option_data->update->$idx ) ) {
 						return $option_data->update->$idx;
+					} else {
+						return $not_found;
 					}
 				} else {
 					return $option_data;
 				}
 			}
-			return false;
+
+			return $not_found;
 		}
 
 		private static function get_option_data( $ext, $def = false ) {
+
 			if ( ! isset( self::$upd_config[$ext]['option_data'] ) ) {
+
 				if ( ! empty( self::$upd_config[$ext]['option_name'] ) ) {
+
 					$opt_name = self::$upd_config[$ext]['option_name'];
+
 					if ( method_exists( 'SucomUtil', 'protect_filter_value' ) ) {
 						SucomUtil::protect_filter_value( 'pre_option_' . $opt_name );
 					}
+
 					self::$upd_config[$ext]['option_data'] = get_option( $opt_name, $def );
+
 				} else {
 					self::$upd_config[$ext]['option_data'] = $def;
 				}
 			}
+
 			return self::$upd_config[$ext]['option_data'];
 		}
 
 		private static function update_option_data( $ext, $option_data ) {
+
 			self::$upd_config[$ext]['option_data'] = $option_data;
+
 			if ( ! empty( self::$upd_config[$ext]['option_name'] ) ) {
 				return update_option( self::$upd_config[$ext]['option_name'], $option_data );
 			}
+
 			return false;
 		}
 
 		private static function clear_option_data( $ext ) {
+
 			unset( self::$upd_config[$ext]['option_data'] );
+
 			if ( ! empty( self::$upd_config[$ext]['option_name'] ) ) {
 				return delete_option( self::$upd_config[$ext]['option_name'] );
 			}
+
 			return false;
 		}
 	}
@@ -1163,10 +1187,13 @@ if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
 			 * Last synchronized with WordPress v4.8.2 on 2017/10/22.
 			 */
 			public static function raw_get_home_url( $blog_id = null, $path = '', $scheme = null ) {
+
 				global $pagenow;
+
 				if ( method_exists( 'SucomUtil', 'protect_filter_value' ) ) {
 					SucomUtil::protect_filter_value( 'pre_option_home' );
 				}
+
 				if ( empty( $blog_id ) || ! is_multisite() ) {
 					$url = get_option( 'home' );
 				} else {
@@ -1174,6 +1201,7 @@ if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
 					$url = get_option( 'home' );
 					restore_current_blog();
 				}
+
 				if ( ! in_array( $scheme, array( 'http', 'https', 'relative' ) ) ) {
 					if ( is_ssl() && ! is_admin() && 'wp-login.php' !== $pagenow ) {
 						$scheme = 'https';
@@ -1181,10 +1209,13 @@ if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
 						$scheme = parse_url( $url, PHP_URL_SCHEME );
 					}
 				}
+
 				$url = self::set_url_scheme( $url, $scheme );
+
 				if ( $path && is_string( $path ) ) {
 					$url .= '/' . ltrim( $path, '/' );
 				}
+
 				return $url;
 			}
 
@@ -1193,6 +1224,7 @@ if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
 			 * Last synchronized with WordPress v4.8.2 on 2017/10/22.
 			 */
 			private static function set_url_scheme( $url, $scheme = null ) {
+
 				if ( ! $scheme ) {
 					$scheme = is_ssl() ? 'https' : 'http';
 				} elseif ( $scheme === 'admin' || $scheme === 'login' || $scheme === 'login_post' || $scheme === 'rpc' ) {
@@ -1200,10 +1232,13 @@ if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
 				} elseif ( $scheme !== 'http' && $scheme !== 'https' && $scheme !== 'relative' ) {
 					$scheme = is_ssl() ? 'https' : 'http';
 				}
+
 				$url = trim( $url );
+
 				if ( substr( $url, 0, 2 ) === '//' ) {
 					$url = 'http:' . $url;
 				}
+
 				if ( 'relative' === $scheme ) {
 					$url = ltrim( preg_replace( '#^\w+://[^/]*#', '', $url ) );
 					if ( $url !== '' && $url[0] === '/' ) {
@@ -1212,6 +1247,7 @@ if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
 				} else {
 					$url = preg_replace( '#^\w+://#', $scheme . '://', $url );
 				}
+
 				return $url;
 			}
 		}
@@ -1327,9 +1363,9 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 		public $upgrade_notice;
 		public $icons;
 		public $exp_date;	// Example: 0000-00-00 00:00:00
-		public $qty_count = 0;	// Example: 1
-		public $qty_total = 0;	// Example: 10
-		public $qty_used = '';	// Example: 1/10
+		public $qty_total = 0;	// Example: 10	(since v1.10.0)
+		public $qty_reg   = 0;	// Example: 1	(since v1.10.0)
+		public $qty_used  = '';	// Example: 1/10
 
 		public function __construct() {
 		}
@@ -1360,8 +1396,8 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 				'upgrade_notice',
 				'icons',
 				'exp_date',
-				'qty_count', 
 				'qty_total', 
+				'qty_reg', 
 				'qty_used', 
 			) as $prop_name ) {
 				if ( isset( $plugin_data->$prop_name ) ) {
@@ -1377,19 +1413,19 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 			$plugin_update = new StdClass;
 
 			foreach ( array(
-				'id' => 'id',
-				'slug' => 'slug',
-				'plugin' => 'plugin',
-				'version' => 'new_version',
-				'tested' => 'tested',
-				'homepage' => 'url',			// Plugin homepage URL.
-				'download_url' => 'package',		// Update download URL.
+				'id'             => 'id',
+				'slug'           => 'slug',
+				'plugin'         => 'plugin',
+				'version'        => 'new_version',
+				'tested'         => 'tested',
+				'homepage'       => 'url',	// Plugin homepage URL.
+				'download_url'   => 'package',	// Update download URL.
 				'upgrade_notice' => 'upgrade_notice',
-				'icons' => 'icons',
-				'exp_date' => 'exp_date',
-				'qty_count' => 'qty_count',
-				'qty_total' => 'qty_total',
-				'qty_used' => 'qty_used',
+				'icons'          => 'icons',
+				'exp_date'       => 'exp_date',
+				'qty_total'      => 'qty_total',
+				'qty_reg'        => 'qty_reg',
+				'qty_used'       => 'qty_used',
 			) as $json_prop_name => $wp_prop_name ) {
 				if ( isset( $this->$json_prop_name ) ) {
 					if ( is_object( $this->$json_prop_name ) ) {
@@ -1404,4 +1440,3 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 		}
 	}
 }
-
