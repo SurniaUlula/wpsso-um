@@ -69,7 +69,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.10.0-b.1 (2018/06/05)**
+**Version 1.10.0-b.2 (2018/06/05)**
 
 * *New Features*
 	* None
@@ -93,7 +93,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.10.0-b.1 =
+= 1.10.0-b.2 =
 
 (2018/06/05) Added 'qty_total' and 'qty_reg' to the update information array.
 
