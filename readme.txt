@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires PHP: 5.4
 Requires At Least: 3.8
 Tested Up To: 4.9.6
-Stable Tag: 1.9.3
+Stable Tag: 1.10.0
 
 WPSSO Core add-on to provide updates for the WPSSO Core Pro plugin and its Pro add-ons.
 
@@ -69,7 +69,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.10.0 (2018/06/06)**
+**Version 1.10.0 (2018/06/07)**
 
 * *New Features*
 	* None
@@ -95,7 +95,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = 1.10.0 =
 
-(2018/06/06) Added 'qty_total' and 'qty_reg' to the update information array.
+(2018/06/07) Added 'qty_total' and 'qty_reg' to the update information array.
 
 = 1.9.3 =
 
