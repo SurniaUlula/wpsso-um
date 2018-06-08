@@ -717,9 +717,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 							false : $payload['api_response'][$msg] ) );
 				}
 
-				if ( empty( $request['headers']['x-error-msg'] ) &&
-					empty( $request['headers']['x-update-error'] &&
-					empty( $request['headers']['x-smp-error'] ) ) ) {	// Deprecated on 2018/06/03.
+				if ( empty( $request['headers']['x-error-msg'] ) && 
+					empty( $request['headers']['x-update-error'] ) && 
+						empty( $request['headers']['x-smp-error'] ) ) {	// Deprecated on 2018/06/03.
 
 					self::$upd_config[$ext]['uerr'] = false;
 
