@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires PHP: 5.4
 Requires At Least: 3.8
 Tested Up To: 4.9.6
-Stable Tag: 1.10.0
+Stable Tag: 1.10.1
 
 WPSSO Core add-on to provide updates for the WPSSO Core Pro plugin and its Pro add-ons.
 
@@ -69,6 +69,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 1.10.1 (2018/06/08)**
+
+* *New Features*
+	* None
+* *Improvements*
+	* None
+* *Bugfixes*
+	* Fixed a syntax issue when an error message is returned from an update check.
+* *Developer Notes*
+	* None
+
 **Version 1.10.0 (2018/06/07)**
 
 * *New Features*
@@ -80,24 +91,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *Developer Notes*
 	* Added 'qty_total' and 'qty_reg' to the update information array.
 
-**Version 1.9.3 (2018/04/05)**
-
-* *New Features*
-	* None
-* *Improvements*
-	* None
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* Renamed some WpssoUtil methods for Gutenberg related changes in WPSSO v3.57.0.
-
 == Upgrade Notice ==
 
-= 1.10.0 =
+= 1.10.1 =
 
-(2018/06/07) Added 'qty_total' and 'qty_reg' to the update information array.
-
-= 1.9.3 =
-
-(2018/04/05) Renamed some WpssoUtil methods for Gutenberg related changes in WPSSO v3.57.0.
+(2018/06/08) Fixed a syntax issue when an error message is returned from an update check.
 
