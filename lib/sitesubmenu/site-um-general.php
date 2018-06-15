@@ -48,11 +48,11 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 
 			add_meta_box( $this->pagehook.'_general', 
 				sprintf( _x( 'Network Update Manager for %s', 'metabox title', 'wpsso-um' ), $short_pro ),
-					array( &$this, 'show_metabox_general' ), $this->pagehook, 'normal' );
+					array( $this, 'show_metabox_general' ), $this->pagehook, 'normal' );
 
 			// add a class to set a minimum width for the network postboxes
 			add_filter( 'postbox_classes_'.$this->pagehook.'_'.$this->pagehook.'_general', 
-				array( &$this, 'add_class_postbox_network' ) );
+				array( $this, 'add_class_postbox_network' ) );
 		}
 
 		public function filter_action_buttons( $action_buttons ) {

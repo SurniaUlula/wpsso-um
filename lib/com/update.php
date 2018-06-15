@@ -333,12 +333,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				return;
 			}
 
-			add_filter( 'plugins_api_result', array( &$this, 'external_plugin_data' ), PHP_INT_MAX, 3 );
-			add_filter( 'transient_update_plugins', array( &$this, 'maybe_add_plugin_update' ), 1000, 1 );
-			add_filter( 'site_transient_update_plugins', array( &$this, 'maybe_add_plugin_update' ), 1000, 1 );
-			add_filter( 'pre_site_transient_update_plugins', array( &$this, 'reenable_plugin_update' ), 1000, 1 );
-			add_filter( 'http_request_host_is_external', array( &$this, 'allow_update_package' ), 2000, 3 );
-			add_filter( 'http_headers_useragent', array( &$this, 'check_wpua_value' ), PHP_INT_MAX, 1 );
+			add_filter( 'plugins_api_result', array( $this, 'external_plugin_data' ), PHP_INT_MAX, 3 );
+			add_filter( 'transient_update_plugins', array( $this, 'maybe_add_plugin_update' ), 1000, 1 );
+			add_filter( 'site_transient_update_plugins', array( $this, 'maybe_add_plugin_update' ), 1000, 1 );
+			add_filter( 'pre_site_transient_update_plugins', array( $this, 'reenable_plugin_update' ), 1000, 1 );
+			add_filter( 'http_request_host_is_external', array( $this, 'allow_update_package' ), 2000, 3 );
+			add_filter( 'http_headers_useragent', array( $this, 'check_wpua_value' ), PHP_INT_MAX, 1 );
 
 			/**
 			 * Maybe remove the old plugin update hook.
@@ -351,9 +351,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->log( 'adding ' . $this->cron_hook . ' schedule for ' . $this->sched_name );
 			}
 
-			add_action( $this->cron_hook, array( &$this, 'check_all_for_updates' ) );
+			add_action( $this->cron_hook, array( $this, 'check_all_for_updates' ) );
 
-			add_filter( 'cron_schedules', array( &$this, 'add_custom_schedule' ) );
+			add_filter( 'cron_schedules', array( $this, 'add_custom_schedule' ) );
 
 			$schedule = wp_get_schedule( $this->cron_hook );
 

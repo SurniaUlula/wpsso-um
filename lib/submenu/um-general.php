@@ -41,7 +41,7 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 
 			add_meta_box( $this->pagehook.'_general', 
 				sprintf( _x( 'Update Manager for %s', 'metabox title', 'wpsso-um' ), $short_pro ),
-					array( &$this, 'show_metabox_general' ), $this->pagehook, 'normal' );
+					array( $this, 'show_metabox_general' ), $this->pagehook, 'normal' );
 		}
 
 		public function filter_action_buttons( $action_buttons ) {

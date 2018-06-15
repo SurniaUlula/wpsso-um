@@ -41,7 +41,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 			if ( is_admin() ) {
 
-				add_action( 'update_option_home', array( &$this, 'wp_home_option_updated' ), 100, 2 );
+				add_action( 'update_option_home', array( $this, 'wp_home_option_updated' ), 100, 2 );
 
 				$this->p->util->add_plugin_actions( $this, array( 
 					'column_metabox_version_info_table_rows' => 2,
