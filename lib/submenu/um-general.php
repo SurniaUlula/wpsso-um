@@ -20,10 +20,10 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 				$this->p->debug->mark();
 			}
 
-			$this->menu_id = $id;
+			$this->menu_id   = $id;
 			$this->menu_name = $name;
-			$this->menu_lib = $lib;
-			$this->menu_ext = $ext;
+			$this->menu_lib  = $lib;
+			$this->menu_ext  = $ext;
 		}
 
 		protected function add_plugin_hooks() {
@@ -40,18 +40,23 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 			$short_pro = $this->p->cf['plugin'][$this->p->lca]['short'].' '._x( 'Pro', 'package type', 'wpsso-um' );
 
 			add_meta_box( $this->pagehook.'_general', 
-				sprintf( _x( 'Update Manager for %s', 'metabox title', 'wpsso-um' ), $short_pro ),
+				_x( 'Update Manager', 'metabox title', 'wpsso-um' ),
 					array( $this, 'show_metabox_general' ), $this->pagehook, 'normal' );
 		}
 
 		public function filter_action_buttons( $action_buttons ) {
+
 			$action_buttons[0]['check_for_updates'] = _x( 'Check for Updates', 'submit button', 'wpsso-um' );
+
 			return $action_buttons;
 		}
 
 		public function show_metabox_general() {
+
 			$metabox_id = 'um';
+
 			$this->form->set_text_domain( 'wpsso' );	// translate option values using wpsso text_domain
+
 			$this->p->util->do_metabox_table( apply_filters( $this->p->lca.'_'.$metabox_id.'_general_rows', 
 				$this->get_table_rows( $metabox_id, 'general' ), $this->form ), 'metabox-'.$metabox_id.'-general' );
 		}

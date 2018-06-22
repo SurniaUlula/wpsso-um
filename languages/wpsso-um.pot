@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 
 #: lib/com/update.php:317 lib/com-gettext-extract.php:13
-#: lib/sitesubmenu/site-um-general.php:90 lib/submenu/um-general.php:73
+#: lib/sitesubmenu/site-um-general.php:101 lib/submenu/um-general.php:78
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
@@ -84,30 +84,30 @@ msgid ""
 "Pro add-ons."
 msgstr ""
 
-#: lib/filters.php:79 lib/sitesubmenu/site-um-general.php:59
-#: lib/submenu/um-general.php:48
+#: lib/filters.php:79 lib/sitesubmenu/site-um-general.php:64
+#: lib/submenu/um-general.php:49
 msgctxt "submit button"
 msgid "Check for Updates"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:47 lib/submenu/um-general.php:40
-msgctxt "package type"
-msgid "Pro"
-msgstr ""
-
-#: lib/sitesubmenu/site-um-general.php:50
+#: lib/sitesubmenu/site-um-general.php:52
 msgctxt "metabox title"
-msgid "Network Update Manager for %s"
+msgid "Network Update Manager"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:83 lib/submenu/um-general.php:67
+#: lib/sitesubmenu/site-um-general.php:94 lib/submenu/um-general.php:72
 msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr ""
 
+#: lib/submenu/um-general.php:40
+msgctxt "package type"
+msgid "Pro"
+msgstr ""
+
 #: lib/submenu/um-general.php:43
 msgctxt "metabox title"
-msgid "Update Manager for %s"
+msgid "Update Manager"
 msgstr ""
 
 #: wpsso-um.php:98

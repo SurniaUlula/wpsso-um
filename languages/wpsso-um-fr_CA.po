@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPSSO Update Manager 1.10.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2018-06-04 10:04-0600\n"
-"PO-Revision-Date: 2018-06-09 13:03-0600\n"
+"POT-Creation-Date: 2018-06-22 08:56-0600\n"
+"PO-Revision-Date: 2018-06-22 08:59-0600\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -17,18 +17,18 @@ msgstr ""
 
 #: lib/com/update.php:139 lib/com-gettext-extract.php:11
 msgid "Update information for %s has been retrieved and saved."
-msgstr "L'information de mise à jour pour %s a été récupérée et sauvegardée."
+msgstr "L'information de mises à jour pour %s a été récupérée et sauvegardée."
 
 #: lib/com/update.php:150 lib/com-gettext-extract.php:4
 msgid "Failed saving retrieved update information for %s."
-msgstr "Erreur lors de l'enregistrement des informations de mise à jour pour %s."
+msgstr "Erreur lors de l'enregistrement des informations de mises à jour pour %s."
 
 #: lib/com/update.php:316 lib/com-gettext-extract.php:6
 msgid "Please note that one or more non-stable / development %s have been selected."
 msgstr "Veuillez noter que l'un ou plusieurs %s non-stable / de développement ont été sélectionnés."
 
 #: lib/com/update.php:317 lib/com-gettext-extract.php:13
-#: lib/sitesubmenu/site-um-general.php:90 lib/submenu/um-general.php:73
+#: lib/sitesubmenu/site-um-general.php:101 lib/submenu/um-general.php:78
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr "Filtres de version pour mises à jour"
@@ -36,11 +36,11 @@ msgstr "Filtres de version pour mises à jour"
 #. translators: %1$s is the plugin name, %2$s is an IPv4 address, and %3$s is an IPv4 address
 #: lib/com/update.php:634 lib/com-gettext-extract.php:3
 msgid "An inconsistency was found in the %1$s update server address &mdash; the IPv4 address (%2$s) from the local host does not match the DNS IPv4 address ($3%s)."
-msgstr "Une incohérence a été trouvée dans l'adresse du serveur de mise à jour pour %1$s &mdash; l'adresse IPv4 (%2$s) fournie par le serveur local ne correspond pas à l'adresse IPv4 du DNS ($3%s)."
+msgstr "Une incohérence a été trouvée dans l'adresse du serveur de mises à jour pour %1$s &mdash; l'adresse IPv4 (%2$s) fournie par le serveur local ne correspond pas à l'adresse IPv4 du DNS ($3%s)."
 
 #: lib/com/update.php:636 lib/com-gettext-extract.php:9
 msgid "Update checks for %1$s are disabled while this inconsistency persists."
-msgstr "Les vérifications de mise à jour pour %1$s sont désactivées tant que cette incohérence persiste."
+msgstr "Les vérifications de mises à jour pour %1$s sont désactivées tant que cette incohérence persiste."
 
 #: lib/com/update.php:639 lib/com-gettext-extract.php:14
 msgid "You may <a href=\"%1$s\">open a new support ticket</a> if you believe this error message is incorrect or inaccurate."
@@ -48,7 +48,7 @@ msgstr "Vous pouvez <a href=\"%1$s\">ouvrir un nouveau billet de soutien</a> si 
 
 #: lib/com/update.php:704 lib/com-gettext-extract.php:10
 msgid "Update error from the WordPress wp_remote_get() function: %s"
-msgstr "Erreur de mise à jour de la fonction WordPress wp_remote_get(): %s"
+msgstr "Erreur de la fonction WordPress wp_remote_get() pour mises à jour: %s"
 
 #: lib/com/update.php:820 lib/com-gettext-extract.php:12
 msgid "WordPress library file %s is missing and required."
@@ -69,52 +69,52 @@ msgstr "Le numéro de version de l'extension %1$s (%2$s) est absente de la liste
 #: lib/config-gettext-extract.php:3
 msgctxt "lib file description"
 msgid "Update Manager"
-msgstr "Gestionnaire de mises à jour"
+msgstr "Mises à jour"
 
 #: lib/config-gettext-extract.php:4
 msgctxt "plugin description"
 msgid "WPSSO Core add-on to provide updates for the WPSSO Core Pro plugin and its Pro add-ons."
 msgstr "Extension d'ajout WPSSO Core pour fournir des mises à jour pour l'extension WPSSO Core Pro et ses ajouts Pro."
 
-#: lib/filters.php:79 lib/sitesubmenu/site-um-general.php:59
-#: lib/submenu/um-general.php:48
+#: lib/filters.php:79 lib/sitesubmenu/site-um-general.php:64
+#: lib/submenu/um-general.php:49
 msgctxt "submit button"
 msgid "Check for Updates"
 msgstr "Vérifier pour mises à jour"
 
-#: lib/sitesubmenu/site-um-general.php:47 lib/submenu/um-general.php:40
+#: lib/sitesubmenu/site-um-general.php:52
+msgctxt "metabox title"
+msgid "Network Update Manager"
+msgstr "Gestion de mises à jour réseau"
+
+#: lib/sitesubmenu/site-um-general.php:94 lib/submenu/um-general.php:72
+msgctxt "option label"
+msgid "Refresh Update Information"
+msgstr "Actualiser info. de mises à jour"
+
+#: lib/submenu/um-general.php:40
 msgctxt "package type"
 msgid "Pro"
 msgstr "Pro"
 
-#: lib/sitesubmenu/site-um-general.php:50
-msgctxt "metabox title"
-msgid "Network Update Manager for %s"
-msgstr "Gestionnaire de mises à jour réseau pour %s"
-
-#: lib/sitesubmenu/site-um-general.php:83 lib/submenu/um-general.php:67
-msgctxt "option label"
-msgid "Refresh Update Information"
-msgstr "Actualiser info. de mise à jour"
-
 #: lib/submenu/um-general.php:43
 msgctxt "metabox title"
-msgid "Update Manager for %s"
-msgstr "Gestionnaire de mises à jour pour %s"
+msgid "Update Manager"
+msgstr "Gestion de mises à jour"
 
-#: wpsso-um.php:96
+#: wpsso-um.php:98
 msgid "%1$s is an add-on for the %2$s plugin &mdash; please install and activate the %3$s plugin before activating %4$s."
 msgstr "%1$s est un ajout pour l'extension %2$s &mdash; SVP installer et activer l'extension %3$s avant d'activer %4$s."
 
-#: wpsso-um.php:98
+#: wpsso-um.php:100
 msgid "The %1$s add-on requires the %2$s plugin &mdash; install and activate the %3$s plugin or <a href=\"%4$s\">deactivate the %5$s add-on</a>."
 msgstr "L'ajout %1$s requiert l'extension %2$s &mdash; installer et activer l'extension %3$s ou <a href=\"%4$s\">désactiver l'ajout %5$s</a>."
 
-#: wpsso-um.php:225
+#: wpsso-um.php:227
 msgid "Performing an update check for the %s plugin."
-msgstr "Vérification de mise à jour pour l'extension %s."
+msgstr "Vérification de mises à jour pour l'extension %s."
 
-#: wpsso-um.php:241
+#: wpsso-um.php:243
 msgid "The %1$s version %2$s add-on requires %3$s version %4$s or newer (version %5$s is currently installed)."
 msgstr "L'ajout %1$s version %2$s requiert %3$s version %4$s ou plus récente (version %5$s est actuellement installée)."
 
@@ -137,3 +137,7 @@ msgstr "JS Morisset"
 #. Author URI of the plugin/theme
 msgid "https://wpsso.com/"
 msgstr "https://wpsso.com/"
+
+#~ msgctxt "metabox title"
+#~ msgid "Update Manager for %s"
+#~ msgstr "Gestion mise à jour pour %s"

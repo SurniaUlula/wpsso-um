@@ -20,18 +20,20 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 				$this->p->debug->mark();
 			}
 
-			$this->menu_id = $id;
+			$this->menu_id   = $id;
 			$this->menu_name = $name;
-			$this->menu_lib = $lib;
-			$this->menu_ext = $ext;
+			$this->menu_lib  = $lib;
+			$this->menu_ext  = $ext;
 		}
 
 		protected function set_form_object( $menu_ext ) {
+
 			if ( $this->p->debug->enabled ) {
-				$this->p->debug->mark();
 				$this->p->debug->log( 'setting site form object for '.$menu_ext );
 			}
+
 			$def_site_opts = $this->p->opt->get_site_defaults();
+
 			$this->form = new SucomForm( $this->p, WPSSO_SITE_OPTIONS_NAME, $this->p->site_options, $def_site_opts, $menu_ext );
 		}
 
@@ -41,33 +43,42 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 			) );
 		}
 
-		// called by the extended WpssoAdmin class
+		/**
+		 * Called by the extended WpssoAdmin class.
+		 */
 		protected function add_meta_boxes() {
 
-			$short_pro = $this->p->cf['plugin'][$this->p->lca]['short'].' '._x( 'Pro', 'package type', 'wpsso-um' );
-
 			add_meta_box( $this->pagehook.'_general', 
-				sprintf( _x( 'Network Update Manager for %s', 'metabox title', 'wpsso-um' ), $short_pro ),
+				_x( 'Network Update Manager', 'metabox title', 'wpsso-um' ),
 					array( $this, 'show_metabox_general' ), $this->pagehook, 'normal' );
 
-			// add a class to set a minimum width for the network postboxes
+			/**
+			 * Add a class to set a minimum width for the network postboxes.
+			 */
 			add_filter( 'postbox_classes_'.$this->pagehook.'_'.$this->pagehook.'_general', 
 				array( $this, 'add_class_postbox_network' ) );
 		}
 
 		public function filter_action_buttons( $action_buttons ) {
+
 			$action_buttons[0]['check_for_updates'] = _x( 'Check for Updates', 'submit button', 'wpsso-um' );
+
 			return $action_buttons;
 		}
 
 		public function add_class_postbox_network( $classes ) {
+
 			$classes[] = 'postbox-network';
+
 			return $classes;
 		}
 
 		public function show_metabox_general() {
+
 			$metabox_id = 'um';
+
 			$this->form->set_text_domain( 'wpsso' );	// translate option values using wpsso text_domain
+
 			$this->p->util->do_metabox_table( apply_filters( $this->p->lca.'_'.$metabox_id.'_general_rows', 
 				$this->get_table_rows( $metabox_id, 'general' ), $this->form ), 'metabox-'.$metabox_id.'-general' );
 		}
@@ -92,11 +103,14 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 					$version_filter = $this->p->cf['um']['version_filter'];
 
 					foreach ( $this->p->cf['plugin'] as $ext => $info ) {
+
 						if ( ! SucomUpdate::is_installed( $ext ) ) {
 							continue;
 						}
 
-						// remove the short name if possible (all upper case acronym, with an optional space)
+						/**
+						 * Remove the short name if possible (all upper case acronym, with an optional space).
+						 */
 						$ext_name = preg_replace( '/ \([A-Z ]+\)$/', '', $info['name'] );
 
 						$table_rows[] = $this->form->get_th_html( $ext_name, '', 'update_version_filter' ).
