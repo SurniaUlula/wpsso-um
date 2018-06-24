@@ -76,20 +76,27 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 		}
 
 		private function activate_plugin() {
+
 			$version = WpssoUmConfig::$cf['plugin']['wpssoum']['version'];	// only our config
+
 			if ( class_exists( 'WpssoUtil' ) ) {
 				WpssoUtil::save_all_times( 'wpssoum', $version );
 			} else {
 				WpssoUm::required_notice( true );			// $deactivate = true
 			}
+
 			self::delete_options();
 		}
 
 		private function deactivate_plugin() {
+
 			if ( class_exists( 'WpssoConfig' ) ) {
+
 				$cf = WpssoConfig::get_config();	// get all plugins / add-ons
-				foreach ( $cf['plugin'] as $ext => $info )
+
+				foreach ( $cf['plugin'] as $ext => $info ) {
 					wp_clear_scheduled_hook( 'plugin_updates-'.$info['slug'] );
+				}
 			}
 		}
 
@@ -98,9 +105,13 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 		}
 
 		private static function delete_options() {
+
 			$api_version = SucomUpdate::get_api_version();
+
 			if ( class_exists( 'WpssoConfig' ) ) {
+
 				$cf = WpssoConfig::get_config();	// get all plugins / add-ons
+
 				foreach ( $cf['plugin'] as $ext => $info ) {
 					delete_option( $ext.'_uapi'.$api_version.'err' );
 					delete_option( $ext.'_uapi'.$api_version.'inf' );
@@ -108,6 +119,7 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 					delete_option( 'external_updates-'.$info['slug'] );
 				}
 			} else {	// in case wpsso is deactivated
+
 				foreach ( array(
 					'wpsso' => 'wpsso',
 					'wpssoam' => 'wpsso-am',
@@ -116,6 +128,7 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 					'wpssoplm' => 'wpsso-plm',
 					'wpssorrssb' => 'wpsso-rrssb',
 					'wpssossb' => 'wpsso-ssb',
+					'wpssotie' => 'wpsso-tune-image-editors',
 					'wpssoum' => 'wpsso-um',
 				) as $ext => $slug ) {
 					delete_option( $ext.'_uapi'.$api_version.'err' );
