@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Update Manager package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 1.10.1\n"
+"Project-Id-Version: WPSSO Update Manager 1.10.2-dev.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2018-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 
 #: lib/com/update.php:317 lib/com-gettext-extract.php:13
-#: lib/sitesubmenu/site-um-general.php:101 lib/submenu/um-general.php:78
+#: lib/sitesubmenu/site-um-general.php:96 lib/submenu/um-general.php:78
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
@@ -84,7 +84,7 @@ msgid ""
 "Pro add-ons."
 msgstr ""
 
-#: lib/filters.php:79 lib/sitesubmenu/site-um-general.php:64
+#: lib/filters.php:79 lib/sitesubmenu/site-um-general.php:66
 #: lib/submenu/um-general.php:49
 msgctxt "submit button"
 msgid "Check for Updates"
@@ -95,7 +95,7 @@ msgctxt "metabox title"
 msgid "Network Update Manager"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:94 lib/submenu/um-general.php:72
+#: lib/sitesubmenu/site-um-general.php:89 lib/submenu/um-general.php:72
 msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr ""

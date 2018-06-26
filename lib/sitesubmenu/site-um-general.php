@@ -55,8 +55,10 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 			/**
 			 * Add a class to set a minimum width for the network postboxes.
 			 */
-			add_filter( 'postbox_classes_'.$this->pagehook.'_'.$this->pagehook.'_general', 
-				array( $this, 'add_class_postbox_network' ) );
+			if ( class_exists( __CLASS__, 'add_class_postbox_network' ) ) {	// Since wpsso v4.6.0
+				add_filter( 'postbox_classes_'.$this->pagehook.'_'.$this->pagehook.'_general', 
+					array( $this, 'add_class_postbox_network' ) );
+			}
 		}
 
 		public function filter_action_buttons( $action_buttons ) {
@@ -64,13 +66,6 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 			$action_buttons[0]['check_for_updates'] = _x( 'Check for Updates', 'submit button', 'wpsso-um' );
 
 			return $action_buttons;
-		}
-
-		public function add_class_postbox_network( $classes ) {
-
-			$classes[] = 'postbox-network';
-
-			return $classes;
 		}
 
 		public function show_metabox_general() {
