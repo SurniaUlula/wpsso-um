@@ -69,6 +69,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 1.10.2-dev.3 (2018/06/26)**
+
+* *New Features*
+	* None
+* *Improvements*
+	* None
+* *Bugfixes*
+	* None
+* *Developer Notes*
+	* Moved the add_class_postbox_network() method to the extended WpssoAdmin class.
+
 **Version 1.10.1 (2018/06/08)**
 
 * *New Features*
@@ -80,18 +91,11 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *Developer Notes*
 	* None
 
-**Version 1.10.0 (2018/06/07)**
-
-* *New Features*
-	* None
-* *Improvements*
-	* None
-* *Bugfixes*
-	* None
-* *Developer Notes*
-	* Added 'qty_total' and 'qty_reg' to the update information array.
-
 == Upgrade Notice ==
+
+= 1.10.2-dev.3 =
+
+(2018/06/26) Moved the add_class_postbox_network() method to the extended WpssoAdmin class.
 
 = 1.10.1 =
 
