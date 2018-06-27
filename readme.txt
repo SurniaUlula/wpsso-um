@@ -69,7 +69,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.10.2-dev.3 (2018/06/26)**
+**Version 1.10.2-b.1 (2018/06/27)**
 
 * *New Features*
 	* None
@@ -93,9 +93,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.10.2-dev.3 =
+= 1.10.2-b.1 =
 
-(2018/06/26) Moved the add_class_postbox_network() method to the extended WpssoAdmin class.
+(2018/06/27) Moved the add_class_postbox_network() method to the extended WpssoAdmin class.
 
 = 1.10.1 =
 
