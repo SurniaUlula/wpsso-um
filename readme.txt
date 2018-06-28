@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires PHP: 5.4
 Requires At Least: 3.8
 Tested Up To: 4.9.6
-Stable Tag: 1.10.1
+Stable Tag: 1.10.2
 
 WPSSO Core add-on to provide updates for the WPSSO Core Pro plugin and its Pro add-ons.
 
@@ -96,8 +96,4 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 = 1.10.2 =
 
 (2018/06/28) Moved the add_class_postbox_network() method to the extended WpssoAdmin class.
-
-= 1.10.1 =
-
-(2018/06/08) Fixed a syntax issue when an error message is returned from an update check.
 
