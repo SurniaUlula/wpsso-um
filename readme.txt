@@ -38,16 +38,6 @@ WPSSO Update Manager (aka WPSSO UM) is an add-on for the [WPSSO Core plugin](htt
 
 == Frequently Asked Questions ==
 
-<h3 class="top">Frequently Asked Questions</h3>
-
-* None
-
-== Other Notes ==
-
-<h3 class="top">Additional Documentation</h3>
-
-* None
-
 == Screenshots ==
 
 01. Update Manager settings &mdash; customize the update check frequency (once a day by default) and/or choose to install one of the development versions.
