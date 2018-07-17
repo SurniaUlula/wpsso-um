@@ -62,24 +62,24 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 **Version 1.10.2 (2018/06/28)**
 
 * *New Features*
-	* None
+	* None.
 * *Improvements*
-	* None
+	* None.
 * *Bugfixes*
-	* None
+	* None.
 * *Developer Notes*
 	* Moved the add_class_postbox_network() method to the extended WpssoAdmin class.
 
 **Version 1.10.1 (2018/06/08)**
 
 * *New Features*
-	* None
+	* None.
 * *Improvements*
-	* None
+	* None.
 * *Bugfixes*
 	* Fixed a syntax issue when an error message is returned from an update check.
 * *Developer Notes*
-	* None
+	* None.
 
 == Upgrade Notice ==
 
