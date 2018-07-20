@@ -59,6 +59,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 1.11.0-b.2 (2018/07/20)**
+
+* *New Features*
+	* None.
+* *Improvements*
+	* Minor performance improvement by using a transient cache object for the add-on config array.
+* *Bugfixes*
+	* None.
+* *Developer Notes*
+	* None.
+
 **Version 1.10.2 (2018/06/28)**
 
 * *New Features*
@@ -70,18 +81,11 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *Developer Notes*
 	* Moved the add_class_postbox_network() method to the extended WpssoAdmin class.
 
-**Version 1.10.1 (2018/06/08)**
-
-* *New Features*
-	* None.
-* *Improvements*
-	* None.
-* *Bugfixes*
-	* Fixed a syntax issue when an error message is returned from an update check.
-* *Developer Notes*
-	* None.
-
 == Upgrade Notice ==
+
+= 1.11.0-b.2 =
+
+(2018/07/20) Minor performance improvement by using a transient cache object for the add-on config array.
 
 = 1.10.2 =
 
