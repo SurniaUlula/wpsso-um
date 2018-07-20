@@ -14,14 +14,15 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 	class SucomUpdate {
 	
 		private $p;
-		private $plugin_lca = '';
+		private $plugin_lca  = '';
 		private $plugin_slug = '';
 		private $text_domain = '';
-		private $cron_hook = '';
+		private $cron_hook   = '';
 		private $sched_hours = 24;
-		private $sched_name = 'every24hours';
-		private static $api_version = 2;
-		private static $upd_config = array();
+		private $sched_name  = 'every24hours';
+
+		private static $api_version  = 2;
+		private static $upd_config   = array();
 		private static $ext_versions = array();
 
 		public function __construct( &$plugin, $check_hours = 24, $text_domain = '' ) {
@@ -160,7 +161,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		public function get_config_keys( $include = null, $exclude = null, $read_cache = true ) {
 
 			$quiet = true;
-			$keys = array();
+			$keys  = array();
+
 			$this->set_config( $quiet, $read_cache );	// private method
 
 			/**
@@ -202,6 +204,19 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return $keys;
 		}
 
+		public function filter_save_options( $opts ) {
+
+			$cache_md5_pre  = $this->p->lca . '_';
+			$cache_salt     = __CLASS__ . '::upd_config';
+			$cache_id       = $cache_md5_pre . md5( $cache_salt );
+
+			delete_transient( $cache_id );
+
+			self::$upd_config = array();	// Reset the config array.
+
+			return $opts;
+		}
+
 		/**
 		 * $quiet is false by default, to show a warning if one or more development version filters are selected.
 		 */
@@ -211,11 +226,28 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->mark();
 			}
 
-			$has_pdir = $this->p->avail['*']['p_dir'];
-			$has_aop = $this->p->check->aop( $this->plugin_lca, true, $has_pdir, $read_cache );
-			$has_dev = false;
+			$cache_md5_pre  = $this->p->lca . '_';
+			$cache_exp_secs = HOUR_IN_SECONDS;
+			$cache_salt     = __CLASS__ . '::upd_config';
+			$cache_id       = $cache_md5_pre . md5( $cache_salt );
 
-			self::$upd_config = array();	// set / reset the config array
+			if ( $read_cache ) {
+
+				self::$upd_config = get_transient( $cache_id );
+
+				if ( ! empty( self::$upd_config ) ) {
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( 'config retrieved from transient cache' );
+					}
+					return;
+				}
+			}
+
+			self::$upd_config = array();	// Reset the config array.
+
+			$has_pdir = $this->p->avail['*']['p_dir'];
+			$has_aop  = $this->p->check->aop( $this->plugin_lca, true, $has_pdir, $read_cache );
+			$has_dev  = false;
 
 			foreach ( $this->p->cf['plugin'] as $ext => $info ) {
 
@@ -227,7 +259,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 
 				$auth_type = $this->get_auth_type( $ext );
-				$auth_id = $this->get_auth_id( $ext );
+				$auth_id   = $this->get_auth_id( $ext );
 
 				if ( $auth_type !== 'none' && empty( $auth_id ) ) {
 					if ( $this->p->debug->enabled ) {
@@ -280,25 +312,25 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					get_user_locale() : get_locale();
 
 				$auth_url = add_query_arg( array( 
-					'api_version' => self::$api_version,
+					'api_version'       => self::$api_version,
 					'installed_version' => $ext_version,
-					'version_filter' => $filter_name,
-					'sched_hours' => $this->sched_hours,
-					'locale' => $locale,
+					'version_filter'    => $filter_name,
+					'sched_hours'       => $this->sched_hours,
+					'locale'            => $locale,
 				), $auth_url );
 
 				self::$upd_config[$ext] = array(
-					'name' => $info['name'],
-					'short' => $info['short'],
-					'slug' => $info['slug'],				// wpsso
-					'base' => $info['base'],				// wpsso/wpsso.php
-					'api_version' => self::$api_version,
+					'name'              => $info['name'],
+					'short'             => $info['short'],
+					'slug'              => $info['slug'],				// wpsso
+					'base'              => $info['base'],				// wpsso/wpsso.php
+					'api_version'       => self::$api_version,
 					'installed_version' => $ext_version,
-					'version_filter' => $filter_name,
-					'json_url' => $auth_url,
-					'support_url' => isset( $info['url']['support'] ) ? $info['url']['support'] : '',
-					'data_expire' => 86100,					// plugin data expiration (almost 24 hours)
-					'option_name' => 'external_update-' . $info['slug'],	// external_update-wpsso
+					'version_filter'    => $filter_name,
+					'json_url'          => $auth_url,
+					'support_url'       => isset( $info['url']['support'] ) ? $info['url']['support'] : '',
+					'data_expire'       => 86100,					// plugin data expiration (almost 24 hours)
+					'option_name'       => 'external_update-' . $info['slug'],	// external_update-wpsso
 				);
 
 				if ( $this->p->debug->enabled ) {
@@ -318,6 +350,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 							'metabox title', $this->text_domain ) ) ), true, $dismiss_key, $dismiss_time, true );	// $no_unhide is true
 				}
 			}
+
+			set_transient( $cache_id, self::$upd_config, $cache_exp_secs );
+
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->log( 'config saved to transient cache for ' . $cache_exp_secs . ' seconds' );
+			}
 		}
 
 		private function install_hooks() {
@@ -325,6 +363,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
 			}
+
+			$this->p->util->add_plugin_filters( $this, array( 'save_options' => 1 ), -10000 );
 
 			if ( empty( self::$upd_config ) ) {
 				if ( $this->p->debug->enabled ) {
@@ -394,8 +434,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		public function check_wpua_value( $wpua ) {
+
 			global $wp_version;
+
 			$correct = 'WordPress/' . $wp_version . '; ' . SucomUpdateUtilWP::raw_home_url();
+
 			if ( $correct !== $wpua ) {
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( 'incorrect wpua for ' . $wpua );
@@ -585,14 +628,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			global $wp_version;
 
-			$has_pdir = $this->p->avail['*']['p_dir'];
-			$home_url = SucomUpdateUtilWP::raw_home_url();
-			$json_url = self::$upd_config[$ext]['json_url'];
+			$has_pdir    = $this->p->avail['*']['p_dir'];
+			$home_url    = SucomUpdateUtilWP::raw_home_url();
+			$json_url    = self::$upd_config[$ext]['json_url'];
 			$ext_version = $this->get_ext_version( $ext );
 
 			$cache_md5_pre = $this->plugin_lca . '_';
-			$cache_salt = 'SucomUpdate::plugin_data(json_url:' . $json_url . '_home_url:' . $home_url . ')';
-			$cache_id = $cache_md5_pre . md5( $cache_salt );
+			$cache_salt    = 'SucomUpdate::plugin_data(json_url:' . $json_url . '_home_url:' . $home_url . ')';
+			$cache_id      = $cache_md5_pre . md5( $cache_salt );
 
 			if ( $read_cache ) {
 				if ( isset( self::$upd_config[$ext]['plugin_data']->plugin ) ) {
@@ -662,7 +705,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				'sslverify'   => $ssl_verify,
 				'user-agent'  => $ua_wpid,
 				'headers'     => array(
-					'Accept' => 'application/json',
+					'Accept'         => 'application/json',
 					'X-WordPress-Id' => $ua_wpid
 				)
 			);
