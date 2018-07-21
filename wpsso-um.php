@@ -14,7 +14,7 @@
  * Requires PHP: 5.4
  * Requires At Least: 3.8
  * Tested Up To: 4.9.7
- * Version: 1.11.0-b.2
+ * Version: 1.11.0-rc.1
  * 
  * Version Numbering: {major}.{minor}.{bugfix}[-{stage}.{level}]
  *
@@ -191,7 +191,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			}
 
 			$cache_md5_pre = $this->p->lca . '_';
-			$cache_salt    = 'WpssoUm::cron_check';
+			$cache_salt    = __CLASS__ . '::cron_check';
 			$cache_id      = $cache_md5_pre . md5( $cache_salt );
 
 			/**

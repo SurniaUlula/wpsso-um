@@ -227,7 +227,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			$cache_md5_pre  = $this->p->lca . '_';
-			$cache_exp_secs = HOUR_IN_SECONDS;
+			$cache_exp_secs = WEEK_IN_SECONDS;
 			$cache_salt     = __CLASS__ . '::upd_config';
 			$cache_id       = $cache_md5_pre . md5( $cache_salt );
 

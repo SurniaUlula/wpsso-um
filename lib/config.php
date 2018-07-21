@@ -16,25 +16,25 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		public static $cf = array(
 			'plugin' => array(
 				'wpssoum' => array(			// Plugin acronym.
-					'version' => '1.11.0-b.2',		// Plugin version.
+					'version'     => '1.11.0-rc.1',	// Plugin version.
 					'opt_version' => '3',		// Increment when changing default option values.
-					'short' => 'WPSSO UM',		// Short plugin name.
-					'name' => 'WPSSO Update Manager',
-					'desc' => 'WPSSO Core add-on to provide updates for the WPSSO Core Pro plugin and its Pro add-ons.',
-					'slug' => 'wpsso-um',
-					'base' => 'wpsso-um/wpsso-um.php',
+					'short'       => 'WPSSO UM',	// Short plugin name.
+					'name'        => 'WPSSO Update Manager',
+					'desc'        => 'WPSSO Core add-on to provide updates for the WPSSO Core Pro plugin and its Pro add-ons.',
+					'slug'        => 'wpsso-um',
+					'base'        => 'wpsso-um/wpsso-um.php',
 					'update_auth' => '',
 					'text_domain' => 'wpsso-um',
 					'domain_path' => '/languages',
 					'req' => array(
-						'short' => 'WPSSO Core',
-						'name' => 'WPSSO Core',
+						'short'       => 'WPSSO Core',
+						'name'        => 'WPSSO Core',
 						'min_version' => '3.49.0',	// 2018/01/14
-						'rec_version' => '4.9.0-b.2',
+						'rec_version' => '4.9.0-rc.1',
 					),
 					'img' => array(
 						'icons' => array(
-							'low' => 'images/icon-128x128.png',
+							'low'  => 'images/icon-128x128.png',
 							'high' => 'images/icon-256x256.png',
 						),
 					),
