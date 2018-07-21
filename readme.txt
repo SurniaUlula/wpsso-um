@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.11.0-b.2 (2018/07/20)**
+**Version 1.11.0-rc.1 (2018/07/21)**
 
 * *New Features*
 	* None.
@@ -83,9 +83,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.11.0-b.2 =
+= 1.11.0-rc.1 =
 
-(2018/07/20) Minor performance improvement by using a transient cache object for the add-on config array.
+(2018/07/21) Minor performance improvement by using a transient cache object for the add-on config array.
 
 = 1.10.2 =
 
