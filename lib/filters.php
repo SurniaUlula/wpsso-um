@@ -35,7 +35,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			}
 
 			$this->p->util->add_plugin_filters( $this, array( 
-				'get_defaults' => 1,			// option defaults
+				'get_defaults'      => 1,		// option defaults
 				'get_site_defaults' => 1,		// site option defaults
 			) );
 
@@ -45,7 +45,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 				$this->p->util->add_plugin_actions( $this, array( 
 					'column_metabox_version_info_table_rows' => 2,
-					'load_setting_page_check_for_updates' => 4,
+					'load_setting_page_check_for_updates'    => 4,
 				) );
 
 				$this->p->util->add_plugin_filters( $this, array( 
