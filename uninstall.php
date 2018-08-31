@@ -15,5 +15,5 @@ $plugin_filepath = $plugin_dir . 'wpsso-um.php';
 require_once $plugin_dir . 'lib/config.php';
 
 WpssoUmConfig::set_constants( $plugin_filepath );
-WpssoUmConfig::require_libs( $plugin_filepath );	// includes the register.php class library
+WpssoUmConfig::require_libs( $plugin_filepath );	// Includes the register.php class library.
 WpssoUmRegister::network_uninstall();

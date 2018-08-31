@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Update Manager package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 1.11.1-dev.2\n"
+"Project-Id-Version: WPSSO Update Manager 1.11.1-dev.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2018-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -84,7 +84,7 @@ msgid ""
 "Pro add-ons."
 msgstr ""
 
-#: lib/filters.php:79 lib/sitesubmenu/site-um-general.php:66
+#: lib/filters.php:81 lib/sitesubmenu/site-um-general.php:66
 #: lib/submenu/um-general.php:49
 msgctxt "submit button"
 msgid "Check for Updates"
