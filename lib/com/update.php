@@ -353,7 +353,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 					$this->p->notice->warn( sprintf( __( 'Please note that one or more non-stable / development %s have been selected.',
 						$this->text_domain ), $this->p->util->get_admin_url( 'um-general', _x( 'Update Version Filters',
-							'metabox title', $this->text_domain ) ) ), true, $dismiss_key, $dismiss_time, true );	// $no_unhide is true
+							'metabox title', $this->text_domain ) ) ), true, $dismiss_key, $dismiss_time );
 				}
 			}
 
