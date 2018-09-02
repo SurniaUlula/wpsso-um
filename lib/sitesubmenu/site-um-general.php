@@ -14,6 +14,7 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 	class WpssoUmSitesubmenuSiteumgeneral extends WpssoAdmin {
 
 		public function __construct( &$plugin, $id, $name, $lib, $ext ) {
+
 			$this->p =& $plugin;
 
 			if ( $this->p->debug->enabled ) {

@@ -26,6 +26,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		private static $ext_versions = array();
 
 		public function __construct( &$plugin, $check_hours = 24, $text_domain = '' ) {
+
 			$this->p =& $plugin;
 
 			if ( $this->p->debug->enabled ) {
