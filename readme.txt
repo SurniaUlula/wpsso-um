@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.11.1-dev.4 (2018/08/31)**
+**Version 1.11.1-dev.5 (2018/09/02)**
 
 * *New Features*
 	* None.
@@ -68,7 +68,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *Bugfixes*
 	* None.
 * *Developer Notes*
-	* Minor update for code style and changes in WPSSO v4.11.2.
+	* Minor update for code style and changes in WPSSO v4.12.0.
 
 **Version 1.11.0 (2018/07/22)**
 
@@ -94,9 +94,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.11.1-dev.4 =
+= 1.11.1-dev.5 =
 
-(2018/08/31) Minor update for code style and changes in WPSSO v4.11.2.
+(2018/09/02) Minor update for code style and changes in WPSSO v4.12.0.
 
 = 1.11.0 =
 
