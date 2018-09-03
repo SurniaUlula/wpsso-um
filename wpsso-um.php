@@ -14,7 +14,7 @@
  * Requires PHP: 5.4
  * Requires At Least: 3.8
  * Tested Up To: 4.9.8
- * Version: 1.11.1-dev.5
+ * Version: 1.11.1-dev.6
  * 
  * Version Numbering: {major}.{minor}.{bugfix}[-{stage}.{level}]
  *
@@ -45,7 +45,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		/**
 		 * Reference Variables (config, options, modules, etc.).
 		 */
-		private $check_hours = 24;
+		private $check_hours  = 24;
 		private $have_req_min = true;	// Have minimum wpsso version.
 
 		private static $instance;
@@ -174,9 +174,10 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			}
 
 			$info = WpssoUmConfig::$cf['plugin']['wpssoum'];
+
 			$this->check_hours = $this->get_update_check_hours();
-			$this->filters = new WpssoUmFilters( $this->p );
-			$this->update  = new SucomUpdate( $this->p, $this->check_hours, $info['text_domain'] );
+			$this->filters     = new WpssoUmFilters( $this->p );
+			$this->update      = new SucomUpdate( $this->p, $this->check_hours, $info['text_domain'] );
 		}
 
 		public function wpsso_init_plugin() {
@@ -210,7 +211,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 						continue;
 					}
 
-					$now_time        = time();
+					$current_time    = time();
 					$last_check_time = $this->update->get_umsg( $ext, 'time' ); // get the last update check timestamp
 					$last_plus_week  = $last_check_time + WEEK_IN_SECONDS;
 					$next_sched_time = $last_check_time + ( $this->check_hours * HOUR_IN_SECONDS ); // estimate the next scheduled check
@@ -219,11 +220,14 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 					/**
 					 * Force an update check if no last time, more than 1 day overdue, or more than 1 week ago.
 					 */
-					if ( empty( $last_check_time ) || $next_plus_day < $now_time || $last_plus_week < $now_time ) {
+					if ( empty( $last_check_time ) || $next_plus_day < $current_time || $last_plus_week < $current_time ) {
 
 						if ( $this->p->debug->enabled ) {
+
 							$dismiss_key = __FUNCTION__ . '_' . $ext . '_update_check';
+
 							$this->p->debug->log( 'requesting update check for ' . $ext );
+
 							$this->p->notice->inf( sprintf( __( 'Performing an update check for the %s plugin.',
 								'wpsso-um' ), $info['name'] ), true, $dismiss_key, true );
 						}
@@ -238,8 +242,9 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 		private function min_version_notice() {
 
-			$info = WpssoUmConfig::$cf['plugin']['wpssoum'];
+			$info         = WpssoUmConfig::$cf['plugin']['wpssoum'];
 			$have_version = $this->p->cf['plugin']['wpsso']['version'];
+
 			$error_msg = sprintf( __( 'The %1$s version %2$s add-on requires %3$s version %4$s or newer (version %5$s is currently installed).',
 				'wpsso-um' ), $info['name'], $info['version'], $info['req']['short'], $info['req']['min_version'], $have_version );
 
@@ -255,7 +260,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 			$check_hours = 24;
 			$const_hours = SucomUtil::get_const( 'WPSSOUM_CHECK_HOURS', null );	// return null if not defined
-			$opt_hours = isset( $this->p->options['update_check_hours'] ) ? $this->p->options['update_check_hours'] : 24;
+			$opt_hours   = isset( $this->p->options['update_check_hours'] ) ? $this->p->options['update_check_hours'] : 24;
 
 			if ( $const_hours !== null ) {
 				$check_hours = $const_hours >= 12 ? WPSSOUM_CHECK_HOURS : 12;
