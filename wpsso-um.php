@@ -224,12 +224,12 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 						if ( $this->p->debug->enabled ) {
 
-							$dismiss_key = __FUNCTION__ . '_' . $ext . '_update_check';
+							$notice_key = __FUNCTION__ . '_' . $ext . '_update_check';
 
 							$this->p->debug->log( 'requesting update check for ' . $ext );
 
 							$this->p->notice->inf( sprintf( __( 'Performing an update check for the %s plugin.',
-								'wpsso-um' ), $info['name'] ), true, $dismiss_key, true );
+								'wpsso-um' ), $info['name'] ), null, $notice_key, true );
 						}
 
 						$this->update->check_ext_for_updates( $ext, true, false );	// $quiet = true, $use_cache = false

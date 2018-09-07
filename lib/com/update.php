@@ -137,9 +137,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					}
 
 					if ( ! $quiet || $this->p->debug->enabled ) {
-						$dismiss_key = __FUNCTION__ . '_' . $ext . '_' . $info['option_name'];
+
+						$notice_key = __FUNCTION__ . '_' . $ext . '_' . $info['option_name'];
+
 						$this->p->notice->inf( sprintf( __( 'Update information for %s has been retrieved and saved.',
-							$this->text_domain ), $info['name'] ), true, $dismiss_key, true );
+							$this->text_domain ), $info['name'] ), null, $notice_key, true );
 					}
 
 				} else {
@@ -349,12 +351,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				if ( $has_dev && $this->p->notice->is_admin_pre_notices() ) {
 
-					$dismiss_key = 'non-stable-update-version-filters-selected';
+					$notice_key   = 'non-stable-update-version-filters-selected';
 					$dismiss_time = MONTH_IN_SECONDS * 3;
 
 					$this->p->notice->warn( sprintf( __( 'Please note that one or more non-stable / development %s have been selected.',
 						$this->text_domain ), $this->p->util->get_admin_url( 'um-general', _x( 'Update Version Filters',
-							'metabox title', $this->text_domain ) ) ), true, $dismiss_key, $dismiss_time );
+							'metabox title', $this->text_domain ) ) ), null, $notice_key, $dismiss_time );
 				}
 			}
 
