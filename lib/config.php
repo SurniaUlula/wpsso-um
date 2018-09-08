@@ -16,7 +16,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		public static $cf = array(
 			'plugin' => array(
 				'wpssoum' => array(			// Plugin acronym.
-					'version'     => '1.11.1-rc.1',	// Plugin version.
+					'version'     => '1.11.1-rc.2',	// Plugin version.
 					'opt_version' => '3',		// Increment when changing default option values.
 					'short'       => 'WPSSO UM',	// Short plugin name.
 					'name'        => 'WPSSO Update Manager',
@@ -30,7 +30,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 						'short'       => 'WPSSO Core',
 						'name'        => 'WPSSO Core',
 						'min_version' => '3.50.0',	// 2018/01/27
-						'rec_version' => '4.12.0-rc.1',
+						'rec_version' => '4.12.0-rc.2',
 					),
 					'img' => array(
 						'icons' => array(
@@ -66,12 +66,12 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 				return;
 			}
 
-			define( 'WPSSOUM_VERSION', self::$cf['plugin']['wpssoum']['version'] );						
 			define( 'WPSSOUM_FILEPATH', $plugin_filepath );						
+			define( 'WPSSOUM_PLUGINBASE', self::$cf['plugin']['wpssoum']['base'] );		// wpsso-um/wpsso-um.php
 			define( 'WPSSOUM_PLUGINDIR', trailingslashit( realpath( dirname( $plugin_filepath ) ) ) );
 			define( 'WPSSOUM_PLUGINSLUG', self::$cf['plugin']['wpssoum']['slug'] );		// wpsso-um
-			define( 'WPSSOUM_PLUGINBASE', self::$cf['plugin']['wpssoum']['base'] );		// wpsso-um/wpsso-um.php
 			define( 'WPSSOUM_URLPATH', trailingslashit( plugins_url( '', $plugin_filepath ) ) );
+			define( 'WPSSOUM_VERSION', self::$cf['plugin']['wpssoum']['version'] );						
 		}
 
 		public static function require_libs( $plugin_filepath ) {
