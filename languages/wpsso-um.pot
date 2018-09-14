@@ -49,24 +49,24 @@ msgid ""
 "error message is incorrect or inaccurate."
 msgstr ""
 
-#: lib/com/update.php:763 lib/com-gettext-extract.php:10
+#: lib/com/update.php:764 lib/com-gettext-extract.php:10
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr ""
 
-#: lib/com/update.php:879 lib/com-gettext-extract.php:12
+#: lib/com/update.php:880 lib/com-gettext-extract.php:12
 msgid "WordPress library file %s is missing and required."
 msgstr ""
 
-#: lib/com/update.php:905 lib/com-gettext-extract.php:5
+#: lib/com/update.php:906 lib/com-gettext-extract.php:5
 msgid "https://developer.wordpress.org/reference/functions/get_plugins/"
 msgstr ""
 
-#: lib/com/update.php:907 lib/com-gettext-extract.php:8
+#: lib/com/update.php:908 lib/com-gettext-extract.php:8
 msgid ""
 "The <a href=\"%1$s\">WordPress %2$s function</a> is missing and required."
 msgstr ""
 
-#: lib/com/update.php:936 lib/com-gettext-extract.php:7
+#: lib/com/update.php:937 lib/com-gettext-extract.php:7
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."
