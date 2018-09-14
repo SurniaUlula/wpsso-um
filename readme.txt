@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires PHP: 5.4
 Requires At Least: 3.8
 Tested Up To: 4.9.8
-Stable Tag: 1.11.1
+Stable Tag: 1.11.2
 
 WPSSO Core add-on to provide updates for the WPSSO Core Pro plugin and its Pro add-ons.
 
@@ -59,42 +59,20 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.11.1 (2018/09/09)**
+**Version 1.11.2 (2018/09/14)**
 
 * *New Features*
 	* None.
 * *Improvements*
 	* None.
 * *Bugfixes*
-	* None.
-* *Developer Notes*
-	* Minor update for code style and changes in WPSSO v4.12.0.
-
-**Version 1.11.0 (2018/07/22)**
-
-* *New Features*
-	* None.
-* *Improvements*
-	* Minor performance improvement by using a transient cache object for the add-on config array.
-* *Bugfixes*
-	* None.
+	* Fixed missing arguments in an inconsistency check error message.
 * *Developer Notes*
 	* None.
-
-**Version 1.10.2 (2018/06/28)**
-
-* *New Features*
-	* None.
-* *Improvements*
-	* None.
-* *Bugfixes*
-	* None.
-* *Developer Notes*
-	* Moved the add_class_postbox_network() method to the extended WpssoAdmin class.
 
 == Upgrade Notice ==
 
-= 1.11.1 =
+= 1.11.2 =
 
-(2018/09/09) Minor update for code style and changes in WPSSO v4.12.0.
+(2018/09/14) Fixed missing arguments in an inconsistency check error message.
 
