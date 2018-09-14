@@ -1,6 +1,7 @@
 <?php die( 'These aren\'t the droids you\'re looking for...' );
 // extract of translatable text strings from common library classes
-__( 'An inconsistency was found in the %1$s update server address &mdash; the IPv4 address (%2$s) from the local host does not match the DNS IPv4 address ($3%s).', 'wpsso-um' );
+__( 'An error was returned while getting update information for %s.', 'wpsso-um' );
+__( 'An inconsistency was found in the %1$s update server address &mdash; the IPv4 address (%2$s) from the local host does not match the DNS IPv4 address (%3$s).', 'wpsso-um' );
 __( 'Failed saving retrieved update information for %s.', 'wpsso-um' );
 __( 'https://developer.wordpress.org/reference/functions/get_plugins/', 'wpsso-um' );
 __( 'Please note that one or more non-stable / development %s have been selected.', 'wpsso-um' );
