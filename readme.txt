@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.11.2 (2018/09/14)**
+**Version 1.11.2 (2018/09/15)**
 
 * *New Features*
 	* None.
@@ -74,5 +74,5 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = 1.11.2 =
 
-(2018/09/14) Fixed missing arguments in an inconsistency check error message.
+(2018/09/15) Fixed missing arguments in an inconsistency check error message.
 
