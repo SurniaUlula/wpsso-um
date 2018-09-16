@@ -721,7 +721,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			if ( $host_cache[$json_host]['ip'] !== $host_cache[$json_host]['a'] ) {
 
-				// translators: %1$s is the plugin name, %2$s is an IPv4 address, and %3$s is an IPv4 address
 				$error_msg = sprintf( __( 'An inconsistency was found in the %1$s update server address &mdash; the IPv4 address (%2$s) from the local host does not match the DNS IPv4 address (%3$s).', $this->text_domain ), self::$upd_config[$ext]['name'], $host_cache[$json_host]['ip'], $host_cache[$json_host]['a'] ) . ' ';
 				
 				$error_msg .= sprintf( __( 'Update checks for %1$s are disabled while this inconsistency persists.', $this->text_domain ), self::$upd_config[$ext]['short'] );
