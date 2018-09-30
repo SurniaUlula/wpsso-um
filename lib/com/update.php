@@ -79,35 +79,53 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$ext_config = array();
 
 			if ( empty( $check_ext ) ) {
+
 				$ext_config = self::$upd_config;	// Check all plugins defined.
+
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( 'checking all known plugins for updates' );
 				}
+
 			} elseif ( is_array( $check_ext ) ) {
+
 				foreach ( $check_ext as $ext ) {
 					if ( isset( self::$upd_config[$ext] ) ) {
 						$ext_config[$ext] = self::$upd_config[$ext];
 					}
 				}
+
 			} elseif ( is_string( $check_ext ) ) {
+
 				if ( isset( self::$upd_config[$check_ext] ) ) {
 					$ext_config[$check_ext] = self::$upd_config[$check_ext];
 				}
 			}
 
 			if ( empty( $ext_config ) ) {
+
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( 'exiting early: no plugins to check for updates' );
 				}
+
+				if ( ! $quiet || $this->p->debug->enabled ) {
+
+					$notice_key = __FUNCTION__ . '_no_plugins_defined';
+
+					$this->p->notice->err( sprintf( __( 'No plugins defined for updates.',
+						$this->text_domain ), $info['name'] ), null, $notice_key );
+				}
+
 				return;
 			}
 
 			foreach ( $ext_config as $ext => $info ) {
 
 				if ( ! self::is_installed( $ext ) ) {
+
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext . ' plugin: not installed' );
 					}
+
 					continue;
 				}
 
@@ -142,10 +160,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 						if ( ! $quiet || $this->p->debug->enabled ) {
 
-							$notice_key = __FUNCTION__ . '_' . $ext . '_' . $info['option_name'];
+							$notice_key = __FUNCTION__ . '_' . $ext . '_' . $info['option_name'] . '_success';
 
 							$this->p->notice->inf( sprintf( __( 'Update information for %s has been retrieved and saved.',
-								$this->text_domain ), $info['name'] ), null, $notice_key, true );
+								$this->text_domain ), $info['name'] ), null, $notice_key );
 						}
 
 					} else {
@@ -156,8 +174,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 						if ( ! $quiet || $this->p->debug->enabled ) {
 
+							$notice_key = __FUNCTION__ . '_' . $ext . '_' . $info['option_name'] . '_error_returned';
+
 							$this->p->notice->warn( sprintf( __( 'An error was returned while getting update information for %s.',
-								$this->text_domain ), $info['name'] ) );
+								$this->text_domain ), $info['name'] ), null, $notice_key );
 						}
 					}
 
@@ -168,8 +188,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					}
 
 					if ( ! $quiet || $this->p->debug->enabled ) {
+
+						$notice_key = __FUNCTION__ . '_' . $ext . '_' . $info['option_name'] . '_failed_saving';
+
 						$this->p->notice->err( sprintf( __( 'Failed saving retrieved update information for %s.',
-							$this->text_domain ), $info['name'] ) );
+							$this->text_domain ), $info['name'] ), null, $notice_key );
 					}
 				}
 			}
@@ -574,17 +597,23 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$update_data = self::get_option_data( $ext );
 
 				if ( empty( $update_data ) ) {
+
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext . ' plugin: update option is empty' );
 					}
+
 				} elseif ( empty( $update_data->update ) ) {
+
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext . ' plugin: no update information' );
 					}
+
 				} elseif ( ! is_object( $update_data->update ) ) {
+
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext . ' plugin: update property is not an object' );
 					}
+
 				} elseif ( ( $ext_version = $this->get_ext_version( $ext ) ) &&
 					version_compare( $update_data->update->version, $ext_version, '>' ) ) {
 

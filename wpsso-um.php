@@ -232,7 +232,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 								'wpsso-um' ), $info['name'] ), null, $notice_key, true );
 						}
 
-						$this->update->check_ext_for_updates( $ext, true, false );	// $quiet = true, $use_cache = false
+						$this->update->check_ext_for_updates( $ext, $quiet = true, $read_cache = false );
 					}
 				}
 

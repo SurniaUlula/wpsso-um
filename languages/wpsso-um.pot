@@ -12,64 +12,68 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: lib/com/update.php:147 lib/com-gettext-extract.php:12
+#: lib/com/update.php:114 lib/com-gettext-extract.php:7
+msgid "No plugins defined for updates."
+msgstr ""
+
+#: lib/com/update.php:165 lib/com-gettext-extract.php:13
 msgid "Update information for %s has been retrieved and saved."
 msgstr ""
 
-#: lib/com/update.php:159 lib/com-gettext-extract.php:3
+#: lib/com/update.php:179 lib/com-gettext-extract.php:3
 msgid "An error was returned while getting update information for %s."
 msgstr ""
 
-#: lib/com/update.php:171 lib/com-gettext-extract.php:5
+#: lib/com/update.php:194 lib/com-gettext-extract.php:5
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:381 lib/com-gettext-extract.php:7
+#: lib/com/update.php:404 lib/com-gettext-extract.php:8
 msgid ""
 "Please note that one or more non-stable / development %s have been selected."
 msgstr ""
 
-#: lib/com/update.php:382 lib/com-gettext-extract.php:14
+#: lib/com/update.php:405 lib/com-gettext-extract.php:15
 #: lib/sitesubmenu/site-um-general.php:97 lib/submenu/um-general.php:79
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
 
-#: lib/com/update.php:724 lib/com-gettext-extract.php:4
+#: lib/com/update.php:753 lib/com-gettext-extract.php:4
 msgid ""
 "An inconsistency was found in the %1$s update server address &mdash; the "
 "IPv4 address (%2$s) from the local host does not match the DNS IPv4 address "
 "(%3$s)."
 msgstr ""
 
-#: lib/com/update.php:726 lib/com-gettext-extract.php:10
+#: lib/com/update.php:755 lib/com-gettext-extract.php:11
 msgid "Update checks for %1$s are disabled while this inconsistency persists."
 msgstr ""
 
-#: lib/com/update.php:729 lib/com-gettext-extract.php:15
+#: lib/com/update.php:758 lib/com-gettext-extract.php:16
 msgid ""
 "You may <a href=\"%1$s\">open a new support ticket</a> if you believe this "
 "error message is incorrect or inaccurate."
 msgstr ""
 
-#: lib/com/update.php:794 lib/com-gettext-extract.php:11
+#: lib/com/update.php:823 lib/com-gettext-extract.php:12
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr ""
 
-#: lib/com/update.php:910 lib/com-gettext-extract.php:13
+#: lib/com/update.php:939 lib/com-gettext-extract.php:14
 msgid "WordPress library file %s is missing and required."
 msgstr ""
 
-#: lib/com/update.php:936 lib/com-gettext-extract.php:6
+#: lib/com/update.php:965 lib/com-gettext-extract.php:6
 msgid "https://developer.wordpress.org/reference/functions/get_plugins/"
 msgstr ""
 
-#: lib/com/update.php:938 lib/com-gettext-extract.php:9
+#: lib/com/update.php:967 lib/com-gettext-extract.php:10
 msgid ""
 "The <a href=\"%1$s\">WordPress %2$s function</a> is missing and required."
 msgstr ""
 
-#: lib/com/update.php:967 lib/com-gettext-extract.php:8
+#: lib/com/update.php:996 lib/com-gettext-extract.php:9
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."
@@ -87,10 +91,14 @@ msgid ""
 "Pro add-ons."
 msgstr ""
 
-#: lib/filters.php:82 lib/sitesubmenu/site-um-general.php:67
+#: lib/filters.php:84 lib/sitesubmenu/site-um-general.php:67
 #: lib/submenu/um-general.php:50
 msgctxt "submit button"
 msgid "Check for Updates"
+msgstr ""
+
+#: lib/filters.php:107
+msgid "Plugin and add-on information has been refreshed."
 msgstr ""
 
 #: lib/sitesubmenu/site-um-general.php:53

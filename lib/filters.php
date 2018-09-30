@@ -68,17 +68,19 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 			$wpssoum =& WpssoUm::get_instance();
 
-			$wpssoum->update->check_all_for_updates( true, false );		// $quiet = true, $use_cache = false
+			$wpssoum->update->check_all_for_updates( $quiet = true, $read_cache = false );
 		}
 
 		public function action_column_metabox_version_info_table_rows( $table_cols, $form ) {
+
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
 			}
 
 			$lca = isset( $this->p->lca ) ? $this->p->lca : $this->p->cf['lca'];
-			$check_admin_url = $this->p->util->get_admin_url( '?'.$lca.'-action=check_for_updates' );
-			$check_admin_url = wp_nonce_url( $check_admin_url, WpssoAdmin::get_nonce_action(), WPSSO_NONCE_NAME );
+
+			$check_admin_url    = $this->p->util->get_admin_url( '?'.$lca.'-action=check_for_updates' );
+			$check_admin_url    = wp_nonce_url( $check_admin_url, WpssoAdmin::get_nonce_action(), WPSSO_NONCE_NAME );
 			$check_label_transl = _x( 'Check for Updates', 'submit button', 'wpsso-um' );
 
 			echo '<tr><td colspan="'.$table_cols.'">';
@@ -95,12 +97,14 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			$lca = isset( $this->p->lca ) ? $this->p->lca : $this->p->cf['lca'];
 
 			foreach ( $this->p->cf['plugin'] as $ext => $info ) {
-				$this->p->admin->get_readme_info( $ext, false );	// $use_cache = false
+				$this->p->admin->get_readme_info( $ext, $use_cache = false );
 			}
 
 			$wpssoum =& WpssoUm::get_instance();
 
-			$wpssoum->update->check_all_for_updates( false, false );	// $quiet = false, $use_cache = false
+			$wpssoum->update->check_all_for_updates( $quiet = false, $read_cache = false );
+
+			$this->p->notice->upd( __( 'Plugin and add-on information has been refreshed.', 'wpsso' ) );
 		}
 
 		public function filter_get_defaults( $def_opts ) {
