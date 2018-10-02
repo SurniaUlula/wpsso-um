@@ -57,7 +57,7 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 			 * Add a class to set a minimum width for the network postboxes.
 			 */
 			if ( class_exists( __CLASS__, 'add_class_postbox_network' ) ) {	// Since wpsso v4.6.0
-				add_filter( 'postbox_classes_'.$this->pagehook.'_'.$this->pagehook.'_general', 
+				add_filter( 'postbox_classes_' . $this->pagehook . '_' . $this->pagehook . '_general', 
 					array( $this, 'add_class_postbox_network' ) );
 			}
 		}
@@ -93,7 +93,7 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 						$this->p->cf['um']['check_hours'], 'update_filter', '', true ).'</td>'.
 					WpssoAdmin::get_option_site_use( 'update_check_hours', $this->form, true, true );
 
-					$table_rows['subsection_version_filters'] = '<td></td><td class="subsection" colspan="3"><h4>'.
+					$table_rows['subsection_version_filters'] = '<td colspan="4" class="subsection"><h4>'.
 						_x( 'Update Version Filters', 'metabox title', 'wpsso-um' ).'</h4></td>';
 
 					$version_filter = $this->p->cf['um']['version_filter'];
