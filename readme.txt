@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.12.0-dev.3 (2018/10/01)**
+**Version 1.12.0-dev.4 (2018/10/01)**
 
 * *New Features*
 	* None.
@@ -83,7 +83,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.12.0-dev.3 =
+= 1.12.0-dev.4 =
 
 (2018/10/01) Added a success notice after clicking the "Check for Updates" button.
 
