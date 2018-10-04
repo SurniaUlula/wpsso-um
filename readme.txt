@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires PHP: 5.4
 Requires At Least: 3.8
 Tested Up To: 4.9.8
-Stable Tag: 1.11.2
+Stable Tag: 1.12.0
 
 WPSSO Core add-on to provide updates for the WPSSO Core Pro plugin and its Pro add-ons.
 
@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.12.0-dev.6 (2018/10/03)**
+**Version 1.12.0 (2018/10/04)**
 
 * *New Features*
 	* None.
@@ -70,24 +70,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *Developer Notes*
 	* None.
 
-**Version 1.11.2 (2018/09/16)**
-
-* *New Features*
-	* None.
-* *Improvements*
-	* None.
-* *Bugfixes*
-	* Fixed missing arguments in an inconsistency check error message.
-* *Developer Notes*
-	* None.
-
 == Upgrade Notice ==
 
-= 1.12.0-dev.6 =
+= 1.12.0 =
 
-(2018/10/03) Added a success notice after clicking the "Check for Updates" button.
-
-= 1.11.2 =
-
-(2018/09/16) Fixed missing arguments in an inconsistency check error message.
+(2018/10/04) Added a success notice after clicking the "Check for Updates" button.
 
