@@ -50,7 +50,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				) );
 
 				$this->p->util->add_plugin_filters( $this, array( 
-					'readme_upgrade_notices' => 2, 
+					'readme_upgrade_notices'  => 2, 
 					'newer_version_available' => 5, 
 					'option_type' => 2,		// define the value type for each option
 				) );
