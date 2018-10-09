@@ -692,9 +692,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			if ( empty( self::$upd_config[$ext]['json_url'] ) ) {
+
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( $ext . ' plugin: exiting early - update json_url is empty' );
 				}
+
 				return null;
 			}
 
@@ -729,11 +731,30 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			$plugin_data = null;
+			
+			$open_ticket_msg = empty( self::$upd_config[$ext]['support_url'] ) ? '' : ' ' .
+				sprintf( __( 'You may <a href="%1$s">open a new support ticket</a> if you believe this error message is incorrect or inaccurate.',
+					$this->text_domain ), self::$upd_config[$ext]['support_url'] );
+
 
 			/**
 			 * Check the local resolver and DNS IPv4 values for inconsistencies.
 			 */
-			$json_host = preg_replace( '/^.*:\/\/([^\/]+)\/.*$/', '$1', $json_url );
+			$json_host = preg_replace( '/^https?:\/\/([^\/]+)\/.*$/', '$1', $json_url );
+
+			if ( empty( $json_host ) || $json_host === $json_url ) {
+
+				$json_host = preg_replace( '/\?.*$/', '', $json_url );
+
+				$error_msg = sprintf( __( 'An inconsistency was found in the %1$s update server information &mdash; the update server URL (%2$s) does not appear to be a valid URL.', $this->text_domain ), self::$upd_config[$ext]['name'], $json_host ) . ' ' . sprintf( __( 'Update checks for %1$s are disabled while this inconsistency persists.', $this->text_domain ), self::$upd_config[$ext]['short'] ) . $open_ticket_msg;
+
+				self::$upd_config[$ext]['uerr']        = self::set_umsg( $ext, 'err', $error_msg );
+				self::$upd_config[$ext]['plugin_data'] = $plugin_data;
+
+				set_transient( $cache_id, new stdClass, self::$upd_config[$ext]['data_expire'] );
+
+				return $plugin_data;	// Returns null.
+			}
 
 			static $host_cache = array(); // Local cache to lookup the host ip only once.
 
@@ -750,13 +771,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			if ( $host_cache[$json_host]['ip'] !== $host_cache[$json_host]['a'] ) {
 
-				$error_msg = sprintf( __( 'An inconsistency was found in the %1$s update server address &mdash; the IPv4 address (%2$s) from the local host does not match the DNS IPv4 address (%3$s).', $this->text_domain ), self::$upd_config[$ext]['name'], $host_cache[$json_host]['ip'], $host_cache[$json_host]['a'] ) . ' ';
-				
-				$error_msg .= sprintf( __( 'Update checks for %1$s are disabled while this inconsistency persists.', $this->text_domain ), self::$upd_config[$ext]['short'] );
-
-				if ( ! empty( self::$upd_config[$ext]['support_url'] ) ) {
-					$error_msg .= ' ' . sprintf( __( 'You may <a href="%1$s">open a new support ticket</a> if you believe this error message is incorrect or inaccurate.', $this->text_domain ), self::$upd_config[$ext]['support_url'] );
-				}
+				$error_msg = sprintf( __( 'An inconsistency was found in the %1$s update server information &mdash; the IPv4 address (%2$s) from the local host does not match the DNS IPv4 address (%3$s).', $this->text_domain ), self::$upd_config[$ext]['name'], $host_cache[$json_host]['ip'], $host_cache[$json_host]['a'] ) . ' ' . sprintf( __( 'Update checks for %1$s are disabled while this inconsistency persists.', $this->text_domain ), self::$upd_config[$ext]['short'] ) . $open_ticket_msg;
 
 				self::$upd_config[$ext]['uerr']        = self::set_umsg( $ext, 'err', $error_msg );
 				self::$upd_config[$ext]['plugin_data'] = $plugin_data;
