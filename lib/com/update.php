@@ -332,9 +332,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$ext_version = $this->get_ext_version( $ext );
 
 				if ( false === $ext_version ) {
+
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext . ' plugin: skipped - version is false' );
 					}
+
 					continue;
 				}
 
@@ -345,9 +347,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 
 				if ( $filter_name !== 'stable' ) {
+
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext . ' plugin: non-stable filter found' );
 					}
+
 					$has_dev = true;
 				}
 
