@@ -375,8 +375,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				/**
 				 * Add the auth type and id to the update url.
 				 */
-				$auth_url = $info['url']['update'];
-
 				$inconsistency_msg = sprintf( __( 'An inconsistency was found in the %1$s update server information &mdash;',
 					$this->text_domain ), $info[ 'name' ] );
 
@@ -386,6 +384,28 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$update_disabled_msg .= empty( $info['url']['support'] ) ? '' : ' ' .
 					sprintf( __( 'You may <a href="%1$s">open a new support ticket</a> if you believe this error message is incorrect.',
 						$this->text_domain ), $info['url']['support'] );
+
+				if ( filter_var( $info['url']['update'], FILTER_VALIDATE_URL ) === false ) {	// Invalid url.
+
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( $ext . ' plugin: config update url is invalid (' . $info['url']['update'] . ')' );
+					}
+
+					$error_msg = $inconsistency_msg . ' ' . 
+						sprintf( __( 'the update URL provided by the plugin configuration is invalid (%1$s).',
+							$this->text_domain ), $info['url']['update'] ) . ' ' .
+								$update_disabled_msg;
+
+					self::set_umsg( $ext, 'err', $error_msg );
+
+					if ( $ext === $this->plugin_lca ) {
+						$has_pp = false;
+					}
+
+					continue;
+				}
+
+				$auth_url = $info['url']['update'];
 
 				if ( $auth_type !== 'none' ) {
 					$auth_url = add_query_arg( array( $auth_type => $auth_id ), $auth_url );
