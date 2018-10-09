@@ -155,12 +155,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					if ( empty( self::$upd_config[ $ext ][ 'uerr' ] ) ) {
 
 						if ( $this->p->debug->enabled ) {
-							$this->p->debug->log( $ext . ' plugin: update information saved in ' . $info['option_name'] );
+							$this->p->debug->log( $ext . ' plugin: update information saved in ' . $info[ 'option_name' ] );
 						}
 
 						if ( ! $quiet || $this->p->debug->enabled ) {
 
-							$notice_key = __FUNCTION__ . '_' . $ext . '_' . $info['option_name'] . '_success';
+							$notice_key = __FUNCTION__ . '_' . $ext . '_' . $info[ 'option_name' ] . '_success';
 
 							$this->p->notice->inf( sprintf( __( 'Update information for %s has been retrieved and saved.',
 								$this->text_domain ), $info['name'] ), null, $notice_key );
@@ -174,7 +174,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 						if ( ! $quiet || $this->p->debug->enabled ) {
 
-							$notice_key = __FUNCTION__ . '_' . $ext . '_' . $info['option_name'] . '_error_returned';
+							$notice_key = __FUNCTION__ . '_' . $ext . '_' . $info[ 'option_name' ] . '_error_returned';
 
 							$this->p->notice->warn( sprintf( __( 'An error was returned while getting update information for %s.',
 								$this->text_domain ), $info['name'] ), null, $notice_key );
@@ -184,12 +184,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				} else {
 
 					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $ext . ' plugin: failed saving update information in ' . $info['option_name'] );
+						$this->p->debug->log( $ext . ' plugin: failed saving update information in ' . $info[ 'option_name' ] );
 					}
 
 					if ( ! $quiet || $this->p->debug->enabled ) {
 
-						$notice_key = __FUNCTION__ . '_' . $ext . '_' . $info['option_name'] . '_failed_saving';
+						$notice_key = __FUNCTION__ . '_' . $ext . '_' . $info[ 'option_name' ] . '_failed_saving';
 
 						$this->p->notice->err( sprintf( __( 'Failed saving retrieved update information for %s.',
 							$this->text_domain ), $info['name'] ), null, $notice_key );
@@ -1322,7 +1322,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 		public static function get_umsg( $ext, $mtype = 'err', $def = false ) {
 
-			if ( ! isset( self::$upd_config[ $ext ]['u' . $mtype] ) ) {
+			if ( ! isset( self::$upd_config[ $ext ][ 'u' . $mtype ] ) ) {
 
 				$opt_name = $ext . '_uapi' . self::$api_version . $mtype;
 
@@ -1337,13 +1337,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 
 				if ( empty( $val ) ) {
-					self::$upd_config[ $ext ]['u' . $mtype] = false;
+					self::$upd_config[ $ext ][ 'u' . $mtype ] = false;
 				} else {
-					self::$upd_config[ $ext ]['u' . $mtype] = $val;
+					self::$upd_config[ $ext ][ 'u' . $mtype ] = $val;
 				}
 			}
 
-			return self::$upd_config[ $ext ]['u' . $mtype];
+			return self::$upd_config[ $ext ][ 'u' . $mtype ];
 		}
 
 		/**
@@ -1353,7 +1353,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			$not_found = false !== $idx ? null : false;	// Return null if $idx does not exist.
 
-			if ( ! empty( self::$upd_config[ $ext ]['option_name'] ) ) {
+			if ( ! empty( self::$upd_config[ $ext ][ 'option_name' ] ) ) {
 
 				$option_data = self::get_option_data( $ext );
 
@@ -1373,32 +1373,32 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 		private static function get_option_data( $ext, $def = false ) {
 
-			if ( ! isset( self::$upd_config[ $ext ]['option_data'] ) ) {
+			if ( ! isset( self::$upd_config[ $ext ][ 'option_data' ] ) ) {
 
-				if ( ! empty( self::$upd_config[ $ext ]['option_name'] ) ) {
+				if ( ! empty( self::$upd_config[ $ext ][ 'option_name' ] ) ) {
 
-					$opt_name = self::$upd_config[ $ext ]['option_name'];
+					$opt_name = self::$upd_config[ $ext ][ 'option_name' ];
 
 					if ( method_exists( 'SucomUtil', 'protect_filter_value' ) ) {
 						SucomUtil::protect_filter_value( 'pre_option_' . $opt_name );
 					}
 
-					self::$upd_config[ $ext ]['option_data'] = get_option( $opt_name, $def );
+					self::$upd_config[ $ext ][ 'option_data' ] = get_option( $opt_name, $def );
 
 				} else {
-					self::$upd_config[ $ext ]['option_data'] = $def;
+					self::$upd_config[ $ext ][ 'option_data' ] = $def;
 				}
 			}
 
-			return self::$upd_config[ $ext ]['option_data'];
+			return self::$upd_config[ $ext ][ 'option_data' ];
 		}
 
 		private static function update_option_data( $ext, $option_data ) {
 
-			self::$upd_config[ $ext ]['option_data'] = $option_data;
+			self::$upd_config[ $ext ][ 'option_data' ] = $option_data;
 
-			if ( ! empty( self::$upd_config[ $ext ]['option_name'] ) ) {
-				return update_option( self::$upd_config[ $ext ]['option_name'], $option_data );
+			if ( ! empty( self::$upd_config[ $ext ][ 'option_name' ] ) ) {
+				return update_option( self::$upd_config[ $ext ][ 'option_name' ], $option_data );
 			}
 
 			return false;
@@ -1406,10 +1406,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 		private static function clear_option_data( $ext ) {
 
-			unset( self::$upd_config[ $ext ]['option_data'] );
+			unset( self::$upd_config[ $ext ][ 'option_data' ] );
 
-			if ( ! empty( self::$upd_config[ $ext ]['option_name'] ) ) {
-				return delete_option( self::$upd_config[ $ext ]['option_name'] );
+			if ( ! empty( self::$upd_config[ $ext ][ 'option_name' ] ) ) {
+				return delete_option( self::$upd_config[ $ext ][ 'option_name' ] );
 			}
 
 			return false;

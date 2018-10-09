@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPSSO Update Manager 1.12.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2018-10-09 15:16-0700\n"
-"PO-Revision-Date: 2018-10-09 15:16-0700\n"
+"POT-Creation-Date: 2018-10-09 15:19-0700\n"
+"PO-Revision-Date: 2018-10-09 15:19-0700\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -44,8 +44,8 @@ msgid "You may <a href=\"%1$s\">open a new support ticket</a> if you believe thi
 msgstr "Vous pouvez <a href=\"%1$s\">ouvrir un nouveau billet de soutien</a> si vous pensez que ce message d'erreur est incorrect."
 
 #: lib/com/update.php:395 lib/com-gettext-extract.php:13
-msgid "the update URL provided by the plugin configuration is invalid (%1$s)."
-msgstr "l'URL de mise à jour fournie par la configuration de l'extension n'est pas valide (%1$s)."
+msgid "the update URL (%1$s) provided by the plugin configuration is invalid."
+msgstr "l'URL de mise à jour  (%1$s) fournie par la configuration de l'extension n'est pas valide."
 
 #: lib/com/update.php:433 lib/com-gettext-extract.php:14
 msgid "the WordPress add_query_arg() function returned an invalid authentication URL (%1$s)."
