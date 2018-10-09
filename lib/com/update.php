@@ -392,7 +392,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					}
 
 					$error_msg = $inconsistency_msg . ' ' . 
-						sprintf( __( 'the update URL provided by the plugin configuration is invalid (%1$s).',
+						sprintf( __( 'the update URL (%1$s) provided by the plugin configuration is invalid.',
 							$this->text_domain ), $info['url']['update'] ) . ' ' .
 								$update_disabled_msg;
 

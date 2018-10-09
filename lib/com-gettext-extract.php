@@ -10,7 +10,7 @@ __( 'The %1$s plugin (%2$s) version number is missing from the WordPress plugins
 __( 'The <a href="%1$s">WordPress %2$s function</a> is missing and required.', 'wpsso-um' );
 __( 'the IPv4 address (%1$s) from the local host does not match the DNS IPv4 address (%2$s).', 'wpsso-um' );
 __( 'the update server URL (%1$s) does not appear to be a valid URL.', 'wpsso-um' );
-__( 'the update URL provided by the plugin configuration is invalid (%1$s).', 'wpsso-um' );
+__( 'the update URL (%1$s) provided by the plugin configuration is invalid.', 'wpsso-um' );
 __( 'the WordPress add_query_arg() function returned an invalid authentication URL (%1$s).', 'wpsso-um' );
 __( 'Update checks for %1$s are disabled while this inconsistency persists.', 'wpsso-um' );
 __( 'Update error from the WordPress wp_remote_get() function: %s', 'wpsso-um' );

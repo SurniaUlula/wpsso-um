@@ -44,7 +44,7 @@ msgid ""
 msgstr ""
 
 #: lib/com/update.php:395 lib/com-gettext-extract.php:13
-msgid "the update URL provided by the plugin configuration is invalid (%1$s)."
+msgid "the update URL (%1$s) provided by the plugin configuration is invalid."
 msgstr ""
 
 #: lib/com/update.php:433 lib/com-gettext-extract.php:14
