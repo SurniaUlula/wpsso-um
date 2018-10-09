@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Update Manager package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 1.12.0\n"
+"Project-Id-Version: WPSSO Update Manager 1.12.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2018-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -12,11 +12,11 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: lib/com/update.php:114 lib/com-gettext-extract.php:8
+#: lib/com/update.php:114 lib/com-gettext-extract.php:7
 msgid "No plugins defined for updates."
 msgstr ""
 
-#: lib/com/update.php:165 lib/com-gettext-extract.php:14
+#: lib/com/update.php:165 lib/com-gettext-extract.php:16
 msgid "Update information for %s has been retrieved and saved."
 msgstr ""
 
@@ -24,62 +24,70 @@ msgstr ""
 msgid "An error was returned while getting update information for %s."
 msgstr ""
 
-#: lib/com/update.php:194 lib/com-gettext-extract.php:6
+#: lib/com/update.php:194 lib/com-gettext-extract.php:5
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:408 lib/com-gettext-extract.php:9
+#: lib/com/update.php:380 lib/com/update.php:789 lib/com-gettext-extract.php:4
+msgid ""
+"An inconsistency was found in the %1$s update server information &mdash;"
+msgstr ""
+
+#: lib/com/update.php:383 lib/com/update.php:792 lib/com-gettext-extract.php:14
+msgid "Update checks for %1$s are disabled while this inconsistency persists."
+msgstr ""
+
+#: lib/com/update.php:387 lib/com/update.php:796 lib/com-gettext-extract.php:19
+msgid ""
+"You may <a href=\"%1$s\">open a new support ticket</a> if you believe this "
+"error message is incorrect."
+msgstr ""
+
+#: lib/com/update.php:413 lib/com-gettext-extract.php:13
+msgid ""
+"the WordPress add_query_arg() function returned an invalid authentication "
+"URL (%1$s)."
+msgstr ""
+
+#: lib/com/update.php:452 lib/com-gettext-extract.php:8
 msgid ""
 "Please note that one or more non-stable / development %s have been selected."
 msgstr ""
 
-#: lib/com/update.php:409 lib/com-gettext-extract.php:16
+#: lib/com/update.php:453 lib/com-gettext-extract.php:18
 #: lib/sitesubmenu/site-um-general.php:97 lib/submenu/um-general.php:79
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
 
-#: lib/com/update.php:740 lib/com-gettext-extract.php:17
+#: lib/com/update.php:809 lib/com-gettext-extract.php:12
+msgid "the update server URL (%1$s) does not appear to be a valid URL."
+msgstr ""
+
+#: lib/com/update.php:838 lib/com-gettext-extract.php:11
 msgid ""
-"You may <a href=\"%1$s\">open a new support ticket</a> if you believe this "
-"error message is incorrect or inaccurate."
+"the IPv4 address (%1$s) from the local host does not match the DNS IPv4 "
+"address (%2$s)."
 msgstr ""
 
-#: lib/com/update.php:753 lib/com-gettext-extract.php:5
-msgid ""
-"An inconsistency was found in the %1$s update server information &mdash; the "
-"update server URL (%2$s) does not appear to be a valid URL."
-msgstr ""
-
-#: lib/com/update.php:753 lib/com/update.php:778 lib/com-gettext-extract.php:12
-msgid "Update checks for %1$s are disabled while this inconsistency persists."
-msgstr ""
-
-#: lib/com/update.php:778 lib/com-gettext-extract.php:4
-msgid ""
-"An inconsistency was found in the %1$s update server information &mdash; the "
-"IPv4 address (%2$s) from the local host does not match the DNS IPv4 address "
-"(%3$s)."
-msgstr ""
-
-#: lib/com/update.php:842 lib/com-gettext-extract.php:13
+#: lib/com/update.php:909 lib/com-gettext-extract.php:15
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr ""
 
-#: lib/com/update.php:958 lib/com-gettext-extract.php:15
+#: lib/com/update.php:1030 lib/com-gettext-extract.php:17
 msgid "WordPress library file %s is missing and required."
 msgstr ""
 
-#: lib/com/update.php:984 lib/com-gettext-extract.php:7
+#: lib/com/update.php:1056 lib/com-gettext-extract.php:6
 msgid "https://developer.wordpress.org/reference/functions/get_plugins/"
 msgstr ""
 
-#: lib/com/update.php:986 lib/com-gettext-extract.php:11
+#: lib/com/update.php:1058 lib/com-gettext-extract.php:10
 msgid ""
 "The <a href=\"%1$s\">WordPress %2$s function</a> is missing and required."
 msgstr ""
 
-#: lib/com/update.php:1015 lib/com-gettext-extract.php:10
+#: lib/com/update.php:1087 lib/com-gettext-extract.php:9
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."

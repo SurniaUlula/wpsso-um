@@ -14,7 +14,7 @@
  * Requires PHP: 5.4
  * Requires At Least: 3.8
  * Tested Up To: 4.9.8
- * Version: 1.12.0
+ * Version: 1.12.1
  * 
  * Version Numbering: {major}.{minor}.{bugfix}[-{stage}.{level}]
  *
@@ -212,9 +212,9 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 					}
 
 					$current_time    = time();
-					$last_check_time = $this->update->get_umsg( $ext, 'time' ); // get the last update check timestamp
+					$last_check_time = $this->update->get_umsg( $ext, 'time' ); // Get the last update check timestamp.
 					$last_plus_week  = $last_check_time + WEEK_IN_SECONDS;
-					$next_sched_time = $last_check_time + ( $this->check_hours * HOUR_IN_SECONDS ); // estimate the next scheduled check
+					$next_sched_time = $last_check_time + ( $this->check_hours * HOUR_IN_SECONDS ); // Estimate the next scheduled check.
 					$next_plus_day   = $next_sched_time + DAY_IN_SECONDS;
 
 					/**
@@ -259,7 +259,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		public function get_update_check_hours() {
 
 			$check_hours = 24;
-			$const_hours = SucomUtil::get_const( 'WPSSOUM_CHECK_HOURS', null );	// return null if not defined
+			$const_hours = SucomUtil::get_const( 'WPSSOUM_CHECK_HOURS', null );	// Return null if not defined.
 			$opt_hours   = isset( $this->p->options['update_check_hours'] ) ? $this->p->options['update_check_hours'] : 24;
 
 			if ( $const_hours !== null ) {
@@ -268,7 +268,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 				$check_hours = $opt_hours;
 			}
 
-			if ( $check_hours > 168 ) {	// check at least once a week
+			if ( $check_hours > 168 ) {	// Check at least once a week.
 				$check_hours = 168;
 			}
 
