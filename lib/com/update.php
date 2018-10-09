@@ -799,9 +799,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			/**
 			 * Check the local resolver and DNS IPv4 values for inconsistencies.
 			 */
-			$json_host = preg_replace( '/^https?:\/\/([^\/]+)\/.*$/', '$1', $json_url );
+			$json_host = preg_replace( '/^https?:\/\/([^\/]+)\/.*$/', '$1', $json_url );	// Returns false or original URL on failure.
 
-			if ( empty( $json_host ) || $json_host === $json_url ) {
+			if ( empty( $json_host ) || $json_host === $json_url ) {	// Check for false or original URL.
 
 				$json_host = preg_replace( '/\?.*$/', '', $json_url );
 
