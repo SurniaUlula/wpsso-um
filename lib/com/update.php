@@ -373,7 +373,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 
 				/**
-				 * Add the auth type and id to the update url.
+			 	 * Define some standard error messages for consistency checks.
 				 */
 				$inconsistency_msg = sprintf( __( 'An inconsistency was found in the %1$s update server information &mdash;',
 					$this->text_domain ), $info[ 'name' ] );
@@ -385,6 +385,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					sprintf( __( 'You may <a href="%1$s">open a new support ticket</a> if you believe this error message is incorrect.',
 						$this->text_domain ), $info['url']['support'] );
 
+				/**
+				 * Check the URL coming from $this->p->cf['plugin'], just in case.
+				 */
 				if ( filter_var( $info['url']['update'], FILTER_VALIDATE_URL ) === false ) {	// Invalid url.
 
 					if ( $this->p->debug->enabled ) {
@@ -405,6 +408,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					continue;
 				}
 
+				/**
+				 * Add the auth type and auth id to the update url.
+				 */
 				$auth_url = $info['url']['update'];
 
 				if ( $auth_type !== 'none' ) {
@@ -423,6 +429,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					'locale'            => $locale,
 				), $auth_url );
 
+				/**
+				 * Recheck the URL to make sure add_query_arg() hasn't mangled it.
+				 */
 				if ( filter_var( $auth_url, FILTER_VALIDATE_URL ) === false ) {	// Invalid url.
 
 					if ( $this->p->debug->enabled ) {
@@ -806,6 +815,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			$plugin_data = null;
 			
+			/**
+			 * Define some standard error messages for consistency checks.
+			 */
 			$inconsistency_msg = sprintf( __( 'An inconsistency was found in the %1$s update server information &mdash;',
 				$this->text_domain ), self::$upd_config[ $ext ][ 'name' ] );
 
@@ -841,22 +853,22 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			static $host_cache = array(); // Local cache to lookup the host ip only once.
 
-			if ( ! isset( $host_cache[$json_host]['ip'] ) ) {
-				$host_cache[$json_host]['ip'] = gethostbyname( $json_host ); // Returns an IPv4 address, or the hostname on failure.
+			if ( ! isset( $host_cache[ $json_host ][ 'ip' ] ) ) {
+				$host_cache[ $json_host ][ 'ip' ] = gethostbyname( $json_host ); // Returns an IPv4 address, or the hostname on failure.
 			}
 
-			if ( ! isset( $host_cache[$json_host]['a'] ) ) {
+			if ( ! isset( $host_cache[ $json_host ][ 'a' ] ) ) {
 
 				$dns_rec = dns_get_record( $json_host . '.', DNS_A ); // Returns an array of associative arrays.
 
-				$host_cache[$json_host]['a'] = empty( $dns_rec[0]['ip'] ) ? false : $dns_rec[0]['ip'];
+				$host_cache[ $json_host ][ 'a' ] = empty( $dns_rec[0][ 'ip' ] ) ? false : $dns_rec[0][ 'ip' ];
 			}
 
-			if ( $host_cache[$json_host]['ip'] !== $host_cache[$json_host]['a'] ) {
+			if ( $host_cache[ $json_host ][ 'ip' ] !== $host_cache[ $json_host ][ 'a' ] ) {
 
 				$error_msg = $inconsistency_msg . ' ' .
 					sprintf( __( 'the IPv4 address (%1$s) from the local host does not match the DNS IPv4 address (%2$s).',
-						$this->text_domain ), $host_cache[$json_host]['ip'], $host_cache[$json_host]['a'] ) . ' ' .
+						$this->text_domain ), $host_cache[ $json_host ][ 'ip' ], $host_cache[ $json_host ][ 'a' ] ) . ' ' .
 							$update_disabled_msg;
 
 				self::set_umsg( $ext, 'err', $error_msg );
