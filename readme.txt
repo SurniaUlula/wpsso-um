@@ -59,17 +59,20 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.12.2-dev.1 (2018/10/11)**
+**Version 1.12.2-dev.2 (2018/10/11)**
 
 * *New Features*
 	* None.
 * *Improvements*
-	* None.
+	* Replaced calls to the WordPress add_query_arg() function by the SucomUpdateUtil decode_url_add_query() static method.
 * *Bugfixes*
 	* None.
 * *Developer Notes*
 	* Added a new SucomUpdateUtil class with decode_url_add_query(), unparse_url{}, and get_wp_plugins() static methods.
-	* Replaced calls to the WordPress add_query_arg() function by the SucomUpdateUtil decode_url_add_query() static method.
+	* Moved the SucomPluginData class to a new lib/com/plugin-data.php library file.
+	* Moved the SucomPluginUpdate class to a new lib/com/plugin-update.php library file.
+	* Moved the SucomUpdateUtil class to a new lib/com/update-util.php library file.
+	* Moved the SucomUpdateUtilWP class to a new lib/com/update-util-wp.php library file.
 
 **Version 1.12.1 (2018/10/09)**
 
@@ -84,7 +87,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.12.2-dev.1 =
+= 1.12.2-dev.2 =
 
 (2018/10/11) Replaced calls to the WordPress add_query_arg() function by the SucomUpdateUtil decode_url_add_query() static method.
 
