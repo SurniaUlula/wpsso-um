@@ -27,9 +27,6 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 		public $qty_reg   = 0;	// Example: 1	(since v1.10.0)
 		public $qty_used  = '';	// Example: 1/10
 
-		public function __construct() {
-		}
-
 		public static function update_from_json( $json_encoded ) {
 
 			$plugin_data = SucomPluginData::data_from_json( $json_encoded );

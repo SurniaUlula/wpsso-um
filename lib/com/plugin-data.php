@@ -32,9 +32,6 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 		public $last_updated;
 		public $sections;
 	
-		public function __construct() {
-		}
-
 		public static function data_from_json( $json_encoded ) {
 
 			$json_data = json_decode( $json_encoded );
