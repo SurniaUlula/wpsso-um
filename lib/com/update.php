@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'These aren\'t the droids you\'re looking for...' );
 }
 
+require_once 'plugin-data.php';
+require_once 'plugin-update.php';
+require_once 'update-util.php';
+require_once 'update-util-wp.php';
+
 if ( ! class_exists( 'SucomUpdate' ) ) {
 
 	class SucomUpdate {
@@ -1351,175 +1356,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			return false;
-		}
-	}
-}
-
-if ( ! class_exists( 'SucomUpdateUtil' ) ) {
-
-	class SucomUpdateUtil {
-
-		protected static $cache_wp_plugins = null;
-
-		/**
-		 * Decode a URL and add query arguments. Returns false on error.
-		 */
-		public static function decode_url_add_query( $url, array $args ) {
-
-			if ( filter_var( $url, FILTER_VALIDATE_URL ) === false ) {	// Check for invalid URL.
-				return false;
-			}
-
-			$parsed_url = parse_url( SucomUtil::decode_html( urldecode( $url ) ) );
-
-			if ( empty( $parsed_url ) ) {
-				return false;
-			}
-
-			if ( empty( $parsed_url['query'] ) ) {
-				$parsed_url['query'] = http_build_query( $args );
-			} else {
-				$parsed_url['query'] .= '&' . http_build_query( $args );
-			}
-
-			$url = self::unparse_url( $parsed_url );
-
-			return $url;
-		}
-
-		public static function unparse_url( $parsed_url ) {
-
-			$scheme   = isset( $parsed_url['scheme'] )   ? $parsed_url['scheme'] . '://' : '';
-			$user     = isset( $parsed_url['user'] )     ? $parsed_url['user'] : '';
-			$pass     = isset( $parsed_url['pass'] )     ? ':' . $parsed_url['pass']  : '';
-			$host     = isset( $parsed_url['host'] )     ? $parsed_url['host'] : '';
-			$port     = isset( $parsed_url['port'] )     ? ':' . $parsed_url['port'] : '';
-			$path     = isset( $parsed_url['path'] )     ? $parsed_url['path'] : '';
-			$query    = isset( $parsed_url['query'] )    ? '?' . $parsed_url['query'] : '';
-			$fragment = isset( $parsed_url['fragment'] ) ? '#' . $parsed_url['fragment'] : '';
-
-			return $scheme . $user . $pass . ( $user || $pass ? '@' : '' ) . $host . $port . $path . $query . $fragment;
-		}
-
-		/**
-		 * The WordPress get_plugins() function is very slow, so call it only once and cache its result.
-		 */
-		public static function get_wp_plugins() {
-
-			if ( self::$cache_wp_plugins !== null ) {
-				return self::$cache_wp_plugins;
-			}
-
-			if ( ! function_exists( 'get_plugins' ) ) {	// Load the library if necessary.
-
-				$plugin_lib = trailingslashit( ABSPATH ) . 'wp-admin/includes/plugin.php';
-
-				if ( file_exists( $plugin_lib ) ) {	// Just in case.
-					require_once $plugin_lib;
-				}
-			}
-
-			if ( function_exists( 'get_plugins' ) ) {
-				self::$cache_wp_plugins = get_plugins();
-			} else {
-				self::$cache_wp_plugins = array();
-			}
-
-			return self::$cache_wp_plugins;
-		}
-	}
-}
-
-if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
-
-	class SucomUpdateUtilWP {
-
-		/**
-		 * Unfiltered version of home_url() from wordpress/wp-includes/link-template.php
-		 * Last synchronized with WordPress v4.8.2 on 2017/10/22.
-		 */
-		public static function raw_home_url( $path = '', $scheme = null ) {
-
-			return self::raw_get_home_url( null, $path, $scheme );
-		}
-
-		/**
-		 * Unfiltered version of get_home_url() from wordpress/wp-includes/link-template.php
-		 * Last synchronized with WordPress v4.8.2 on 2017/10/22.
-		 */
-		public static function raw_get_home_url( $blog_id = null, $path = '', $scheme = null ) {
-
-			global $pagenow;
-
-			if ( method_exists( 'SucomUtil', 'protect_filter_value' ) ) {
-				SucomUtil::protect_filter_value( 'pre_option_home' );
-			}
-
-			if ( empty( $blog_id ) || ! is_multisite() ) {
-
-				$url = get_option( 'home' );
-
-			} else {
-
-				switch_to_blog( $blog_id );
-
-				$url = get_option( 'home' );
-
-				restore_current_blog();
-			}
-
-			if ( ! in_array( $scheme, array( 'http', 'https', 'relative' ) ) ) {
-
-				if ( is_ssl() && ! is_admin() && 'wp-login.php' !== $pagenow ) {
-
-					$scheme = 'https';
-				} else {
-					$scheme = parse_url( $url, PHP_URL_SCHEME );
-				}
-			}
-
-			$url = self::set_url_scheme( $url, $scheme );
-
-			if ( $path && is_string( $path ) ) {
-				$url .= '/' . ltrim( $path, '/' );
-			}
-
-			return $url;
-		}
-
-		/**
-		 * Unfiltered version of set_url_scheme() from wordpress/wp-includes/link-template.php
-		 * Last synchronized with WordPress v4.8.2 on 2017/10/22.
-		 */
-		private static function set_url_scheme( $url, $scheme = null ) {
-
-			if ( ! $scheme ) {
-				$scheme = is_ssl() ? 'https' : 'http';
-			} elseif ( $scheme === 'admin' || $scheme === 'login' || $scheme === 'login_post' || $scheme === 'rpc' ) {
-				$scheme = is_ssl() || force_ssl_admin() ? 'https' : 'http';
-			} elseif ( $scheme !== 'http' && $scheme !== 'https' && $scheme !== 'relative' ) {
-				$scheme = is_ssl() ? 'https' : 'http';
-			}
-
-			$url = trim( $url );
-
-			if ( substr( $url, 0, 2 ) === '//' ) {
-				$url = 'http:' . $url;
-			}
-
-			if ( 'relative' === $scheme ) {
-
-				$url = ltrim( preg_replace( '#^\w+://[^/]*#', '', $url ) );
-
-				if ( $url !== '' && $url[0] === '/' ) {
-					$url = '/' . ltrim( $url, "/ \t\n\r\0\x0B" );
-				}
-
-			} else {
-				$url = preg_replace( '#^\w+://#', $scheme . '://', $url );
-			}
-
-			return $url;
 		}
 	}
 }
