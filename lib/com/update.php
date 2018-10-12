@@ -9,10 +9,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'These aren\'t the droids you\'re looking for...' );
 }
 
-require_once 'plugin-data.php';
-require_once 'plugin-update.php';
-require_once 'update-util.php';
-require_once 'update-util-wp.php';
+require_once './plugin-data.php';
+require_once './plugin-update.php';
+require_once './update-util.php';
+require_once './update-util-wp.php';
 
 if ( ! class_exists( 'SucomUpdate' ) ) {
 
