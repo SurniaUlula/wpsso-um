@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.13.0-dev.2 (2018/10/11)**
+**Version 1.13.0 (2018/10/14)**
 
 * *New Features*
 	* None.
@@ -87,11 +87,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.13.0-dev.2 =
+= 1.13.0 =
 
-(2018/10/11) Replaced calls to the WordPress add_query_arg() function by the SucomUpdateUtil decode_url_add_query() static method.
-
-= 1.12.1 =
-
-(2018/10/09) Added a URL consistency check after calling the WordPress add_query_arg() function.
+(2018/10/14) Replaced calls to the WordPress add_query_arg() function by the SucomUpdateUtil decode_url_add_query() static method.
 
