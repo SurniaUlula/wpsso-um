@@ -34,7 +34,7 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 	
 		public static function data_from_json( $json_encoded ) {
 
-			$json_data = json_decode( $json_encoded );
+			$json_data = json_decode( $json_encoded, $assoc = false );
 
 			if ( empty( $json_data ) || ! is_object( $json_data ) )  {
 				return null;

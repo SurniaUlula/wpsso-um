@@ -925,7 +925,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			} elseif ( isset( $request['response']['code'] ) && (int) $request['response']['code'] === 200 && ! empty( $request['body'] ) ) {
 
-				$payload = json_decode( $request['body'], true, 32 ); // Create an associative array.
+				$payload = json_decode( $request['body'], $assoc = true, 32 ); // Create an associative array.
 
 				/**
 				 * Add or remove existing response messages.
@@ -1390,7 +1390,7 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 
 		public static function data_from_json( $json_encoded ) {
 
-			$json_data = json_decode( $json_encoded );
+			$json_data = json_decode( $json_encoded, $assoc = false );
 
 			if ( empty( $json_data ) || ! is_object( $json_data ) )  {
 				return null;
