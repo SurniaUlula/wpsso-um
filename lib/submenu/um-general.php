@@ -38,9 +38,10 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 		 */
 		protected function add_meta_boxes() {
 
-			$short_pro = $this->p->cf['plugin'][$this->p->lca]['short'] . ' ' . _x( 'Pro', 'package type', 'wpsso-um' );
+			$short_pro = $this->p->cf['plugin'][$this->p->lca]['short'] . ' ' .
+				_x( 'Pro', 'package type', 'wpsso-um' );
 
-			add_meta_box( $this->pagehook.'_general', 
+			add_meta_box( $this->pagehook . '_general', 
 				_x( 'Update Manager', 'metabox title', 'wpsso-um' ),
 					array( $this, 'show_metabox_general' ), $this->pagehook, 'normal' );
 		}
