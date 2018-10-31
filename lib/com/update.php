@@ -1150,6 +1150,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		public function get_auth_type( $ext ) {
+
 			if ( empty( $this->p->cf['plugin'][ $ext ]['update_auth'] ) ) {
 				return 'none';
 			} else {
@@ -1158,15 +1159,19 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		public function get_auth_id( $ext ) {
+
 			$auth_type = $this->get_auth_type( $ext );
+
 			if ( $auth_type === 'none' ) {
 				return '';
 			}
+
 			$opt_key = 'plugin_' . $ext . '_' . $auth_type;
-			if ( empty( $this->p->options[$opt_key] ) ) {
+
+			if ( empty( $this->p->options[ $opt_key ] ) ) {
 				return '';	// Empty string.
 			} else {
-				return $this->p->options[$opt_key];
+				return $this->p->options[ $opt_key ];
 			}
 		}
 
@@ -1292,19 +1297,19 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		/**
-		 * Returns null if $idx does not exist (since v1.10.0).
+		 * Returns null if $prop does not exist (since v1.10.0).
 		 */
-		public static function get_option( $ext, $idx = false ) {
+		public static function get_option( $ext, $prop = false ) {
 
-			$not_found = false !== $idx ? null : false;	// Return null if $idx does not exist.
+			$not_found = false !== $prop ? null : false;	// Return null if $prop does not exist.
 
 			if ( ! empty( self::$upd_config[ $ext ][ 'option_name' ] ) ) {
 
 				$option_data = self::get_option_data( $ext );
 
-				if ( $idx !== false ) {
-					if ( is_object( $option_data->update ) && isset( $option_data->update->$idx ) ) {
-						return $option_data->update->$idx;
+				if ( $prop !== false ) {
+					if ( is_object( $option_data->update ) && isset( $option_data->update->$prop ) ) {
+						return $option_data->update->$prop;
 					} else {
 						return $not_found;
 					}
