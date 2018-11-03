@@ -118,8 +118,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 					$notice_key = __FUNCTION__ . '_no_plugins_defined';
 
-					$this->p->notice->err( sprintf( __( 'No plugins defined for updates.',
-						$this->text_domain ), $info['name'] ), null, $notice_key );
+					$this->p->notice->err( __( 'No plugins defined for updates.', $this->text_domain ), null, $notice_key );
 				}
 
 				return;
