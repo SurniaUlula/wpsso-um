@@ -35,12 +35,16 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 	class WpssoUm {
 
 		/**
-		 * Class Object Variables
+		 * Wpsso plugin class object variable.
 		 */
-		public $p;			// Wpsso
-		public $reg;			// WpssoUmRegister
-		public $filters;		// WpssoUmFilters
-		public $update;			// SucomUpdate
+		public $p;		// Wpsso
+
+		/**
+		 * Library class object variables.
+		 */
+		public $filters;	// WpssoUmFilters
+		public $reg;		// WpssoUmRegister
+		public $update;		// SucomUpdate
 
 		/**
 		 * Reference Variables (config, options, modules, etc.).
