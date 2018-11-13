@@ -106,7 +106,7 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 
 					$version_filter = $this->p->cf['um']['version_filter'];
 
-					foreach ( $this->p->cf['plugin'] as $ext => $info ) {
+					foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
 						if ( ! SucomUpdate::is_installed( $ext ) ) {
 							continue;
@@ -115,7 +115,7 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 						/**
 						 * Remove the short name if possible (all upper case acronym, with an optional space).
 						 */
-						$ext_name = preg_replace( '/ \([A-Z ]+\)$/', '', $info['name'] );
+						$ext_name = preg_replace( '/ \([A-Z ]+\)$/', '', $info[ 'name' ] );
 
 						$table_rows[] = $this->form->get_th_html( $ext_name, '', 'update_version_filter' ).
 						'<td>'.$this->form->get_select( 'update_filter_for_'.$ext,

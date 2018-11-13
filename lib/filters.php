@@ -96,7 +96,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 			$lca = isset( $this->p->lca ) ? $this->p->lca : $this->p->cf['lca'];
 
-			foreach ( $this->p->cf['plugin'] as $ext => $info ) {
+			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 				$this->p->admin->get_readme_info( $ext, $use_cache = false );
 			}
 
@@ -111,7 +111,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 			$def_opts = array_merge( $def_opts, self::$cf['opt']['defaults'] );
 
-			foreach ( $this->p->cf['plugin'] as $ext => $info ) {
+			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 				$def_opts['update_filter_for_'.$ext] = 'stable';
 			}
 
@@ -122,7 +122,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 			$def_opts = array_merge( $def_opts, self::$cf['opt']['site_defaults'] );
 
-			foreach ( $this->p->cf['plugin'] as $ext => $info ) {
+			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 				$def_opts['update_filter_for_'.$ext] = 'stable';
 				$def_opts['update_filter_for_'.$ext.':use'] = 'default';
 			}

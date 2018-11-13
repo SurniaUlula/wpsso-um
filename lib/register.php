@@ -97,7 +97,7 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 
 		private function activate_plugin() {
 
-			$version = WpssoUmConfig::$cf['plugin']['wpssoum']['version'];	// only our config
+			$version = WpssoUmConfig::$cf[ 'plugin' ]['wpssoum'][ 'version' ];	// only our config
 
 			if ( class_exists( 'WpssoUtil' ) ) {
 				WpssoUtil::save_all_times( 'wpssoum', $version );
@@ -114,8 +114,8 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 
 				$cf = WpssoConfig::get_config();	// get all plugins / add-ons
 
-				foreach ( $cf['plugin'] as $ext => $info ) {
-					wp_clear_scheduled_hook( 'plugin_updates-'.$info['slug'] );
+				foreach ( $cf[ 'plugin' ] as $ext => $info ) {
+					wp_clear_scheduled_hook( 'plugin_updates-'.$info[ 'slug' ] );
 				}
 			}
 		}
@@ -132,11 +132,11 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 
 				$cf = WpssoConfig::get_config();	// get all plugins / add-ons
 
-				foreach ( $cf['plugin'] as $ext => $info ) {
+				foreach ( $cf[ 'plugin' ] as $ext => $info ) {
 					delete_option( $ext.'_uapi'.$api_version.'err' );
 					delete_option( $ext.'_uapi'.$api_version.'inf' );
 					delete_option( $ext.'_uapi'.$api_version.'time' );
-					delete_option( 'external_updates-'.$info['slug'] );
+					delete_option( 'external_updates-'.$info[ 'slug' ] );
 				}
 			} else {	// in case wpsso is deactivated
 

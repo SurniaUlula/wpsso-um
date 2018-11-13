@@ -72,7 +72,7 @@ msgstr ""
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr ""
 
-#: lib/com/update.php:1051 lib/com-gettext-extract.php:9
+#: lib/com/update.php:1052 lib/com-gettext-extract.php:9
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."
@@ -131,7 +131,7 @@ msgstr ""
 msgid "Performing an update check for the %s plugin."
 msgstr ""
 
-#: wpsso-um.php:252
+#: wpsso-um.php:253
 msgid ""
 "The %1$s version %2$s add-on requires %3$s version %4$s or newer (version "
 "%5$s is currently installed)."
