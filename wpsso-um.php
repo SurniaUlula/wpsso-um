@@ -97,7 +97,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 			self::wpsso_init_textdomain();
 
-			$info = WpssoUmConfig::$cf[ 'plugin' ]['wpssoum'];
+			$info = WpssoUmConfig::$cf[ 'plugin' ][ 'wpssoum' ];
 
 			$die_msg = __( '%1$s is an add-on for the %2$s plugin &mdash; please install and activate the %3$s plugin before activating %4$s.', 'wpsso-um' );
 
@@ -111,7 +111,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 				deactivate_plugins( $info[ 'base' ], true );	// $silent is true
 
-				wp_die( '<p>'.sprintf( $die_msg, $info[ 'name' ], $info['req'][ 'name' ], $info['req'][ 'short' ], $info[ 'short' ] ).'</p>' );
+				wp_die( '<p>'.sprintf( $die_msg, $info[ 'name' ], $info[ 'req' ][ 'name' ], $info[ 'req' ][ 'short' ], $info[ 'short' ] ).'</p>' );
 
 			} else {
 
@@ -124,7 +124,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 				), admin_url( 'plugins.php' ) ), 'deactivate-plugin_' . $info[ 'base' ] ) );
 
 				echo '<div class="notice notice-error error"><p>';
-				echo sprintf( $error_msg, $info[ 'name' ], $info['req'][ 'name' ], $info['req'][ 'short' ], $deactivate_url, $info[ 'short' ] );
+				echo sprintf( $error_msg, $info[ 'name' ], $info[ 'req' ][ 'name' ], $info[ 'req' ][ 'short' ], $deactivate_url, $info[ 'short' ] );
 				echo '</p></div>';
 			}
 		}
@@ -138,9 +138,9 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		 */
 		public function wpsso_get_config( $cf, $plugin_version = 0 ) {
 
-			$info = WpssoUmConfig::$cf[ 'plugin' ]['wpssoum'];
+			$info = WpssoUmConfig::$cf[ 'plugin' ][ 'wpssoum' ];
 
-			if ( version_compare( $plugin_version, $info['req']['min_version'], '<' ) ) {
+			if ( version_compare( $plugin_version, $info[ 'req' ][ 'min_version' ], '<' ) ) {
 				$this->have_req_min = false;
 				return $cf;
 			}
@@ -177,7 +177,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 				return;	// stop here
 			}
 
-			$info = WpssoUmConfig::$cf[ 'plugin' ]['wpssoum'];
+			$info = WpssoUmConfig::$cf[ 'plugin' ][ 'wpssoum' ];
 
 			$this->check_hours = $this->get_update_check_hours();
 			$this->filters     = new WpssoUmFilters( $this->p );
@@ -246,15 +246,16 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 		private function min_version_notice() {
 
-			$info = WpssoUmConfig::$cf[ 'plugin' ]['wpssoum'];
-
-			$have_version = $this->p->cf[ 'plugin' ][ 'wpsso' ][ 'version' ];
+			$info = WpssoUmConfig::$cf[ 'plugin' ][ 'wpssoum' ];
 
 			$error_msg = sprintf( __( 'The %1$s version %2$s add-on requires %3$s version %4$s or newer (version %5$s is currently installed).',
-				'wpsso-um' ), $info[ 'name' ], $info[ 'version' ], $info['req'][ 'short' ], $info['req']['min_version'], $have_version );
+				'wpsso-um' ), $info[ 'name' ], $info[ 'version' ], $info[ 'req' ][ 'short' ], $info[ 'req' ][ 'min_version' ],
+					$this->p->cf[ 'plugin' ][ 'wpsso' ][ 'version' ] );
 
 			if ( is_admin() ) {
+
 				$this->p->notice->err( $error_msg );
+
 				if ( method_exists( $this->p->admin, 'get_check_for_updates_link' ) ) {
 					$this->p->notice->inf( $this->p->admin->get_check_for_updates_link() );
 				}

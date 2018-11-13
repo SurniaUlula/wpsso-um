@@ -69,11 +69,11 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 			}
 
 			define( 'WPSSOUM_FILEPATH', $plugin_filepath );						
-			define( 'WPSSOUM_PLUGINBASE', self::$cf[ 'plugin' ]['wpssoum'][ 'base' ] );		// wpsso-um/wpsso-um.php
+			define( 'WPSSOUM_PLUGINBASE', self::$cf[ 'plugin' ][ 'wpssoum' ][ 'base' ] );		// wpsso-um/wpsso-um.php
 			define( 'WPSSOUM_PLUGINDIR', trailingslashit( realpath( dirname( $plugin_filepath ) ) ) );
-			define( 'WPSSOUM_PLUGINSLUG', self::$cf[ 'plugin' ]['wpssoum'][ 'slug' ] );		// wpsso-um
+			define( 'WPSSOUM_PLUGINSLUG', self::$cf[ 'plugin' ][ 'wpssoum' ][ 'slug' ] );		// wpsso-um
 			define( 'WPSSOUM_URLPATH', trailingslashit( plugins_url( '', $plugin_filepath ) ) );
-			define( 'WPSSOUM_VERSION', self::$cf[ 'plugin' ]['wpssoum'][ 'version' ] );						
+			define( 'WPSSOUM_VERSION', self::$cf[ 'plugin' ][ 'wpssoum' ][ 'version' ] );						
 		}
 
 		public static function require_libs( $plugin_filepath ) {
