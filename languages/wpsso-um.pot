@@ -28,16 +28,16 @@ msgstr ""
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:390 lib/com/update.php:804 lib/com-gettext-extract.php:4
+#: lib/com/update.php:390 lib/com/update.php:806 lib/com-gettext-extract.php:4
 msgid ""
 "An inconsistency was found in the %1$s update server information &mdash;"
 msgstr ""
 
-#: lib/com/update.php:393 lib/com/update.php:807 lib/com-gettext-extract.php:12
+#: lib/com/update.php:393 lib/com/update.php:809 lib/com-gettext-extract.php:12
 msgid "Update checks for %1$s are disabled while this inconsistency persists."
 msgstr ""
 
-#: lib/com/update.php:397 lib/com/update.php:811 lib/com-gettext-extract.php:16
+#: lib/com/update.php:397 lib/com/update.php:813 lib/com-gettext-extract.php:16
 msgid ""
 "You may <a href=\"%1$s\">open a new support ticket</a> if you believe this "
 "error message is incorrect."
@@ -58,21 +58,21 @@ msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
 
-#: lib/com/update.php:822 lib/com-gettext-extract.php:11
+#: lib/com/update.php:824 lib/com-gettext-extract.php:11
 msgid "the update server URL (%1$s) does not appear to be a valid URL."
 msgstr ""
 
-#: lib/com/update.php:851 lib/com-gettext-extract.php:10
+#: lib/com/update.php:853 lib/com-gettext-extract.php:10
 msgid ""
 "the IPv4 address (%1$s) from the local host does not match the DNS IPv4 "
 "address (%2$s)."
 msgstr ""
 
-#: lib/com/update.php:922 lib/com-gettext-extract.php:13
+#: lib/com/update.php:924 lib/com-gettext-extract.php:13
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr ""
 
-#: lib/com/update.php:1052 lib/com-gettext-extract.php:9
+#: lib/com/update.php:1054 lib/com-gettext-extract.php:9
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."

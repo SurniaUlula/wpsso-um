@@ -360,7 +360,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					continue;
 				}
 
-				if ( strpos( $ext_version, 'not-installed' ) !== false ) {	// Anywhere in string.
+				if ( false !== strpos( $ext_version, 'not-installed' ) ) {	// Anywhere in string.
 					$filter_name = 'stable';
 				} else {
 					$filter_name = $this->get_filter_name( $ext );
@@ -650,13 +650,15 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					/**
 					 * only provide update information when an update is required.
 					 */
-					if ( self::$upd_config[ $ext ]['plugin_update'] !== false ) {	// False when installed version is current.
+					if ( false !== self::$upd_config[ $ext ]['plugin_update'] ) {	// False when installed version is current.
 						$updates->response[$info[ 'base' ]] = self::$upd_config[ $ext ]['plugin_update'];
 					}
+
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext . ' plugin: using saved update information' );
 						$this->p->debug->log( $ext . ' plugin: calling method/function', 5 );
 					}
+
 					continue;	// Get the next plugin from the config.
 				}
 
@@ -712,7 +714,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		 */
 		public function reenable_plugin_update( $updates = false ) {
 
-			if ( $updates !== false ) {
+			if ( false !== $updates ) {
 				$updates = $this->maybe_add_plugin_update( $updates );
 			}
 
@@ -783,7 +785,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$plugin_data = self::$upd_config[ $ext ][ 'plugin_data' ] = get_transient( $cache_id );
 				}
 
-				if ( $plugin_data !== false ) { // False if transient is expired or not found.
+				if ( false !== $plugin_data ) { // False if transient is expired or not found.
 
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext . ' plugin: returning plugin data from cache' );
@@ -1234,7 +1236,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				if ( ! isset( $info['installed_version'] ) ) {	// Just in case.
 					return false;
-				} elseif ( strpos( $info['installed_version'], 'not-installed' ) !== false ) {	// Anywhere in string.
+				} elseif ( false !== strpos( $info['installed_version'], 'not-installed' ) ) {	// Anywhere in string.
 					return false;
 				}
 			}
@@ -1307,7 +1309,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				$option_data = self::get_option_data( $ext );
 
-				if ( $prop !== false ) {
+				if ( false !== $prop ) {
 					if ( is_object( $option_data->update ) && isset( $option_data->update->$prop ) ) {
 						return $option_data->update->$prop;
 					} else {
