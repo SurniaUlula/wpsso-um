@@ -340,7 +340,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 					continue;
 
-				} elseif ( empty( $info[ 'slug' ] ) || empty( $info[ 'base' ] ) || empty( $info['url']['update'] ) ) {
+				} elseif ( empty( $info[ 'slug' ] ) || empty( $info[ 'base' ] ) || empty( $info[ 'url' ]['update'] ) ) {
 
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext . ' plugin: skipped - incomplete config' );
@@ -393,9 +393,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$update_disabled_msg = sprintf( __( 'Update checks for %1$s are disabled while this inconsistency persists.',
 					$this->text_domain ), $info[ 'short' ] );
 					
-				$update_disabled_msg .= empty( $info['url']['support'] ) ? '' : ' ' .
+				$update_disabled_msg .= empty( $info[ 'url' ]['support'] ) ? '' : ' ' .
 					sprintf( __( 'You may <a href="%1$s">open a new support ticket</a> if you believe this error message is incorrect.',
-						$this->text_domain ), $info['url']['support'] );
+						$this->text_domain ), $info[ 'url' ]['support'] );
 
 				/**
 				 * Add query arguments to the update URL.
@@ -444,7 +444,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					'installed_version' => $ext_version,
 					'version_filter'    => $filter_name,
 					'json_url'          => $auth_url,
-					'support_url'       => isset( $info['url']['support'] ) ? $info['url']['support'] : '',
+					'support_url'       => isset( $info[ 'url' ]['support'] ) ? $info[ 'url' ]['support'] : '',
 					'data_expire'       => 86100,					// Plugin data expiration (almost 24 hours).
 					'option_name'       => 'external_update-' . $info[ 'slug' ],	// Example: external_update-wpsso.
 				);
