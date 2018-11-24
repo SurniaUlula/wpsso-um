@@ -30,10 +30,10 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 				return false;
 			}
 
-			if ( empty( $parsed_url['query'] ) ) {
-				$parsed_url['query'] = http_build_query( $args );
+			if ( empty( $parsed_url[ 'query' ] ) ) {
+				$parsed_url[ 'query' ] = http_build_query( $args );
 			} else {
-				$parsed_url['query'] .= '&' . http_build_query( $args );
+				$parsed_url[ 'query' ] .= '&' . http_build_query( $args );
 			}
 
 			$url = self::unparse_url( $parsed_url );
@@ -43,14 +43,14 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 
 		public static function unparse_url( $parsed_url ) {
 
-			$scheme   = isset( $parsed_url['scheme'] )   ? $parsed_url['scheme'] . '://' : '';
-			$user     = isset( $parsed_url['user'] )     ? $parsed_url['user'] : '';
-			$pass     = isset( $parsed_url['pass'] )     ? ':' . $parsed_url['pass']  : '';
-			$host     = isset( $parsed_url['host'] )     ? $parsed_url['host'] : '';
-			$port     = isset( $parsed_url['port'] )     ? ':' . $parsed_url['port'] : '';
-			$path     = isset( $parsed_url['path'] )     ? $parsed_url['path'] : '';
-			$query    = isset( $parsed_url['query'] )    ? '?' . $parsed_url['query'] : '';
-			$fragment = isset( $parsed_url['fragment'] ) ? '#' . $parsed_url['fragment'] : '';
+			$scheme   = isset( $parsed_url[ 'scheme' ] )   ? $parsed_url[ 'scheme' ] . '://' : '';
+			$user     = isset( $parsed_url[ 'user' ] )     ? $parsed_url[ 'user' ] : '';
+			$pass     = isset( $parsed_url[ 'pass' ] )     ? ':' . $parsed_url[ 'pass' ]  : '';
+			$host     = isset( $parsed_url[ 'host' ] )     ? $parsed_url[ 'host' ] : '';
+			$port     = isset( $parsed_url[ 'port' ] )     ? ':' . $parsed_url[ 'port' ] : '';
+			$path     = isset( $parsed_url[ 'path' ] )     ? $parsed_url[ 'path' ] : '';
+			$query    = isset( $parsed_url[ 'query' ] )    ? '?' . $parsed_url[ 'query' ] : '';
+			$fragment = isset( $parsed_url[ 'fragment' ] ) ? '#' . $parsed_url[ 'fragment' ] : '';
 
 			return $scheme . $user . $pass . ( $user || $pass ? '@' : '' ) . $host . $port . $path . $query . $fragment;
 		}
