@@ -274,13 +274,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return $opts;
 		}
 
-		private function check_pp( $ext = '', $lic = true, $rv = true, $uc = true ) {
-
-			return method_exists( $this->p->check, 'pp' ) ?
-				$this->p->check->pp( $ext, $lic, $rv, $uc ) :
-				$this->p->check->aop( $ext, $lic, $rv, $uc );	// Deprecated on 2018/08/27.
-		}
-
 		/**
 		 * $quiet is false by default, to show a warning if one or more development version filters are selected.
 		 */
@@ -471,13 +464,20 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 		}
 
+		private function check_pp( $ext = '', $lic = true, $rv = true, $uc = true ) {
+
+			return method_exists( $this->p->check, 'pp' ) ?
+				$this->p->check->pp( $ext, $lic, $rv, $uc ) :
+				$this->p->check->aop( $ext, $lic, $rv, $uc );	// Deprecated on 2018/08/27.
+		}
+
 		private function install_hooks() {
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
 			}
 
-			$this->p->util->add_plugin_filters( $this, array( 'save_options' => 4 ), 10000 );
+			$this->p->util->add_plugin_filters( $this, array( 'save_options' => 4 ), PHP_INT_MAX );
 
 			if ( empty( self::$upd_config ) ) {
 

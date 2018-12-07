@@ -28,31 +28,31 @@ msgstr ""
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:387 lib/com/update.php:807 lib/com-gettext-extract.php:4
+#: lib/com/update.php:380 lib/com/update.php:807 lib/com-gettext-extract.php:4
 msgid ""
 "An inconsistency was found in the %1$s update server information &mdash;"
 msgstr ""
 
-#: lib/com/update.php:390 lib/com/update.php:810 lib/com-gettext-extract.php:12
+#: lib/com/update.php:383 lib/com/update.php:810 lib/com-gettext-extract.php:12
 msgid "Update checks for %1$s are disabled while this inconsistency persists."
 msgstr ""
 
-#: lib/com/update.php:394 lib/com/update.php:814 lib/com-gettext-extract.php:16
+#: lib/com/update.php:387 lib/com/update.php:814 lib/com-gettext-extract.php:16
 msgid ""
 "You may <a href=\"%1$s\">open a new support ticket</a> if you believe this "
 "error message is incorrect."
 msgstr ""
 
-#: lib/com/update.php:422 lib/com-gettext-extract.php:6
+#: lib/com/update.php:415 lib/com-gettext-extract.php:6
 msgid "invalid authentication URL (%1$s)."
 msgstr ""
 
-#: lib/com/update.php:461 lib/com-gettext-extract.php:8
+#: lib/com/update.php:454 lib/com-gettext-extract.php:8
 msgid ""
 "Please note that one or more non-stable / development %s have been selected."
 msgstr ""
 
-#: lib/com/update.php:462 lib/com-gettext-extract.php:15
+#: lib/com/update.php:455 lib/com-gettext-extract.php:15
 #: lib/sitesubmenu/site-um-general.php:103 lib/submenu/um-general.php:85
 msgctxt "metabox title"
 msgid "Update Version Filters"
