@@ -59,6 +59,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 1.13.1 (2018/12/07)**
+
+* *New Features*
+	* None.
+* *Improvements*
+	* None.
+* *Bugfixes*
+	* Fixed a possibly incorrect config immediately after saving / upgrading the settings.
+* *Developer Notes*
+	* None.
+
 **Version 1.13.0 (2018/10/14)**
 
 * *New Features*
@@ -74,20 +85,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* Moved the SucomUpdateUtil class to a new lib/com/update-util.php library file.
 	* Moved the SucomUpdateUtilWP class to a new lib/com/update-util-wp.php library file.
 
-**Version 1.12.1 (2018/10/09)**
-
-* *New Features*
-	* None.
-* *Improvements*
-	* Added a URL consistency check after calling the WordPress add_query_arg() function.
-* *Bugfixes*
-	* None.
-* *Developer Notes*
-	* None.
-
 == Upgrade Notice ==
 
-= 1.13.0 =
+= 1.13.1 =
 
-(2018/10/14) Replaced calls to the WordPress add_query_arg() function by the SucomUpdateUtil decode_url_add_query() static method.
+(2018/12/07) Fixed a possibly incorrect config immediately after saving / upgrading the settings.
 
