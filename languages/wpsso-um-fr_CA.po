@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 1.13.0\n"
+"Project-Id-Version: WPSSO Update Manager 1.13.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2018-10-13 07:15-0400\n"
-"PO-Revision-Date: 2018-10-13 07:15-0400\n"
+"POT-Creation-Date: 2018-12-07 09:08-0800\n"
+"PO-Revision-Date: 2018-12-07 09:08-0800\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -19,57 +19,57 @@ msgstr ""
 msgid "No plugins defined for updates."
 msgstr "Aucune extension définie pour les mises à jour."
 
-#: lib/com/update.php:172 lib/com-gettext-extract.php:14
+#: lib/com/update.php:171 lib/com-gettext-extract.php:14
 msgid "Update information for %s has been retrieved and saved."
 msgstr "L'information de mises à jour pour %s a été récupérée et sauvegardée."
 
-#: lib/com/update.php:186 lib/com-gettext-extract.php:3
+#: lib/com/update.php:185 lib/com-gettext-extract.php:3
 msgid "An error was returned while getting update information for %s."
 msgstr "Une erreur a été renvoyée lors de l'obtention des informations de mise à jour pour %s."
 
-#: lib/com/update.php:201 lib/com-gettext-extract.php:5
+#: lib/com/update.php:200 lib/com-gettext-extract.php:5
 msgid "Failed saving retrieved update information for %s."
 msgstr "Erreur lors de l'enregistrement des informations de mises à jour pour %s."
 
-#: lib/com/update.php:391 lib/com/update.php:805 lib/com-gettext-extract.php:4
+#: lib/com/update.php:380 lib/com/update.php:807 lib/com-gettext-extract.php:4
 msgid "An inconsistency was found in the %1$s update server information &mdash;"
 msgstr "Une incohérence a été trouvée dans l'information du serveur de mises à jour pour %1$s &mdash;"
 
-#: lib/com/update.php:394 lib/com/update.php:808 lib/com-gettext-extract.php:12
+#: lib/com/update.php:383 lib/com/update.php:810 lib/com-gettext-extract.php:12
 msgid "Update checks for %1$s are disabled while this inconsistency persists."
 msgstr "Les vérifications de mises à jour pour %1$s sont désactivées tant que cette incohérence persiste."
 
-#: lib/com/update.php:398 lib/com/update.php:812 lib/com-gettext-extract.php:16
+#: lib/com/update.php:387 lib/com/update.php:814 lib/com-gettext-extract.php:16
 msgid "You may <a href=\"%1$s\">open a new support ticket</a> if you believe this error message is incorrect."
 msgstr "Vous pouvez <a href=\"%1$s\">ouvrir un nouveau billet de soutien</a> si vous pensez que ce message d'erreur est incorrect."
 
-#: lib/com/update.php:426 lib/com-gettext-extract.php:6
+#: lib/com/update.php:415 lib/com-gettext-extract.php:6
 msgid "invalid authentication URL (%1$s)."
 msgstr "URL d'authentification non valide (%1$s)."
 
-#: lib/com/update.php:465 lib/com-gettext-extract.php:8
+#: lib/com/update.php:454 lib/com-gettext-extract.php:8
 msgid "Please note that one or more non-stable / development %s have been selected."
 msgstr "Veuillez noter que l'un ou plusieurs %s non-stable / de développement ont été sélectionnés."
 
-#: lib/com/update.php:466 lib/com-gettext-extract.php:15
-#: lib/sitesubmenu/site-um-general.php:97 lib/submenu/um-general.php:79
+#: lib/com/update.php:455 lib/com-gettext-extract.php:15
+#: lib/sitesubmenu/site-um-general.php:103 lib/submenu/um-general.php:85
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr "Filtres de version pour mises à jour"
 
-#: lib/com/update.php:823 lib/com-gettext-extract.php:11
+#: lib/com/update.php:825 lib/com-gettext-extract.php:11
 msgid "the update server URL (%1$s) does not appear to be a valid URL."
 msgstr "l'URL du serveur de mise à jour (%1$s) ne semble pas être une URL valide."
 
-#: lib/com/update.php:852 lib/com-gettext-extract.php:10
+#: lib/com/update.php:854 lib/com-gettext-extract.php:10
 msgid "the IPv4 address (%1$s) from the local host does not match the DNS IPv4 address (%2$s)."
 msgstr "l'adresse IPv4 (%1$s) fournie par le serveur local ne correspond pas à l'adresse IPv4 du DNS (%2$s)."
 
-#: lib/com/update.php:923 lib/com-gettext-extract.php:13
+#: lib/com/update.php:925 lib/com-gettext-extract.php:13
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr "Erreur de la fonction WordPress wp_remote_get() pour mises à jour: %s"
 
-#: lib/com/update.php:1052 lib/com-gettext-extract.php:9
+#: lib/com/update.php:1055 lib/com-gettext-extract.php:9
 msgid "The %1$s plugin (%2$s) version number is missing from the WordPress plugins array."
 msgstr "Le numéro de version de l'extension %1$s (%2$s) est absente de la liste d'extensions de WordPress."
 
@@ -83,8 +83,8 @@ msgctxt "plugin description"
 msgid "WPSSO Core add-on to provide updates for the WPSSO Core Pro plugin and its Pro add-ons."
 msgstr "Extension d'ajout WPSSO Core pour fournir des mises à jour pour l'extension WPSSO Core Pro et ses ajouts Pro."
 
-#: lib/filters.php:84 lib/sitesubmenu/site-um-general.php:67
-#: lib/submenu/um-general.php:50
+#: lib/filters.php:84 lib/sitesubmenu/site-um-general.php:50
+#: lib/submenu/um-general.php:56
 msgctxt "submit button"
 msgid "Check for Updates"
 msgstr "Vérifier pour mises à jour"
@@ -93,39 +93,34 @@ msgstr "Vérifier pour mises à jour"
 msgid "Plugin and add-on information has been refreshed."
 msgstr "Les informations d'extensions et d'ajouts ont été actualisées."
 
-#: lib/sitesubmenu/site-um-general.php:53
+#: lib/sitesubmenu/site-um-general.php:61
 msgctxt "metabox title"
 msgid "Network Update Manager"
 msgstr "Gestion de mises à jour réseau"
 
-#: lib/sitesubmenu/site-um-general.php:90 lib/submenu/um-general.php:73
+#: lib/sitesubmenu/site-um-general.php:98 lib/submenu/um-general.php:79
 msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr "Actualiser info. de mises à jour"
 
-#: lib/submenu/um-general.php:41
-msgctxt "package type"
-msgid "Pro"
-msgstr "Pro"
-
-#: lib/submenu/um-general.php:44
+#: lib/submenu/um-general.php:42
 msgctxt "metabox title"
 msgid "Update Manager"
 msgstr "Gestion de mises à jour"
 
-#: wpsso-um.php:98
+#: wpsso-um.php:102
 msgid "%1$s is an add-on for the %2$s plugin &mdash; please install and activate the %3$s plugin before activating %4$s."
 msgstr "%1$s est un ajout pour l'extension %2$s &mdash; SVP installer et activer l'extension %3$s avant d'activer %4$s."
 
-#: wpsso-um.php:100
+#: wpsso-um.php:104
 msgid "The %1$s add-on requires the %2$s plugin &mdash; install and activate the %3$s plugin or <a href=\"%4$s\">deactivate the %5$s add-on</a>."
 msgstr "L'ajout %1$s requiert l'extension %2$s &mdash; installer et activer l'extension %3$s ou <a href=\"%4$s\">désactiver l'ajout %5$s</a>."
 
-#: wpsso-um.php:231
+#: wpsso-um.php:235
 msgid "Performing an update check for the %s plugin."
 msgstr "Vérification de mises à jour pour l'extension %s."
 
-#: wpsso-um.php:248
+#: wpsso-um.php:251
 msgid "The %1$s version %2$s add-on requires %3$s version %4$s or newer (version %5$s is currently installed)."
 msgstr "L'ajout %1$s version %2$s requiert %3$s version %4$s ou plus récente (version %5$s est actuellement installée)."
 
@@ -148,18 +143,3 @@ msgstr "JS Morisset"
 #. Author URI of the plugin/theme
 msgid "https://wpsso.com/"
 msgstr "https://wpsso.com/"
-
-#~ msgid "the update URL (%1$s) provided by the plugin configuration is invalid."
-#~ msgstr "l'URL de mise à jour  (%1$s) fournie par la configuration de l'extension n'est pas valide."
-
-#~ msgid "the WordPress add_query_arg() function returned an invalid authentication URL (%1$s)."
-#~ msgstr "la fonction WordPress add_query_arg() a renvoyé une URL d'authentification non valide (%1$s)."
-
-#~ msgid "WordPress library file %s is missing and required."
-#~ msgstr "Le fichier de bibliothèque WordPress %s est manquant et requis."
-
-#~ msgid "https://developer.wordpress.org/reference/functions/get_plugins/"
-#~ msgstr "https://developer.wordpress.org/reference/functions/get_plugins/"
-
-#~ msgid "The <a href=\"%1$s\">WordPress %2$s function</a> is missing and required."
-#~ msgstr "La <a href=\"%1$s\">fonction WordPress %2$s</a> n'est pas disponible et requise."
