@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Update Manager package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 1.13.0\n"
+"Project-Id-Version: WPSSO Update Manager 1.13.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2018-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -28,51 +28,51 @@ msgstr ""
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:390 lib/com/update.php:806 lib/com-gettext-extract.php:4
+#: lib/com/update.php:387 lib/com/update.php:807 lib/com-gettext-extract.php:4
 msgid ""
 "An inconsistency was found in the %1$s update server information &mdash;"
 msgstr ""
 
-#: lib/com/update.php:393 lib/com/update.php:809 lib/com-gettext-extract.php:12
+#: lib/com/update.php:390 lib/com/update.php:810 lib/com-gettext-extract.php:12
 msgid "Update checks for %1$s are disabled while this inconsistency persists."
 msgstr ""
 
-#: lib/com/update.php:397 lib/com/update.php:813 lib/com-gettext-extract.php:16
+#: lib/com/update.php:394 lib/com/update.php:814 lib/com-gettext-extract.php:16
 msgid ""
 "You may <a href=\"%1$s\">open a new support ticket</a> if you believe this "
 "error message is incorrect."
 msgstr ""
 
-#: lib/com/update.php:425 lib/com-gettext-extract.php:6
+#: lib/com/update.php:422 lib/com-gettext-extract.php:6
 msgid "invalid authentication URL (%1$s)."
 msgstr ""
 
-#: lib/com/update.php:464 lib/com-gettext-extract.php:8
+#: lib/com/update.php:461 lib/com-gettext-extract.php:8
 msgid ""
 "Please note that one or more non-stable / development %s have been selected."
 msgstr ""
 
-#: lib/com/update.php:465 lib/com-gettext-extract.php:15
-#: lib/sitesubmenu/site-um-general.php:105 lib/submenu/um-general.php:85
+#: lib/com/update.php:462 lib/com-gettext-extract.php:15
+#: lib/sitesubmenu/site-um-general.php:103 lib/submenu/um-general.php:85
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
 
-#: lib/com/update.php:824 lib/com-gettext-extract.php:11
+#: lib/com/update.php:825 lib/com-gettext-extract.php:11
 msgid "the update server URL (%1$s) does not appear to be a valid URL."
 msgstr ""
 
-#: lib/com/update.php:853 lib/com-gettext-extract.php:10
+#: lib/com/update.php:854 lib/com-gettext-extract.php:10
 msgid ""
 "the IPv4 address (%1$s) from the local host does not match the DNS IPv4 "
 "address (%2$s)."
 msgstr ""
 
-#: lib/com/update.php:924 lib/com-gettext-extract.php:13
+#: lib/com/update.php:925 lib/com-gettext-extract.php:13
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr ""
 
-#: lib/com/update.php:1054 lib/com-gettext-extract.php:9
+#: lib/com/update.php:1055 lib/com-gettext-extract.php:9
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."
@@ -90,7 +90,7 @@ msgid ""
 "Pro add-ons."
 msgstr ""
 
-#: lib/filters.php:84 lib/sitesubmenu/site-um-general.php:75
+#: lib/filters.php:84 lib/sitesubmenu/site-um-general.php:50
 #: lib/submenu/um-general.php:56
 msgctxt "submit button"
 msgid "Check for Updates"
@@ -100,7 +100,7 @@ msgstr ""
 msgid "Plugin and add-on information has been refreshed."
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:53
+#: lib/sitesubmenu/site-um-general.php:61
 msgctxt "metabox title"
 msgid "Network Update Manager"
 msgstr ""

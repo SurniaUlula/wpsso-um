@@ -49,10 +49,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			if ( ! empty( $this->plugin_lca ) ) {
 
 				$this->plugin_slug = $this->p->cf[ 'plugin' ][$this->plugin_lca][ 'slug' ];	// Example: wpsso.
-				$this->text_domain = $text_domain;					// Example: wpsso-um.
+				$this->text_domain = $text_domain;						// Example: wpsso-um.
 				$this->cron_hook   = $this->plugin_lca . '_update_manager_check';		// Example: wpsso_update_manager_check.
-				$this->sched_hours = $check_hours < 12 ? 12 : $check_hours;		// Example: 12 (12 hours minimum).
-				$this->sched_name  = 'every' . $this->sched_hours . 'hours';		// Example: every24hours.
+				$this->sched_hours = $check_hours < 12 ? 12 : $check_hours;			// Example: 12 (12 hours minimum).
+				$this->sched_name  = 'every' . $this->sched_hours . 'hours';			// Example: every24hours.
 
 				$this->set_config();	// Private method.
 				$this->install_hooks();	// Private method.
@@ -209,10 +209,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		 */
 		public function get_config_keys( $include = null, $exclude = null, $read_cache = true ) {
 
-			$quiet = true;
 			$keys  = array();
 
-			$this->set_config( $quiet, $read_cache );	// Private method.
+			$this->set_config( $quiet = true, $read_cache );	// Private method.
 
 			/**
 			 * Optionally include only some plugin keys.
@@ -264,15 +263,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return $keys;
 		}
 
-		public function filter_save_options( $opts ) {
+		public function filter_save_options( $opts, $options_name, $network, $doing_upgrade ) {
 
-			$cache_md5_pre  = $this->p->lca . '_';
-			$cache_salt     = __CLASS__ . '::upd_config';
-			$cache_id       = $cache_md5_pre . md5( $cache_salt );
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
 
-			delete_transient( $cache_id );
-
-			self::$upd_config = array();	// Reset the config array.
+			$this->set_config( $quiet = true, $read_cache = false );	// Private method.
 
 			return $opts;
 		}
@@ -480,7 +477,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->mark();
 			}
 
-			$this->p->util->add_plugin_filters( $this, array( 'save_options' => 1 ), -10000 );
+			$this->p->util->add_plugin_filters( $this, array( 'save_options' => 4 ), 10000 );
 
 			if ( empty( self::$upd_config ) ) {
 
@@ -691,15 +688,19 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					self::$upd_config[ $ext ]['plugin_update'] = $updates->response[$info[ 'base' ]] = $update_data->update->json_to_wp();
 
 					if ( $this->p->debug->enabled ) {
+
 						$this->p->debug->log( $ext . ' plugin: installed version (' . $ext_version . ') ' . 
 							'different than update version (' . $update_data->update->version . ')' );
+
 						$this->p->debug->log_arr( 'option_data', $updates->response[$info[ 'base' ]], 5 );
 					}
 				} else {
 					self::$upd_config[ $ext ]['plugin_update'] = false;	// False when installed is current.
 
 					if ( $this->p->debug->enabled ) {
+
 						$this->p->debug->log( $ext . ' plugin: installed version is current (or newer) than update version' );
+
 						$this->p->debug->log_arr( 'option_data', $update_data->update->json_to_wp(), 5 );
 					}
 				}
@@ -1223,20 +1224,16 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		public static function is_installed( $ext ) {
 
 			if ( empty( $ext ) ) {
-
 				return false;
-
 			} elseif ( ! isset( self::$upd_config[ $ext ] ) ) {
-
 				return false;
-
 			} else {
 
 				$info = self::$upd_config[ $ext ];
 
-				if ( ! isset( $info['installed_version'] ) ) {	// Just in case.
+				if ( ! isset( $info[ 'installed_version' ] ) ) {	// Just in case.
 					return false;
-				} elseif ( false !== strpos( $info['installed_version'], 'not-installed' ) ) {	// Anywhere in string.
+				} elseif ( false !== strpos( $info[ 'installed_version' ], 'not-installed' ) ) {	// Anywhere in string.
 					return false;
 				}
 			}
@@ -1258,23 +1255,28 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			if ( empty( $val ) ) {
 
+				$val = null;
+
 				delete_option( $ext . '_uapi' . self::$api_version . $mtype );
 
-				self::$upd_config[ $ext ][ 'u' . $mtype ] = false;	// Just in case.
-
 			} else {
-
 				update_option( $ext . '_uapi' . self::$api_version . $mtype, base64_encode( $val ) );	// Save as string.
+			}
 
+			if ( isset( self::$upd_config[ $ext ] ) ) {
 				self::$upd_config[ $ext ][ 'u' . $mtype ] = $val;
 			}
 
-			return self::$upd_config[ $ext ][ 'u' . $mtype ];
+			return $val;
 		}
 
-		public static function get_umsg( $ext, $mtype = 'err', $def = false ) {
+		public static function get_umsg( $ext, $mtype = 'err', $def = null ) {
 
-			if ( ! isset( self::$upd_config[ $ext ][ 'u' . $mtype ] ) ) {
+			if ( isset( self::$upd_config[ $ext ][ 'u' . $mtype ] ) ) {
+
+				$val = self::$upd_config[ $ext ][ 'u' . $mtype ];
+
+			} else {
 
 				$opt_name = $ext . '_uapi' . self::$api_version . $mtype;
 
@@ -1284,18 +1286,20 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				$val = get_option( $opt_name, $def );
 
-				if ( ! is_bool( $val ) ) {
+				if ( is_string( $val ) ) {
 					$val = base64_decode( $val );	// Value is saved as a string.
 				}
 
 				if ( empty( $val ) ) {
-					self::$upd_config[ $ext ][ 'u' . $mtype ] = false;
-				} else {
+					$val = null;
+				}
+
+				if ( isset( self::$upd_config[ $ext ] ) ) {
 					self::$upd_config[ $ext ][ 'u' . $mtype ] = $val;
 				}
 			}
 
-			return self::$upd_config[ $ext ][ 'u' . $mtype ];
+			return $val;
 		}
 
 		/**
