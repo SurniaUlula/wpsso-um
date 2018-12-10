@@ -91,7 +91,7 @@ msgid ""
 msgstr ""
 
 #: lib/filters.php:84 lib/sitesubmenu/site-um-general.php:50
-#: lib/submenu/um-general.php:56
+#: lib/submenu/um-general.php:38
 msgctxt "submit button"
 msgid "Check for Updates"
 msgstr ""
@@ -110,7 +110,7 @@ msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr ""
 
-#: lib/submenu/um-general.php:42
+#: lib/submenu/um-general.php:49
 msgctxt "metabox title"
 msgid "Update Manager"
 msgstr ""

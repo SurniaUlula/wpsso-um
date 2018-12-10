@@ -41,15 +41,15 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 		protected function add_plugin_hooks() {
 
 			$this->p->util->add_plugin_filters( $this, array(
-				'action_buttons' => 1,
+				'submit_button_rows' => 1,
 			) );
 		}
 
-		public function filter_action_buttons( $action_buttons ) {
+		public function filter_submit_button_rows( $submit_button_rows ) {
 
-			$action_buttons[ 0 ][ 'check_for_updates' ] = _x( 'Check for Updates', 'submit button', 'wpsso-um' );
+			$submit_button_rows[ 0 ][ 'check_for_updates' ] = _x( 'Check for Updates', 'submit button', 'wpsso-um' );
 
-			return $action_buttons;
+			return $submit_button_rows;
 		}
 
 		/**
