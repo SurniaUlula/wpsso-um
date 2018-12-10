@@ -59,6 +59,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 1.13.2-dev.3 (2018/12/10)**
+
+* *New Features*
+	* None.
+* *Improvements*
+	* None.
+* *Bugfixes*
+	* None.
+* *Developer Notes*
+	* Renamed the 'wpsso_action_buttons' filter hook to 'wpsso_submit_button_rows' for WPSSO Core v4.18.0.
+
 **Version 1.13.1 (2018/12/07)**
 
 * *New Features*
@@ -70,22 +81,11 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *Developer Notes*
 	* None.
 
-**Version 1.13.0 (2018/10/14)**
-
-* *New Features*
-	* None.
-* *Improvements*
-	* Replaced calls to the WordPress add_query_arg() function by the SucomUpdateUtil decode_url_add_query() static method.
-* *Bugfixes*
-	* None.
-* *Developer Notes*
-	* Added a new SucomUpdateUtil class with decode_url_add_query(), unparse_url{}, and get_wp_plugins() static methods.
-	* Moved the SucomPluginData class to a new lib/com/plugin-data.php library file.
-	* Moved the SucomPluginUpdate class to a new lib/com/plugin-update.php library file.
-	* Moved the SucomUpdateUtil class to a new lib/com/update-util.php library file.
-	* Moved the SucomUpdateUtilWP class to a new lib/com/update-util-wp.php library file.
-
 == Upgrade Notice ==
+
+= 1.13.2-dev.3 =
+
+(2018/12/10) Renamed the 'wpsso_action_buttons' filter hook to 'wpsso_submit_button_rows' for WPSSO Core v4.18.0.
 
 = 1.13.1 =
 
