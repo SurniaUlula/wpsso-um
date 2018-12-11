@@ -69,6 +69,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* None.
 * *Developer Notes*
 	* Renamed the 'wpsso_action_buttons' filter hook to 'wpsso_form_button_rows' for WPSSO Core v4.18.0.
+	* Moved action hooks from WpssoUmFilters to a new WpssoUmActions library class.
 
 **Version 1.13.1 (2018/12/07)**
 
