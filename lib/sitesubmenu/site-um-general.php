@@ -33,14 +33,18 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 
 		public function filter_form_button_rows( $form_button_rows, $menu_id ) {
 
+			$row_num = null;
+
 			switch ( $menu_id ) {
-				
 				case 'site-um-general':
 				case 'site-tools':
-
-					$form_button_rows[ 0 ][ 'check_for_updates' ] = _x( 'Check for Updates', 'submit button', 'wpsso-um' );
-
+					$row_num = 0;
 					break;
+			}
+
+			if ( null !== $row_num ) {
+				$form_button_rows[ $row_num ][ 'check_for_updates' ] = sprintf(_x( 'Check for Updates for Site ID %d',
+					'submit button', 'wpsso-um' ), get_current_blog_id() );
 			}
 
 			return $form_button_rows;

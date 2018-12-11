@@ -33,14 +33,17 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 
 		public function filter_form_button_rows( $form_button_rows, $menu_id ) {
 
+			$row_num = null;
+
 			switch ( $menu_id ) {
-				
 				case 'um-general':
 				case 'tools':
-
-					$form_button_rows[ 0 ][ 'check_for_updates' ] = _x( 'Check for Updates', 'submit button', 'wpsso-um' );
-
+					$row_num = 0;
 					break;
+			}
+
+			if ( null !== $row_num ) {
+				$form_button_rows[ $row_num ][ 'check_for_updates' ] = _x( 'Check for Updates', 'submit button', 'wpsso-um' );
 			}
 
 			return $form_button_rows;
