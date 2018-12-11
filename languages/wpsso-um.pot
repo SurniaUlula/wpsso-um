@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Update Manager package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 1.13.2-dev.3\n"
+"Project-Id-Version: WPSSO Update Manager 1.13.2-dev.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2018-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -11,6 +11,10 @@ msgstr ""
 "PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: lib/actions.php:62
+msgid "Plugin and add-on information has been refreshed."
+msgstr ""
 
 #: lib/com/update.php:121 lib/com-gettext-extract.php:7
 msgid "No plugins defined for updates."
@@ -53,7 +57,7 @@ msgid ""
 msgstr ""
 
 #: lib/com/update.php:455 lib/com-gettext-extract.php:15
-#: lib/sitesubmenu/site-um-general.php:103 lib/submenu/um-general.php:86
+#: lib/sitesubmenu/site-um-general.php:108 lib/submenu/um-general.php:91
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
@@ -90,48 +94,43 @@ msgid ""
 "Pro add-ons."
 msgstr ""
 
-#: lib/filters.php:84 lib/sitesubmenu/site-um-general.php:50
-#: lib/submenu/um-general.php:39
+#: lib/sitesubmenu/site-um-general.php:41 lib/submenu/um-general.php:41
 msgctxt "submit button"
 msgid "Check for Updates"
 msgstr ""
 
-#: lib/filters.php:107
-msgid "Plugin and add-on information has been refreshed."
-msgstr ""
-
-#: lib/sitesubmenu/site-um-general.php:61
+#: lib/sitesubmenu/site-um-general.php:66
 msgctxt "metabox title"
 msgid "Network Update Manager"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:98 lib/submenu/um-general.php:80
+#: lib/sitesubmenu/site-um-general.php:103 lib/submenu/um-general.php:85
 msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr ""
 
-#: lib/submenu/um-general.php:50
+#: lib/submenu/um-general.php:55
 msgctxt "metabox title"
 msgid "Update Manager"
 msgstr ""
 
-#: wpsso-um.php:102
+#: wpsso-um.php:103
 msgid ""
 "%1$s is an add-on for the %2$s plugin &mdash; please install and activate "
 "the %3$s plugin before activating %4$s."
 msgstr ""
 
-#: wpsso-um.php:104
+#: wpsso-um.php:105
 msgid ""
 "The %1$s add-on requires the %2$s plugin &mdash; install and activate the "
 "%3$s plugin or <a href=\"%4$s\">deactivate the %5$s add-on</a>."
 msgstr ""
 
-#: wpsso-um.php:235
+#: wpsso-um.php:238
 msgid "Performing an update check for the %s plugin."
 msgstr ""
 
-#: wpsso-um.php:251
+#: wpsso-um.php:254
 msgid ""
 "The %1$s version %2$s add-on requires %3$s version %4$s or newer (version "
 "%5$s is currently installed)."

@@ -25,20 +25,25 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 			$this->menu_name = $name;
 			$this->menu_lib  = $lib;
 			$this->menu_ext  = $ext;
-		}
-
-		protected function add_plugin_hooks() {
 
 			$this->p->util->add_plugin_filters( $this, array(
-				'submit_button_rows' => 1,
-			) );
+				'form_button_rows' => 2,
+			), -100000 );
 		}
 
-		public function filter_submit_button_rows( $submit_button_rows ) {
+		public function filter_form_button_rows( $form_button_rows, $menu_id ) {
 
-			$submit_button_rows[0]['check_for_updates'] = _x( 'Check for Updates', 'submit button', 'wpsso-um' );
+			switch ( $menu_id ) {
+				
+				case 'um-general':
+				case 'tools':
 
-			return $submit_button_rows;
+					$form_button_rows[ 0 ][ 'check_for_updates' ] = _x( 'Check for Updates', 'submit button', 'wpsso-um' );
+
+					break;
+			}
+
+			return $form_button_rows;
 		}
 
 		/**

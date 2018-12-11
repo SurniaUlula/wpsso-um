@@ -14,7 +14,7 @@
  * Requires PHP: 5.4
  * Requires At Least: 3.8
  * Tested Up To: 5.0
- * Version: 1.13.2-dev.3
+ * Version: 1.13.2-dev.4
  * 
  * Version Numbering: {major}.{minor}.{bugfix}[-{stage}.{level}]
  *
@@ -42,6 +42,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		/**
 		 * Library class object variables.
 		 */
+		public $actions;	// WpssoUmActions
 		public $filters;	// WpssoUmFilters
 		public $reg;		// WpssoUmRegister
 		public $update;		// SucomUpdate
@@ -180,6 +181,8 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			$info = WpssoUmConfig::$cf[ 'plugin' ][ 'wpssoum' ];
 
 			$this->check_hours = $this->get_update_check_hours();
+
+			$this->actions     = new WpssoUmActions( $this->p );
 			$this->filters     = new WpssoUmFilters( $this->p );
 			$this->update      = new SucomUpdate( $this->p, $this->check_hours, $info['text_domain'] );
 		}

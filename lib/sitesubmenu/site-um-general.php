@@ -25,6 +25,25 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 			$this->menu_name = $name;
 			$this->menu_lib  = $lib;
 			$this->menu_ext  = $ext;
+
+			$this->p->util->add_plugin_filters( $this, array(
+				'form_button_rows' => 2,
+			), -100000 );
+		}
+
+		public function filter_form_button_rows( $form_button_rows, $menu_id ) {
+
+			switch ( $menu_id ) {
+				
+				case 'site-um-general':
+				case 'site-tools':
+
+					$form_button_rows[ 0 ][ 'check_for_updates' ] = _x( 'Check for Updates', 'submit button', 'wpsso-um' );
+
+					break;
+			}
+
+			return $form_button_rows;
 		}
 
 		protected function set_form_object( $menu_ext ) {
@@ -36,20 +55,6 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 			$def_site_opts = $this->p->opt->get_site_defaults();
 
 			$this->form = new SucomForm( $this->p, WPSSO_SITE_OPTIONS_NAME, $this->p->site_options, $def_site_opts, $menu_ext );
-		}
-
-		protected function add_plugin_hooks() {
-
-			$this->p->util->add_plugin_filters( $this, array(
-				'submit_button_rows' => 1,
-			) );
-		}
-
-		public function filter_submit_button_rows( $submit_button_rows ) {
-
-			$submit_button_rows[ 0 ][ 'check_for_updates' ] = _x( 'Check for Updates', 'submit button', 'wpsso-um' );
-
-			return $submit_button_rows;
 		}
 
 		/**

@@ -16,7 +16,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		public static $cf = array(
 			'plugin' => array(
 				'wpssoum' => array(			// Plugin acronym.
-					'version'     => '1.13.2-dev.3',	// Plugin version.
+					'version'     => '1.13.2-dev.4',	// Plugin version.
 					'opt_version' => '3',		// Increment when changing default option values.
 					'short'       => 'WPSSO UM',	// Short plugin name.
 					'name'        => 'WPSSO Update Manager',
@@ -30,7 +30,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 						'short'       => 'WPSSO Core',
 						'name'        => 'WPSSO Core',
 						'min_version' => '3.54.0',	// 2018/03/09
-						'rec_version' => '4.18.0-dev.3',
+						'rec_version' => '4.18.0-dev.4',
 					),
 					'img' => array(
 						'icons' => array(
@@ -50,6 +50,15 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 						'pro' => array(
 						),
 					),
+				),
+			),
+			'opt' => array(				// options
+				'defaults' => array(
+					'update_check_hours' => 24,
+				),
+				'site_defaults' => array(
+					'update_check_hours'     => 24,
+					'update_check_hours:use' => 'default',
 				),
 			),
 		);
@@ -79,6 +88,8 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		public static function require_libs( $plugin_filepath ) {
 
 			require_once WPSSOUM_PLUGINDIR . 'lib/com/update.php';
+
+			require_once WPSSOUM_PLUGINDIR . 'lib/actions.php';
 			require_once WPSSOUM_PLUGINDIR . 'lib/filters.php';
 			require_once WPSSOUM_PLUGINDIR . 'lib/register.php';
 
