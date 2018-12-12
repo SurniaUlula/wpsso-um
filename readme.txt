@@ -59,12 +59,13 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.13.2-dev.5 (2018/12/11)**
+**Version 1.14.0-b.1 (2018/12/12)**
 
 * *New Features*
 	* None.
 * *Improvements*
-	* None.
+	* Added an action button in the new SSO &gt; Tools settings page for WPSSO Core v4.18.0:
+		* Check for Updates
 * *Bugfixes*
 	* None.
 * *Developer Notes*
@@ -84,9 +85,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.13.2-dev.5 =
+= 1.14.0-b.1 =
 
-(2018/12/11) Renamed the 'wpsso_action_buttons' filter hook to 'wpsso_form_button_rows' for WPSSO Core v4.18.0.
+(2018/12/12) Added an action button in the new SSO &gt; Tools settings page for WPSSO Core v4.18.0.
 
 = 1.13.1 =
 
