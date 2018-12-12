@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 1.13.1\n"
+"Project-Id-Version: WPSSO Update Manager 1.14.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2018-12-07 09:08-0800\n"
-"PO-Revision-Date: 2018-12-07 09:08-0800\n"
+"POT-Creation-Date: 2018-12-12 08:22-0800\n"
+"PO-Revision-Date: 2018-12-12 08:23-0800\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -14,6 +14,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: lib/actions.php:62
+msgid "Plugin and add-on information has been refreshed."
+msgstr "Les informations d'extensions et d'ajouts ont été actualisées."
 
 #: lib/com/update.php:121 lib/com-gettext-extract.php:7
 msgid "No plugins defined for updates."
@@ -52,7 +56,7 @@ msgid "Please note that one or more non-stable / development %s have been select
 msgstr "Veuillez noter que l'un ou plusieurs %s non-stable / de développement ont été sélectionnés."
 
 #: lib/com/update.php:455 lib/com-gettext-extract.php:15
-#: lib/sitesubmenu/site-um-general.php:103 lib/submenu/um-general.php:85
+#: lib/sitesubmenu/site-um-general.php:112 lib/submenu/um-general.php:94
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr "Filtres de version pour mises à jour"
@@ -83,44 +87,44 @@ msgctxt "plugin description"
 msgid "WPSSO Core add-on to provide updates for the WPSSO Core Pro plugin and its Pro add-ons."
 msgstr "Extension d'ajout WPSSO Core pour fournir des mises à jour pour l'extension WPSSO Core Pro et ses ajouts Pro."
 
-#: lib/filters.php:84 lib/sitesubmenu/site-um-general.php:50
-#: lib/submenu/um-general.php:56
+#: lib/sitesubmenu/site-um-general.php:46
 msgctxt "submit button"
-msgid "Check for Updates"
-msgstr "Vérifier pour mises à jour"
+msgid "Check for Updates for Site ID %d"
+msgstr "Vérifier pour mises à jour ID de site %d"
 
-#: lib/filters.php:107
-msgid "Plugin and add-on information has been refreshed."
-msgstr "Les informations d'extensions et d'ajouts ont été actualisées."
-
-#: lib/sitesubmenu/site-um-general.php:61
+#: lib/sitesubmenu/site-um-general.php:70
 msgctxt "metabox title"
 msgid "Network Update Manager"
 msgstr "Gestion de mises à jour réseau"
 
-#: lib/sitesubmenu/site-um-general.php:98 lib/submenu/um-general.php:79
+#: lib/sitesubmenu/site-um-general.php:107 lib/submenu/um-general.php:88
 msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr "Actualiser info. de mises à jour"
 
-#: lib/submenu/um-general.php:42
+#: lib/submenu/um-general.php:46
+msgctxt "submit button"
+msgid "Check for Updates"
+msgstr "Vérifier pour mises à jour"
+
+#: lib/submenu/um-general.php:58
 msgctxt "metabox title"
 msgid "Update Manager"
 msgstr "Gestion de mises à jour"
 
-#: wpsso-um.php:102
+#: wpsso-um.php:103
 msgid "%1$s is an add-on for the %2$s plugin &mdash; please install and activate the %3$s plugin before activating %4$s."
 msgstr "%1$s est un ajout pour l'extension %2$s &mdash; SVP installer et activer l'extension %3$s avant d'activer %4$s."
 
-#: wpsso-um.php:104
+#: wpsso-um.php:105
 msgid "The %1$s add-on requires the %2$s plugin &mdash; install and activate the %3$s plugin or <a href=\"%4$s\">deactivate the %5$s add-on</a>."
 msgstr "L'ajout %1$s requiert l'extension %2$s &mdash; installer et activer l'extension %3$s ou <a href=\"%4$s\">désactiver l'ajout %5$s</a>."
 
-#: wpsso-um.php:235
+#: wpsso-um.php:238
 msgid "Performing an update check for the %s plugin."
 msgstr "Vérification de mises à jour pour l'extension %s."
 
-#: wpsso-um.php:251
+#: wpsso-um.php:254
 msgid "The %1$s version %2$s add-on requires %3$s version %4$s or newer (version %5$s is currently installed)."
 msgstr "L'ajout %1$s version %2$s requiert %3$s version %4$s ou plus récente (version %5$s est actuellement installée)."
 
