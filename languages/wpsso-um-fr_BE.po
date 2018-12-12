@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: WPSSO Update Manager 1.14.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2018-12-12 08:22-0800\n"
-"PO-Revision-Date: 2018-12-12 08:23-0800\n"
+"PO-Revision-Date: 2018-12-12 09:21-0800\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -90,7 +90,7 @@ msgstr "Extension d'ajout WPSSO Core pour fournir des mises à jour pour l'exten
 #: lib/sitesubmenu/site-um-general.php:46
 msgctxt "submit button"
 msgid "Check for Updates for Site ID %d"
-msgstr "Vérifier pour mises à jour ID de site %d"
+msgstr "Vérifier pour mises à jour pour site ID %d"
 
 #: lib/sitesubmenu/site-um-general.php:70
 msgctxt "metabox title"
