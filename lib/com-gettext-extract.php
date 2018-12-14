@@ -1,5 +1,5 @@
 <?php die( 'These aren\'t the droids you\'re looking for...' );
-// extract of translatable text strings from common library classes
+// extract of translatable text strings from lib/com classes
 __( 'An error was returned while getting update information for %s.', 'wpsso-um' );
 __( 'An inconsistency was found in the %1$s update server information &mdash;', 'wpsso-um' );
 __( 'Failed saving retrieved update information for %s.', 'wpsso-um' );
