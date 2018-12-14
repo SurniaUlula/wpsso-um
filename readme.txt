@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.14.0-rc.2 (2018/12/14)**
+**Version 1.14.0 (2018/12/14)**
 
 * *New Features*
 	* None.
@@ -72,24 +72,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* Renamed the 'wpsso_action_buttons' filter hook to 'wpsso_form_button_rows' for WPSSO Core v4.18.0.
 	* Moved action hooks from WpssoUmFilters to a new WpssoUmActions library class.
 
-**Version 1.13.1 (2018/12/07)**
-
-* *New Features*
-	* None.
-* *Improvements*
-	* None.
-* *Bugfixes*
-	* Fixed a possibly incorrect config immediately after saving / upgrading the settings.
-* *Developer Notes*
-	* None.
-
 == Upgrade Notice ==
 
-= 1.14.0-rc.2 =
+= 1.14.0 =
 
 (2018/12/14) Added an action button in the new SSO &gt; Tools settings page for WPSSO Core v4.18.0.
-
-= 1.13.1 =
-
-(2018/12/07) Fixed a possibly incorrect config immediately after saving / upgrading the settings.
 
