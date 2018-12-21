@@ -13,7 +13,7 @@ Requires At Least: 3.8
 Tested Up To: 5.0
 Stable Tag: 1.14.0
 
-WPSSO Core add-on to provide updates for the WPSSO Core Pro plugin and its Pro add-ons.
+WPSSO Core add-on provides updates for the WPSSO Core Pro plugin and its Pro add-ons.
 
 == Description ==
 
