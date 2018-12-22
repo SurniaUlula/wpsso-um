@@ -57,6 +57,7 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 				'qty_reg', 
 				'qty_used', 
 			) as $prop_name ) {
+
 				if ( isset( $plugin_data->$prop_name ) ) {
 					$plugin_update->$prop_name = $plugin_data->$prop_name;
 				}
@@ -84,7 +85,9 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 				'qty_reg'        => 'qty_reg',
 				'qty_used'       => 'qty_used',
 			) as $json_prop_name => $wp_prop_name ) {
+
 				if ( isset( $this->$json_prop_name ) ) {
+
 					if ( is_object( $this->$json_prop_name ) ) {
 						$plugin_update->$wp_prop_name = get_object_vars( $this->$json_prop_name );
 					} else {

@@ -578,13 +578,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->mark();
 			}
 
-			if ( $action !== 'plugin_information' ) {	// This filter only provides plugin data.
+			if ( $action !== 'plugin_information' ) {				// This filter only provides plugin data.
 				return $result;
-			} elseif ( empty( $args->slug ) ) {	// Make sure we have a slug in the request.
+			} elseif ( empty( $args->slug ) ) {					// Make sure we have a slug in the request.
 				return $result;
-			} elseif ( ! empty( $args->unfiltered ) ) {	// Flag for the update manager filter.
+			} elseif ( ! empty( $args->unfiltered ) ) {				// Flag for the update manager filter.
 				return $result;
-			} elseif ( empty( $this->p->cf[ '*' ][ 'slug' ][$args->slug] ) ) {	// Make sure the plugin slug is one of ours.
+			} elseif ( empty( $this->p->cf[ '*' ][ 'slug' ][ $args->slug ] ) ) {	// Make sure the plugin slug is one of ours.
 				return $result;
 			}
 

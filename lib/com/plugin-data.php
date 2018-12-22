@@ -75,22 +75,33 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 				'last_updated',
 				'sections',
 			) as $prop_name ) {
+
 				if ( isset( $this->$prop_name ) ) {
+
 					if ( $prop_name === 'download_url' ) {
+
 						$plugin_data->download_link = $this->download_url;
+
 					} elseif ( $prop_name === 'author_homepage' ) {
+
 						if ( strpos( $this->author, '<a href' ) === false ) {
 							$plugin_data->author = sprintf( '<a href="%s">%s</a>', $this->author_homepage, $this->author );
 						} else {
 							$plugin_data->author = $this->author;
 						}
+
 					} elseif ( $prop_name === 'sections' && empty( $this->$prop_name ) ) {
+
 						$plugin_data->$prop_name = array( 'description' => '' );
+
 					} elseif ( is_object( $this->$prop_name ) ) {
+
 						$plugin_data->$prop_name = get_object_vars( $this->$prop_name );
+
 					} else {
 						$plugin_data->$prop_name = $this->$prop_name;
 					}
+
 				} elseif ( $prop_name === 'author_homepage' ) {
 					$plugin_data->author = $this->author;
 				}
