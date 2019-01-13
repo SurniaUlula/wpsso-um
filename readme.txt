@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires PHP: 5.4
 Requires At Least: 3.8
 Tested Up To: 5.0
-Stable Tag: 1.14.0
+Stable Tag: 1.14.1
 
 WPSSO Core add-on provides updates for the WPSSO Core Pro plugin and its Pro add-ons.
 
@@ -59,6 +59,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 1.14.1 (2019/01/12)**
+
+* *New Features*
+	* None.
+* *Improvements*
+	* None.
+* *Bugfixes*
+	* None.
+* *Developer Notes*
+	* Added removal of non-essential option filters.
+
 **Version 1.14.0 (2018/12/14)**
 
 * *New Features*
@@ -73,6 +84,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* Moved action hooks from WpssoUmFilters to a new WpssoUmActions library class.
 
 == Upgrade Notice ==
+
+= 1.14.1 =
+
+(2019/01/12) Added removal of non-essential option filters.
 
 = 1.14.0 =
 
