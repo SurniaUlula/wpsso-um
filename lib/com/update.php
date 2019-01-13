@@ -1261,7 +1261,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				delete_option( $ext . '_uapi' . self::$api_version . $mtype );
 
 			} else {
-				update_option( $ext . '_uapi' . self::$api_version . $mtype, base64_encode( $val ) );	// Save as string.
+
+				$opt_name = $ext . '_uapi' . self::$api_version . $mtype;
+
+				remove_all_filters( 'pre_update_option_' . $opt_name );	// Just in case.
+
+				update_option( $opt_name, base64_encode( $val ) );	// Always save as string.
 			}
 
 			if ( isset( self::$upd_config[ $ext ] ) ) {
@@ -1281,14 +1286,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				$opt_name = $ext . '_uapi' . self::$api_version . $mtype;
 
-				if ( method_exists( 'SucomUtil', 'protect_filter_value' ) ) {
-					SucomUtil::protect_filter_value( 'pre_option_' . $opt_name );
-				}
+				remove_all_filters( 'pre_option_' . $opt_name );	// Just in case.
+				remove_all_filters( 'option_' . $opt_name );		// Just in case.
 
 				$val = get_option( $opt_name, $def );
 
 				if ( is_string( $val ) ) {
-					$val = base64_decode( $val );	// Value is saved as a string.
+					$val = base64_decode( $val );			// Always saved as string.
 				}
 
 				if ( empty( $val ) ) {
