@@ -892,9 +892,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->log( $ext . ' plugin: calling wp_remote_get() for ' . $json_url );
 			}
 
-			if ( method_exists( 'SucomUtil', 'protect_filter_value' ) ) {
-				SucomUtil::protect_filter_value( 'http_headers_useragent' ); // Make sure the user agent does not change.
-			}
+			SucomUtil::protect_filter_value( 'http_headers_useragent' );
 
 			$request = wp_remote_get( $json_url, $get_options );
 
@@ -908,9 +906,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$this->p->debug->log( $ext . ' plugin: (retry) calling wp_remote_get() for ' . $json_url );
 				}
 
-				if ( method_exists( 'SucomUtil', 'protect_filter_value' ) ) {
-					SucomUtil::protect_filter_value( 'http_headers_useragent' );
-				}
+				SucomUtil::protect_filter_value( 'http_headers_useragent' );
 
 				sleep( 1 ); // Pause 1 second before retrying.
 
@@ -1264,7 +1260,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				$opt_name = $ext . '_uapi' . self::$api_version . $mtype;
 
+				remove_all_filters( 'sanitize_option_' . $opt_name );	// Just in case.
+				remove_all_filters( 'default_option_' . $opt_name );	// Just in case.
 				remove_all_filters( 'pre_update_option_' . $opt_name );	// Just in case.
+				remove_all_filters( 'pre_option_' . $opt_name );	// Just in case.
+				remove_all_filters( 'option_' . $opt_name );		// Just in case.
+
+				SucomUtil::protect_filter_value( 'pre_update_option' );
 
 				update_option( $opt_name, base64_encode( $val ) );	// Always save as string.
 			}
@@ -1286,6 +1288,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				$opt_name = $ext . '_uapi' . self::$api_version . $mtype;
 
+				remove_all_filters( 'default_option_' . $opt_name );	// Just in case.
 				remove_all_filters( 'pre_option_' . $opt_name );	// Just in case.
 				remove_all_filters( 'option_' . $opt_name );		// Just in case.
 
@@ -1340,9 +1343,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 					$opt_name = self::$upd_config[ $ext ][ 'option_name' ];
 
-					if ( method_exists( 'SucomUtil', 'protect_filter_value' ) ) {
-						SucomUtil::protect_filter_value( 'pre_option_' . $opt_name );
-					}
+					remove_all_filters( 'default_option_' . $opt_name );	// Just in case.
+					remove_all_filters( 'pre_option_' . $opt_name );	// Just in case.
+					remove_all_filters( 'option_' . $opt_name );		// Just in case.
 
 					self::$upd_config[ $ext ][ 'option_data' ] = get_option( $opt_name, $def );
 

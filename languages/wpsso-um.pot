@@ -75,11 +75,11 @@ msgid ""
 "address (%2$s)."
 msgstr ""
 
-#: lib/com/update.php:926 lib/gettext-com.php:21
+#: lib/com/update.php:922 lib/gettext-com.php:21
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr ""
 
-#: lib/com/update.php:1056 lib/gettext-com.php:22
+#: lib/com/update.php:1052 lib/gettext-com.php:22
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."
