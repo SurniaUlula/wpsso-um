@@ -68,11 +68,11 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *Bugfixes*
 	* None.
 * *Developer Notes*
-	* Further improvements in removing non-essential filter hooks.
+	* Further improvements in removing non-essential filter and action hooks.
 
 == Upgrade Notice ==
 
 = 1.15.0 =
 
-(2019/01/13) Further improvements in removing non-essential filter hooks.
+(2019/01/13) Further improvements in removing non-essential filter and action hooks.
 
