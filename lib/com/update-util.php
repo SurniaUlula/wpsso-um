@@ -81,5 +81,73 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 
 			return self::$cache_wp_plugins;
 		}
+
+		public static function raw_do_option( $action, $opt_name, $val = null ) {
+
+			global $wp_filter, $wp_actions;
+
+			$saved_wp_filter  = $wp_filter;
+			$saved_wp_actions = $wp_actions;
+
+			foreach ( array(
+				'sanitize_option_' . $opt_name,
+				'default_option_' . $opt_name,
+				'pre_option_' . $opt_name,
+				'option_' . $opt_name,	
+				'pre_update_option_' . $opt_name,
+				'pre_update_option',
+			) as $tag ) {
+				unset( $wp_filter[ $tag ] );
+			}
+
+			$ret = null;
+
+			switch( $action ) {
+
+				case 'get':
+				case 'get_option':
+
+					$ret = get_option( $opt_name, $default = $val );
+
+					break;
+
+				case 'update':
+				case 'update_option':
+
+					foreach ( array(
+						'update_option',
+						'update_option_' . $opt_name,
+						'updated_option',
+					) as $tag ) {
+						unset( $wp_actions[ $tag ] );
+					}
+
+					$ret = update_option( $opt_name, $val );
+
+					break;
+
+				case 'delete':
+				case 'delete_option':
+
+					foreach ( array(
+						'delete_option',
+						'delete_option_' . $opt_name,
+						'deleted_option',
+					) as $tag ) {
+						unset( $wp_actions[ $tag ] );
+					}
+
+					$ret = delete_option( $opt_name );
+
+					break;
+			}
+
+			$wp_filter  = $saved_wp_filter;
+			$wp_actions = $saved_wp_actions;
+
+			unset( $saved_wp_filter, $saved_wp_actions );
+
+			return $ret;
+		}
 	}
 }
