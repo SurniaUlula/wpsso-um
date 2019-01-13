@@ -922,6 +922,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( $ext . ' plugin: wp error code ' . $request->get_error_code() . ' - ' . $request->get_error_message() );
 				}
+
 				$this->p->notice->err( sprintf( __( 'Update error from the WordPress wp_remote_get() function: %s',
 					$this->text_domain ), $request->get_error_message() ) );
 
