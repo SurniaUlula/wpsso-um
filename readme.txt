@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires PHP: 5.4
 Requires At Least: 3.8
 Tested Up To: 5.0
-Stable Tag: 1.14.1
+Stable Tag: 1.15.0
 
 WPSSO Core add-on provides updates for the WPSSO Core Pro plugin and its Pro add-ons.
 
@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.14.1 (2019/01/12)**
+**Version 1.15.0 (2019/01/13)**
 
 * *New Features*
 	* None.
@@ -68,28 +68,11 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *Bugfixes*
 	* None.
 * *Developer Notes*
-	* Added removal of non-essential option filters.
-
-**Version 1.14.0 (2018/12/14)**
-
-* *New Features*
-	* None.
-* *Improvements*
-	* Added an action button in the new SSO &gt; Tools settings page for WPSSO Core v4.18.0:
-		* Check for Updates
-* *Bugfixes*
-	* None.
-* *Developer Notes*
-	* Renamed the 'wpsso_action_buttons' filter hook to 'wpsso_form_button_rows' for WPSSO Core v4.18.0.
-	* Moved action hooks from WpssoUmFilters to a new WpssoUmActions library class.
+	* Further improvements in removing non-essential filter hooks.
 
 == Upgrade Notice ==
 
-= 1.14.1 =
+= 1.15.0 =
 
-(2019/01/12) Added removal of non-essential option filters.
-
-= 1.14.0 =
-
-(2018/12/14) Added an action button in the new SSO &gt; Tools settings page for WPSSO Core v4.18.0.
+(2019/01/13) Further improvements in removing non-essential filter hooks.
 
