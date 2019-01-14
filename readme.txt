@@ -59,6 +59,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 1.16.0-dev.1 (2019/01/14)**
+
+* *New Features*
+	* None.
+* *Improvements*
+	* None.
+* *Bugfixes*
+	* Fixed saving error messages for invalid URLs.
+* *Developer Notes*
+	* Optimized the check for a non-functioning WP cron schedule.
+
 **Version 1.15.0 (2019/01/13)**
 
 * *New Features*
@@ -71,6 +82,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* Further improvements in removing non-essential filter and action hooks.
 
 == Upgrade Notice ==
+
+= 1.16.0-dev.1 =
+
+(2019/01/14) Fixed saving error messages for invalid URLs. Optimized the check for a non-functioning WP cron schedule.
 
 = 1.15.0 =
 
