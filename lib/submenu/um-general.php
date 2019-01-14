@@ -36,9 +36,12 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 			$row_num = null;
 
 			switch ( $menu_id ) {
+
 				case 'um-general':
 				case 'tools':
+
 					$row_num = 0;
+
 					break;
 			}
 
@@ -73,31 +76,35 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 
 			$this->form->set_text_domain( 'wpsso' );	// translate option values using wpsso text_domain
 
-			$this->p->util->do_metabox_table( apply_filters( $this->p->lca.'_'.$metabox_id.'_general_rows', 
-				$this->get_table_rows( $metabox_id, 'general' ), $this->form ), 'metabox-'.$metabox_id.'-general' );
+			$this->p->util->do_metabox_table( apply_filters( $this->p->lca . '_' . $metabox_id . '_general_rows', 
+				$this->get_table_rows( $metabox_id, 'general' ), $this->form ), 'metabox-' . $metabox_id . '-general' );
 		}
 
 		protected function get_table_rows( $metabox_id, $tab_key ) {
 
 			$table_rows = array();
 
-			switch ( $metabox_id.'-'.$tab_key ) {
+			switch ( $metabox_id . '-' . $tab_key ) {
 
 				case 'um-general':
 
-					$table_rows['update_check_hours'] = $this->form->get_th_html( _x( 'Refresh Update Information',
-						'option label', 'wpsso-um' ), '', 'update_check_hours' ).
-					'<td>'.$this->form->get_select( 'update_check_hours',
-						$this->p->cf['um']['check_hours'], 'update_filter', '', true ).'</td>';
+					$table_rows[ 'update_check_hours' ] = '' .
+					$this->form->get_th_html( _x( 'Refresh Update Information', 'option label', 'wpsso-um' ), '', 'update_check_hours' ) . 
+					'<td>' . $this->form->get_select( 'update_check_hours', $this->p->cf[ 'um' ][ 'check_hours' ], 'update_filter', '', true ) . '</td>';
 
-					$table_rows['subsection_version_filters'] = '<td colspan="2" class="subsection"><h4>'.
-						_x( 'Update Version Filters', 'metabox title', 'wpsso-um' ).'</h4></td>';
+					$table_rows[ 'subsection_version_filters' ] = '<td colspan="2" class="subsection"><h4>' . 
+						_x( 'Update Version Filters', 'metabox title', 'wpsso-um' ) . '</h4></td>';
 
-					$version_filter = $this->p->cf['um']['version_filter'];
+					$version_filter = $this->p->cf[ 'um' ][ 'version_filter' ];
 
 					foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
 						if ( ! SucomUpdate::is_installed( $ext ) ) {
+
+							if ( $this->p->debug->enabled ) {
+								$this->p->debug->log( 'skipping ' . $ext . ': not installed' );
+							}
+
 							continue;
 						}
 
@@ -106,8 +113,9 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 						 */
 						$ext_name = preg_replace( '/ \([A-Z ]+\)$/', '', $info[ 'name' ] );
 
-						$table_rows[] = $this->form->get_th_html( $ext_name, '', 'update_version_filter' ).
-						'<td>'.$this->form->get_select( 'update_filter_for_'.$ext, $version_filter, 'update_filter', '', true ).'</td>';
+						$table_rows[] = '' .
+						$this->form->get_th_html( $ext_name, '', 'update_version_filter' ) . 
+						'<td>' . $this->form->get_select( 'update_filter_for_' . $ext, $version_filter, 'update_filter', '', true ) . '</td>';
 					}
 
 					break;

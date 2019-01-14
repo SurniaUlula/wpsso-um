@@ -36,9 +36,12 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 			$row_num = null;
 
 			switch ( $menu_id ) {
+
 				case 'site-um-general':
 				case 'site-tools':
+
 					$row_num = 0;
+
 					break;
 			}
 
@@ -103,15 +106,15 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 
 				case 'um-general':
 
-					$table_rows['update_check_hours'] = '' . 
+					$table_rows[ 'update_check_hours' ] = '' . 
 					$this->form->get_th_html( _x( 'Refresh Update Information', 'option label', 'wpsso-um' ), '', 'update_check_hours' ) . 
-					'<td>' . $this->form->get_select( 'update_check_hours', $this->p->cf['um']['check_hours'], 'update_filter', '', true ) . '</td>' . 
+					'<td>' . $this->form->get_select( 'update_check_hours', $this->p->cf[ 'um' ][ 'check_hours' ], 'update_filter', '', true ) . '</td>' . 
 					WpssoAdmin::get_option_site_use( 'update_check_hours', $this->form, true, true );
 
-					$table_rows['subsection_version_filters'] = '<td colspan="4" class="subsection"><h4>' . 
+					$table_rows[ 'subsection_version_filters' ] = '<td colspan="4" class="subsection"><h4>' . 
 						_x( 'Update Version Filters', 'metabox title', 'wpsso-um' ) . '</h4></td>';
 
-					$version_filter = $this->p->cf['um']['version_filter'];
+					$version_filter = $this->p->cf[ 'um' ][ 'version_filter' ];
 
 					foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
