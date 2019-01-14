@@ -72,13 +72,22 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->mark();
 			}
 
-			$check_ext = null; // Check all ext by default.
+			$this->set_config( $quiet = true, $read_cache );	// Private method.
 
-			$this->check_ext_for_updates( $this->plugin_lca, $quiet, $read_cache ); // Check the lca plugin first.
+			/**
+			 * Check the lca plugin first.
+			 */
+			$this->check_ext_for_updates( $this->plugin_lca, $quiet, $read_cache );
 
-			$check_ext = $this->get_config_keys( $check_ext, $this->plugin_lca, $read_cache ); // Reset config and get ext array (exclude lca).
+			/**
+			 * Refresh the config (exclude the lca plugin).
+			 */
+			$check_ext = $this->get_config_keys( $check_ext = null, $this->plugin_lca, $read_cache );
 
-			$this->check_ext_for_updates( $check_ext, $quiet, $read_cache ); // Check all remaining plugins.
+			/**
+			 * Check all remaining plugins.
+			 */
+			$this->check_ext_for_updates( $check_ext, $quiet, $read_cache );
 		}
 
 		public function check_ext_for_updates( $check_ext = null, $quiet = true, $read_cache = true ) {
@@ -261,17 +270,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			return $keys;
-		}
-
-		public function filter_save_options( $opts, $options_name, $network, $doing_upgrade ) {
-
-			if ( $this->p->debug->enabled ) {
-				$this->p->debug->mark();
-			}
-
-			$this->set_config( $quiet = true, $read_cache = false );	// Private method.
-
-			return $opts;
 		}
 
 		/**
@@ -476,8 +474,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
 			}
-
-			$this->p->util->add_plugin_filters( $this, array( 'save_options' => 4 ), PHP_INT_MAX );
 
 			if ( empty( self::$upd_config ) ) {
 
@@ -828,7 +824,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$this->text_domain ), $json_url ) . ' ' .
 							$update_disabled_msg;
 
-				set_umsg( $ext, 'err', $error_msg );
+				self::set_umsg( $ext, 'err', $error_msg );
 
 				self::$upd_config[ $ext ][ 'plugin_data' ] = $plugin_data;
 
@@ -949,9 +945,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				/**
 				 * Add or remove existing response messages.
 				 */
-				foreach ( array( 'err', 'inf' ) as $mtype ) {
-					self::set_umsg( $ext, $mtype, ( empty( $payload[ 'api_response' ][ $mtype ] ) ?
-						false : $payload[ 'api_response' ][ $mtype ] ) );
+				foreach ( array( 'err', 'inf' ) as $type ) {
+					self::set_umsg( $ext, $type, ( empty( $payload[ 'api_response' ][ $type ] ) ?
+						null : $payload[ 'api_response' ][ $type ] ) );
 				}
 
 				if ( empty( $request[ 'headers' ][ 'x-error-msg' ] ) && 
@@ -1268,9 +1264,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		/**
 		 * Called by get_plugin_data() when the transient / object cache is empty and/or not used.
 		 */
-		private static function set_umsg( $ext, $mtype, $val ) {
+		private static function set_umsg( $ext, $type, $val ) {
 
-			$opt_name = $ext . '_uapi' . self::$api_version . $mtype;
+			$opt_name = md5( $ext . '_uapi' . self::$api_version . $type );
 
 			if ( empty( $val ) ) {
 
@@ -1284,19 +1280,19 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			if ( isset( self::$upd_config[ $ext ] ) ) {
-				self::$upd_config[ $ext ][ 'u' . $mtype ] = $val;
+				self::$upd_config[ $ext ][ 'u' . $type ] = $val;
 			}
 
 			return $val;
 		}
 
-		public static function get_umsg( $ext, $mtype = 'err', $def = null ) {
+		public static function get_umsg( $ext, $type = 'err', $def = null ) {
 
-			$opt_name = $ext . '_uapi' . self::$api_version . $mtype;
+			$opt_name = md5( $ext . '_uapi' . self::$api_version . $type );
 
-			if ( isset( self::$upd_config[ $ext ][ 'u' . $mtype ] ) ) {
+			if ( isset( self::$upd_config[ $ext ][ 'u' . $type ] ) ) {
 
-				$val = self::$upd_config[ $ext ][ 'u' . $mtype ];
+				$val = self::$upd_config[ $ext ][ 'u' . $type ];
 			} else {
 				$val = SucomUpdateUtil::raw_do_option( 'get', $opt_name, $def );
 
@@ -1309,7 +1305,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 
 				if ( isset( self::$upd_config[ $ext ] ) ) {
-					self::$upd_config[ $ext ][ 'u' . $mtype ] = $val;
+					self::$upd_config[ $ext ][ 'u' . $type ] = $val;
 				}
 			}
 

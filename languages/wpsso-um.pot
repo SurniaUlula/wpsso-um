@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Update Manager package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 1.15.0\n"
+"Project-Id-Version: WPSSO Update Manager 1.16.0-dev.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2019-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -16,70 +16,70 @@ msgstr ""
 msgid "Plugin and add-on information has been refreshed."
 msgstr ""
 
-#: lib/com/update.php:121 lib/gettext-com.php:6
+#: lib/com/update.php:130 lib/gettext-com.php:6
 msgid "No plugins defined for updates."
 msgstr ""
 
-#: lib/com/update.php:171 lib/gettext-com.php:7
+#: lib/com/update.php:180 lib/gettext-com.php:7
 msgid "Update information for %s has been retrieved and saved."
 msgstr ""
 
-#: lib/com/update.php:185 lib/gettext-com.php:8
+#: lib/com/update.php:194 lib/gettext-com.php:8
 msgid "An error was returned while getting update information for %s."
 msgstr ""
 
-#: lib/com/update.php:200 lib/gettext-com.php:9
+#: lib/com/update.php:209 lib/gettext-com.php:9
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:380 lib/com/update.php:809 lib/gettext-com.php:10
+#: lib/com/update.php:378 lib/com/update.php:805 lib/gettext-com.php:10
 #: lib/gettext-com.php:16
 msgid ""
 "An inconsistency was found in the %1$s update server information &mdash;"
 msgstr ""
 
-#: lib/com/update.php:383 lib/com/update.php:812 lib/gettext-com.php:11
+#: lib/com/update.php:381 lib/com/update.php:808 lib/gettext-com.php:11
 #: lib/gettext-com.php:17
 msgid "Update checks for %1$s are disabled while this inconsistency persists."
 msgstr ""
 
-#: lib/com/update.php:387 lib/com/update.php:816 lib/gettext-com.php:12
+#: lib/com/update.php:385 lib/com/update.php:812 lib/gettext-com.php:12
 #: lib/gettext-com.php:18
 msgid ""
 "You may <a href=\"%1$s\">open a new support ticket</a> if you believe this "
 "error message is incorrect."
 msgstr ""
 
-#: lib/com/update.php:415 lib/gettext-com.php:13
+#: lib/com/update.php:413 lib/gettext-com.php:13
 msgid "invalid authentication URL (%1$s)."
 msgstr ""
 
-#: lib/com/update.php:454 lib/gettext-com.php:14
+#: lib/com/update.php:452 lib/gettext-com.php:14
 msgid ""
 "Please note that one or more non-stable / development %s have been selected."
 msgstr ""
 
-#: lib/com/update.php:455 lib/gettext-com.php:15
+#: lib/com/update.php:453 lib/gettext-com.php:15
 #: lib/sitesubmenu/site-um-general.php:115 lib/submenu/um-general.php:96
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
 
-#: lib/com/update.php:827 lib/gettext-com.php:19
+#: lib/com/update.php:823 lib/gettext-com.php:19
 msgid "the update server URL (%1$s) does not appear to be a valid URL."
 msgstr ""
 
-#: lib/com/update.php:856 lib/gettext-com.php:20
+#: lib/com/update.php:852 lib/gettext-com.php:20
 msgid ""
 "the IPv4 address (%1$s) from the local host does not match the DNS IPv4 "
 "address (%2$s)."
 msgstr ""
 
-#: lib/com/update.php:942 lib/gettext-com.php:21
+#: lib/com/update.php:938 lib/gettext-com.php:21
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr ""
 
-#: lib/com/update.php:1072 lib/gettext-com.php:22
+#: lib/com/update.php:1068 lib/gettext-com.php:22
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."
@@ -134,11 +134,7 @@ msgid ""
 "%3$s plugin or <a href=\"%4$s\">deactivate the %5$s add-on</a>."
 msgstr ""
 
-#: wpsso-um.php:238
-msgid "Performing an update check for the %s plugin."
-msgstr ""
-
-#: wpsso-um.php:254
+#: wpsso-um.php:251
 msgid ""
 "The %1$s version %2$s add-on requires %3$s version %4$s or newer (version "
 "%5$s is currently installed)."

@@ -140,9 +140,10 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 
 				foreach ( $cf[ 'plugin' ] as $ext => $info ) {
 
-					delete_option( $ext . '_uapi' . $api_version . 'err' );
-					delete_option( $ext . '_uapi' . $api_version . 'inf' );
-					delete_option( $ext . '_uapi' . $api_version . 'time' );
+					foreach ( array( 'err', 'inf', 'time' ) as $type ) {
+						delete_option( md5( $ext . '_uapi' . $api_version . $type ) );
+					}
+
 					delete_option( 'external_updates-' . $info[ 'slug' ] );
 				}
 
@@ -160,9 +161,10 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 					'wpssoum'    => 'wpsso-um',
 				) as $ext => $slug ) {
 
-					delete_option( $ext . '_uapi' . $api_version . 'err' );
-					delete_option( $ext . '_uapi' . $api_version . 'inf' );
-					delete_option( $ext . '_uapi' . $api_version . 'time' );
+					foreach ( array( 'err', 'inf', 'time' ) as $type ) {
+						delete_option( md5( $ext . '_uapi' . $api_version . $type ) );
+					}
+
 					delete_option( 'external_updates-' . $slug );
 				}
 			}

@@ -14,7 +14,7 @@
  * Requires PHP: 5.4
  * Requires At Least: 3.8
  * Tested Up To: 5.0
- * Version: 1.15.0
+ * Version: 1.16.0-dev.1
  * 
  * Version Numbering: {major}.{minor}.{bugfix}[-{stage}.{level}]
  *
@@ -161,11 +161,11 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			}
 
 			if ( ! $this->have_req_min ) {
-				$this->p->avail['p_ext']['um'] = false;	// Signal that this extension / add-on is not available.
+				$this->p->avail[ 'p_ext' ][ 'um' ] = false;	// Signal that this extension / add-on is not available.
 				return;
 			}
 
-			$this->p->avail['p_ext']['um'] = true;	// Signal that this extension / add-on is available.
+			$this->p->avail[ 'p_ext' ][ 'um' ] = true;	// Signal that this extension / add-on is available.
 		}
 
 		public function wpsso_init_objects() {
@@ -182,9 +182,9 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 			$this->check_hours = $this->get_update_check_hours();
 
-			$this->actions     = new WpssoUmActions( $this->p );
-			$this->filters     = new WpssoUmFilters( $this->p );
-			$this->update      = new SucomUpdate( $this->p, $this->check_hours, $info['text_domain'] );
+			$this->actions = new WpssoUmActions( $this->p );
+			$this->filters = new WpssoUmFilters( $this->p );
+			$this->update  = new SucomUpdate( $this->p, $this->check_hours, $info[ 'text_domain' ] );
 		}
 
 		public function wpsso_init_plugin() {
@@ -204,10 +204,11 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 			/**
 			 * Check if the WordPress cron is operating correctly.
-			 * Run on the admin back-end, and only once per day on the front-end.
-			 * If the transient does not exist, or has expired, then get_transient() will return false.
+			 * Run once per day - if the transient does not exist, or has expired, then get_transient() will return false.
 			 */
-			if ( is_admin() || ! get_transient( $cache_id ) ) {
+			if ( ! get_transient( $cache_id ) ) {
+
+				$check_required = false;
 
 				foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
@@ -229,18 +230,14 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 					 */
 					if ( empty( $last_check_time ) || $next_plus_day < $current_time || $last_plus_week < $current_time ) {
 
-						if ( $this->p->debug->enabled ) {
+						$check_required = true;
 
-							$notice_key = __FUNCTION__ . '_' . $ext . '_update_check';
-
-							$this->p->debug->log( 'requesting update check for ' . $ext );
-
-							$this->p->notice->inf( sprintf( __( 'Performing an update check for the %s plugin.',
-								'wpsso-um' ), $info[ 'name' ] ), null, $notice_key, true );
-						}
-
-						$this->update->check_ext_for_updates( $ext, $quiet = true, $read_cache = false );
+						break;
 					}
+				}
+
+				if ( $check_required ) {
+					$this->update->check_all_for_updates( $quiet = true, $read_cache = false );
 				}
 
 				set_transient( $cache_id, 1, DAY_IN_SECONDS );
@@ -269,7 +266,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 			$check_hours = 24;
 			$const_hours = SucomUtil::get_const( 'WPSSOUM_CHECK_HOURS', null );	// Return null if not defined.
-			$opt_hours   = isset( $this->p->options['update_check_hours'] ) ? $this->p->options['update_check_hours'] : 24;
+			$opt_hours   = isset( $this->p->options[ 'update_check_hours' ] ) ? $this->p->options[ 'update_check_hours' ] : 24;
 
 			if ( $const_hours !== null ) {
 				$check_hours = $const_hours >= 12 ? WPSSOUM_CHECK_HOURS : 12;
