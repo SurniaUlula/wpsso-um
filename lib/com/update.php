@@ -82,7 +82,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			/**
 			 * Refresh the config (exclude the lca plugin).
 			 */
-			$check_ext = $this->get_config_keys( $check_ext = null, $this->plugin_lca, $read_cache );
+			$check_ext = $this->get_config_ext_keys( $check_ext = null, $this->plugin_lca, $read_cache );	// Private method.
 
 			/**
 			 * Check all remaining plugins.
@@ -216,7 +216,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		/**
 		 * Returns an array of configured plugin lowercase acronyms.
 		 */
-		public function get_config_keys( $include = null, $exclude = null, $read_cache = true ) {
+		private function get_config_ext_keys( $include = null, $exclude = null, $read_cache = true ) {
 
 			$keys  = array();
 
