@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.16.0-dev.1 (2019/01/14)**
+**Version 1.16.0-dev.2 (2019/01/14)**
 
 * *New Features*
 	* None.
@@ -83,7 +83,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.16.0-dev.1 =
+= 1.16.0-dev.2 =
 
 (2019/01/14) Fixed saving error messages for invalid URLs. Optimized the check for a non-functioning WP cron schedule.
 
