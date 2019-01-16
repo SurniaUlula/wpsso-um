@@ -59,6 +59,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 1.16.1-dev.1 (2019/01/16)**
+
+* *New Features*
+	* None.
+* *Improvements*
+	* None.
+* *Bugfixes*
+	* None.
+* *Developer Notes*
+	* Added a call to SucomPlugin::get_plugins() when available.
+
 **Version 1.16.0 (2019/01/15)**
 
 * *New Features*
@@ -82,6 +93,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* Further improvements in removing non-essential filter and action hooks.
 
 == Upgrade Notice ==
+
+= 1.16.1-dev.1 =
+
+(2019/01/16) Added a call to SucomPlugin::get_plugins() when available.
 
 = 1.16.0 =
 
