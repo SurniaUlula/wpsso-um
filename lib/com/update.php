@@ -1272,11 +1272,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				$val = null;
 
-				SucomUpdateUtil::raw_do_option( 'delete', $opt_name );
+				SucomUpdateUtilWP::raw_do_option( 'delete', $opt_name );
 			} else {
 				$val_string = base64_encode( $val );	// Convert object / array to string.
 
-				SucomUpdateUtil::raw_do_option( 'update', $opt_name, $val_string );
+				SucomUpdateUtilWP::raw_do_option( 'update', $opt_name, $val_string );
 			}
 
 			if ( isset( self::$upd_config[ $ext ] ) ) {
@@ -1294,7 +1294,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				$val = self::$upd_config[ $ext ][ 'u' . $type ];
 			} else {
-				$val = SucomUpdateUtil::raw_do_option( 'get', $opt_name, $def );
+				$val = SucomUpdateUtilWP::raw_do_option( 'get', $opt_name, $def );
 
 				if ( is_string( $val ) ) {
 					$val = base64_decode( $val );	// Convert string back to object / array.
@@ -1345,7 +1345,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 					$opt_name = self::$upd_config[ $ext ][ 'option_name' ];
 
-					self::$upd_config[ $ext ][ 'option_data' ] = SucomUpdateUtil::raw_do_option( 'get', $opt_name, $def );
+					self::$upd_config[ $ext ][ 'option_data' ] = SucomUpdateUtilWP::raw_do_option( 'get', $opt_name, $def );
 				} else {
 					self::$upd_config[ $ext ][ 'option_data' ] = $def;
 				}
