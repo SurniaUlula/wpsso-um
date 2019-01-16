@@ -13,7 +13,7 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 
 	class SucomUpdateUtil {
 
-		protected static $cache_wp_plugins = null;
+		protected static $cache_plugins = null;
 
 		/**
 		 * Decode a URL and add query arguments. Returns false on error.
@@ -58,10 +58,14 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 		/**
 		 * The WordPress get_plugins() function is very slow, so call it only once and cache its result.
 		 */
-		public static function get_wp_plugins() {
+		public static function get_plugins() {
 
-			if ( self::$cache_wp_plugins !== null ) {
-				return self::$cache_wp_plugins;
+			if ( class_exists( 'SucomPlugin' ) ) {		// Since WPSSO Core v4.21.0.
+				return SucomPlugin::get_plugins();
+			}
+
+			if ( self::$cache_plugins !== null ) {
+				return self::$cache_plugins;
 			}
 
 			if ( ! function_exists( 'get_plugins' ) ) {	// Load the library if necessary.
@@ -74,12 +78,12 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 			}
 
 			if ( function_exists( 'get_plugins' ) ) {
-				self::$cache_wp_plugins = get_plugins();
+				self::$cache_plugins = get_plugins();
 			} else {
-				self::$cache_wp_plugins = array();
+				self::$cache_plugins = array();
 			}
 
-			return self::$cache_wp_plugins;
+			return self::$cache_plugins;
 		}
 
 		public static function raw_do_option( $action, $opt_name, $val = null ) {

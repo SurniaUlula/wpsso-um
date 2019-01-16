@@ -1041,7 +1041,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$this->p->debug->log( $ext . ' plugin: getting plugins list from common class method' );
 				}
 
-				$wp_plugins = SucomUpdateUtil::get_wp_plugins();
+				$wp_plugins = SucomUpdateUtil::get_plugins();
 
 				/**
 				 * The plugin is installed.
