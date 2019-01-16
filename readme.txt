@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.16.1-dev.1 (2019/01/16)**
+**Version 1.17.0-dev.1 (2019/01/16)**
 
 * *New Features*
 	* None.
@@ -69,6 +69,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* None.
 * *Developer Notes*
 	* Added a call to SucomPlugin::get_plugins() when available.
+	* Moved SucomUpdateUtil::raw_do_option() to the SucomUpdateUtilWP class.
 
 **Version 1.16.0 (2019/01/15)**
 
@@ -94,7 +95,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.16.1-dev.1 =
+= 1.17.0-dev.1 =
 
 (2019/01/16) Added a call to SucomPlugin::get_plugins() when available.
 
