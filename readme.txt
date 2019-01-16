@@ -68,8 +68,8 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *Bugfixes*
 	* None.
 * *Developer Notes*
-	* Added a call to SucomPlugin::get_plugins() when available.
-	* Moved SucomUpdateUtil::raw_do_option() to the SucomUpdateUtilWP class.
+	* Added a call to SucomPlugin get_plugins() when available.
+	* Moved SucomUpdateUtil raw_do_option() to the SucomUpdateUtilWP class.
 
 **Version 1.16.0 (2019/01/15)**
 
@@ -97,7 +97,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = 1.17.0-dev.1 =
 
-(2019/01/16) Added a call to SucomPlugin::get_plugins() when available.
+(2019/01/16) Added a call to SucomPlugin get_plugins() when available.
 
 = 1.16.0 =
 
