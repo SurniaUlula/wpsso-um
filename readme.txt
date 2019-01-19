@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.17.0-dev.2 (2019/01/18)**
+**Version 1.17.0-dev.3 (2019/10/19)**
 
 * *New Features*
 	* None.
@@ -94,9 +94,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.17.0-dev.2 =
+= 1.17.0-dev.3 =
 
-(2019/01/18) Added a call to the new SucomPlugin get_plugins() method when available.
+(2019/10/19) Added a call to the new SucomPlugin get_plugins() method when available.
 
 = 1.16.0 =
 
