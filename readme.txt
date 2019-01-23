@@ -59,12 +59,12 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.17.0-rc.1 (2019/01/22)**
+**Version 1.17.0 (2019/01/23)**
 
 * *New Features*
 	* None.
 * *Improvements*
-	* None.
+	* Updated the minimum WPSSO Core supported version to v4.0.0 (2018/05/02).
 * *Bugfixes*
 	* None.
 * *Developer Notes*
@@ -94,11 +94,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.17.0-rc.1 =
+= 1.17.0 =
 
-(2019/01/22) Added a call to the new SucomPlugin get_plugins() method when available.
-
-= 1.16.0 =
-
-(2019/01/15) Fixed an incorrect method call when saving an error message for invalid URLs. Optimized the check for a non-functioning WP cron schedule.
+(2019/01/23) Updated the minimum WPSSO Core supported version to v4.0.0 (2018/05/02). Added a call to the new SucomPlugin get_plugins() method when available.
 
