@@ -59,42 +59,20 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.17.0 (2019/01/23)**
+**Version 1.17.1 (2019/01/31)**
 
 * *New Features*
 	* None.
 * *Improvements*
-	* Updated the minimum WPSSO Core supported version to v4.0.0 (2018/05/02).
+	* Maintenance release for WPSSO Core v4.22.0.
 * *Bugfixes*
 	* None.
 * *Developer Notes*
-	* Added a call to the new SucomPlugin get_plugins() method when available.
-
-**Version 1.16.0 (2019/01/15)**
-
-* *New Features*
-	* None.
-* *Improvements*
-	* None.
-* *Bugfixes*
-	* Fixed an incorrect method call when saving an error message for invalid URLs.
-* *Developer Notes*
-	* Optimized the check for a non-functioning WP cron schedule.
-
-**Version 1.15.0 (2019/01/13)**
-
-* *New Features*
-	* None.
-* *Improvements*
-	* None.
-* *Bugfixes*
-	* None.
-* *Developer Notes*
-	* Further improvements in removing non-essential filter and action hooks.
+	* Updated the required minimum PHP version from 5.4 to 5.5.
 
 == Upgrade Notice ==
 
-= 1.17.0 =
+= 1.17.1 =
 
-(2019/01/23) Updated the minimum WPSSO Core supported version to v4.0.0 (2018/05/02). Added a call to the new SucomPlugin get_plugins() method when available.
+(2019/01/31) Maintenance release for WPSSO Core v4.22.0.
 
