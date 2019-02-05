@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires PHP: 5.5
 Requires At Least: 3.8
 Tested Up To: 5.0
-Stable Tag: 1.17.1
+Stable Tag: 1.18.0
 
 WPSSO Core add-on provides updates for the WPSSO Core Pro plugin and its Pro add-ons.
 
@@ -59,20 +59,20 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.17.1 (2019/01/31)**
+**Version 1.18.0 (2019/02/05)**
 
 * *New Features*
 	* None.
 * *Improvements*
-	* Maintenance release for WPSSO Core v4.22.0.
+	* None.
 * *Bugfixes*
 	* None.
 * *Developer Notes*
-	* Updated the required minimum PHP version from 5.4 to 5.5.
+	* Synchronized SucomUpdateUtilWP class methods with WPSSO Core v4.22.0's SucomUtilWP class.
 
 == Upgrade Notice ==
 
-= 1.17.1 =
+= 1.18.0 =
 
-(2019/01/31) Maintenance release for WPSSO Core v4.22.0.
+(2019/02/05) Synchronized SucomUpdateUtilWP class methods with WPSSO Core v4.22.0's SucomUtilWP class.
 
