@@ -15,7 +15,7 @@ if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
 
 		/**
 		 * Unfiltered version of home_url() from wordpress/wp-includes/link-template.php
-		 * Last synchronized with WordPress v5.0 on 2018/12/12.
+		 * Last synchronized with WordPress v5.0.3 on 2019/01/28.
 		 */
 		public static function raw_home_url( $path = '', $scheme = null ) {
 
@@ -24,7 +24,7 @@ if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
 
 		/**
 		 * Unfiltered version of get_home_url() from wordpress/wp-includes/link-template.php
-		 * Last synchronized with WordPress v5.0 on 2018/12/12.
+		 * Last synchronized with WordPress v5.0.3 on 2019/01/28.
 		 */
 		public static function raw_get_home_url( $blog_id = null, $path = '', $scheme = null ) {
 
@@ -32,7 +32,21 @@ if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
 
 			if ( empty( $blog_id ) || ! is_multisite() ) {
 
-				$url = self::raw_do_option( 'get', 'home' );
+				if ( defined( 'WP_HOME' ) && WP_HOME ) {
+
+					$url = untrailingslashit( WP_HOME );
+
+					/**
+					 * Compare value stored in database and maybe fix inconsistencies.
+					 */
+					if ( self::raw_do_option( 'get', 'home' ) !== $url ) {
+						self::raw_do_option( 'update', 'home', $url );
+					}
+
+				} else {
+					$url = self::raw_do_option( 'get', 'home' );
+				}
+
 			} else {
 				switch_to_blog( $blog_id );
 
