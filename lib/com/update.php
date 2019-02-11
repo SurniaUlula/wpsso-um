@@ -836,14 +836,19 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			static $host_cache = array(); // Local cache to lookup the host ip only once.
 
 			if ( ! isset( $host_cache[ $json_host ][ 'ip' ] ) ) {
+
 				$host_cache[ $json_host ][ 'ip' ] = gethostbyname( $json_host ); // Returns an IPv4 address, or the hostname on failure.
+
+				if ( $host_cache[ $json_host ][ 'ip' ] === $json_host ) {
+					$host_cache[ $json_host ][ 'ip' ] = 'FAILURE';
+				}
 			}
 
 			if ( ! isset( $host_cache[ $json_host ][ 'a' ] ) ) {
 
 				$dns_rec = dns_get_record( $json_host . '.', DNS_A ); // Returns an array of associative arrays.
 
-				$host_cache[ $json_host ][ 'a' ] = empty( $dns_rec[0][ 'ip' ] ) ? false : $dns_rec[0][ 'ip' ];
+				$host_cache[ $json_host ][ 'a' ] = empty( $dns_rec[ 0 ][ 'ip' ] ) ? false : $dns_rec[ 0 ][ 'ip' ];
 			}
 
 			if ( $host_cache[ $json_host ][ 'ip' ] !== $host_cache[ $json_host ][ 'a' ] ) {
@@ -851,7 +856,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$error_msg = $inconsistency_msg . ' ' .
 					sprintf( __( 'the IPv4 address (%1$s) from the local host does not match the DNS IPv4 address (%2$s).',
 						$this->text_domain ), $host_cache[ $json_host ][ 'ip' ], $host_cache[ $json_host ][ 'a' ] ) . ' ' .
-							$update_disabled_msg;
+						$update_disabled_msg;
 
 				self::set_umsg( $ext, 'err', $error_msg );
 
