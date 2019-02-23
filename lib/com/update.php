@@ -605,7 +605,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			/**
 			 * Get plugin data from the json api.
 			 */
-			$plugin_data = $this->get_plugin_data( $ext, true );	// $read_cache is true.
+			$plugin_data = $this->get_plugin_data( $ext, $read_cache = true );
 
 			/**
 			 * Make sure we have something to return.
