@@ -24,8 +24,8 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			}
 
 			$this->p->util->add_plugin_filters( $this, array( 
-				'get_defaults'      => 1,		// option defaults
-				'get_site_defaults' => 1,		// site option defaults
+				'get_defaults'      => 1,		// Option defaults.
+				'get_site_defaults' => 1,		// Site option defaults.
 			) );
 
 			if ( is_admin() ) {
@@ -33,7 +33,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				$this->p->util->add_plugin_filters( $this, array( 
 					'readme_upgrade_notices'  => 2, 
 					'newer_version_available' => 5, 
-					'option_type' => 2,		// define the value type for each option
+					'option_type'             => 2,	// Define the value type for each option.
 				) );
 
 				$this->p->util->add_plugin_filters( $this, array( 
@@ -45,7 +45,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		public function filter_get_defaults( $def_opts ) {
 
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
-				$def_opts['update_filter_for_' . $ext] = 'stable';
+				$def_opts[ 'update_filter_for_' . $ext] = 'stable';
 			}
 
 			return $def_opts;
@@ -54,8 +54,8 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		public function filter_get_site_defaults( $def_opts ) {
 
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
-				$def_opts['update_filter_for_' . $ext]        = 'stable';
-				$def_opts['update_filter_for_' . $ext . ':use'] = 'default';
+				$def_opts[ 'update_filter_for_' . $ext]        = 'stable';
+				$def_opts[ 'update_filter_for_' . $ext . ':use' ] = 'default';
 			}
 
 			return $def_opts;
@@ -102,11 +102,17 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			}
 
 			switch ( $base_key ) {
+
 				case 'update_check_hours':
+
 					return 'pos_int';
+
 					break;
+
 				case ( strpos( $base_key, 'update_filter_for_' ) === 0 ? true : false ):
+
 					return 'not_blank';
+
 					break;
 			}
 
@@ -115,7 +121,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 		public function filter_status_gpl_features( $features, $lca, $info ) {
 
-			$features['(api) Update Check Schedule'] = array( 
+			$features[ '(api) Update Check Schedule' ] = array( 
 				'status' => SucomUpdate::is_enabled() ? 'on' : 'off'
 			);
 
