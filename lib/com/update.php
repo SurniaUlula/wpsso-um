@@ -511,15 +511,21 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$is_scheduled = false;
 
 			if ( ! empty( $schedule ) ) {
+
 				if ( $schedule !== $this->sched_name ) {
+
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( 'changing ' . $this->cron_hook . ' schedule from ' . $schedule . ' to ' . $this->sched_name );
 					}
+
 					wp_clear_scheduled_hook( $this->cron_hook );
+
 				} else {
+
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $this->cron_hook . ' already registered for schedule ' . $this->sched_name );
 					}
+
 					$is_scheduled = true;
 				}
 			}
@@ -586,15 +592,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				return $result;
 			}
 
-			/**
-			 * Get the plugin acronym to read its update config.
-			 */
-			$ext = $this->p->cf[ '*' ][ 'slug' ][ $args->slug ];
+			$ext = $this->p->cf[ '*' ][ 'slug' ][ $args->slug ];			// Get the plugin acronym to read its config.
 
-			/**
-			 * Make sure we have an update config for that slug.
-			 */
-			if ( empty( self::$upd_config[ $ext ][ 'slug' ] ) ) {
+			if ( empty( self::$upd_config[ $ext ][ 'slug' ] ) ) {			// Make sure we have an update config for acronym.
 				return $result;
 			}
 
@@ -602,14 +602,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->log( 'getting plugin data for ' . $ext );
 			}
 
-			/**
-			 * Get plugin data from the json api.
-			 */
-			$plugin_data = $this->get_plugin_data( $ext, $read_cache = true );
+			$plugin_data = $this->get_plugin_data( $ext, $read_cache = true );	// Get plugin data from the json api.
 
-			/**
-			 * Make sure we have something to return.
-			 */
 			if ( ! is_object( $plugin_data ) || ! method_exists( $plugin_data, 'json_to_wp' ) ) {
 				return $result;
 			}
@@ -1452,22 +1446,32 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 				'last_updated',
 				'sections',
 			) as $prop_name ) {
+
 				if ( isset( $this->$prop_name ) ) {
+
 					if ( $prop_name === 'download_url' ) {
+
 						$plugin_data->download_link = $this->download_url;
+
 					} elseif ( $prop_name === 'author_homepage' ) {
+
 						if ( strpos( $this->author, '<a href' ) === false ) {
 							$plugin_data->author = sprintf( '<a href="%s">%s</a>', $this->author_homepage, $this->author );
 						} else {
 							$plugin_data->author = $this->author;
 						}
+
 					} elseif ( $prop_name === 'sections' && empty( $this->$prop_name ) ) {
+
 						$plugin_data->$prop_name = array( 'description' => '' );
+
 					} elseif ( is_object( $this->$prop_name ) ) {
+
 						$plugin_data->$prop_name = get_object_vars( $this->$prop_name );
 					} else {
 						$plugin_data->$prop_name = $this->$prop_name;
 					}
+
 				} elseif ( $prop_name === 'author_homepage' ) {
 					$plugin_data->author = $this->author;
 				}
