@@ -26,13 +26,13 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					'update_auth' => '',
 					'text_domain' => 'wpsso-um',
 					'domain_path' => '/languages',
-					'req' => array(
+					'req'         => array(
 						'short'       => 'WPSSO Core',
 						'name'        => 'WPSSO Core',
 						'min_version' => '4.0.0',	// 2018/05/02
 						'rec_version' => '4.27.0-dev.4',
 					),
-					'img' => array(
+					'assets' => array(
 						'icons' => array(
 							'low'  => 'images/icon-128x128.png',
 							'high' => 'images/icon-256x256.png',

@@ -12,7 +12,7 @@
  * License URI: https://www.gnu.org/licenses/gpl.txt
  * Description: WPSSO Core add-on provides updates for the WPSSO Core Pro plugin and its Pro add-ons.
  * Requires At Least: 3.8
- * Tested Up To: 5.1
+ * Tested Up To: 5.1.1
  * Version: 1.19.0-dev.4
  * 
  * Version Numbering: {major}.{minor}.{bugfix}[-{stage}.{level}]
