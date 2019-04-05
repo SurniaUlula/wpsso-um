@@ -58,6 +58,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 1.19.0-dev.4 (2019/04/05)**
+
+* *New Features*
+	* None.
+* *Improvements*
+	* None.
+* *Bugfixes*
+	* None.
+* *Developer Notes*
+	* Updated the API version number.
+
 **Version 1.18.0 (2019/02/05)**
 
 * *New Features*
@@ -70,6 +81,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* Synchronized SucomUpdateUtilWP class methods with WPSSO Core v4.22.0's SucomUtilWP class.
 
 == Upgrade Notice ==
+
+= 1.19.0-dev.4 =
+
+(2019/04/05) Updated the API version number.
 
 = 1.18.0 =
 
