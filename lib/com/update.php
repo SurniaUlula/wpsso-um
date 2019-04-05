@@ -28,7 +28,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		private $sched_hours = 24;
 		private $sched_name  = 'every24hours';
 
-		private static $api_version  = 2;
+		private static $api_version  = 2.1;
 		private static $upd_config   = array();
 		private static $ext_versions = array();
 
@@ -303,7 +303,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			self::$upd_config = array();	// Reset the config array.
 
 			$has_pdir = $this->p->avail[ '*' ][ 'p_dir' ];
-			$has_pp   = $this->check_pp( $this->plugin_lca, true, $has_pdir, $read_cache );
+			$has_pp   = $this->check_pp_compat( $this->plugin_lca, true, $has_pdir, $read_cache );
 			$has_dev  = false;
 
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
@@ -462,7 +462,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 		}
 
-		private function check_pp( $ext = '', $lic = true, $rv = true, $uc = true ) {
+		private function check_pp_compat( $ext = '', $lic = true, $rv = true, $uc = true ) {
 
 			return method_exists( $this->p->check, 'pp' ) ?
 				$this->p->check->pp( $ext, $lic, $rv, $uc ) :
@@ -762,9 +762,17 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			global $wp_version;
 
 			$has_pdir    = $this->p->avail[ '*' ][ 'p_dir' ];
+			$has_pp      = $this->check_pp_compat( $this->plugin_lca, true, $has_pdir );
+
+			$ext_star    = $this->get_ext_star( $ext );
+			$ext_pdir    = $this->check_pp_compat( $ext, false, $has_pdir );
+			$ext_pp      = $has_pp && $ext_star && $this->check_pp_compat( $ext, true, WPSSO_UNDEF ) === WPSSO_UNDEF ? true : false;
+			$ext_stat    = ( $ext_pp ? 'L' : ( $ext_pdir ? 'U' : 'F' ) ) . $ext_star;
+			$ext_slug    = self::$upd_config[ $ext ][ 'slug' ];
+			$ext_version = $this->get_ext_version( $ext );
+
 			$home_url    = SucomUpdateUtilWP::raw_home_url();
 			$json_url    = self::$upd_config[ $ext ][ 'json_url' ];
-			$ext_version = $this->get_ext_version( $ext );
 
 			$cache_md5_pre = $this->plugin_lca . '_';
 			$cache_salt    = 'SucomUpdate::plugin_data(json_url:' . $json_url . '_home_url:' . $home_url . ')';
@@ -864,9 +872,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			/**
 			 * Set wp_remote_get() options.
 			 */
-			$ua_wpid = 'WordPress/' . $wp_version . ' (' . self::$upd_config[ $ext ][ 'slug' ] . '/' . $ext_version . '/' . 
-				( $this->check_pp( $ext, true, $has_pdir ) ? 'L' :
-				( $this->check_pp( $ext, false ) ? 'U' : 'G' ) ) . '); ' . $home_url;
+			$ua_wpid = 'WordPress/' . $wp_version . ' (' . $ext_slug . '/' . $ext_version . '/' . $ext_stat . '); ' . $home_url;
 
 			$ssl_verify = apply_filters( $this->plugin_lca . '_um_sslverify', true );
 
@@ -1119,7 +1125,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			} else {
 
 				$auth_type = $this->get_auth_type( $ext );
-				$auth_id = $this->get_auth_id( $ext );
+				$auth_id   = $this->get_auth_id( $ext );
 
 				if ( $auth_type !== 'none' ) {
 
@@ -1127,7 +1133,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$this->p->debug->log( $ext . ' plugin: auth type is defined' );
 					}
 
-					if ( $this->check_pp( $ext, false, $this->p->avail[ '*' ][ 'p_dir' ] ) ) {
+					if ( $this->check_pp_compat( $ext, false, $this->p->avail[ '*' ][ 'p_dir' ] ) ) {
 
 						if ( empty( $auth_id ) ) {	// p_dir without an auth_id.
 
@@ -1164,31 +1170,26 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return $version;
 		}
 
-		public function get_auth_type( $ext ) {
+		public function get_ext_star( $ext ) {
 
-			if ( empty( $this->p->cf[ 'plugin' ][ $ext ][ 'update_auth' ] ) ) {
-				return 'none';
-			} else {
-				return $this->p->cf[ 'plugin' ][ $ext ][ 'update_auth' ];
-			}
+			return $this->get_auth_id( $ext ) ? '*' : '';
 		}
 
 		public function get_auth_id( $ext ) {
 
 			$auth_type = $this->get_auth_type( $ext );
+			$auth_key  = 'plugin_' . $ext . '_' . $auth_type;
 
-			if ( $auth_type === 'none' ) {
-				return '';
-			}
-
-			$opt_key = 'plugin_' . $ext . '_' . $auth_type;
-
-			if ( empty( $this->p->options[ $opt_key ] ) ) {
-				return '';	// Empty string.
-			} else {
-				return $this->p->options[ $opt_key ];
-			}
+			return empty( $this->p->options[ $auth_key ] ) ?
+				'' : $this->p->options[ $auth_key ];
 		}
+
+		public function get_auth_type( $ext ) {
+
+			return empty( $this->p->cf[ 'plugin' ][ $ext ][ 'update_auth' ] ) ?
+				'none' : $this->p->cf[ 'plugin' ][ $ext ][ 'update_auth' ];
+		}
+
 
 		public function get_filter_name( $ext ) {
 
