@@ -58,7 +58,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.19.0-dev.6 (2019/04/05)**
+**Version 1.19.0-rc.1 (2019/04/06)**
 
 * *New Features*
 	* None.
@@ -82,9 +82,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.19.0-dev.6 =
+= 1.19.0-rc.1 =
 
-(2019/04/05) Updated the API version number.
+(2019/04/06) Updated the API version number.
 
 = 1.18.0 =
 
