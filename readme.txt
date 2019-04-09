@@ -10,7 +10,7 @@ Tags: wpsso, update, manager, schedule, add-on, pro version
 Contributors: jsmoriss
 Requires At Least: 3.8
 Tested Up To: 5.1.1
-Stable Tag: 1.19.0
+Stable Tag: 1.19.1
 
 WPSSO Core add-on provides updates for the WPSSO Core Pro plugin and its Pro add-ons.
 
@@ -58,7 +58,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.19.0 (2019/04/06)**
+**Version 1.19.1 (2019/04/09)**
 
 * *New Features*
 	* None.
@@ -67,22 +67,11 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *Bugfixes*
 	* None.
 * *Developer Notes*
-	* Updated the API version number.
-
-**Version 1.18.0 (2019/02/05)**
-
-* *New Features*
-	* None.
-* *Improvements*
-	* None.
-* *Bugfixes*
-	* None.
-* *Developer Notes*
-	* Synchronized SucomUpdateUtilWP class methods with WPSSO Core v4.22.0's SucomUtilWP class.
+	* Maintenance release for WPSSO Core v4.27.2 config array updates.
 
 == Upgrade Notice ==
 
-= 1.19.0 =
+= 1.19.1 =
 
-(2019/04/06) Updated the API version number.
+(2019/04/09) Maintenance release for WPSSO Core v4.27.2 config array updates.
 
