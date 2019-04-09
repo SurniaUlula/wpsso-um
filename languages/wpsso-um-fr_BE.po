@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 1.17.0\n"
+"Project-Id-Version: WPSSO Update Manager 1.19.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2019-01-20 05:48-0500\n"
-"PO-Revision-Date: 2019-01-20 05:48-0500\n"
+"POT-Creation-Date: 2019-04-06 12:01-0700\n"
+"PO-Revision-Date: 2019-04-06 12:01-0700\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -35,17 +35,17 @@ msgstr "Une erreur a été renvoyée lors de l'obtention des informations de mis
 msgid "Failed saving retrieved update information for %s."
 msgstr "Erreur lors de l'enregistrement des informations de mises à jour pour %s."
 
-#: lib/com/update.php:378 lib/com/update.php:805 lib/gettext-com.php:10
+#: lib/com/update.php:378 lib/com/update.php:807 lib/gettext-com.php:10
 #: lib/gettext-com.php:16
 msgid "An inconsistency was found in the %1$s update server information &mdash;"
 msgstr "Une incohérence a été trouvée dans l'information du serveur de mises à jour pour %1$s &mdash;"
 
-#: lib/com/update.php:381 lib/com/update.php:808 lib/gettext-com.php:11
+#: lib/com/update.php:381 lib/com/update.php:810 lib/gettext-com.php:11
 #: lib/gettext-com.php:17
 msgid "Update checks for %1$s are disabled while this inconsistency persists."
 msgstr "Les vérifications de mises à jour pour %1$s sont désactivées tant que cette incohérence persiste."
 
-#: lib/com/update.php:385 lib/com/update.php:812 lib/gettext-com.php:12
+#: lib/com/update.php:385 lib/com/update.php:814 lib/gettext-com.php:12
 #: lib/gettext-com.php:18
 msgid "You may <a href=\"%1$s\">open a new support ticket</a> if you believe this error message is incorrect."
 msgstr "Vous pouvez <a href=\"%1$s\">ouvrir un nouveau billet de soutien</a> si vous pensez que ce message d'erreur est incorrect."
@@ -64,19 +64,19 @@ msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr "Filtres de version pour mises à jour"
 
-#: lib/com/update.php:823 lib/gettext-com.php:19
+#: lib/com/update.php:825 lib/gettext-com.php:19
 msgid "the update server URL (%1$s) does not appear to be a valid URL."
 msgstr "l'URL du serveur de mise à jour (%1$s) ne semble pas être une URL valide."
 
-#: lib/com/update.php:852 lib/gettext-com.php:20
+#: lib/com/update.php:859 lib/gettext-com.php:20
 msgid "the IPv4 address (%1$s) from the local host does not match the DNS IPv4 address (%2$s)."
 msgstr "l'adresse IPv4 (%1$s) fournie par le serveur local ne correspond pas à l'adresse IPv4 du DNS (%2$s)."
 
-#: lib/com/update.php:938 lib/gettext-com.php:21
+#: lib/com/update.php:943 lib/gettext-com.php:21
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr "Erreur de la fonction WordPress wp_remote_get() pour mises à jour: %s"
 
-#: lib/com/update.php:1068 lib/gettext-com.php:22
+#: lib/com/update.php:1073 lib/gettext-com.php:22
 msgid "The %1$s plugin (%2$s) version number is missing from the WordPress plugins array."
 msgstr "Le numéro de version de l'extension %1$s (%2$s) est absente de la liste d'extensions de WordPress."
 
@@ -115,15 +115,15 @@ msgctxt "metabox title"
 msgid "Update Manager"
 msgstr "Gestion de mises à jour"
 
-#: wpsso-um.php:103
+#: wpsso-um.php:102
 msgid "%1$s is an add-on for the %2$s plugin &mdash; please install and activate the %3$s plugin before activating %4$s."
 msgstr "%1$s est un ajout pour l'extension %2$s &mdash; SVP installer et activer l'extension %3$s avant d'activer %4$s."
 
-#: wpsso-um.php:105
+#: wpsso-um.php:104
 msgid "The %1$s add-on requires the %2$s plugin &mdash; install and activate the %3$s plugin or <a href=\"%4$s\">deactivate the %5$s add-on</a>."
 msgstr "L'ajout %1$s requiert l'extension %2$s &mdash; installer et activer l'extension %3$s ou <a href=\"%4$s\">désactiver l'ajout %5$s</a>."
 
-#: wpsso-um.php:251
+#: wpsso-um.php:250
 msgid "The %1$s version %2$s add-on requires %3$s version %4$s or newer (version %5$s is currently installed)."
 msgstr "L'ajout %1$s version %2$s requiert %3$s version %4$s ou plus récente (version %5$s est actuellement installée)."
 
