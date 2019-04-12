@@ -58,7 +58,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.19.2-b.1 (2019/04/12)**
+**Version 1.19.2-rc.1 (2019/04/13)**
 
 * *New Features*
 	* None.
@@ -82,9 +82,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.19.2-b.1 =
+= 1.19.2-rc.1 =
 
-(2019/04/12) Added the "Check for Updates" action button to the WordPress Tools &gt; SSO Tools page.
+(2019/04/13) Added the "Check for Updates" action button to the WordPress Tools &gt; SSO Tools page.
 
 = 1.19.1 =
 
