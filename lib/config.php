@@ -16,7 +16,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		public static $cf = array(
 			'plugin' => array(
 				'wpssoum' => array(			// Plugin acronym.
-					'version'     => '1.19.2-b.1',	// Plugin version.
+					'version'     => '1.19.2-rc.1',	// Plugin version.
 					'opt_version' => '3',		// Increment when changing default option values.
 					'short'       => 'WPSSO UM',	// Short plugin name.
 					'name'        => 'WPSSO Update Manager',
@@ -29,8 +29,8 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					'req'         => array(
 						'short'       => 'WPSSO Core',
 						'name'        => 'WPSSO Core',
-						'min_version' => '4.0.0',	// 2018/05/02
-						'rec_version' => '4.28.0-b.1',
+						'min_version' => '4.4.0',	// Released on 2018/06/07.
+						'rec_version' => '4.28.0-rc.1',
 					),
 					'assets' => array(
 						'icons' => array(
@@ -46,7 +46,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 						'sitesubmenu' => array(
 							'site-um-general' => 'Update Manager',
 						),
-						'submenu' => array(	// Note that submenu elements must have unique keys.
+						'submenu' => array(
 							'um-general' => 'Update Manager',
 						),
 					),

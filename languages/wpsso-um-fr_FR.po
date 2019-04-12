@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 1.19.0\n"
+"Project-Id-Version: WPSSO Update Manager 1.19.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2019-04-06 12:01-0700\n"
-"PO-Revision-Date: 2019-04-06 12:01-0700\n"
+"POT-Creation-Date: 2019-04-12 11:38-0700\n"
+"PO-Revision-Date: 2019-04-12 11:43-0700\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -59,7 +59,7 @@ msgid "Please note that one or more non-stable / development %s have been select
 msgstr "Veuillez noter que l'un ou plusieurs %s non-stable / de développement ont été sélectionnés."
 
 #: lib/com/update.php:453 lib/gettext-com.php:15
-#: lib/sitesubmenu/site-um-general.php:115 lib/submenu/um-general.php:96
+#: lib/sitesubmenu/site-um-general.php:115 lib/submenu/um-general.php:97
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr "Filtres de version pour mises à jour"
@@ -100,17 +100,17 @@ msgctxt "metabox title"
 msgid "Network Update Manager"
 msgstr "Gestion de mises à jour réseau"
 
-#: lib/sitesubmenu/site-um-general.php:110 lib/submenu/um-general.php:92
+#: lib/sitesubmenu/site-um-general.php:110 lib/submenu/um-general.php:93
 msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr "Actualiser info. de mises à jour"
 
-#: lib/submenu/um-general.php:49
+#: lib/submenu/um-general.php:50
 msgctxt "submit button"
 msgid "Check for Updates"
 msgstr "Vérifier pour mises à jour"
 
-#: lib/submenu/um-general.php:61
+#: lib/submenu/um-general.php:62
 msgctxt "metabox title"
 msgid "Update Manager"
 msgstr "Gestion de mises à jour"
