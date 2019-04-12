@@ -37,8 +37,9 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 
 			switch ( $menu_id ) {
 
-				case 'um-general':
+				case 'sso-tools':
 				case 'tools':
+				case 'um-general':
 
 					$row_num = 0;
 
