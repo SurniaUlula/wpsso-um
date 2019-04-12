@@ -10,7 +10,7 @@ Tags: wpsso, update, manager, schedule, add-on, pro version
 Contributors: jsmoriss
 Requires At Least: 3.8
 Tested Up To: 5.1.1
-Stable Tag: 1.19.1
+Stable Tag: 1.19.2
 
 WPSSO Core add-on provides updates for the WPSSO Core Pro plugin and its Pro add-ons.
 
