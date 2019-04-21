@@ -30,7 +30,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 						'short'       => 'WPSSO Core',
 						'name'        => 'WPSSO Core',
 						'min_version' => '4.4.0',	// Released on 2018/06/07.
-						'rec_version' => '4.28.0',
+						'rec_version' => '4.29.0',
 					),
 					'assets' => array(
 						'icons' => array(
