@@ -317,10 +317,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					continue;
 				}
 
-				$auth_type = $this->get_auth_type( $ext );
-				$auth_id   = $this->get_auth_id( $ext );
+				$ext_auth_type = $this->get_ext_auth_type( $ext );
+				$ext_auth_id   = $this->get_ext_auth_id( $ext );
 
-				if ( $auth_type !== 'none' && empty( $auth_id ) ) {
+				if ( $ext_auth_type !== 'none' && empty( $ext_auth_id ) ) {
 
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext . ' plugin: skipped - auth type without id' );
@@ -391,8 +391,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$auth_url  = $info[ 'url' ][ 'update' ];
 				$auth_args = array();
 
-				if ( ! empty( $auth_type ) && $auth_type !== 'none' ) {
-					$auth_args[ $auth_type ] = $auth_id;
+				if ( ! empty( $ext_auth_type ) && $ext_auth_type !== 'none' ) {
+					$auth_args[ $ext_auth_type ] = $ext_auth_id;
 				}
 
 				$auth_args[ 'api_version' ]       = self::$api_version;
@@ -438,7 +438,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				);
 
 				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( $ext . ' plugin: update info configured (auth_type is ' . $auth_type . ')' );
+					$this->p->debug->log( $ext . ' plugin: update info configured (auth_type is ' . $ext_auth_type . ')' );
 				}
 			}
 
@@ -763,11 +763,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			$has_pdir    = $this->p->avail[ '*' ][ 'p_dir' ];
 			$has_pp      = $this->check_pp_compat( $this->plugin_lca, true, $has_pdir );
-
-			$ext_star    = $this->get_ext_star( $ext );
 			$ext_pdir    = $this->check_pp_compat( $ext, false, $has_pdir );
-			$ext_pp      = $has_pp && $ext_star && $this->check_pp_compat( $ext, true, WPSSO_UNDEF ) === WPSSO_UNDEF ? true : false;
-			$ext_stat    = ( $ext_pp ? 'L' : ( $ext_pdir ? 'U' : 'F' ) ) . $ext_star;
+			$ext_auth_id = $this->get_ext_auth_id( $ext );
+			$ext_pp      = $has_pp && $ext_auth_id && $this->check_pp_compat( $ext, true, WPSSO_UNDEF ) === WPSSO_UNDEF ? true : false;
+			$ext_stat    = ( $ext_pp ? 'L' : ( $ext_pdir ? 'U' : 'F' ) ) . ( $ext_auth_id ? '*' : '' );
 			$ext_slug    = self::$upd_config[ $ext ][ 'slug' ];
 			$ext_version = $this->get_ext_version( $ext );
 
@@ -1124,10 +1123,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			} else {
 
-				$auth_type = $this->get_auth_type( $ext );
-				$auth_id   = $this->get_auth_id( $ext );
+				$ext_auth_type = $this->get_ext_auth_type( $ext );
+				$ext_auth_id   = $this->get_ext_auth_id( $ext );
 
-				if ( $auth_type !== 'none' ) {
+				if ( $ext_auth_type !== 'none' ) {
 
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext . ' plugin: auth type is defined' );
@@ -1135,7 +1134,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 					if ( $this->check_pp_compat( $ext, false, $this->p->avail[ '*' ][ 'p_dir' ] ) ) {
 
-						if ( empty( $auth_id ) ) {	// p_dir without an auth_id.
+						if ( empty( $ext_auth_id ) ) {	// p_dir without an auth_id.
 
 							if ( $this->p->debug->enabled ) {
 								$this->p->debug->log( $ext . ' plugin: have p_dir but no auth_id' );
@@ -1150,7 +1149,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 							$this->p->debug->log( $ext . ' plugin: have p_dir with an auth_id' );
 						}
 
-					} elseif ( ! empty( $auth_id ) ) {	// Free with an auth_id.
+					} elseif ( ! empty( $ext_auth_id ) ) {	// Free with an auth_id.
 
 						if ( $this->p->debug->enabled ) {
 							$this->p->debug->log( $ext . ' plugin: free with an auth_id' );
@@ -1170,26 +1169,20 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return $version;
 		}
 
-		public function get_ext_star( $ext ) {
+		public function get_ext_auth_id( $ext ) {
 
-			return $this->get_auth_id( $ext ) ? '*' : '';
+			$ext_auth_type = $this->get_ext_auth_type( $ext );
+			$ext_auth_key  = 'plugin_' . $ext . '_' . $ext_auth_type;
+
+			return empty( $this->p->options[ $ext_auth_key ] ) ?
+				'' : $this->p->options[ $ext_auth_key ];
 		}
 
-		public function get_auth_id( $ext ) {
-
-			$auth_type = $this->get_auth_type( $ext );
-			$auth_key  = 'plugin_' . $ext . '_' . $auth_type;
-
-			return empty( $this->p->options[ $auth_key ] ) ?
-				'' : $this->p->options[ $auth_key ];
-		}
-
-		public function get_auth_type( $ext ) {
+		public function get_ext_auth_type( $ext ) {
 
 			return empty( $this->p->cf[ 'plugin' ][ $ext ][ 'update_auth' ] ) ?
 				'none' : $this->p->cf[ 'plugin' ][ $ext ][ 'update_auth' ];
 		}
-
 
 		public function get_filter_name( $ext ) {
 
