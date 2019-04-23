@@ -58,7 +58,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.19.3-dev.1 (2019/04/22)**
+**Version 1.19.3-dev.2 (2019/04/23)**
 
 * *New Features*
 	* None.
@@ -67,7 +67,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * *Bugfixes*
 	* None.
 * *Developer Notes*
-	* None.
+	* Minor refactoring to improve the code used to define the authentication ID status.
 
 **Version 1.19.2 (2019/04/13)**
 
@@ -82,9 +82,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.19.3-dev.1 =
+= 1.19.3-dev.2 =
 
-(2019/04/22) None.
+(2019/04/23) Minor refactoring to improve the code used to define the authentication ID status.
 
 = 1.19.2 =
 
