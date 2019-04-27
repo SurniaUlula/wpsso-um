@@ -9,7 +9,7 @@ Assets URI: https://surniaulula.github.io/wpsso-um/assets/
 Tags: wpsso, update, manager, schedule, add-on, pro version
 Contributors: jsmoriss
 Requires At Least: 3.8
-Tested Up To: 5.1.1
+Tested Up To: 5.2
 Stable Tag: 1.19.2
 
 WPSSO Core add-on provides updates for the WPSSO Core Pro plugin and its Pro add-ons.
@@ -58,7 +58,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 1.19.3-rc.1 (2019/04/27)**
+**Version 1.19.3 (2019/04/27)**
 
 * *New Features*
 	* None.
@@ -82,11 +82,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 1.19.3-rc.1 =
+= 1.19.3 =
 
 (2019/04/27) Minor refactoring to improve the code used to define the authentication ID status.
-
-= 1.19.2 =
-
-(2019/04/13) Added the "Check for Updates" action button to the WordPress Tools &gt; SSO Tools page.
 
