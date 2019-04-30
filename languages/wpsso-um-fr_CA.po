@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPSSO Update Manager 1.19.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2019-04-25 11:06-0700\n"
-"PO-Revision-Date: 2019-04-25 11:06-0700\n"
+"POT-Creation-Date: 2019-04-30 10:07-0700\n"
+"PO-Revision-Date: 2019-04-30 10:07-0700\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -87,8 +87,8 @@ msgstr "Mises à jour"
 
 #: lib/gettext-config.php:8
 msgctxt "plugin description"
-msgid "WPSSO Core add-on provides updates for the WPSSO Core Pro plugin and its Pro add-ons."
-msgstr "Ajout WPSSO Core pour fournir des mises à jour pour l'extension WPSSO Core Pro et ses ajouts Pro."
+msgid "WPSSO Core add-on provides updates for the WPSSO Core Pro plugin and its Pro add-on features."
+msgstr "Ajout WPSSO Core pour fournir des mises à jour pour l'extension WPSSO Core Pro et ses ajouts complémentaires Pro."
 
 #: lib/sitesubmenu/site-um-general.php:49
 msgctxt "submit button"
@@ -136,8 +136,8 @@ msgid "https://wpsso.com/extend/plugins/wpsso-um/"
 msgstr "https://wpsso.com/extend/plugins/wpsso-um/"
 
 #. Description of the plugin/theme
-msgid "WPSSO Core add-on provides updates for the WPSSO Core Pro plugin and its Pro add-ons."
-msgstr "Ajout WPSSO Core pour fournir des mises à jour pour l'extension WPSSO Core Pro et ses ajouts Pro."
+msgid "WPSSO Core add-on provides updates for the WPSSO Core Pro plugin and its Pro add-on features."
+msgstr "Ajout WPSSO Core pour fournir des mises à jour pour l'extension WPSSO Core Pro et ses ajouts complémentaires Pro."
 
 #. Author of the plugin/theme
 msgid "JS Morisset"
