@@ -37,7 +37,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				) );
 
 				$this->p->util->add_plugin_filters( $this, array( 
-					'status_gpl_features' => 3,
+					'status_std_features' => 3,
 				), 10, 'wpssoum' );
 			}
 		}
@@ -119,7 +119,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			return $type;
 		}
 
-		public function filter_status_gpl_features( $features, $lca, $info ) {
+		public function filter_status_std_features( $features, $lca, $info ) {
 
 			$features[ '(api) Update Check Schedule' ] = array( 
 				'status' => SucomUpdate::is_enabled() ? 'on' : 'off'
