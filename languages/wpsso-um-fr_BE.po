@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 1.19.3\n"
+"Project-Id-Version: WPSSO Update Manager 2.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2019-05-01 21:06-0700\n"
-"PO-Revision-Date: 2019-05-01 21:06-0700\n"
+"POT-Creation-Date: 2019-06-23 16:20-0700\n"
+"PO-Revision-Date: 2019-06-23 16:20-0700\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -35,17 +35,17 @@ msgstr "Une erreur a été renvoyée lors de l'obtention des informations de mis
 msgid "Failed saving retrieved update information for %s."
 msgstr "Erreur lors de l'enregistrement des informations de mises à jour pour %s."
 
-#: lib/com/update.php:378 lib/com/update.php:806 lib/gettext-com.php:10
+#: lib/com/update.php:378 lib/com/update.php:808 lib/gettext-com.php:10
 #: lib/gettext-com.php:16
 msgid "An inconsistency was found in the %1$s update server information &mdash;"
 msgstr "Une incohérence a été trouvée dans l'information du serveur de mises à jour pour %1$s &mdash;"
 
-#: lib/com/update.php:381 lib/com/update.php:809 lib/gettext-com.php:11
+#: lib/com/update.php:381 lib/com/update.php:811 lib/gettext-com.php:11
 #: lib/gettext-com.php:17
 msgid "Update checks for %1$s are disabled while this inconsistency persists."
 msgstr "Les vérifications de mises à jour pour %1$s sont désactivées tant que cette incohérence persiste."
 
-#: lib/com/update.php:385 lib/com/update.php:813 lib/gettext-com.php:12
+#: lib/com/update.php:385 lib/com/update.php:815 lib/gettext-com.php:12
 #: lib/gettext-com.php:18
 msgid "You may <a href=\"%1$s\">open a new support ticket</a> if you believe this error message is incorrect."
 msgstr "Vous pouvez <a href=\"%1$s\">ouvrir un nouveau billet de soutien</a> si vous pensez que ce message d'erreur est incorrect."
@@ -64,19 +64,19 @@ msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr "Filtres de version pour mises à jour"
 
-#: lib/com/update.php:824 lib/gettext-com.php:19
+#: lib/com/update.php:826 lib/gettext-com.php:19
 msgid "the update server URL (%1$s) does not appear to be a valid URL."
 msgstr "l'URL du serveur de mise à jour (%1$s) ne semble pas être une URL valide."
 
-#: lib/com/update.php:858 lib/gettext-com.php:20
+#: lib/com/update.php:860 lib/gettext-com.php:20
 msgid "the IPv4 address (%1$s) from the local host does not match the DNS IPv4 address (%2$s)."
 msgstr "l'adresse IPv4 (%1$s) fournie par le serveur local ne correspond pas à l'adresse IPv4 du DNS (%2$s)."
 
-#: lib/com/update.php:942 lib/gettext-com.php:21
+#: lib/com/update.php:944 lib/gettext-com.php:21
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr "Erreur de la fonction WordPress wp_remote_get() pour mises à jour: %s"
 
-#: lib/com/update.php:1072 lib/gettext-com.php:22
+#: lib/com/update.php:1074 lib/gettext-com.php:22
 msgid "The %1$s plugin (%2$s) version number is missing from the WordPress plugins array."
 msgstr "Le numéro de version de l'extension %1$s (%2$s) est absente de la liste d'extensions de WordPress."
 
