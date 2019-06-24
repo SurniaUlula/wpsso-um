@@ -2,7 +2,7 @@
 
 <table>
 <tr><th align="right" valign="top" nowrap>Plugin Name</th><td>WPSSO Update Manager</td></tr>
-<tr><th align="right" valign="top" nowrap>Summary</th><td>WPSSO Core add-on provides updates for the WPSSO Core Pro plugin and its complementary Pro add-ons.</td></tr>
+<tr><th align="right" valign="top" nowrap>Summary</th><td>WPSSO Core add-on provides updates for the WPSSO Core Premium plugin and its complementary Premium add-ons.</td></tr>
 <tr><th align="right" valign="top" nowrap>Stable Version</th><td>2.0.0</td></tr>
 <tr><th align="right" valign="top" nowrap>Requires At Least</th><td>WordPress 3.8</td></tr>
 <tr><th align="right" valign="top" nowrap>Tested Up To</th><td>WordPress 5.2.1</td></tr>
@@ -15,7 +15,7 @@
 
 <p style="margin:0;"><img class="readme-icon" src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png"></p>
 
-<p>The WPSSO Update Manager add-on is required to enable and update the <a href="https://wpsso.com/">WPSSO Core Pro plugin</a> and its complementary Pro add-ons.</p>
+<p>The WPSSO Update Manager add-on is required to enable and update the <a href="https://wpsso.com/">WPSSO Core Premium plugin</a> and its complementary Premium add-ons.</p>
 
 <p>The WPSSO Update Manager supports WordPress Network / Multisite installations and WordPress MU Domain Mapping.</p>
 

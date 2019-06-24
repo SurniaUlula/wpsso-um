@@ -12,13 +12,13 @@ Requires At Least: 3.8
 Tested Up To: 5.2.1
 Stable Tag: 2.0.0
 
-WPSSO Core add-on provides updates for the WPSSO Core Pro plugin and its complementary Pro add-ons.
+WPSSO Core add-on provides updates for the WPSSO Core Premium plugin and its complementary Premium add-ons.
 
 == Description ==
 
 <p style="margin:0;"><img class="readme-icon" src="https://surniaulula.github.io/wpsso-um/assets/icon-256x256.png"></p>
 
-<p>The WPSSO Update Manager add-on is required to enable and update the <a href="https://wpsso.com/">WPSSO Core Pro plugin</a> and its complementary Pro add-ons.</p>
+<p>The WPSSO Update Manager add-on is required to enable and update the <a href="https://wpsso.com/">WPSSO Core Premium plugin</a> and its complementary Premium add-ons.</p>
 
 <p>The WPSSO Update Manager supports WordPress Network / Multisite installations and WordPress MU Domain Mapping.</p>
 
