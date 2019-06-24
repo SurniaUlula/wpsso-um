@@ -93,8 +93,8 @@ msgstr ""
 #: lib/gettext-config.php:8
 msgctxt "plugin description"
 msgid ""
-"WPSSO Core add-on provides updates for the WPSSO Core Pro plugin and its "
-"complementary Pro add-ons."
+"WPSSO Core add-on provides updates for the WPSSO Core Premium plugin and its "
+"complementary Premium add-ons."
 msgstr ""
 
 #: lib/sitesubmenu/site-um-general.php:49
@@ -150,8 +150,8 @@ msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
-"WPSSO Core add-on provides updates for the WPSSO Core Pro plugin and its "
-"complementary Pro add-ons."
+"WPSSO Core add-on provides updates for the WPSSO Core Premium plugin and its "
+"complementary Premium add-ons."
 msgstr ""
 
 #. Author of the plugin/theme
