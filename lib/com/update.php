@@ -72,22 +72,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->mark();
 			}
 
-			$this->set_config( $quiet = true, $read_cache );	// Private method.
+			$this->set_config( $quiet, $read_cache );	// Private method.
 
-			/**
-			 * Check the lca plugin first.
-			 */
-			$this->check_ext_for_updates( $this->plugin_lca, $quiet, $read_cache );
-
-			/**
-			 * Refresh the config (exclude the lca plugin).
-			 */
-			$check_ext = $this->get_config_ext_keys( $check_ext = null, $this->plugin_lca, $read_cache );	// Private method.
-
-			/**
-			 * Check all remaining plugins.
-			 */
-			$this->check_ext_for_updates( $check_ext, $quiet, $read_cache );
+			$this->check_ext_for_updates( $check_ext = null, $quiet, $read_cache );
 		}
 
 		public function check_ext_for_updates( $check_ext = null, $quiet = true, $read_cache = true ) {
@@ -302,20 +289,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			self::$upd_config = array();	// Reset the config array.
 
-			$has_pdir = $this->p->avail[ '*' ][ 'p_dir' ];
-			$has_pp   = $this->check_pp_compat( $this->plugin_lca, true, $has_pdir, $read_cache );
-			$has_dev  = false;
+			$has_dev_filter = false;	// Assume we're using the production version filter by default.
 
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
-
-				if ( ! $has_pp && $ext !== $this->plugin_lca && $ext !== $this->plugin_lca . 'um' ) {
-
-					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $ext . ' plugin: skipped - pp required' );
-					}
-
-					continue;
-				}
 
 				$ext_auth_type = $this->get_ext_auth_type( $ext );
 				$ext_auth_id   = $this->get_ext_auth_id( $ext );
@@ -360,7 +336,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$this->p->debug->log( $ext . ' plugin: non-stable filter found' );
 					}
 
-					$has_dev = true;
+					$has_dev_filter = true;
 				}
 
 				if ( $this->p->debug->enabled ) {
@@ -416,10 +392,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 					self::set_umsg( $ext, 'err', $error_msg );
 
-					if ( $ext === $this->plugin_lca ) {
-						$has_pp = false;
-					}
-
 					continue;
 				}
 
@@ -444,7 +416,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			if ( ! $quiet || $this->p->debug->enabled ) {
 
-				if ( $has_dev && $this->p->notice->is_admin_pre_notices() ) {
+				if ( $has_dev_filter && $this->p->notice->is_admin_pre_notices() ) {
 
 					$notice_key   = 'non-stable-update-version-filters-selected';
 					$dismiss_time = MONTH_IN_SECONDS * 3;
@@ -763,11 +735,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			global $wp_version;
 
-			$has_pdir    = $this->p->avail[ '*' ][ 'p_dir' ];
-			$has_pp      = $this->check_pp_compat( $this->plugin_lca, true, $has_pdir );
-			$ext_pdir    = $this->check_pp_compat( $ext, false, $has_pdir );
+			$ext_pdir    = $this->check_pp_compat( $ext, false );
 			$ext_auth_id = $this->get_ext_auth_id( $ext );
-			$ext_pp      = $has_pp && $ext_auth_id && $this->check_pp_compat( $ext, true, WPSSO_UNDEF ) === WPSSO_UNDEF ? true : false;
+			$ext_pp      = $ext_auth_id && $this->check_pp_compat( $ext, true, WPSSO_UNDEF ) === WPSSO_UNDEF ? true : false;
 			$ext_stat    = ( $ext_pp ? 'L' : ( $ext_pdir ? 'U' : 'F' ) ) . ( $ext_auth_id ? '*' : '' );
 			$ext_slug    = self::$upd_config[ $ext ][ 'slug' ];
 			$ext_version = $this->get_ext_version( $ext );
@@ -1134,12 +1104,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$this->p->debug->log( $ext . ' plugin: auth type is defined' );
 					}
 
-					if ( $this->check_pp_compat( $ext, false, $this->p->avail[ '*' ][ 'p_dir' ] ) ) {
+					if ( $this->check_pp_compat( $ext, false ) ) {
 
-						if ( empty( $ext_auth_id ) ) {	// p_dir without an auth_id.
+						if ( empty( $ext_auth_id ) ) {	// pdir without an auth_id.
 
 							if ( $this->p->debug->enabled ) {
-								$this->p->debug->log( $ext . ' plugin: have p_dir but no auth_id' );
+								$this->p->debug->log( $ext . ' plugin: have pdir but no auth_id' );
 							}
 
 							/**
@@ -1148,7 +1118,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 							return $version = '0.' . $version;
 
 						} elseif ( $this->p->debug->enabled ) {
-							$this->p->debug->log( $ext . ' plugin: have p_dir with an auth_id' );
+							$this->p->debug->log( $ext . ' plugin: have pdir with an auth_id' );
 						}
 
 					} elseif ( ! empty( $ext_auth_id ) ) {	// Free with an auth_id.

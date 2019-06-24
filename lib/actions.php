@@ -49,8 +49,6 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 				$this->p->debug->mark();
 			}
 
-			$lca = isset( $this->p->lca ) ? $this->p->lca : $this->p->cf['lca'];
-
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 				$this->p->admin->get_readme_info( $ext, $use_cache = false );
 			}

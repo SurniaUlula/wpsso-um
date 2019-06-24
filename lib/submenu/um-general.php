@@ -75,7 +75,7 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 
 			$metabox_id = 'um';
 
-			$this->form->set_text_domain( 'wpsso' );	// translate option values using wpsso text_domain
+			$this->form->set_text_domain( 'wpsso' );	// Translate option values using wpsso text_domain.
 
 			$this->p->util->do_metabox_table( apply_filters( $this->p->lca . '_' . $metabox_id . '_general_rows', 
 				$this->get_table_rows( $metabox_id, 'general' ), $this->form ), 'metabox-' . $metabox_id . '-general' );

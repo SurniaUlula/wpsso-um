@@ -119,7 +119,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			return $type;
 		}
 
-		public function filter_status_std_features( $features, $lca, $info ) {
+		public function filter_status_std_features( $features, $ext, $info ) {
 
 			$features[ '(api) Update Check Schedule' ] = array( 
 				'status' => SucomUpdate::is_enabled() ? 'on' : 'off'
