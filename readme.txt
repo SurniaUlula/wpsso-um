@@ -26,7 +26,7 @@ WPSSO Core add-on provides updates for the WPSSO Core Pro plugin and its complem
 
 <h3>WPSSO Core Plugin Prerequisite</h3>
 
-WPSSO Update Manager (aka WPSSO UM) is an add-on for the [WPSSO Core plugin](https://wordpress.org/plugins/wpsso/) (Free or Pro version).
+WPSSO Update Manager (aka WPSSO UM) is an add-on for the [WPSSO Core plugin](https://wordpress.org/plugins/wpsso/) (Standard or Premium version).
 
 == Installation ==
 
