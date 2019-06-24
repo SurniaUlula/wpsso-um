@@ -58,7 +58,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.0.0-rc.1 (2019/06/23)**
+**Version 2.0.0 (2019/06/24)**
 
 * *New Features*
 	* None.
@@ -93,11 +93,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 2.0.0-rc.1 =
+= 2.0.0 =
 
-(2019/06/23) Maintenance release for WPSSO Core v5.0.0.
-
-= 1.19.3 =
-
-(2019/04/27) Minor refactoring to improve the code used to define the authentication ID status.
+(2019/06/24) Maintenance release for WPSSO Core v5.0.0.
 
