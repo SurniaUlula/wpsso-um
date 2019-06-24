@@ -1121,7 +1121,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 							$this->p->debug->log( $ext . ' plugin: have pdir with an auth_id' );
 						}
 
-					} elseif ( ! empty( $ext_auth_id ) ) {	// Free with an auth_id.
+					} elseif ( ! empty( $ext_auth_id ) ) {
 
 						if ( $this->p->debug->enabled ) {
 							$this->p->debug->log( $ext . ' plugin: free with an auth_id' );
