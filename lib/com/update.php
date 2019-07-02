@@ -660,7 +660,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 						$this->p->debug->log_arr( 'option_data', $updates->response[ $info[ 'base' ] ], 5 );
 					}
+
 				} else {
+
 					self::$upd_config[ $ext ][ 'plugin_update' ] = false;	// False when installed is current.
 
 					if ( $this->p->debug->enabled ) {
