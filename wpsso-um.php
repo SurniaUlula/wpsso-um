@@ -141,7 +141,9 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			$info = WpssoUmConfig::$cf[ 'plugin' ][ 'wpssoum' ];
 
 			if ( version_compare( $plugin_version, $info[ 'req' ][ 'min_version' ], '<' ) ) {
+
 				$this->have_req_min = false;
+
 				return $cf;
 			}
 
@@ -160,11 +162,13 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			}
 
 			if ( ! $this->have_req_min ) {
+
 				$this->p->avail[ 'p_ext' ][ 'um' ] = false;	// Signal that this extension / add-on is not available.
+
 				return;
 			}
 
-			$this->p->avail[ 'p_ext' ][ 'um' ] = true;	// Signal that this extension / add-on is available.
+			$this->p->avail[ 'p_ext' ][ 'um' ] = true;		// Signal that this extension / add-on is available.
 		}
 
 		public function wpsso_init_objects() {
