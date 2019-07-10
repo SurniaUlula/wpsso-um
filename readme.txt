@@ -60,35 +60,35 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 **Version 2.0.0 (2019/06/24)**
 
-* *New Features*
+* **New Features**
 	* None.
-* *Improvements*
+* **Improvements**
 	* None.
-* *Bugfixes*
+* **Bugfixes**
 	* None.
-* *Developer Notes*
+* **Developer Notes**
 	* Maintenance release for WPSSO Core v5.0.0.
 
 **Version 1.19.3 (2019/04/27)**
 
-* *New Features*
+* **New Features**
 	* None.
-* *Improvements*
+* **Improvements**
 	* None.
-* *Bugfixes*
+* **Bugfixes**
 	* None.
-* *Developer Notes*
+* **Developer Notes**
 	* Minor refactoring to improve the code used to define the authentication ID status.
 
 **Version 1.19.2 (2019/04/13)**
 
-* *New Features*
+* **New Features**
 	* None.
-* *Improvements*
+* **Improvements**
 	* Added the "Check for Updates" action button to the WordPress Tools &gt; SSO Tools page.
-* *Bugfixes*
+* **Bugfixes**
 	* None.
-* *Developer Notes*
+* **Developer Notes**
 	* None.
 
 == Upgrade Notice ==
