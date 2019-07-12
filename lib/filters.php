@@ -13,7 +13,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 	class WpssoUmFilters {
 
-		protected $p;
+		private $p;
 
 		public function __construct( &$plugin ) {
 
@@ -38,7 +38,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 				$this->p->util->add_plugin_filters( $this, array( 
 					'status_std_features' => 3,
-				), 10, 'wpssoum' );
+				), $prio = 10, $ext = 'wpssoum' );
 			}
 		}
 

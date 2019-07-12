@@ -28,7 +28,7 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 
 			$this->p->util->add_plugin_filters( $this, array(
 				'form_button_rows' => 2,
-			), -100000 );
+			), $prio = -100000 );
 		}
 
 		public function filter_form_button_rows( $form_button_rows, $menu_id ) {
