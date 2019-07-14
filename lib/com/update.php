@@ -463,7 +463,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			add_filter( 'site_transient_update_plugins', array( $this, 'maybe_add_plugin_update' ), 1000, 1 );
 			add_filter( 'pre_site_transient_update_plugins', array( $this, 'reenable_plugin_update' ), 1000, 1 );
 			add_filter( 'http_request_host_is_external', array( $this, 'allow_update_package' ), 2000, 3 );
-			add_filter( 'http_headers_useragent', array( $this, 'maybe_fix_wordpress_id' ), PHP_INT_MAX, 1 );
+			add_filter( 'http_headers_useragent', array( $this, 'maybe_update_wpua' ), PHP_INT_MAX, 2 );
 
 			/**
 			 * Maybe remove the old plugin update hook.
@@ -529,22 +529,22 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return $is_allowed;
 		}
 
-		public function maybe_fix_wordpress_id( $current_id ) {
+		public function maybe_update_wpua( $wpua, $url ) {
 
 			global $wp_version;
 
-			$correct_id = 'WordPress/' . $wp_version . '; ' . SucomUpdateUtilWP::raw_home_url();
+			$correct_wpua = 'WordPress/' . $wp_version . '; ' . SucomUpdateUtilWP::raw_home_url();
 
-			if ( $correct_id !== $current_id ) {
+			if ( $correct_wpua !== $wpua ) {
 
 				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'incorrect wordpress id: ' . $current_id );
+					$this->p->debug->log( 'incorrect wordpress id: ' . $wpua );
 				}
 
-				return $correct_id;
+				return $correct_wpua;
 			}
 
-			return $current_id;
+			return $wpua;
 		}
 
 		/**
@@ -876,7 +876,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				'http_request_timeout',
 				'http_request_redirection_count',
 				'http_request_version',
-				// 'http_headers_useragent',	// Allow for maybe_fix_wordpress_id() filter hook.
+				// 'http_headers_useragent',	// Keep for the maybe_update_wpua() filter hook.
 				'http_request_reject_unsafe_urls',
 				'http_request_args',
 				'pre_http_request',
