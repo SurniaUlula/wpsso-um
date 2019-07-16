@@ -740,7 +740,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$ext_pdir    = $this->check_pp_compat( $ext, false );
 			$ext_auth_id = $this->get_ext_auth_id( $ext );
 			$ext_pp      = $ext_auth_id && $this->check_pp_compat( $ext, true, WPSSO_UNDEF ) === WPSSO_UNDEF ? true : false;
-			$ext_stat    = ( $ext_pp ? 'L' : ( $ext_pdir ? 'U' : 'F' ) ) . ( $ext_auth_id ? '*' : '' );
+			$ext_stat    = ( $ext_pp ? 'L' : ( $ext_pdir ? 'U' : 'S' ) ) . ( $ext_auth_id ? '*' : '' );
 			$ext_slug    = self::$upd_config[ $ext ][ 'slug' ];
 			$ext_version = $this->get_ext_version( $ext );
 
