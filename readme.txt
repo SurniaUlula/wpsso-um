@@ -58,35 +58,20 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.0.1-rc.1 (2019/07/18)**
+**Version 2.0.1 (2019/07/18)**
 
 * **New Features**
 	* None.
 * **Improvements**
-	* Minor update to change mentions of "Pro" to "Premium".
+	* Minor update to change "Pro" to "Premium" in help and status messages.
 * **Bugfixes**
 	* None.
 * **Developer Notes**
 	* None.
-
-**Version 2.0.0 (2019/06/24)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* None.
-* **Bugfixes**
-	* None.
-* **Developer Notes**
-	* Maintenance release for WPSSO Core v5.0.0.
 
 == Upgrade Notice ==
 
-= 2.0.1-dev.1 =
+= 2.0.1 =
 
-(2019/07/18) Minor update to change mentions of "Pro" to "Premium".
-
-= 2.0.0 =
-
-(2019/06/24) Maintenance release for WPSSO Core v5.0.0.
+(2019/07/18) Minor update to change "Pro" to "Premium" in help and status messages.
 
