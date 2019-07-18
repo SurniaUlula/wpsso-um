@@ -58,6 +58,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 2.0.1-rc.1 (2019/07/18)**
+
+* **New Features**
+	* None.
+* **Improvements**
+	* Minor update to change mentions of "Pro" to "Premium".
+* **Bugfixes**
+	* None.
+* **Developer Notes**
+	* None.
+
 **Version 2.0.0 (2019/06/24)**
 
 * **New Features**
@@ -69,29 +80,11 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **Developer Notes**
 	* Maintenance release for WPSSO Core v5.0.0.
 
-**Version 1.19.3 (2019/04/27)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* None.
-* **Bugfixes**
-	* None.
-* **Developer Notes**
-	* Minor refactoring to improve the code used to define the authentication ID status.
-
-**Version 1.19.2 (2019/04/13)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* Added the "Check for Updates" action button to the WordPress Tools &gt; SSO Tools page.
-* **Bugfixes**
-	* None.
-* **Developer Notes**
-	* None.
-
 == Upgrade Notice ==
+
+= 2.0.1-dev.1 =
+
+(2019/07/18) Minor update to change mentions of "Pro" to "Premium".
 
 = 2.0.0 =
 
