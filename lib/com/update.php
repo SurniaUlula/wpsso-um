@@ -463,13 +463,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			add_filter( 'site_transient_update_plugins', array( $this, 'maybe_add_plugin_update' ), 1000, 1 );
 			add_filter( 'pre_site_transient_update_plugins', array( $this, 'reenable_plugin_update' ), 1000, 1 );
 			add_filter( 'http_request_host_is_external', array( $this, 'allow_update_package' ), 2000, 3 );
-
-			/**
-			 * The 'http_headers_useragent' filter hook offers two
-			 * arguments, but only since WP v5.1.0, so request one
-			 * argument to stay backwards compatible with older WP
-			 * versions.
-			 */
 			add_filter( 'http_headers_useragent', array( $this, 'maybe_update_wpua' ), PHP_INT_MAX, 1 );
 
 			/**
@@ -534,24 +527,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			return $is_allowed;
-		}
-
-		public function maybe_update_wpua( $wpua ) {
-
-			global $wp_version;
-
-			$correct_wpua = 'WordPress/' . $wp_version . '; ' . SucomUpdateUtilWP::raw_home_url();
-
-			if ( $correct_wpua !== $wpua ) {
-
-				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'incorrect wordpress id: ' . $wpua );
-				}
-
-				return $correct_wpua;
-			}
-
-			return $wpua;
 		}
 
 		/**
@@ -880,6 +855,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$saved_wp_filter = $wp_filter;
 
 			foreach ( array(
+				'http_headers_useragent',	// Clear pre-existing filters and re-hook.
 				'http_request_timeout',
 				'http_request_redirection_count',
 				'http_request_version',
@@ -891,6 +867,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			) as $tag ) {
 				unset( $wp_filter[ $tag ] );
 			}
+
+			add_filter( 'http_headers_useragent', array( $this, 'maybe_update_wpua' ), PHP_INT_MAX, 1 );
 
 			$request = wp_remote_get( $json_url, $get_options );
 
@@ -908,6 +886,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				$request = wp_remote_get( $json_url, $get_options );
 			}
+
+			remove_filter( 'http_headers_useragent', array( $this, 'maybe_update_wpua' ), PHP_INT_MAX );
 
 			$wp_filter = $saved_wp_filter;
 
@@ -985,7 +965,32 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			return $plugin_data;
 		}
-	
+
+		/**
+		 * A filter for 'http_headers_useragent' makes sure we have a
+		 * standard WordPress useragent string. The
+		 * 'http_headers_useragent' filter hook offers two arguments,
+		 * but only since WP v5.1.0, so require one argument to stay
+		 * backwards compatible with older WP versions.
+		 */
+		public function maybe_update_wpua( $wpua ) {
+
+			global $wp_version;
+
+			$correct_wpua = 'WordPress/' . $wp_version . '; ' . SucomUpdateUtilWP::raw_home_url();
+
+			if ( $correct_wpua !== $wpua ) {
+
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( 'incorrect wordpress id: ' . $wpua );
+				}
+
+				return $correct_wpua;
+			}
+
+			return $wpua;
+		}
+
 		public function get_ext_version( $ext ) {
 
 			$info = array();
