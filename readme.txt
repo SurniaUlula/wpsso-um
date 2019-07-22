@@ -10,7 +10,7 @@ Tags: wpsso, update, manager, schedule, add-on, pro version
 Contributors: jsmoriss
 Requires At Least: 3.8
 Tested Up To: 5.2.2
-Stable Tag: 2.0.1
+Stable Tag: 2.0.2
 
 WPSSO Core add-on provides updates for the WPSSO Core Premium plugin and its complementary Premium add-ons.
 
@@ -58,20 +58,20 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.0.1 (2019/07/18)**
+**Version 2.0.2 (2019/07/21)**
 
 * **New Features**
 	* None.
 * **Improvements**
-	* Minor update to change "Pro" to "Premium" in help and status messages.
-* **Bugfixes**
 	* None.
+* **Bugfixes**
+	* Fixed the 'http_headers_useragent' filter hook for older WordPress versions (before version v5.1.0).
 * **Developer Notes**
 	* None.
 
 == Upgrade Notice ==
 
-= 2.0.1 =
+= 2.0.2 =
 
-(2019/07/18) Minor update to change "Pro" to "Premium" in help and status messages.
+(2019/07/21) Fixed the 'http_headers_useragent' filter hook for older WordPress versions (before version v5.1.0).
 
