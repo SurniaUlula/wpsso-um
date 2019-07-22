@@ -463,7 +463,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			add_filter( 'site_transient_update_plugins', array( $this, 'maybe_add_plugin_update' ), 1000, 1 );
 			add_filter( 'pre_site_transient_update_plugins', array( $this, 'reenable_plugin_update' ), 1000, 1 );
 			add_filter( 'http_request_host_is_external', array( $this, 'allow_update_package' ), 2000, 3 );
-			add_filter( 'http_headers_useragent', array( $this, 'maybe_update_wpua' ), PHP_INT_MAX, 2 );
+
+			/**
+			 * The 'http_headers_useragent' filter hook offers two
+			 * arguments, but only since WP v5.1.0, so request one
+			 * argument to stay backwards compatible with older WP
+			 * versions.
+			 */
+			add_filter( 'http_headers_useragent', array( $this, 'maybe_update_wpua' ), PHP_INT_MAX, 1 );
 
 			/**
 			 * Maybe remove the old plugin update hook.
@@ -529,7 +536,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return $is_allowed;
 		}
 
-		public function maybe_update_wpua( $wpua, $url ) {
+		public function maybe_update_wpua( $wpua ) {
 
 			global $wp_version;
 
@@ -876,7 +883,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				'http_request_timeout',
 				'http_request_redirection_count',
 				'http_request_version',
-				// 'http_headers_useragent',	// Keep for the maybe_update_wpua() filter hook.
 				'http_request_reject_unsafe_urls',
 				'http_request_args',
 				'pre_http_request',

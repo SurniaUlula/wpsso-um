@@ -13,7 +13,7 @@
  * Description: WPSSO Core add-on provides updates for the WPSSO Core Premium plugin and its complementary Premium add-ons.
  * Requires At Least: 3.8
  * Tested Up To: 5.2.2
- * Version: 2.0.1
+ * Version: 2.0.2
  * 
  * Version Numbering: {major}.{minor}.{bugfix}[-{stage}.{level}]
  *
