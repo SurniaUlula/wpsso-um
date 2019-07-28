@@ -463,17 +463,17 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			 */
 			add_filter( 'plugins_api_result', array( $this, 'external_plugin_data' ), PHP_INT_MAX, 3 );
 
-			add_filter( 'transient_update_plugins', array( $this, 'maybe_add_plugin_update' ), 1000, 1 );
-			add_filter( 'site_transient_update_plugins', array( $this, 'maybe_add_plugin_update' ), 1000, 1 );
+			add_filter( 'transient_update_plugins', array( $this, 'maybe_add_plugin_update' ), PHP_INT_MAX, 1 );
+			add_filter( 'site_transient_update_plugins', array( $this, 'maybe_add_plugin_update' ), PHP_INT_MAX, 1 );
 
 			/**
 			 * If the WordPress update system has been disabled and/or manipulated, then re-enable updates by
 			 * including our update data (if a new plugin version is available).
 			 */
-			add_filter( 'pre_transient_update_plugins', array( $this, 'reenable_plugin_update' ), 1000, 1 );
-			add_filter( 'pre_site_transient_update_plugins', array( $this, 'reenable_plugin_update' ), 1000, 1 );
+			add_filter( 'pre_transient_update_plugins', array( $this, 'reenable_plugin_update' ), PHP_INT_MAX, 1 );
+			add_filter( 'pre_site_transient_update_plugins', array( $this, 'reenable_plugin_update' ), PHP_INT_MAX, 1 );
 
-			add_filter( 'http_request_host_is_external', array( $this, 'allow_update_package' ), 2000, 3 );
+			add_filter( 'http_request_host_is_external', array( $this, 'allow_update_package' ), PHP_INT_MAX, 3 );
 			add_filter( 'http_headers_useragent', array( $this, 'maybe_update_wpua' ), PHP_INT_MAX, 1 );
 
 			/**
