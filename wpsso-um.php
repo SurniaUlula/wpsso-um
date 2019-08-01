@@ -184,7 +184,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			}
 
 			if ( ! $this->have_req_min ) {
-				return;	// stop here
+				return;	// Stop here.
 			}
 
 			$info = WpssoUmConfig::$cf[ 'plugin' ][ 'wpssoum' ];
@@ -203,8 +203,10 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			}
 
 			if ( ! $this->have_req_min ) {
+
 				$this->min_version_notice();
-				return;	// stop here
+
+				return;	// Stop here.
 			}
 
 			$cache_md5_pre = $this->p->lca . '_';
