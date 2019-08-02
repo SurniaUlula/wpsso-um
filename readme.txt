@@ -1,4 +1,4 @@
-=== WPSSO Update Manager ===
+=== Update Manager | WPSSO Add-on ===
 Plugin Name: WPSSO Update Manager
 Plugin Slug: wpsso-um
 Text Domain: wpsso-um
@@ -12,7 +12,7 @@ Requires At Least: 3.8
 Tested Up To: 5.2.2
 Stable Tag: 2.1.0
 
-WPSSO Core add-on provides updates for the WPSSO Core Premium plugin and its complementary Premium add-ons.
+Update manager for the WPSSO Core Premium plugin and its complementary Premium add-ons.
 
 == Description ==
 
