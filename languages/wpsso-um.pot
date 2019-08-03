@@ -150,8 +150,8 @@ msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
-"WPSSO Core add-on provides updates for the WPSSO Core Premium plugin and its "
-"complementary Premium add-ons."
+"Update manager for the WPSSO Core Premium plugin and its complementary "
+"Premium add-ons."
 msgstr ""
 
 #. Author of the plugin/theme
