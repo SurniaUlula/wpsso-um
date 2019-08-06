@@ -13,7 +13,7 @@
  * Description: Update manager for the WPSSO Core Premium plugin and its complementary Premium add-ons.
  * Requires At Least: 3.8
  * Tested Up To: 5.2.2
- * Version: 2.1.1-dev.2
+ * Version: 2.1.1-dev.3
  * 
  * Version Numbering: {major}.{minor}.{bugfix}[-{stage}.{level}]
  *
