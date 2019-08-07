@@ -58,7 +58,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.1.1-rc.1 (2019/08/07)**
+**Version 2.1.1 (2019/08/07)**
 
 * **New Features**
 	* None.
@@ -93,11 +93,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 2.1.1-rc.1 =
+= 2.1.1 =
 
 (2019/08/07) Minor update for "fr_FR" translations.
-
-= 2.1.0 =
-
-(2019/07/28) Added a hook for 'pre_transient_update_plugins' to include our update data if updates disabled.
 
