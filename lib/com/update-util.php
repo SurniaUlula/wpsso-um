@@ -13,7 +13,7 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 
 	class SucomUpdateUtil {
 
-		protected static $cache_plugins = null;
+		private static $cache_plugins = null;	// Common cache for get_plugins().
 
 		/**
 		 * Decode a URL and add query arguments. Returns false on error.
@@ -64,9 +64,11 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 				return SucomPlugin::get_plugins();
 			}
 
-			if ( self::$cache_plugins !== null ) {
+			if ( null !== self::$cache_plugins ) {
 				return self::$cache_plugins;
 			}
+
+			self::$cache_plugins = array();	// Default value.
 
 			if ( ! function_exists( 'get_plugins' ) ) {	// Load the library if necessary.
 
@@ -79,8 +81,6 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 
 			if ( function_exists( 'get_plugins' ) ) {
 				self::$cache_plugins = get_plugins();
-			} else {
-				self::$cache_plugins = array();
 			}
 
 			return self::$cache_plugins;
