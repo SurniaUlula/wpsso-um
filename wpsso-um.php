@@ -11,7 +11,7 @@
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl.txt
  * Description: Update manager for the WPSSO Core Premium plugin and its complementary Premium add-ons.
- * Requires At Least: 3.8
+ * Requires At Least: 3.9
  * Tested Up To: 5.2.2
  * Version: 2.1.1
  * 
