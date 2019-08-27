@@ -58,6 +58,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 2.2.0-rc.3 (2019/08/27)**
+
+* **New Features**
+	* None.
+* **Improvements**
+	* Adjusted the notice expiration for selecting development filters from 3 months to 1 month.
+* **Bugfixes**
+	* None.
+* **Developer Notes**
+	* None.
+
 **Version 2.1.1 (2019/08/07)**
 
 * **New Features**
@@ -80,18 +91,11 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **Developer Notes**
 	* Added a hook for 'pre_transient_update_plugins' to include our update data if updates disabled.
 
-**Version 2.0.2 (2019/07/21)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* None.
-* **Bugfixes**
-	* Fixed the 'http_headers_useragent' filter hook for older WordPress versions (before version v5.1.0).
-* **Developer Notes**
-	* None.
-
 == Upgrade Notice ==
+
+= 2.2.0-rc.3 =
+
+(2019/08/27) Adjusted the notice expiration for selecting development filters from 3 months to 1 month.
 
 = 2.1.1 =
 
