@@ -58,7 +58,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.2.0-rc.3 (2019/08/27)**
+**Version 2.2.0-rc.4 (2019/08/29)**
 
 * **New Features**
 	* None.
@@ -93,9 +93,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 2.2.0-rc.3 =
+= 2.2.0-rc.4 =
 
-(2019/08/27) Adjusted the notice expiration for selecting development filters from 3 months to 1 month.
+(2019/08/29) Adjusted the notice expiration for selecting development filters from 3 months to 1 month.
 
 = 2.1.1 =
 
