@@ -58,7 +58,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.2.0-rc.5 (2019/08/30)**
+**Version 2.2.0 (2019/09/01)**
 
 * **New Features**
 	* None.
@@ -69,35 +69,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **Developer Notes**
 	* None.
 
-**Version 2.1.1 (2019/08/07)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* Minor update for "fr_FR" translations.
-* **Bugfixes**
-	* None.
-* **Developer Notes**
-	* None.
-
-**Version 2.1.0 (2019/07/28)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* None.
-* **Bugfixes**
-	* None.
-* **Developer Notes**
-	* Added a hook for 'pre_transient_update_plugins' to include our update data if updates disabled.
-
 == Upgrade Notice ==
 
-= 2.2.0-rc.5 =
+= 2.2.0 =
 
-(2019/08/30) Adjusted the notice expiration for selecting development filters from 3 months to 1 month.
-
-= 2.1.1 =
-
-(2019/08/07) Minor update for "fr_FR" translations.
+(2019/09/01) Adjusted the notice expiration for selecting development filters from 3 months to 1 month.
 
