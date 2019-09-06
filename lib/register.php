@@ -105,9 +105,6 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 
 					WpssoUtil::save_all_times( 'wpssoum', $version );
 				}
-
-			} else {
-				WpssoUm::required_notice( $deactivate = true );
 			}
 
 			self::delete_options();
