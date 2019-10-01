@@ -32,18 +32,18 @@ msgstr ""
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:354 lib/com/update.php:773 lib/gettext-com.php:10
+#: lib/com/update.php:354 lib/com/update.php:776 lib/gettext-com.php:10
 #: lib/gettext-com.php:16
 msgid ""
 "An inconsistency was found in the %1$s update server information &mdash;"
 msgstr ""
 
-#: lib/com/update.php:357 lib/com/update.php:776 lib/gettext-com.php:11
+#: lib/com/update.php:357 lib/com/update.php:779 lib/gettext-com.php:11
 #: lib/gettext-com.php:17
 msgid "Update checks for %1$s are disabled while this inconsistency persists."
 msgstr ""
 
-#: lib/com/update.php:361 lib/com/update.php:780 lib/gettext-com.php:12
+#: lib/com/update.php:361 lib/com/update.php:783 lib/gettext-com.php:12
 #: lib/gettext-com.php:18
 msgid ""
 "You may <a href=\"%1$s\">open a new support ticket</a> if you believe this "
@@ -54,32 +54,32 @@ msgstr ""
 msgid "invalid authentication URL (%1$s)."
 msgstr ""
 
-#: lib/com/update.php:424 lib/gettext-com.php:14
+#: lib/com/update.php:426 lib/gettext-com.php:14
 msgid ""
 "Please note that one or more non-stable / development %s have been selected."
 msgstr ""
 
-#: lib/com/update.php:425 lib/gettext-com.php:15
+#: lib/com/update.php:427 lib/gettext-com.php:15
 #: lib/sitesubmenu/site-um-general.php:107 lib/submenu/um-general.php:92
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
 
-#: lib/com/update.php:791 lib/gettext-com.php:19
+#: lib/com/update.php:794 lib/gettext-com.php:19
 msgid "the update server URL (%1$s) does not appear to be a valid URL."
 msgstr ""
 
-#: lib/com/update.php:825 lib/gettext-com.php:20
+#: lib/com/update.php:828 lib/gettext-com.php:20
 msgid ""
 "the IPv4 address (%1$s) from the local host does not match the DNS IPv4 "
 "address (%2$s)."
 msgstr ""
 
-#: lib/com/update.php:913 lib/gettext-com.php:21
+#: lib/com/update.php:916 lib/gettext-com.php:21
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr ""
 
-#: lib/com/update.php:1068 lib/gettext-com.php:22
+#: lib/com/update.php:1071 lib/gettext-com.php:22
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."

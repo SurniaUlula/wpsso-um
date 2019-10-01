@@ -418,12 +418,15 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				if ( $has_dev_filter && $this->p->notice->is_admin_pre_notices() ) {
 
+					$user_id      = get_current_user_id();
 					$notice_key   = 'non-stable-update-version-filters-selected';
 					$dismiss_time = MONTH_IN_SECONDS;
 
-					$this->p->notice->warn( sprintf( __( 'Please note that one or more non-stable / development %s have been selected.',
-						$this->text_domain ), $this->p->util->get_admin_url( 'um-general', _x( 'Update Version Filters',
-							'metabox title', $this->text_domain ) ) ), null, $notice_key, $dismiss_time );
+					if ( $user_id ) {
+						$this->p->notice->warn( sprintf( __( 'Please note that one or more non-stable / development %s have been selected.',
+							$this->text_domain ), $this->p->util->get_admin_url( 'um-general', _x( 'Update Version Filters',
+								'metabox title', $this->text_domain ) ) ), $user_id, $notice_key, $dismiss_time );
+					}
 				}
 			}
 
