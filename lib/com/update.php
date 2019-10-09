@@ -72,7 +72,16 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->mark();
 			}
 
-			$this->set_config( $quiet, $read_cache );	// Private method.
+			/**
+			 * Check the lca plugin first, to satisfy any dependency issues:
+			 *
+			 * $this->set_config( $quiet_config = true, $read_cache );
+			 * $this->check_ext_for_updates( $this->plugin_lca, $quiet, $read_cache );
+			 * $check_ext = $this->get_config_ext_keys( $include = null, $exclude = $this->plugin_lca, $read_cache );
+			 * $this->check_ext_for_updates( $check_ext, $quiet, $read_cache );
+			 */
+
+			$this->set_config( $quiet_config = true, $read_cache );
 
 			$this->check_ext_for_updates( $check_ext = null, $quiet, $read_cache );
 		}
