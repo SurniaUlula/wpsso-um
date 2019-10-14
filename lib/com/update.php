@@ -993,8 +993,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				} elseif ( isset( self::$http_error_codes[ $http_code ] ) ) {
 
-					self::$upd_config[ $ext ][ 'uerr' ] = sprintf( __( 'wp_remote_get() returned HTTP %1$d %2$s for %3$s', $this->text_domain ),
-						$http_code, self::$http_error_codes[ $http_code ], $json_url );
+					self::$upd_config[ $ext ][ 'uerr' ] = sprintf( __( 'The WordPress %1$s function returned HTTP %2$d (%3$s) for %4$s.',
+						$this->text_domain ), 'wp_remote_get()', $http_code, self::$http_error_codes[ $http_code ], $json_url );
 				}
 			}
 

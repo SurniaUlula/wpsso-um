@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 2.2.1\n"
+"Project-Id-Version: WPSSO Update Manager 2.3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2019-10-02 09:56-0700\n"
-"PO-Revision-Date: 2019-10-02 09:56-0700\n"
+"POT-Creation-Date: 2019-10-14 15:33-0700\n"
+"PO-Revision-Date: 2019-10-14 15:34-0700\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -19,64 +19,68 @@ msgstr ""
 msgid "Plugin and add-on information has been refreshed."
 msgstr "Les informations d'extensions et d'ajouts ont été actualisées."
 
-#: lib/com/update.php:117 lib/gettext-com.php:6
+#: lib/com/update.php:146 lib/gettext-com.php:6
 msgid "No plugins defined for updates."
 msgstr "Aucune extension définie pour les mises à jour."
 
-#: lib/com/update.php:167 lib/gettext-com.php:7
+#: lib/com/update.php:196 lib/gettext-com.php:7
 msgid "Update information for %s has been retrieved and saved."
 msgstr "L'information de mises à jour pour %s a été récupérée et sauvegardée."
 
-#: lib/com/update.php:181 lib/gettext-com.php:8
+#: lib/com/update.php:210 lib/gettext-com.php:8
 msgid "An error was returned while getting update information for %s."
 msgstr "Une erreur a été renvoyée lors de l'obtention des informations de mise à jour pour %s."
 
-#: lib/com/update.php:196 lib/gettext-com.php:9
+#: lib/com/update.php:225 lib/gettext-com.php:9
 msgid "Failed saving retrieved update information for %s."
 msgstr "Erreur lors de l'enregistrement des informations de mises à jour pour %s."
 
-#: lib/com/update.php:354 lib/com/update.php:776 lib/gettext-com.php:10
+#: lib/com/update.php:383 lib/com/update.php:805 lib/gettext-com.php:10
 #: lib/gettext-com.php:16
 msgid "An inconsistency was found in the %1$s update server information &mdash;"
 msgstr "Une incohérence a été trouvée dans l'information du serveur de mises à jour pour %1$s &mdash;"
 
-#: lib/com/update.php:357 lib/com/update.php:779 lib/gettext-com.php:11
+#: lib/com/update.php:386 lib/com/update.php:808 lib/gettext-com.php:11
 #: lib/gettext-com.php:17
 msgid "Update checks for %1$s are disabled while this inconsistency persists."
 msgstr "Les vérifications de mises à jour pour %1$s sont désactivées tant que cette incohérence persiste."
 
-#: lib/com/update.php:361 lib/com/update.php:783 lib/gettext-com.php:12
+#: lib/com/update.php:390 lib/com/update.php:812 lib/gettext-com.php:12
 #: lib/gettext-com.php:18
 msgid "You may <a href=\"%1$s\">open a new support ticket</a> if you believe this error message is incorrect."
 msgstr "Vous pouvez <a href=\"%1$s\">ouvrir un nouveau billet de soutien</a> si vous pensez que ce message d'erreur est incorrect."
 
-#: lib/com/update.php:389 lib/gettext-com.php:13
+#: lib/com/update.php:418 lib/gettext-com.php:13
 msgid "invalid authentication URL (%1$s)."
 msgstr "URL d'authentification non valide (%1$s)."
 
-#: lib/com/update.php:426 lib/gettext-com.php:14
+#: lib/com/update.php:455 lib/gettext-com.php:14
 msgid "Please note that one or more non-stable / development %s have been selected."
 msgstr "Veuillez noter que l'un ou plusieurs %s non-stable / de développement ont été sélectionnés."
 
-#: lib/com/update.php:427 lib/gettext-com.php:15
+#: lib/com/update.php:456 lib/gettext-com.php:15
 #: lib/sitesubmenu/site-um-general.php:107 lib/submenu/um-general.php:92
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr "Filtres de version pour mises à jour"
 
-#: lib/com/update.php:794 lib/gettext-com.php:19
+#: lib/com/update.php:823 lib/gettext-com.php:19
 msgid "the update server URL (%1$s) does not appear to be a valid URL."
 msgstr "l'URL du serveur de mise à jour (%1$s) ne semble pas être une URL valide."
 
-#: lib/com/update.php:828 lib/gettext-com.php:20
+#: lib/com/update.php:857 lib/gettext-com.php:20
 msgid "the IPv4 address (%1$s) from the local host does not match the DNS IPv4 address (%2$s)."
 msgstr "l'adresse IPv4 (%1$s) fournie par le serveur local ne correspond pas à l'adresse IPv4 du DNS (%2$s)."
 
-#: lib/com/update.php:916 lib/gettext-com.php:21
+#: lib/com/update.php:945 lib/gettext-com.php:21
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr "Erreur de la fonction WordPress wp_remote_get() pour mises à jour: %s"
 
-#: lib/com/update.php:1071 lib/gettext-com.php:22
+#: lib/com/update.php:996 lib/gettext-com.php:22
+msgid "The WordPress %1$s function returned HTTP %2$d (%3$s) for %4$s."
+msgstr "La fonction WordPress %1$s a retourné HTTP %2$d (%3$s) pour %4$s."
+
+#: lib/com/update.php:1113 lib/gettext-com.php:23
 msgid "The %1$s plugin (%2$s) version number is missing from the WordPress plugins array."
 msgstr "Le numéro de version de l'extension %1$s (%2$s) est absente de la liste d'extensions de WordPress."
 

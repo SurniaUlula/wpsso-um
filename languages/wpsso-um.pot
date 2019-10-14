@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Update Manager package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 2.3.0-dev.2\n"
+"Project-Id-Version: WPSSO Update Manager 2.3.0-b.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2019-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -80,7 +80,7 @@ msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr ""
 
 #: lib/com/update.php:996 lib/gettext-com.php:22
-msgid "wp_remote_get() returned HTTP %1$d %2$s for %3$s"
+msgid "The WordPress %1$s function returned HTTP %2$d (%3$s) for %4$s."
 msgstr ""
 
 #: lib/com/update.php:1113 lib/gettext-com.php:23
