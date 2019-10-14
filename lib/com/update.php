@@ -32,6 +32,26 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		private static $upd_config   = array();
 		private static $ext_versions = array();
 
+		private static $http_error_codes = array(
+			400 => 'Bad Request',
+			401 => 'Unauthorized',
+			402 => 'Payment Required',
+			403 => 'Forbidden',
+			404 => 'Not Found',
+			405 => 'Method Not Allowed',
+			406 => 'Not Acceptable',
+			407 => 'Proxy Authentication Required',
+			408 => 'Request Timeout',
+			409 => 'Conflict',
+			411 => 'Length Required',
+			412 => 'Precondition Failed',
+			413 => 'Request Entity Too Large',
+			414 => 'Request-URI Too Long',
+			415 => 'Unsupported Media Type',
+			416 => 'Requested Range Not Satisfiable',
+			417 => 'Expectation Failed',
+		);
+	
 		public function __construct( &$plugin, $check_hours = 24, $text_domain = '' ) {
 
 			$this->p =& $plugin;
@@ -925,43 +945,56 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->notice->err( sprintf( __( 'Update error from the WordPress wp_remote_get() function: %s',
 					$this->text_domain ), $request->get_error_message() ) );
 
-			} elseif ( isset( $request[ 'response' ][ 'code' ] ) && (int) $request[ 'response' ][ 'code' ] === 200 && ! empty( $request[ 'body' ] ) ) {
+			} elseif ( isset( $request[ 'response' ][ 'code' ] ) ) {
+			
+				$http_code = (int) $request[ 'response' ][ 'code' ];
 
-				$payload = json_decode( $request[ 'body' ], $assoc = true, 32 ); // Create an associative array.
+				if ( 200 === $http_code ) {
+				
+					if ( ! empty( $request[ 'body' ] ) ) {
 
-				/**
-				 * Add or remove existing response messages.
-				 */
-				foreach ( array( 'err', 'inf' ) as $type ) {
-					self::set_umsg( $ext, $type, ( empty( $payload[ 'api_response' ][ $type ] ) ?
-						null : $payload[ 'api_response' ][ $type ] ) );
-				}
+						$payload = json_decode( $request[ 'body' ], $assoc = true, 32 ); // Create an associative array.
 
-				if ( empty( $request[ 'headers' ][ 'x-error-msg' ] ) && 
-					empty( $request[ 'headers' ][ 'x-update-error' ] ) && 
-						empty( $request[ 'headers' ][ 'x-smp-error' ] ) ) {	// Deprecated on 2018/06/03.
-
-					self::$upd_config[ $ext ][ 'uerr' ] = false;
-
-					$plugin_data = SucomPluginData::data_from_json( $request[ 'body' ] ); // Returns null on json error.
-
-					if ( empty( $plugin_data->plugin ) ) {
-
-						if ( $this->p->debug->enabled ) {
-							$this->p->debug->log( $ext . ' plugin: returned plugin data is incomplete' );
+						/**
+						 * Add or remove existing response messages.
+						 */
+						foreach ( array( 'err', 'inf' ) as $type ) {
+							self::set_umsg( $ext, $type, ( empty( $payload[ 'api_response' ][ $type ] ) ?
+								null : $payload[ 'api_response' ][ $type ] ) );
 						}
-
-						$plugin_data = null;
-
-					} elseif ( $plugin_data->plugin !== self::$upd_config[ $ext ][ 'base' ] ) {
-
-						if ( $this->p->debug->enabled ) {
-							$this->p->debug->log( $ext . ' plugin: property ' . $plugin_data->plugin . 
-								' does not match ' . self::$upd_config[ $ext ][ 'base' ] );
+	
+						if ( empty( $request[ 'headers' ][ 'x-error-msg' ] ) && 
+							empty( $request[ 'headers' ][ 'x-update-error' ] ) && 
+								empty( $request[ 'headers' ][ 'x-smp-error' ] ) ) {	// Deprecated on 2018/06/03.
+		
+							self::$upd_config[ $ext ][ 'uerr' ] = false;
+	
+							$plugin_data = SucomPluginData::data_from_json( $request[ 'body' ] ); // Returns null on json error.
+	
+							if ( empty( $plugin_data->plugin ) ) {
+		
+								if ( $this->p->debug->enabled ) {
+									$this->p->debug->log( $ext . ' plugin: returned plugin data is incomplete' );
+								}
+		
+								$plugin_data = null;
+		
+							} elseif ( $plugin_data->plugin !== self::$upd_config[ $ext ][ 'base' ] ) {
+		
+								if ( $this->p->debug->enabled ) {
+									$this->p->debug->log( $ext . ' plugin: property ' . $plugin_data->plugin . 
+										' does not match ' . self::$upd_config[ $ext ][ 'base' ] );
+								}
+		
+								$plugin_data = null;
+							}
 						}
-
-						$plugin_data = null;
 					}
+
+				} elseif ( isset( self::$http_error_codes[ $http_code ] ) ) {
+
+					self::$upd_config[ $ext ][ 'uerr' ] = sprintf( __( 'wp_remote_get() returned HTTP %1$d %2$s for %3$s', $this->text_domain ),
+						$http_code, self::$http_error_codes[ $http_code ], $json_url );
 				}
 			}
 

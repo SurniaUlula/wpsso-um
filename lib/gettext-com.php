@@ -19,4 +19,5 @@ __( 'You may <a href="%1$s">open a new support ticket</a> if you believe this er
 __( 'the update server URL (%1$s) does not appear to be a valid URL.', 'wpsso-um' );
 __( 'the IPv4 address (%1$s) from the local host does not match the DNS IPv4 address (%2$s).', 'wpsso-um' );
 __( 'Update error from the WordPress wp_remote_get() function: %s', 'wpsso-um' );
+__( 'wp_remote_get() returned HTTP %1$d %2$s for %3$s', 'wpsso-um' );
 __( 'The %1$s plugin (%2$s) version number is missing from the WordPress plugins array.', 'wpsso-um' );
