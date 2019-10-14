@@ -58,6 +58,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 2.3.0-dev.1 (2019/10/14)**
+
+* **New Features**
+	* None.
+* **Improvements**
+	* Added a notice message for possible HTTP errors codes (400 to 417) returned by `wp_remote_get()`.
+* **Bugfixes**
+	* None.
+* **Developer Notes**
+	* None.
+
 **Version 2.2.1 (2019/10/04)**
 
 * **New Features**
@@ -69,18 +80,11 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **Developer Notes**
 	* None.
 
-**Version 2.2.0 (2019/09/01)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* Adjusted the notice expiration for selecting development filters from 3 months to 1 month.
-* **Bugfixes**
-	* None.
-* **Developer Notes**
-	* None.
-
 == Upgrade Notice ==
+
+= 2.3.0-dev.1 =
+
+(2019/10/14) Added a notice message for possible HTTP errors codes (400 to 417) returned by `wp_remote_get()`.
 
 = 2.2.1 =
 
