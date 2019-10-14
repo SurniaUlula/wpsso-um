@@ -10,7 +10,7 @@ Tags: wpsso, update, manager, schedule, add-on, pro version
 Contributors: jsmoriss
 Requires At Least: 3.9
 Tested Up To: 5.2.4
-Stable Tag: 2.2.1
+Stable Tag: 2.3.0
 
 Update manager for the WPSSO Core Premium plugin and its complementary Premium add-ons.
 
@@ -69,24 +69,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **Developer Notes**
 	* None.
 
-**Version 2.2.1 (2019/10/04)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* Maintenance release for WPSSO Core v6.7.0.
-* **Bugfixes**
-	* None.
-* **Developer Notes**
-	* None.
-
 == Upgrade Notice ==
 
 = 2.3.0 =
 
 (2019/10/14) Added a notice message for possible HTTP errors codes (400 to 417) returned by `wp_remote_get()`.
 
-= 2.2.1 =
-
-(2019/10/04) Maintenance release for WPSSO Core v6.7.0.
 
