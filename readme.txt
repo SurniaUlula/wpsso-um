@@ -58,7 +58,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.3.0-b.1 (2019/10/14)**
+**Version 2.3.0-rc.1 (2019/10/14)**
 
 * **New Features**
 	* None.
@@ -82,7 +82,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 2.3.0-b.1 =
+= 2.3.0-rc.1 =
 
 (2019/10/14) Added a notice message for possible HTTP errors codes (400 to 417) returned by `wp_remote_get()`.
 
