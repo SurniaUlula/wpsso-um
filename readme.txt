@@ -9,7 +9,7 @@ Assets URI: https://surniaulula.github.io/wpsso-um/assets/
 Tags: wpsso, update, manager, schedule, add-on, pro version
 Contributors: jsmoriss
 Requires At Least: 3.9
-Tested Up To: 5.2.4
+Tested Up To: 5.3
 Stable Tag: 2.3.0
 
 Update manager for the WPSSO Core Premium plugin and its complementary Premium add-ons.
