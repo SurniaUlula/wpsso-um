@@ -23,14 +23,14 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					'desc'        => 'Update manager for the WPSSO Core Premium plugin and its complementary Premium add-ons.',
 					'slug'        => 'wpsso-um',
 					'base'        => 'wpsso-um/wpsso-um.php',
-					'update_auth' => '',
+					'update_auth' => '',		// No premium version.
 					'text_domain' => 'wpsso-um',
 					'domain_path' => '/languages',
 					'req'         => array(
 						'short'       => 'WPSSO Core',
 						'name'        => 'WPSSO Core',
 						'min_version' => '4.15.0',	// Released on 2018/10/08.
-						'rec_version' => '6.11.0',
+						'rec_version' => '6.11.1',
 					),
 					'assets' => array(
 						'icons' => array(
