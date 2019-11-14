@@ -58,6 +58,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 2.4.0-dev.2 (2019/11/14)**
+
+* **New Features**
+	* None.
+* **Improvements**
+	* Added a check to skip fetching update information for stable non-Premium plugins hosted on wordpress.org.
+* **Bugfixes**
+	* None.
+* **Developer Notes**
+	* None.
+
 **Version 2.3.0 (2019/10/14)**
 
 * **New Features**
@@ -71,8 +82,11 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
+= 2.4.0-dev.2 =
+
+(2019/11/14) Added a check to skip fetching update information for stable non-Premium plugins hosted on wordpress.org.
+
 = 2.3.0 =
 
-(2019/10/14) Added a notice message for possible HTTP errors codes (400 to 417) returned by `wp_remote_get()`.
-
+(2019/10/14) Added a notice message for possible HTTP errors codes (400 to 417) returned by wp_remote_get().
 
