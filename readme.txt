@@ -58,7 +58,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.4.0-dev.2 (2019/11/14)**
+**Version 2.4.0-b.1 (2019/11/14)**
 
 * **New Features**
 	* None.
@@ -82,7 +82,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 2.4.0-dev.2 =
+= 2.4.0-b.1 =
 
 (2019/11/14) Added a check to skip fetching update information for stable non-Premium plugins hosted on wordpress.org.
 
