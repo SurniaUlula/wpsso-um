@@ -45,6 +45,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		public function filter_get_defaults( $def_opts ) {
 
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
+
 				$def_opts[ 'update_filter_for_' . $ext] = 'stable';
 			}
 
@@ -54,7 +55,9 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		public function filter_get_site_defaults( $def_opts ) {
 
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
-				$def_opts[ 'update_filter_for_' . $ext]        = 'stable';
+
+				$def_opts[ 'update_filter_for_' . $ext] = 'stable';
+
 				$def_opts[ 'update_filter_for_' . $ext . ':use' ] = 'default';
 			}
 

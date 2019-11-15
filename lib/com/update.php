@@ -248,6 +248,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 					return;
 				}
+
+			} else {
+				delete_transient( $cache_id );
 			}
 
 			self::$upd_config = array();	// Reset the config array.

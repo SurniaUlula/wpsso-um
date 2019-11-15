@@ -32,58 +32,58 @@ msgstr ""
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:329 lib/com/update.php:770 lib/gettext-com.php:10
+#: lib/com/update.php:332 lib/com/update.php:773 lib/gettext-com.php:10
 #: lib/gettext-com.php:16
 msgid ""
 "An inconsistency was found in the %1$s update server information &mdash;"
 msgstr ""
 
-#: lib/com/update.php:332 lib/com/update.php:773 lib/gettext-com.php:11
+#: lib/com/update.php:335 lib/com/update.php:776 lib/gettext-com.php:11
 #: lib/gettext-com.php:17
 msgid "Update checks for %1$s are disabled while this inconsistency persists."
 msgstr ""
 
-#: lib/com/update.php:336 lib/com/update.php:777 lib/gettext-com.php:12
+#: lib/com/update.php:339 lib/com/update.php:780 lib/gettext-com.php:12
 #: lib/gettext-com.php:18
 msgid ""
 "You may <a href=\"%1$s\">open a new support ticket</a> if you believe this "
 "error message is incorrect."
 msgstr ""
 
-#: lib/com/update.php:363 lib/gettext-com.php:13
+#: lib/com/update.php:366 lib/gettext-com.php:13
 msgid "invalid authentication URL (%1$s)."
 msgstr ""
 
-#: lib/com/update.php:402 lib/gettext-com.php:14
+#: lib/com/update.php:405 lib/gettext-com.php:14
 msgid ""
 "Please note that one or more non-stable / development %s have been selected."
 msgstr ""
 
-#: lib/com/update.php:403 lib/gettext-com.php:15
+#: lib/com/update.php:406 lib/gettext-com.php:15
 #: lib/sitesubmenu/site-um-general.php:107 lib/submenu/um-general.php:92
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
 
-#: lib/com/update.php:787 lib/gettext-com.php:19
+#: lib/com/update.php:790 lib/gettext-com.php:19
 msgid "the update server URL (%1$s) does not appear to be a valid URL."
 msgstr ""
 
-#: lib/com/update.php:820 lib/gettext-com.php:20
+#: lib/com/update.php:823 lib/gettext-com.php:20
 msgid ""
 "the IPv4 address (%1$s) from the local host does not match the DNS IPv4 "
 "address (%2$s)."
 msgstr ""
 
-#: lib/com/update.php:909 lib/gettext-com.php:21
+#: lib/com/update.php:912 lib/gettext-com.php:21
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr ""
 
-#: lib/com/update.php:960 lib/gettext-com.php:22
+#: lib/com/update.php:963 lib/gettext-com.php:22
 msgid "The WordPress %1$s function returned HTTP %2$d (%3$s) for %4$s."
 msgstr ""
 
-#: lib/com/update.php:1072 lib/gettext-com.php:23
+#: lib/com/update.php:1075 lib/gettext-com.php:23
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."
