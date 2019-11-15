@@ -1240,6 +1240,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			$info = self::$upd_config[ $ext ];
 
+			/**
+			 * Make sure the plugin is available on wordpress.org.
+			 */
 			if ( ! empty( $info[ 'hosts' ][ 'wp_org' ] ) ) {	// Since WPSSO v6.12.0.
 
 				/**
@@ -1250,8 +1253,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					return $local_cache[ $ext ] = false;
 				}
 
+				/**
+				 * Make sure the authentication type is 'none' (ie. no Pro / Premium version exists).
+				 */
 				if ( ! empty( $info[ 'auth_type' ] ) && $info[ 'auth_type' ] === 'none' ) {
 
+					/**
+					 * Make sure we are using only the stable versions.
+					 */
 					if ( ! empty( $info[ 'version_filter' ] ) && $info[ 'version_filter' ] === 'stable' ) {
 
 						return $local_cache[ $ext ] = true;
