@@ -1240,7 +1240,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			$info = self::$upd_config[ $ext ];
 
-			if ( ! empty( $info[ 'hosts' ][ 'wp_org' ] ) ) {	// Since WPSSO v6.11.3.
+			if ( ! empty( $info[ 'hosts' ][ 'wp_org' ] ) ) {	// Since WPSSO v6.12.0.
 
 				/**
 				 * Possibly switching from a development to a stable version filter, or from a Premium to a
