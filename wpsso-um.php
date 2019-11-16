@@ -13,7 +13,7 @@
  * Description: Update manager for the WPSSO Core Premium plugin and its complementary Premium add-ons.
  * Requires At Least: 3.9
  * Tested Up To: 5.3
- * Version: 2.4.0-rc.3
+ * Version: 2.4.0-rc.4
  * 
  * Version Numbering: {major}.{minor}.{bugfix}[-{stage}.{level}]
  *
@@ -26,7 +26,7 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die( 'These aren\'t the droids you\'re looking for...' );
+	die( 'These aren\'t the droids you\'re looking for.' );
 }
 
 if ( ! class_exists( 'WpssoUm' ) ) {
@@ -56,9 +56,10 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 		public function __construct() {
 
-			require_once ( dirname( __FILE__ ).'/lib/config.php' );
+			require_once dirname( __FILE__ ) . '/lib/config.php';
 
 			WpssoUmConfig::set_constants( __FILE__ );
+
 			WpssoUmConfig::require_libs( __FILE__ );	// Includes the register.php class library.
 
 			$this->reg = new WpssoUmRegister();		// Activate, deactivate, uninstall hooks.
