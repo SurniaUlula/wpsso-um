@@ -58,7 +58,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.4.0-rc.4 (2019/11/16)**
+**Version 2.4.0 (2019/11/17)**
 
 * **New Features**
 	* None.
@@ -82,11 +82,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 2.4.0-rc.4 =
+= 2.4.0 =
 
-(2019/11/16) Added a check to skip fetching update information for stable non-Premium plugins hosted on wordpress.org.
-
-= 2.3.0 =
-
-(2019/10/14) Added a notice message for possible HTTP errors codes (400 to 417) returned by wp_remote_get().
+(2019/11/17) Added a check to skip fetching update information for stable non-Premium plugins hosted on wordpress.org.
 
