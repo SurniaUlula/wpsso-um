@@ -103,7 +103,11 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 
 					$version = WpssoUmConfig::$cf[ 'plugin' ][ 'wpssoum' ][ 'version' ];
 
-					WpssoUtil::save_all_times( 'wpssoum', $version );
+					if ( method_exists( 'WpssoUtil', 'register_ext_version' ) ) {	// Since WPSSO v4.25.1.
+						WpssoUtil::register_ext_version( 'wpssoum', $version );
+					} else {
+						WpssoUtil::save_all_times( 'wpssoum', $version );
+					}
 				}
 			}
 

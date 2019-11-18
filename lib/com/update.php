@@ -84,9 +84,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					 * Check for the "Check Again" feature on the WordPress Dashboard > Updates page.
 					 */
 					if ( strpos( $_SERVER[ 'REQUEST_URI' ], '/update-core.php?force-check=1' ) ) {
-						$this->check_all_for_updates( $quiet = true, $read_cache = false );
+						$this->force_quiet_update_check();
 					} else {
-						$this->set_upd_config();	// Private method.
+						$this->set_upd_config();
 					}
 
 					$this->add_wp_hooks();	// Private method.
@@ -99,48 +99,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		/**
-		 * Called by the WordPress cron.
-		 */
-		public function check_all_for_updates( $quiet = true, $read_cache = true ) {
-
-			if ( $this->p->debug->enabled ) {
-				$this->p->debug->mark();
-			}
-
-			/**
-			 * Throttle non-caching executions to one per minute.
-			 */
-			if ( ! $read_cache ) {
-				
-				$throttle_mins  = 3;
-				$cache_md5_pre  = $this->p->lca . '_';
-				$cache_exp_secs = $throttle_mins * 60;
-				$cache_salt     = __METHOD__;
-				$cache_id       = $cache_md5_pre . md5( $cache_salt );
-
-				if ( false !== get_transient( $cache_id ) ) {
-
-					$notice_key = __FUNCTION__ . '_throttling';
-
-					$this->p->notice->warn( __( 'Plugin cache refresh denied. Please wait a few more minutes before trying to force another plugin cache refresh.', $this->text_domain ), null, $notice_key );
-
-					$read_cache = true;
-					$quiet      = true;
-
-				} else {
-					set_transient( $cache_id, time(), $cache_exp_secs );
-				}
-			}
-
-			$this->set_upd_config( $quiet_config = true, $read_cache );
-
-			$this->check_ext_for_updates( $check_ext = null, $quiet, $read_cache );
-		}
-
-		/**
 		 * $quiet is false by default, to show a warning if one or more development version filters are selected.
 		 */
 		private function set_upd_config( $quiet = false, $read_cache = true ) {
+error_log( __METHOD__ );
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
@@ -160,6 +122,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( 'config retrieved from transient cache' );
 					}
+error_log( print_r( self::$upd_config, true ) );
 
 					return;
 				}
@@ -334,6 +297,144 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 		}
 
+		/**
+		 * Called by self::__construct() after self::set_upd_config() is run.
+		 */
+		private function add_wp_hooks() {
+
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+
+			if ( empty( self::$upd_config ) ) {	// Just in case.
+
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( 'skipping all update checks - update config array is empty' );
+				}
+
+				return;
+			}
+
+			/**
+			 * Refresh the config and plugin update data if/when the WordPress home URL is changed.
+			 */
+			add_action( 'update_option_home', array( $this, 'force_quiet_update_check' ), 100 );
+
+			add_filter( 'http_request_host_is_external', array( $this, 'allow_update_package' ), PHP_INT_MAX, 3 );
+			add_filter( 'http_headers_useragent', array( $this, 'maybe_update_wpua' ), PHP_INT_MAX, 1 );
+
+			/**
+			 * If the WordPress update system has been disabled and/or manipulated, then re-enable updates by including
+			 * our update data (if a new plugin version is available).
+			 */
+			add_filter( 'pre_transient_update_plugins', array( $this, 'reenable_plugin_updates' ), PHP_INT_MAX, 1 );
+			add_filter( 'pre_site_transient_update_plugins', array( $this, 'reenable_plugin_updates' ), PHP_INT_MAX, 1 );
+
+			/**
+			 * Provide plugin data from the json api for add-ons not hosted on wordpress.org.
+			 */
+			add_filter( 'plugins_api_result', array( $this, 'external_plugin_data' ), PHP_INT_MAX, 3 );
+
+			add_filter( 'transient_update_plugins', array( $this, 'maybe_add_plugin_update' ), PHP_INT_MAX, 1 );
+			add_filter( 'site_transient_update_plugins', array( $this, 'maybe_add_plugin_update' ), PHP_INT_MAX, 1 );
+
+			/**
+			 * Maybe remove the old plugin update hook.
+			 */
+			if ( wp_get_schedule( 'plugin_update-' . $this->plugin_slug ) ) {
+				wp_clear_scheduled_hook( 'plugin_update-' . $this->plugin_slug );
+			}
+
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->log( 'adding ' . $this->cron_hook . ' schedule for ' . $this->sched_name );
+			}
+
+			add_action( $this->cron_hook, array( $this, 'check_all_for_updates' ) );
+
+			add_filter( 'cron_schedules', array( $this, 'add_custom_schedule' ) );
+
+			$schedule = wp_get_schedule( $this->cron_hook );
+
+			$is_scheduled = false;
+
+			if ( ! empty( $schedule ) ) {
+
+				if ( $schedule !== $this->sched_name ) {
+
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( 'changing ' . $this->cron_hook . ' schedule from ' . $schedule . ' to ' . $this->sched_name );
+					}
+
+					wp_clear_scheduled_hook( $this->cron_hook );
+
+				} else {
+
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( $this->cron_hook . ' already registered for schedule ' . $this->sched_name );
+					}
+
+					$is_scheduled = true;
+				}
+			}
+
+			if ( ! $is_scheduled && ! defined( 'WP_INSTALLING' ) && ! wp_next_scheduled( $this->cron_hook ) ) {
+
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( 'registering ' . $this->cron_hook . ' for schedule ' . $this->sched_name );
+				}
+
+				wp_schedule_event( time(), $this->sched_name, $this->cron_hook );
+			}
+		}
+
+		public function force_quiet_update_check() {
+
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+
+			return $this->check_all_for_updates( $quiet = true, $read_cache = false );
+		}
+
+		/**
+		 * Called by the WordPress cron.
+		 */
+		public function check_all_for_updates( $quiet = true, $read_cache = true ) {
+
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+
+			/**
+			 * Throttle non-caching executions to one per minute.
+			 */
+			if ( ! $read_cache ) {
+				
+				$throttle_mins  = 3;
+				$cache_md5_pre  = $this->p->lca . '_';
+				$cache_exp_secs = $throttle_mins * 60;
+				$cache_salt     = __METHOD__;
+				$cache_id       = $cache_md5_pre . md5( $cache_salt );
+
+				if ( false !== get_transient( $cache_id ) ) {
+
+					$notice_key = __FUNCTION__ . '_throttling';
+
+					$this->p->notice->warn( __( 'Plugin cache refresh denied. Please wait a few more minutes before trying to force another plugin cache refresh.', $this->text_domain ), null, $notice_key );
+
+					$read_cache = true;
+					$quiet      = true;
+
+				} else {
+					set_transient( $cache_id, time(), $cache_exp_secs );
+				}
+			}
+
+			$this->set_upd_config( $quiet_config = true, $read_cache );
+
+			$this->check_ext_for_updates( $check_ext = null, $quiet, $read_cache );
+		}
+
 		public function check_ext_for_updates( $check_ext = null, $quiet = true, $read_cache = true ) {
 
 			$ext_upd_config = array();
@@ -466,88 +567,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				return $this->p->check->pp( $ext, $lic, $rv, $uc );
 			} else {
 				return $this->p->check->aop( $ext, $lic, $rv, $uc );	// Deprecated on 2018/08/27.
-			}
-		}
-
-		private function add_wp_hooks() {
-
-			if ( $this->p->debug->enabled ) {
-				$this->p->debug->mark();
-			}
-
-			if ( empty( self::$upd_config ) ) {
-
-				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'skipping all update checks - update config array is empty' );
-				}
-
-				return;
-			}
-
-			add_filter( 'http_request_host_is_external', array( $this, 'allow_update_package' ), PHP_INT_MAX, 3 );
-			add_filter( 'http_headers_useragent', array( $this, 'maybe_update_wpua' ), PHP_INT_MAX, 1 );
-
-			/**
-			 * If the WordPress update system has been disabled and/or manipulated, then re-enable updates by including
-			 * our update data (if a new plugin version is available).
-			 */
-			add_filter( 'pre_transient_update_plugins', array( $this, 'reenable_plugin_updates' ), PHP_INT_MAX, 1 );
-			add_filter( 'pre_site_transient_update_plugins', array( $this, 'reenable_plugin_updates' ), PHP_INT_MAX, 1 );
-
-			/**
-			 * Provide plugin data from the json api for add-ons not hosted on wordpress.org.
-			 */
-			add_filter( 'plugins_api_result', array( $this, 'external_plugin_data' ), PHP_INT_MAX, 3 );
-
-			add_filter( 'transient_update_plugins', array( $this, 'maybe_add_plugin_update' ), PHP_INT_MAX, 1 );
-			add_filter( 'site_transient_update_plugins', array( $this, 'maybe_add_plugin_update' ), PHP_INT_MAX, 1 );
-
-			/**
-			 * Maybe remove the old plugin update hook.
-			 */
-			if ( wp_get_schedule( 'plugin_update-' . $this->plugin_slug ) ) {
-				wp_clear_scheduled_hook( 'plugin_update-' . $this->plugin_slug );
-			}
-
-			if ( $this->p->debug->enabled ) {
-				$this->p->debug->log( 'adding ' . $this->cron_hook . ' schedule for ' . $this->sched_name );
-			}
-
-			add_action( $this->cron_hook, array( $this, 'check_all_for_updates' ) );
-
-			add_filter( 'cron_schedules', array( $this, 'add_custom_schedule' ) );
-
-			$schedule = wp_get_schedule( $this->cron_hook );
-
-			$is_scheduled = false;
-
-			if ( ! empty( $schedule ) ) {
-
-				if ( $schedule !== $this->sched_name ) {
-
-					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( 'changing ' . $this->cron_hook . ' schedule from ' . $schedule . ' to ' . $this->sched_name );
-					}
-
-					wp_clear_scheduled_hook( $this->cron_hook );
-
-				} else {
-
-					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $this->cron_hook . ' already registered for schedule ' . $this->sched_name );
-					}
-
-					$is_scheduled = true;
-				}
-			}
-
-			if ( ! $is_scheduled && ! defined( 'WP_INSTALLING' ) && ! wp_next_scheduled( $this->cron_hook ) ) {
-
-				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'registering ' . $this->cron_hook . ' for schedule ' . $this->sched_name );
-				}
-
-				wp_schedule_event( time(), $this->sched_name, $this->cron_hook );
 			}
 		}
 

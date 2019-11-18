@@ -25,22 +25,10 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 
 			if ( is_admin() ) {
 
-				add_action( 'update_option_home', array( $this, 'wp_home_option_updated' ), 100, 2 );
-
 				$this->p->util->add_plugin_actions( $this, array( 
 					'load_setting_page_check_for_updates'    => 4,
 				) );
 			}
-		}
-
-		/**
-		 * Executed by the WordPress 'update_option_home' action.
-		 */
-		public function wp_home_option_updated( $old_value, $new_value ) {
-
-			$wpssoum =& WpssoUm::get_instance();
-
-			$wpssoum->update->check_all_for_updates( $quiet = true, $read_cache = false );
 		}
 
 		public function action_load_setting_page_check_for_updates( $pagehook, $menu_id, $menu_name, $menu_lib ) {
