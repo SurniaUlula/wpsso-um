@@ -102,14 +102,15 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		 * $quiet is false by default, to show a warning if one or more development version filters are selected.
 		 */
 		private function set_upd_config( $quiet = false, $read_cache = true ) {
-error_log( __METHOD__ );
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
 			}
 
+			$cf_plugins = $this->p->cf[ 'plugin' ];
+
 			$cache_md5_pre  = $this->p->lca . '_!_';
-			$cache_exp_secs = WEEK_IN_SECONDS;
+			$cache_exp_secs = 3 * DAY_IN_SECONDS;
 			$cache_salt     = __CLASS__ . '::upd_config';
 			$cache_id       = $cache_md5_pre . md5( $cache_salt );
 
@@ -117,25 +118,28 @@ error_log( __METHOD__ );
 
 				self::$upd_config = get_transient( $cache_id );
 
-				if ( ! empty( self::$upd_config ) ) {
+				if ( is_array( self::$upd_config ) ) {
 
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( 'config retrieved from transient cache' );
 					}
-error_log( print_r( self::$upd_config, true ) );
 
 					return;
+
+				} else {
+					self::$upd_config = array();	// Init a new config array.
 				}
 
 			} else {
-				delete_transient( $cache_id );
-			}
 
-			self::$upd_config = array();	// Reset the config array.
+				delete_transient( $cache_id );
+
+				self::$upd_config = array();	// Init a new config array.
+			}
 
 			$has_dev_filter = false;	// Assume we're using the production version filter by default.
 
-			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
+			foreach ( $cf_plugins as $ext => $info ) {
 
 				$ext_auth_type = $this->get_ext_auth_type( $ext );
 				$ext_auth_id   = $this->get_ext_auth_id( $ext );
@@ -796,7 +800,7 @@ error_log( print_r( self::$upd_config, true ) );
 			if ( $this->sched_hours > 0 ) {
 				$schedules[ $this->sched_name ] = array(
 					'interval' => $this->sched_hours * HOUR_IN_SECONDS,
-					'display' => sprintf( 'Every %d hours', $this->sched_hours )
+					'display'  => sprintf( 'Every %d hours', $this->sched_hours )
 				);
 			}
 
