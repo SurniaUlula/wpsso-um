@@ -58,7 +58,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.5.0-b.1 (2019/11/18)**
+**Version 2.5.0-b.2 (2019/11/18)**
 
 * **New Features**
 	* None.
@@ -95,7 +95,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 2.5.0-b.1 =
+= 2.5.0-b.2 =
 
 (2019/11/18) Added a method to handle the possible creation of an $updates class object and/or the addition of plugin update response data.
 
