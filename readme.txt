@@ -65,9 +65,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **Improvements**
 	* Added a method to handle the possible creation of an $updates class object and/or the addition of plugin update response data.
 	* Added a three minute throttling feature when manually forcing a plugin update cache refresh.
+	* Added support for the 'force-check' argument in the '/wp-admin/update-core.php' page.
 	* Optimized the plugin installed version checks to re-use existing plugin data instead of calling a function.
 * **Bugfixes**
-	* None.
+	* Fixed a possible PHP "Attempt to modify property 'response' of non-object" warning.
 * **Developer Notes**
 	* None.
 
