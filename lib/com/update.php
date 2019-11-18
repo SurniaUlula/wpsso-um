@@ -79,10 +79,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( strpos( $_SERVER[ 'REQUEST_URI' ], '/update-core.php?force-check=1' ) ) {
 					$this->check_all_for_updates( $quiet = true, $read_cache = false );
 				} else {
-					$this->set_config();	// Private method.
+					$this->set_upd_config();	// Private method.
 				}
 
-				$this->add_hooks();	// Private method.
+				$this->add_wp_hooks();	// Private method.
 			}
 
 			if ( $this->p->debug->enabled ) {
@@ -124,7 +124,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 			}
 
-			$this->set_config( $quiet_config = true, $read_cache );
+			$this->set_upd_config( $quiet_config = true, $read_cache );
 
 			$this->check_ext_for_updates( $check_ext = null, $quiet, $read_cache );
 		}
@@ -258,7 +258,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		/**
 		 * $quiet is false by default, to show a warning if one or more development version filters are selected.
 		 */
-		private function set_config( $quiet = false, $read_cache = true ) {
+		private function set_upd_config( $quiet = false, $read_cache = true ) {
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
@@ -461,7 +461,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 		}
 
-		private function add_hooks() {
+		private function add_wp_hooks() {
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
