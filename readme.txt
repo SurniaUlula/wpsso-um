@@ -58,6 +58,18 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 2.5.0-b.1 (2019/11/18)**
+
+* **New Features**
+	* None.
+* **Improvements**
+	* Added a method to handle the possible creation of an $updates class object and/or the addition of plugin update response data.
+	* Optimized the plugin installed version checks to re-use existing plugin data instead of calling a function.
+* **Bugfixes**
+	* None.
+* **Developer Notes**
+	* None.
+
 **Version 2.4.0 (2019/11/17)**
 
 * **New Features**
@@ -81,6 +93,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* None.
 
 == Upgrade Notice ==
+
+= 2.5.0-b.1 =
+
+(2019/11/18) Added a method to handle the possible creation of an $updates class object and/or the addition of plugin update response data.
 
 = 2.4.0 =
 
