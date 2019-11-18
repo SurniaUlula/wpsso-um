@@ -3,6 +3,7 @@
 /**
  * Extract of translatable text strings from the lib/com classes.
  */
+__( 'Plugin cache refresh denied. Please wait a few mor minutes before trying to force another plugin cache refresh.', 'wpsso-um' );
 __( 'No plugins defined for updates.', 'wpsso-um' );
 __( 'Update information for %s has been retrieved and saved.', 'wpsso-um' );
 __( 'An error was returned while getting update information for %s.', 'wpsso-um' );
