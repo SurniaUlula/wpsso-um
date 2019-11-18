@@ -59,13 +59,15 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->mark( 'update manager setup' );	// Begin timer.
 			}
 
+			$doing_ajax = defined( 'DOING_AJAX' ) && DOING_AJAX ? true : false;
+
 			if ( isset( $this->p->lca ) ) {
 				$this->plugin_lca = $this->p->lca;
 			} elseif ( isset( $this->p->cf[ 'lca' ] ) ) {
 				$this->plugin_lca = $this->p->cf[ 'lca' ];
 			}
 
-			if ( ! empty( $this->plugin_lca ) ) {
+			if ( ! empty( $this->plugin_lca ) && ! empty( $this->p->cf[ 'plugin' ] ) ) {
 
 				$this->plugin_slug = $this->p->cf[ 'plugin' ][ $this->plugin_lca ][ 'slug' ];	// Example: wpsso.
 				$this->text_domain = $text_domain;						// Example: wpsso-um.
@@ -74,15 +76,21 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->sched_name  = 'every' . $this->sched_hours . 'hours';			// Example: every24hours.
 
 				/**
-				 * Check for the "Check Again" feature on the WordPress Dashboard > Updates page.
+				 * Optimize performance and do not load if this is an ajax call (ie. DOING_AJAX is true).
 				 */
-				if ( strpos( $_SERVER[ 'REQUEST_URI' ], '/update-core.php?force-check=1' ) ) {
-					$this->check_all_for_updates( $quiet = true, $read_cache = false );
-				} else {
-					$this->set_upd_config();	// Private method.
-				}
+				if ( ! $doing_ajax ) {
 
-				$this->add_wp_hooks();	// Private method.
+					/**
+					 * Check for the "Check Again" feature on the WordPress Dashboard > Updates page.
+					 */
+					if ( strpos( $_SERVER[ 'REQUEST_URI' ], '/update-core.php?force-check=1' ) ) {
+						$this->check_all_for_updates( $quiet = true, $read_cache = false );
+					} else {
+						$this->set_upd_config();	// Private method.
+					}
+
+					$this->add_wp_hooks();	// Private method.
+				}
 			}
 
 			if ( $this->p->debug->enabled ) {
@@ -114,7 +122,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 					$notice_key = __FUNCTION__ . '_throttling';
 
-					$this->p->notice->warn( __( 'Plugin cache refresh denied. Please wait a few mor minutes before trying to force another plugin cache refresh.', $this->text_domain ), null, $notice_key );
+					$this->p->notice->warn( __( 'Plugin cache refresh denied. Please wait a few more minutes before trying to force another plugin cache refresh.', $this->text_domain ), null, $notice_key );
 
 					$read_cache = true;
 					$quiet      = true;
@@ -129,132 +137,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$this->check_ext_for_updates( $check_ext = null, $quiet, $read_cache );
 		}
 
-		public function check_ext_for_updates( $check_ext = null, $quiet = true, $read_cache = true ) {
-
-			$ext_upd_config = array();
-
-			if ( empty( $check_ext ) ) {
-
-				$ext_upd_config = self::$upd_config;	// Check all plugins defined.
-
-				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'checking all known plugins for updates' );
-				}
-
-			} elseif ( is_array( $check_ext ) ) {
-
-				foreach ( $check_ext as $ext ) {
-					if ( isset( self::$upd_config[ $ext ] ) ) {
-						$ext_upd_config[ $ext ] = self::$upd_config[ $ext ];
-					}
-				}
-
-			} elseif ( is_string( $check_ext ) ) {
-
-				if ( isset( self::$upd_config[ $check_ext ] ) ) {
-					$ext_upd_config[ $check_ext ] = self::$upd_config[ $check_ext ];
-				}
-			}
-
-			if ( empty( $ext_upd_config ) ) {
-
-				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'exiting early: no plugins to check for updates' );
-				}
-
-				if ( ! $quiet || $this->p->debug->enabled ) {
-
-					$notice_key = __FUNCTION__ . '_no_plugins_defined';
-
-					$this->p->notice->err( __( 'No plugins defined for updates.', $this->text_domain ), null, $notice_key );
-				}
-
-				return;
-			}
-
-			foreach ( $ext_upd_config as $ext => $upd_info ) {
-
-				if ( ! self::is_installed( $ext ) ) {
-
-					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $ext . ' plugin: not installed' );
-					}
-
-					continue;
-				}
-
-				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( $ext . ' plugin: checking for update' );
-				}
-
-				if ( $read_cache ) {
-					$update_data = self::get_option_data( $ext );
-				} else {
-					$update_data = false;
-				}
-
-				if ( empty( $update_data ) ) {
-					$update_data                 = new StdClass;
-					$update_data->lastCheck      = 0;
-					$update_data->checkedVersion = 0;
-					$update_data->update         = null;
-				}
-
-				$update_data->lastCheck      = time();
-				$update_data->checkedVersion = $upd_info[ 'installed_version' ];
-				$update_data->update         = $this->get_update_data( $ext, $read_cache );
-
-				if ( self::update_option_data( $ext, $update_data ) ) {
-
-					if ( empty( self::$upd_config[ $ext ][ 'uerr' ] ) ) {
-
-						if ( $this->p->debug->enabled ) {
-							$this->p->debug->log( $ext . ' plugin: update information saved in ' . $upd_info[ 'option_name' ] );
-						}
-
-						if ( ! $quiet || $this->p->debug->enabled ) {
-
-							if ( ! empty( self::$upd_config[ $ext ][ 'plugin_data' ] ) ) {
-
-								$notice_key = __FUNCTION__ . '_' . $ext . '_' . $upd_info[ 'option_name' ] . '_success';
-
-								$this->p->notice->inf( sprintf( __( 'Update information for %s has been retrieved and saved.',
-									$this->text_domain ), $upd_info[ 'name' ] ), null, $notice_key );
-							}
-						}
-
-					} else {
-
-						if ( $this->p->debug->enabled ) {
-							$this->p->debug->log( $ext . ' plugin: error returned getting update information' );
-						}
-
-						if ( ! $quiet || $this->p->debug->enabled ) {
-
-							$notice_key = __FUNCTION__ . '_' . $ext . '_' . $upd_info[ 'option_name' ] . '_error_returned';
-
-							$this->p->notice->warn( sprintf( __( 'An error was returned while getting update information for %s.',
-								$this->text_domain ), $upd_info[ 'name' ] ), null, $notice_key );
-						}
-					}
-
-				} else {
-
-					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $ext . ' plugin: failed saving update information in ' . $upd_info[ 'option_name' ] );
-					}
-
-					if ( ! $quiet || $this->p->debug->enabled ) {
-
-						$notice_key = __FUNCTION__ . '_' . $ext . '_' . $upd_info[ 'option_name' ] . '_failed_saving';
-
-						$this->p->notice->err( sprintf( __( 'Failed saving retrieved update information for %s.',
-							$this->text_domain ), $upd_info[ 'name' ] ), null, $notice_key );
-					}
-				}
-			}
-		}
-	
 		/**
 		 * $quiet is false by default, to show a warning if one or more development version filters are selected.
 		 */
@@ -452,6 +334,132 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 		}
 
+		public function check_ext_for_updates( $check_ext = null, $quiet = true, $read_cache = true ) {
+
+			$ext_upd_config = array();
+
+			if ( empty( $check_ext ) ) {
+
+				$ext_upd_config = self::$upd_config;	// Check all plugins defined.
+
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( 'checking all known plugins for updates' );
+				}
+
+			} elseif ( is_array( $check_ext ) ) {
+
+				foreach ( $check_ext as $ext ) {
+					if ( isset( self::$upd_config[ $ext ] ) ) {
+						$ext_upd_config[ $ext ] = self::$upd_config[ $ext ];
+					}
+				}
+
+			} elseif ( is_string( $check_ext ) ) {
+
+				if ( isset( self::$upd_config[ $check_ext ] ) ) {
+					$ext_upd_config[ $check_ext ] = self::$upd_config[ $check_ext ];
+				}
+			}
+
+			if ( empty( $ext_upd_config ) ) {
+
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( 'exiting early: no plugins to check for updates' );
+				}
+
+				if ( ! $quiet || $this->p->debug->enabled ) {
+
+					$notice_key = __FUNCTION__ . '_no_plugins_defined';
+
+					$this->p->notice->err( __( 'No plugins defined for updates.', $this->text_domain ), null, $notice_key );
+				}
+
+				return;
+			}
+
+			foreach ( $ext_upd_config as $ext => $upd_info ) {
+
+				if ( ! self::is_installed( $ext ) ) {
+
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( $ext . ' plugin: not installed' );
+					}
+
+					continue;
+				}
+
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( $ext . ' plugin: checking for update' );
+				}
+
+				if ( $read_cache ) {
+					$update_data = self::get_option_data( $ext );
+				} else {
+					$update_data = false;
+				}
+
+				if ( empty( $update_data ) ) {
+					$update_data                 = new StdClass;
+					$update_data->lastCheck      = 0;
+					$update_data->checkedVersion = 0;
+					$update_data->update         = null;
+				}
+
+				$update_data->lastCheck      = time();
+				$update_data->checkedVersion = $upd_info[ 'installed_version' ];
+				$update_data->update         = $this->get_update_data( $ext, $read_cache );
+
+				if ( self::update_option_data( $ext, $update_data ) ) {
+
+					if ( empty( self::$upd_config[ $ext ][ 'uerr' ] ) ) {
+
+						if ( $this->p->debug->enabled ) {
+							$this->p->debug->log( $ext . ' plugin: update information saved in ' . $upd_info[ 'option_name' ] );
+						}
+
+						if ( ! $quiet || $this->p->debug->enabled ) {
+
+							if ( ! empty( self::$upd_config[ $ext ][ 'plugin_data' ] ) ) {
+
+								$notice_key = __FUNCTION__ . '_' . $ext . '_' . $upd_info[ 'option_name' ] . '_success';
+
+								$this->p->notice->inf( sprintf( __( 'Update information for %s has been retrieved and saved.',
+									$this->text_domain ), $upd_info[ 'name' ] ), null, $notice_key );
+							}
+						}
+
+					} else {
+
+						if ( $this->p->debug->enabled ) {
+							$this->p->debug->log( $ext . ' plugin: error returned getting update information' );
+						}
+
+						if ( ! $quiet || $this->p->debug->enabled ) {
+
+							$notice_key = __FUNCTION__ . '_' . $ext . '_' . $upd_info[ 'option_name' ] . '_error_returned';
+
+							$this->p->notice->warn( sprintf( __( 'An error was returned while getting update information for %s.',
+								$this->text_domain ), $upd_info[ 'name' ] ), null, $notice_key );
+						}
+					}
+
+				} else {
+
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( $ext . ' plugin: failed saving update information in ' . $upd_info[ 'option_name' ] );
+					}
+
+					if ( ! $quiet || $this->p->debug->enabled ) {
+
+						$notice_key = __FUNCTION__ . '_' . $ext . '_' . $upd_info[ 'option_name' ] . '_failed_saving';
+
+						$this->p->notice->err( sprintf( __( 'Failed saving retrieved update information for %s.',
+							$this->text_domain ), $upd_info[ 'name' ] ), null, $notice_key );
+					}
+				}
+			}
+		}
+	
 		private function check_pp_compat( $ext = '', $lic = true, $rv = true, $uc = true ) {
 
 			if ( method_exists( $this->p->check, 'pp' ) ) {

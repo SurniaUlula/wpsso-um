@@ -46,7 +46,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
-				$def_opts[ 'update_filter_for_' . $ext] = 'stable';
+				$def_opts[ 'update_filter_for_' . $ext ] = 'stable';
 			}
 
 			return $def_opts;
@@ -56,7 +56,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
-				$def_opts[ 'update_filter_for_' . $ext] = 'stable';
+				$def_opts[ 'update_filter_for_' . $ext ] = 'stable';
 
 				$def_opts[ 'update_filter_for_' . $ext . ':use' ] = 'default';
 			}
@@ -72,7 +72,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 			foreach ( $upgrade_notices as $version => $info ) {
 				if ( preg_match( $filter_regex, $version ) === 0 ) {
-					unset ( $upgrade_notices[$version] );
+					unset ( $upgrade_notices[ $version ] );
 				}
 			}
 

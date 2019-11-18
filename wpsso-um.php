@@ -193,13 +193,14 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 				return;	// Stop here.
 			}
 
-			$cache_md5_pre = $this->p->lca . '_';
-			$cache_salt    = __CLASS__ . '::cron_check';
-			$cache_id      = $cache_md5_pre . md5( $cache_salt );
+			$cache_md5_pre  = $this->p->lca . '_';
+			$cache_salt     = __CLASS__ . '::cron_check';
+			$cache_exp_secs = DAY_IN_SECONDS;
+			$cache_id       = $cache_md5_pre . md5( $cache_salt );
 
 			/**
-			 * Check if the WordPress cron is operating correctly.
-			 * Run once per day - if the transient does not exist, or has expired, then get_transient() will return false.
+			 * Check if the WordPress cron is operating correctly. Run once per day - if the transient does not exist,
+			 * or has expired, then get_transient() will return false.
 			 */
 			if ( ! get_transient( $cache_id ) ) {
 
@@ -235,7 +236,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 					$this->update->check_all_for_updates( $quiet = true, $read_cache = false );
 				}
 
-				set_transient( $cache_id, 1, DAY_IN_SECONDS );
+				set_transient( $cache_id, time(), $cache_exp_secs );
 			}
 		}
 
