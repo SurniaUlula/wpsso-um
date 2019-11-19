@@ -58,19 +58,19 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.5.0-b.2 (2019/11/18)**
+**Version 2.5.0-b.3 (2019/11/19)**
 
 * **New Features**
 	* None.
 * **Improvements**
-	* Added a method to handle the possible creation of an $updates class object and/or the addition of plugin update response data.
-	* Added a three minute throttling feature when manually forcing a plugin update cache refresh.
 	* Added support for the 'force-check' argument in the '/wp-admin/update-core.php' page.
-	* Optimized the plugin installed version checks to re-use existing plugin data instead of calling a function.
+	* Added a three minute throttling feature when manually forcing a plugin update cache refresh.
+	* Added a method to handle the possible creation of an $updates class object (when $updates is false) and/or the addition of plugin update response data.
 * **Bugfixes**
 	* Fixed a possible PHP "Attempt to modify property 'response' of non-object" warning.
 * **Developer Notes**
-	* None.
+	* Optimized caching true/false method arguments for manual and automated (ie. cron) update checks.
+	* Optimized the plugin installed version checks to re-use existing plugin data instead of calling a function.
 
 **Version 2.4.0 (2019/11/17)**
 
@@ -96,9 +96,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 2.5.0-b.2 =
+= 2.5.0-b.3 =
 
-(2019/11/18) Added a method to handle the possible creation of an $updates class object and/or the addition of plugin update response data.
+(2019/11/19) Added support for the 'force-check' argument in the '/wp-admin/update-core.php' page.
 
 = 2.4.0 =
 
