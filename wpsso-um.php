@@ -13,7 +13,7 @@
  * Description: Update manager for the WPSSO Core Premium plugin and its complementary Premium add-ons.
  * Requires At Least: 3.9
  * Tested Up To: 5.3
- * Version: 2.5.0-b.2
+ * Version: 2.5.0-b.3
  * 
  * Version Numbering: {major}.{minor}.{bugfix}[-{stage}.{level}]
  *
@@ -194,7 +194,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			}
 
 			$cache_md5_pre  = $this->p->lca . '_';
-			$cache_salt     = __CLASS__ . '::cron_check';
+			$cache_salt     = __METHOD__ . '_cron_check';
 			$cache_exp_secs = DAY_IN_SECONDS;
 			$cache_id       = $cache_md5_pre . md5( $cache_salt );
 
@@ -215,25 +215,35 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 						continue;
 					}
 
-					$current_time    = time();
-					$last_check_time = $this->update->get_umsg( $ext, 'time' ); // Get the last update check timestamp.
-					$last_plus_week  = $last_check_time + WEEK_IN_SECONDS;
-					$next_sched_time = $last_check_time + ( $this->check_hours * HOUR_IN_SECONDS ); // Estimate the next scheduled check.
-					$next_plus_day   = $next_sched_time + DAY_IN_SECONDS;
+					$last_check_time = SucomUpdate::get_umsg( $ext, 'time' ); 	// Get the last update check timestamp.
 
-					/**
-					 * Force an update check if no last time, more than 1 day overdue, or more than 1 week ago.
-					 */
-					if ( empty( $last_check_time ) || $next_plus_day < $current_time || $last_plus_week < $current_time ) {
+					if ( empty( $last_check_time ) ) {
 
 						$check_required = true;
 
-						break;
+						break;	// Stop here.
+
+					} else {
+
+						$current_time    = time();
+						$next_sched_time = $last_check_time + ( $this->check_hours * HOUR_IN_SECONDS ); // Estimate the next scheduled check.
+						$next_plus_day   = $next_sched_time + DAY_IN_SECONDS;
+						$last_plus_week  = $last_check_time + WEEK_IN_SECONDS;
+
+						/**
+						 * Force an update check if more than 1 day overdue or more than 1 week ago.
+						 */
+						if ( $next_plus_day < $current_time || $last_plus_week < $current_time ) {
+	
+							$check_required = true;
+	
+							break;
+						}
 					}
 				}
 
 				if ( $check_required ) {
-					$this->update->check_all_for_updates( $quiet = true, $read_cache = false );
+					$this->update->quiet_update_check();
 				}
 
 				set_transient( $cache_id, time(), $cache_exp_secs );

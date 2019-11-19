@@ -84,7 +84,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					 * Check for the "Check Again" feature on the WordPress Dashboard > Updates page.
 					 */
 					if ( strpos( $_SERVER[ 'REQUEST_URI' ], '/update-core.php?force-check=1' ) ) {
-						$this->force_quiet_update_check();
+						$this->manual_update_check();
 					} else {
 						$this->set_upd_config();
 					}
@@ -98,10 +98,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 		}
 
-		/**
-		 * $quiet is false by default, to show a warning if one or more development version filters are selected.
-		 */
-		private function set_upd_config( $quiet = false, $read_cache = true ) {
+		private function set_upd_config( $quiet = true, $read_cache = true ) {
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
@@ -125,17 +122,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					}
 
 					return;
-
-				} else {
-					self::$upd_config = array();	// Init a new config array.
 				}
 
 			} else {
-
 				delete_transient( $cache_id );
-
-				self::$upd_config = array();	// Init a new config array.
 			}
+
+			self::$upd_config = array();	// Init a new config array.
 
 			$has_dev_filter = false;	// Assume we're using the production version filter by default.
 
@@ -187,6 +180,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					continue;
 				}
 
+				/**
+				 * Saved as the 'version_filter' value.
+				 */
 				if ( false !== strpos( $ext_version, 'not-installed' ) ) {	// Anywhere in string.
 					$filter_name = 'stable';
 				} else {
@@ -278,19 +274,18 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 			}
 
-			if ( ! $quiet || $this->p->debug->enabled ) {
+			if ( $has_dev_filter ) {
 
-				if ( $has_dev_filter && $this->p->notice->is_admin_pre_notices() ) {
+				$user_id = get_current_user_id();
 
-					$user_id      = get_current_user_id();
+				if ( ! $quiet && $user_id ) {
+
 					$notice_key   = 'non-stable-update-version-filters-selected';
 					$dismiss_time = MONTH_IN_SECONDS;
 
-					if ( $user_id ) {
-						$this->p->notice->warn( sprintf( __( 'Please note that one or more non-stable / development %s have been selected.',
-							$this->text_domain ), $this->p->util->get_admin_url( 'um-general', _x( 'Update Version Filters',
-								'metabox title', $this->text_domain ) ) ), $user_id, $notice_key, $dismiss_time );
-					}
+					$this->p->notice->warn( sprintf( __( 'Please note that one or more non-stable / development %s have been selected.',
+						$this->text_domain ), $this->p->util->get_admin_url( 'um-general', _x( 'Update Version Filters',
+							'metabox title', $this->text_domain ) ) ), $user_id, $notice_key, $dismiss_time );
 				}
 			}
 
@@ -322,7 +317,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			/**
 			 * Refresh the config and plugin update data if/when the WordPress home URL is changed.
 			 */
-			add_action( 'update_option_home', array( $this, 'force_quiet_update_check' ), 100 );
+			add_action( 'update_option_home', array( $this, 'quiet_update_check' ), PHP_INT_MAX );
 
 			add_filter( 'http_request_host_is_external', array( $this, 'allow_update_package' ), PHP_INT_MAX, 3 );
 			add_filter( 'http_headers_useragent', array( $this, 'maybe_update_wpua' ), PHP_INT_MAX, 1 );
@@ -353,7 +348,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->log( 'adding ' . $this->cron_hook . ' schedule for ' . $this->sched_name );
 			}
 
-			add_action( $this->cron_hook, array( $this, 'check_all_for_updates' ) );
+			add_action( $this->cron_hook, array( $this, 'quiet_update_check' ) );
 
 			add_filter( 'cron_schedules', array( $this, 'add_custom_schedule' ) );
 
@@ -391,19 +386,25 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 		}
 
-		public function force_quiet_update_check() {
+		public function manual_update_check() {
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
 			}
 
-			return $this->check_all_for_updates( $quiet = true, $read_cache = false );
+			return $this->check_all_for_updates( $quiet = false );
 		}
 
-		/**
-		 * Called by the WordPress cron.
-		 */
-		public function check_all_for_updates( $quiet = true, $read_cache = true ) {
+		public function quiet_update_check() {
+
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+
+			return $this->check_all_for_updates( $quiet = true );
+		}
+
+		public function check_all_for_updates( $quiet = true ) {
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
@@ -412,34 +413,40 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			/**
 			 * Throttle non-caching executions to one per minute.
 			 */
-			if ( ! $read_cache ) {
-				
-				$throttle_mins  = 3;
-				$cache_md5_pre  = $this->p->lca . '_';
-				$cache_exp_secs = $throttle_mins * 60;
-				$cache_salt     = __METHOD__;
-				$cache_id       = $cache_md5_pre . md5( $cache_salt );
+			$throttle_mins = 3;
+			$read_cache    = false;
 
-				if ( false !== get_transient( $cache_id ) ) {
+			$cache_md5_pre  = $this->p->lca . '_';
+			$cache_exp_secs = $throttle_mins * 60;
+			$cache_salt     = __METHOD__;
+			$cache_id       = $cache_md5_pre . md5( $cache_salt );
+
+			if ( false !== get_transient( $cache_id ) ) {
+
+				$user_id = get_current_user_id();
+
+				if ( ! $quiet && $user_id ) {
 
 					$notice_key = __FUNCTION__ . '_throttling';
 
-					$this->p->notice->warn( __( 'Plugin cache refresh denied. Please wait a few more minutes before trying to force another plugin cache refresh.', $this->text_domain ), null, $notice_key );
-
-					$read_cache = true;
-					$quiet      = true;
-
-				} else {
-					set_transient( $cache_id, time(), $cache_exp_secs );
+					$this->p->notice->warn( __( 'Update manager cache refresh denied.', $this->text_domain ) . ' ' .
+						__( 'Please wait a few minutes before trying to force another update cache refresh.', $this->text_domain ),
+							$user_id, $notice_key );
 				}
+
+				$quiet      = true;
+				$read_cache = true;
+
+			} else {
+				set_transient( $cache_id, time(), $cache_exp_secs );
 			}
 
-			$this->set_upd_config( $quiet_config = true, $read_cache );
+			$this->set_upd_config( $quiet, $read_cache );
 
-			$this->check_ext_for_updates( $check_ext = null, $quiet, $read_cache );
+			$this->check_ext_for_updates( $check_ext = null, $quiet );
 		}
 
-		public function check_ext_for_updates( $check_ext = null, $quiet = true, $read_cache = true ) {
+		public function check_ext_for_updates( $check_ext = null, $quiet = true ) {
 
 			$ext_upd_config = array();
 
@@ -466,17 +473,19 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 			}
 
+			$user_id = get_current_user_id();
+
 			if ( empty( $ext_upd_config ) ) {
 
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( 'exiting early: no plugins to check for updates' );
 				}
 
-				if ( ! $quiet || $this->p->debug->enabled ) {
+				if ( ! $quiet && $user_id ) {
 
 					$notice_key = __FUNCTION__ . '_no_plugins_defined';
 
-					$this->p->notice->err( __( 'No plugins defined for updates.', $this->text_domain ), null, $notice_key );
+					$this->p->notice->err( __( 'No plugins defined for updates.', $this->text_domain ), $user_id, $notice_key );
 				}
 
 				return;
@@ -497,22 +506,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$this->p->debug->log( $ext . ' plugin: checking for update' );
 				}
 
-				if ( $read_cache ) {
-					$update_data = self::get_option_data( $ext );
-				} else {
-					$update_data = false;
-				}
-
-				if ( empty( $update_data ) ) {
-					$update_data                 = new StdClass;
-					$update_data->lastCheck      = 0;
-					$update_data->checkedVersion = 0;
-					$update_data->update         = null;
-				}
-
+				$update_data                 = new StdClass;
 				$update_data->lastCheck      = time();
 				$update_data->checkedVersion = $upd_info[ 'installed_version' ];
-				$update_data->update         = $this->get_update_data( $ext, $read_cache );
+				$update_data->update         = $this->get_update_data( $ext, $read_cache = false );
 
 				if ( self::update_option_data( $ext, $update_data ) ) {
 
@@ -522,14 +519,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 							$this->p->debug->log( $ext . ' plugin: update information saved in ' . $upd_info[ 'option_name' ] );
 						}
 
-						if ( ! $quiet || $this->p->debug->enabled ) {
+						if ( ! empty( self::$upd_config[ $ext ][ 'plugin_data' ] ) ) {
 
-							if ( ! empty( self::$upd_config[ $ext ][ 'plugin_data' ] ) ) {
+							if ( ! $quiet && $user_id ) {
 
 								$notice_key = __FUNCTION__ . '_' . $ext . '_' . $upd_info[ 'option_name' ] . '_success';
 
 								$this->p->notice->inf( sprintf( __( 'Update information for %s has been retrieved and saved.',
-									$this->text_domain ), $upd_info[ 'name' ] ), null, $notice_key );
+									$this->text_domain ), $upd_info[ 'name' ] ), $user_id, $notice_key );
 							}
 						}
 
@@ -539,12 +536,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 							$this->p->debug->log( $ext . ' plugin: error returned getting update information' );
 						}
 
-						if ( ! $quiet || $this->p->debug->enabled ) {
+						if ( ! $quiet && $user_id ) {
 
 							$notice_key = __FUNCTION__ . '_' . $ext . '_' . $upd_info[ 'option_name' ] . '_error_returned';
 
 							$this->p->notice->warn( sprintf( __( 'An error was returned while getting update information for %s.',
-								$this->text_domain ), $upd_info[ 'name' ] ), null, $notice_key );
+								$this->text_domain ), $upd_info[ 'name' ] ), $user_id, $notice_key );
 						}
 					}
 
@@ -554,12 +551,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$this->p->debug->log( $ext . ' plugin: failed saving update information in ' . $upd_info[ 'option_name' ] );
 					}
 
-					if ( ! $quiet || $this->p->debug->enabled ) {
+					if ( ! $quiet && $user_id ) {
 
 						$notice_key = __FUNCTION__ . '_' . $ext . '_' . $upd_info[ 'option_name' ] . '_failed_saving';
 
 						$this->p->notice->err( sprintf( __( 'Failed saving retrieved update information for %s.',
-							$this->text_domain ), $upd_info[ 'name' ] ), null, $notice_key );
+							$this->text_domain ), $upd_info[ 'name' ] ), $user_id, $notice_key );
 					}
 				}
 			}
@@ -867,6 +864,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			if ( $read_cache ) {
 
+				/**
+				 * Check static cache first, then check the transient cache.
+				 */
 				if ( isset( self::$upd_config[ $ext ][ 'plugin_data' ]->plugin ) ) {
 					$plugin_data = self::$upd_config[ $ext ][ 'plugin_data' ];
 				} else {

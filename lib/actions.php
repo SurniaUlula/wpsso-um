@@ -13,7 +13,7 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 
 	class WpssoUmActions {
 
-		protected $p;
+		private $p;
 
 		public function __construct( &$plugin ) {
 
@@ -43,7 +43,7 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 
 			$wpssoum =& WpssoUm::get_instance();
 
-			$wpssoum->update->check_all_for_updates( $quiet = false, $read_cache = false );
+			$wpssoum->update->manual_update_check();
 
 			$this->p->notice->upd( __( 'Plugin and add-on information has been refreshed.', 'wpsso' ) );
 		}
