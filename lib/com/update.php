@@ -688,8 +688,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					}
 
 					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $ext . ' plugin: using saved update information' );
-						$this->p->debug->log( $ext . ' plugin: calling method/function', 5 );
+						$this->p->debug->log( $ext . ' plugin: using static cache update response data' );
+						$this->p->debug->log( $ext . ' plugin: calling method/function backtrace 4', 4 );
+						$this->p->debug->log( $ext . ' plugin: calling method/function backtrace 5', 5 );
 					}
 
 					continue;	// Get the next plugin from the config.
@@ -741,7 +742,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				} elseif ( version_compare( self::$upd_config[ $ext ][ 'installed_version' ], $update_data->update->version, '<' ) ) {
 
 					/**
-					 * Update to the static cache.
+					 * Update the static cache.
 					 */
 					self::$upd_config[ $ext ][ 'response' ] = $update_data->update->json_to_wp();
 
@@ -754,10 +755,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				} else {
 
 					if ( $this->p->debug->enabled ) {
-
 						$this->p->debug->log( $ext . ' plugin: installed version is current (or newer) than update version' );
-
-						$this->p->debug->log_arr( 'option_data', $update_data->update->json_to_wp(), 5 );
+						$this->p->debug->log( $ext . ' plugin: calling method/function backtrace 4', 4 );
+						$this->p->debug->log( $ext . ' plugin: calling method/function backtrace 5', 5 );
 					}
 				}
 			}
