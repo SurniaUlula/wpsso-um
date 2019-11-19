@@ -58,7 +58,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.5.0-rc.1 (2019/11/19)**
+**Version 2.5.0 (2019/11/19)**
 
 * **New Features**
 	* None.
@@ -96,11 +96,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 2.5.0-rc.1 =
+= 2.5.0 =
 
 (2019/11/19) Added support for the 'force-check' argument in the '/wp-admin/update-core.php' page.
-
-= 2.4.0 =
-
-(2019/11/17) Added a check to skip fetching update information for stable non-Premium plugins hosted on wordpress.org.
 
