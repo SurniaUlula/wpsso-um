@@ -414,7 +414,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			 * Throttle non-caching executions to one per minute.
 			 */
 			$throttle_mins = 3;
-			$read_cache    = false;
 
 			$cache_md5_pre  = $this->p->lca . '_';
 			$cache_exp_secs = $throttle_mins * 60;
@@ -434,14 +433,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 							$user_id, $notice_key );
 				}
 
-				$quiet      = true;
-				$read_cache = true;
-
-			} else {
-				set_transient( $cache_id, time(), $cache_exp_secs );
+				return;
 			}
 
-			$this->set_upd_config( $quiet, $read_cache );
+			set_transient( $cache_id, time(), $cache_exp_secs );
+
+			$this->set_upd_config( $quiet, $read_cache = false );
 
 			$this->check_ext_for_updates( $check_ext = null, $quiet );
 		}
