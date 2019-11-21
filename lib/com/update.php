@@ -98,7 +98,20 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 		}
 
-		private function set_upd_config( $quiet = true, $read_cache = true ) {
+		/**
+		 * Since WPSSO UM v2.5.1.
+		 */
+		public function refresh_upd_config() {
+
+			return $this->set_upd_config( $quiet = false, $read_cache = false );
+		}
+
+		/**
+		 * When $quiet is true, the following notices can be shown:
+		 *
+		 *	- Please note that one or more non-stable / development Update Version Filters have been selected.
+		 */
+		private function set_upd_config( $quiet = false, $read_cache = true ) {
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
@@ -186,7 +199,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( false !== strpos( $ext_version, 'not-installed' ) ) {	// Anywhere in string.
 					$filter_name = 'stable';
 				} else {
-					$filter_name = $this->get_filter_name( $ext );
+					$filter_name = $this->get_ext_filter_name( $ext );
 				}
 
 				if ( $filter_name !== 'stable' ) {
@@ -386,6 +399,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 		}
 
+		/**
+		 * Since WPSSO UM v2.5.0.
+		 */
 		public function manual_update_check() {
 
 			if ( $this->p->debug->enabled ) {
@@ -395,6 +411,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return $this->check_all_for_updates( $quiet = false );
 		}
 
+		/**
+		 * Since WPSSO UM v2.5.0.
+		 */
 		public function quiet_update_check() {
 
 			if ( $this->p->debug->enabled ) {
@@ -404,7 +423,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return $this->check_all_for_updates( $quiet = true );
 		}
 
-		public function check_all_for_updates( $quiet = true ) {
+		/**
+		 * Since WPSSO UM v1.7.0.
+		 *
+		 * When $quiet is true, the following notices can be shown:
+		 *
+		 *	- Update manager cache refresh denied. Please wait a few minutes before trying to force another update cache refresh.
+		 */
+		public function check_all_for_updates( $quiet = true, $throttle = true ) {
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
@@ -420,7 +446,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$cache_salt     = __METHOD__;
 			$cache_id       = $cache_md5_pre . md5( $cache_salt );
 
-			if ( false !== get_transient( $cache_id ) ) {
+			if ( $throttle && false !== get_transient( $cache_id ) ) {
 
 				$user_id = get_current_user_id();
 
@@ -443,6 +469,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$this->check_ext_for_updates( $check_ext = null, $quiet );
 		}
 
+		/**
+		 * When $quiet is true, the following notices can be shown:
+		 *
+		 *	- No plugins defined for updates.
+		 *	- Update information for %s has been retrieved and saved.
+		 *	- An error was returned while getting update information for %s.
+		 *	- Failed saving retrieved update information for %s.
+		 */
 		public function check_ext_for_updates( $check_ext = null, $quiet = true ) {
 
 			$ext_upd_config = array();
@@ -1206,7 +1240,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				return $local_cache[ $ext ] = false;
 			}
 
-			$filter_regex = $this->get_filter_regex( $ext );
+			$filter_regex = $this->get_ext_filter_regex( $ext );
 
 			if ( ! preg_match( $filter_regex, $local_cache[ $ext ] ) ) {
 
@@ -1293,11 +1327,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return $local_cache[ $ext ] = empty( $this->p->options[ $ext_auth_key ] ) ? '' : $this->p->options[ $ext_auth_key ];
 		}
 
-		public function get_filter_name( $ext ) {
+		public function get_ext_filter_name( $ext ) {
 
 			if ( ! empty( $this->p->options[ 'update_filter_for_' . $ext] ) ) {
 
-				$filter_name = $this->p->options[ 'update_filter_for_' . $ext];
+				$filter_name = $this->p->options[ 'update_filter_for_' . $ext ];
 
 				if ( ! empty( $this->p->cf[ 'um' ][ 'version_regex' ][ $filter_name ] ) ) {	// Make sure the name is valid.
 					return $filter_name;
@@ -1310,15 +1344,16 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		/**
 		 * Include extra checks to make sure we have fallback values.
 		 */
-		public function get_filter_regex( $ext ) {
+		public function get_ext_filter_regex( $ext ) {
 
-			$filter_name = $this->get_filter_name( $ext );	// Returns a valid filter name or 'stable'.
+			$filter_name  = $this->get_ext_filter_name( $ext );	// Returns a valid filter name or 'stable'.
+			$filter_regex = '/^[0-9][0-9\.\-]+$/';			// Default stable regex.
 
 			if ( ! empty( $this->p->cf[ 'um' ][ 'version_regex' ][ $filter_name ] ) ) {
-				return $this->p->cf[ 'um' ][ 'version_regex' ][ $filter_name ];
+				$filter_regex = $this->p->cf[ 'um' ][ 'version_regex' ][ $filter_name ];
 			}
 
-			return '/^[0-9][0-9\.\-]+$/';	// Stable regex.
+			return $filter_regex;
 		}
 
 		public static function prefer_wp_org_update( $ext ) {
@@ -1394,7 +1429,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				return false;
 			}
 
-			$upd_info = self::$upd_config[ $ext ];
+			$upd_info = self::$upd_config[ $ext ];	// Shortcut.
 
 			if ( ! isset( $upd_info[ 'installed_version' ] ) ) {
 				return false;

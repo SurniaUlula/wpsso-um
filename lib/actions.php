@@ -44,8 +44,6 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 			$wpssoum =& WpssoUm::get_instance();
 
 			$wpssoum->update->manual_update_check();
-
-			$this->p->notice->upd( __( 'Plugin and add-on information has been refreshed.', 'wpsso' ) );
 		}
 	}
 }

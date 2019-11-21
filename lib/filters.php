@@ -24,8 +24,9 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			}
 
 			$this->p->util->add_plugin_filters( $this, array( 
-				'get_defaults'      => 1,		// Option defaults.
-				'get_site_defaults' => 1,		// Site option defaults.
+				'save_options'      => 4,
+				'get_defaults'      => 1,	// Option defaults.
+				'get_site_defaults' => 1,	// Site option defaults.
 			) );
 
 			if ( is_admin() ) {
@@ -40,6 +41,49 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 					'status_std_features' => 3,
 				), $prio = 10, $ext = 'wpssoum' );
 			}
+		}
+
+		public function filter_save_options( $opts, $options_name, $network, $doing_upgrade ) {
+
+			$have_auth_changes = false;
+
+			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
+
+				if ( empty( $info[ 'update_auth' ] ) ) {
+					continue;
+				}
+
+				$opt_name = 'plugin_' . $ext . '_' . $info[ 'update_auth' ];
+
+				if ( isset( $opts[ $opt_name ] ) ) {
+
+					if ( ! isset( $this->p->options[ $opt_name ] ) || $opts[ $opt_name ] !== $this->p->options[ $opt_name ] ) {
+
+						/**
+						 * Update the current options array for SucomUpdate->get_ext_auth_id() and
+						 * SucomUpdate->get_ext_filter_name().
+						 */
+						$this->p->options[ $opt_name ] = $opts[ $opt_name ];
+
+						$have_auth_changes = true;
+					}
+				}
+			}
+
+			if ( $have_auth_changes ) {
+
+				$wpssoum =& WpssoUm::get_instance();
+
+				$wpssoum->update->check_all_for_updates( $quiet = true, $throttle = false );
+
+			} elseif ( $doing_upgrade ) {
+
+				$wpssoum =& WpssoUm::get_instance();
+
+				$wpssoum->update->refresh_upd_config();
+			}
+
+			return $opts;
 		}
 
 		public function filter_get_defaults( $def_opts ) {
@@ -68,10 +112,12 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 			$wpssoum =& WpssoUm::get_instance();
 
-			$filter_regex = $wpssoum->update->get_filter_regex( $ext );
+			$filter_regex = $wpssoum->update->get_ext_filter_regex( $ext );
 
 			foreach ( $upgrade_notices as $version => $info ) {
+
 				if ( preg_match( $filter_regex, $version ) === 0 ) {
+
 					unset ( $upgrade_notices[ $version ] );
 				}
 			}
@@ -87,7 +133,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 			$wpssoum =& WpssoUm::get_instance();
 
-			$filter_name = $wpssoum->update->get_filter_name( $ext );
+			$filter_name = $wpssoum->update->get_ext_filter_name( $ext );
 
 			if ( $filter_name !== 'stable' && version_compare( $installed_version, $latest_version, '<' ) ) {
 				return true;
