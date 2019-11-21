@@ -67,7 +67,8 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **Bugfixes**
 	* None.
 * **Developer Notes**
-	* Moved detection of Authentication ID changes (and subsequent update check) from the WPSSO plugin.
+	* Moved the detection of Authentication ID changes (and subsequent update check) from the WPSSO Core plugin.
+	* Updated WpssoUmRegister->activate_plugin() for the new WpssoUtilReg class in WPSSO Core v6.13.0.
 
 **Version 2.5.0 (2019/11/19)**
 
