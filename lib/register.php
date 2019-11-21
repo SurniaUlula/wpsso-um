@@ -99,15 +99,14 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 
 			if ( class_exists( 'Wpsso' ) ) {
 
-				if ( class_exists( 'WpssoUtil' ) ) {	// Just in case.
+				/**
+				 * Register plugin install, activation, update times.
+				 */
+				if ( class_exists( 'WpssoUtilReg' ) ) {	// Since WPSSO v6.13.0.
 
 					$version = WpssoUmConfig::$cf[ 'plugin' ][ 'wpssoum' ][ 'version' ];
 
-					if ( method_exists( 'WpssoUtil', 'register_ext_version' ) ) {	// Since WPSSO v4.25.1.
-						WpssoUtil::register_ext_version( 'wpssoum', $version );
-					} else {
-						WpssoUtil::save_all_times( 'wpssoum', $version );
-					}
+					WpssoUtilReg::update_ext_version( 'wpssoum', $version );
 				}
 			}
 
