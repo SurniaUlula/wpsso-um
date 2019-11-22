@@ -1463,7 +1463,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				SucomUpdateUtilWP::raw_do_option( 'delete', $opt_name );
 			} else {
-				$val_string = base64_encode( $val );	// Convert object / array to string.
+				$val_string = base64_encode( $val );	// Convert object or array to string.
 
 				SucomUpdateUtilWP::raw_do_option( 'update', $opt_name, $val_string );
 			}
@@ -1486,7 +1486,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$val = SucomUpdateUtilWP::raw_do_option( 'get', $opt_name, $def );
 
 				if ( is_string( $val ) ) {
-					$val = base64_decode( $val );	// Convert string back to object / array.
+					$val = base64_decode( $val );	// Convert string back to object or array.
 				}
 
 				if ( empty( $val ) ) {
