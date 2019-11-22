@@ -58,7 +58,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.6.0-dev.2 (TBD)**
+**Version 2.6.0-dev.2 (2019/11/21)**
 
 * **New Features**
 	* None.
@@ -107,6 +107,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* None.
 
 == Upgrade Notice ==
+ 
+= 2.6.0-dev.2 =
+
+(2019/11/21) Added a check for settings changes (when add-ons are activated / deactivated) to refresh the cached update configuration.
 
 = 2.5.0 =
 
