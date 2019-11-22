@@ -47,25 +47,28 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 			$have_auth_changes = false;
 
+			/**
+			 * Check all add-ons for any Authentication ID or Update Version Filter changes.
+			 */
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
-				if ( empty( $info[ 'update_auth' ] ) ) {
-					continue;
-				}
+				foreach ( array(
+					'plugin_' . $ext . '_' . $info[ 'update_auth' ],	// Authentication ID.
+					'update_filter_for_' . $ext,				// Update version filter.
+				) as $opt_name ) {
 
-				$opt_name = 'plugin_' . $ext . '_' . $info[ 'update_auth' ];
+					if ( isset( $opts[ $opt_name ] ) ) {
 
-				if ( isset( $opts[ $opt_name ] ) ) {
+						if ( ! isset( $this->p->options[ $opt_name ] ) || $opts[ $opt_name ] !== $this->p->options[ $opt_name ] ) {
 
-					if ( ! isset( $this->p->options[ $opt_name ] ) || $opts[ $opt_name ] !== $this->p->options[ $opt_name ] ) {
+							/**
+							 * Update the current options array for SucomUpdate->get_ext_auth_id() and
+							 * SucomUpdate->get_ext_filter_name().
+							 */
+							$this->p->options[ $opt_name ] = $opts[ $opt_name ];
 
-						/**
-						 * Update the current options array for SucomUpdate->get_ext_auth_id() and
-						 * SucomUpdate->get_ext_filter_name().
-						 */
-						$this->p->options[ $opt_name ] = $opts[ $opt_name ];
-
-						$have_auth_changes = true;
+							$have_auth_changes = true;
+						}
 					}
 				}
 			}
