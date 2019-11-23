@@ -593,12 +593,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 		}
 	
-		private function check_pp_compat( $ext = '', $lic = true, $rv = true, $uc = true ) {
+		private function check_pp_compat( $ext = '', $lic = true, $rv = true, $rc = true ) {
 
 			if ( method_exists( $this->p->check, 'pp' ) ) {
-				return $this->p->check->pp( $ext, $lic, $rv, $uc );
+				return $this->p->check->pp( $ext, $lic, $rv, $rc );
 			} else {
-				return $this->p->check->aop( $ext, $lic, $rv, $uc );	// Deprecated on 2018/08/27.
+				return $this->p->check->aop( $ext, $lic, $rv, $rc );	// Deprecated on 2018/08/27.
 			}
 		}
 

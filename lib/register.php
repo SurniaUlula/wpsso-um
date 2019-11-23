@@ -102,7 +102,7 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 				/**
 				 * Register plugin install, activation, update times.
 				 */
-				if ( class_exists( 'WpssoUtilReg' ) ) {	// Since WPSSO v6.13.0.
+				if ( class_exists( 'WpssoUtilReg' ) ) {	// Since WPSSO v6.13.1.
 
 					$version = WpssoUmConfig::$cf[ 'plugin' ][ 'wpssoum' ][ 'version' ];
 
