@@ -58,7 +58,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.6.0-rc.1 (2019/11/23)**
+**Version 2.6.0 (2019/11/23)**
 
 * **New Features**
 	* None.
@@ -108,7 +108,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
-= 2.6.0-rc.1 =
+= 2.6.0 =
 
 (2019/11/23) Added a check for settings changes (when add-ons are activated / deactivated) to refresh the cached update configuration.
 
