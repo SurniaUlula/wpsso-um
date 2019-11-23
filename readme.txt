@@ -10,7 +10,7 @@ Tags: wpsso, update, manager, schedule, add-on, pro version
 Contributors: jsmoriss
 Requires At Least: 3.9
 Tested Up To: 5.3
-Stable Tag: 2.5.0
+Stable Tag: 2.6.0
 
 Update manager for the WPSSO Core Premium plugin and its complementary Premium add-ons.
 
@@ -84,35 +84,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* Optimized caching true/false method arguments for manual and automated (ie. cron) update checks.
 	* Optimized the plugin installed version checks to re-use existing plugin data instead of calling a function.
 
-**Version 2.4.0 (2019/11/17)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* Added a check to skip fetching update information for stable non-Premium plugins hosted on wordpress.org.
-* **Bugfixes**
-	* None.
-* **Developer Notes**
-	* None.
-
-**Version 2.3.0 (2019/10/14)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* Added a notice message for possible HTTP errors codes (400 to 417) returned by `wp_remote_get()`.
-* **Bugfixes**
-	* None.
-* **Developer Notes**
-	* None.
-
 == Upgrade Notice ==
  
 = 2.6.0 =
 
 (2019/11/23) Added a check for settings changes (when add-ons are activated / deactivated) to refresh the cached update configuration.
-
-= 2.5.0 =
-
-(2019/11/19) Added support for the 'force-check' argument in the '/wp-admin/update-core.php' page.
 
