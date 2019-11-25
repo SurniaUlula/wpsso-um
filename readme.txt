@@ -58,7 +58,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.6.1 (2019/11/23)**
+**Version 2.6.1 (2019/11/25)**
 
 * **New Features**
 	* None.
@@ -73,7 +73,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **New Features**
 	* None.
 * **Improvements**
-	* Added a check for settings changes (when add-ons are activated / deactivated) to refresh the cached update configuration.
+	* Added a check for settings upgrade (when add-ons are activated / deactivated) to refresh the cached update configuration.
 * **Bugfixes**
 	* None.
 * **Developer Notes**
@@ -98,5 +98,5 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
  
 = 2.6.1 =
 
-(2019/11/23) Added a refresh of the update manager configuration when saving plugin settings (not just when upgrading the plugin settings).
+(2019/11/25) Added a refresh of the update manager configuration when saving plugin settings (not just when upgrading the plugin settings).
 
