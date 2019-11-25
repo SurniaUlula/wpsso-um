@@ -92,6 +92,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 		/**
 		 * Since WPSSO UM v2.5.1.
+		 *
+		 * Called when the plugin settings are saved to update the transient cache.
 		 */
 		public function refresh_upd_config() {
 
@@ -99,7 +101,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		/**
-		 * When $quiet is false, the following notices may be shown:
+		 * When $quiet is false the following notices may be shown:
 		 *
 		 *	- Please note that one or more non-stable / development Update Version Filters have been selected.
 		 */
@@ -393,6 +395,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 		/**
 		 * Since WPSSO UM v2.5.0.
+		 *
+		 * Called when the SSO > Tools > Check for Updates or WordPress Dashboard > Updates > Check Again buttons are used.
 		 */
 		public function manual_update_check() {
 
@@ -405,6 +409,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 		/**
 		 * Since WPSSO UM v2.5.0.
+		 *
+		 * Called by the scheduled cron job and when the WordPress Settings > Site Address (URL) value is changed.
 		 */
 		public function quiet_update_check() {
 
@@ -418,9 +424,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		/**
 		 * Since WPSSO UM v1.7.0.
 		 *
-		 * When $quiet is false, the following notices may be shown:
+		 * Called by both the scheduled cron job and manual update checki buttons. This method is throttled and will only
+		 * execute once every 3 minutes.
 		 *
-		 *	- Update manager cache refresh denied. Please wait a few minutes before trying to force another update cache refresh.
+		 * When $quiet is false the following notices may be shown:
+		 *
+		 *	- Update manager cache refresh denied. Please wait a few minutes before trying to force another update
+		 *	cache refresh.
 		 */
 		public function check_all_for_updates( $quiet = true ) {
 
@@ -462,7 +472,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		/**
-		 * When $quiet is false, the following notices may be shown:
+		 * When $quiet is false the following notices may be shown:
 		 *
 		 *	- No plugins defined for updates.
 		 *	- Update information for %s has been retrieved and saved.

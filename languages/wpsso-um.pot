@@ -12,84 +12,84 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: lib/com/update.php:218 lib/com/update.php:925 lib/gettext-com.php:6
+#: lib/com/update.php:220 lib/com/update.php:935 lib/gettext-com.php:6
 #: lib/gettext-com.php:18
 msgid ""
 "An inconsistency was found in the %1$s update server information &mdash;"
 msgstr ""
 
-#: lib/com/update.php:221 lib/com/update.php:928 lib/gettext-com.php:7
+#: lib/com/update.php:223 lib/com/update.php:938 lib/gettext-com.php:7
 #: lib/gettext-com.php:19
 msgid "Update checks for %1$s are disabled while this inconsistency persists."
 msgstr ""
 
-#: lib/com/update.php:225 lib/com/update.php:932 lib/gettext-com.php:8
+#: lib/com/update.php:227 lib/com/update.php:942 lib/gettext-com.php:8
 #: lib/gettext-com.php:20
 msgid ""
 "You may <a href=\"%1$s\">open a new support ticket</a> if you believe this "
 "error message is incorrect."
 msgstr ""
 
-#: lib/com/update.php:252 lib/gettext-com.php:9
+#: lib/com/update.php:254 lib/gettext-com.php:9
 msgid "invalid authentication URL (%1$s)."
 msgstr ""
 
-#: lib/com/update.php:291 lib/gettext-com.php:10
+#: lib/com/update.php:293 lib/gettext-com.php:10
 msgid ""
 "Please note that one or more non-stable / development %s have been selected."
 msgstr ""
 
-#: lib/com/update.php:292 lib/gettext-com.php:11
+#: lib/com/update.php:294 lib/gettext-com.php:11
 #: lib/sitesubmenu/site-um-general.php:107 lib/submenu/um-general.php:92
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
 
-#: lib/com/update.php:449 lib/gettext-com.php:12
+#: lib/com/update.php:459 lib/gettext-com.php:12
 msgid "Update manager cache refresh denied."
 msgstr ""
 
-#: lib/com/update.php:450 lib/gettext-com.php:13
+#: lib/com/update.php:460 lib/gettext-com.php:13
 msgid ""
 "Please wait a few minutes before trying to force another update cache "
 "refresh."
 msgstr ""
 
-#: lib/com/update.php:511 lib/gettext-com.php:14
+#: lib/com/update.php:521 lib/gettext-com.php:14
 msgid "No plugins defined for updates."
 msgstr ""
 
-#: lib/com/update.php:551 lib/gettext-com.php:15
+#: lib/com/update.php:561 lib/gettext-com.php:15
 msgid "Update information for %s has been retrieved and saved."
 msgstr ""
 
-#: lib/com/update.php:566 lib/gettext-com.php:16
+#: lib/com/update.php:576 lib/gettext-com.php:16
 msgid "An error was returned while getting update information for %s."
 msgstr ""
 
-#: lib/com/update.php:581 lib/gettext-com.php:17
+#: lib/com/update.php:591 lib/gettext-com.php:17
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:942 lib/gettext-com.php:21
+#: lib/com/update.php:952 lib/gettext-com.php:21
 msgid "the update server URL (%1$s) does not appear to be a valid URL."
 msgstr ""
 
-#: lib/com/update.php:975 lib/gettext-com.php:22
+#: lib/com/update.php:985 lib/gettext-com.php:22
 msgid ""
 "the IPv4 address (%1$s) from the local host does not match the DNS IPv4 "
 "address (%2$s)."
 msgstr ""
 
-#: lib/com/update.php:1064 lib/gettext-com.php:23
+#: lib/com/update.php:1074 lib/gettext-com.php:23
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr ""
 
-#: lib/com/update.php:1115 lib/gettext-com.php:24
+#: lib/com/update.php:1125 lib/gettext-com.php:24
 msgid "The WordPress %1$s function returned HTTP %2$d (%3$s) for %4$s."
 msgstr ""
 
-#: lib/com/update.php:1206 lib/gettext-com.php:25
+#: lib/com/update.php:1216 lib/gettext-com.php:25
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."

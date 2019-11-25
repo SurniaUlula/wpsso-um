@@ -54,7 +54,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			$check_for_updates = false;
 
 			/**
-			 * Check all add-ons for any Authentication ID or Update Version Filter changes.
+			 * Check all add-ons for any authentication ID or update version filter changes.
 			 */
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
