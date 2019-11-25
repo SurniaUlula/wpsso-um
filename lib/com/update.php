@@ -50,7 +50,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			416 => 'Requested Range Not Satisfiable',
 			417 => 'Expectation Failed',
 		);
-	
+
 		public function __construct( &$plugin, $check_hours = 24, $text_domain = '' ) {
 
 			$this->p =& $plugin;
@@ -59,15 +59,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->mark( 'update manager setup' );	// Begin timer.
 			}
 
-			$doing_ajax = defined( 'DOING_AJAX' ) && DOING_AJAX ? true : false;
-
 			if ( isset( $this->p->lca ) ) {
 				$this->plugin_lca = $this->p->lca;
 			} elseif ( isset( $this->p->cf[ 'lca' ] ) ) {
 				$this->plugin_lca = $this->p->cf[ 'lca' ];
 			}
 
-			if ( ! empty( $this->plugin_lca ) && ! empty( $this->p->cf[ 'plugin' ] ) ) {
+			if ( ! empty( $this->plugin_lca ) && ! empty( $this->p->cf[ 'plugin' ] ) ) {	// Quick sanity check.
 
 				$this->plugin_slug = $this->p->cf[ 'plugin' ][ $this->plugin_lca ][ 'slug' ];	// Example: wpsso.
 				$this->text_domain = $text_domain;						// Example: wpsso-um.
@@ -76,21 +74,15 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->sched_name  = 'every' . $this->sched_hours . 'hours';			// Example: every24hours.
 
 				/**
-				 * Optimize performance and do not load if this is an ajax call (ie. DOING_AJAX is true).
+				 * Support the "Check Again" feature on the WordPress Dashboard > Updates page.
 				 */
-				if ( ! $doing_ajax ) {
-
-					/**
-					 * Check for the "Check Again" feature on the WordPress Dashboard > Updates page.
-					 */
-					if ( strpos( $_SERVER[ 'REQUEST_URI' ], '/update-core.php?force-check=1' ) ) {
-						$this->manual_update_check();
-					} else {
-						$this->set_upd_config();
-					}
-
-					$this->add_wp_hooks();	// Private method.
+				if ( strpos( $_SERVER[ 'REQUEST_URI' ], '/update-core.php?force-check=1' ) ) {
+					$this->manual_update_check();
+				} else {
+					$this->set_upd_config();
 				}
+
+				$this->add_wp_hooks();	// Private method.
 			}
 
 			if ( $this->p->debug->enabled ) {
