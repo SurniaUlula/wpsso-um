@@ -107,7 +107,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		/**
-		 * When $quiet is true, the following notices can be shown:
+		 * When $quiet is false, the following notices may be shown:
 		 *
 		 *	- Please note that one or more non-stable / development Update Version Filters have been selected.
 		 */
@@ -426,11 +426,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		/**
 		 * Since WPSSO UM v1.7.0.
 		 *
-		 * When $quiet is true, the following notices can be shown:
+		 * When $quiet is false, the following notices may be shown:
 		 *
 		 *	- Update manager cache refresh denied. Please wait a few minutes before trying to force another update cache refresh.
 		 */
-		public function check_all_for_updates( $quiet = true, $throttle = true ) {
+		public function check_all_for_updates( $quiet = true ) {
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
@@ -446,7 +446,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$cache_salt     = __METHOD__;
 			$cache_id       = $cache_md5_pre . md5( $cache_salt );
 
-			if ( $throttle && false !== get_transient( $cache_id ) ) {
+			if ( false !== get_transient( $cache_id ) ) {
 
 				$user_id = get_current_user_id();
 
@@ -470,7 +470,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		/**
-		 * When $quiet is true, the following notices can be shown:
+		 * When $quiet is false, the following notices may be shown:
 		 *
 		 *	- No plugins defined for updates.
 		 *	- Update information for %s has been retrieved and saved.

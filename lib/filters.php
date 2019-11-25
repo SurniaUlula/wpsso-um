@@ -77,21 +77,19 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				}
 			}
 
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->log( 'refreshing update manager config' );
+			}
+
+			$wpssoum->update->refresh_upd_config();
+
 			if ( $check_for_updates ) {
 
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( 'checking all plugins for updates' );
 				}
 
-				$wpssoum->update->check_all_for_updates( $quiet = true, $throttle = false );
-
-			} else {
-
-				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'refreshing the update manager config' );
-				}
-
-				$wpssoum->update->refresh_upd_config();
+				$wpssoum->update->check_ext_for_updates( $check_ext = null, $quiet = true );
 			}
 
 			return $opts;
