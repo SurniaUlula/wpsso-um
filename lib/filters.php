@@ -51,7 +51,10 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 			$wpssoum =& WpssoUm::get_instance();
 
-			$have_auth_changes = false;
+			$change_action = array(
+				'check_for_updates'  => false,
+				'refresh_upd_config' => false,
+			);
 
 			/**
 			 * Check all add-ons for any Authentication ID or Update Version Filter changes.
@@ -59,38 +62,32 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
 				foreach ( array(
-					'plugin_' . $ext . '_' . $info[ 'update_auth' ],	// Authentication ID.
-					'update_filter_for_' . $ext,				// Update version filter.
-				) as $opt_name ) {
+					'plugin_' . $ext . '_' . $info[ 'update_auth' ] => 'check_for_updates',
+					'update_filter_for_' . $ext                     => 'check_for_updates',
+					'plugin_' . $ext . '_version'                   => 'refresh_upd_config',
+				) as $opt_key => $action_name ) {
 
-					if ( isset( $opts[ $opt_name ] ) ) {
+					if ( isset( $opts[ $opt_key ] ) ) {
 
-						if ( ! isset( $this->p->options[ $opt_name ] ) || $opts[ $opt_name ] !== $this->p->options[ $opt_name ] ) {
+						if ( ! isset( $this->p->options[ $opt_key ] ) || $opts[ $opt_key ] !== $this->p->options[ $opt_key ] ) {
 
 							/**
 							 * Update the current options array for SucomUpdate->get_ext_auth_id() and
 							 * SucomUpdate->get_ext_filter_name().
 							 */
-							$this->p->options[ $opt_name ] = $opts[ $opt_name ];
+							$this->p->options[ $opt_key ] = $opts[ $opt_key ];
 
-							$have_auth_changes = true;
+							$change_action[ $action_name ] = true;
 						}
 					}
 				}
 			}
 
-			if ( $have_auth_changes ) {
-
-				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'calling check_all_for_updates()' );
-				}
+			if ( $change_action[ 'check_for_updates' ] ) {
 
 				$wpssoum->update->check_all_for_updates( $quiet = true, $throttle = false );
-			} else {
 
-				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'calling refresh_upd_config()' );
-				}
+			} elseif ( $change_action[ 'refresh_upd_config' ] ) {
 
 				$wpssoum->update->refresh_upd_config();
 			}
