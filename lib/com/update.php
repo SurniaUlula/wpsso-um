@@ -182,7 +182,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				/**
 				 * Saved as the 'installed_version' value.
 				 */
-				$ext_version = $this->get_ext_version( $ext );
+				$ext_version = $this->get_ext_version( $ext, $read_cache = false );
 
 				if ( false === $ext_version ) {
 
@@ -593,12 +593,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 		}
 	
-		private function check_pp_compat( $ext = '', $lic = true, $rv = true, $rc = true ) {
+		private function check_pp_compat( $ext = '', $li = true, $rv = true, $rc = true ) {
 
 			if ( method_exists( $this->p->check, 'pp' ) ) {
-				return $this->p->check->pp( $ext, $lic, $rv, $rc );
+				return $this->p->check->pp( $ext, $li, $rv, $rc );
 			} else {
-				return $this->p->check->aop( $ext, $lic, $rv, $rc );	// Deprecated on 2018/08/27.
+				return $this->p->check->aop( $ext, $li, $rv, $rc );	// Deprecated on 2018/08/27.
 			}
 		}
 
@@ -896,8 +896,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			global $wp_version;
 
-			$ext_pdir    = $this->check_pp_compat( $ext, false );
-			$ext_pp      = self::$upd_config[ $ext ][ 'auth_id' ] && $this->check_pp_compat( $ext, true, WPSSO_UNDEF ) === WPSSO_UNDEF ? true : false;
+			$ext_pdir    = $this->check_pp_compat( $ext, $li = false );
+			$ext_pp      = self::$upd_config[ $ext ][ 'auth_id' ] && $this->check_pp_compat( $ext, $li = true, WPSSO_UNDEF ) === WPSSO_UNDEF ? true : false;
 			$ext_stat    = ( $ext_pp ? 'L' : ( $ext_pdir ? 'U' : 'S' ) ) . ( self::$upd_config[ $ext ][ 'auth_id' ] ? '*' : '' );
 
 			if ( $read_cache ) {
@@ -1148,12 +1148,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return $plugin_data;
 		}
 
-		public function get_ext_version( $ext ) {
+		public function get_ext_version( $ext, $read_cache = true ) {
 
 			static $local_cache = array();
 
-			if ( isset( $local_cache[ $ext ] ) ) {
-				return $local_cache[ $ext ];	// Return from cache.
+			if ( $read_cache ) {
+				if ( isset( $local_cache[ $ext ] ) ) {
+					return $local_cache[ $ext ];	// Return from cache.
+				}
 			}
 
 			$info = array();
@@ -1271,7 +1273,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$this->p->debug->log( $ext . ' plugin: auth type is defined' );
 					}
 
-					if ( $this->check_pp_compat( $ext, false ) ) {
+					if ( $this->check_pp_compat( $ext, $li = false ) ) {
 
 						if ( empty( $ext_auth_id ) ) {	// pdir without an auth_id.
 
