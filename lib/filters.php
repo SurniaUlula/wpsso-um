@@ -45,6 +45,10 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 		public function filter_save_options( $opts, $options_name, $network, $doing_upgrade ) {
 
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+
 			$wpssoum =& WpssoUm::get_instance();
 
 			$have_auth_changes = false;
@@ -77,8 +81,17 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 			if ( $have_auth_changes ) {
 
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( 'calling check_all_for_updates()' );
+				}
+
 				$wpssoum->update->check_all_for_updates( $quiet = true, $throttle = false );
 			} else {
+
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( 'calling refresh_upd_config()' );
+				}
+
 				$wpssoum->update->refresh_upd_config();
 			}
 
@@ -86,6 +99,10 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		}
 
 		public function filter_get_defaults( $def_opts ) {
+
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
 
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
@@ -96,6 +113,10 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		}
 
 		public function filter_get_site_defaults( $def_opts ) {
+
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
 
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
@@ -108,6 +129,10 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		}
 
 		public function filter_readme_upgrade_notices( $upgrade_notices, $ext ) {
+
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
 
 			$wpssoum =& WpssoUm::get_instance();
 
@@ -126,6 +151,10 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 		public function filter_newer_version_available( $newer_avail, $ext, $installed_version, $stable_version, $latest_version ) {
 
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+
 			if ( $newer_avail ) {
 				return $newer_avail;
 			}
@@ -142,6 +171,10 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		}
 
 		public function filter_option_type( $type, $base_key ) {
+
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
 
 			if ( ! empty( $type ) ) {
 				return $type;
@@ -168,6 +201,10 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		}
 
 		public function filter_status_std_features( $features, $ext, $info ) {
+
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
 
 			$features[ '(api) Update Check Schedule' ] = array( 
 				'status' => SucomUpdate::is_enabled() ? 'on' : 'off'

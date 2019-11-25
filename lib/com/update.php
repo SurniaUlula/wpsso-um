@@ -136,9 +136,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 					return;
 				}
-			}
 
-			delete_transient( $cache_id );
+			} else {
+				delete_transient( $cache_id );
+			}
 
 			self::$upd_config = array();	// Init a new config array.
 
@@ -181,7 +182,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				/**
 				 * Saved as the 'installed_version' value.
 				 */
-				$ext_version = $this->get_ext_version( $ext, $read_cache = false );
+				$ext_version = $this->get_ext_version( $ext );	// Uses a local cache.
 
 				if ( false === $ext_version ) {
 
