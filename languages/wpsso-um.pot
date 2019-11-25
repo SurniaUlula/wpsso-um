@@ -12,18 +12,18 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: lib/com/update.php:226 lib/com/update.php:925 lib/gettext-com.php:6
+#: lib/com/update.php:226 lib/com/update.php:932 lib/gettext-com.php:6
 #: lib/gettext-com.php:18
 msgid ""
 "An inconsistency was found in the %1$s update server information &mdash;"
 msgstr ""
 
-#: lib/com/update.php:229 lib/com/update.php:928 lib/gettext-com.php:7
+#: lib/com/update.php:229 lib/com/update.php:935 lib/gettext-com.php:7
 #: lib/gettext-com.php:19
 msgid "Update checks for %1$s are disabled while this inconsistency persists."
 msgstr ""
 
-#: lib/com/update.php:233 lib/com/update.php:932 lib/gettext-com.php:8
+#: lib/com/update.php:233 lib/com/update.php:939 lib/gettext-com.php:8
 #: lib/gettext-com.php:20
 msgid ""
 "You may <a href=\"%1$s\">open a new support ticket</a> if you believe this "
@@ -71,25 +71,25 @@ msgstr ""
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:942 lib/gettext-com.php:21
+#: lib/com/update.php:949 lib/gettext-com.php:21
 msgid "the update server URL (%1$s) does not appear to be a valid URL."
 msgstr ""
 
-#: lib/com/update.php:975 lib/gettext-com.php:22
+#: lib/com/update.php:982 lib/gettext-com.php:22
 msgid ""
 "the IPv4 address (%1$s) from the local host does not match the DNS IPv4 "
 "address (%2$s)."
 msgstr ""
 
-#: lib/com/update.php:1064 lib/gettext-com.php:23
+#: lib/com/update.php:1071 lib/gettext-com.php:23
 msgid "Update error from the WordPress wp_remote_get() function: %s"
 msgstr ""
 
-#: lib/com/update.php:1115 lib/gettext-com.php:24
+#: lib/com/update.php:1122 lib/gettext-com.php:24
 msgid "The WordPress %1$s function returned HTTP %2$d (%3$s) for %4$s."
 msgstr ""
 
-#: lib/com/update.php:1204 lib/gettext-com.php:25
+#: lib/com/update.php:1211 lib/gettext-com.php:25
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."

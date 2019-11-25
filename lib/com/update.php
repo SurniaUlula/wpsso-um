@@ -772,6 +772,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				} elseif ( version_compare( self::$upd_config[ $ext ][ 'installed_version' ], $update_data->update->version, '<' ) ) {
 
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( $ext . ' plugin: installed version is older than update version (' .
+							self::$upd_config[ $ext ][ 'installed_version' ] . ' vs ' . $update_data->update->version . ')' );
+						$this->p->debug->log( $ext . ' plugin: calling method/function backtrace 4', 4 );
+						$this->p->debug->log( $ext . ' plugin: calling method/function backtrace 5', 5 );
+					}
+
 					/**
 					 * Update the static cache.
 					 */
@@ -786,7 +793,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				} else {
 
 					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $ext . ' plugin: installed version is current (or newer) than update version' );
+						$this->p->debug->log( $ext . ' plugin: installed version is current or newer than update version' );
 						$this->p->debug->log( $ext . ' plugin: calling method/function backtrace 4', 4 );
 						$this->p->debug->log( $ext . ' plugin: calling method/function backtrace 5', 5 );
 					}

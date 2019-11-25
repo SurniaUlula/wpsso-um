@@ -45,6 +45,8 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 		public function filter_save_options( $opts, $options_name, $network, $doing_upgrade ) {
 
+			$wpssoum =& WpssoUm::get_instance();
+
 			$have_auth_changes = false;
 
 			/**
@@ -75,14 +77,8 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 			if ( $have_auth_changes ) {
 
-				$wpssoum =& WpssoUm::get_instance();
-
 				$wpssoum->update->check_all_for_updates( $quiet = true, $throttle = false );
-
-			} elseif ( $doing_upgrade ) {
-
-				$wpssoum =& WpssoUm::get_instance();
-
+			} else {
 				$wpssoum->update->refresh_upd_config();
 			}
 
