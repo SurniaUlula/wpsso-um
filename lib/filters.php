@@ -51,9 +51,9 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 			$wpssoum =& WpssoUm::get_instance();
 
-			$change_action = array(
-				'check_for_updates'  => false,
+			$save_action = array(
 				'refresh_upd_config' => false,
+				'check_for_updates'  => false,
 			);
 
 			/**
@@ -62,14 +62,14 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
 				foreach ( array(
+					'plugin_' . $ext . '_version'                   => 'refresh_upd_config',
 					'plugin_' . $ext . '_' . $info[ 'update_auth' ] => 'check_for_updates',
 					'update_filter_for_' . $ext                     => 'check_for_updates',
-					'plugin_' . $ext . '_version'                   => 'refresh_upd_config',
 				) as $opt_key => $action_name ) {
 
 					if ( isset( $opts[ $opt_key ] ) ) {
 
-						if ( ! isset( $this->p->options[ $opt_key ] ) || $opts[ $opt_key ] !== $this->p->options[ $opt_key ] ) {
+						if ( ! isset( $this->p->options[ $opt_key ] ) || $this->p->options[ $opt_key ] !== $opts[ $opt_key ] ) {
 
 							/**
 							 * Update the current options array for SucomUpdate->get_ext_auth_id() and
@@ -77,19 +77,33 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 							 */
 							$this->p->options[ $opt_key ] = $opts[ $opt_key ];
 
-							$change_action[ $action_name ] = true;
+							$save_action[ $action_name ] = true;
 						}
 					}
 				}
 			}
 
-			if ( $change_action[ 'check_for_updates' ] ) {
+			if ( $save_action[ 'refresh_upd_config' ] ) {
+
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( 'refreshing the update manager config' );
+				}
+
+				$wpssoum->update->refresh_upd_config();
+
+			} elseif ( $save_action[ 'check_for_updates' ] ) {
+
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( 'checking all plugins for updates' );
+				}
 
 				$wpssoum->update->check_all_for_updates( $quiet = true, $throttle = false );
 
-			} elseif ( $change_action[ 'refresh_upd_config' ] ) {
+			} else {
 
-				$wpssoum->update->refresh_upd_config();
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( 'no save action required' );
+				}
 			}
 
 			return $opts;
