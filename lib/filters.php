@@ -51,21 +51,15 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 			$wpssoum =& WpssoUm::get_instance();
 
-			$save_action = array(
-				'refresh_upd_config' => false,
-				'check_for_updates'  => false,
-			);
-
 			/**
 			 * Check all add-ons for any Authentication ID or Update Version Filter changes.
 			 */
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
 				foreach ( array(
-					'plugin_' . $ext . '_version'                   => 'refresh_upd_config',
-					'plugin_' . $ext . '_' . $info[ 'update_auth' ] => 'check_for_updates',
-					'update_filter_for_' . $ext                     => 'check_for_updates',
-				) as $opt_key => $action_name ) {
+					'plugin_' . $ext . '_' . $info[ 'update_auth' ],
+					'update_filter_for_' . $ext,
+				) as $opt_key ) {
 
 					if ( isset( $opts[ $opt_key ] ) ) {
 
@@ -77,21 +71,13 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 							 */
 							$this->p->options[ $opt_key ] = $opts[ $opt_key ];
 
-							$save_action[ $action_name ] = true;
+							$check_for_updates = true;
 						}
 					}
 				}
 			}
 
-			if ( $save_action[ 'refresh_upd_config' ] ) {
-
-				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'refreshing the update manager config' );
-				}
-
-				$wpssoum->update->refresh_upd_config();
-
-			} elseif ( $save_action[ 'check_for_updates' ] ) {
+			if ( $check_for_updates ) {
 
 				if ( $this->p->debug->enabled ) {
 					$this->p->debug->log( 'checking all plugins for updates' );
@@ -102,8 +88,10 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			} else {
 
 				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'no save action required' );
+					$this->p->debug->log( 'refreshing the update manager config' );
 				}
+
+				$wpssoum->update->refresh_upd_config();
 			}
 
 			return $opts;
