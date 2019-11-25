@@ -10,7 +10,7 @@ Tags: wpsso, update, manager, schedule, add-on, pro version
 Contributors: jsmoriss
 Requires At Least: 3.9
 Tested Up To: 5.3
-Stable Tag: 2.6.1
+Stable Tag: 2.6.2
 
 Update manager for the WPSSO Core Premium plugin and its complementary Premium add-ons.
 
@@ -58,14 +58,14 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.6.1 (2019/11/25)**
+**Version 2.6.2 (2019/11/25)**
 
 * **New Features**
 	* None.
 * **Improvements**
 	* Added a refresh of the update manager configuration when saving plugin settings (not just when upgrading the plugin settings).
 * **Bugfixes**
-	* None.
+	* Fixed the installation of updates in the WordPress Plugins page by rolling back some ajax specific code optimization that was too aggressive.
 * **Developer Notes**
 
 **Version 2.6.0 (2019/11/23)**
@@ -96,7 +96,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
-= 2.6.1 =
+= 2.6.2 =
 
-(2019/11/25) Added a refresh of the update manager configuration when saving plugin settings (not just when upgrading the plugin settings).
+(2019/11/25) Fixed the installation of updates in the WordPress Plugins page by rolling back some ajax specific code optimization that was too aggressive.
 
