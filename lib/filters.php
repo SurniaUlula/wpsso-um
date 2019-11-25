@@ -51,6 +51,8 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 			$wpssoum =& WpssoUm::get_instance();
 
+			$check_for_updates = false;
+
 			/**
 			 * Check all add-ons for any Authentication ID or Update Version Filter changes.
 			 */
