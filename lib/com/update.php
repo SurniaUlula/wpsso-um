@@ -136,10 +136,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 					return;
 				}
-
-			} else {
-				delete_transient( $cache_id );
 			}
+
+			delete_transient( $cache_id );
 
 			self::$upd_config = array();	// Init a new config array.
 
@@ -906,6 +905,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				 * Check static cache first, then check the transient cache.
 				 */
 				if ( isset( self::$upd_config[ $ext ][ 'plugin_data' ]->plugin ) ) {
+
 					$plugin_data = self::$upd_config[ $ext ][ 'plugin_data' ];
 				} else {
 					$plugin_data = self::$upd_config[ $ext ][ 'plugin_data' ] = get_transient( $cache_id );
