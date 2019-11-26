@@ -810,7 +810,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			if ( isset( self::$upd_config[ $ext ][ 'response' ] ) &&
 				false !== self::$upd_config[ $ext ][ 'response' ] ) {	// False when installed version is current.
 
-				$update_data =& self::$upd_config[ $ext ][ 'response' ];	// Shortcut.
+				$update_data =& self::$upd_config[ $ext ][ 'response' ];	// Shortcut variable name.
 
 				if ( isset( $update_data->plugin ) ) {				// Example: wpsso/wpsso.php
 
@@ -1441,7 +1441,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				return false;
 			}
 
-			$upd_info = self::$upd_config[ $ext ];	// Shortcut.
+			$upd_info = self::$upd_config[ $ext ];	// Shortcut variable name.
 
 			if ( ! isset( $upd_info[ 'installed_version' ] ) ) {
 				return false;
