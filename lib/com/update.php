@@ -1341,7 +1341,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 		public function get_ext_filter_name( $ext ) {
 
-			if ( ! empty( $this->p->options[ 'update_filter_for_' . $ext] ) ) {
+			if ( ! empty( $this->p->options[ 'update_filter_for_' . $ext ] ) ) {
 
 				$filter_name = $this->p->options[ 'update_filter_for_' . $ext ];
 
