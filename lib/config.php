@@ -29,7 +29,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					'req'         => array(
 						'short'       => 'WPSSO Core',
 						'name'        => 'WPSSO Core',
-						'min_version' => '4.16.0',	// Released on 2018/10/13.
+						'min_version' => '4.17.0',	// Released on 2018/11/30.
 						'rec_version' => '6.13.2',
 					),
 					'assets' => array(
@@ -52,7 +52,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					),
 				),
 			),
-			'opt' => array(				// options
+			'opt' => array(
 				'defaults' => array(
 					'update_check_hours' => 24,
 				),
