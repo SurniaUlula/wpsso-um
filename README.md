@@ -4,8 +4,9 @@
 <tr><th align="right" valign="top" nowrap>Plugin Name</th><td>WPSSO Update Manager</td></tr>
 <tr><th align="right" valign="top" nowrap>Summary</th><td>Update manager for the WPSSO Core Premium plugin and its complementary Premium add-ons.</td></tr>
 <tr><th align="right" valign="top" nowrap>Stable Version</th><td>2.6.2</td></tr>
-<tr><th align="right" valign="top" nowrap>Requires At Least</th><td>WordPress 3.9</td></tr>
-<tr><th align="right" valign="top" nowrap>Tested Up To</th><td>WordPress 5.3</td></tr>
+<tr><th align="right" valign="top" nowrap>Requires PHP</th><td>5.5 or newer</td></tr>
+<tr><th align="right" valign="top" nowrap>Requires WordPress</th><td>3.9 or newer</td></tr>
+<tr><th align="right" valign="top" nowrap>Tested Up To WordPress</th><td>5.3</td></tr>
 <tr><th align="right" valign="top" nowrap>Contributors</th><td>jsmoriss</td></tr>
 <tr><th align="right" valign="top" nowrap>License</th><td><a href="https://www.gnu.org/licenses/gpl.txt">GPLv3</a></td></tr>
 <tr><th align="right" valign="top" nowrap>Tags / Keywords</th><td>wpsso, update, manager, schedule, add-on, pro version</td></tr>
