@@ -40,7 +40,7 @@ msgid ""
 msgstr ""
 
 #: lib/com/update.php:294 lib/gettext-com.php:11
-#: lib/sitesubmenu/site-um-general.php:107 lib/submenu/um-general.php:92
+#: lib/sitesubmenu/site-um-general.php:107 lib/submenu/um-general.php:99
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
@@ -107,7 +107,7 @@ msgid ""
 "Premium add-ons."
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:40 lib/submenu/um-general.php:42
+#: lib/sitesubmenu/site-um-general.php:40 lib/submenu/um-general.php:49
 msgctxt "submit button"
 msgid "Check for Updates"
 msgstr ""
@@ -117,12 +117,12 @@ msgctxt "metabox title"
 msgid "Network Update Manager"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:102 lib/submenu/um-general.php:88
+#: lib/sitesubmenu/site-um-general.php:102 lib/submenu/um-general.php:95
 msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr ""
 
-#: lib/submenu/um-general.php:57
+#: lib/submenu/um-general.php:64
 msgctxt "metabox title"
 msgid "Update Manager"
 msgstr ""

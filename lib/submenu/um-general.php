@@ -35,9 +35,16 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 
 			switch ( $menu_id ) {
 
+				case 'um-general':
+
+					if ( isset( $form_button_rows[ 0 ] ) ) {
+						$form_button_rows[ 0 ] = SucomUtil::preg_grep_keys( '/^change_show_options/', $form_button_rows[ 0 ], $invert = true );
+					}
+
+					// No Break.
+
 				case 'sso-tools':
 				case 'tools':
-				case 'um-general':
 
 					$form_button_rows[ 0 ][ 'check_for_updates' ] = _x( 'Check for Updates', 'submit button', 'wpsso-um' );
 
