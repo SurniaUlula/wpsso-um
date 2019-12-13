@@ -706,7 +706,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( isset( self::$upd_config[ $ext ][ 'response' ] ) ) {
 
 					/**
-					 * Remove existing update information to make sure it is correct (not from wordpress.org).
+					 * Remove existing update information to make sure it is correct.
 					 */
 					if ( isset( $updates->response[ $upd_info[ 'base' ] ] ) ) {	// Avoid a "modify non-object" error.
 						unset( $updates->response[ $upd_info[ 'base' ] ] );	// Example: wpsso/wpsso.php.
@@ -731,7 +731,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				self::$upd_config[ $ext ][ 'response' ] = false;	// Default value.
 
 				/**
-				 * We may have update information from wp.org - check to see if we can use it.
+				 * Check to see if we can use the update information from wp.org (ie. for free / standard plugins
+				 * hosted on wp.org, and using the stable version filter).
 				 */
 				if ( isset( $updates->response[ $upd_info[ 'base' ] ] ) ) {
 
@@ -746,7 +747,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					}
 
 					/**
-					 * Prevent any update information from wp.org from sticking.
+					 * Remove existing update information to make sure it is correct.
 					 */
 					unset( $updates->response[ $upd_info[ 'base' ] ] );	// Example: wpsso/wpsso.php.
 				}
