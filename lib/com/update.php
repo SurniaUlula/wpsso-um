@@ -716,7 +716,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					 * only provide update information when an update is required.
 					 */
 					if ( false !== self::$upd_config[ $ext ][ 'response' ] ) {	// False when installed version is current.
-
 						$updates = $this->update_response_data( $updates, $ext );
 					}
 
@@ -731,16 +730,25 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				self::$upd_config[ $ext ][ 'response' ] = false;	// Default value.
 
-				if ( self::prefer_wp_org_update( $ext ) ) {
+				/**
+				 * We may have update information from wp.org - check to see if we can use it.
+				 */
+				if ( isset( $updates->response[ $upd_info[ 'base' ] ] ) ) {
 
-					/**
-					 * Seed the static cache.
-					 */
-					if ( isset( $updates->response[ $upd_info[ 'base' ] ] ) ) {
+					if ( self::prefer_wp_org_update( $ext ) ) {
+
+						/**
+						 * Seed the static cache.
+						 */
 						self::$upd_config[ $ext ][ 'response' ] = $updates->response[ $upd_info[ 'base' ] ];
+
+						continue;	// Get the next plugin from the config.
 					}
 
-					continue;
+					/**
+					 * Prevent any update information from wp.org from sticking.
+					 */
+					unset( $updates->response[ $upd_info[ 'base' ] ] );	// Example: wpsso/wpsso.php.
 				}
 
 				if ( ! self::is_installed( $ext ) ) {
