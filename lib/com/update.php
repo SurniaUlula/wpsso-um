@@ -424,7 +424,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		/**
 		 * Since WPSSO UM v1.7.0.
 		 *
-		 * Called by both the scheduled cron job and manual update checki buttons. This method is throttled and will only
+		 * Called by both the scheduled cron job and manual update check buttons. This method is throttled and will only
 		 * execute once every 3 minutes.
 		 *
 		 * When $quiet is false the following notices may be shown:
