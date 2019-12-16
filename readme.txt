@@ -59,6 +59,21 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 2.6.3-dev.1 (2019/12/16)**
+
+* **New Features**
+	* None.
+* **Improvements**
+	* None.
+* **Bugfixes**
+	* None.
+* **Developer Notes**
+	* Updated the `SucomUpdate->maybe_add_plugin_update()` method to prevent wp.org update information from falling-through (for rare cases where the wp.org version is newer than the update server information).
+* **Requires At Least**
+	* PHP v5.5.
+	* WordPress v3.9.
+	* WPSSO Core v4.17.0.
+
 **Version 2.6.2 (2019/11/25)**
 
 * **New Features**
@@ -68,6 +83,11 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **Bugfixes**
 	* Fixed the installation of updates in the WordPress Plugins page by rolling back some ajax specific code optimization that was too aggressive.
 * **Developer Notes**
+	* None.
+* **Requires At Least**
+	* PHP v5.5.
+	* WordPress v3.9.
+	* WPSSO Core v4.17.0.
 
 **Version 2.6.0 (2019/11/23)**
 
@@ -80,6 +100,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **Developer Notes**
 	* Moved the detection of Authentication ID changes (and subsequent update check) from the WPSSO Core plugin.
 	* Updated `WpssoUmRegister->activate_plugin()` for the new WpssoUtilReg class in WPSSO Core v6.13.1.
+* **Requires At Least**
+	* PHP v5.5.
+	* WordPress v3.9.
+	* WPSSO Core v4.17.0.
 
 **Version 2.5.0 (2019/11/19)**
 
@@ -94,9 +118,17 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **Developer Notes**
 	* Optimized caching true/false method arguments for manual and automated (ie. cron) update checks.
 	* Optimized the plugin installed version checks to re-use existing plugin data instead of calling a function.
+* **Requires At Least**
+	* PHP v5.5.
+	* WordPress v3.9.
+	* WPSSO Core v4.17.0.
 
 == Upgrade Notice ==
  
+= 2.6.3-dev.1 =
+
+(2019/12/16) Updated an SucomUpdate class method to prevent wp.org update information from falling-through.
+
 = 2.6.2 =
 
 (2019/11/25) Fixed the installation of updates in the WordPress Plugins page by rolling back some ajax specific code optimization that was too aggressive.
