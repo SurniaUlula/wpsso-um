@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.6.3-dev.1 (2019/12/16)**
+**Version 2.6.3-b.1 (2019/12/18)**
 
 * **New Features**
 	* None.
@@ -125,9 +125,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
-= 2.6.3-dev.1 =
+= 2.6.3-b.1 =
 
-(2019/12/16) Updated an SucomUpdate class method to prevent wp.org update information from falling-through.
+(2019/12/18) Updated an SucomUpdate class method to prevent wp.org update information from falling-through.
 
 = 2.6.2 =
 
