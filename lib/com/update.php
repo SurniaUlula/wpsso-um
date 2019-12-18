@@ -76,7 +76,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				/**
 				 * Support the "Check Again" feature on the WordPress Dashboard > Updates page.
 				 */
-				if ( strpos( $_SERVER[ 'REQUEST_URI' ], '/update-core.php?force-check=1' ) ) {
+				$user_id = get_current_user_id();
+
+				if ( $user_id && strpos( $_SERVER[ 'REQUEST_URI' ], '/update-core.php?force-check=1' ) ) {
 					$this->manual_update_check();
 				} else {
 					$this->set_upd_config();
