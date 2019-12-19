@@ -441,7 +441,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			/**
-			 * Throttle non-caching executions to one per minute.
+			 * Throttle non-caching executions to one per 3 minutes.
 			 */
 			$throttle_mins = 3;
 
