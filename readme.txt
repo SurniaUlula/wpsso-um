@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.6.3-b.3 (2019/12/20)**
+**Version 2.6.3 (2019/12/21)**
 
 * **New Features**
 	* None.
@@ -104,7 +104,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **Requires At Least**
 	* PHP v5.5.
 	* WordPress v3.9.
-	* WPSSO Core v4.17.0.
+	* WPSSO Core v4.16.0.
 
 **Version 2.5.0 (2019/11/19)**
 
@@ -122,15 +122,11 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **Requires At Least**
 	* PHP v5.5.
 	* WordPress v3.9.
-	* WPSSO Core v4.17.0.
+	* WPSSO Core v4.16.0.
 
 == Upgrade Notice ==
  
-= 2.6.3-b.3 =
+= 2.6.3 =
 
-(2019/12/20) Updated an SucomUpdate class method to prevent wp.org update information from falling-through.
-
-= 2.6.2 =
-
-(2019/11/25) Fixed the installation of updates in the WordPress Plugins page by rolling back some ajax specific code optimization that was too aggressive.
+(2019/12/21) Updated an SucomUpdate class method to prevent wp.org update information from falling-through.
 
