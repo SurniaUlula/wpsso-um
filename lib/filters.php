@@ -17,6 +17,17 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 		public function __construct( &$plugin ) {
 
+			/**
+			 * Just in case - prevent filters from being hooked and executed more than once.
+			 */
+			static $do_once = null;
+
+			if ( true === $do_once ) {
+				return;	// Stop here.
+			}
+
+			$do_once = true;
+
 			$this->p =& $plugin;
 
 			if ( $this->p->debug->enabled ) {
@@ -24,6 +35,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			}
 
 			$this->p->util->add_plugin_filters( $this, array( 
+				'option_type'       => 2,	// Define the value type for each option.
 				'save_options'      => 4,
 				'get_defaults'      => 1,	// Option defaults.
 				'get_site_defaults' => 1,	// Site option defaults.
@@ -34,13 +46,42 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				$this->p->util->add_plugin_filters( $this, array( 
 					'readme_upgrade_notices'  => 2, 
 					'newer_version_available' => 5, 
-					'option_type'             => 2,	// Define the value type for each option.
 				) );
 
 				$this->p->util->add_plugin_filters( $this, array( 
 					'status_std_features' => 3,
 				), $prio = 10, $ext = 'wpssoum' );
 			}
+		}
+
+		public function filter_option_type( $type, $base_key ) {
+
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+
+			if ( ! empty( $type ) ) {
+				return $type;
+			} elseif ( strpos( $base_key, 'update_' ) !== 0 ) {
+				return $type;
+			}
+
+			switch ( $base_key ) {
+
+				case 'update_check_hours':
+
+					return 'pos_int';
+
+					break;
+
+				case ( strpos( $base_key, 'update_filter_for_' ) === 0 ? true : false ):
+
+					return 'not_blank';
+
+					break;
+			}
+
+			return $type;
 		}
 
 		public function filter_save_options( $opts, $options_name, $network, $doing_upgrade ) {
@@ -170,36 +211,6 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			}
 
 			return $newer_avail;
-		}
-
-		public function filter_option_type( $type, $base_key ) {
-
-			if ( $this->p->debug->enabled ) {
-				$this->p->debug->mark();
-			}
-
-			if ( ! empty( $type ) ) {
-				return $type;
-			} elseif ( strpos( $base_key, 'update_' ) !== 0 ) {
-				return $type;
-			}
-
-			switch ( $base_key ) {
-
-				case 'update_check_hours':
-
-					return 'pos_int';
-
-					break;
-
-				case ( strpos( $base_key, 'update_filter_for_' ) === 0 ? true : false ):
-
-					return 'not_blank';
-
-					break;
-			}
-
-			return $type;
 		}
 
 		public function filter_status_std_features( $features, $ext, $info ) {
