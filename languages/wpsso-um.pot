@@ -75,21 +75,30 @@ msgstr ""
 msgid "the update server URL (%1$s) does not appear to be a valid URL."
 msgstr ""
 
-#: lib/com/update.php:996 lib/gettext-com.php:22
+#: lib/com/update.php:999 lib/gettext-com.php:22
+msgid ""
+"the <a href=\"%1$s\">PHP %2$s function</a> did not return an IPv4 address."
+msgstr ""
+
+#: lib/com/update.php:1003 lib/gettext-com.php:23
+msgid "Please contact your hosting provider to have this PHP function fixed."
+msgstr ""
+
+#: lib/com/update.php:1007 lib/gettext-com.php:24
 msgid ""
 "the IPv4 address (%1$s) from the local host does not match the DNS IPv4 "
 "address (%2$s)."
 msgstr ""
 
-#: lib/com/update.php:1085 lib/gettext-com.php:23
-msgid "Update error from the WordPress wp_remote_get() function: %s"
+#: lib/com/update.php:1098 lib/gettext-com.php:25
+msgid "Update error from the WordPress %1$s function: %2$s"
 msgstr ""
 
-#: lib/com/update.php:1136 lib/gettext-com.php:24
+#: lib/com/update.php:1149 lib/gettext-com.php:26
 msgid "The WordPress %1$s function returned HTTP %2$d (%3$s) for %4$s."
 msgstr ""
 
-#: lib/com/update.php:1227 lib/gettext-com.php:25
+#: lib/com/update.php:1240 lib/gettext-com.php:27
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."

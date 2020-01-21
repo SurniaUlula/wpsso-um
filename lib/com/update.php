@@ -992,10 +992,23 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			if ( $host_cache[ $json_host ][ 'ip' ] !== $host_cache[ $json_host ][ 'a' ] ) {
 
-				$error_msg = $inconsistency_msg . ' ' .
-					sprintf( __( 'the IPv4 address (%1$s) from the local host does not match the DNS IPv4 address (%2$s).',
-						$this->text_domain ), $host_cache[ $json_host ][ 'ip' ], $host_cache[ $json_host ][ 'a' ] ) . ' ' .
-						$update_disabled_msg;
+				$error_msg = $inconsistency_msg . ' ';
+
+				if ( 'FAILURE' === $host_cache[ $json_host ][ 'ip' ] ) {
+
+					$error_msg .= sprintf( __( 'the <a href="%1$s">PHP %2$s function</a> did not return an IPv4 address.',
+						$this->text_domain ), 'https://www.php.net/manual/en/function.gethostbyname.php',
+							'gethostbyname()', $host_cache[ $json_host ][ 'ip' ] ) . ' ';
+
+					$error_msg .= __( 'Please contact your hosting provider to have this PHP function fixed.', $this->text_domain ) . ' ';
+
+				} else {
+
+					$error_msg .= sprintf( __( 'the IPv4 address (%1$s) from the local host does not match the DNS IPv4 address (%2$s).',
+							$this->text_domain ), $host_cache[ $json_host ][ 'ip' ], $host_cache[ $json_host ][ 'a' ] ) . ' ';
+				}
+
+				$error_msg .= $update_disabled_msg;
 
 				self::set_umsg( $ext, 'err', $error_msg );
 
@@ -1082,8 +1095,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$this->p->debug->log( $ext . ' plugin: wp error code ' . $request->get_error_code() . ' - ' . $request->get_error_message() );
 				}
 
-				$this->p->notice->err( sprintf( __( 'Update error from the WordPress wp_remote_get() function: %s',
-					$this->text_domain ), $request->get_error_message() ) );
+				$this->p->notice->err( sprintf( __( 'Update error from the WordPress %1$s function: %2$s',
+					$this->text_domain ), 'wp_remote_get()', $request->get_error_message() ) );
 
 			} elseif ( isset( $request[ 'response' ][ 'code' ] ) ) {
 			
