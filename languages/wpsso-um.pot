@@ -81,24 +81,24 @@ msgid ""
 msgstr ""
 
 #: lib/com/update.php:1003 lib/gettext-com.php:23
-msgid "Please contact your hosting provider to have this PHP function fixed."
+msgid "Please contact your hosting provider to have this PHP issue fixed."
 msgstr ""
 
-#: lib/com/update.php:1007 lib/gettext-com.php:24
+#: lib/com/update.php:1008 lib/gettext-com.php:24
 msgid ""
 "the IPv4 address (%1$s) from the local host does not match the DNS IPv4 "
 "address (%2$s)."
 msgstr ""
 
-#: lib/com/update.php:1098 lib/gettext-com.php:25
+#: lib/com/update.php:1099 lib/gettext-com.php:25
 msgid "Update error from the WordPress %1$s function: %2$s"
 msgstr ""
 
-#: lib/com/update.php:1149 lib/gettext-com.php:26
+#: lib/com/update.php:1150 lib/gettext-com.php:26
 msgid "The WordPress %1$s function returned HTTP %2$d (%3$s) for %4$s."
 msgstr ""
 
-#: lib/com/update.php:1240 lib/gettext-com.php:27
+#: lib/com/update.php:1241 lib/gettext-com.php:27
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."

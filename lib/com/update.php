@@ -979,7 +979,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$host_cache[ $json_host ][ 'ip' ] = gethostbyname( $json_host ); // Returns an IPv4 address, or the hostname on failure.
 
 				if ( $host_cache[ $json_host ][ 'ip' ] === $json_host ) {
-					$host_cache[ $json_host ][ 'ip' ] = 'FAILURE';
+					$host_cache[ $json_host ][ 'ip' ] = 'ERROR';
 				}
 			}
 
@@ -994,13 +994,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				$error_msg = $inconsistency_msg . ' ';
 
-				if ( 'FAILURE' === $host_cache[ $json_host ][ 'ip' ] ) {
+				if ( 'ERROR' === $host_cache[ $json_host ][ 'ip' ] ) {
 
 					$error_msg .= sprintf( __( 'the <a href="%1$s">PHP %2$s function</a> did not return an IPv4 address.',
 						$this->text_domain ), 'https://www.php.net/manual/en/function.gethostbyname.php',
 							'gethostbyname()', $host_cache[ $json_host ][ 'ip' ] ) . ' ';
 
-					$error_msg .= __( 'Please contact your hosting provider to have this PHP function fixed.', $this->text_domain ) . ' ';
+					$error_msg .= __( 'Please contact your hosting provider to have this PHP issue fixed.',
+						$this->text_domain ) . ' ';
 
 				} else {
 
