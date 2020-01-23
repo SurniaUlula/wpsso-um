@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 2.6.3\n"
+"Project-Id-Version: WPSSO Update Manager 2.6.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2020-01-21 09:23-0800\n"
-"PO-Revision-Date: 2020-01-21 09:24-0800\n"
+"POT-Creation-Date: 2020-01-23 13:15-0800\n"
+"PO-Revision-Date: 2020-01-23 13:15-0800\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -72,27 +72,27 @@ msgstr "Erreur lors de l'enregistrement des informations de mises à jour pour %
 msgid "the update server URL (%1$s) does not appear to be a valid URL."
 msgstr "l'URL du serveur de mise à jour (%1$s) ne semble pas être une URL valide."
 
-#: lib/com/update.php:999 lib/gettext-com.php:22
+#: lib/com/update.php:1008 lib/gettext-com.php:22
 msgid "the <a href=\"%1$s\">PHP %2$s function</a> did not return an IPv4 address."
 msgstr "la fonction <a href=\"%1$s\">PHP %2$s</a> n'a pas retourné une adresse IPv4."
 
-#: lib/com/update.php:1003 lib/gettext-com.php:23
+#: lib/com/update.php:1011 lib/gettext-com.php:23
 msgid "Please contact your hosting provider to have this PHP issue fixed."
 msgstr "SVP contacter votre hébergeur pour résoudre ce problème PHP."
 
-#: lib/com/update.php:1008 lib/gettext-com.php:24
+#: lib/com/update.php:1016 lib/gettext-com.php:24
 msgid "the IPv4 address (%1$s) from the local host does not match the DNS IPv4 address (%2$s)."
 msgstr "l'adresse IPv4 (%1$s) fournie par le serveur local ne correspond pas à l'adresse IPv4 du DNS (%2$s)."
 
-#: lib/com/update.php:1099 lib/gettext-com.php:25
+#: lib/com/update.php:1107 lib/gettext-com.php:25
 msgid "Update error from the WordPress %1$s function: %2$s"
 msgstr "Erreur de mises à jour de la fonction WordPress %1$s: %2$s"
 
-#: lib/com/update.php:1150 lib/gettext-com.php:26
+#: lib/com/update.php:1159 lib/gettext-com.php:26
 msgid "The WordPress %1$s function returned HTTP %2$d (%3$s) for %4$s."
 msgstr "La fonction WordPress %1$s a retourné HTTP %2$d (%3$s) pour %4$s."
 
-#: lib/com/update.php:1241 lib/gettext-com.php:27
+#: lib/com/update.php:1250 lib/gettext-com.php:27
 msgid "The %1$s plugin (%2$s) version number is missing from the WordPress plugins array."
 msgstr "Le numéro de version de l'extension %1$s (%2$s) est absente de la liste d'extensions de WordPress."
 
