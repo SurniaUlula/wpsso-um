@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires PHP: 5.5
 Requires At Least: 4.0
 Tested Up To: 5.3.2
-Stable Tag: 2.6.3
+Stable Tag: 2.6.4
 
 Update manager for the WPSSO Core Premium plugin and its complementary Premium add-ons.
 
@@ -58,6 +58,21 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * [GitHub](https://surniaulula.github.io/wpsso-um/)
 
 <h3>Changelog / Release Notes</h3>
+
+**Version 2.6.4 (2020/01/23)**
+
+* **New Features**
+	* None.
+* **Improvements**
+	* Added a more detailed error message when the PHP gethostbyname() or dns_get_record() functions return an error.
+* **Bugfixes**
+	* None.
+* **Developer Notes**
+	* None.
+* **Requires At Least**
+	* PHP v5.5.
+	* WordPress v4.0.
+	* WPSSO Core v4.17.0.
 
 **Version 2.6.3 (2019/12/21)**
 
@@ -126,7 +141,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
-= 2.6.3 =
+= 2.6.4 =
 
-(2019/12/21) Updated an SucomUpdate class method to prevent wp.org update information from falling-through.
+(2020/01/23) Added a more detailed error message when the PHP gethostbyname() or dns_get_record() functions return an error.
 
