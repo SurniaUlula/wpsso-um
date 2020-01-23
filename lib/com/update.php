@@ -987,18 +987,26 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				$dns_rec = dns_get_record( $json_host . '.', DNS_A ); // Returns an array of associative arrays.
 
-				$host_cache[ $json_host ][ 'a' ] = empty( $dns_rec[ 0 ][ 'ip' ] ) ? false : $dns_rec[ 0 ][ 'ip' ];
+				$host_cache[ $json_host ][ 'a' ] = empty( $dns_rec[ 0 ][ 'ip' ] ) ? 'ERROR' : $dns_rec[ 0 ][ 'ip' ];
 			}
 
-			if ( $host_cache[ $json_host ][ 'ip' ] !== $host_cache[ $json_host ][ 'a' ] ) {
+			if ( 'ERROR' === $host_cache[ $json_host ][ 'ip' ] || 'ERROR' === $host_cache[ $json_host ][ 'a' ] ||
+				$host_cache[ $json_host ][ 'ip' ] !== $host_cache[ $json_host ][ 'a' ] ) {
 
 				$error_msg = $inconsistency_msg . ' ';
 
-				if ( 'ERROR' === $host_cache[ $json_host ][ 'ip' ] ) {
+				if ( 'ERROR' === $host_cache[ $json_host ][ 'ip' ] || 'ERROR' === $host_cache[ $json_host ][ 'a' ] ) {
+
+					if ( 'ERROR' === $host_cache[ $json_host ][ 'ip' ] ) {
+						$func_name = 'gethostbyname()';
+						$func_url  = 'https://www.php.net/manual/en/function.gethostbyname.php';
+					} else {
+						$func_name = 'dns_get_record()';
+						$func_url  = 'https://www.php.net/manual/en/function.dns-get-record.php';
+					}
 
 					$error_msg .= sprintf( __( 'the <a href="%1$s">PHP %2$s function</a> did not return an IPv4 address.',
-						$this->text_domain ), 'https://www.php.net/manual/en/function.gethostbyname.php',
-							'gethostbyname()', $host_cache[ $json_host ][ 'ip' ] ) . ' ';
+						$this->text_domain ), $func_url, $func_name ) . ' ';
 
 					$error_msg .= __( 'Please contact your hosting provider to have this PHP issue fixed.',
 						$this->text_domain ) . ' ';
@@ -1113,6 +1121,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						 * Add or remove existing response messages.
 						 */
 						foreach ( array( 'err', 'inf' ) as $type ) {
+
 							self::set_umsg( $ext, $type, ( empty( $payload[ 'api_response' ][ $type ] ) ?
 								null : $payload[ 'api_response' ][ $type ] ) );
 						}
@@ -1519,7 +1528,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			if ( isset( self::$upd_config[ $ext ][ 'u' . $type ] ) ) {
 
 				$val = self::$upd_config[ $ext ][ 'u' . $type ];
+
 			} else {
+
 				$val = SucomUpdateUtilWP::raw_do_option( 'get', $opt_name, $def );
 
 				if ( is_string( $val ) ) {

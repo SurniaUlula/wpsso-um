@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Update Manager package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 2.6.3\n"
+"Project-Id-Version: WPSSO Update Manager 2.6.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2020-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -75,30 +75,30 @@ msgstr ""
 msgid "the update server URL (%1$s) does not appear to be a valid URL."
 msgstr ""
 
-#: lib/com/update.php:999 lib/gettext-com.php:22
+#: lib/com/update.php:1008 lib/gettext-com.php:22
 msgid ""
 "the <a href=\"%1$s\">PHP %2$s function</a> did not return an IPv4 address."
 msgstr ""
 
-#: lib/com/update.php:1003 lib/gettext-com.php:23
+#: lib/com/update.php:1011 lib/gettext-com.php:23
 msgid "Please contact your hosting provider to have this PHP issue fixed."
 msgstr ""
 
-#: lib/com/update.php:1008 lib/gettext-com.php:24
+#: lib/com/update.php:1016 lib/gettext-com.php:24
 msgid ""
 "the IPv4 address (%1$s) from the local host does not match the DNS IPv4 "
 "address (%2$s)."
 msgstr ""
 
-#: lib/com/update.php:1099 lib/gettext-com.php:25
+#: lib/com/update.php:1107 lib/gettext-com.php:25
 msgid "Update error from the WordPress %1$s function: %2$s"
 msgstr ""
 
-#: lib/com/update.php:1150 lib/gettext-com.php:26
+#: lib/com/update.php:1159 lib/gettext-com.php:26
 msgid "The WordPress %1$s function returned HTTP %2$d (%3$s) for %4$s."
 msgstr ""
 
-#: lib/com/update.php:1241 lib/gettext-com.php:27
+#: lib/com/update.php:1250 lib/gettext-com.php:27
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."
