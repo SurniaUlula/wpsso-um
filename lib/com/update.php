@@ -158,7 +158,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					unset( $info[ 'url' ] );
 				}
 
-				if ( $ext_auth_type !== 'none' && empty( $ext_auth_id ) ) {
+				if ( 'none' !== $ext_auth_type && empty( $ext_auth_id ) ) {
 
 					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( $ext . ' plugin: skipped - auth type without id' );
