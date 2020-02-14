@@ -289,12 +289,18 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				if ( ! $quiet && $user_id ) {
 
-					$notice_key   = 'non-stable-update-version-filters-selected';
+					$um_metabox_title = _x( 'Update Version Filters', 'metabox title', $this->text_domain );
+
+					$um_general_page_link = $this->p->util->get_admin_url( 'um-general', $metabox_title );
+
+					$notice_msg = sprintf( __( 'Please note that one or more non-stable / development %s have been selected.',
+						$this->text_domain ), $um_general_page_link );
+
+					$notice_key = 'non-stable-update-version-filters-selected';
+
 					$dismiss_time = MONTH_IN_SECONDS;
 
-					$this->p->notice->warn( sprintf( __( 'Please note that one or more non-stable / development %s have been selected.',
-						$this->text_domain ), $this->p->util->get_admin_url( 'um-general', _x( 'Update Version Filters',
-							'metabox title', $this->text_domain ) ) ), $user_id, $notice_key, $dismiss_time );
+					$this->p->notice->warn( $notice_msg, $user_id, $notice_key, $dismiss_time );
 				}
 			}
 
@@ -456,11 +462,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				if ( ! $quiet && $user_id ) {
 
+					$notice_msg = __( 'Update manager cache refresh denied.', $this->text_domain ) . ' ';
+
+					$notice_msg .= __( 'Please wait a few minutes before trying to force another update cache refresh.', $this->text_domain );
+
 					$notice_key = __FUNCTION__ . '_throttling';
 
-					$this->p->notice->warn( __( 'Update manager cache refresh denied.', $this->text_domain ) . ' ' .
-						__( 'Please wait a few minutes before trying to force another update cache refresh.', $this->text_domain ),
-							$user_id, $notice_key );
+					$this->p->notice->warn( $notice_msg, $user_id, $notice_key );
 				}
 
 				return;

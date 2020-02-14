@@ -7,8 +7,8 @@ __( 'An inconsistency was found in the %1$s update server information &mdash;', 
 __( 'Update checks for %1$s are disabled while this inconsistency persists.', 'wpsso-um' );
 __( 'You may <a href="%1$s">open a new support ticket</a> if you believe this error message is incorrect.', 'wpsso-um' );
 __( 'invalid authentication URL (%1$s).', 'wpsso-um' );
-__( 'Please note that one or more non-stable / development %s have been selected.', 'wpsso-um' );
 _x( 'Update Version Filters', 'metabox title', 'wpsso-um' );
+__( 'Please note that one or more non-stable / development %s have been selected.', 'wpsso-um' );
 __( 'Update manager cache refresh denied.', 'wpsso-um' );
 __( 'Please wait a few minutes before trying to force another update cache refresh.', 'wpsso-um' );
 __( 'No plugins defined for updates.', 'wpsso-um' );
