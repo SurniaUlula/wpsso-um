@@ -3,7 +3,7 @@
 <table>
 <tr><th align="right" valign="top" nowrap>Plugin Name</th><td>WPSSO Update Manager</td></tr>
 <tr><th align="right" valign="top" nowrap>Summary</th><td>Update manager for the WPSSO Core Premium plugin and its complementary Premium add-ons.</td></tr>
-<tr><th align="right" valign="top" nowrap>Stable Version</th><td>2.6.4</td></tr>
+<tr><th align="right" valign="top" nowrap>Stable Version</th><td>2.6.5</td></tr>
 <tr><th align="right" valign="top" nowrap>Requires PHP</th><td>5.5 or newer</td></tr>
 <tr><th align="right" valign="top" nowrap>Requires WordPress</th><td>4.0 or newer</td></tr>
 <tr><th align="right" valign="top" nowrap>Tested Up To WordPress</th><td>5.3.2</td></tr>
