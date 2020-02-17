@@ -291,7 +291,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 					$um_metabox_title = _x( 'Update Version Filters', 'metabox title', $this->text_domain );
 
-					$um_general_page_link = $this->p->util->get_admin_url( 'um-general', $metabox_title );
+					$um_general_page_link = $this->p->util->get_admin_url( 'um-general', $um_metabox_title );
 
 					$notice_msg = sprintf( __( 'Please note that one or more non-stable / development %s have been selected.',
 						$this->text_domain ), $um_general_page_link );
