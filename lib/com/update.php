@@ -60,31 +60,36 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			if ( isset( $this->p->lca ) ) {
+
 				$this->plugin_lca = $this->p->lca;
-			} elseif ( isset( $this->p->cf[ 'lca' ] ) ) {
-				$this->plugin_lca = $this->p->cf[ 'lca' ];
-			}
 
-			if ( ! empty( $this->plugin_lca ) && ! empty( $this->p->cf[ 'plugin' ] ) ) {	// Quick sanity check.
+				if ( isset( $this->p->cf[ 'plugin' ][ $this->plugin_lca ][ 'slug' ] ) ) {	// Just in case.
 
-				$this->plugin_slug = $this->p->cf[ 'plugin' ][ $this->plugin_lca ][ 'slug' ];	// Example: wpsso.
-				$this->text_domain = $text_domain;						// Example: wpsso-um.
-				$this->cron_hook   = $this->plugin_lca . '_update_manager_check';		// Example: wpsso_update_manager_check.
-				$this->sched_hours = $check_hours < 12 ? 12 : $check_hours;			// Example: 12 (12 hours minimum).
-				$this->sched_name  = 'every' . $this->sched_hours . 'hours';			// Example: every24hours.
+					$this->plugin_slug = $this->p->cf[ 'plugin' ][ $this->plugin_lca ][ 'slug' ];	// Example: wpsso.
+					$this->text_domain = $text_domain;						// Example: wpsso-um.
+					$this->cron_hook   = $this->plugin_lca . '_update_manager_check';		// Example: wpsso_update_manager_check.
+					$this->sched_hours = $check_hours < 12 ? 12 : $check_hours;			// Example: 12 (12 hours minimum).
+					$this->sched_name  = 'every' . $this->sched_hours . 'hours';			// Example: every24hours.
 
-				/**
-				 * Support the "Check Again" feature on the WordPress Dashboard > Updates page.
-				 */
-				$user_id = get_current_user_id();
+					/**
+					 * Support the "Check Again" feature on the WordPress Dashboard > Updates page.
+					 */
+					$user_id = get_current_user_id();
 
-				if ( $user_id && strpos( $_SERVER[ 'REQUEST_URI' ], '/update-core.php?force-check=1' ) ) {
-					$this->manual_update_check();
-				} else {
-					$this->set_upd_config();
+					if ( $user_id && strpos( $_SERVER[ 'REQUEST_URI' ], '/update-core.php?force-check=1' ) ) {
+						$this->manual_update_check();
+					} else {
+						$this->set_upd_config();
+					}
+
+					$this->add_wp_hooks();	// Private method.
+
+				} elseif ( $this->p->debug->enabled ) {
+					$this->p->debug->log( 'config plugin slug not found' );
 				}
 
-				$this->add_wp_hooks();	// Private method.
+			} elseif ( $this->p->debug->enabled ) {
+				$this->p->debug->log( 'plugin lca property not defined' );
 			}
 
 			if ( $this->p->debug->enabled ) {
@@ -605,13 +610,15 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 		}
 	
-		private function check_pp_compat( $ext = '', $li = true, $rv = true, $rc = true ) {
+		private function check_pp( $ext = '', $li = true, $rv = true, $rc = true ) {
 
-			if ( method_exists( $this->p->check, 'pp' ) ) {
-				return $this->p->check->pp( $ext, $li, $rv, $rc );
-			} else {
-				return $this->p->check->aop( $ext, $li, $rv, $rc );	// Deprecated on 2018/08/27.
+			if ( isset( $this->p->check ) ) {
+				if ( method_exists( $this->p->check, 'pp' ) ) {
+					return $this->p->check->pp( $ext, $li, $rv, $rc );
+				}
 			}
+
+			return false;
 		}
 
 		public function allow_update_package( $is_allowed, $ip, $url ) {
@@ -917,8 +924,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			global $wp_version;
 
-			$ext_pdir    = $this->check_pp_compat( $ext, $li = false );
-			$ext_pp      = self::$upd_config[ $ext ][ 'auth_id' ] && $this->check_pp_compat( $ext, $li = true, WPSSO_UNDEF ) === WPSSO_UNDEF ? true : false;
+			$ext_pdir    = $this->check_pp( $ext, $li = false );
+			$ext_pp      = self::$upd_config[ $ext ][ 'auth_id' ] && $this->check_pp( $ext, $li = true, WPSSO_UNDEF ) === WPSSO_UNDEF ? true : false;
 			$ext_stat    = ( $ext_pp ? 'L' : ( $ext_pdir ? 'U' : 'S' ) ) . ( self::$upd_config[ $ext ][ 'auth_id' ] ? '*' : '' );
 
 			if ( $read_cache ) {
@@ -1135,8 +1142,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						}
 	
 						if ( empty( $request[ 'headers' ][ 'x-error-msg' ] ) && 
-							empty( $request[ 'headers' ][ 'x-update-error' ] ) && 
-								empty( $request[ 'headers' ][ 'x-smp-error' ] ) ) {	// Deprecated on 2018/06/03.
+							empty( $request[ 'headers' ][ 'x-update-error' ] ) ) {
 		
 							self::$upd_config[ $ext ][ 'uerr' ] = false;
 	
@@ -1318,7 +1324,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$this->p->debug->log( $ext . ' plugin: auth type is defined' );
 					}
 
-					if ( $this->check_pp_compat( $ext, $li = false ) ) {
+					if ( $this->check_pp( $ext, $li = false ) ) {
 
 						if ( empty( $ext_auth_id ) ) {	// pdir without an auth_id.
 
