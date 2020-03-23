@@ -181,6 +181,9 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			$this->update  = new SucomUpdate( $this->p, $this->check_hours, $info[ 'text_domain' ] );
 		}
 
+		/**
+		 * All WPSSO objects are instantiated and configured.
+		 */
 		public function wpsso_init_plugin() {
 
 			if ( $this->p->debug->enabled ) {
@@ -189,7 +192,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 			if ( ! $this->have_min_version ) {
 
-				$this->min_version_notice();
+				$this->min_version_notice();	// Show minimum version notice.
 
 				return;	// Stop here.
 			}
