@@ -14,7 +14,7 @@
  * Requires PHP: 5.6
  * Requires At Least: 4.0
  * Tested Up To: 5.4
- * Version: 2.6.5
+ * Version: 2.7.0
  * 
  * Version Numbering: {major}.{minor}.{bugfix}[-{stage}.{level}]
  *
@@ -195,62 +195,6 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 				$this->min_version_notice();	// Show minimum version notice.
 
 				return;	// Stop here.
-			}
-
-			$cache_md5_pre  = $this->p->lca . '_';
-			$cache_salt     = __METHOD__ . '_cron_check';
-			$cache_exp_secs = DAY_IN_SECONDS;
-			$cache_id       = $cache_md5_pre . md5( $cache_salt );
-
-			/**
-			 * Check if the WordPress cron is operating correctly. Run once per day - if the transient does not exist,
-			 * or has expired, then get_transient() will return false.
-			 */
-			if ( ! get_transient( $cache_id ) ) {
-
-				$check_required = false;
-
-				foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
-
-					/**
-					 * The plugin must be installed to check for updates.
-					 */
-					if ( ! SucomUpdate::is_installed( $ext ) ) {
-						continue;
-					}
-
-					$last_check_time = SucomUpdate::get_umsg( $ext, 'time' ); 	// Get the last update check timestamp.
-
-					if ( empty( $last_check_time ) ) {
-
-						$check_required = true;
-
-						break;	// Stop here.
-
-					} else {
-
-						$current_time    = time();
-						$next_sched_time = $last_check_time + ( $this->check_hours * HOUR_IN_SECONDS ); // Estimate the next scheduled check.
-						$next_plus_day   = $next_sched_time + DAY_IN_SECONDS;
-						$last_plus_week  = $last_check_time + WEEK_IN_SECONDS;
-
-						/**
-						 * Force an update check if more than 1 day overdue or more than 1 week ago.
-						 */
-						if ( $next_plus_day < $current_time || $last_plus_week < $current_time ) {
-	
-							$check_required = true;
-	
-							break;
-						}
-					}
-				}
-
-				if ( $check_required ) {
-					$this->update->quiet_update_check();
-				}
-
-				set_transient( $cache_id, time(), $cache_exp_secs );
 			}
 		}
 
