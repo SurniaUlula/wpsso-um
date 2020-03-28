@@ -69,6 +69,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* None.
 * **Developer Notes**
 	* Removed daily check for properly functioning cron job.
+	* Changed update check throttling from 3 mins to 5 mins.
 * **Requires At Least**
 	* PHP v5.6.
 	* WordPress v4.0.
