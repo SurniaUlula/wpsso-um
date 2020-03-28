@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires PHP: 5.6
 Requires At Least: 4.0
 Tested Up To: 5.4
-Stable Tag: 2.6.5
+Stable Tag: 2.7.0
 
 Update manager for the WPSSO Core Premium plugin and its complementary Premium add-ons.
 
@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.6.5 (2020/02/17)**
+**Version 2.7.0 (2020/03/28)**
 
 * **New Features**
 	* None.
@@ -68,15 +68,15 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **Bugfixes**
 	* None.
 * **Developer Notes**
-	* None.
+	* Removed daily check for properly functioning cron job.
 * **Requires At Least**
 	* PHP v5.6.
 	* WordPress v4.0.
-	* WPSSO Core v4.22.0.
+	* WPSSO Core v4.25.0.
 
 == Upgrade Notice ==
  
-= 2.6.5 =
+= 2.7.0 =
 
-(2020/01/23) Update for minimum and recommended WPSSO Core versions.
+(2020/03/28) Update for minimum and recommended WPSSO Core versions.
 
