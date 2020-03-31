@@ -30,7 +30,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 						'short'       => 'WPSSO Core',
 						'name'        => 'WPSSO Core',
 						'min_version' => '4.25.0',	// Required minimum version (released on 2018/03/12).
-						'rec_version' => '6.26.1',	// Recommended minimum version.
+						'rec_version' => '6.27.0',	// Recommended minimum version.
 					),
 					'assets' => array(
 						'icons' => array(
