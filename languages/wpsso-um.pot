@@ -46,12 +46,12 @@ msgid ""
 msgstr ""
 
 #: lib/com/update.php:468 lib/gettext-com.php:12
-msgid "Update manager cache refresh denied."
+msgid "Update manager cache refresh ignored."
 msgstr ""
 
 #: lib/com/update.php:470 lib/gettext-com.php:13
 msgid ""
-"Please wait a few minutes before trying to force another update cache "
+"Please wait a few more minutes before requesting another update cache "
 "refresh."
 msgstr ""
 
