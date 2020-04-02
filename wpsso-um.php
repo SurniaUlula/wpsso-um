@@ -65,6 +65,9 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 			$this->reg = new WpssoUmRegister();		// Activate, deactivate, uninstall hooks.
 
+			/**
+			 * Check for required plugins and show notices.
+			 */
 			add_action( 'all_admin_notices', array( __CLASS__, 'show_required_notices' ) );
 
 			/**
@@ -90,6 +93,9 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			return self::$instance;
 		}
 
+		/**
+		 * Check for required plugins and show notices.
+		 */
 		public static function show_required_notices() {
 
 			$info = WpssoUmConfig::$cf[ 'plugin' ][ 'wpssoum' ];
@@ -112,10 +118,10 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 				self::wpsso_init_textdomain();	// If not already loaded, load the textdomain now.
 
-				$error_msg = __( 'The %1$s add-on requires the %2$s plugin &mdash; install and activate the plugin or <a href="%3$s">deactivate this add-on</a>.', 'wpsso-am' );
+				$notice_msg = __( 'The %1$s add-on requires the %2$s plugin &mdash; install and activate the plugin or <a href="%3$s">deactivate this add-on</a>.', 'wpsso-um' );
 
 				echo '<div class="notice notice-error error"><p>';
-				echo sprintf( $error_msg, $info[ 'name' ], $req_info[ 'name' ], $deactivate_url );
+				echo sprintf( $notice_msg, $info[ 'name' ], $req_info[ 'name' ], $deactivate_url );
 				echo '</p></div>';
 			}
 		}
@@ -219,11 +225,11 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 			$req_info = $info[ 'req' ][ 'wpsso' ];
 
-			$error_msg = sprintf( __( 'The %1$s version %2$s add-on requires %3$s version %4$s or newer (version %5$s is currently installed).',
+			$notice_msg = sprintf( __( 'The %1$s version %2$s add-on requires %3$s version %4$s or newer (version %5$s is currently installed).',
 				'wpsso-um' ), $info[ 'name' ], $info[ 'version' ], $req_info[ 'name' ], $req_info[ 'min_version' ],
 					$this->p->cf[ 'plugin' ][ 'wpsso' ][ 'version' ] );
 
-			$this->p->notice->err( $error_msg );
+			$this->p->notice->err( $notice_msg );
 
 			if ( method_exists( $this->p->admin, 'get_check_for_updates_link' ) ) {
 
