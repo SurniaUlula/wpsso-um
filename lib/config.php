@@ -16,7 +16,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		public static $cf = array(
 			'plugin' => array(
 				'wpssoum' => array(			// Plugin acronym.
-					'version'     => '2.7.0',	// Plugin version.
+					'version'     => '2.8.0-dev.1',	// Plugin version.
 					'opt_version' => '4',		// Increment when changing default option values.
 					'short'       => 'WPSSO UM',	// Short plugin name.
 					'name'        => 'WPSSO Update Manager',
@@ -26,18 +26,31 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					'update_auth' => '',		// No premium version.
 					'text_domain' => 'wpsso-um',
 					'domain_path' => '/languages',
-					'req'         => array(
-						'short'       => 'WPSSO Core',
-						'name'        => 'WPSSO Core',
-						'min_version' => '4.25.0',	// Required minimum version (released on 2018/03/12).
-						'rec_version' => '6.27.1',	// Recommended minimum version.
+
+					/**
+					 * Required plugin and its version.
+					 */
+					'req' => array(
+						'wpsso' => array(
+							'class'       => 'Wpsso',
+							'name'        => 'WPSSO Core',
+							'min_version' => '4.25.0',	// Required minimum version (released on 2018/03/12).
+						),
 					),
+
+					/**
+					 * Relative paths to asset images.
+					 */
 					'assets' => array(
 						'icons' => array(
 							'low'  => 'images/icon-128x128.png',
 							'high' => 'images/icon-256x256.png',
 						),
 					),
+
+					/**
+					 * Library files loaded and instantiated by WPSSO.
+					 */
 					'lib' => array(
 						'pro' => array(
 						),
@@ -52,6 +65,10 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					),
 				),
 			),
+
+			/**
+			 * Additional add-on setting options.
+			 */
 			'opt' => array(
 				'defaults' => array(
 					'update_check_hours' => 24,
