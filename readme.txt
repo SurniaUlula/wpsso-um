@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.8.0-dev.1 (2020/04/02)**
+**Version 2.8.0-dev.2 (2020/04/03)**
 
 * **New Features**
 	* None.
@@ -92,9 +92,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
-= 2.8.0-dev.1 =
+= 2.8.0-dev.2 =
 
-(2020/04/02) Refactored WPSSO Core active and minimum version dependency checks.
+(2020/04/03) Refactored WPSSO Core active and minimum version dependency checks.
 
 = 2.7.0 =
 
