@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPSSO Update Manager 2.8.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2020-04-03 11:31-0700\n"
-"PO-Revision-Date: 2020-04-03 11:31-0700\n"
+"POT-Creation-Date: 2020-04-05 15:52-0700\n"
+"PO-Revision-Date: 2020-04-05 15:52-0700\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -103,7 +103,7 @@ msgstr "Mises à jour"
 
 #: lib/gettext-config.php:8
 msgctxt "plugin description"
-msgid "Update manager for the WPSSO Core Premium plugin and its complementary Premium add-ons."
+msgid "Update Manager for the WPSSO Core Premium Plugin and its Premium Complementary Add-ons."
 msgstr "Gestionnaire de mise à jour pour l'extension WPSSO Core Premium et ses ajouts complémentaires Premium."
 
 #: lib/sitesubmenu/site-um-general.php:40 lib/submenu/um-general.php:49
@@ -143,7 +143,7 @@ msgid "https://wpsso.com/extend/plugins/wpsso-um/"
 msgstr "https://wpsso.com/extend/plugins/wpsso-um/"
 
 #. Description of the plugin/theme
-msgid "Update manager for the WPSSO Core Premium plugin and its complementary Premium add-ons."
+msgid "Update Manager for the WPSSO Core Premium Plugin and its Premium Complementary Add-ons."
 msgstr "Gestionnaire de mise à jour pour l'extension WPSSO Core Premium et ses ajouts complémentaires Premium."
 
 #. Author of the plugin/theme
