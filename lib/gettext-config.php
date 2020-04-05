@@ -5,4 +5,4 @@
  */
 _x( 'Update Manager', 'lib file description', 'wpsso-um' );
 _x( 'Update Manager', 'lib file description', 'wpsso-um' );
-_x( 'Update manager for the WPSSO Core Premium plugin and its complementary Premium add-ons.', 'plugin description', 'wpsso-um' );
+_x( 'Update Manager for the WPSSO Core Premium Plugin and its Premium Complementary Add-ons.', 'plugin description', 'wpsso-um' );
