@@ -162,6 +162,9 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		}
 
 		/**
+		 * The 'wpsso_init_options' action is run after the $check, $avail, $debug, $notice, $cache, $util, and $opt
+		 * properties are defined.
+		 *
 		 * Sets the $this->p reference variable for the core plugin instance.
 		 */
 		public function wpsso_init_options() {
