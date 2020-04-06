@@ -74,12 +74,12 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			 * Add WPSSO filter hooks.
 			 */
 			add_filter( 'wpsso_get_config', array( $this, 'wpsso_get_config' ), 10, 2 );	// Checks core version and merges config array.
+			add_filter( 'wpsso_get_avail', array( $this, 'wpsso_get_avail' ), 10, 1 );
 
 			/**
 			 * Add WPSSO action hooks.
 			 */
 			add_action( 'wpsso_init_textdomain', array( __CLASS__, 'wpsso_init_textdomain' ) );
-			add_action( 'wpsso_init_options', array( $this, 'wpsso_init_options' ), 10 );	// Sets the $this->p reference variable.
 			add_action( 'wpsso_init_objects', array( $this, 'wpsso_init_objects' ), 10 );
 			add_action( 'wpsso_init_plugin', array( $this, 'wpsso_init_plugin' ), -100 );
 		}
@@ -162,30 +162,25 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		}
 
 		/**
-		 * The 'wpsso_init_options' action is run after the $check, $avail, $debug, $notice, $cache, $util, and $opt
-		 * properties are defined.
-		 *
-		 * Sets the $this->p reference variable for the core plugin instance.
+		 * The 'wpsso_get_avail' filter is run after the $check property is defined.
 		 */
-		public function wpsso_init_options() {
-
-			$this->p =& Wpsso::get_instance();
-
-			if ( $this->p->debug->enabled ) {
-				$this->p->debug->mark();
-			}
+		public function wpsso_get_avail( $avail ) {
 
 			if ( ! $this->have_min_version ) {
 
-				$this->p->avail[ 'p_ext' ][ 'um' ] = false;	// Signal that this extension / add-on is not available.
+				$avail[ 'p_ext' ][ 'um' ] = false;	// Signal that this extension / add-on is not available.
 
-				return;
+				return $avail;
 			}
 
-			$this->p->avail[ 'p_ext' ][ 'um' ] = true;		// Signal that this extension / add-on is available.
+			$avail[ 'p_ext' ][ 'um' ] = true;		// Signal that this extension / add-on is available.
+
+			return $avail;
 		}
 
 		public function wpsso_init_objects() {
+
+			$this->p =& Wpsso::get_instance();
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
