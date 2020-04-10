@@ -59,6 +59,21 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 2.9.0-dev.1 (TBD)**
+
+* **New Features**
+	* None.
+* **Improvements**
+	* Added a "Cron Schedule" and "Version Filters" tabs to the SSO &gt; Update Manager settings page.
+* **Bugfixes**
+	* None.
+* **Developer Notes**
+	* None.
+* **Requires At Least**
+	* PHP v5.6.
+	* WordPress v4.2.
+	* WPSSO Core v4.25.0.
+
 **Version 2.8.0 (2020/04/06)**
 
 * **New Features**
