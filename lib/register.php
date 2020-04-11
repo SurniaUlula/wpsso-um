@@ -154,12 +154,19 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 				foreach ( array(
 					'wpsso'      => 'wpsso',
 					'wpssoam'    => 'wpsso-am',
+					'wpssobc'    => 'wpsso-breadcrumbs',
+					'wpssofaq'   => 'wpsso-faq',
+					'wpssoipm'   => 'wpsso-inherit-parent-meta',
 					'wpssojson'  => 'wpsso-schema-json-ld',
 					'wpssoorg'   => 'wpsso-organization',
 					'wpssoplm'   => 'wpsso-plm',
+					'wpssorar'   => 'wpsso-ratings-and-reviews',
+					'wpssorest'  => 'wpsso-rest-api',
 					'wpssorrssb' => 'wpsso-rrssb',
-					'wpssossb'   => 'wpsso-ssb',
+					'wpssossm'   => 'wpsso-strip-schema-microdata',
+					'wpssotaq'   => 'wpsso-tweet-a-quote',
 					'wpssotie'   => 'wpsso-tune-image-editors',
+					'wpssoul'    => 'wpsso-user-locale',
 					'wpssoum'    => 'wpsso-um',
 				) as $ext => $slug ) {
 
