@@ -133,7 +133,7 @@ msgstr ""
 
 #: lib/submenu/um-general.php:64
 msgctxt "metabox title"
-msgid "Update Manager"
+msgid "Update Manager Settings"
 msgstr ""
 
 #: lib/submenu/um-general.php:83

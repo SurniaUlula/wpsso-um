@@ -61,7 +61,7 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 		protected function add_meta_boxes() {
 
 			$metabox_id      = 'general';
-			$metabox_title   = _x( 'Update Manager', 'metabox title', 'wpsso-um' );
+			$metabox_title   = _x( 'Update Manager Settings', 'metabox title', 'wpsso-um' );
 			$metabox_screen  = $this->pagehook;
 			$metabox_context = 'normal';
 			$metabox_prio    = 'default';
