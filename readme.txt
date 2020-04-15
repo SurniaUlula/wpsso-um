@@ -59,12 +59,12 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.9.0-dev.2 (TBD)**
+**Version 2.9.0-dev.3 (2020/04/15)**
 
 * **New Features**
 	* None.
 * **Improvements**
-	* Added a "Cron Schedule" and "Version Filters" tabs to the SSO &gt; Update Manager settings page.
+	* Added a new "Cron Schedule" and "Version Filters" tab to the SSO &gt; Update Manager settings page.
 * **Bugfixes**
 	* None.
 * **Developer Notes**
@@ -72,7 +72,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **Requires At Least**
 	* PHP v5.6.
 	* WordPress v4.2.
-	* WPSSO Core v4.25.0.
+	* WPSSO Core v4.26.0.
 
 **Version 2.8.0 (2020/04/06)**
 
@@ -107,6 +107,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
+= 2.9.0-dev.3 =
+
+(2020/04/15) Added a new "Cron Schedule" and "Version Filters" tab to the SSO &gt; Update Manager settings page.
+
 = 2.8.0 =
 
 (2020/04/06) Updated "Requires At Least" to WordPress v4.2. Refactored WPSSO Core active and minimum version dependency checks.
