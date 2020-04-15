@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.9.0-dev.3 (2020/04/15)**
+**Version 2.9.0-dev.4 (2020/04/15)**
 
 * **New Features**
 	* None.
@@ -107,7 +107,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
-= 2.9.0-dev.3 =
+= 2.9.0-dev.4 =
 
 (2020/04/15) Added a new "Cron Schedule" and "Version Filters" tab to the SSO &gt; Update Manager settings page.
 
