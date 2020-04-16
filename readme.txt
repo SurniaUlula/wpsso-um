@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.9.0-dev.4 (2020/04/15)**
+**Version 2.9.0-b.1 (2020/04/16)**
 
 * **New Features**
 	* None.
@@ -107,9 +107,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
-= 2.9.0-dev.4 =
+= 2.9.0-b.1 =
 
-(2020/04/15) Added a new "Cron Schedule" and "Version Filters" tab to the SSO &gt; Update Manager settings page.
+(2020/04/16) Added a new "Cron Schedule" and "Version Filters" tab to the SSO &gt; Update Manager settings page.
 
 = 2.8.0 =
 
