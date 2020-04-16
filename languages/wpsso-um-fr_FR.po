@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 2.8.0\n"
+"Project-Id-Version: WPSSO Update Manager 2.9.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2020-04-05 15:52-0700\n"
-"PO-Revision-Date: 2020-04-05 15:52-0700\n"
+"POT-Creation-Date: 2020-04-16 07:08-0700\n"
+"PO-Revision-Date: 2020-04-16 07:13-0700\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -35,7 +35,7 @@ msgid "invalid authentication URL (%1$s)."
 msgstr "URL d'authentification non valide (%1$s)."
 
 #: lib/com/update.php:297 lib/gettext-com.php:10
-#: lib/sitesubmenu/site-um-general.php:107 lib/submenu/um-general.php:99
+#: lib/sitesubmenu/site-um-general.php:107
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr "Filtres de version pour mises à jour"
@@ -116,21 +116,31 @@ msgctxt "metabox title"
 msgid "Network Update Manager"
 msgstr "Gestion de mises à jour réseau"
 
-#: lib/sitesubmenu/site-um-general.php:102 lib/submenu/um-general.php:95
+#: lib/sitesubmenu/site-um-general.php:102 lib/submenu/um-general.php:113
 msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr "Actualiser info. de mises à jour"
 
 #: lib/submenu/um-general.php:64
 msgctxt "metabox title"
-msgid "Update Manager"
-msgstr "Gestion de mises à jour"
+msgid "Update Manager Settings"
+msgstr "Réglages du gestionnaire de mise à jour"
+
+#: lib/submenu/um-general.php:83
+msgctxt "metabox tab"
+msgid "Cron Schedule"
+msgstr "Horaire cron"
+
+#: lib/submenu/um-general.php:84
+msgctxt "metabox tab"
+msgid "Version Filters"
+msgstr "Filtres de version"
 
 #: wpsso-um.php:121
 msgid "The %1$s add-on requires the %2$s plugin &mdash; install and activate the plugin or <a href=\"%3$s\">deactivate this add-on</a>."
 msgstr "L'ajout %1$s requiert l'extension %2$s &mdash; installer et activer l'extension ou <a href=\"%3$s\">désactiver cet ajout</a>."
 
-#: wpsso-um.php:228
+#: wpsso-um.php:232
 msgid "The %1$s version %2$s add-on requires %3$s version %4$s or newer (version %5$s is currently installed)."
 msgstr "L'ajout %1$s version %2$s requiert %3$s version %4$s ou plus récente (version %5$s est actuellement installée)."
 
