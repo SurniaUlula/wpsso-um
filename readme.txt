@@ -59,12 +59,12 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.9.0-rc.1 (2020/04/16)**
+**Version 2.9.0 (2020/04/17)**
 
 * **New Features**
 	* None.
 * **Improvements**
-	* Added a new "Cron Schedule" and "Version Filters" tab to the SSO &gt; Update Manager settings page.
+	* Added new "Cron Schedule" and "Version Filters" tabs in the SSO &gt; Update Manager settings page.
 * **Bugfixes**
 	* None.
 * **Developer Notes**
@@ -107,9 +107,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
-= 2.9.0-rc.1 =
+= 2.9.0 =
 
-(2020/04/16) Added a new "Cron Schedule" and "Version Filters" tab to the SSO &gt; Update Manager settings page.
+(2020/04/17) Added new "Cron Schedule" and "Version Filters" tabs in the SSO &gt; Update Manager settings page.
 
 = 2.8.0 =
 
