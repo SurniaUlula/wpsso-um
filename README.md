@@ -32,8 +32,8 @@
 <h3 class="top">Install and Uninstall</h3>
 
 <ul>
-<li><a href="https://wpsso.com/docs/plugins/wpsso-um/installation/install-the-plugin/">Install the WPSSO UM Add-on</a></li>
-<li><a href="https://wpsso.com/docs/plugins/wpsso-um/installation/uninstall-the-plugin/">Uninstall the WPSSO UM Add-on</a></li>
+<li><a href="https://wpsso.com/docs/plugins/wpsso-um/installation/install-the-plugin/">Install the WPSSO Update Manager add-on</a>.</li>
+<li><a href="https://wpsso.com/docs/plugins/wpsso-um/installation/uninstall-the-plugin/">Uninstall the WPSSO Update Manager add-on</a>.</li>
 </ul>
 
 

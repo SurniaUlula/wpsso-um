@@ -33,8 +33,8 @@ WPSSO Update Manager (aka WPSSO UM) is an add-on for the [WPSSO Core plugin](htt
 
 <h3 class="top">Install and Uninstall</h3>
 
-* [Install the WPSSO UM Add-on](https://wpsso.com/docs/plugins/wpsso-um/installation/install-the-plugin/)
-* [Uninstall the WPSSO UM Add-on](https://wpsso.com/docs/plugins/wpsso-um/installation/uninstall-the-plugin/)
+* [Install the WPSSO Update Manager add-on](https://wpsso.com/docs/plugins/wpsso-um/installation/install-the-plugin/).
+* [Uninstall the WPSSO Update Manager add-on](https://wpsso.com/docs/plugins/wpsso-um/installation/uninstall-the-plugin/).
 
 == Frequently Asked Questions ==
 
