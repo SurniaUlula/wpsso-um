@@ -52,12 +52,8 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 					 * Library files loaded and instantiated by WPSSO.
 					 */
 					'lib' => array(
-						'pro' => array(
-						),
 						'sitesubmenu' => array(
 							'site-um-general' => 'Update Manager',
-						),
-						'std' => array(
 						),
 						'submenu' => array(
 							'um-general' => 'Update Manager',

@@ -51,7 +51,6 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 					break;
 			}
 
-
 			return $form_button_rows;
 		}
 

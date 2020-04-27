@@ -35,7 +35,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			}
 
 			$this->p->util->add_plugin_filters( $this, array( 
-				'option_type'       => 2,	// Define the value type for each option.
+				'option_type'       => 2,
 				'save_options'      => 4,
 				'get_defaults'      => 1,	// Option defaults.
 				'get_site_defaults' => 1,	// Site option defaults.
