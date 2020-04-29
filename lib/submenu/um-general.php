@@ -116,9 +116,11 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 
 				case 'um-general-filters':
 
-					$version_filter = $this->p->cf[ 'um' ][ 'version_filter' ];
+					$version_filters = $this->p->cf[ 'um' ][ 'version_filter' ];
 
-					foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
+					$ext_sorted = WpssoConfig::get_ext_sorted();	// Since WPSSO Core v3.38.3.
+
+					foreach ( $ext_sorted as $ext => $info ) {
 
 						if ( ! SucomUpdate::is_installed( $ext ) ) {
 							continue;
@@ -126,7 +128,7 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 
 						$table_rows[ 'update_filter_for_' . $ext ] = '' .
 						$this->form->get_th_html( $info[ 'name' ], '', 'update_version_filter' ) . 
-						'<td>' . $this->form->get_select( 'update_filter_for_' . $ext, $version_filter, 'update_filter', '', true ) . '</td>';
+						'<td>' . $this->form->get_select( 'update_filter_for_' . $ext, $version_filters, 'update_filter', '', true ) . '</td>';
 					}
 
 					break;
