@@ -64,7 +64,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **New Features**
 	* None.
 * **Improvements**
-	* Replaced the list of plugins under the SSO &gt; Update Manager &gt; Version Filters tab with a sorted list.
+	* Replaced the unsorted list of plugins under the SSO &gt; Update Manager &gt; Version Filters tab with a sorted list.
 * **Bugfixes**
 	* None.
 * **Developer Notes**
@@ -124,7 +124,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
  
 = 2.10.0-dev.7 =
 
-(2020/04/30) Replaced the list of plugins under the SSO &gt; Update Manager &gt; Version Filters tab with a sorted list.
+(2020/04/30) Replaced the unsorted list of plugins under the SSO &gt; Update Manager &gt; Version Filters tab with a sorted list.
 
 = 2.9.0 =
 
