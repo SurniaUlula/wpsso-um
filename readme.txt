@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.10.0-dev.7 (2020/04/30)**
+**Version 2.10.0-b.1 (2020/04/30)**
 
 * **New Features**
 	* None.
@@ -122,7 +122,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
-= 2.10.0-dev.7 =
+= 2.10.0-b.1 =
 
 (2020/04/30) Replaced the unsorted list of plugins under the SSO &gt; Update Manager &gt; Version Filters tab with a sorted list.
 
