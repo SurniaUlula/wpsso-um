@@ -10,7 +10,7 @@ Tags: wpsso, update, manager, schedule, add-on, pro version
 Contributors: jsmoriss
 Requires PHP: 5.6
 Requires At Least: 4.2
-Tested Up To: 5.4
+Tested Up To: 5.4.1
 Stable Tag: 2.9.0
 
 Update Manager for the WPSSO Core Premium Plugin and its Premium Complementary Add-ons.
@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.10.0-dev.4 (2020/04/29)**
+**Version 2.10.0-dev.5 (2020/04/29)**
 
 * **New Features**
 	* None.
@@ -122,7 +122,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
-= 2.10.0-dev.4 =
+= 2.10.0-dev.5 =
 
 (2020/04/29) Replaced the list of plugins under the SSO &gt; Update Manager &gt; Version Filters tab with a sorted list.
 
