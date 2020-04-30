@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WPSSO Pro Update Manager (WPSSO UM) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 2.9.0\n"
+"Project-Id-Version: WPSSO Update Manager 2.10.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2020-04-16 07:08-0700\n"
-"PO-Revision-Date: 2020-04-16 07:13-0700\n"
+"POT-Creation-Date: 2020-04-30 09:01-0700\n"
+"PO-Revision-Date: 2020-04-30 09:01-0700\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -116,22 +116,22 @@ msgctxt "metabox title"
 msgid "Network Update Manager"
 msgstr "Gestion de mises à jour réseau"
 
-#: lib/sitesubmenu/site-um-general.php:102 lib/submenu/um-general.php:113
+#: lib/sitesubmenu/site-um-general.php:102 lib/submenu/um-general.php:112
 msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr "Actualiser info. de mises à jour"
 
-#: lib/submenu/um-general.php:64
+#: lib/submenu/um-general.php:63
 msgctxt "metabox title"
 msgid "Update Manager Settings"
 msgstr "Réglages du gestionnaire de mise à jour"
 
-#: lib/submenu/um-general.php:83
+#: lib/submenu/um-general.php:82
 msgctxt "metabox tab"
 msgid "Cron Schedule"
 msgstr "Horaire cron"
 
-#: lib/submenu/um-general.php:84
+#: lib/submenu/um-general.php:83
 msgctxt "metabox tab"
 msgid "Version Filters"
 msgstr "Filtres de version"
