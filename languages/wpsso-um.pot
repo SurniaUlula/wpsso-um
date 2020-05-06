@@ -146,13 +146,13 @@ msgctxt "metabox tab"
 msgid "Version Filters"
 msgstr ""
 
-#: wpsso-um.php:121
+#: wpsso-um.php:115
 msgid ""
-"The %1$s add-on requires the %2$s plugin &mdash; install and activate the "
-"plugin or <a href=\"%3$s\">deactivate this add-on</a>."
+"The %1$s add-on requires the %2$s plugin &mdash; please install and activate "
+"the missing plugin."
 msgstr ""
 
-#: wpsso-um.php:232
+#: wpsso-um.php:268
 msgid ""
 "The %1$s version %2$s add-on requires %3$s version %4$s or newer (version "
 "%5$s is currently installed)."

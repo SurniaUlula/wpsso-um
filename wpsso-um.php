@@ -50,10 +50,14 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		/**
 		 * Reference Variables (config, options, modules, etc.).
 		 */
-		private $check_hours      = 24;
-		private $have_wpsso_min = true;	// Have WPSSO Core minimum version.
+		private $check_hours = 24;
 
-		private static $instance;
+		private $have_wpsso_min_version = true;	// Have WPSSO Core minimum version.
+
+		private static $ext      = 'wpssoum';
+		private static $p_ext    = 'um';
+		private static $info     = array();
+		private static $instance = null;
 
 		public function __construct() {
 
@@ -86,7 +90,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 		public static function &get_instance() {
 
-			if ( ! isset( self::$instance ) ) {
+			if ( null === self::$instance ) {
 				self::$instance = new self;
 			}
 
@@ -98,32 +102,64 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		 */
 		public static function show_required_notices() {
 
-			$info = WpssoUmConfig::$cf[ 'plugin' ][ 'wpssoum' ];
+			$missing_requirements = self::get_missing_requirements();	// Returns false or an array of missing requirements.
 
-			foreach ( $info[ 'req' ] as $ext => $req_info ) {
+			if ( ! $missing_requirements ) {
+				return;	// Stop here.
+			}
 
-				if ( isset( $req_info[ 'class' ] ) ) {	// Just in case.
+			self::wpsso_init_textdomain();	// If not already loaded, load the textdomain now.
+
+			$info = WpssoUmConfig::$cf[ 'plugin' ][ self::$ext ];
+
+			$notice_msg = __( 'The %1$s add-on requires the %2$s plugin &mdash; please install and activate the missing plugin.',
+				'wpsso-um' );
+
+			foreach ( $missing_requirements as $key => $req_info ) {
+
+				echo '<div class="notice notice-error error"><p>';
+
+				echo sprintf( $notice_msg, $info[ 'name' ], $req_info[ 'name' ] );
+
+				echo '</p></div>';
+			}
+		}
+
+		/**
+		 * Returns false or an array of the missing requirements (ie. 'wpsso', 'woocommerce', etc.).
+		 */
+		public static function get_missing_requirements() {
+
+			static $local_cache = null;
+
+			if ( null !== $local_cache ) {
+				return $local_cache;
+			}
+
+			$local_cache = array();
+
+			$info = WpssoUmConfig::$cf[ 'plugin' ][ self::$ext ];
+
+			foreach ( $info[ 'req' ] as $key => $req_info ) {
+
+				if ( isset( $req_info[ 'class' ] ) ) {
+
 					if ( class_exists( $req_info[ 'class' ] ) ) {
 						continue;	// Requirement satisfied.
 					}
-				} else continue;	// Nothing to check.
 
-				$deactivate_url = html_entity_decode( wp_nonce_url( add_query_arg( array(
-					'action'        => 'deactivate',
-					'plugin'        => $info[ 'base' ],
-					'plugin_status' => 'all',
-					'paged'         => 1,
-					's'             => '',
-				), admin_url( 'plugins.php' ) ), 'deactivate-plugin_' . $info[ 'base' ] ) );
+				} else {
+					continue;	// Nothing to check.
+				}
 
-				self::wpsso_init_textdomain();	// If not already loaded, load the textdomain now.
-
-				$notice_msg = __( 'The %1$s add-on requires the %2$s plugin &mdash; install and activate the plugin or <a href="%3$s">deactivate this add-on</a>.', 'wpsso-um' );
-
-				echo '<div class="notice notice-error error"><p>';
-				echo sprintf( $notice_msg, $info[ 'name' ], $req_info[ 'name' ], $deactivate_url );
-				echo '</p></div>';
+				$local_cache[ $key ] = $req_info;
 			}
+
+			if ( empty( $local_cache ) ) {
+				$local_cache = false;
+			}
+
+			return $local_cache;
 		}
 
 		/**
@@ -147,13 +183,13 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		 */
 		public function wpsso_get_config( $cf, $plugin_version = 0 ) {
 
-			$info = WpssoUmConfig::$cf[ 'plugin' ][ 'wpssoum' ];
+			$info = WpssoUmConfig::$cf[ 'plugin' ][ self::$ext ];
 
 			$req_info = $info[ 'req' ][ 'wpsso' ];
 
 			if ( version_compare( $plugin_version, $req_info[ 'min_version' ], '<' ) ) {
 
-				$this->have_wpsso_min = false;
+				$this->have_wpsso_min_version = false;
 
 				return $cf;
 			}
@@ -166,14 +202,14 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		 */
 		public function wpsso_get_avail( $avail ) {
 
-			if ( ! $this->have_wpsso_min ) {
+			if ( ! $this->have_wpsso_min_version ) {
 
-				$avail[ 'p_ext' ][ 'um' ] = false;	// Signal that this extension / add-on is not available.
+				$avail[ 'p_ext' ][ self::$p_ext ] = false;	// Signal that this extension / add-on is not available.
 
 				return $avail;
 			}
 
-			$avail[ 'p_ext' ][ 'um' ] = true;		// Signal that this extension / add-on is available.
+			$avail[ 'p_ext' ][ self::$p_ext ] = true;		// Signal that this extension / add-on is available.
 
 			return $avail;
 		}
@@ -186,16 +222,16 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 				$this->p->debug->mark();
 			}
 
-			if ( ! $this->have_wpsso_min ) {
+			if ( ! $this->have_wpsso_min_version ) {
 
 				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'exiting early: have_wpsso_min is false' );
+					$this->p->debug->log( 'exiting early: have_wpsso_min_version is false' );
 				}
 
 				return;	// Stop here.
 			}
 
-			$info = WpssoUmConfig::$cf[ 'plugin' ][ 'wpssoum' ];
+			$info = WpssoUmConfig::$cf[ 'plugin' ][ self::$ext ];
 
 			$this->check_hours = $this->get_update_check_hours();
 
@@ -213,7 +249,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 				$this->p->debug->mark();
 			}
 
-			if ( ! $this->have_wpsso_min ) {
+			if ( ! $this->have_wpsso_min_version ) {
 
 				$this->min_version_notice();	// Show minimum version notice.
 
@@ -223,7 +259,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 		private function min_version_notice() {
 
-			$info = WpssoUmConfig::$cf[ 'plugin' ][ 'wpssoum' ];
+			$info = WpssoUmConfig::$cf[ 'plugin' ][ self::$ext ];
 
 			$req_info = $info[ 'req' ][ 'wpsso' ];
 
