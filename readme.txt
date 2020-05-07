@@ -59,6 +59,21 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 2.11.0-dev.3 (2020/05/07)**
+
+* **New Features**
+	* None.
+* **Improvements**
+	* None.
+* **Bugfixes**
+	* None.
+* **Developer Notes**
+	* Refactored the required plugin check to (optionally) check the class name and a version constant.
+* **Requires At Least**
+	* PHP v5.6.
+	* WordPress v4.2.
+	* WPSSO Core v4.26.0.
+
 **Version 2.10.0 (2020/05/01)**
 
 * **New Features**
@@ -122,6 +137,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
+= 2.11.0-dev.3 =
+
+(2020/05/07) Refactored the required plugin check to (optionally) check the class name and a version constant.
+
 = 2.10.0 =
 
 (2020/05/01) Replaced the unsorted list of plugins under the SSO &gt; Update Manager &gt; Version Filters tab with a sorted list.
