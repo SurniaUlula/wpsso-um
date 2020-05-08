@@ -12,18 +12,18 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: lib/com/update.php:227 lib/com/update.php:959 lib/gettext-com.php:6
+#: lib/com/update.php:227 lib/com/update.php:963 lib/gettext-com.php:6
 #: lib/gettext-com.php:18
 msgid ""
 "An inconsistency was found in the %1$s update server information &mdash;"
 msgstr ""
 
-#: lib/com/update.php:230 lib/com/update.php:962 lib/gettext-com.php:7
+#: lib/com/update.php:230 lib/com/update.php:966 lib/gettext-com.php:7
 #: lib/gettext-com.php:19
 msgid "Update checks for %1$s are disabled while this inconsistency persists."
 msgstr ""
 
-#: lib/com/update.php:234 lib/com/update.php:966 lib/gettext-com.php:8
+#: lib/com/update.php:234 lib/com/update.php:970 lib/gettext-com.php:8
 #: lib/gettext-com.php:20
 msgid ""
 "You may <a href=\"%1$s\">open a new support ticket</a> if you believe this "
@@ -35,7 +35,6 @@ msgid "invalid authentication URL (%1$s)."
 msgstr ""
 
 #: lib/com/update.php:297 lib/gettext-com.php:10
-#: lib/sitesubmenu/site-um-general.php:107
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
@@ -55,50 +54,50 @@ msgid ""
 "refresh."
 msgstr ""
 
-#: lib/com/update.php:534 lib/gettext-com.php:14
+#: lib/com/update.php:537 lib/gettext-com.php:14
 msgid "No plugins defined for updates."
 msgstr ""
 
-#: lib/com/update.php:574 lib/gettext-com.php:15
+#: lib/com/update.php:577 lib/gettext-com.php:15
 msgid "Update information for %s has been retrieved and saved."
 msgstr ""
 
-#: lib/com/update.php:589 lib/gettext-com.php:16
+#: lib/com/update.php:592 lib/gettext-com.php:16
 msgid "An error was returned while getting update information for %s."
 msgstr ""
 
-#: lib/com/update.php:604 lib/gettext-com.php:17
+#: lib/com/update.php:607 lib/gettext-com.php:17
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:976 lib/gettext-com.php:21
+#: lib/com/update.php:980 lib/gettext-com.php:21
 msgid "the update server URL (%1$s) does not appear to be a valid URL."
 msgstr ""
 
-#: lib/com/update.php:1021 lib/gettext-com.php:22
+#: lib/com/update.php:1025 lib/gettext-com.php:22
 msgid ""
 "the <a href=\"%1$s\">PHP %2$s function</a> did not return an IPv4 address."
 msgstr ""
 
-#: lib/com/update.php:1024 lib/gettext-com.php:23
+#: lib/com/update.php:1028 lib/gettext-com.php:23
 msgid "Please contact your hosting provider to have this PHP issue fixed."
 msgstr ""
 
-#: lib/com/update.php:1029 lib/gettext-com.php:24
+#: lib/com/update.php:1033 lib/gettext-com.php:24
 msgid ""
 "the IPv4 address (%1$s) from the local host does not match the DNS IPv4 "
 "address (%2$s)."
 msgstr ""
 
-#: lib/com/update.php:1120 lib/gettext-com.php:25
+#: lib/com/update.php:1124 lib/gettext-com.php:25
 msgid "Update error from the WordPress %1$s function: %2$s"
 msgstr ""
 
-#: lib/com/update.php:1171 lib/gettext-com.php:26
+#: lib/com/update.php:1175 lib/gettext-com.php:26
 msgid "The WordPress %1$s function returned HTTP %2$d (%3$s) for %4$s."
 msgstr ""
 
-#: lib/com/update.php:1262 lib/gettext-com.php:27
+#: lib/com/update.php:1266 lib/gettext-com.php:27
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."
@@ -116,17 +115,27 @@ msgid ""
 "Complementary Add-ons."
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:40 lib/submenu/um-general.php:49
+#: lib/sitesubmenu/site-um-general.php:49 lib/submenu/um-general.php:49
 msgctxt "submit button"
 msgid "Check for Updates"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:65
+#: lib/sitesubmenu/site-um-general.php:74
 msgctxt "metabox title"
 msgid "Network Update Manager"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:102 lib/submenu/um-general.php:112
+#: lib/sitesubmenu/site-um-general.php:99 lib/submenu/um-general.php:82
+msgctxt "metabox tab"
+msgid "Cron Schedule"
+msgstr ""
+
+#: lib/sitesubmenu/site-um-general.php:100 lib/submenu/um-general.php:83
+msgctxt "metabox tab"
+msgid "Version Filters"
+msgstr ""
+
+#: lib/sitesubmenu/site-um-general.php:129 lib/submenu/um-general.php:112
 msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr ""
@@ -134,16 +143,6 @@ msgstr ""
 #: lib/submenu/um-general.php:63
 msgctxt "metabox title"
 msgid "Update Manager Settings"
-msgstr ""
-
-#: lib/submenu/um-general.php:82
-msgctxt "metabox tab"
-msgid "Cron Schedule"
-msgstr ""
-
-#: lib/submenu/um-general.php:83
-msgctxt "metabox tab"
-msgid "Version Filters"
 msgstr ""
 
 #: wpsso-um.php:251

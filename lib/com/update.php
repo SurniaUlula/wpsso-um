@@ -507,7 +507,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			} elseif ( is_array( $check_ext ) ) {
 
 				foreach ( $check_ext as $ext ) {
+
 					if ( isset( self::$upd_config[ $ext ] ) ) {
+
 						$ext_upd_config[ $ext ] = self::$upd_config[ $ext ];
 					}
 				}
@@ -515,6 +517,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			} elseif ( is_string( $check_ext ) ) {
 
 				if ( isset( self::$upd_config[ $check_ext ] ) ) {
+
 					$ext_upd_config[ $check_ext ] = self::$upd_config[ $check_ext ];
 				}
 			}
@@ -626,6 +629,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			foreach ( self::$upd_config as $ext => $upd_info ) {
+
 				if ( ! empty( $upd_info[ 'response' ]->package ) && $upd_info[ 'response' ]->package === $url ) {
 					return true;
 				}

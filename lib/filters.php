@@ -96,6 +96,8 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 			$wpssoum =& WpssoUm::get_instance();
 
+			$current_opts =& $network ? $this->p->site_options : $this->p->options;	// Reference for network or blog options.
+
 			$check_for_updates = false;
 
 			/**
@@ -110,13 +112,13 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 					if ( isset( $opts[ $opt_key ] ) ) {
 
-						if ( ! isset( $this->p->options[ $opt_key ] ) || $this->p->options[ $opt_key ] !== $opts[ $opt_key ] ) {
+						if ( ! isset( $current_opts[ $opt_key ] ) || $current_opts[ $opt_key ] !== $opts[ $opt_key ] ) {
 
 							/**
 							 * Update the current blog options array (ie. not the network settings) for
 							 * SucomUpdate->get_ext_auth_id() and SucomUpdate->get_ext_filter_name().
 							 */
-							$this->p->options[ $opt_key ] = $opts[ $opt_key ];
+							$current_opts[ $opt_key ] = $opts[ $opt_key ];
 
 							$check_for_updates = true;
 						}

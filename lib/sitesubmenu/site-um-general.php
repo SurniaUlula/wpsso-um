@@ -37,6 +37,15 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 
 				case 'site-um-general':
 
+					if ( isset( $form_button_rows[ 0 ] ) ) {
+						$form_button_rows[ 0 ] = SucomUtil::preg_grep_keys( '/^change_show_options/', $form_button_rows[ 0 ], $invert = true );
+					}
+
+					// No Break.
+
+				case 'site-sso-tools':
+				case 'site-tools':
+
 					$form_button_rows[ 0 ][ 'check_for_updates' ] = _x( 'Check for Updates', 'submit button', 'wpsso-um' );
 
 					break;
@@ -70,7 +79,7 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 			);
 
 			add_meta_box( $this->pagehook . '_' . $metabox_id, $metabox_title,
-				array( $this, 'show_metabox_general' ), $metabox_screen,
+				array( $this, 'show_metabox_' . $metabox_id ), $metabox_screen,
 					$metabox_context, $metabox_prio, $callback_args );
 
 			/**
@@ -82,12 +91,30 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 
 		public function show_metabox_general() {
 
-			$metabox_id = 'um';
+			$metabox_id = 'um-general';
+
+			$filter_name = SucomUtil::sanitize_hookname( $this->p->lca . '_' . $metabox_id . '_tabs' );
+
+			$tabs = apply_filters( $filter_name, array(
+				'schedule' => _x( 'Cron Schedule', 'metabox tab', 'wpsso-um' ),
+				'filters'  => _x( 'Version Filters', 'metabox tab', 'wpsso-um' ),
+			) );
 
 			$this->form->set_text_domain( 'wpsso' );	// Translate option values using wpsso text_domain.
 
-			$this->p->util->do_metabox_table( apply_filters( $this->p->lca . '_' . $metabox_id . '_general_rows', 
-				$this->get_table_rows( $metabox_id, 'general' ), $this->form ), 'metabox-' . $metabox_id . '-general' );
+			$table_rows = array();
+
+			foreach ( $tabs as $tab_key => $title ) {
+
+				$filter_name = SucomUtil::sanitize_hookname( $this->p->lca . '_' . $metabox_id . '_' . $tab_key . '_rows' );
+
+				$table_rows[ $tab_key ] = array_merge(
+					$this->get_table_rows( $metabox_id, $tab_key ), 
+					(array) apply_filters( $filter_name, array(), $this->form )
+				);
+			}
+
+			$this->p->util->do_metabox_tabbed( $metabox_id, $tabs, $table_rows );
 		}
 
 		protected function get_table_rows( $metabox_id, $tab_key ) {
@@ -96,38 +123,31 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 
 			switch ( $metabox_id . '-' . $tab_key ) {
 
-				case 'um-general':
+				case 'um-general-schedule':
 
 					$table_rows[ 'update_check_hours' ] = '' . 
 					$this->form->get_th_html( _x( 'Refresh Update Information', 'option label', 'wpsso-um' ), '', 'update_check_hours' ) . 
 					'<td>' . $this->form->get_select( 'update_check_hours', $this->p->cf[ 'um' ][ 'check_hours' ], 'update_filter', '', true ) . '</td>' . 
-					WpssoAdmin::get_option_site_use( 'update_check_hours', $this->form, true, true );
+					WpssoAdmin::get_option_site_use( 'update_check_hours', $this->form, $network = true, $enabled = true );
 
-					$table_rows[ 'subsection_version_filters' ] = '<td colspan="4" class="subsection"><h4>' . 
-						_x( 'Update Version Filters', 'metabox title', 'wpsso-um' ) . '</h4></td>';
+					break;
+
+				case 'um-general-filters':
 
 					$version_filter = $this->p->cf[ 'um' ][ 'version_filter' ];
 
-					foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
+					$ext_sorted = WpssoConfig::get_ext_sorted();	// Since WPSSO Core v3.38.3.
+
+					foreach ( $ext_sorted as $ext => $info ) {
 
 						if ( ! SucomUpdate::is_installed( $ext ) ) {
-
-							if ( $this->p->debug->enabled ) {
-								$this->p->debug->log( 'skipping ' . $ext . ': not installed' );
-							}
-
 							continue;
 						}
 
-						/**
-						 * Remove the short name if possible (all upper case acronym, with an optional space).
-						 */
-						$ext_name = preg_replace( '/ \([A-Z ]+\)$/', '', $info[ 'name' ] );
-
-						$table_rows[] = '' . 
-						$this->form->get_th_html( $ext_name, '', 'update_version_filter' ) . 
+						$table_rows[ 'update_filter_for_' . $ext ] = '' .
+						$this->form->get_th_html( $info[ 'name' ], '', 'update_version_filter' ) . 
 						'<td>' . $this->form->get_select( 'update_filter_for_' . $ext, $version_filter, 'update_filter', '', true ) . '</td>' . 
-						WpssoAdmin::get_option_site_use( 'update_filter_for_' . $ext, $this->form, true, true );
+						WpssoAdmin::get_option_site_use( 'update_filter_for_' . $ext, $this->form, $network = true, $enabled = true );
 					}
 
 					break;
