@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.11.0-dev.4 (2020/05/07)**
+**Version 2.11.0-b.1 (2020/05/08)**
 
 * **New Features**
 	* None.
@@ -137,9 +137,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
-= 2.11.0-dev.4 =
+= 2.11.0-b.1 =
 
-(2020/05/07) Refactored the required plugin check to (optionally) check the class name and a version constant.
+(2020/05/08) Refactored the required plugin check to (optionally) check the class name and a version constant.
 
 = 2.10.0 =
 
