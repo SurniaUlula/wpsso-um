@@ -64,7 +64,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **New Features**
 	* None.
 * **Improvements**
-	* None.
+	* Added new "Cron Schedule" and "Version Filters" tabs in the network (ie. multisite) SSO &gt; Update Manager settings page.
 * **Bugfixes**
 	* None.
 * **Developer Notes**
