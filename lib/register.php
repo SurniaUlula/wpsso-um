@@ -164,10 +164,10 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 					'wpssorest'  => 'wpsso-rest-api',
 					'wpssorrssb' => 'wpsso-rrssb',
 					'wpssossm'   => 'wpsso-strip-schema-microdata',
-					'wpssotaq'   => 'wpsso-tweet-a-quote',
 					'wpssotie'   => 'wpsso-tune-image-editors',
 					'wpssoul'    => 'wpsso-user-locale',
 					'wpssoum'    => 'wpsso-um',
+					'wpssowcmd'  => 'wpsso-wc-metadata',
 				) as $ext => $slug ) {
 
 					foreach ( array( 'err', 'inf', 'time' ) as $type ) {
