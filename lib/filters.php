@@ -94,7 +94,9 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				return $opts;	// Nothing to do.
 			}
 
-			$wpssoum =& WpssoUm::get_instance();
+			if ( $doing_upgrade ) {
+				return $opts;	// Nothing to do.
+			}
 
 			$current_opts =& $network ? $this->p->site_options : $this->p->options;	// Reference for network or blog options.
 
@@ -129,6 +131,8 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->log( 'refreshing update manager config' );
 			}
+
+			$wpssoum =& WpssoUm::get_instance();
 
 			$wpssoum->update->refresh_upd_config();
 
