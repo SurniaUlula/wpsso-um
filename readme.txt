@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.12.0-rc.3 (2020/05/21)**
+**Version 2.12.0 (2020/05/22)**
 
 * **New Features**
 	* None.
@@ -152,9 +152,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
-= 2.12.0-rc.3 =
+= 2.12.0 =
 
-(2020/05/21) Small performance tweak by skipping settings check and config refresh when options are being upgraded and saved.
+(2020/05/22) Small performance tweak by skipping settings check and config refresh when options are being upgraded and saved.
 
 = 2.11.0 =
 
