@@ -59,6 +59,21 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 2.12.0-rc.2 (2020/05/21)**
+
+* **New Features**
+	* None.
+* **Improvements**
+	* Small performance tweak by skipping settings check and config refresh when options are being upgraded and saved.
+* **Bugfixes**
+	* None.
+* **Developer Notes**
+	* None.
+* **Requires At Least**
+	* PHP v5.6.
+	* WordPress v4.2.
+	* WPSSO Core v4.26.0.
+
 **Version 2.11.0 (2020/05/09)**
 
 * **New Features**
@@ -137,6 +152,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
+= 2.12.0-rc.2 =
+
+(2020/05/21) Small performance tweak by skipping settings check and config refresh when options are being upgraded and saved.
+
 = 2.11.0 =
 
 (2020/05/09) Added new "Cron Schedule" and "Version Filters" tabs in the network (ie. multisite) SSO &gt; Update Manager settings page.
