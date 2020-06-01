@@ -37,11 +37,16 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 
 				case 'site-um-general':
 
+					/**
+					 * Remove the Change to "All Options" View button.
+					 */
 					if ( isset( $form_button_rows[ 0 ] ) ) {
 						$form_button_rows[ 0 ] = SucomUtil::preg_grep_keys( '/^change_show_options/', $form_button_rows[ 0 ], $invert = true );
 					}
 
-					// No Break.
+					$form_button_rows[ 0 ][ 'check_for_updates' ] = _x( 'Check for Plugin Updates', 'submit button', 'wpsso-um' );
+
+					break;
 
 				case 'site-sso-tools':
 				case 'site-tools':

@@ -37,6 +37,9 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 
 				case 'um-general':
 
+					/**
+					 * Remove the Change to "All Options" View button.
+					 */
 					if ( isset( $form_button_rows[ 0 ] ) ) {
 						$form_button_rows[ 0 ] = SucomUtil::preg_grep_keys( '/^change_show_options/', $form_button_rows[ 0 ], $invert = true );
 					}
