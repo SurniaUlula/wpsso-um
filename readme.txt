@@ -64,11 +64,12 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **New Features**
 	* None.
 * **Improvements**
-	* Added a check for a 'reupdate' file in the plugin folder to force a re-update of the plugin.
+	* Added a new "Re-Offer Plugin Updates" button under the SSO &gt; Tools and Actions page.
+	* Renamed the "Check for Updates" button to "Check for Plugin Updates".
 * **Bugfixes**
 	* None.
 * **Developer Notes**
-	* None.
+	* Added a check for a 're-offer-update' file in the plugin folder to force a re-update of the plugin.
 * **Requires At Least**
 	* PHP v5.6.
 	* WordPress v4.2.
@@ -169,7 +170,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
  
 = 2.13.0-dev.1 =
 
-(2020/06/01) Added a check for a 'reupdate' file in the plugin folder to force a re-update of the plugin.
+(2020/06/01) Added a check for a 're-offer-update' file in the plugin folder to force a re-update of the plugin.
 
 = 2.12.0 =
 
