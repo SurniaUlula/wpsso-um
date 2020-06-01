@@ -41,12 +41,16 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 						$form_button_rows[ 0 ] = SucomUtil::preg_grep_keys( '/^change_show_options/', $form_button_rows[ 0 ], $invert = true );
 					}
 
-					// No Break.
+					$form_button_rows[ 0 ][ 'check_for_updates' ] = _x( 'Check for Plugin Updates', 'submit button', 'wpsso-um' );
+
+					break;
 
 				case 'sso-tools':
 				case 'tools':
 
-					$form_button_rows[ 0 ][ 'check_for_updates' ] = _x( 'Check for Updates', 'submit button', 'wpsso-um' );
+					$form_button_rows[ 0 ][ 'check_for_updates' ] = _x( 'Check for Plugin Updates', 'submit button', 'wpsso-um' );
+
+					$form_button_rows[ 0 ][ 're_offer_updates' ] = _x( 'Re-Offer Plugin Updates', 'submit button', 'wpsso-um' );
 
 					break;
 			}

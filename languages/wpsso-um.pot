@@ -12,92 +12,100 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: lib/com/update.php:227 lib/com/update.php:966 lib/gettext-com.php:6
+#: lib/actions.php:46
+msgid "Plugin update information has been refreshed."
+msgstr ""
+
+#: lib/actions.php:60
+msgid "Plugin update re-offers have been enabled."
+msgstr ""
+
+#: lib/com/update.php:228 lib/com/update.php:978 lib/gettext-com.php:6
 #: lib/gettext-com.php:18
 msgid ""
 "An inconsistency was found in the %1$s update server information &mdash;"
 msgstr ""
 
-#: lib/com/update.php:230 lib/com/update.php:969 lib/gettext-com.php:7
+#: lib/com/update.php:231 lib/com/update.php:981 lib/gettext-com.php:7
 #: lib/gettext-com.php:19
 msgid "Update checks for %1$s are disabled while this inconsistency persists."
 msgstr ""
 
-#: lib/com/update.php:234 lib/com/update.php:973 lib/gettext-com.php:8
+#: lib/com/update.php:235 lib/com/update.php:985 lib/gettext-com.php:8
 #: lib/gettext-com.php:20
 msgid ""
 "You may <a href=\"%1$s\">open a new support ticket</a> if you believe this "
 "error message is incorrect."
 msgstr ""
 
-#: lib/com/update.php:261 lib/gettext-com.php:9
+#: lib/com/update.php:262 lib/gettext-com.php:9
 msgid "invalid authentication URL (%1$s)."
 msgstr ""
 
-#: lib/com/update.php:297 lib/gettext-com.php:10
+#: lib/com/update.php:298 lib/gettext-com.php:10
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
 
-#: lib/com/update.php:301 lib/gettext-com.php:11
+#: lib/com/update.php:302 lib/gettext-com.php:11
 msgid ""
 "Please note that one or more non-stable / development %s have been selected."
 msgstr ""
 
-#: lib/com/update.php:468 lib/gettext-com.php:12
+#: lib/com/update.php:469 lib/gettext-com.php:12
 msgid "Update manager cache refresh ignored."
 msgstr ""
 
-#: lib/com/update.php:470 lib/gettext-com.php:13
+#: lib/com/update.php:471 lib/gettext-com.php:13
 msgid ""
 "Please wait a few more minutes before requesting another update cache "
 "refresh."
 msgstr ""
 
-#: lib/com/update.php:537 lib/gettext-com.php:14
+#: lib/com/update.php:549 lib/gettext-com.php:14
 msgid "No plugins defined for updates."
 msgstr ""
 
-#: lib/com/update.php:577 lib/gettext-com.php:15
+#: lib/com/update.php:589 lib/gettext-com.php:15
 msgid "Update information for %s has been retrieved and saved."
 msgstr ""
 
-#: lib/com/update.php:592 lib/gettext-com.php:16
+#: lib/com/update.php:604 lib/gettext-com.php:16
 msgid "An error was returned while getting update information for %s."
 msgstr ""
 
-#: lib/com/update.php:607 lib/gettext-com.php:17
+#: lib/com/update.php:619 lib/gettext-com.php:17
 msgid "Failed saving retrieved update information for %s."
 msgstr ""
 
-#: lib/com/update.php:983 lib/gettext-com.php:21
+#: lib/com/update.php:995 lib/gettext-com.php:21
 msgid "the update server URL (%1$s) does not appear to be a valid URL."
 msgstr ""
 
-#: lib/com/update.php:1028 lib/gettext-com.php:22
+#: lib/com/update.php:1040 lib/gettext-com.php:22
 msgid ""
 "the <a href=\"%1$s\">PHP %2$s function</a> did not return an IPv4 address."
 msgstr ""
 
-#: lib/com/update.php:1031 lib/gettext-com.php:23
+#: lib/com/update.php:1043 lib/gettext-com.php:23
 msgid "Please contact your hosting provider to have this PHP issue fixed."
 msgstr ""
 
-#: lib/com/update.php:1036 lib/gettext-com.php:24
+#: lib/com/update.php:1048 lib/gettext-com.php:24
 msgid ""
 "the IPv4 address (%1$s) from the local host does not match the DNS IPv4 "
 "address (%2$s)."
 msgstr ""
 
-#: lib/com/update.php:1127 lib/gettext-com.php:25
+#: lib/com/update.php:1139 lib/gettext-com.php:25
 msgid "Update error from the WordPress %1$s function: %2$s"
 msgstr ""
 
-#: lib/com/update.php:1178 lib/gettext-com.php:26
+#: lib/com/update.php:1190 lib/gettext-com.php:26
 msgid "The WordPress %1$s function returned HTTP %2$d (%3$s) for %4$s."
 msgstr ""
 
-#: lib/com/update.php:1269 lib/gettext-com.php:27
+#: lib/com/update.php:1284 lib/gettext-com.php:27
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."
@@ -115,32 +123,38 @@ msgid ""
 "Complementary Add-ons."
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:49 lib/submenu/um-general.php:49
+#: lib/sitesubmenu/site-um-general.php:49 lib/submenu/um-general.php:44
+#: lib/submenu/um-general.php:51
 msgctxt "submit button"
-msgid "Check for Updates"
+msgid "Check for Plugin Updates"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:74
+#: lib/sitesubmenu/site-um-general.php:51 lib/submenu/um-general.php:53
+msgctxt "submit button"
+msgid "Re-Offer Plugin Updates"
+msgstr ""
+
+#: lib/sitesubmenu/site-um-general.php:76
 msgctxt "metabox title"
 msgid "Network Update Manager"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:99 lib/submenu/um-general.php:82
+#: lib/sitesubmenu/site-um-general.php:101 lib/submenu/um-general.php:86
 msgctxt "metabox tab"
 msgid "Cron Schedule"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:100 lib/submenu/um-general.php:83
+#: lib/sitesubmenu/site-um-general.php:102 lib/submenu/um-general.php:87
 msgctxt "metabox tab"
 msgid "Version Filters"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:129 lib/submenu/um-general.php:112
+#: lib/sitesubmenu/site-um-general.php:131 lib/submenu/um-general.php:116
 msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr ""
 
-#: lib/submenu/um-general.php:63
+#: lib/submenu/um-general.php:67
 msgctxt "metabox title"
 msgid "Update Manager Settings"
 msgstr ""

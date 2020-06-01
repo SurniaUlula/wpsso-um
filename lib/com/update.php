@@ -28,8 +28,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		private $sched_hours = 24;
 		private $sched_name  = 'every24hours';
 
-		private static $api_version  = 2.2;
-		private static $upd_config   = array();
+		private static $api_version   = 2.2;
+		private static $upd_config    = array();
+		private static $re_offer_name = 're-offer-update.txt';
 
 		private static $http_error_codes = array(
 			400 => 'Bad Request',
@@ -409,7 +410,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		/**
 		 * Since WPSSO UM v2.5.0.
 		 *
-		 * Called when the SSO > Tools > Check for Updates or WordPress Dashboard > Updates > Check Again buttons are used.
+		 * Called when the SSO > Tools > Check for Plugin Updates or WordPress Dashboard > Updates > Check Again buttons are used.
 		 */
 		public function manual_update_check() {
 
@@ -482,6 +483,17 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$this->set_upd_config( $quiet, $read_cache = false );
 
 			$this->check_ext_for_updates( $check_ext = null, $quiet );
+		}
+
+		public function re_offer_update( $ext ) {
+
+			if ( method_exists( 'WpssoConfig', 'get_ext_dir' ) ) {	// Since WPSSO Core v7.8.0.
+
+				if ( $ext_dir = WpssoConfig::get_ext_dir( $ext ) ) {	// True if plugin directory exists.
+
+					touch( $ext_dir . self::$re_offer_name );
+				}
+			}
 		}
 
 		/**
@@ -1209,7 +1221,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			static $local_cache = array();
 
 			if ( $read_cache ) {
+
 				if ( isset( $local_cache[ $ext ] ) ) {
+
 					return $local_cache[ $ext ];	// Return from cache.
 				}
 			}
@@ -1219,6 +1233,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$local_cache[ $ext ] = 0;
 
 			if ( isset( $this->p->cf[ 'plugin' ][ $ext ] ) ) {
+
 				$info = $this->p->cf[ 'plugin' ][ $ext ];
 			}
 
@@ -1307,15 +1322,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			if ( method_exists( 'WpssoConfig', 'get_ext_file_path' ) ) {	// Since WPSSO Core v7.8.0.
 
-				if ( WpssoConfig::get_ext_file_path( $ext, 'reupdate' ) ) {
+				if ( WpssoConfig::get_ext_file_path( $ext, self::$re_offer_name ) ) {	// True if filename exists.
 
-					if ( ! SucomUtil::get_const( 'WPSSO_DEV' ) ) {	// Just in case.
-
-						/**
-						 * Save to cache and stop here.
-						 */
-						return $local_cache[ $ext ] = '0.' . $local_cache[ $ext ];
-					}
+					/**
+					 * Save to cache and stop here.
+					 */
+					return $local_cache[ $ext ] = '0.' . $local_cache[ $ext ];
 				}
 			}
 
@@ -1331,50 +1343,48 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				 * Save to cache and stop here.
 				 */
 				return $local_cache[ $ext ] = '0.' . $local_cache[ $ext ];
+			}
 
-			} else {
+			$ext_auth_type = $this->get_ext_auth_type( $ext );
+			$ext_auth_id   = $this->get_ext_auth_id( $ext );
 
-				$ext_auth_type = $this->get_ext_auth_type( $ext );
-				$ext_auth_id   = $this->get_ext_auth_id( $ext );
+			if ( $ext_auth_type !== 'none' ) {
 
-				if ( $ext_auth_type !== 'none' ) {
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( $ext . ' plugin: auth type is defined' );
+				}
 
-					if ( $this->p->debug->enabled ) {
-						$this->p->debug->log( $ext . ' plugin: auth type is defined' );
-					}
+				if ( $this->check_pp( $ext, $li = false ) ) {
 
-					if ( $this->check_pp( $ext, $li = false ) ) {
-
-						if ( empty( $ext_auth_id ) ) {	// pdir without an auth_id.
-
-							if ( $this->p->debug->enabled ) {
-								$this->p->debug->log( $ext . ' plugin: have pdir but no auth_id' );
-							}
-
-							/**
-							 * Save to cache and stop here.
-							 */
-							return $local_cache[ $ext ] = '0.' . $local_cache[ $ext ];
-
-						} elseif ( $this->p->debug->enabled ) {
-							$this->p->debug->log( $ext . ' plugin: have pdir with an auth_id' );
-						}
-
-					} elseif ( ! empty( $ext_auth_id ) ) {
+					if ( empty( $ext_auth_id ) ) {	// pdir without an auth_id.
 
 						if ( $this->p->debug->enabled ) {
-							$this->p->debug->log( $ext . ' plugin: free with an auth_id' );
+							$this->p->debug->log( $ext . ' plugin: pdir but no auth_id' );
 						}
 
 						/**
 						 * Save to cache and stop here.
 						 */
 						return $local_cache[ $ext ] = '0.' . $local_cache[ $ext ];
+
+					} elseif ( $this->p->debug->enabled ) {
+						$this->p->debug->log( $ext . ' plugin: pdir with auth_id' );
 					}
 
-				} elseif ( $this->p->debug->enabled ) {
-					$this->p->debug->log( $ext . ' plugin: no auth type' );
+				} elseif ( ! empty( $ext_auth_id ) ) {
+
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( $ext . ' plugin: free with auth_id' );
+					}
+
+					/**
+					 * Save to cache and stop here.
+					 */
+					return $local_cache[ $ext ] = '0.' . $local_cache[ $ext ];
 				}
+
+			} elseif ( $this->p->debug->enabled ) {
+				$this->p->debug->log( $ext . ' plugin: no auth type' );
 			}
 
 			return $local_cache[ $ext ];
