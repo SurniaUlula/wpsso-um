@@ -64,7 +64,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **New Features**
 	* None.
 * **Improvements**
-	* None.
+	* Added a check for a 'reupdate' file in the plugin folder to force a re-update of the plugin.
 * **Bugfixes**
 	* None.
 * **Developer Notes**
@@ -169,7 +169,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
  
 = 2.13.0-dev.1 =
 
-(2020/06/01) None.
+(2020/06/01) Added a check for a 'reupdate' file in the plugin folder to force a re-update of the plugin.
 
 = 2.12.0 =
 
