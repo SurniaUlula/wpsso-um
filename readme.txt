@@ -59,6 +59,21 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 2.13.0-dev.1 (2020/06/01)**
+
+* **New Features**
+	* None.
+* **Improvements**
+	* None.
+* **Bugfixes**
+	* None.
+* **Developer Notes**
+	* None.
+* **Requires At Least**
+	* PHP v5.6.
+	* WordPress v4.2.
+	* WPSSO Core v4.26.0.
+
 **Version 2.12.0 (2020/05/22)**
 
 * **New Features**
@@ -152,6 +167,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
+= 2.13.0-dev.1 =
+
+(2020/06/01) None.
+
 = 2.12.0 =
 
 (2020/05/22) Small performance tweak by skipping settings check and config refresh when options are being upgraded and saved.
