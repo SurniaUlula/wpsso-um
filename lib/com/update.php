@@ -803,9 +803,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				} elseif ( version_compare( self::$upd_config[ $ext ][ 'installed_version' ], $update_data->update->version, '<' ) ) {
 
 					if ( $this->p->debug->enabled ) {
+
 						$this->p->debug->log( $ext . ' plugin: installed version is older than update version (' .
 							self::$upd_config[ $ext ][ 'installed_version' ] . ' vs ' . $update_data->update->version . ')' );
+
 						$this->p->debug->log( $ext . ' plugin: calling method/function backtrace 4', 4 );
+
 						$this->p->debug->log( $ext . ' plugin: calling method/function backtrace 5', 5 );
 					}
 
@@ -1302,6 +1305,20 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				return $local_cache[ $ext ] = false;
 			}
 
+			if ( method_exists( 'WpssoConfig', 'get_ext_file_path' ) ) {	// Since WPSSO Core v7.8.0.
+
+				if ( WpssoConfig::get_ext_file_path( $ext, 'reupdate' ) ) {
+
+					if ( ! SucomUtil::get_const( 'WPSSO_DEV' ) ) {	// Just in case.
+
+						/**
+						 * Save to cache and stop here.
+						 */
+						return $local_cache[ $ext ] = '0.' . $local_cache[ $ext ];
+					}
+				}
+			}
+
 			$filter_regex = $this->get_ext_filter_regex( $ext );
 
 			if ( ! preg_match( $filter_regex, $local_cache[ $ext ] ) ) {
@@ -1442,6 +1459,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				 * Standard version.
 				 */
 				if ( 0 === strpos( $upd_info[ 'installed_version' ], '0.' ) ) {
+
 					return $local_cache[ $ext ] = false;
 				}
 
