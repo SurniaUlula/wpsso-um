@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.13.0-dev.1 (2020/06/01)**
+**Version 2.13.0-dev.2 (2020/06/01)**
 
 * **New Features**
 	* None.
@@ -69,7 +69,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **Bugfixes**
 	* None.
 * **Developer Notes**
-	* Added a check for a 're-offer-update' file in the plugin folder to force a re-update of the plugin.
+	* None.
 * **Requires At Least**
 	* PHP v5.6.
 	* WordPress v4.2.
@@ -90,109 +90,13 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* WordPress v4.2.
 	* WPSSO Core v4.26.0.
 
-**Version 2.11.0 (2020/05/09)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* Added new "Cron Schedule" and "Version Filters" tabs in the network (ie. multisite) SSO &gt; Update Manager settings page.
-* **Bugfixes**
-	* None.
-* **Developer Notes**
-	* Refactored the required plugin check to (optionally) check the class name and a version constant.
-* **Requires At Least**
-	* PHP v5.6.
-	* WordPress v4.2.
-	* WPSSO Core v4.26.0.
-
-**Version 2.10.0 (2020/05/01)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* Replaced the unsorted list of plugins under the SSO &gt; Update Manager &gt; Version Filters tab with a sorted list.
-* **Bugfixes**
-	* None.
-* **Developer Notes**
-	* None.
-* **Requires At Least**
-	* PHP v5.6.
-	* WordPress v4.2.
-	* WPSSO Core v4.26.0.
-
-**Version 2.9.0 (2020/04/17)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* Added new "Cron Schedule" and "Version Filters" tabs in the SSO &gt; Update Manager settings page.
-* **Bugfixes**
-	* None.
-* **Developer Notes**
-	* None.
-* **Requires At Least**
-	* PHP v5.6.
-	* WordPress v4.2.
-	* WPSSO Core v4.26.0.
-
-**Version 2.8.0 (2020/04/06)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* Updated "Requires At Least" to WordPress v4.2.
-* **Bugfixes**
-	* None.
-* **Developer Notes**
-	* Refactored WPSSO Core active and minimum version dependency checks.
-* **Requires At Least**
-	* PHP v5.6.
-	* WordPress v4.2.
-	* WPSSO Core v4.25.0.
-
-**Version 2.7.0 (2020/03/28)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* Update for minimum and recommended WPSSO Core versions.
-* **Bugfixes**
-	* None.
-* **Developer Notes**
-	* Removed daily check for properly functioning cron job.
-	* Changed update check throttling from 3 mins to 5 mins.
-* **Requires At Least**
-	* PHP v5.6.
-	* WordPress v4.0.
-	* WPSSO Core v4.25.0.
-
 == Upgrade Notice ==
  
-= 2.13.0-dev.1 =
+= 2.13.0-dev.2 =
 
-(2020/06/01) Added a check for a 're-offer-update' file in the plugin folder to force a re-update of the plugin.
+(2020/06/01) Added a new "Re-Offer Plugin Updates" button under the SSO &gt; Tools and Actions page.
 
 = 2.12.0 =
 
 (2020/05/22) Small performance tweak by skipping settings check and config refresh when options are being upgraded and saved.
-
-= 2.11.0 =
-
-(2020/05/09) Added new "Cron Schedule" and "Version Filters" tabs in the network (ie. multisite) SSO &gt; Update Manager settings page.
-
-= 2.10.0 =
-
-(2020/05/01) Replaced the unsorted list of plugins under the SSO &gt; Update Manager &gt; Version Filters tab with a sorted list.
-
-= 2.9.0 =
-
-(2020/04/17) Added new "Cron Schedule" and "Version Filters" tabs in the SSO &gt; Update Manager settings page.
-
-= 2.8.0 =
-
-(2020/04/06) Updated "Requires At Least" to WordPress v4.2. Refactored WPSSO Core active and minimum version dependency checks.
-
-= 2.7.0 =
-
-(2020/03/28) Update for minimum and recommended WPSSO Core versions.
 
