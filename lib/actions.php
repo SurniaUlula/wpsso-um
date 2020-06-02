@@ -27,7 +27,7 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 
 				$this->p->util->add_plugin_actions( $this, array( 
 					'load_setting_page_check_for_updates' => 4,
-					'load_setting_page_re_offer_updates'  => 4,
+					'load_setting_page_create_offers'     => 4,
 				) );
 			}
 		}
@@ -46,18 +46,18 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 			$this->p->notice->upd( __( 'Plugin update information has been refreshed.', 'wpsso-um' ) );
 		}
 
-		public function action_load_setting_page_re_offer_updates( $pagehook, $menu_id, $menu_name, $menu_lib ) {
+		public function action_load_setting_page_create_offers( $pagehook, $menu_id, $menu_name, $menu_lib ) {
 
 			$wpssoum =& WpssoUm::get_instance();
 
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
-				$wpssoum->update->re_offer_update( $ext );
+				$wpssoum->update->create_offer( $ext );
 			}
 
 			$wpssoum->update->refresh_upd_config();
 
-			$this->p->notice->upd( __( 'Plugin update re-offers have been enabled.', 'wpsso-um' ) );
+			$this->p->notice->upd( __( 'Plugin update offers have been re-enabled.', 'wpsso-um' ) );
 		}
 	}
 }

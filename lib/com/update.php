@@ -28,9 +28,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		private $sched_hours = 24;
 		private $sched_name  = 'every24hours';
 
-		private static $api_version   = 2.2;
-		private static $upd_config    = array();
-		private static $re_offer_name = 're-offer-update.txt';
+		private static $api_version = 2.2;
+		private static $upd_config  = array();
+		private static $offer_fname = 'offer-update.txt';
 
 		private static $http_error_codes = array(
 			400 => 'Bad Request',
@@ -485,17 +485,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$this->check_ext_for_updates( $check_ext = null, $quiet );
 		}
 
-		public function re_offer_update( $ext ) {
-
-			if ( method_exists( 'WpssoConfig', 'get_ext_dir' ) ) {	// Since WPSSO Core v7.8.0.
-
-				if ( $ext_dir = WpssoConfig::get_ext_dir( $ext ) ) {	// True if plugin directory exists.
-
-					touch( $ext_dir . self::$re_offer_name );
-				}
-			}
-		}
-
 		/**
 		 * When $quiet is false the following notices may be shown:
 		 *
@@ -740,6 +729,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					 * Remove existing update information to make sure it is correct.
 					 */
 					if ( isset( $updates->response[ $upd_info[ 'base' ] ] ) ) {	// Avoid a "modify non-object" error.
+
 						unset( $updates->response[ $upd_info[ 'base' ] ] );	// Example: wpsso/wpsso.php.
 					}
 
@@ -747,6 +737,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					 * only provide update information when an update is required.
 					 */
 					if ( false !== self::$upd_config[ $ext ][ 'response' ] ) {	// False when installed version is current.
+
 						$updates = $this->update_response_data( $updates, $ext );
 					}
 
@@ -1320,15 +1311,15 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				return $local_cache[ $ext ] = false;
 			}
 
-			if ( method_exists( 'WpssoConfig', 'get_ext_file_path' ) ) {	// Since WPSSO Core v7.8.0.
+			/**
+			 * Maybe re-offer plugin update.
+			 */
+			if ( $this->has_offer( $ext ) ) {
 
-				if ( WpssoConfig::get_ext_file_path( $ext, self::$re_offer_name ) ) {	// True if filename exists.
-
-					/**
-					 * Save to cache and stop here.
-					 */
-					return $local_cache[ $ext ] = '0.' . $local_cache[ $ext ];
-				}
+				/**
+				 * Save to cache and stop here.
+				 */
+				return $local_cache[ $ext ] = '0.' . $local_cache[ $ext ];
 			}
 
 			$filter_regex = $this->get_ext_filter_regex( $ext );
@@ -1552,7 +1543,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$val = null;
 
 				SucomUpdateUtilWP::raw_do_option( 'delete', $opt_name );
+
 			} else {
+
 				$val_string = base64_encode( $val );	// Convert object or array to string.
 
 				SucomUpdateUtilWP::raw_do_option( 'update', $opt_name, $val_string );
@@ -1640,6 +1633,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			self::$upd_config[ $ext ][ 'option_data' ] = $option_data;
 
 			if ( ! empty( self::$upd_config[ $ext ][ 'option_name' ] ) ) {
+
 				return update_option( self::$upd_config[ $ext ][ 'option_name' ], $option_data );
 			}
 
@@ -1651,7 +1645,89 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			unset( self::$upd_config[ $ext ][ 'option_data' ] );
 
 			if ( ! empty( self::$upd_config[ $ext ][ 'option_name' ] ) ) {
+
 				return delete_option( self::$upd_config[ $ext ][ 'option_name' ] );
+			}
+
+			return false;
+		}
+
+		public function create_offer( $ext ) {
+
+			if ( $ext_dir = $this->get_ext_dir( $ext ) ) {	// True if plugin directory exists.
+
+				touch( $ext_dir . self::$offer_fname );
+			}
+		}
+
+		public function has_offer( $ext ) {
+
+			return $this->get_ext_file_path( $ext, self::$offer_fname );	// True if filename exists.
+		}
+
+		public function cancel_offer( $ext ) {
+
+			if ( $file_path = $this->has_offer( $ext ) ) {	// True if filename exists.
+
+				unlink( $file_path );
+			}
+		}
+
+		private function get_ext_dir( $ext ) {
+
+			static $local_cache = array();
+
+			if ( isset( $local_cache[ $ext ] ) ) {
+
+				return $local_cache[ $ext ];
+			}
+
+			/**
+			 * Check for active plugin constant first.
+			 */
+			$ext_dir_const = strtoupper( $ext ) . '_PLUGINDIR';
+
+			if ( defined( $ext_dir_const ) && is_dir( $ext_dir = constant( $ext_dir_const ) ) ) {
+
+				return $local_cache[ $ext ] = trailingslashit( $ext_dir );
+			}
+
+			if ( isset( self::$upd_config[ $ext ][ 'slug' ] ) ) {
+
+				$slug = self::$upd_config[ $ext ][ 'slug' ];
+
+				if ( defined ( 'WPMU_PLUGIN_DIR' ) && is_dir( $ext_dir = trailingslashit( WPMU_PLUGIN_DIR ) . $slug . '/' ) ) {
+				
+					return $local_cache[ $ext ] = $ext_dir;
+				}
+
+				if ( defined ( 'WP_PLUGIN_DIR' ) && is_dir( $ext_dir = trailingslashit( WP_PLUGIN_DIR ) . $slug . '/' ) ) {
+
+					return $local_cache[ $ext ] = $ext_dir;
+				}
+			}
+
+			return $local_cache[ $ext ] = false;
+		}
+
+		private function get_ext_file_path( $ext, $file_name = '', $is_dir = false ) {
+
+			if ( $ext_dir = $this->get_ext_dir( $ext ) ) {	// Returns false or a slashed directory path.
+
+				if ( $is_dir ) {	// Must be a directory.
+
+					if ( is_dir( $sub_dir = trailingslashit( $ext_dir . $file_name ) ) ) {
+
+						return $sub_dir;
+					}
+
+				} else {
+
+					if ( file_exists( $file_path = $ext_dir . $file_name ) ) {
+
+						return $file_path;
+					}
+				}
 			}
 
 			return false;
