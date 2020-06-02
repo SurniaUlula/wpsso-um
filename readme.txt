@@ -65,7 +65,6 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* None.
 * **Improvements**
 	* Added a new "Re-Offer Plugin Updates" button under the SSO &gt; Tools and Actions page.
-	* Renamed the "Check for Updates" button to "Check for Plugin Updates".
 * **Bugfixes**
 	* None.
 * **Developer Notes**
