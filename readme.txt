@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.13.0-dev.5 (2020/06/02)**
+**Version 2.13.0-b.1 (2020/06/04)**
 
 * **New Features**
 	* None.
@@ -91,9 +91,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
-= 2.13.0-dev.5 =
+= 2.13.0-b.1 =
 
-(2020/06/02) Added a new "Re-Offer Plugin Updates" button under the SSO &gt; Tools and Actions page.
+(2020/06/04) Added a new "Re-Offer Plugin Updates" button under the SSO &gt; Tools and Actions page.
 
 = 2.12.0 =
 
