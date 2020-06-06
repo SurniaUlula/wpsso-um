@@ -90,28 +90,14 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				$this->p->debug->mark();
 			}
 
-			if ( $network ) {
-				return $opts;	// Nothing to do.
-			}
-
 			$wpssoum =& WpssoUm::get_instance();
 
-			/**
-			 * Refresh the config with new version information and return.
-			 */
-			if ( $doing_upgrade ) {
-			
-				$wpssoum->update->refresh_upd_config();
-
-				return $opts;
-			}
+			$current_opts =& $network ? $this->p->site_options : $this->p->options;
 
 			/**
 			 * Check settings for authentication ID or update version filter changes.
 			 */
 			$check_for_updates = false;
-
-			$current_opts =& $network ? $this->p->site_options : $this->p->options;
 
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
@@ -138,12 +124,13 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			$wpssoum->update->refresh_upd_config();
 
 			/**
-			 * We have one or more authentication ID or version filter changes.
+			 * Check for updates if we have one or more authentication ID or version filter changes.
 			 */
 			if ( $check_for_updates ) {
 
 				/**
-				 * Note that check_ext_for_updates() does not throttle like check_all_for_updates() does.
+				 * Note that SucomUpdate->check_ext_for_updates() does not throttle like
+				 * SucomUpdate->check_all_for_updates() does.
 				 */
 				$wpssoum->update->check_ext_for_updates( $check_ext = null, $quiet = true );
 			}
