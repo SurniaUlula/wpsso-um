@@ -94,17 +94,25 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				return $opts;	// Nothing to do.
 			}
 
-			if ( $doing_upgrade ) {
-				return $opts;	// Nothing to do.
-			}
-
-			$current_opts =& $network ? $this->p->site_options : $this->p->options;	// Reference for network or blog options.
-
-			$check_for_updates = false;
+			$wpssoum =& WpssoUm::get_instance();
 
 			/**
-			 * Check all add-ons for any authentication ID or update version filter changes.
+			 * Refresh the config with new version information and return.
 			 */
+			if ( $doing_upgrade ) {
+			
+				$wpssoum->update->refresh_upd_config();
+
+				return $opts;
+			}
+
+			/**
+			 * Check settings for authentication ID or update version filter changes.
+			 */
+			$check_for_updates = false;
+
+			$current_opts =& $network ? $this->p->site_options : $this->p->options;
+
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
 				foreach ( array(
@@ -116,10 +124,6 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 						if ( ! isset( $current_opts[ $opt_key ] ) || $current_opts[ $opt_key ] !== $opts[ $opt_key ] ) {
 
-							/**
-							 * Update the current blog options array (ie. not the network settings) for
-							 * SucomUpdate->get_ext_auth_id() and SucomUpdate->get_ext_filter_name().
-							 */
 							$current_opts[ $opt_key ] = $opts[ $opt_key ];
 
 							$check_for_updates = true;
@@ -128,20 +132,19 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				}
 			}
 
-			if ( $this->p->debug->enabled ) {
-				$this->p->debug->log( 'refreshing update manager config' );
-			}
-
-			$wpssoum =& WpssoUm::get_instance();
-
+			/**
+			 * Refresh the config.
+			 */
 			$wpssoum->update->refresh_upd_config();
 
+			/**
+			 * We have one or more authentication ID or version filter changes.
+			 */
 			if ( $check_for_updates ) {
 
-				if ( $this->p->debug->enabled ) {
-					$this->p->debug->log( 'checking all plugins for updates' );
-				}
-
+				/**
+				 * Note that check_ext_for_updates() does not throttle like check_all_for_updates() does.
+				 */
 				$wpssoum->update->check_ext_for_updates( $check_ext = null, $quiet = true );
 			}
 
