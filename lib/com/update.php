@@ -1714,6 +1714,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return $local_cache[ $ext ] = false;
 		}
 
+		/**
+		 * Use $is_dir = true when specifically checking for a sub-folder path.
+		 */
 		private function get_ext_file_path( $ext, $file_name = '', $is_dir = false ) {
 
 			if ( $ext_dir = $this->get_ext_dir( $ext ) ) {	// Returns false or a slashed directory path.
