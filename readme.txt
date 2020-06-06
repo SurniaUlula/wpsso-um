@@ -74,28 +74,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* WordPress v4.2.
 	* WPSSO Core v4.26.0.
 
-**Version 2.12.0 (2020/05/22)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* Small performance tweak by skipping settings check and config refresh when options are being upgraded and saved.
-* **Bugfixes**
-	* None.
-* **Developer Notes**
-	* None.
-* **Requires At Least**
-	* PHP v5.6.
-	* WordPress v4.2.
-	* WPSSO Core v4.26.0.
-
 == Upgrade Notice ==
  
 = 2.13.0 =
 
 (2020/06/04) Added a new "Re-Offer Plugin Updates" button under the SSO &gt; Tools and Actions page.
-
-= 2.12.0 =
-
-(2020/05/22) Small performance tweak by skipping settings check and config refresh when options are being upgraded and saved.
 
