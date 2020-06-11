@@ -72,13 +72,9 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 					return 'pos_int';
 
-					break;
-
 				case ( strpos( $base_key, 'update_filter_for_' ) === 0 ? true : false ):
 
 					return 'not_blank';
-
-					break;
 			}
 
 			return $type;
