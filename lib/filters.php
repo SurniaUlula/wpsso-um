@@ -86,7 +86,9 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				$this->p->debug->mark();
 			}
 
-			$current_opts =& $network ? $this->p->site_options : $this->p->options;
+			if ( $network ) {
+				return $opts;	// Nothing to do.
+			}
 
 			/**
 			 * Check settings for authentication ID or update version filter changes.
@@ -114,13 +116,13 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 						/**
 						 * Check if the current option value is different than the submitted value.
 						 */
-						if ( ! isset( $current_opts[ $opt_key ] ) || $current_opts[ $opt_key ] !== $opts[ $opt_key ] ) {
+						if ( ! isset( $this->p->options[ $opt_key ] ) || $this->p->options[ $opt_key ] !== $opts[ $opt_key ] ) {
 
 							/**
 							 * Update the current value (so we can refresh the config) and signal that
 							 * an update check is required.
 							 */
-							$current_opts[ $opt_key ] = $opts[ $opt_key ];
+							$this->p->options[ $opt_key ] = $opts[ $opt_key ];
 
 							$check_for_updates = true;
 						}
