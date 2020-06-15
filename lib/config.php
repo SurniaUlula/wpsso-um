@@ -16,7 +16,7 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		public static $cf = array(
 			'plugin' => array(
 				'wpssoum' => array(			// Plugin acronym.
-					'version'     => '2.14.0-dev.1',	// Plugin version.
+					'version'     => '2.14.0-dev.2',	// Plugin version.
 					'opt_version' => '4',		// Increment when changing default option values.
 					'short'       => 'WPSSO UM',	// Short plugin name.
 					'name'        => 'WPSSO Update Manager',
