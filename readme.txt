@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.14.0-dev.3 (2020/06/16)**
+**Version 2.14.0-dev.4 (2020/06/17)**
 
 * **New Features**
 	* None.
@@ -91,9 +91,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
-= 2.13.0-dev.3 =
+= 2.13.0-dev.4 =
 
-(2020/06/16) Replaced the 'wpsso_save_options' filter with 'wpsso_save_setting_options'.
+(2020/06/17) Replaced the 'wpsso_save_options' filter with 'wpsso_save_setting_options'.
 
 = 2.13.1 =
 
