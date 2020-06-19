@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires PHP: 5.6
 Requires At Least: 4.2
 Tested Up To: 5.4.2
-Stable Tag: 2.13.1
+Stable Tag: 2.14.0
 
 Update Manager for the WPSSO Core Premium Plugin and its Premium Complementary Add-ons.
 
@@ -91,7 +91,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
-= 2.13.0 =
+= 2.14.0 =
 
 (2020/06/20) Replaced the 'wpsso_save_options' filter with 'wpsso_save_setting_options'.
 
