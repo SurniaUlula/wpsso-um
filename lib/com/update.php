@@ -1599,23 +1599,19 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			if ( ! empty( self::$upd_config[ $ext ][ 'option_name' ] ) ) {
 
-				$option_data = self::get_option_data( $ext );
+				$option_data = self::get_option_data( $ext, $def = false );
 
 				if ( false !== $prop ) {
 
 					if ( isset( $option_data->update->$prop ) ) {
 
 						return $option_data->update->$prop;
-
-					} else {
-
-						return $not_found;
 					}
 
-				} else {
-
-					return $option_data;
+					return $not_found;
 				}
+
+				return $option_data;
 			}
 
 			return $not_found;
