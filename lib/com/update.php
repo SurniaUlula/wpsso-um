@@ -1602,12 +1602,18 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$option_data = self::get_option_data( $ext );
 
 				if ( false !== $prop ) {
-					if ( is_object( $option_data->update ) && isset( $option_data->update->$prop ) ) {
+
+					if ( isset( $option_data->update->$prop ) ) {
+
 						return $option_data->update->$prop;
+
 					} else {
+
 						return $not_found;
 					}
+
 				} else {
+
 					return $option_data;
 				}
 			}
@@ -1873,8 +1879,11 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 			$plugin_data = SucomPluginData::data_from_json( $json_encoded );
 
 			if ( $plugin_data !== null )  {
+
 				return self::update_from_data( $plugin_data );
+
 			} else {
+
 				return null;
 			}
 		}
@@ -1898,7 +1907,9 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 				'qty_reg', 
 				'qty_used', 
 			) as $prop_name ) {
+
 				if ( isset( $plugin_data->$prop_name ) ) {
+
 					$plugin_update->$prop_name = $plugin_data->$prop_name;
 				}
 			}
@@ -1925,10 +1936,15 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 				'qty_reg'        => 'qty_reg',
 				'qty_used'       => 'qty_used',
 			) as $json_prop_name => $wp_prop_name ) {
+
 				if ( isset( $this->$json_prop_name ) ) {
+
 					if ( is_object( $this->$json_prop_name ) ) {
+
 						$plugin_update->$wp_prop_name = get_object_vars( $this->$json_prop_name );
+
 					} else {
+
 						$plugin_update->$wp_prop_name = $this->$json_prop_name;
 					}
 				}
