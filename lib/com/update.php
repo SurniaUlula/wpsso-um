@@ -1591,21 +1591,21 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		/**
-		 * Returns null if $prop does not exist (since v1.10.0).
+		 * Returns null if $prop_name does not exist (since v1.10.0).
 		 */
-		public static function get_option( $ext, $prop = false ) {
+		public static function get_option( $ext, $prop_name = false ) {
 
-			$not_found = false !== $prop ? null : false;	// Return null if $prop does not exist.
+			$not_found = false !== $prop_name ? null : false;	// Return null if $prop_name does not exist.
 
 			if ( ! empty( self::$upd_config[ $ext ][ 'option_name' ] ) ) {
 
 				$option_data = self::get_option_data( $ext, $def = false );
 
-				if ( false !== $prop ) {
+				if ( false !== $prop_name ) {
 
-					if ( isset( $option_data->update->$prop ) ) {
+					if ( isset( $option_data->update->$prop_name ) ) {
 
-						return $option_data->update->$prop;
+						return $option_data->update->$prop_name;
 					}
 
 					return $not_found;
@@ -1626,7 +1626,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$opt_name = self::$upd_config[ $ext ][ 'option_name' ];
 
 					self::$upd_config[ $ext ][ 'option_data' ] = SucomUpdateUtilWP::raw_do_option( 'get', $opt_name, $def );
+
 				} else {
+
 					self::$upd_config[ $ext ][ 'option_data' ] = $def;
 				}
 			}

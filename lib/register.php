@@ -129,6 +129,7 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 		}
 
 		private static function uninstall_plugin() {
+
 			self::delete_options();
 		}
 
@@ -143,6 +144,7 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 				foreach ( $cf[ 'plugin' ] as $ext => $info ) {
 
 					foreach ( array( 'err', 'inf', 'time' ) as $type ) {
+
 						delete_option( md5( $ext . '_uapi' . $api_version . $type ) );
 					}
 
@@ -171,6 +173,7 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 				) as $ext => $slug ) {
 
 					foreach ( array( 'err', 'inf', 'time' ) as $type ) {
+
 						delete_option( md5( $ext . '_uapi' . $api_version . $type ) );
 					}
 
