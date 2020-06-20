@@ -124,38 +124,38 @@ msgid ""
 msgstr ""
 
 #: lib/sitesubmenu/site-um-general.php:47
-#: lib/sitesubmenu/site-um-general.php:54 lib/submenu/um-general.php:47
-#: lib/submenu/um-general.php:54
+#: lib/sitesubmenu/site-um-general.php:53 lib/submenu/um-general.php:47
+#: lib/submenu/um-general.php:53
 msgctxt "submit button"
 msgid "Check for Plugin Updates"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:56 lib/submenu/um-general.php:56
+#: lib/sitesubmenu/site-um-general.php:55 lib/submenu/um-general.php:55
 msgctxt "submit button"
 msgid "Re-Offer Plugin Updates"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:81
+#: lib/sitesubmenu/site-um-general.php:80
 msgctxt "metabox title"
 msgid "Network Update Manager"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:106 lib/submenu/um-general.php:89
+#: lib/sitesubmenu/site-um-general.php:105 lib/submenu/um-general.php:88
 msgctxt "metabox tab"
 msgid "Cron Schedule"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:107 lib/submenu/um-general.php:90
+#: lib/sitesubmenu/site-um-general.php:106 lib/submenu/um-general.php:89
 msgctxt "metabox tab"
 msgid "Version Filters"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:136 lib/submenu/um-general.php:119
+#: lib/sitesubmenu/site-um-general.php:135 lib/submenu/um-general.php:118
 msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr ""
 
-#: lib/submenu/um-general.php:70
+#: lib/submenu/um-general.php:69
 msgctxt "metabox title"
 msgid "Update Manager Settings"
 msgstr ""
