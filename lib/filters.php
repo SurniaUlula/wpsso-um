@@ -35,10 +35,11 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			}
 
 			$this->p->util->add_plugin_filters( $this, array( 
-				'option_type'       => 2,
-				'save_options'      => 4,
-				'get_defaults'      => 1,	// Option defaults.
-				'get_site_defaults' => 1,	// Site option defaults.
+				'option_type'          => 2,
+				'save_options'         => 4,
+				'save_setting_options' => 3,
+				'get_defaults'         => 1,	// Option defaults.
+				'get_site_defaults'    => 1,	// Site option defaults.
 			) );
 
 			if ( is_admin() ) {
@@ -78,6 +79,14 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			}
 
 			return $type;
+		}
+
+		/**
+		 * Deprecated on 2020/06/20.
+		 */
+		public function filter_save_options( array $opts, $options_name, $network, $doing_upgrade ) {
+
+			return $this->filter_save_setting_options( $opts, $network, $doing_upgrade );
 		}
 
 		/**
