@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires PHP: 5.6
 Requires At Least: 4.2
 Tested Up To: 5.4.2
-Stable Tag: 2.14.1
+Stable Tag: 2.14.2
 
 Update Manager for the WPSSO Core Premium Plugin and its Premium Complementary Add-ons.
 
@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.14.1 (2020/06/20)**
+**Version 2.14.2 (2020/06/23)**
 
 * **New Features**
 	* None.
@@ -74,28 +74,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* WordPress v4.2.
 	* WPSSO Core v4.26.0.
 
-**Version 2.13.1 (2020/06/05)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* Added a new "Re-Offer Plugin Updates" button under the SSO &gt; Tools and Actions page.
-* **Bugfixes**
-	* Fixed a missing config refresh when updating the WPSSO Core or add-on settings.
-* **Developer Notes**
-	* None.
-* **Requires At Least**
-	* PHP v5.6.
-	* WordPress v4.2.
-	* WPSSO Core v4.26.0.
-
 == Upgrade Notice ==
  
-= 2.14.1 =
+= 2.14.2 =
 
-(2020/06/20) Replaced the 'wpsso_save_options' filter with 'wpsso_save_setting_options'.
-
-= 2.13.1 =
-
-(2020/06/05) Added a new "Re-Offer Plugin Updates" button under the SSO &gt; Tools and Actions page. Fixed a missing config refresh when updating the WPSSO Core or add-on settings.
+(2020/06/23) Replaced the 'wpsso_save_options' filter with 'wpsso_save_setting_options'.
 
