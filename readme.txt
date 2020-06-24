@@ -59,6 +59,21 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 2.15.0-dev.1 (2020/06/24)**
+
+* **New Features**
+	* None.
+* **Improvements**
+	* None.
+* **Bugfixes**
+	* None.
+* **Developer Notes**
+	* Added a new 'wpsso_version_updates' action hook to refresh the config when add-on versions are updated / changed.
+* **Requires At Least**
+	* PHP v5.6.
+	* WordPress v4.2.
+	* WPSSO Core v4.26.0.
+
 **Version 2.14.2 (2020/06/23)**
 
 * **New Features**
@@ -76,6 +91,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
+= 2.15.0-dev.1 =
+
+(2020/06/24) Added a new 'wpsso_version_updates' action hook to refresh the config when add-on versions are updated / changed.
+
 = 2.14.2 =
 
 (2020/06/23) Replaced the 'wpsso_save_options' filter with 'wpsso_save_setting_options'.
