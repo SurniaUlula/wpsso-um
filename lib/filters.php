@@ -175,6 +175,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			}
 
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
+
 				$def_opts[ 'update_filter_for_' . $ext ] = 'stable';
 			}
 
