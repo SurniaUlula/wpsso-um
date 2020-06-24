@@ -84,15 +84,15 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		/**
 		 * Deprecated on 2020/06/20.
 		 */
-		public function filter_save_options( array $opts, $options_name, $network, $doing_upgrade ) {
+		public function filter_save_options( array $opts, $options_name, $network, $upgrading ) {
 
-			return $this->filter_save_setting_options( $opts, $network, $doing_upgrade );
+			return $this->filter_save_setting_options( $opts, $network, $upgrading );
 		}
 
 		/**
 		 * $network is true if saving multisite network settings.
 		 */
-		public function filter_save_setting_options( array $opts, $network, $doing_upgrade ) {
+		public function filter_save_setting_options( array $opts, $network, $upgrading ) {
 
 			if ( $this->p->debug->enabled ) {
 				$this->p->debug->mark();
@@ -105,7 +105,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			/**
 			 * Check settings for authentication ID or update version filter changes.
 			 */
-			$check_for_updates = false;
+			$check_ext_for_updates = array();
 
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
@@ -136,33 +136,26 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 							 */
 							$this->p->options[ $opt_key ] = $opts[ $opt_key ];
 
-							$check_for_updates = true;
+							$check_ext_for_updates[] = $ext;
 						}
 					}
 				}
 			}
 
 			/**
-			 * Refresh the config to use new plugin version strings ($doing_upgrade is true) or to use the latest
-			 * authentication and/or version filters.
+			 * Check for updates if we have one or more authentication or version filter changes.
 			 */
-			if ( $doing_upgrade || $check_for_updates ) {
+			if ( ! empty( $check_ext_for_updates ) ) {
 
 				$wpssoum =& WpssoUm::get_instance();
 
 				$wpssoum->update->refresh_upd_config();
 
 				/**
-				 * Check for updates if we have one or more authentication or version filter changes.
+				 * Note that SucomUpdate->check_ext_for_updates() does not throttle like
+				 * SucomUpdate->check_all_for_updates() does.
 				 */
-				if ( $check_for_updates ) {
-
-					/**
-					 * Note that SucomUpdate->check_ext_for_updates() does not throttle like
-					 * SucomUpdate->check_all_for_updates() does.
-					 */
-					$wpssoum->update->check_ext_for_updates( $check_ext = null, $quiet = true );
-				}
+				$wpssoum->update->check_ext_for_updates( $check_ext_for_updates, $quiet = true );
 			}
 
 			return $opts;

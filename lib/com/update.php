@@ -499,9 +499,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		 */
 		public function check_ext_for_updates( $check_ext = null, $quiet = true ) {
 
+			$user_id = get_current_user_id();
+
 			$ext_upd_config = array();
 
-			if ( empty( $check_ext ) ) {
+			if ( null === $check_ext ) {
 
 				$ext_upd_config = self::$upd_config;	// Check all plugins defined.
 
@@ -526,8 +528,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$ext_upd_config[ $check_ext ] = self::$upd_config[ $check_ext ];
 				}
 			}
-
-			$user_id = get_current_user_id();
 
 			if ( empty( $ext_upd_config ) ) {
 

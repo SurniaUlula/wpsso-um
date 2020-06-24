@@ -12,11 +12,11 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: lib/actions.php:46
+#: lib/actions.php:60
 msgid "Plugin update information has been refreshed."
 msgstr ""
 
-#: lib/actions.php:60
+#: lib/actions.php:74
 msgid "Plugin update offers have been re-enabled."
 msgstr ""
 

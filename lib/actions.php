@@ -23,6 +23,10 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 				$this->p->debug->mark();
 			}
 
+			$this->p->util->add_plugin_actions( $this, array( 
+				'ext_version_updates' => 1,
+			) );
+
 			if ( is_admin() ) {
 
 				$this->p->util->add_plugin_actions( $this, array( 
@@ -30,6 +34,16 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 					'load_setting_page_create_offers'     => 4,
 				) );
 			}
+		}
+
+		/**
+		 * Example $ext_version_updates = array( 'wpssoum' ).
+		 */
+		public function action_ext_version_updates( array $ext_version_updates ) {
+
+			$wpssoum =& WpssoUm::get_instance();
+
+			$wpssoum->update->refresh_upd_config();
 		}
 
 		public function action_load_setting_page_check_for_updates( $pagehook, $menu_id, $menu_name, $menu_lib ) {
