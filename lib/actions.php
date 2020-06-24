@@ -24,7 +24,7 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 			}
 
 			$this->p->util->add_plugin_actions( $this, array( 
-				'ext_version_updates' => 1,
+				'version_updates' => 1,
 			) );
 
 			if ( is_admin() ) {
@@ -37,9 +37,9 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 		}
 
 		/**
-		 * Example $ext_version_updates = array( 'wpssoum' ).
+		 * Example $ext_updates = array( 'wpssoum' ).
 		 */
-		public function action_ext_version_updates( array $ext_version_updates ) {
+		public function action_version_updates( array $ext_updates ) {
 
 			$wpssoum =& WpssoUm::get_instance();
 
