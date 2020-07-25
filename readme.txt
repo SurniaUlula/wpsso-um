@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.16.0-b.1 (2020/07/24)**
+**Version 2.16.0-rc.1 (2020/07/25)**
 
 * **New Features**
 	* None.
@@ -91,9 +91,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
-= 2.16.0-b.1 =
+= 2.16.0-rc.1 =
 
-(2020/07/24) Added support for the new `wp_get_environment_type()` function in WP v5.5.
+(2020/07/25) Added support for the new `wp_get_environment_type()` function in WP v5.5.
 
 = 2.15.0 =
 
