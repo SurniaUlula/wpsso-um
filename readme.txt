@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires PHP: 5.6
 Requires At Least: 4.2
 Tested Up To: 5.4.2
-Stable Tag: 2.15.0
+Stable Tag: 2.16.0
 
 Update Manager for the WPSSO Core Premium Plugin and its Premium Complementary Add-ons.
 
@@ -94,8 +94,4 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 = 2.16.0 =
 
 (2020/07/25) Added support for the new `wp_get_environment_type()` function in WP v5.5.
-
-= 2.15.0 =
-
-(2020/06/27) Added a new 'wpsso_version_updates' action hook to refresh the config when add-on versions are updated / changed.
 
