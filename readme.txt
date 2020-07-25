@@ -59,6 +59,21 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 2.16.0-b.1 (2020/07/24)**
+
+* **New Features**
+	* None.
+* **Improvements**
+	* Added support for the new `wp_get_environment_type()` function in WP v5.5.
+* **Bugfixes**
+	* None.
+* **Developer Notes**
+	* None.
+* **Requires At Least**
+	* PHP v5.6.
+	* WordPress v4.2.
+	* WPSSO Core v4.26.0.
+
 **Version 2.15.0 (2020/06/27)**
 
 * **New Features**
@@ -76,6 +91,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
+= 2.16.0-b.1 =
+
+(2020/07/24) Added support for the new `wp_get_environment_type()` function in WP v5.5.
+
 = 2.15.0 =
 
 (2020/06/27) Added a new 'wpsso_version_updates' action hook to refresh the config when add-on versions are updated / changed.
