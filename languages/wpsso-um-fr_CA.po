@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 2.11.0\n"
+"Project-Id-Version: WPSSO Update Manager 2.16.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2020-06-02 11:34-0700\n"
-"PO-Revision-Date: 2020-06-02 11:35-0700\n"
+"POT-Creation-Date: 2020-07-25 11:07-0700\n"
+"PO-Revision-Date: 2020-07-25 11:07-0700\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -13,91 +13,91 @@ msgstr ""
 "X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: lib/actions.php:46
+#: lib/actions.php:60
 msgid "Plugin update information has been refreshed."
 msgstr "Les informations de mise à jour d'extension ont été actualisées."
 
-#: lib/actions.php:60
+#: lib/actions.php:74
 msgid "Plugin update offers have been re-enabled."
 msgstr "Les offres de mises à jour d'extension ont été réactivées."
 
-#: lib/com/update.php:228 lib/com/update.php:969 lib/gettext-com.php:6
+#: lib/com/update.php:244 lib/com/update.php:1034 lib/gettext-com.php:6
 #: lib/gettext-com.php:18
 msgid "An inconsistency was found in the %1$s update server information &mdash;"
 msgstr "Une incohérence a été trouvée dans l'information du serveur de mises à jour pour %1$s &mdash;"
 
-#: lib/com/update.php:231 lib/com/update.php:972 lib/gettext-com.php:7
+#: lib/com/update.php:247 lib/com/update.php:1037 lib/gettext-com.php:7
 #: lib/gettext-com.php:19
 msgid "Update checks for %1$s are disabled while this inconsistency persists."
 msgstr "Les vérifications de mises à jour pour %1$s sont désactivées tant que cette incohérence persiste."
 
-#: lib/com/update.php:235 lib/com/update.php:976 lib/gettext-com.php:8
+#: lib/com/update.php:251 lib/com/update.php:1041 lib/gettext-com.php:8
 #: lib/gettext-com.php:20
 msgid "You may <a href=\"%1$s\">open a new support ticket</a> if you believe this error message is incorrect."
 msgstr "Vous pouvez <a href=\"%1$s\">ouvrir un nouveau billet de soutien</a> si vous pensez que ce message d'erreur est incorrect."
 
-#: lib/com/update.php:262 lib/gettext-com.php:9
+#: lib/com/update.php:280 lib/gettext-com.php:9
 msgid "invalid authentication URL (%1$s)."
 msgstr "URL d'authentification non valide (%1$s)."
 
-#: lib/com/update.php:298 lib/gettext-com.php:10
+#: lib/com/update.php:316 lib/gettext-com.php:10
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr "Filtres de version pour mises à jour"
 
-#: lib/com/update.php:302 lib/gettext-com.php:11
+#: lib/com/update.php:320 lib/gettext-com.php:11
 msgid "Please note that one or more non-stable / development %s have been selected."
 msgstr "Veuillez noter que l'un ou plusieurs %s non-stable / de développement ont été sélectionnés."
 
-#: lib/com/update.php:469 lib/gettext-com.php:12
+#: lib/com/update.php:499 lib/gettext-com.php:12
 msgid "Update manager cache refresh ignored."
 msgstr "Actualisation du cache du gestionnaire de mise à jour ignorée."
 
-#: lib/com/update.php:471 lib/gettext-com.php:13
+#: lib/com/update.php:501 lib/gettext-com.php:13
 msgid "Please wait a few more minutes before requesting another update cache refresh."
 msgstr "Veuillez patienter quelques minutes de plus avant de demander une autre actualisation du cache de mise à jour."
 
-#: lib/com/update.php:538 lib/gettext-com.php:14
+#: lib/com/update.php:570 lib/gettext-com.php:14
 msgid "No plugins defined for updates."
 msgstr "Aucune extension définie pour les mises à jour."
 
-#: lib/com/update.php:578 lib/gettext-com.php:15
+#: lib/com/update.php:613 lib/gettext-com.php:15
 msgid "Update information for %s has been retrieved and saved."
 msgstr "L'information de mises à jour pour %s a été récupérée et sauvegardée."
 
-#: lib/com/update.php:593 lib/gettext-com.php:16
+#: lib/com/update.php:629 lib/gettext-com.php:16
 msgid "An error was returned while getting update information for %s."
 msgstr "Une erreur a été renvoyée lors de l'obtention des informations de mise à jour pour %s."
 
-#: lib/com/update.php:608 lib/gettext-com.php:17
+#: lib/com/update.php:645 lib/gettext-com.php:17
 msgid "Failed saving retrieved update information for %s."
 msgstr "Erreur lors de l'enregistrement des informations de mises à jour pour %s."
 
-#: lib/com/update.php:986 lib/gettext-com.php:21
+#: lib/com/update.php:1051 lib/gettext-com.php:21
 msgid "the update server URL (%1$s) does not appear to be a valid URL."
 msgstr "l'URL du serveur de mise à jour (%1$s) ne semble pas être une URL valide."
 
-#: lib/com/update.php:1031 lib/gettext-com.php:22
+#: lib/com/update.php:1100 lib/gettext-com.php:22
 msgid "the <a href=\"%1$s\">PHP %2$s function</a> did not return an IPv4 address."
 msgstr "la fonction <a href=\"%1$s\">PHP %2$s</a> n'a pas retourné une adresse IPv4."
 
-#: lib/com/update.php:1034 lib/gettext-com.php:23
+#: lib/com/update.php:1103 lib/gettext-com.php:23
 msgid "Please contact your hosting provider to have this PHP issue fixed."
 msgstr "SVP contacter votre hébergeur pour résoudre ce problème PHP."
 
-#: lib/com/update.php:1039 lib/gettext-com.php:24
+#: lib/com/update.php:1108 lib/gettext-com.php:24
 msgid "the IPv4 address (%1$s) from the local host does not match the DNS IPv4 address (%2$s)."
 msgstr "l'adresse IPv4 (%1$s) fournie par le serveur local ne correspond pas à l'adresse IPv4 du DNS (%2$s)."
 
-#: lib/com/update.php:1130 lib/gettext-com.php:25
+#: lib/com/update.php:1201 lib/gettext-com.php:25
 msgid "Update error from the WordPress %1$s function: %2$s"
 msgstr "Erreur de mises à jour de la fonction WordPress %1$s: %2$s"
 
-#: lib/com/update.php:1181 lib/gettext-com.php:26
+#: lib/com/update.php:1253 lib/gettext-com.php:26
 msgid "The WordPress %1$s function returned HTTP %2$d (%3$s) for %4$s."
 msgstr "La fonction WordPress %1$s a retourné HTTP %2$d (%3$s) pour %4$s."
 
-#: lib/com/update.php:1275 lib/gettext-com.php:27
+#: lib/com/update.php:1353 lib/gettext-com.php:27
 msgid "The %1$s plugin (%2$s) version number is missing from the WordPress plugins array."
 msgstr "Le numéro de version de l'extension %1$s (%2$s) est absente de la liste d'extensions de WordPress."
 
@@ -112,38 +112,38 @@ msgid "Update Manager for the WPSSO Core Premium Plugin and its Premium Compleme
 msgstr "Gestionnaire de mise à jour pour l'extension WPSSO Core Premium et ses ajouts complémentaires Premium."
 
 #: lib/sitesubmenu/site-um-general.php:47
-#: lib/sitesubmenu/site-um-general.php:54 lib/submenu/um-general.php:47
-#: lib/submenu/um-general.php:54
+#: lib/sitesubmenu/site-um-general.php:53 lib/submenu/um-general.php:47
+#: lib/submenu/um-general.php:53
 msgctxt "submit button"
 msgid "Check for Plugin Updates"
 msgstr "Vérifier pour mises à jour"
 
-#: lib/sitesubmenu/site-um-general.php:56 lib/submenu/um-general.php:56
+#: lib/sitesubmenu/site-um-general.php:55 lib/submenu/um-general.php:55
 msgctxt "submit button"
 msgid "Re-Offer Plugin Updates"
 msgstr "Ré-offrir mises à jour d'extension"
 
-#: lib/sitesubmenu/site-um-general.php:81
+#: lib/sitesubmenu/site-um-general.php:80
 msgctxt "metabox title"
 msgid "Network Update Manager"
 msgstr "Gestion de mises à jour réseau"
 
-#: lib/sitesubmenu/site-um-general.php:106 lib/submenu/um-general.php:89
+#: lib/sitesubmenu/site-um-general.php:105 lib/submenu/um-general.php:88
 msgctxt "metabox tab"
 msgid "Cron Schedule"
 msgstr "Horaire cron"
 
-#: lib/sitesubmenu/site-um-general.php:107 lib/submenu/um-general.php:90
+#: lib/sitesubmenu/site-um-general.php:106 lib/submenu/um-general.php:89
 msgctxt "metabox tab"
 msgid "Version Filters"
 msgstr "Filtres de version"
 
-#: lib/sitesubmenu/site-um-general.php:136 lib/submenu/um-general.php:119
+#: lib/sitesubmenu/site-um-general.php:135 lib/submenu/um-general.php:118
 msgctxt "option label"
 msgid "Refresh Update Information"
 msgstr "Actualiser info. de mises à jour"
 
-#: lib/submenu/um-general.php:70
+#: lib/submenu/um-general.php:69
 msgctxt "metabox title"
 msgid "Update Manager Settings"
 msgstr "Réglages du gestionnaire de mise à jour"
