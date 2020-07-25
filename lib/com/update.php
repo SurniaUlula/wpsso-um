@@ -1497,6 +1497,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return $local_cache[ $ext ] = empty( $this->p->options[ $ext_auth_key ] ) ? '' : $this->p->options[ $ext_auth_key ];
 		}
 
+		/**
+		 * Added on 2020/07/25.
+		 */
 		public function get_default_filter_name() {
 
 			$def_filter_name = 'stable';
