@@ -21,18 +21,23 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 		public static function decode_url_add_query( $url, array $args ) {
 
 			if ( filter_var( $url, FILTER_VALIDATE_URL ) === false ) {	// Check for invalid URL.
+
 				return false;
 			}
 
 			$parsed_url = parse_url( SucomUtil::decode_html( urldecode( $url ) ) );
 
 			if ( empty( $parsed_url ) ) {
+
 				return false;
 			}
 
 			if ( empty( $parsed_url[ 'query' ] ) ) {
+
 				$parsed_url[ 'query' ] = http_build_query( $args );
+
 			} else {
+
 				$parsed_url[ 'query' ] .= '&' . http_build_query( $args );
 			}
 
@@ -61,10 +66,12 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 		public static function get_plugins() {
 
 			if ( method_exists( 'SucomPlugin', 'get_plugins' ) ) {	// Since WPSSO Core v4.21.0.
+
 				return SucomPlugin::get_plugins();
 			}
 
 			if ( null !== self::$cache_plugins ) {
+
 				return self::$cache_plugins;
 			}
 
@@ -75,11 +82,13 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 				$plugin_lib = trailingslashit( ABSPATH ) . 'wp-admin/includes/plugin.php';
 
 				if ( file_exists( $plugin_lib ) ) {	// Just in case.
+
 					require_once $plugin_lib;
 				}
 			}
 
 			if ( function_exists( 'get_plugins' ) ) {
+
 				self::$cache_plugins = get_plugins();
 			}
 

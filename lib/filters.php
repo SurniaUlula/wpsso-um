@@ -23,6 +23,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			static $do_once = null;
 
 			if ( true === $do_once ) {
+
 				return;	// Stop here.
 			}
 
@@ -31,6 +32,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			$this->p =& $plugin;
 
 			if ( $this->p->debug->enabled ) {
+
 				$this->p->debug->mark();
 			}
 
@@ -58,12 +60,16 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		public function filter_option_type( $type, $base_key ) {
 
 			if ( $this->p->debug->enabled ) {
+
 				$this->p->debug->mark();
 			}
 
 			if ( ! empty( $type ) ) {
+
 				return $type;
+
 			} elseif ( strpos( $base_key, 'update_' ) !== 0 ) {
+
 				return $type;
 			}
 
@@ -95,10 +101,12 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		public function filter_save_setting_options( array $opts, $network, $upgrading ) {
 
 			if ( $this->p->debug->enabled ) {
+
 				$this->p->debug->mark();
 			}
 
 			if ( $network ) {
+
 				return $opts;	// Nothing to do.
 			}
 
@@ -164,12 +172,17 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		public function filter_get_defaults( $def_opts ) {
 
 			if ( $this->p->debug->enabled ) {
+
 				$this->p->debug->mark();
 			}
 
+			$wpssoum =& WpssoUm::get_instance();
+
+			$def_filter_name = $wpssoum->update->get_default_filter_name();
+
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
-				$def_opts[ 'update_filter_for_' . $ext ] = 'stable';
+				$def_opts[ 'update_filter_for_' . $ext ] = $def_filter_name;
 			}
 
 			return $def_opts;
@@ -178,12 +191,15 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		public function filter_get_site_defaults( $def_opts ) {
 
 			if ( $this->p->debug->enabled ) {
+
 				$this->p->debug->mark();
 			}
 
+			$def_filter_name = $wpssoum->update->get_default_filter_name();
+
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
-				$def_opts[ 'update_filter_for_' . $ext ] = 'stable';
+				$def_opts[ 'update_filter_for_' . $ext ] = $def_filter_name;
 
 				$def_opts[ 'update_filter_for_' . $ext . ':use' ] = 'default';
 			}
@@ -194,6 +210,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		public function filter_readme_upgrade_notices( $upgrade_notices, $ext ) {
 
 			if ( $this->p->debug->enabled ) {
+
 				$this->p->debug->mark();
 			}
 
@@ -215,10 +232,12 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		public function filter_newer_version_available( $newer_avail, $ext, $installed_version, $stable_version, $latest_version ) {
 
 			if ( $this->p->debug->enabled ) {
+
 				$this->p->debug->mark();
 			}
 
 			if ( $newer_avail ) {
+
 				return $newer_avail;
 			}
 
@@ -226,7 +245,8 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 			$filter_name = $wpssoum->update->get_ext_filter_name( $ext );
 
-			if ( $filter_name !== 'stable' && version_compare( $installed_version, $latest_version, '<' ) ) {
+			if ( 'stable' !== $filter_name && version_compare( $installed_version, $latest_version, '<' ) ) {
+
 				return true;
 			}
 
@@ -236,6 +256,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		public function filter_status_std_features( $features, $ext, $info ) {
 
 			if ( $this->p->debug->enabled ) {
+
 				$this->p->debug->mark();
 			}
 

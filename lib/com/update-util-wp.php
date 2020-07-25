@@ -40,14 +40,17 @@ if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
 					 * Compare value stored in database and maybe fix inconsistencies.
 					 */
 					if ( self::raw_do_option( 'get', 'home' ) !== $url ) {
+
 						self::raw_do_option( 'update', 'home', $url );
 					}
 
 				} else {
+
 					$url = self::raw_do_option( 'get', 'home' );
 				}
 
 			} else {
+
 				switch_to_blog( $blog_id );
 
 				$url = self::raw_do_option( 'get', 'home' );
@@ -68,6 +71,7 @@ if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
 			$url = self::raw_set_url_scheme( $url, $scheme );
 
 			if ( $path && is_string( $path ) ) {
+
 				$url .= '/' . ltrim( $path, '/' );
 			}
 
@@ -81,16 +85,22 @@ if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
 		private static function raw_set_url_scheme( $url, $scheme = null ) {
 
 			if ( ! $scheme ) {
+
 				$scheme = is_ssl() ? 'https' : 'http';
+
 			} elseif ( $scheme === 'admin' || $scheme === 'login' || $scheme === 'login_post' || $scheme === 'rpc' ) {
+
 				$scheme = is_ssl() || force_ssl_admin() ? 'https' : 'http';
+
 			} elseif ( $scheme !== 'http' && $scheme !== 'https' && $scheme !== 'relative' ) {
+
 				$scheme = is_ssl() ? 'https' : 'http';
 			}
 
 			$url = trim( $url );
 
 			if ( substr( $url, 0, 2 ) === '//' ) {
+
 				$url = 'http:' . $url;
 			}
 
@@ -99,10 +109,12 @@ if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
 				$url = ltrim( preg_replace( '#^\w+://[^/]*#', '', $url ) );
 
 				if ( $url !== '' && $url[0] === '/' ) {
+
 					$url = '/' . ltrim( $url, "/ \t\n\r\0\x0B" );
 				}
 
 			} else {
+
 				$url = preg_replace( '#^\w+://#', $scheme . '://', $url );
 			}
 
@@ -128,6 +140,7 @@ if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
 				'pre_update_option_' . $opt_name,
 				'pre_update_option',
 			) as $tag ) {
+
 				unset( $wp_filter[ $tag ] );
 			}
 
