@@ -195,6 +195,8 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				$this->p->debug->mark();
 			}
 
+			$wpssoum =& WpssoUm::get_instance();
+
 			$def_filter_name = $wpssoum->update->get_default_filter_name();
 
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
