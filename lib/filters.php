@@ -53,7 +53,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 				$this->p->util->add_plugin_filters( $this, array( 
 					'status_std_features' => 3,
-				), $prio = 10, $ext = 'wpssoum' );
+				), $prio = 10, $ext = 'wpssoum' );	// Hooks the 'wpssoum' filters.
 			}
 		}
 
@@ -255,6 +255,9 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			return $newer_avail;
 		}
 
+		/**
+		 * Filter for 'wpssoum_status_std_features'.
+		 */
 		public function filter_status_std_features( $features, $ext, $info ) {
 
 			if ( $this->p->debug->enabled ) {
