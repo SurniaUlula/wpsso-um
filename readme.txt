@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires PHP: 5.6
 Requires At Least: 4.2
 Tested Up To: 5.4.2
-Stable Tag: 2.16.0
+Stable Tag: 2.16.1
 
 Update Manager for the WPSSO Core Premium Plugin and its Premium Complementary Add-ons.
 
@@ -59,6 +59,21 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 2.16.1 (2020/07/29)**
+
+* **New Features**
+	* None.
+* **Improvements**
+	* None.
+* **Bugfixes**
+	* Fixed a "Undefined variable: wpssoum" error when reading default option values for a multisite.
+* **Developer Notes**
+	* None.
+* **Requires At Least**
+	* PHP v5.6.
+	* WordPress v4.2.
+	* WPSSO Core v4.26.0.
+
 **Version 2.16.0 (2020/07/25)**
 
 * **New Features**
@@ -74,24 +89,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* WordPress v4.2.
 	* WPSSO Core v4.26.0.
 
-**Version 2.15.0 (2020/06/27)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* None.
-* **Bugfixes**
-	* None.
-* **Developer Notes**
-	* Added a new 'wpsso_version_updates' action hook to refresh the config when add-on versions are updated / changed.
-* **Requires At Least**
-	* PHP v5.6.
-	* WordPress v4.2.
-	* WPSSO Core v4.26.0.
-
 == Upgrade Notice ==
  
-= 2.16.0 =
+= 2.16.1 =
 
-(2020/07/25) Added support for the new `wp_get_environment_type()` function in WP v5.5.
+(2020/07/29) Fixed a "Undefined variable: wpssoum" error when reading default option values for a multisite.
 
