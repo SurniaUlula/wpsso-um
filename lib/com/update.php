@@ -845,7 +845,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$this->p->debug->log( $ext . ' plugin: not installed' );
 					}
 
-					continue;
+					continue;	// Get the next plugin from the config.
 				}
 
 				$update_data = self::get_option_data( $ext );
