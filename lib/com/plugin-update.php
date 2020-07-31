@@ -6,8 +6,13 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
+
 	die( 'These aren\'t the droids you\'re looking for.' );
 }
+
+$lib_dir = dirname( __FILE__ ) . '/';
+
+require_once $lib_dir . 'plugin-data.php';
 
 if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 
@@ -21,6 +26,7 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 		public $homepage;	// Plugin homepage URL.
 		public $download_url;	// Update download URL.
 		public $upgrade_notice;
+		public $banners;
 		public $icons;
 		public $exp_date;	// Example: 0000-00-00 00:00:00
 		public $qty_total = 0;	// Example: 10	(since v1.10.0)
@@ -32,8 +38,11 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 			$plugin_data = SucomPluginData::data_from_json( $json_encoded );
 
 			if ( $plugin_data !== null )  {
+
 				return self::update_from_data( $plugin_data );
+
 			} else {
+
 				return null;
 			}
 		}
@@ -51,6 +60,7 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 				'homepage', 
 				'download_url', 
 				'upgrade_notice',
+				'banners',
 				'icons',
 				'exp_date',
 				'qty_total', 
@@ -59,6 +69,7 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 			) as $prop_name ) {
 
 				if ( isset( $plugin_data->$prop_name ) ) {
+
 					$plugin_update->$prop_name = $plugin_data->$prop_name;
 				}
 			}
@@ -79,6 +90,7 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 				'homepage'       => 'url',	// Plugin homepage URL.
 				'download_url'   => 'package',	// Update download URL.
 				'upgrade_notice' => 'upgrade_notice',
+				'banners'        => 'banners',
 				'icons'          => 'icons',
 				'exp_date'       => 'exp_date',
 				'qty_total'      => 'qty_total',
@@ -89,8 +101,11 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 				if ( isset( $this->$json_prop_name ) ) {
 
 					if ( is_object( $this->$json_prop_name ) ) {
+
 						$plugin_update->$wp_prop_name = get_object_vars( $this->$json_prop_name );
+
 					} else {
+
 						$plugin_update->$wp_prop_name = $this->$json_prop_name;
 					}
 				}

@@ -13,8 +13,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 $lib_dir = dirname( __FILE__ ) . '/';
 
 require_once $lib_dir . 'plugin-data.php';
+
 require_once $lib_dir . 'plugin-update.php';
+
 require_once $lib_dir . 'update-util.php';
+
 require_once $lib_dir . 'update-util-wp.php';
 
 if ( ! class_exists( 'SucomUpdate' ) ) {
@@ -687,7 +690,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			foreach ( self::$upd_config as $ext => $upd_info ) {
 
-				if ( ! empty( $upd_info[ 'response' ]->package ) && $upd_info[ 'response' ]->package === $url ) {
+				if ( ! empty( $upd_info[ 'response' ]->package ) && $url === $upd_info[ 'response' ]->package ) {
 
 					return true;
 				}
@@ -769,79 +772,75 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		/**
-		 * If the WordPress update system has been disabled and/or manipulated (ie. $updates is not false), then re-enable
+		 * If the WordPress update system has been disabled and/or manipulated (ie. $transient is not false), then re-enable
 		 * updates by including our update data (if a new plugin version is available).
 		 */
-		public function reenable_plugin_updates( $updates = false ) {
+		public function reenable_plugin_updates( $transient = false ) {
 
-			if ( false !== $updates ) {
+			if ( false !== $transient ) {
 
-				$updates = $this->maybe_add_plugin_update( $updates );
+				$transient = $this->maybe_add_plugin_update( $transient );
 			}
 
-			return $updates;
+			return $transient;
 		}
 
 		/**
-		 * $updates can be false or stdClass object.
+		 * $transient can be false or stdClass object.
 		 */
-		public function maybe_add_plugin_update( $updates = false ) {
+		public function maybe_add_plugin_update( $transient = false ) {
 
 			foreach ( self::$upd_config as $ext => $upd_info ) {
 
 				/**
-				 * Check the static cache first.
+				 * Check to see if we can use the update information from wp.org (ie. free / standard plugins
+				 * hosted on wp.org that use the stable version filter).
 				 */
-				if ( isset( self::$upd_config[ $ext ][ 'response' ] ) ) {
-
-					/**
-					 * Remove existing update information to make sure it is correct.
-					 */
-					if ( isset( $updates->response[ $upd_info[ 'base' ] ] ) ) {	// Avoid a "modify non-object" error.
-
-						unset( $updates->response[ $upd_info[ 'base' ] ] );	// Example: wpsso/wpsso.php.
-					}
-
-					/**
-					 * Only provide update information when an update is required.
-					 */
-					if ( false !== self::$upd_config[ $ext ][ 'response' ] ) {	// False when installed version is current.
-
-						$updates = $this->update_response_data( $updates, $ext );
-					}
+				if ( self::prefer_wp_org_update( $ext ) ) {	// Uses a local cache.
 
 					if ( $this->p->debug->enabled ) {
 
-						$this->p->debug->log( $ext . ' plugin: using static cache update response data' );
-						$this->p->debug->log( $ext . ' plugin: calling method/function backtrace 4', 4 );
-						$this->p->debug->log( $ext . ' plugin: calling method/function backtrace 5', 5 );
+						$this->p->debug->log( $ext . ' plugin: prefer update information from wp.org' );
 					}
 
 					continue;	// Get the next plugin from the config.
 				}
 
-				self::$upd_config[ $ext ][ 'response' ] = false;	// Default value.
-
 				/**
-				 * Check to see if we can use the update information from wp.org (ie. for free / standard plugins
-				 * hosted on wp.org, and using the stable version filter).
+				 * Check the static cache first.
 				 */
-				if ( isset( $updates->response[ $upd_info[ 'base' ] ] ) ) {
-
-					if ( self::prefer_wp_org_update( $ext ) ) {
-
-						/**
-						 * Seed the static cache.
-						 */
-						self::$upd_config[ $ext ][ 'response' ] = $updates->response[ $upd_info[ 'base' ] ];
-
-						continue;	// Get the next plugin from the config.
-					}
+				if ( isset( self::$upd_config[ $ext ][ 'response' ] ) ) {	// False or update object.
 
 					/**
-					 * Remove existing update information to make sure it is correct.
+					 * Installed version is older than the update version.
 					 */
-					unset( $updates->response[ $upd_info[ 'base' ] ] );	// Example: wpsso/wpsso.php.
+					if ( ! empty( self::$upd_config[ $ext ][ 'response' ] ) ) {
+
+						if ( $this->p->debug->enabled ) {
+
+							$this->p->debug->log( $ext . ' plugin: using static cache response data' );
+						}
+
+						$transient = $this->update_transient_response( $ext, $transient );
+
+					/**
+					 * Installed version is current or newer than the update version.
+					 */
+					} elseif ( ! empty( self::$upd_config[ $ext ][ 'no_update' ] ) ) {
+
+						if ( $this->p->debug->enabled ) {
+	
+							$this->p->debug->log( $ext . ' plugin: using static cache no update data' );
+						}
+	
+						$transient = $this->update_transient_no_update( $ext, $transient );
+
+					} elseif ( $this->p->debug->enabled ) {
+	
+						$this->p->debug->log( $ext . ' plugin: static cache data is false' );
+					}
+
+					continue;	// Get the next plugin from the config.
 				}
 
 				if ( ! self::is_installed( $ext ) ) {
@@ -854,39 +853,42 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					continue;	// Get the next plugin from the config.
 				}
 
+				self::$upd_config[ $ext ][ 'response' ] = false;
+
+				if ( $this->p->debug->enabled ) {
+	
+					$this->p->debug->log( $ext . ' plugin: getting update data' );
+				}
+
 				$update_data = self::get_option_data( $ext );
 
 				if ( empty( $update_data ) ) {
 
 					if ( $this->p->debug->enabled ) {
 
-						$this->p->debug->log( $ext . ' plugin: update option is empty' );
+						$this->p->debug->log( $ext . ' plugin: update data is empty' );
 					}
 
 				} elseif ( empty( $update_data->update ) ) {
 
 					if ( $this->p->debug->enabled ) {
 
-						$this->p->debug->log( $ext . ' plugin: no update information' );
+						$this->p->debug->log( $ext . ' plugin: missing update property' );
 					}
 
 				} elseif ( ! is_object( $update_data->update ) ) {
 
 					if ( $this->p->debug->enabled ) {
 
-						$this->p->debug->log( $ext . ' plugin: update property is not an object' );
+						$this->p->debug->log( $ext . ' plugin: update property not an object' );
 					}
 
 				} elseif ( version_compare( self::$upd_config[ $ext ][ 'installed_version' ], $update_data->update->version, '<' ) ) {
 
 					if ( $this->p->debug->enabled ) {
 
-						$this->p->debug->log( $ext . ' plugin: installed version is older than update version (' .
+						$this->p->debug->log( $ext . ' plugin: installed version is older than the update version (' .
 							self::$upd_config[ $ext ][ 'installed_version' ] . ' vs ' . $update_data->update->version . ')' );
-
-						$this->p->debug->log( $ext . ' plugin: calling method/function backtrace 4', 4 );
-
-						$this->p->debug->log( $ext . ' plugin: calling method/function backtrace 5', 5 );
 					}
 
 					/**
@@ -894,52 +896,129 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					 */
 					self::$upd_config[ $ext ][ 'response' ] = $update_data->update->json_to_wp();
 
-					$updates = $this->update_response_data( $updates, $ext );
-
-					if ( $this->p->debug->enabled ) {
-
-						$this->p->debug->log_arr( 'option_data', $updates->response[ $upd_info[ 'base' ] ], 5 );
-					}
+					$transient = $this->update_transient_response( $ext, $transient );
 
 				} else {
 
 					if ( $this->p->debug->enabled ) {
 
-						$this->p->debug->log( $ext . ' plugin: installed version is current or newer than update version' );
-						$this->p->debug->log( $ext . ' plugin: calling method/function backtrace 4', 4 );
-						$this->p->debug->log( $ext . ' plugin: calling method/function backtrace 5', 5 );
+						$this->p->debug->log( $ext . ' plugin: installed version is current or newer than the update version' );
 					}
+
+					/**
+					 * Update the static cache for 'no_update' data since WordPress v5.5.
+					 */
+					self::$upd_config[ $ext ][ 'no_update' ] = $update_data->update->json_to_wp();
+
+					$transient = $this->update_transient_no_update( $ext, $transient );
 				}
 			}
 
-			return $updates;
+			return $transient;
 		}
 
-		private function update_response_data( $updates, $ext ) {
+		private function save_wp_transient_data( $ext, $transient ) {
+		}
 
-			if ( isset( self::$upd_config[ $ext ][ 'response' ] ) &&
-				false !== self::$upd_config[ $ext ][ 'response' ] ) {		// False when installed version is current.
+		private function update_transient_response( $ext, $transient ) {
 
-				$update_data =& self::$upd_config[ $ext ][ 'response' ];	// Shortcut variable name.
+			return $this->update_transient_data( $ext, $transient, $prop_name = 'response', $un_prop_name = 'no_update' );
+		}
 
-				if ( isset( $update_data->plugin ) ) {				// Example: wpsso/wpsso.php
+		private function update_transient_no_update( $ext, $transient ) {
 
-					if ( ! is_object( $updates ) ) {
+			return $this->update_transient_data( $ext, $transient, $prop_name = 'no_update', $un_prop_name = 'response' );
+		}
 
-						$updates = new stdClass;
+		private function update_transient_data( $ext, $transient, $prop_name, $un_prop_name ) {
 
-						$updates->last_checked = time();
+			if ( empty( self::$upd_config[ $ext ][ 'base' ] ) ) {	// Make sure we have a valid config.
 
-						$updates->checked = array();
-					}
+				if ( $this->p->debug->enabled ) {
 
-					$updates->checked[ $update_data->plugin ] = self::$upd_config[ $ext ][ 'installed_version' ];
-
-					$updates->response[ $update_data->plugin ] = $update_data;
+					$this->p->debug->log( $ext . ' plugin: update config missing plugin base' );
 				}
+
+				return $transient;
+			}
+				
+			$base = self::$upd_config[ $ext ][ 'base' ];
+
+			if ( isset( $transient->$prop_name[ $base ] ) ) {	// Avoid a "modify non-object" error.
+
+				if ( $this->p->debug->enabled ) {
+
+					$this->p->debug->log( $ext . ' plugin: unsetting old ' . $prop_name . ' object property' );
+				}
+
+				unset( $transient->$prop_name[ $base ] );	// Remove potentially invalid update information.
 			}
 
-			return $updates;
+			if ( empty( self::$upd_config[ $ext ][ $prop_name ] ) ) {	// No update information.
+
+				if ( $this->p->debug->enabled ) {
+
+					$this->p->debug->log( $ext . ' plugin: update config ' . $prop_name . ' is empty' );
+				}
+
+				return $transient;
+			}
+
+			$update_obj =& self::$upd_config[ $ext ][ $prop_name ];	// Shortcut variable name.
+
+			if ( empty( $update_obj->plugin ) ) {
+			
+				if ( $this->p->debug->enabled ) {
+
+					$this->p->debug->log( $ext . ' plugin: update object is incomplete' );
+				}
+
+				return $transient;
+
+			} elseif ( $base !== $update_obj->plugin ) {	// Example: wpsso/wpsso.php
+
+				if ( $this->p->debug->enabled ) {
+
+					$this->p->debug->log( $ext . ' plugin: base mismatch (' . $base. ' vs ' . $update_obj->plugin . ')' );
+				}
+
+				return $transient;
+			}
+
+			if ( ! is_object( $transient ) ) {
+
+				$transient = new stdClass;
+
+				$transient->last_checked = time();
+
+				$transient->checked = array();
+			}
+
+			if ( isset( $transient->checked[ $base ] ) ) {
+
+				unset( $transient->checked[ $base ] );
+			}
+
+			$transient->checked[ $base ] = self::$upd_config[ $ext ][ 'installed_version' ];
+
+			if ( $this->p->debug->enabled ) {
+
+				$this->p->debug->log( $ext . ' plugin: setting new ' . $prop_name . ' object property' );
+			}
+
+			$transient->$prop_name[ $base ] = $update_obj;
+
+			if ( isset( $transient->$un_prop_name[ $base ] ) ) {	// Avoid a "modify non-object" error.
+
+				if ( $this->p->debug->enabled ) {
+
+					$this->p->debug->log( $ext . ' plugin: unsetting ' . $un_prop_name . ' object property' );
+				}
+
+				unset( $transient->$un_prop_name[ $base ] );
+			}
+
+			return $transient;
 		}
 
 		public function add_custom_schedule( $schedules ) {
@@ -980,7 +1059,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		 */
 		public function get_plugin_data( $ext, $read_cache = true ) {
 
-			if ( empty( self::$upd_config[ $ext ][ 'slug' ] ) ) { // Make sure we have a config for that slug.
+			if ( empty( self::$upd_config[ $ext ][ 'slug' ] ) ) {	// Make sure we have a valid config.
 
 				return $plugin_data = null;
 			}
@@ -1584,7 +1663,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				return $local_cache[ $ext ] = false;
 			}
 
-			$upd_info = self::$upd_config[ $ext ];
+			$upd_info =& self::$upd_config[ $ext ];
 
 			/**
 			 * Make sure the plugin is available on wordpress.org.
@@ -1592,8 +1671,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			if ( ! empty( $upd_info[ 'hosts' ][ 'wp_org' ] ) ) {	// Since WPSSO v6.12.0.
 
 				/**
-				 * Possibly switching from a development to a stable version filter, or from a Premium to a
-				 * Standard version.
+				 * Check if switching from a development to a stable version filter or from a Premium to a Standard
+				 * version.
 				 */
 				if ( 0 === strpos( $upd_info[ 'installed_version' ], '0.' ) ) {
 
@@ -1603,12 +1682,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				/**
 				 * Make sure the authentication type is 'none' (ie. no Pro / Premium version exists).
 				 */
-				if ( ! empty( $upd_info[ 'auth_type' ] ) && $upd_info[ 'auth_type' ] === 'none' ) {
+				if ( isset( $upd_info[ 'auth_type' ] ) && 'none' === $upd_info[ 'auth_type' ] ) {
 
 					/**
-					 * Make sure we are using only the stable versions.
+					 * Make sure we are using the stable version.
 					 */
-					if ( ! empty( $upd_info[ 'version_filter' ] ) && $upd_info[ 'version_filter' ] === 'stable' ) {
+					if ( isset( $upd_info[ 'version_filter' ] ) && 'stable' === $upd_info[ 'version_filter' ] ) {
 
 						return $local_cache[ $ext ] = true;
 					}
@@ -1884,222 +1963,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			return false;
-		}
-	}
-}
-
-if ( ! class_exists( 'SucomPluginData' ) ) {
-
-	class SucomPluginData {
-	
-		public $id = 0;
-		public $name;
-		public $slug;
-		public $plugin;
-		public $version;
-		public $tested;
-		public $requires;
-		public $homepage;
-		public $download_url;
-		public $author;
-		public $author_homepage;
-		public $upgrade_notice;
-		public $banners;
-		public $icons;
-		public $rating;
-		public $num_ratings;
-		public $last_updated;
-		public $sections;
-	
-		public function __construct() {
-		}
-
-		public static function data_from_json( $json_encoded ) {
-
-			$json_data = json_decode( $json_encoded, $assoc = false );
-
-			if ( empty( $json_data ) || ! is_object( $json_data ) )  {
-
-				return null;
-			}
-
-			if ( empty( $json_data->plugin ) || empty( $json_data->version ) ) {
-
-				return null;
-			}
-
-			$plugin_data = new SucomPluginData();
-
-			foreach( get_object_vars( $json_data ) as $key => $value ) {
-
-				$plugin_data->$key = $value;
-			}
-
-			return $plugin_data;
-		}
-	
-		public function json_to_wp(){
-
-			$plugin_data = new StdClass;
-
-			foreach ( array(
-				'name', 
-				'slug', 
-				'plugin', 
-				'version', 
-				'tested', 
-				'requires', 
-				'homepage', 
-				'download_url',
-				'author_homepage',
-				'upgrade_notice',
-				'banners',
-				'icons',
-				'rating', 
-				'num_ratings', 
-				'last_updated',
-				'sections',
-			) as $prop_name ) {
-
-				if ( isset( $this->$prop_name ) ) {
-
-					if ( $prop_name === 'download_url' ) {
-
-						$plugin_data->download_link = $this->download_url;
-
-					} elseif ( $prop_name === 'author_homepage' ) {
-
-						if ( strpos( $this->author, '<a href' ) === false ) {
-
-							$plugin_data->author = sprintf( '<a href="%s">%s</a>', $this->author_homepage, $this->author );
-
-						} else {
-
-							$plugin_data->author = $this->author;
-						}
-
-					} elseif ( $prop_name === 'sections' && empty( $this->$prop_name ) ) {
-
-						$plugin_data->$prop_name = array( 'description' => '' );
-
-					} elseif ( is_object( $this->$prop_name ) ) {
-
-						$plugin_data->$prop_name = get_object_vars( $this->$prop_name );
-
-					} else {
-
-						$plugin_data->$prop_name = $this->$prop_name;
-					}
-
-				} elseif ( $prop_name === 'author_homepage' ) {
-
-					$plugin_data->author = $this->author;
-				}
-			}
-
-			return $plugin_data;
-		}
-	}
-}
-	
-if ( ! class_exists( 'SucomPluginUpdate' ) ) {
-
-	class SucomPluginUpdate {
-	
-		public $id = 0;
-		public $slug;
-		public $plugin;
-		public $version = 0;
-		public $tested;
-		public $homepage;	// Plugin homepage URL.
-		public $download_url;	// Update download URL.
-		public $upgrade_notice;
-		public $icons;
-		public $exp_date;	// Example: 0000-00-00 00:00:00
-		public $qty_total = 0;	// Example: 10	(since v1.10.0)
-		public $qty_reg   = 0;	// Example: 1	(since v1.10.0)
-		public $qty_used  = '';	// Example: 1/10
-
-		public function __construct() {
-		}
-
-		public static function update_from_json( $json_encoded ) {
-
-			$plugin_data = SucomPluginData::data_from_json( $json_encoded );
-
-			if ( $plugin_data !== null )  {
-
-				return self::update_from_data( $plugin_data );
-
-			} else {
-
-				return null;
-			}
-		}
-	
-		public static function update_from_data( $plugin_data ){
-
-			$plugin_update = new SucomPluginUpdate();
-
-			foreach ( array(
-				'id', 
-				'slug', 
-				'plugin', 
-				'version', 
-				'tested', 
-				'homepage', 
-				'download_url', 
-				'upgrade_notice',
-				'icons',
-				'exp_date',
-				'qty_total', 
-				'qty_reg', 
-				'qty_used', 
-			) as $prop_name ) {
-
-				if ( isset( $plugin_data->$prop_name ) ) {
-
-					$plugin_update->$prop_name = $plugin_data->$prop_name;
-				}
-			}
-
-			return $plugin_update;
-		}
-	
-		public function json_to_wp() {
-
-			$plugin_update = new StdClass;
-
-			foreach ( array(
-				'id'             => 'id',
-				'slug'           => 'slug',
-				'plugin'         => 'plugin',
-				'version'        => 'new_version',
-				'tested'         => 'tested',
-				'homepage'       => 'url',		// Plugin homepage URL.
-				'download_url'   => 'package',		// Update download URL.
-				'upgrade_notice' => 'upgrade_notice',
-				'icons'          => 'icons',
-				'exp_date'       => 'exp_date',
-				'qty_total'      => 'qty_total',
-				'qty_reg'        => 'qty_reg',
-				'qty_used'       => 'qty_used',
-			) as $json_prop_name => $wp_prop_name ) {
-
-				if ( isset( $this->$json_prop_name ) ) {
-
-					if ( is_object( $this->$json_prop_name ) ) {
-
-						$plugin_update->$wp_prop_name = get_object_vars( $this->$json_prop_name );
-
-					} else {
-
-						$plugin_update->$wp_prop_name = $this->$json_prop_name;
-					}
-				}
-			}
-
-			return $plugin_update;
 		}
 	}
 }

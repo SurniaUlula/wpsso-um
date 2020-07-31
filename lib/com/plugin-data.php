@@ -6,6 +6,7 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
+
 	die( 'These aren\'t the droids you\'re looking for.' );
 }
 
@@ -37,16 +38,19 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 			$json_data = json_decode( $json_encoded, $assoc = false );
 
 			if ( empty( $json_data ) || ! is_object( $json_data ) )  {
+
 				return null;
 			}
 
 			if ( empty( $json_data->plugin ) || empty( $json_data->version ) ) {
+
 				return null;
 			}
 
 			$plugin_data = new SucomPluginData();
 
 			foreach( get_object_vars( $json_data ) as $key => $value ) {
+
 				$plugin_data->$key = $value;
 			}
 
@@ -58,6 +62,7 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 			$plugin_data = new StdClass;
 
 			foreach ( array(
+				'id', 
 				'name', 
 				'slug', 
 				'plugin', 
@@ -99,10 +104,12 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 						$plugin_data->$prop_name = get_object_vars( $this->$prop_name );
 
 					} else {
+
 						$plugin_data->$prop_name = $this->$prop_name;
 					}
 
 				} elseif ( $prop_name === 'author_homepage' ) {
+
 					$plugin_data->author = $this->author;
 				}
 			}
