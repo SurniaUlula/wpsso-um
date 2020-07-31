@@ -6,6 +6,7 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
+
 	die( 'These aren\'t the droids you\'re looking for.' );
 }
 
@@ -167,6 +168,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( ! empty( $info[ 'url' ] ) ) {
 
 					if ( empty( $info[ 'urls' ] ) ) {
+
 						$info[ 'urls' ] = $info[ 'url' ];
 					}
 
@@ -274,6 +276,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( filter_var( $json_url, FILTER_VALIDATE_URL ) === false ) {	// Check for invalid URL.
 
 					if ( $this->p->debug->enabled ) {
+
 						$this->p->debug->log( $ext . ' plugin: invalid authentication URL (' . $json_url . ')' );
 					}
 
@@ -303,6 +306,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				);
 
 				if ( $this->p->debug->enabled ) {
+
 					$this->p->debug->log( $ext . ' plugin: update info configured (auth_type is ' . $ext_auth_type . ')' );
 				}
 			}
@@ -418,6 +422,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( $schedule !== $this->sched_name ) {
 
 					if ( $this->p->debug->enabled ) {
+
 						$this->p->debug->log( 'changing ' . $this->cron_hook . ' schedule from ' . $schedule . ' to ' . $this->sched_name );
 					}
 
@@ -426,6 +431,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				} else {
 
 					if ( $this->p->debug->enabled ) {
+
 						$this->p->debug->log( $this->cron_hook . ' already registered for schedule ' . $this->sched_name );
 					}
 
@@ -1026,6 +1032,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( false !== $plugin_data ) { // False if transient is expired or not found.
 
 					if ( $this->p->debug->enabled ) {
+
 						$this->p->debug->log( $ext . ' plugin: returning plugin data from cache' );
 					}
 
@@ -1186,6 +1193,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			if ( is_wp_error( $request ) && strpos( $request->get_error_message(), 'cURL error 52:' ) === 0 ) {
 
 				if ( $this->p->debug->enabled ) {
+
 					$this->p->debug->log( $ext . ' plugin: wp error code ' . $request->get_error_code() . ' - ' . $request->get_error_message() );
 					$this->p->debug->log( $ext . ' plugin: (retry) calling wp_remote_get() for ' . $json_url );
 				}
@@ -1240,6 +1248,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 							if ( empty( $plugin_data->plugin ) ) {
 		
 								if ( $this->p->debug->enabled ) {
+
 									$this->p->debug->log( $ext . ' plugin: returned plugin data is incomplete' );
 								}
 		
