@@ -265,7 +265,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				$this->p->debug->mark();
 			}
 
-			$features[ '(api) Update Check Schedule' ] = array( 
+			$features[ _x( '(api) Update Check Schedule', 'lib file description', 'wpsso-um' ) ] = array( 
 				'status' => SucomUpdate::is_enabled() ? 'on' : 'off'
 			);
 

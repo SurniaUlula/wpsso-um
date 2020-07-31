@@ -366,19 +366,29 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			add_filter( 'http_headers_useragent', array( $this, 'maybe_update_wpua' ), PHP_INT_MAX, 1 );
 
 			/**
-			 * If the WordPress update system has been disabled and/or manipulated, then re-enable updates by including
-			 * our update data (if a new plugin version is available).
-			 */
-			add_filter( 'pre_transient_update_plugins', array( $this, 'reenable_plugin_updates' ), PHP_INT_MAX, 1 );
-
-			add_filter( 'pre_site_transient_update_plugins', array( $this, 'reenable_plugin_updates' ), PHP_INT_MAX, 1 );
-
-			/**
 			 * Provide plugin data from the json api for add-ons not hosted on wordpress.org.
 			 */
 			add_filter( 'plugins_api_result', array( $this, 'external_plugin_data' ), PHP_INT_MAX, 3 );
 
+			/**
+			 * Called by get_transient().
+			 *
+			 * Hook 'pre_transient_update_plugins' to check if the WordPress update system has been disabled and/or
+			 * manipulated, and if so, then re-enable plugin updates by including our update data (if a new plugin
+			 * version is available).
+			 */
+			add_filter( 'pre_transient_update_plugins', array( $this, 'reenable_plugin_updates' ), PHP_INT_MAX, 1 );
+
 			add_filter( 'transient_update_plugins', array( $this, 'maybe_add_plugin_update' ), PHP_INT_MAX, 1 );
+
+			/**
+			 * Called by get_site_transient().
+			 *
+			 * Hook 'pre_site_transient_update_plugins' to check if the WordPress update system has been disabled
+			 * and/or manipulated, and if so, then re-enable plugin updates by including our update data (if a new
+			 * plugin version is available).
+			 */
+			add_filter( 'pre_site_transient_update_plugins', array( $this, 'reenable_plugin_updates' ), PHP_INT_MAX, 1 );
 
 			add_filter( 'site_transient_update_plugins', array( $this, 'maybe_add_plugin_update' ), PHP_INT_MAX, 1 );
 
@@ -787,7 +797,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					}
 
 					/**
-					 * only provide update information when an update is required.
+					 * Only provide update information when an update is required.
 					 */
 					if ( false !== self::$upd_config[ $ext ][ 'response' ] ) {	// False when installed version is current.
 
@@ -902,7 +912,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		private function update_response_data( $updates, $ext ) {
 
 			if ( isset( self::$upd_config[ $ext ][ 'response' ] ) &&
-				false !== self::$upd_config[ $ext ][ 'response' ] ) {	// False when installed version is current.
+				false !== self::$upd_config[ $ext ][ 'response' ] ) {		// False when installed version is current.
 
 				$update_data =& self::$upd_config[ $ext ][ 'response' ];	// Shortcut variable name.
 
