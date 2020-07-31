@@ -10,7 +10,7 @@ Tags: wpsso, update, manager, schedule, add-on, pro version
 Contributors: jsmoriss
 Requires PHP: 5.6
 Requires At Least: 4.2
-Tested Up To: 5.4.2
+Tested Up To: 5.5
 Stable Tag: 2.16.1
 
 Update Manager for the WPSSO Core Premium Plugin and its Premium Complementary Add-ons.
@@ -59,6 +59,21 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 2.17.0-dev.1 (2020/07/30)**
+
+* **New Features**
+	* None.
+* **Improvements**
+	* Added the ability to translate labels in the "Standard Features Status" metabox in the SSO &gt; Dashboard page.
+* **Bugfixes**
+	* None.
+* **Developer Notes**
+	* None.
+* **Requires At Least**
+	* PHP v5.6.
+	* WordPress v4.2.
+	* WPSSO Core v4.26.0.
+
 **Version 2.16.1 (2020/07/29)**
 
 * **New Features**
@@ -91,6 +106,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
+= 2.17.0-dev.1 =
+
+(2020/07/30) Added the ability to translate labels in the "Standard Features Status" metabox.
+
 = 2.16.1 =
 
 (2020/07/29) Fixed a "Undefined variable: wpssoum" error when reading default option values for a multisite.
