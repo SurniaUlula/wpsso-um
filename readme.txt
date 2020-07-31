@@ -59,16 +59,16 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 2.17.0-dev.1 (2020/07/30)**
+**Version 3.0.0-dev.2 (2020/07/31)**
 
 * **New Features**
-	* None.
+	* Added support for WordPress v5.5 automatic updates.
 * **Improvements**
 	* Added the ability to translate labels in the "Standard Features Status" metabox in the SSO &gt; Dashboard page.
 * **Bugfixes**
 	* None.
 * **Developer Notes**
-	* None.
+	* Removed the unused `SucomPluginData` and `SucomPluginUpdate` classes from lib/com/update.php.
 * **Requires At Least**
 	* PHP v5.6.
 	* WordPress v4.2.
@@ -106,9 +106,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
-= 2.17.0-dev.1 =
+= 3.0.0-dev.2 =
 
-(2020/07/30) Added the ability to translate labels in the "Standard Features Status" metabox.
+(2020/07/31) Added support for WordPress v5.5 automatic updates.
 
 = 2.16.1 =
 
