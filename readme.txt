@@ -69,6 +69,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* None.
 * **Developer Notes**
 	* Removed the unused `SucomPluginData` and `SucomPluginUpdate` classes from lib/com/update.php.
+	* Renamed the config array keys for icons URLs from 'low' and 'high' to '1x' and '2x'.
 * **Requires At Least**
 	* PHP v5.6.
 	* WordPress v4.2.
