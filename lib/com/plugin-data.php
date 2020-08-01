@@ -90,8 +90,11 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 					} elseif ( $prop_name === 'author_homepage' ) {
 
 						if ( strpos( $this->author, '<a href' ) === false ) {
+
 							$plugin_data->author = sprintf( '<a href="%s">%s</a>', $this->author_homepage, $this->author );
+
 						} else {
+
 							$plugin_data->author = $this->author;
 						}
 

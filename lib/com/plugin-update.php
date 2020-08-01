@@ -87,8 +87,8 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 				'plugin'         => 'plugin',
 				'version'        => 'new_version',
 				'tested'         => 'tested',
-				'homepage'       => 'url',	// Plugin homepage URL.
-				'download_url'   => 'package',	// Update download URL.
+				'homepage'       => 'url',		// Plugin homepage URL.
+				'download_url'   => 'package',		// Update download URL.
 				'upgrade_notice' => 'upgrade_notice',
 				'banners'        => 'banners',
 				'icons'          => 'icons',
