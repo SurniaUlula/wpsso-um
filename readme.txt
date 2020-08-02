@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 3.0.0-rc.1 (2020/08/02)**
+**Version 3.0.0 (2020/08/02)**
 
 * **New Features**
 	* Added support for WordPress v5.5 automatic updates.
@@ -107,11 +107,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
-= 3.0.0-rc.1 =
+= 3.0.0 =
 
 (2020/08/02) Tested with WordPress v5.5. Added support for WordPress v5.5 automatic updates.
-
-= 2.16.1 =
-
-(2020/07/29) Fixed a "Undefined variable: wpssoum" error when reading default option values for a multisite.
 
