@@ -62,10 +62,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			if ( $this->p->debug->enabled ) {
 
-				$this->p->debug->mark( 'update manager setup' );	// Begin timer.
+				$this->p->debug->mark( 'update manager constructor' );	// Begin timer.
 			}
 
-			if ( isset( $this->p->lca ) ) {
+			if ( isset( $this->p->lca ) ) {	// Just in case.
 
 				$this->plugin_lca = $this->p->lca;
 
@@ -104,7 +104,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			if ( $this->p->debug->enabled ) {
 
-				$this->p->debug->mark( 'update manager setup' );	// End timer.
+				$this->p->debug->mark( 'update manager constructor' );	// End timer.
 			}
 		}
 
@@ -127,7 +127,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			if ( $this->p->debug->enabled ) {
 
-				$this->p->debug->mark();
+				$this->p->debug->mark( 'update manager config' );	// Begin timer.
 			}
 
 			$cf_plugins = $this->p->cf[ 'plugin' ];
@@ -146,12 +146,16 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					if ( $this->p->debug->enabled ) {
 
 						$this->p->debug->log( 'config retrieved from transient cache' );
+
+						$this->p->debug->mark( 'update manager config' );	// End timer.
 					}
+
 
 					return;
 				}
 
 			} else {
+
 				delete_transient( $cache_id );
 			}
 
@@ -340,6 +344,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			if ( $this->p->debug->enabled ) {
 
 				$this->p->debug->log( 'config saved to transient cache for ' . $cache_exp_secs . ' seconds' );
+			}
+
+			if ( $this->p->debug->enabled ) {
+
+				$this->p->debug->mark( 'update manager config' );	// End timer.
 			}
 		}
 
@@ -790,6 +799,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		 */
 		public function maybe_add_plugin_update( $transient = false ) {
 
+			if ( $this->p->debug->enabled ) {
+
+				$this->p->debug->mark( 'maybe add plugin and add-on update(s) to transient' );	// Begin timer.
+			}
+
 			foreach ( self::$upd_config as $ext => $upd_info ) {
 
 				/**
@@ -830,7 +844,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 						if ( $this->p->debug->enabled ) {
 	
-							$this->p->debug->log( $ext . ' plugin: using static cache no update data' );
+							$this->p->debug->log( $ext . ' plugin: using static cache no_update data' );
 						}
 	
 						$transient = $this->update_transient_no_update( $ext, $transient );
@@ -914,10 +928,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 			}
 
-			return $transient;
-		}
+			if ( $this->p->debug->enabled ) {
 
-		private function save_wp_transient_data( $ext, $transient ) {
+				$this->p->debug->mark( 'maybe add plugin and add-on update(s) to transient' );	// Begin timer.
+			}
+
+			return $transient;
 		}
 
 		private function update_transient_response( $ext, $transient ) {
@@ -945,11 +961,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$base = self::$upd_config[ $ext ][ 'base' ];
 
 			if ( isset( $transient->$prop_name[ $base ] ) ) {	// Avoid a "modify non-object" error.
-
-				if ( $this->p->debug->enabled ) {
-
-					$this->p->debug->log( $ext . ' plugin: unsetting old ' . $prop_name . ' object property' );
-				}
 
 				unset( $transient->$prop_name[ $base ] );	// Remove potentially invalid update information.
 			}
@@ -1000,11 +1011,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			$transient->checked[ $base ] = self::$upd_config[ $ext ][ 'installed_version' ];
-
-			if ( $this->p->debug->enabled ) {
-
-				$this->p->debug->log( $ext . ' plugin: setting new ' . $prop_name . ' object property' );
-			}
 
 			$transient->$prop_name[ $base ] = $update_obj;
 
