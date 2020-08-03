@@ -960,9 +960,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				
 			$base = self::$upd_config[ $ext ][ 'base' ];
 
-			if ( is_object( $transient ) &&
-				isset( $transient->$prop_name ) &&
-					isset( $transient->$prop_name[ $base ] ) ) {	// Avoid a "modify non-object" error.
+			if ( is_object( $transient ) && isset( $transient->$prop_name[ $base ] ) ) {	// Avoid a "modify non-object" error.
 
 				unset( $transient->$prop_name[ $base ] );	// Remove potentially invalid update information.
 			}
@@ -1016,8 +1014,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			$transient->$prop_name[ $base ] = $update_obj;
 
-			if ( isset( $transient->$un_prop_name ) &&
-				isset( $transient->$un_prop_name[ $base ] ) ) {	// Avoid a "modify non-object" error.
+			if ( isset( $transient->$un_prop_name[ $base ] ) ) {	// Avoid a "modify non-object" error.
 
 				if ( $this->p->debug->enabled ) {
 
@@ -1326,8 +1323,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 								null : $payload[ 'api_response' ][ $type ] ) );
 						}
 	
-						if ( empty( $request[ 'headers' ][ 'x-error-msg' ] ) && 
-							empty( $request[ 'headers' ][ 'x-update-error' ] ) ) {
+						if ( empty( $request[ 'headers' ][ 'x-error-msg' ] ) && empty( $request[ 'headers' ][ 'x-update-error' ] ) ) {
 		
 							self::$upd_config[ $ext ][ 'uerr' ] = false;
 	
