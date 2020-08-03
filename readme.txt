@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires PHP: 5.6
 Requires At Least: 4.2
 Tested Up To: 5.5
-Stable Tag: 3.0.0
+Stable Tag: 3.0.1
 
 Update Manager for the WPSSO Core Premium Plugin and its Premium Complementary Add-ons.
 
@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 3.0.0 (2020/08/02)**
+**Version 3.0.1 (2020/08/03)**
 
 * **New Features**
 	* Added support for WordPress v5.5 automatic updates.
@@ -75,39 +75,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* WordPress v4.2.
 	* WPSSO Core v4.26.0.
 
-**Version 2.16.1 (2020/07/29)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* None.
-* **Bugfixes**
-	* Fixed a "Undefined variable: wpssoum" error when reading default option values for a multisite.
-* **Developer Notes**
-	* None.
-* **Requires At Least**
-	* PHP v5.6.
-	* WordPress v4.2.
-	* WPSSO Core v4.26.0.
-
-**Version 2.16.0 (2020/07/25)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* Added support for the new `wp_get_environment_type()` function in WP v5.5.
-* **Bugfixes**
-	* None.
-* **Developer Notes**
-	* None.
-* **Requires At Least**
-	* PHP v5.6.
-	* WordPress v4.2.
-	* WPSSO Core v4.26.0.
-
 == Upgrade Notice ==
  
-= 3.0.0 =
+= 3.0.1 =
 
-(2020/08/02) Tested with WordPress v5.5. Added support for WordPress v5.5 automatic updates.
+(2020/08/03) Tested with WordPress v5.5. Added support for WordPress v5.5 automatic updates.
 
