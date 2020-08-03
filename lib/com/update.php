@@ -960,7 +960,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				
 			$base = self::$upd_config[ $ext ][ 'base' ];
 
-			if ( isset( $transient->$prop_name[ $base ] ) ) {	// Avoid a "modify non-object" error.
+			if ( isset( $transient->$prop_name ) &&
+				isset( $transient->$prop_name[ $base ] ) ) {	// Avoid a "modify non-object" error.
 
 				unset( $transient->$prop_name[ $base ] );	// Remove potentially invalid update information.
 			}
@@ -1014,7 +1015,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			$transient->$prop_name[ $base ] = $update_obj;
 
-			if ( isset( $transient->$un_prop_name[ $base ] ) ) {	// Avoid a "modify non-object" error.
+			if ( isset( $transient->$un_prop_name ) &&
+				isset( $transient->$un_prop_name[ $base ] ) ) {	// Avoid a "modify non-object" error.
 
 				if ( $this->p->debug->enabled ) {
 
