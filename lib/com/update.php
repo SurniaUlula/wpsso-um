@@ -960,8 +960,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				
 			$base = self::$upd_config[ $ext ][ 'base' ];
 
-			if ( isset( $transient->$prop_name ) &&
-				isset( $transient->$prop_name[ $base ] ) ) {	// Avoid a "modify non-object" error.
+			if ( is_object( $transient ) &&
+				isset( $transient->$prop_name ) &&
+					isset( $transient->$prop_name[ $base ] ) ) {	// Avoid a "modify non-object" error.
 
 				unset( $transient->$prop_name[ $base ] );	// Remove potentially invalid update information.
 			}
@@ -978,7 +979,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			$update_obj =& self::$upd_config[ $ext ][ $prop_name ];	// Shortcut variable name.
 
-			if ( empty( $update_obj->plugin ) ) {
+			if ( empty( $update_obj->plugin ) ) {	// Example: wpsso/wpsso.php
 			
 				if ( $this->p->debug->enabled ) {
 
@@ -1116,7 +1117,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$plugin_data = self::$upd_config[ $ext ][ 'plugin_data' ] = get_transient( $cache_id );
 				}
 
-				if ( false !== $plugin_data ) { // False if transient is expired or not found.
+				if ( false !== $plugin_data ) {	// False if transient is expired or not found.
 
 					if ( $this->p->debug->enabled ) {
 
@@ -1164,11 +1165,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				return $plugin_data;	// Returns null.
 			}
 
-			static $host_cache = array(); // Local cache to lookup the host ip only once.
+			static $host_cache = array();	// Local cache to lookup the host ip only once.
 
 			if ( ! isset( $host_cache[ $json_host ][ 'ip' ] ) ) {
 
-				$host_cache[ $json_host ][ 'ip' ] = gethostbyname( $json_host ); // Returns an IPv4 address, or the hostname on failure.
+				$host_cache[ $json_host ][ 'ip' ] = gethostbyname( $json_host );	// Returns an IPv4 address, or the hostname on failure.
 
 				if ( $host_cache[ $json_host ][ 'ip' ] === $json_host ) {
 
@@ -1178,7 +1179,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			if ( ! isset( $host_cache[ $json_host ][ 'a' ] ) ) {
 
-				$dns_rec = dns_get_record( $json_host . '.', DNS_A ); // Returns an array of associative arrays.
+				$dns_rec = dns_get_record( $json_host . '.', DNS_A );	// Returns an array of associative arrays.
 
 				$host_cache[ $json_host ][ 'a' ] = empty( $dns_rec[ 0 ][ 'ip' ] ) ? 'ERROR' : $dns_rec[ 0 ][ 'ip' ];
 			}
@@ -1233,8 +1234,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$ssl_verify = apply_filters( $this->plugin_lca . '_um_sslverify', true );
 
 			$get_options = array(
-				'timeout'     => 15, // Default timeout is 5 seconds.
-				'redirection' => 5,  // Default redirection is 5.
+				'timeout'     => 15,	// Default timeout is 5 seconds.
+				'redirection' => 5,	// Default redirection is 5.
 				'sslverify'   => $ssl_verify,
 				'user-agent'  => $ua_wpid,
 				'headers'     => array(
@@ -1285,7 +1286,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$this->p->debug->log( $ext . ' plugin: (retry) calling wp_remote_get() for ' . $json_url );
 				}
 
-				sleep( 1 ); // Pause 1 second before retrying.
+				sleep( 1 );	// Pause 1 second before retrying.
 
 				$request = wp_remote_get( $json_url, $get_options );
 			}
@@ -1314,7 +1315,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				
 					if ( ! empty( $request[ 'body' ] ) ) {
 
-						$payload = json_decode( $request[ 'body' ], $assoc = true, 32 ); // Create an associative array.
+						$payload = json_decode( $request[ 'body' ], $assoc = true, 32 );	// Create an associative array.
 
 						/**
 						 * Add or remove existing response messages.
@@ -1330,7 +1331,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		
 							self::$upd_config[ $ext ][ 'uerr' ] = false;
 	
-							$plugin_data = SucomPluginData::data_from_json( $request[ 'body' ] ); // Returns null on json error.
+							$plugin_data = SucomPluginData::data_from_json( $request[ 'body' ] );	// Returns null on json error.
 	
 							if ( empty( $plugin_data->plugin ) ) {
 		
@@ -1363,7 +1364,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			self::set_umsg( $ext, 'time', time() );
 
-			self::$upd_config[ $ext ][ 'plugin_data' ] = $plugin_data; // Save to static cache.
+			self::$upd_config[ $ext ][ 'plugin_data' ] = $plugin_data;	// Save to static cache.
 
 			if ( null === $plugin_data ) {
 
