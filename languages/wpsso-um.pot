@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Update Manager package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 3.0.1\n"
+"Project-Id-Version: WPSSO Update Manager 3.1.0-dev.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2020-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -111,7 +111,7 @@ msgid ""
 "array."
 msgstr ""
 
-#: lib/filters.php:268
+#: lib/filters.php:270
 msgctxt "lib file description"
 msgid "(api) Update Check Schedule"
 msgstr ""
@@ -165,13 +165,13 @@ msgctxt "metabox title"
 msgid "Update Manager Settings"
 msgstr ""
 
-#: wpsso-um.php:259
+#: wpsso-um.php:280
 msgid ""
 "The %1$s version %2$s add-on requires the %3$s plugin &mdash; please "
 "activate the missing plugin."
 msgstr ""
 
-#: wpsso-um.php:262
+#: wpsso-um.php:293
 msgid ""
 "The %1$s version %2$s add-on requires %3$s version %4$s or newer (version "
 "%5$s is currently installed)."

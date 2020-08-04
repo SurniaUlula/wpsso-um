@@ -6,6 +6,7 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
+
 	die( 'These aren\'t the droids you\'re looking for.' );
 }
 
@@ -265,8 +266,9 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				$this->p->debug->mark();
 			}
 
-			$features[ _x( '(api) Update Check Schedule', 'lib file description', 'wpsso-um' ) ] = array( 
-				'status' => SucomUpdate::is_enabled() ? 'on' : 'off'
+			$features[ '(api) Update Check Schedule' ] = array( 
+				'label_transl' => _x( '(api) Update Check Schedule', 'lib file description', 'wpsso-um' ),
+				'status'       => SucomUpdate::is_enabled() ? 'on' : 'off'
 			);
 
 			return $features;
