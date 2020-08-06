@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 3.1.0-dev.4 (2020/08/06)**
+**Version 3.1.0-dev.5 (2020/08/06)**
 
 * **New Features**
 	* None.
@@ -92,7 +92,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
-= 3.1.0-dev.4 =
+= 3.1.0-dev.5 =
 
 (2020/08/06) Refactored text domain related methods to allow reloading translation files when debugging is enabled.
 
