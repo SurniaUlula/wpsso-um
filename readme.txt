@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 3.1.0-dev.6 (2020/08/06)**
+**Version 3.1.0-dev.7 (2020/08/07)**
 
 * **New Features**
 	* None.
@@ -68,6 +68,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **Bugfixes**
 	* None.
 * **Developer Notes**
+	* Added support for the new WpssoUtilMetabox class in WPSSO Core v7.16.0.
 	* Refactored the `get_missing_requirements()` and `wpsso_init_textdomain()` methods to allow reloading translation files when debugging is enabled.
 * **Requires At Least**
 	* PHP v5.6.
@@ -92,9 +93,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
  
-= 3.1.0-dev.6 =
+= 3.1.0-dev.7 =
 
-(2020/08/06) Refactored text domain related methods to allow reloading translation files when debugging is enabled.
+(2020/08/07) Added support for the new WpssoUtilMetabox class in WPSSO Core v7.16.0. Refactored text domain related methods to allow reloading translation files when debugging is enabled.
 
 = 3.0.1 =
 
