@@ -97,7 +97,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		}
 
 		/**
-		 * $network is true if saving multisite network settings.
+		 * $network is true if saving multisite settings.
 		 */
 		public function filter_save_setting_options( array $opts, $network, $upgrading ) {
 
