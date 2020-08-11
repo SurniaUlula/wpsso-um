@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 3.0.0\n"
+"Project-Id-Version: WPSSO Update Manager 3.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
-"POT-Creation-Date: 2020-08-02 10:43-0700\n"
-"PO-Revision-Date: 2020-08-02 10:43-0700\n"
+"POT-Creation-Date: 2020-08-11 12:14-0700\n"
+"PO-Revision-Date: 2020-08-11 12:14-0700\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -93,15 +93,15 @@ msgstr "l'adresse IPv4 (%1$s) fournie par le serveur local ne correspond pas à 
 msgid "Update error from the WordPress %1$s function: %2$s"
 msgstr "Erreur de mises à jour de la fonction WordPress %1$s: %2$s"
 
-#: lib/com/update.php:1357 lib/gettext-com.php:26
+#: lib/com/update.php:1356 lib/gettext-com.php:26
 msgid "The WordPress %1$s function returned HTTP %2$d (%3$s) for %4$s."
 msgstr "La fonction WordPress %1$s a retourné HTTP %2$d (%3$s) pour %4$s."
 
-#: lib/com/update.php:1457 lib/gettext-com.php:27
+#: lib/com/update.php:1456 lib/gettext-com.php:27
 msgid "The %1$s plugin (%2$s) version number is missing from the WordPress plugins array."
 msgstr "Le numéro de version de l'extension %1$s (%2$s) est absente de la liste d'extensions de WordPress."
 
-#: lib/filters.php:268
+#: lib/filters.php:270
 msgctxt "lib file description"
 msgid "(api) Update Check Schedule"
 msgstr "(api) Horaire de vérification pour mises à jour"
@@ -153,11 +153,11 @@ msgctxt "metabox title"
 msgid "Update Manager Settings"
 msgstr "Réglages du gestionnaire de mise à jour"
 
-#: wpsso-um.php:259
+#: wpsso-um.php:280
 msgid "The %1$s version %2$s add-on requires the %3$s plugin &mdash; please activate the missing plugin."
 msgstr "L'ajout %1$s version %2$s nécessite l'extension %3$s &mdash; veuillez activer l'extension manquante."
 
-#: wpsso-um.php:262
+#: wpsso-um.php:293
 msgid "The %1$s version %2$s add-on requires %3$s version %4$s or newer (version %5$s is currently installed)."
 msgstr "L'ajout %1$s version %2$s nécessite %3$s version %4$s ou plus récente (la version %5$s est actuellement installée)."
 
