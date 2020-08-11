@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 3.1.0-rc.1 (2020/08/11)**
+**Version 3.1.0 (2020/08/11)**
 
 * **New Features**
 	* None.
@@ -75,29 +75,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* WordPress v4.2.
 	* WPSSO Core v5.0.0.
 
-**Version 3.0.1 (2020/08/03)**
-
-* **New Features**
-	* Added support for WordPress v5.5 automatic updates.
-* **Improvements**
-	* Added the ability to translate labels in the "Standard Features Status" metabox in the SSO &gt; Dashboard page.
-* **Bugfixes**
-	* None.
-* **Developer Notes**
-	* Tested with WordPress v5.5.
-	* Removed the unused `SucomPluginData` and `SucomPluginUpdate` classes from lib/com/update.php.
-* **Requires At Least**
-	* PHP v5.6.
-	* WordPress v4.2.
-	* WPSSO Core v4.26.0.
-
 == Upgrade Notice ==
  
-= 3.1.0-rc.1 =
+= 3.1.0 =
 
 (2020/08/11) Added support for the new WpssoUtilMetabox class in WPSSO Core v8.0.0. Refactored text domain related methods to allow reloading translation files when debugging is enabled.
-
-= 3.0.1 =
-
-(2020/08/03) Tested with WordPress v5.5. Added support for WordPress v5.5 automatic updates.
 
