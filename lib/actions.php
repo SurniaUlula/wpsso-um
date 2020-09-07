@@ -71,7 +71,7 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 
 			$wpssoum->update->refresh_upd_config();
 
-			$this->p->notice->upd( __( 'Plugin update offers have been re-enabled.', 'wpsso-um' ) );
+			$this->p->notice->upd( __( 'Plugin update offers have been reenabled.', 'wpsso-um' ) );
 		}
 	}
 }

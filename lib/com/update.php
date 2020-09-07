@@ -390,7 +390,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			 * Called by get_transient().
 			 *
 			 * Hook 'pre_transient_update_plugins' to check if the WordPress update system has been disabled and/or
-			 * manipulated, and if so, then re-enable plugin updates by including our update data (if a new plugin
+			 * manipulated, and if so, then reenable plugin updates by including our update data (if a new plugin
 			 * version is available).
 			 */
 			add_filter( 'pre_transient_update_plugins', array( $this, 'reenable_plugin_updates' ), PHP_INT_MAX, 1 );
@@ -401,7 +401,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			 * Called by get_site_transient().
 			 *
 			 * Hook 'pre_site_transient_update_plugins' to check if the WordPress update system has been disabled
-			 * and/or manipulated, and if so, then re-enable plugin updates by including our update data (if a new
+			 * and/or manipulated, and if so, then reenable plugin updates by including our update data (if a new
 			 * plugin version is available).
 			 */
 			add_filter( 'pre_site_transient_update_plugins', array( $this, 'reenable_plugin_updates' ), PHP_INT_MAX, 1 );
@@ -781,7 +781,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		/**
-		 * If the WordPress update system has been disabled and/or manipulated (ie. $transient is not false), then re-enable
+		 * If the WordPress update system has been disabled and/or manipulated (ie. $transient is not false), then reenable
 		 * updates by including our update data (if a new plugin version is available).
 		 */
 		public function reenable_plugin_updates( $transient = false ) {

@@ -17,7 +17,7 @@ msgid "Plugin update information has been refreshed."
 msgstr ""
 
 #: lib/actions.php:74
-msgid "Plugin update offers have been re-enabled."
+msgid "Plugin update offers have been reenabled."
 msgstr ""
 
 #: lib/com/update.php:253 lib/com/update.php:1136 lib/gettext-com.php:6
