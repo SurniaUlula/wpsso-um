@@ -122,7 +122,14 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 				);
 			}
 
-			$this->p->util->metabox->do_tabbed( $metabox_id, $tabs, $table_rows );
+			if ( isset( $this->p->util->metabox ) ) {	// Since WPSSO Core v8.0.0.
+
+				$this->p->util->metabox->do_tabbed( $metabox_id, $tabs, $table_rows );
+
+			} else {					// Since WPSSO Core v3.57.0.
+
+				$this->p->util->do_metabox_tabbed( $metabox_id, $tabs, $table_rows );
+			}
 		}
 
 		protected function get_table_rows( $metabox_id, $tab_key ) {
