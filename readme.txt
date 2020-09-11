@@ -91,7 +91,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* WPSSO Core v5.0.0.
 
 == Upgrade Notice ==
- 
+
 = 3.2.0-dev.1 =
 
 (2020/09/11) Removed the Cron Schedule tab from the SSO &gt; Update Manager settings page - update checks are set to every 24 hrs.
