@@ -68,7 +68,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **Bugfixes**
 	* None.
 * **Developer Notes**
-	* None.
+	* Added a new WpssoUmFiltersUpgrade class in lib/filters-upgrade.php.
 * **Requires At Least**
 	* PHP v5.6.
 	* WordPress v4.2.
