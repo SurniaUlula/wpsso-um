@@ -15,6 +15,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 	class WpssoUmFilters {
 
 		private $p;
+		private $upg;		// WpssoUmFiltersUpgrade class object.
 
 		public function __construct( &$plugin ) {
 
@@ -33,6 +34,16 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 				$this->p->debug->mark();
 			}
+
+			/**
+			 * Instantiate the WpssoUmFiltersUpgrade class object.
+			 */
+			if ( ! class_exists( 'WpssoUmFiltersUpgrade' ) ) {
+
+				require_once WPSSOUM_PLUGINDIR . 'lib/filters-upgrade.php';
+			}
+
+			$this->upg = new WpssoUmFiltersUpgrade( $plugin );
 
 			$this->p->util->add_plugin_filters( $this, array( 
 				'option_type'          => 2,
@@ -73,10 +84,6 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 			switch ( $base_key ) {
 
-				case 'update_check_hours':
-
-					return 'pos_int';
-
 				case ( strpos( $base_key, 'update_filter_for_' ) === 0 ? true : false ):
 
 					return 'not_blank';
@@ -94,6 +101,8 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		}
 
 		/**
+		 * Check for Auth ID and version filter changes, and if submitted values are different, force an update check.
+		 *
 		 * $network is true if saving multisite settings.
 		 */
 		public function filter_save_setting_options( array $opts, $network, $upgrading ) {
@@ -108,26 +117,19 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				return $opts;	// Nothing to do.
 			}
 
-			/**
-			 * Check settings for authentication ID or update version filter changes.
-			 */
 			$check_ext_for_updates = array();
 
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
-				/**
-				 * An 'update_auth' value is typically 'tid' or an empty string.
-				 */
 				$update_auth = isset( $info[ 'update_auth' ] ) ? $info[ 'update_auth' ] : '';
 
-				foreach ( array(
-					'plugin_' . $ext . '_' . $update_auth,
-					'update_filter_for_' . $ext,
-				) as $opt_key ) {
+				/**
+				 * Check for Auth ID and version filter changes.
+				 */
+				foreach ( array( 'plugin_' . $ext . '_' . $update_auth, 'update_filter_for_' . $ext ) as $opt_key ) {
 
 					/**
-					 * The option name will exist in the submitted options array only if the option was changed
-					 * or received focus.
+					 * The option key will exist only if the option was changed or received focus.
 					 */
 					if ( isset( $opts[ $opt_key ] ) ) {
 
@@ -138,7 +140,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 							/**
 							 * Update the current value (so we can refresh the config) and signal that
-							 * an update check is required.
+							 * an update check is required for that plugin / add-on.
 							 */
 							$this->p->options[ $opt_key ] = $opts[ $opt_key ];
 
@@ -149,7 +151,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			}
 
 			/**
-			 * Check for updates if we have one or more authentication or version filter changes.
+			 * Check for updates if we have one or more Auth ID or version filter changes.
 			 */
 			if ( ! empty( $check_ext_for_updates ) ) {
 

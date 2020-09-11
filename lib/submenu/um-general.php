@@ -6,6 +6,7 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
+
 	die( 'These aren\'t the droids you\'re looking for.' );
 }
 
@@ -18,6 +19,7 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 			$this->p =& $plugin;
 
 			if ( $this->p->debug->enabled ) {
+
 				$this->p->debug->mark();
 			}
 
@@ -41,6 +43,7 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 					 * Remove the Change to "All Options" View button.
 					 */
 					if ( isset( $form_button_rows[ 0 ] ) ) {
+
 						$form_button_rows[ 0 ] = SucomUtil::preg_grep_keys( '/^change_show_options/', $form_button_rows[ 0 ], $invert = true );
 					}
 
@@ -51,8 +54,7 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 				case 'tools':
 
 					$form_button_rows[ 0 ][ 'check_for_updates' ] = _x( 'Check for Plugin Updates', 'submit button', 'wpsso-um' );
-
-					$form_button_rows[ 0 ][ 'create_offers' ] = _x( 'Re-Offer Plugin Updates', 'submit button', 'wpsso-um' );
+					$form_button_rows[ 0 ][ 'create_offers' ]     = _x( 'Re-Offer Plugin Updates', 'submit button', 'wpsso-um' );
 
 					break;
 			}
@@ -85,8 +87,7 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 			$filter_name = SucomUtil::sanitize_hookname( $this->p->lca . '_' . $metabox_id . '_tabs' );
 
 			$tabs = apply_filters( $filter_name, array(
-				'schedule' => _x( 'Cron Schedule', 'metabox tab', 'wpsso-um' ),
-				'filters'  => _x( 'Version Filters', 'metabox tab', 'wpsso-um' ),
+				'filters' => _x( 'Version Filters', 'metabox tab', 'wpsso-um' ),
 			) );
 
 			$this->form->set_text_domain( 'wpsso' );	// Translate option values using wpsso text_domain.
@@ -112,29 +113,23 @@ if ( ! class_exists( 'WpssoUmSubmenuUmGeneral' ) && class_exists( 'WpssoAdmin' )
 
 			switch ( $metabox_id . '-' . $tab_key ) {
 
-				case 'um-general-schedule':
-
-					$table_rows[ 'update_check_hours' ] = '' .
-					$this->form->get_th_html( _x( 'Refresh Update Information', 'option label', 'wpsso-um' ), '', 'update_check_hours' ) . 
-					'<td>' . $this->form->get_select( 'update_check_hours', $this->p->cf[ 'um' ][ 'check_hours' ], 'update_filter', '', true ) . '</td>';
-
-					break;
-
 				case 'um-general-filters':
 
 					$version_filters = $this->p->cf[ 'um' ][ 'version_filter' ];
-
-					$ext_sorted = WpssoConfig::get_ext_sorted();	// Since WPSSO Core v3.38.3.
+					$ext_sorted      = WpssoConfig::get_ext_sorted();	// Since WPSSO Core v3.38.3.
 
 					foreach ( $ext_sorted as $ext => $info ) {
 
 						if ( ! SucomUpdate::is_installed( $ext ) ) {
+
 							continue;
 						}
 
-						$table_rows[ 'update_filter_for_' . $ext ] = '' .
-						$this->form->get_th_html( $info[ 'name' ], '', 'update_version_filter' ) . 
-						'<td>' . $this->form->get_select( 'update_filter_for_' . $ext, $version_filters, 'update_filter', '', true ) . '</td>';
+						$opt_key = 'update_filter_for_' . $ext;
+
+						$table_rows[ $opt_key ] = '' .
+						$this->form->get_th_html( $info[ 'name' ], $css_class = '', $css_id = 'update_version_filter' ) . 
+						'<td>' . $this->form->get_select( $opt_key, $version_filters, $css_class = 'update_filter' ) . '</td>';
 					}
 
 					break;

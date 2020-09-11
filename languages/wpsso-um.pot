@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WPSSO Update Manager package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 3.1.0\n"
+"Project-Id-Version: WPSSO Update Manager 3.2.0-dev.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2020-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
@@ -111,7 +111,7 @@ msgid ""
 "array."
 msgstr ""
 
-#: lib/filters.php:267
+#: lib/filters.php:269
 msgctxt "lib file description"
 msgid "(api) Update Check Schedule"
 msgstr ""
@@ -128,50 +128,40 @@ msgid ""
 "Complementary Add-ons."
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:47
-#: lib/sitesubmenu/site-um-general.php:53 lib/submenu/um-general.php:47
-#: lib/submenu/um-general.php:53
+#: lib/sitesubmenu/site-um-general.php:50
+#: lib/sitesubmenu/site-um-general.php:56 lib/submenu/um-general.php:50
+#: lib/submenu/um-general.php:56
 msgctxt "submit button"
 msgid "Check for Plugin Updates"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:55 lib/submenu/um-general.php:55
+#: lib/sitesubmenu/site-um-general.php:57 lib/submenu/um-general.php:57
 msgctxt "submit button"
 msgid "Re-Offer Plugin Updates"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:80
+#: lib/sitesubmenu/site-um-general.php:83
 msgctxt "metabox title"
 msgid "Network Update Manager"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:105 lib/submenu/um-general.php:88
-msgctxt "metabox tab"
-msgid "Cron Schedule"
-msgstr ""
-
-#: lib/sitesubmenu/site-um-general.php:106 lib/submenu/um-general.php:89
+#: lib/sitesubmenu/site-um-general.php:108 lib/submenu/um-general.php:90
 msgctxt "metabox tab"
 msgid "Version Filters"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:135 lib/submenu/um-general.php:118
-msgctxt "option label"
-msgid "Refresh Update Information"
-msgstr ""
-
-#: lib/submenu/um-general.php:69
+#: lib/submenu/um-general.php:71
 msgctxt "metabox title"
 msgid "Update Manager Settings"
 msgstr ""
 
-#: wpsso-um.php:280
+#: wpsso-um.php:278
 msgid ""
 "The %1$s version %2$s add-on requires the %3$s plugin &mdash; please "
 "activate the missing plugin."
 msgstr ""
 
-#: wpsso-um.php:293
+#: wpsso-um.php:291
 msgid ""
 "The %1$s version %2$s add-on requires %3$s version %4$s or newer (version "
 "%5$s is currently installed)."

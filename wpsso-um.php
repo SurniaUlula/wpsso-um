@@ -14,7 +14,7 @@
  * Requires PHP: 5.6
  * Requires At Least: 4.2
  * Tested Up To: 5.5
- * Version: 3.1.0
+ * Version: 3.2.0-dev.1
  * 
  * Version Numbering: {major}.{minor}.{bugfix}[-{stage}.{level}]
  *
@@ -165,8 +165,6 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 			$info = WpssoUmConfig::$cf[ 'plugin' ][ self::$ext ];
 
-			$this->check_hours = $this->get_update_check_hours();
-
 			$this->actions = new WpssoUmActions( $this->p );
 			$this->filters = new WpssoUmFilters( $this->p );
 			$this->update  = new SucomUpdate( $this->p, $this->check_hours, $info[ 'text_domain' ] );
@@ -309,29 +307,6 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			}
 
 			return $local_cache;
-		}
-
-		private function get_update_check_hours() {
-
-			$check_hours = 24;
-			$const_hours = SucomUtil::get_const( 'WPSSOUM_CHECK_HOURS', null );	// Return null if not defined.
-			$opt_hours   = isset( $this->p->options[ 'update_check_hours' ] ) ? $this->p->options[ 'update_check_hours' ] : 24;
-
-			if ( $const_hours !== null ) {
-
-				$check_hours = $const_hours >= 12 ? WPSSOUM_CHECK_HOURS : 12;
-
-			} elseif ( $opt_hours >= 24 ) {
-
-				$check_hours = $opt_hours;
-			}
-
-			if ( $check_hours > 168 ) {	// Check at least once a week.
-
-				$check_hours = 168;
-			}
-
-			return $check_hours;
 		}
 	}
 

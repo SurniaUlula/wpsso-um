@@ -17,8 +17,8 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 		public static $cf = array(
 			'plugin' => array(
 				'wpssoum' => array(			// Plugin acronym.
-					'version'     => '3.1.0',	// Plugin version.
-					'opt_version' => '5',		// Increment when changing default option values.
+					'version'     => '3.2.0-dev.1',	// Plugin version.
+					'opt_version' => '7',		// Increment when changing default option values.
 					'short'       => 'WPSSO UM',	// Short plugin name.
 					'name'        => 'WPSSO Update Manager',
 					'desc'        => 'Update Manager for the WPSSO Core Premium Plugin and its Premium Complementary Add-ons.',
@@ -66,27 +66,6 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 							'um-general' => 'Update Manager',
 						),
 					),
-				),
-			),
-
-			/**
-			 * Additional add-on setting options.
-			 */
-			'opt' => array(
-
-				/**
-				 * Additional options added by the WpssoUmFilters->filter_get_defaults() method.
-				 */
-				'defaults' => array(
-					'update_check_hours' => 24,
-				),
-
-				/**
-				 * Additional options added by the WpssoUmFilters->filter_get_site_defaults() method.
-				 */
-				'site_defaults' => array(
-					'update_check_hours'     => 24,
-					'update_check_hours:use' => 'default',
 				),
 			),
 		);
