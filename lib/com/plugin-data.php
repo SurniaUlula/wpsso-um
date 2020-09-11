@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'SucomPluginData' ) ) {
 
 	class SucomPluginData {
-	
+
 		public $id = 0;
 		public $name;
 		public $slug;
@@ -32,7 +32,7 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 		public $num_ratings;
 		public $last_updated;
 		public $sections;
-	
+
 		public static function data_from_json( $json_encoded ) {
 
 			$json_data = json_decode( $json_encoded, $assoc = false );
@@ -56,7 +56,7 @@ if ( ! class_exists( 'SucomPluginData' ) ) {
 
 			return $plugin_data;
 		}
-	
+
 		public function json_to_wp(){
 
 			$plugin_data = new StdClass;

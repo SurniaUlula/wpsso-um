@@ -17,7 +17,7 @@ require_once $lib_dir . 'plugin-data.php';
 if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 
 	class SucomPluginUpdate {
-	
+
 		public $id = 0;
 		public $slug;
 		public $plugin;
@@ -46,7 +46,7 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 				return null;
 			}
 		}
-	
+
 		public static function update_from_data( $plugin_data ){
 
 			$plugin_update = new SucomPluginUpdate();
@@ -76,7 +76,7 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 
 			return $plugin_update;
 		}
-	
+
 		public function json_to_wp() {
 
 			$plugin_update = new StdClass;

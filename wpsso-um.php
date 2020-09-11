@@ -51,8 +51,6 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 		/**
 		 * Reference Variables (config, options, modules, etc.).
 		 */
-		private $check_hours = 24;
-
 		private static $ext           = 'wpssoum';
 		private static $p_ext         = 'um';
 		private static $missing_shown = false;
@@ -167,7 +165,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 			$this->actions = new WpssoUmActions( $this->p );
 			$this->filters = new WpssoUmFilters( $this->p );
-			$this->update  = new SucomUpdate( $this->p, $this->check_hours, $info[ 'text_domain' ] );
+			$this->update  = new SucomUpdate( $this->p, $info[ 'text_domain' ] );
 		}
 
 		/**
@@ -199,7 +197,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 							SucomUtil::safe_error_log( $error_pre . ' ' . $req_info[ 'notice' ], $strip_html = true );
 						}
-			
+
 						if ( $this->p->debug->enabled ) {
 
 							$this->p->debug->log( strtolower( $req_info[ 'notice' ] ) );

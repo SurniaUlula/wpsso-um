@@ -23,8 +23,8 @@ require_once $lib_dir . 'update-util-wp.php';
 if ( ! class_exists( 'SucomUpdate' ) ) {
 
 	class SucomUpdate {
-	
-		private $p           = null;
+
+		private $p;
 		private $plugin_lca  = '';
 		private $plugin_slug = '';
 		private $text_domain = '';
@@ -56,7 +56,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			417 => 'Expectation Failed',
 		);
 
-		public function __construct( &$plugin, $check_hours = 24, $text_domain = '' ) {
+		public function __construct( &$plugin, $text_domain = '' ) {
 
 			$this->p =& $plugin;
 
@@ -74,8 +74,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$this->plugin_slug = $this->p->cf[ 'plugin' ][ $this->plugin_lca ][ 'slug' ];	// Example: wpsso.
 					$this->text_domain = $text_domain;						// Example: wpsso-um.
 					$this->cron_hook   = $this->plugin_lca . '_update_manager_check';		// Example: wpsso_update_manager_check.
-					$this->sched_hours = $check_hours < 12 ? 12 : $check_hours;			// Example: 12 (12 hours minimum).
-					$this->sched_name  = 'every' . $this->sched_hours . 'hours';			// Example: every24hours.
 
 					/**
 					 * Support the "Check Again" feature on the WordPress Dashboard > Updates page.
@@ -209,6 +207,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( false === $ext_version ) {
 
 					if ( $this->p->debug->enabled ) {
+
 						$this->p->debug->log( $ext . ' plugin: skipped - version is false' );
 					}
 
@@ -255,7 +254,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				$update_disabled_msg = sprintf( __( 'Update checks for %1$s are disabled while this inconsistency persists.',
 					$this->text_domain ), $info[ 'short' ] );
-					
+
 				$update_disabled_msg .= empty( $info[ 'urls' ][ 'support' ] ) ? '' : ' ' .
 					sprintf( __( 'You may <a href="%1$s">open a new support ticket</a> if you believe this error message is incorrect.',
 						$this->text_domain ), $info[ 'urls' ][ 'support' ] );
@@ -275,7 +274,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$json_args[ 'api_version' ]       = self::$api_version;
 				$json_args[ 'installed_version' ] = $ext_version;
 				$json_args[ 'version_filter' ]    = $filter_name;
-				$json_args[ 'sched_hours' ]       = $this->sched_hours;
 				$json_args[ 'locale' ]            = $locale;
 
 				$json_url = SucomUpdateUtil::decode_url_add_query( $json_url, $json_args );
@@ -416,49 +414,52 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				wp_clear_scheduled_hook( 'plugin_update-' . $this->plugin_slug );
 			}
 
-			if ( $this->p->debug->enabled ) {
-
-				$this->p->debug->log( 'adding ' . $this->cron_hook . ' schedule for ' . $this->sched_name );
-			}
-
-			add_action( $this->cron_hook, array( $this, 'quiet_update_check' ) );
-
-			add_filter( 'cron_schedules', array( $this, 'add_custom_schedule' ) );
-
-			$schedule = wp_get_schedule( $this->cron_hook );
-
-			$is_scheduled = false;
-
-			if ( ! empty( $schedule ) ) {
-
-				if ( $schedule !== $this->sched_name ) {
-
-					if ( $this->p->debug->enabled ) {
-
-						$this->p->debug->log( 'changing ' . $this->cron_hook . ' schedule from ' . $schedule . ' to ' . $this->sched_name );
-					}
-
-					wp_clear_scheduled_hook( $this->cron_hook );
-
-				} else {
-
-					if ( $this->p->debug->enabled ) {
-
-						$this->p->debug->log( $this->cron_hook . ' already registered for schedule ' . $this->sched_name );
-					}
-
-					$is_scheduled = true;
-				}
-			}
-
-			if ( ! $is_scheduled && ! defined( 'WP_INSTALLING' ) && ! wp_next_scheduled( $this->cron_hook ) ) {
+			if ( $this->cron_hook ) {	// Just in case.
 
 				if ( $this->p->debug->enabled ) {
 
-					$this->p->debug->log( 'registering ' . $this->cron_hook . ' for schedule ' . $this->sched_name );
+					$this->p->debug->log( 'adding ' . $this->cron_hook . ' schedule for ' . $this->sched_name );
 				}
 
-				wp_schedule_event( time(), $this->sched_name, $this->cron_hook );
+				add_action( $this->cron_hook, array( $this, 'quiet_update_check' ) );
+
+				add_filter( 'cron_schedules', array( $this, 'add_custom_schedule_name' ) );
+
+				$schedule = wp_get_schedule( $this->cron_hook );
+
+				$is_scheduled = false;
+
+				if ( ! empty( $schedule ) ) {
+
+					if ( $schedule !== $this->sched_name ) {
+
+						if ( $this->p->debug->enabled ) {
+
+							$this->p->debug->log( 'changing ' . $this->cron_hook . ' schedule from ' . $schedule . ' to ' . $this->sched_name );
+						}
+
+						wp_clear_scheduled_hook( $this->cron_hook );
+
+					} else {
+
+						if ( $this->p->debug->enabled ) {
+
+							$this->p->debug->log( $this->cron_hook . ' registered for schedule ' . $this->sched_name );
+						}
+
+						$is_scheduled = true;
+					}
+				}
+
+				if ( ! $is_scheduled && ! defined( 'WP_INSTALLING' ) && ! wp_next_scheduled( $this->cron_hook ) ) {
+
+					if ( $this->p->debug->enabled ) {
+
+						$this->p->debug->log( 'registering ' . $this->cron_hook . ' for schedule ' . $this->sched_name );
+					}
+
+					wp_schedule_event( time(), $this->sched_name, $this->cron_hook );
+				}
 			}
 		}
 
@@ -676,7 +677,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 			}
 		}
-	
+
 		private function check_pp( $ext = '', $li = true, $rv = true, $rc = true ) {
 
 			if ( isset( $this->p->check ) ) {
@@ -843,14 +844,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					} elseif ( ! empty( self::$upd_config[ $ext ][ 'no_update' ] ) ) {
 
 						if ( $this->p->debug->enabled ) {
-	
+
 							$this->p->debug->log( $ext . ' plugin: using static cache no_update data' );
 						}
-	
+
 						$transient = $this->update_transient_no_update( $ext, $transient );
 
 					} elseif ( $this->p->debug->enabled ) {
-	
+
 						$this->p->debug->log( $ext . ' plugin: static cache data is false' );
 					}
 
@@ -870,7 +871,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				self::$upd_config[ $ext ][ 'response' ] = false;
 
 				if ( $this->p->debug->enabled ) {
-	
+
 					$this->p->debug->log( $ext . ' plugin: getting update data' );
 				}
 
@@ -957,7 +958,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				return $transient;
 			}
-				
+
 			$base = self::$upd_config[ $ext ][ 'base' ];
 
 			if ( is_object( $transient ) && isset( $transient->$prop_name[ $base ] ) ) {	// Avoid a "modify non-object" error.
@@ -978,7 +979,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$update_obj =& self::$upd_config[ $ext ][ $prop_name ];	// Shortcut variable name.
 
 			if ( empty( $update_obj->plugin ) ) {	// Example: wpsso/wpsso.php
-			
+
 				if ( $this->p->debug->enabled ) {
 
 					$this->p->debug->log( $ext . ' plugin: update object is incomplete' );
@@ -1027,19 +1028,16 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			return $transient;
 		}
 
-		public function add_custom_schedule( $schedules ) {
+		public function add_custom_schedule_name( $schedules ) {
 
-			if ( $this->sched_hours > 0 ) {
-
-				$schedules[ $this->sched_name ] = array(
-					'interval' => $this->sched_hours * HOUR_IN_SECONDS,
-					'display'  => sprintf( 'Every %d hours', $this->sched_hours )
-				);
-			}
+			$schedules[ $this->sched_name ] = array(
+				'interval' => $this->sched_hours * HOUR_IN_SECONDS,
+				'display'  => sprintf( 'Every %d hours', $this->sched_hours )
+			);
 
 			return $schedules;
 		}
-	
+
 		public function get_update_data( $ext, $read_cache = true ) {
 
 			/**
@@ -1129,7 +1127,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			$plugin_data = null;
-			
+
 			/**
 			 * Define some standard error messages for consistency checks.
 			 */
@@ -1138,7 +1136,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			$update_disabled_msg = sprintf( __( 'Update checks for %1$s are disabled while this inconsistency persists.',
 				$this->text_domain ), self::$upd_config[ $ext ][ 'short' ] );
-				
+
 			$update_disabled_msg .= empty( self::$upd_config[ $ext ][ 'urls' ][ 'support' ] ) ? '' : ' ' .
 				sprintf( __( 'You may <a href="%1$s">open a new support ticket</a> if you believe this error message is incorrect.',
 					$this->text_domain ), self::$upd_config[ $ext ][ 'urls' ][ 'support' ] );
@@ -1305,11 +1303,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$this->text_domain ), 'wp_remote_get()', $request->get_error_message() ) );
 
 			} elseif ( isset( $request[ 'response' ][ 'code' ] ) ) {
-			
+
 				$http_code = (int) $request[ 'response' ][ 'code' ];
 
 				if ( 200 === $http_code ) {
-				
+
 					if ( ! empty( $request[ 'body' ] ) ) {
 
 						$payload = json_decode( $request[ 'body' ], $assoc = true, 32 );	// Create an associative array.
@@ -1322,30 +1320,30 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 							self::set_umsg( $ext, $type, ( empty( $payload[ 'api_response' ][ $type ] ) ?
 								null : $payload[ 'api_response' ][ $type ] ) );
 						}
-	
+
 						if ( empty( $request[ 'headers' ][ 'x-error-msg' ] ) && empty( $request[ 'headers' ][ 'x-update-error' ] ) ) {
-		
+
 							self::$upd_config[ $ext ][ 'uerr' ] = false;
-	
+
 							$plugin_data = SucomPluginData::data_from_json( $request[ 'body' ] );	// Returns null on json error.
-	
+
 							if ( empty( $plugin_data->plugin ) ) {
-		
+
 								if ( $this->p->debug->enabled ) {
 
 									$this->p->debug->log( $ext . ' plugin: returned plugin data is incomplete' );
 								}
-		
+
 								$plugin_data = null;
-		
+
 							} elseif ( $plugin_data->plugin !== self::$upd_config[ $ext ][ 'base' ] ) {
-		
+
 								if ( $this->p->debug->enabled ) {
 
 									$this->p->debug->log( $ext . ' plugin: property ' . $plugin_data->plugin . 
 										' does not match ' . self::$upd_config[ $ext ][ 'base' ] );
 								}
-		
+
 								$plugin_data = null;
 							}
 						}
@@ -1931,7 +1929,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$slug = self::$upd_config[ $ext ][ 'slug' ];
 
 				if ( defined ( 'WPMU_PLUGIN_DIR' ) && is_dir( $ext_dir = trailingslashit( WPMU_PLUGIN_DIR ) . $slug . '/' ) ) {
-				
+
 					return $local_cache[ $ext ] = $ext_dir;
 				}
 
