@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 3.2.1-b.2 (2020/09/15)**
+**Version 3.2.1-rc.1 (2020/09/15)**
 
 * **New Features**
 	* None.
@@ -107,7 +107,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 3.2.1-b.2 =
+= 3.2.1-rc.1 =
 
 (2020/09/15) Updated the French plugin translations.
 
