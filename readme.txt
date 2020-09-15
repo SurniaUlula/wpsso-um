@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 3.2.1-rc.1 (2020/09/15)**
+**Version 3.2.1 (2020/09/15)**
 
 * **New Features**
 	* None.
@@ -89,29 +89,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* WordPress v4.2.
 	* WPSSO Core v5.0.0.
 
-**Version 3.1.0 (2020/08/11)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* None.
-* **Bugfixes**
-	* None.
-* **Developer Notes**
-	* Added support for the new WpssoUtilMetabox class in WPSSO Core v8.0.0.
-	* Refactored the `get_missing_requirements()` and `wpsso_init_textdomain()` methods to allow reloading translation files when debugging is enabled.
-* **Requires At Least**
-	* PHP v5.6.
-	* WordPress v4.2.
-	* WPSSO Core v5.0.0.
-
 == Upgrade Notice ==
 
-= 3.2.1-rc.1 =
+= 3.2.1 =
 
 (2020/09/15) Updated the French plugin translations.
-
-= 3.2.0 =
-
-(2020/09/11) Removed the Cron Schedule tab from the SSO &gt; Update Manager settings page - update checks are set to every 24 hrs.
 
