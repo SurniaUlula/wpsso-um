@@ -59,6 +59,21 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 3.2.1-b.2 (2020/09/15)**
+
+* **New Features**
+	* None.
+* **Improvements**
+	* Updated the French plugin translations.
+* **Bugfixes**
+	* None.
+* **Developer Notes**
+	* Moved extracted translation strings from lib/gettext-*.php files to a new gettext/ folder.
+* **Requires At Least**
+	* PHP v5.6.
+	* WordPress v4.2.
+	* WPSSO Core v5.0.0.
+
 **Version 3.2.0 (2020/09/11)**
 
 * **New Features**
@@ -91,6 +106,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* WPSSO Core v5.0.0.
 
 == Upgrade Notice ==
+
+= 3.2.1-b.2 =
+
+(2020/09/15) Updated the French plugin translations.
 
 = 3.2.0 =
 
