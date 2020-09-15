@@ -128,11 +128,16 @@ msgctxt "lib file description"
 msgid "Update Manager"
 msgstr ""
 
-#: gettext/gettext-config.php:8 gettext/gettext-lib-config.php:8
+#: gettext/gettext-config.php:8 gettext/gettext-lib-config.php:9
 msgctxt "plugin description"
 msgid ""
 "Update Manager for the WPSSO Core Premium Plugin and its Premium "
 "Complementary Add-ons."
+msgstr ""
+
+#: gettext/gettext-lib-config.php:8
+msgctxt "plugin name"
+msgid "WPSSO Update Manager"
 msgstr ""
 
 #: lib/actions.php:60

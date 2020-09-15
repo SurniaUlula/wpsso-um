@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WPSSO Update Manager 3.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2020-09-14 11:18-0700\n"
-"PO-Revision-Date: 2020-09-14 11:18-0700\n"
+"PO-Revision-Date: 2020-09-15 09:04-0700\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -173,7 +173,7 @@ msgstr "L'ajout %1$s version %2$s nécessite %3$s version %4$s ou plus récente 
 
 #. Plugin Name of the plugin/theme
 msgid "WPSSO Update Manager"
-msgstr "WPSSO Update Manager"
+msgstr "WPSSO gestionnaire de mise à jour"
 
 #. Plugin URI of the plugin/theme
 msgid "https://wpsso.com/extend/plugins/wpsso-um/"
