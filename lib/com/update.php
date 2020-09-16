@@ -25,12 +25,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 	class SucomUpdate {
 
 		private $p;
-		private $plugin_lca  = '';
-		private $plugin_slug = '';
-		private $text_domain = '';
-		private $cron_hook   = '';
-		private $sched_hours = 24;
-		private $sched_name  = 'every24hours';
+		private $p_lca         = '';
+		private $p_slug        = '';
+		private $p_text_domain = '';
+		private $text_domain   = '';
+		private $cron_hook     = '';
+		private $sched_hours   = 24;
+		private $sched_name    = 'every24hours';
 
 		private static $api_version = 2.2;
 		private static $upd_config  = array();
@@ -56,7 +57,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			417 => 'Expectation Failed',
 		);
 
-		public function __construct( &$plugin, $text_domain = '' ) {
+		public function __construct( &$plugin, $ext_text_domain = '' ) {
 
 			$this->p =& $plugin;
 
@@ -67,13 +68,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			if ( isset( $this->p->lca ) ) {	// Just in case.
 
-				$this->plugin_lca = $this->p->lca;
+				$this->p_lca = $this->p->lca;
 
-				if ( isset( $this->p->cf[ 'plugin' ][ $this->plugin_lca ][ 'slug' ] ) ) {	// Just in case.
+				if ( isset( $this->p->cf[ 'plugin' ][ $this->p_lca ][ 'slug' ] ) ) {	// Just in case.
 
-					$this->plugin_slug = $this->p->cf[ 'plugin' ][ $this->plugin_lca ][ 'slug' ];	// Example: wpsso.
-					$this->text_domain = $text_domain;						// Example: wpsso-um.
-					$this->cron_hook   = $this->plugin_lca . '_update_manager_check';		// Example: wpsso_update_manager_check.
+					$this->p_slug        = $this->p->cf[ 'plugin' ][ $this->p_lca ][ 'slug' ];
+					$this->p_text_domain = $this->p->cf[ 'plugin' ][ $this->p_lca ][ 'text_domain' ];
+					$this->text_domain   = $ext_text_domain;
+					$this->cron_hook     = $this->p_lca . '_update_manager_check';
 
 					/**
 					 * Support the "Check Again" feature on the WordPress Dashboard > Updates page.
@@ -185,21 +187,36 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 					if ( $this->p->debug->enabled ) {
 
-						$this->p->debug->log( $ext . ' plugin: skipped - auth type without id' );
+						$this->p->debug->log( $ext . ' plugin: skipped - no auth type id' );
 					}
 
 					continue;
 
-				} elseif ( empty( $info[ 'name' ] ) || empty( $info[ 'slug' ] ) || empty( $info[ 'base' ] ) || empty( $info[ 'urls' ][ 'update' ] ) ) {
+				}
+				
+				if ( empty( $info[ 'urls' ][ 'update' ] ) ) {
 
 					if ( $this->p->debug->enabled ) {
 
-						$this->p->debug->log( $ext . ' plugin: skipped - incomplete config' );
+						$this->p->debug->log( $ext . ' plugin: skipped - missing update url' );
 					}
 
 					continue;
 				}
 
+				foreach ( array( 'name', 'short', 'slug', 'base' ) as $key ) {
+
+					if ( empty( $info[ $key ] ) ) {
+
+						if ( $this->p->debug->enabled ) {
+
+							$this->p->debug->log( $ext . ' plugin: skipped - missing ' . $key );
+						}
+
+						continue 2;
+					}
+				}
+				
 				/**
 				 * Saved as the 'installed_version' value.
 				 */
@@ -247,13 +264,19 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				 */
 				$locale = is_admin() && function_exists( 'get_user_locale' ) ? get_user_locale() : get_locale();
 
-				$name_transl = _x( $info[ 'name' ], 'plugin name', $this->text_domain );
+				/**
+				 * Translate the plugin name for notification mesages.
+				 */
+				$name_transl = _x( $info[ 'name' ], 'plugin name', $this->p_text_domain );
+
+				$name_transl_link  = empty( $info[ 'urls' ][ 'home' ] ) ? $name_transl :
+					'<a href="' . $info[ 'urls' ][ 'home' ] . '">' . $name_transl . '</a>';
 
 				/**
 			 	 * Define some standard error messages for consistency checks.
 				 */
 				$inconsistency_msg = sprintf( __( 'An inconsistency was found in the %1$s update server information &mdash;',
-					$this->text_domain ), $name_transl );
+					$this->text_domain ), $name_transl_link );
 
 				$update_disabled_msg = sprintf( __( 'Update checks for %1$s are disabled while this inconsistency persists.',
 					$this->text_domain ), $info[ 'short' ] );
@@ -297,8 +320,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 
 				self::$upd_config[ $ext ] = array(
-					'name_transl'       => $name_transl,
 					'name'              => $info[ 'name' ],
+					'name_transl'       => $name_transl,
+					'name_transl_link'  => $name_transl_link,
 					'short'             => $info[ 'short' ],
 					'slug'              => $info[ 'slug' ],				// Example: wpsso.
 					'base'              => $info[ 'base' ],				// Example: wpsso/wpsso.php.
@@ -411,9 +435,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			/**
 			 * Maybe remove the old plugin update hook.
 			 */
-			if ( wp_get_schedule( 'plugin_update-' . $this->plugin_slug ) ) {
+			if ( wp_get_schedule( 'plugin_update-' . $this->p_slug ) ) {
 
-				wp_clear_scheduled_hook( 'plugin_update-' . $this->plugin_slug );
+				wp_clear_scheduled_hook( 'plugin_update-' . $this->p_slug );
 			}
 
 			$this->add_wp_hooks_cron();
@@ -696,7 +720,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 								$notice_key = __FUNCTION__ . '_' . $ext . '_' . $upd_cfg_info[ 'option_name' ] . '_success';
 
 								$this->p->notice->inf( sprintf( __( 'Update information for %s has been retrieved and saved.',
-									$this->text_domain ), $upd_cfg_info[ 'name_transl' ] ), $user_id, $notice_key );
+									$this->text_domain ), $upd_cfg_info[ 'name_transl_link' ] ), $user_id, $notice_key );
 							}
 						}
 
@@ -712,7 +736,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 							$notice_key = __FUNCTION__ . '_' . $ext . '_' . $upd_cfg_info[ 'option_name' ] . '_error_returned';
 
 							$this->p->notice->warn( sprintf( __( 'An error was returned while getting update information for %s.',
-								$this->text_domain ), $upd_cfg_info[ 'name_transl' ] ), $user_id, $notice_key );
+								$this->text_domain ), $upd_cfg_info[ 'name_transl_link' ] ), $user_id, $notice_key );
 						}
 					}
 
@@ -728,7 +752,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$notice_key = __FUNCTION__ . '_' . $ext . '_' . $upd_cfg_info[ 'option_name' ] . '_failed_saving';
 
 						$this->p->notice->err( sprintf( __( 'Failed saving retrieved update information for %s.',
-							$this->text_domain ), $upd_cfg_info[ 'name_transl' ] ), $user_id, $notice_key );
+							$this->text_domain ), $upd_cfg_info[ 'name_transl_link' ] ), $user_id, $notice_key );
 					}
 				}
 			}
@@ -1138,7 +1162,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$home_url = SucomUpdateUtilWP::raw_home_url();
 			$json_url = self::$upd_config[ $ext ][ 'data_json_url' ];
 
-			$cache_md5_pre = $this->plugin_lca . '_';
+			$cache_md5_pre = $this->p_lca . '_';
 			$cache_salt    = 'SucomUpdate::plugin_data(json_url:' . $json_url . '_home_url:' . $home_url . ')';
 			$cache_id      = $cache_md5_pre . md5( $cache_salt );
 
@@ -1189,7 +1213,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			 * Define some standard error messages for consistency checks.
 			 */
 			$inconsistency_msg = sprintf( __( 'An inconsistency was found in the %1$s update server information &mdash;',
-				$this->text_domain ), self::$upd_config[ $ext ][ 'name_transl' ] );
+				$this->text_domain ), self::$upd_config[ $ext ][ 'name_transl_link' ] );
 
 			$update_disabled_msg = sprintf( __( 'Update checks for %1$s are disabled while this inconsistency persists.',
 				$this->text_domain ), self::$upd_config[ $ext ][ 'short' ] );
@@ -1283,7 +1307,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$ua_wpid = 'WordPress/' . $wp_version . ' (' . self::$upd_config[ $ext ][ 'slug' ] . '/' . 
 				self::$upd_config[ $ext ][ 'installed_version' ] . '/' . $ext_stat . '); ' . $home_url;
 
-			$ssl_verify = apply_filters( $this->plugin_lca . '_um_sslverify', true );
+			$ssl_verify = apply_filters( $this->p_lca . '_um_sslverify', true );
 
 			$get_options = array(
 				'timeout'     => 15,	// Default timeout is 5 seconds.
@@ -1513,7 +1537,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 							$this->p->debug->log( $ext . ' plugin: ' . $info[ 'base' ] . ' version key missing from plugins array' );
 						}
 						
-						$name_transl = _x( $info[ 'name' ], 'plugin name', $this->text_domain );
+						$name_transl = _x( $info[ 'name' ], 'plugin name', $this->p_text_domain );
 
 						$this->p->notice->err( sprintf( __( 'The %1$s plugin (%2$s) version number is missing from the WordPress plugins array.',
 							$this->text_domain ), $name_transl, $info[ 'base' ] ) );
