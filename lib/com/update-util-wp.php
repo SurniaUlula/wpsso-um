@@ -15,6 +15,7 @@ if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
 
 		/**
 		 * Unfiltered version of home_url() from wordpress/wp-includes/link-template.php
+		 *
 		 * Last synchronized with WordPress v5.0.3 on 2019/01/28.
 		 */
 		public static function raw_home_url( $path = '', $scheme = null ) {
@@ -24,11 +25,14 @@ if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
 
 		/**
 		 * Unfiltered version of get_home_url() from wordpress/wp-includes/link-template.php
+		 *
 		 * Last synchronized with WordPress v5.0.3 on 2019/01/28.
 		 */
 		public static function raw_get_home_url( $blog_id = null, $path = '', $scheme = null ) {
 
 			global $pagenow;
+
+			$opt_name = 'home';
 
 			if ( empty( $blog_id ) || ! is_multisite() ) {
 
@@ -37,23 +41,25 @@ if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
 					$url = untrailingslashit( WP_HOME );
 
 					/**
-					 * Compare value stored in database and maybe fix inconsistencies.
+					 * Compare the value stored in the database and fix inconsistencies.
 					 */
-					if ( self::raw_do_option( 'get', 'home' ) !== $url ) {
+					$db_url = self::raw_do_option( $action = 'get', $opt_name );	// Returns false by default.
 
-						self::raw_do_option( 'update', 'home', $url );
+					if ( $db_url !== $url ) {
+
+						self::raw_do_option( $action = 'update', $opt_name, $url );
 					}
 
 				} else {
 
-					$url = self::raw_do_option( 'get', 'home' );
+					$url = self::raw_do_option( $action = 'get', $opt_name );	// Returns false by default.
 				}
 
 			} else {
 
 				switch_to_blog( $blog_id );
 
-				$url = self::raw_do_option( 'get', 'home' );
+				$url = self::raw_do_option( $action = 'get', $opt_name );	// Returns false by default.
 
 				restore_current_blog();
 			}
@@ -63,7 +69,9 @@ if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
 				if ( is_ssl() && ! is_admin() && 'wp-login.php' !== $pagenow ) {
 
 					$scheme = 'https';
+
 				} else {
+
 					$scheme = parse_url( $url, PHP_URL_SCHEME );
 				}
 			}
@@ -80,6 +88,7 @@ if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
 
 		/**
 		 * Unfiltered version of set_url_scheme() from wordpress/wp-includes/link-template.php
+		 *
 		 * Last synchronized with WordPress v5.0 on 2018/12/12.
 		 */
 		private static function raw_set_url_scheme( $url, $scheme = null ) {
@@ -122,76 +131,63 @@ if ( ! class_exists( 'SucomUpdateUtilWP' ) ) {
 		}
 
 		/**
-		 * Temporarily disable filter and action hooks before calling
-		 * get_option(), update_option, and delete_option().
+		 * Temporarily disable filter and action hooks before calling get_option(), update_option(), and delete_option().
 		 */
-		public static function raw_do_option( $action, $opt_name, $val = null ) {
+		public static function raw_do_option( $action, $opt_name, $value = null, $default = false ) {
 
 			global $wp_filter, $wp_actions;
 
-			$saved_wp_filter  = $wp_filter;
-			$saved_wp_actions = $wp_actions;
+			$saved_filter  = $wp_filter;
+			$saved_actions = $wp_actions;
 
-			foreach ( array(
-				'sanitize_option_' . $opt_name,
-				'default_option_' . $opt_name,
-				'pre_option_' . $opt_name,
-				'option_' . $opt_name,	
-				'pre_update_option_' . $opt_name,
-				'pre_update_option',
-			) as $tag ) {
+			$wp_filter  = array();
+			$wp_actions = array();
 
-				unset( $wp_filter[ $tag ] );
-			}
-
-			$ret = null;
+			$success   = null;
+			$old_value = false;
 
 			switch( $action ) {
 
 				case 'get':
 				case 'get_option':
 
-					$ret = get_option( $opt_name, $default = $val );
+					$success = get_option( $opt_name, $default );
 
 					break;
 
 				case 'update':
 				case 'update_option':
 
-					foreach ( array(
-						'update_option',
-						'update_option_' . $opt_name,
-						'updated_option',
-					) as $tag ) {
-						unset( $wp_actions[ $tag ] );
-					}
+					$old_value = get_option( $opt_name, $default );
 
-					$ret = update_option( $opt_name, $val );
+					$success = update_option( $opt_name, $value );
 
 					break;
 
 				case 'delete':
 				case 'delete_option':
 
-					foreach ( array(
-						'delete_option',
-						'delete_option_' . $opt_name,
-						'deleted_option',
-					) as $tag ) {
-						unset( $wp_actions[ $tag ] );
-					}
-
-					$ret = delete_option( $opt_name );
+					$success = delete_option( $opt_name );
 
 					break;
 			}
 
-			$wp_filter  = $saved_wp_filter;
-			$wp_actions = $saved_wp_actions;
+			$wp_filter  = $saved_filter;
+			$wp_actions = $saved_actions;
 
-			unset( $saved_wp_filter, $saved_wp_actions );
+			unset( $saved_filter, $saved_actions );
 
-			return $ret;
+			switch( $action ) {
+
+				case 'update':
+				case 'update_option':
+
+					do_action( 'sucom_update_option_' . $opt_name, $old_value, $value, $opt_name );
+
+					break;
+			}
+
+			return $success;
 		}
 	}
 }
