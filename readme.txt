@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 3.2.2-dev.2 (2020/09/16)**
+**Version 3.2.2-dev.3 (2020/09/17)**
 
 * **New Features**
 	* None.
@@ -68,7 +68,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **Bugfixes**
 	* None.
 * **Developer Notes**
-	* None.
+	* Refactored the SucomUpdateUtilWP::raw_do_option() method.
 * **Requires At Least**
 	* PHP v5.6.
 	* WordPress v4.2.
@@ -106,9 +106,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 3.2.2-dev.2 =
+= 3.2.2-dev.3 =
 
-(2020/09/16) Added support for translated plugin names in notice messages.
+(2020/09/17) Added support for translated plugin names in notice messages.
 
 = 3.2.1 =
 
