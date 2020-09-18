@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 3.2.2-dev.4 (2020/09/17)**
+**Version 3.2.2-b.1 (2020/09/18)**
 
 * **New Features**
 	* None.
@@ -106,9 +106,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 3.2.2-dev.4 =
+= 3.2.2-b.1 =
 
-(2020/09/17) Added support for translated plugin names in notice messages.
+(2020/09/18) Added support for translated plugin names in notice messages.
 
 = 3.2.1 =
 
