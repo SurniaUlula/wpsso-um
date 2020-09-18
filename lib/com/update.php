@@ -443,6 +443,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$this->add_wp_hooks_cron();
 		}
 
+		/**
+		 * Since WPSSO UM v3.3.0.
+		 */
 		private function add_wp_hooks_cron() {
 
 			if ( $this->p->debug->enabled ) {
@@ -502,7 +505,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		}
 
 		/**
-		 * Since WPSSO UM v3.2.2.
+		 * Since WPSSO UM v3.3.0.
 		 *
 		 * Called when the WordPress Settings > Site Address URL or the WP_HOME constant value is changed.
 		 */
