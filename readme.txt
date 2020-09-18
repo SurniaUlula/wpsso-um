@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 3.3.0-rc.1 (2020/09/18)**
+**Version 3.3.0 (2020/09/18)**
 
 * **New Features**
 	* None.
@@ -106,11 +106,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 3.3.0-rc.1 =
+= 3.3.0 =
 
 (2020/09/18) Added support for translated plugin names in notice messages.
-
-= 3.2.1 =
-
-(2020/09/15) Updated the French plugin translations.
 
