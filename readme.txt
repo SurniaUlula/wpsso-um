@@ -9,7 +9,7 @@ Assets URI: https://surniaulula.github.io/wpsso-um/assets/
 Tags: wpsso, update, manager, schedule, add-on, pro version
 Contributors: jsmoriss
 Requires PHP: 5.6
-Requires At Least: 4.2
+Requires At Least: 4.4
 Tested Up To: 5.5.1
 Stable Tag: 3.3.0
 
@@ -71,7 +71,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* Refactored the SucomUpdateUtilWP::raw_do_option() method.
 * **Requires At Least**
 	* PHP v5.6.
-	* WordPress v4.2.
+	* WordPress v4.4.
 	* WPSSO Core v5.0.0.
 
 **Version 3.2.1 (2020/09/15)**
