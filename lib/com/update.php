@@ -1401,7 +1401,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$payload = json_decode( $request[ 'body' ], $assoc = false );
 
 						/**
-						 * Add or remove existing response messages.
+						 * Add or remove error and informational messages.
 						 */
 						foreach ( array( 'err', 'inf' ) as $type ) {
 
