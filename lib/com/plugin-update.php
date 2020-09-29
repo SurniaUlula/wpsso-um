@@ -23,15 +23,15 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 		public $plugin;
 		public $version = 0;
 		public $tested;
-		public $homepage;	// Plugin homepage URL.
-		public $download_url;	// Update download URL.
+		public $homepage;		// Plugin homepage URL.
+		public $download_url;		// Update download URL.
 		public $upgrade_notice;
 		public $banners;
 		public $icons;
-		public $exp_date;	// Example: 0000-00-00 00:00:00
-		public $qty_total = 0;	// Example: 10	(since v1.10.0)
-		public $qty_reg   = 0;	// Example: 1	(since v1.10.0)
-		public $qty_used  = '';	// Example: 1/10
+		public $exp_date;		// Example: 0000-00-00 00:00:00
+		public $qty_total = 0;		// Example: 10	(since v1.10.0)
+		public $qty_reg   = 0;		// Example: 1	(since v1.10.0)
+		public $qty_used  = '0/0';	// Example: 1/10
 
 		public static function update_from_json( $json_encoded ) {
 
@@ -63,8 +63,8 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 				'banners',
 				'icons',
 				'exp_date',
-				'qty_total', 
 				'qty_reg', 
+				'qty_total', 
 				'qty_used', 
 			) as $prop_name ) {
 
@@ -93,8 +93,8 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 				'banners'        => 'banners',
 				'icons'          => 'icons',
 				'exp_date'       => 'exp_date',
-				'qty_total'      => 'qty_total',
 				'qty_reg'        => 'qty_reg',
+				'qty_total'      => 'qty_total',
 				'qty_used'       => 'qty_used',
 			) as $json_prop_name => $wp_prop_name ) {
 

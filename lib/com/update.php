@@ -595,8 +595,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->mark();
 			}
 
-			$throttle_mins = 5;	// Throttle executions to one per 5 minutes.
-
+			$throttle_mins  = 5;	// Throttle executions to one per 5 minutes.
 			$cache_md5_pre  = $this->p->lca . '_';
 			$cache_exp_secs = $throttle_mins * 60;
 			$cache_salt     = __METHOD__;
