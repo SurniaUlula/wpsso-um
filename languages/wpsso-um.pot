@@ -93,11 +93,11 @@ msgstr ""
 msgid "Update error from the WordPress %1$s function: %2$s"
 msgstr ""
 
-#: gettext/gettext-lib-com.php:26 lib/com/update.php:1442
+#: gettext/gettext-lib-com.php:26 lib/com/update.php:1443
 msgid "The WordPress %1$s function returned HTTP %2$d (%3$s) for %4$s."
 msgstr ""
 
-#: gettext/gettext-lib-com.php:27 lib/com/update.php:1544
+#: gettext/gettext-lib-com.php:27 lib/com/update.php:1545
 msgid ""
 "The %1$s plugin (%2$s) version number is missing from the WordPress plugins "
 "array."

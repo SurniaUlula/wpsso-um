@@ -1398,15 +1398,16 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 					if ( ! empty( $request[ 'body' ] ) ) {
 
-						$payload = json_decode( $request[ 'body' ], $assoc = true, 32 );	// Create an associative array.
+						$payload = json_decode( $request[ 'body' ], $assoc = false );
 
 						/**
 						 * Add or remove existing response messages.
 						 */
 						foreach ( array( 'err', 'inf' ) as $type ) {
 
-							self::set_umsg( $ext, $type, ( empty( $payload[ 'api_response' ][ $type ] ) ?
-								null : $payload[ 'api_response' ][ $type ] ) );
+							$api_resp = empty( $payload->api_response->$type ) ? null : $payload->api_response->$type;
+
+							self::set_umsg( $ext, $type, $api_resp );
 						}
 
 						if ( empty( $request[ 'headers' ][ 'x-error-msg' ] ) && empty( $request[ 'headers' ][ 'x-update-error' ] ) ) {
