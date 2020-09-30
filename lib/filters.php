@@ -160,10 +160,15 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				$wpssoum->update->refresh_upd_config();
 
 				/**
-				 * Note that SucomUpdate->check_ext_for_updates() does not throttle like
-				 * SucomUpdate->check_all_for_updates() does.
+				 * SucomUpdate->check_ext_for_updates() does not throttle like SucomUpdate->check_all_for_updates().
 				 */
 				$wpssoum->update->check_ext_for_updates( $check_ext_for_updates, $quiet = true );
+
+			} elseif ( $upgrading ) {
+
+				$wpssoum =& WpssoUm::get_instance();
+
+				$wpssoum->update->refresh_upd_config();
 			}
 
 			return $opts;

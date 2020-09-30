@@ -128,7 +128,7 @@ msgstr ""
 msgid "Plugin update offers have been reenabled."
 msgstr ""
 
-#: lib/filters.php:269
+#: lib/filters.php:274
 msgctxt "lib file description"
 msgid "(api) Update Check Schedule"
 msgstr ""
