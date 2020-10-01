@@ -1331,28 +1331,19 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->log( $ext . ' plugin: calling wp_remote_get() for ' . $json_url );
 			}
 
-			global $wp_filter;
+			global $wp_filter, $wp_actions;
 
-			$saved_wp_filter = $wp_filter;
+			$saved_filter  = $wp_filter;
+			$saved_actions = $wp_actions;
 
-			foreach ( array(
-				'http_headers_useragent',	// Clear pre-existing filters and re-hook.
-				'http_request_timeout',
-				'http_request_redirection_count',
-				'http_request_version',
-				'http_request_reject_unsafe_urls',
-				'http_request_args',
-				'pre_http_request',
-				'https_ssl_verify',
-				'http_response',
-			) as $tag ) {
-				unset( $wp_filter[ $tag ] );
-			}
+			$wp_filter  = array();
+			$wp_actions = array();
 
 			/**
-			 * A filter for 'http_headers_useragent' to make sure we have a standard WordPress useragent string. The
-			 * 'http_headers_useragent' filter hook offers two arguments, but only since WP v5.1.0, so require one argument to
-			 * stay backwards compatible with older WP versions.
+			 * A filter for 'http_headers_useragent' to make sure we have a standard WordPress useragent string.
+			 *
+			 * The 'http_headers_useragent' filter hook offers two arguments, but only since WP v5.1.0, so require one
+			 * argument to stay backwards compatible with older WP versions.
 			 */
 			add_filter( 'http_headers_useragent', array( $this, 'maybe_update_wpua' ), PHP_INT_MAX, 1 );
 
@@ -1366,7 +1357,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( $this->p->debug->enabled ) {
 
 					$this->p->debug->log( $ext . ' plugin: wp error code ' . $request->get_error_code() . ' - ' . $request->get_error_message() );
-					$this->p->debug->log( $ext . ' plugin: (retry) calling wp_remote_get() for ' . $json_url );
+					$this->p->debug->log( $ext . ' plugin: retrying wp_remote_get() for ' . $json_url );
 				}
 
 				sleep( 1 );	// Pause 1 second before retrying.
@@ -1376,9 +1367,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			remove_filter( 'http_headers_useragent', array( $this, 'maybe_update_wpua' ), PHP_INT_MAX );
 
-			$wp_filter = $saved_wp_filter;
+			$wp_filter  = $saved_filter;
+			$wp_actions = $saved_actions;
 
-			unset( $saved_wp_filter );
+			unset( $saved_filter, $saved_actions );
 
 			if ( is_wp_error( $request ) ) {
 
