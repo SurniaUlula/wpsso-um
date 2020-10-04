@@ -47,7 +47,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 			$this->p->util->add_plugin_filters( $this, array( 
 				'option_type'          => 2,
-				'save_options'         => 4,
+				'save_options'         => 4,	// Deprecated since 2020/06/20.
 				'save_setting_options' => 3,
 				'get_defaults'         => 1,	// Option defaults.
 				'get_site_defaults'    => 1,	// Site option defaults.
@@ -93,7 +93,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		}
 
 		/**
-		 * Deprecated on 2020/06/20.
+		 * Deprecated since 2020/06/20.
 		 */
 		public function filter_save_options( array $opts, $options_name, $network, $upgrading ) {
 
@@ -101,7 +101,9 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		}
 
 		/**
-		 * Check for Auth ID and version filter changes, and if submitted values are different, force an update check.
+		 * Check for Authentication ID and version filter changes, and if the submitted values are different, force an
+		 * update check. Note that the WpssoUmActions->action_version_updates() method refreshes the Update Manager config
+		 * (for new plugin / add-on version information) when there is a plugin / add-on update.
 		 *
 		 * $network is true if saving multisite settings.
 		 */
