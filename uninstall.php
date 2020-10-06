@@ -11,12 +11,12 @@ if ( ! defined( 'ABSPATH' ) || ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 
 $plugin_dir = trailingslashit( dirname( __FILE__ ) );
 
-$plugin_file_path = $plugin_dir . 'wpsso-um.php';
+$plugin_file = $plugin_dir . 'wpsso-um.php';
 
 require_once $plugin_dir . 'lib/config.php';
 
-WpssoUmConfig::set_constants( $plugin_file_path );
+WpssoUmConfig::set_constants( $plugin_file );
 
-WpssoUmConfig::require_libs( $plugin_file_path );	// Includes the register.php class library.
+WpssoUmConfig::require_libs( $plugin_file );	// Includes the register.php class library.
 
 WpssoUmRegister::network_uninstall();

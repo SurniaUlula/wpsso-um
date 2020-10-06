@@ -31,62 +31,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'These aren\'t the droids you\'re looking for.' );
 }
 
-if ( ! class_exists( 'SucomAddOn' ) ) {
+if ( ! class_exists( 'WpssoAddOn' ) ) {
 
-	require_once dirname( __FILE__ ) . '/lib/abstracts/com/add-on.php';	// SucomAddOn class.
+	require_once dirname( __FILE__ ) . '/lib/abstracts/add-on.php';	// WpssoAddOn class.
 }
 
 if ( ! class_exists( 'WpssoUm' ) ) {
 
-	class WpssoUm extends SucomAddOn {
+	class WpssoUm extends WpssoAddOn {
 
-		/**
-		 * Library class object variables.
-		 */
 		public $actions;	// WpssoUmActions class.
 		public $filters;	// WpssoUmFilters class.
-		public $reg;		// WpssoUmRegister class.
 		public $update;		// SucomUpdate class.
 
-		/**
-		 * Reference Variables (config, options, modules, etc.).
-		 */
 		protected $p;
-		protected $ext   = 'wpssoum';
-		protected $p_ext = 'um';
-		protected $cf    = array();
 
 		private static $instance = null;
 
 		public function __construct() {
 
-			require_once dirname( __FILE__ ) . '/lib/config.php';
-
-			WpssoUmConfig::set_constants( __FILE__ );
-
-			WpssoUmConfig::require_libs( __FILE__ );	// Includes the register.php class library.
-
-			$this->cf =& WpssoUmConfig::$cf;
-
-			$this->reg = new WpssoUmRegister();		// Activate, deactivate, uninstall hooks.
-
-			/**
-			 * WPSSO filter hooks.
-			 */
-			add_filter( 'wpsso_get_config', array( $this, 'get_config' ), 10, 1 );
-			add_filter( 'wpsso_get_avail', array( $this, 'get_avail' ), 10, 1 );
-
-			/**
-			 * WPSSO action hooks.
-			 */
-			add_action( 'wpsso_init_textdomain', array( $this, 'init_textdomain' ), 10, 1 );
-			add_action( 'wpsso_init_objects', array( $this, 'init_objects' ), 10, 0 );
-			add_action( 'wpsso_init_plugin', array( $this, 'init_missing_requirements' ), -1000, 2 );
-
-			/**
-			 * WordPress action hooks.
-			 */
-			add_action( 'all_admin_notices', array( $this, 'show_missing_requirements' ) );
+			parent::__construct( __FILE__, __CLASS__ );
 		}
 
 		public static function &get_instance() {

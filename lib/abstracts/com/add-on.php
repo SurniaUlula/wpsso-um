@@ -21,6 +21,8 @@ if ( ! class_exists( 'SucomAddOn' ) ) {
 
 		protected $notice_added = false;
 
+		public function __construct() {}
+
 		public function init_textdomain( $debug_enabled = false ) {}
 
 		public function get_config( array $config ) {
@@ -34,8 +36,6 @@ if ( ! class_exists( 'SucomAddOn' ) ) {
 		}
 
 		public function init_objects() {}
-
-		public function init_check_options() {}
 
 		public function get_avail( array $avail ) {
 
@@ -51,7 +51,7 @@ if ( ! class_exists( 'SucomAddOn' ) ) {
 			return $avail;
 		}
 
-		public function init_missing_requirements( $is_admin, $doing_ajax ) {
+		public function init_plugin_notices( $is_admin, $doing_ajax ) {
 
 			$missing_reqs = $this->get_missing_requirements();	// Returns false or an array of missing requirements.
 
@@ -83,7 +83,7 @@ if ( ! class_exists( 'SucomAddOn' ) ) {
 			}
 		}
 
-		public function show_missing_requirements() {
+		public function show_admin_notices() {
 
 			if ( $this->notice_added ) {	// Nothing to do.
 
@@ -107,6 +107,8 @@ if ( ! class_exists( 'SucomAddOn' ) ) {
 				}
 			}
 		}
+
+		protected function add_hooks() {}
 
 		/**
 		 * Returns false or an array of missing requirements.
