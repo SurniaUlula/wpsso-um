@@ -59,6 +59,23 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 3.4.0 (TBD)**
+
+* **New Features**
+	* None.
+* **Improvements**
+	* None.
+* **Bugfixes**
+	* None.
+* **Developer Notes**
+	* Refactored the add-on class to extend WpssoAddOn.
+	* Added a new WpssoAddOn class in lib/abstracts/add-on.php.
+	* Added a new SucomAddOn class in lib/abstracts/com/add-on.php.
+* **Requires At Least**
+	* PHP v5.6.
+	* WordPress v4.4.
+	* WPSSO Core v5.0.0.
+
 **Version 3.3.0 (2020/09/18)**
 
 * **New Features**
@@ -105,6 +122,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* WPSSO Core v5.0.0.
 
 == Upgrade Notice ==
+
+= 3.4.0-dev.1 =
+
+(TBD) Refactored the add-on class to extend WpssoAddOn.
 
 = 3.3.0 =
 
