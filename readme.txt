@@ -59,7 +59,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 3.4.0 (TBD)**
+**Version 3.4.0-dev.2 (TBD)**
 
 * **New Features**
 	* None.
@@ -123,7 +123,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 3.4.0-dev.1 =
+= 3.4.0-dev.2 =
 
 (TBD) Refactored the add-on class to extend WpssoAddOn.
 
