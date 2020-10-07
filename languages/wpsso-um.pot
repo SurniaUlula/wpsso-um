@@ -12,6 +12,18 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
+#: gettext/gettext-lib-abstracts-com.php:6 lib/abstracts/com/add-on.php:157
+msgid ""
+"The %1$s add-on requires the %2$s plugin &mdash; please activate the missing "
+"plugin."
+msgstr ""
+
+#: gettext/gettext-lib-abstracts-com.php:7 lib/abstracts/com/add-on.php:171
+msgid ""
+"The %1$s add-on requires %2$s version %3$s or newer (version %4$s is "
+"currently installed)."
+msgstr ""
+
 #: gettext/gettext-lib-com.php:6 gettext/gettext-lib-com.php:18
 #: lib/com/update.php:278 lib/com/update.php:1217
 msgid ""
@@ -118,18 +130,6 @@ msgctxt "plugin description"
 msgid ""
 "Update Manager for the WPSSO Core Premium Plugin and its Premium "
 "Complementary Add-ons."
-msgstr ""
-
-#: lib/abstracts/com/add-on.php:157
-msgid ""
-"The %1$s add-on requires the %2$s plugin &mdash; please activate the missing "
-"plugin."
-msgstr ""
-
-#: lib/abstracts/com/add-on.php:171
-msgid ""
-"The %1$s add-on requires %2$s version %3$s or newer (version %4$s is "
-"currently installed)."
 msgstr ""
 
 #: lib/actions.php:60
