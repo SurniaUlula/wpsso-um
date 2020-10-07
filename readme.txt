@@ -59,16 +59,15 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 3.4.0-dev.2 (TBD)**
+**Version 3.4.0-dev.2 (2020/10/07)**
 
 * **New Features**
 	* None.
 * **Improvements**
-	* None.
+	* Refactored the add-on class to extend a new WpssoAddOn abstract class.
 * **Bugfixes**
 	* None.
 * **Developer Notes**
-	* Refactored the add-on class to extend WpssoAddOn.
 	* Added a new WpssoAddOn class in lib/abstracts/add-on.php.
 	* Added a new SucomAddOn class in lib/abstracts/com/add-on.php.
 * **Requires At Least**
@@ -125,7 +124,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = 3.4.0-dev.2 =
 
-(TBD) Refactored the add-on class to extend WpssoAddOn.
+(2020/10/07) Refactored the add-on class to extend a new WpssoAddOn abstract class.
 
 = 3.3.0 =
 
