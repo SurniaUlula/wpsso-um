@@ -170,7 +170,7 @@ if ( ! class_exists( 'WpssoUmRegister' ) ) {
 					'wpssoul'    => 'wpsso-user-locale',
 					'wpssoum'    => 'wpsso-um',
 					'wpssowcmd'  => 'wpsso-wc-metadata',
-					'wpssowcsd'  => 'wpsso-wc-shipping-delivery',
+					'wpssowcsdt' => 'wpsso-wc-shipping-delivery-time',
 				) as $ext => $slug ) {
 
 					foreach ( array( 'err', 'inf', 'time' ) as $type ) {
