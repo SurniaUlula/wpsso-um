@@ -13,7 +13,7 @@ Requires At Least: 4.4
 Tested Up To: 5.5.1
 Stable Tag: 3.3.0
 
-Update Manager for the WPSSO Core Premium Plugin and its Premium Complementary Add-ons.
+Update Manager for the WPSSO Core Premium plugin and its Premium complementary add-ons.
 
 == Description ==
 
@@ -28,6 +28,8 @@ Update Manager for the WPSSO Core Premium Plugin and its Premium Complementary A
 <h3>WPSSO Core Plugin Required</h3>
 
 WPSSO Update Manager (aka WPSSO UM) is an add-on for the [WPSSO Core plugin](https://wordpress.org/plugins/wpsso/).
+
+WPSSO Core and its add-ons make sure your content looks great on social sites and in search results, no matter how your URLs are crawled, shared, re-shared, posted, or embedded.
 
 == Installation ==
 
