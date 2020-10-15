@@ -151,7 +151,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$this->p->debug->mark( 'update manager config' );	// End timer.
 					}
 
-
 					return;
 				}
 
@@ -193,7 +192,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					continue;
 
 				}
-				
+
 				if ( empty( $info[ 'urls' ][ 'update' ] ) ) {
 
 					if ( $this->p->debug->enabled ) {
@@ -216,7 +215,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						continue 2;
 					}
 				}
-				
+
 				/**
 				 * Saved as the 'installed_version' value.
 				 */
@@ -1531,7 +1530,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 							$this->p->debug->log( $ext . ' plugin: ' . $info[ 'base' ] . ' version key missing from plugins array' );
 						}
-						
+
 						$name_transl = _x( $info[ 'name' ], 'plugin name', $this->p_text_domain );
 
 						$this->p->notice->err( sprintf( __( 'The %1$s plugin (%2$s) version number is missing from the WordPress plugins array.',
