@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires PHP: 5.6
 Requires At Least: 4.4
 Tested Up To: 5.5.1
-Stable Tag: 3.3.0
+Stable Tag: 3.4.0
 
 Update Manager for the WPSSO Core Premium plugin and its Premium complementary add-ons.
 
@@ -77,58 +77,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* WordPress v4.4.
 	* WPSSO Core v5.0.0.
 
-**Version 3.3.0 (2020/09/18)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* Added support for translated plugin names in notice messages.
-* **Bugfixes**
-	* None.
-* **Developer Notes**
-	* Refactored the SucomUpdateUtilWP::raw_do_option() method.
-* **Requires At Least**
-	* PHP v5.6.
-	* WordPress v4.4.
-	* WPSSO Core v5.0.0.
-
-**Version 3.2.1 (2020/09/15)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* Updated the French plugin translations.
-* **Bugfixes**
-	* None.
-* **Developer Notes**
-	* Moved extracted translation strings from lib/gettext-*.php files to a new gettext/ folder.
-* **Requires At Least**
-	* PHP v5.6.
-	* WordPress v4.2.
-	* WPSSO Core v5.0.0.
-
-**Version 3.2.0 (2020/09/11)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* Removed the Cron Schedule tab from the SSO &gt; Update Manager settings page - update checks are set to every 24 hrs.
-* **Bugfixes**
-	* None.
-* **Developer Notes**
-	* Added a new WpssoUmFiltersUpgrade class in lib/filters-upgrade.php.
-* **Requires At Least**
-	* PHP v5.6.
-	* WordPress v4.2.
-	* WPSSO Core v5.0.0.
-
 == Upgrade Notice ==
 
 = 3.4.0 =
 
 (2020/10/17) Refactored the add-on class to extend a new WpssoAddOn abstract class.
-
-= 3.3.0 =
-
-(2020/09/18) Added support for translated plugin names in notice messages.
 
