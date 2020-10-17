@@ -68,7 +68,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 			load_plugin_textdomain( 'wpsso-um', false, 'wpsso-um/languages/' );
 		}
 
-		public function init_objects( $is_admin, $doing_ajax, $doing_cron ) {
+		public function init_objects( $is_admin ) {
 
 			$this->p =& Wpsso::get_instance();
 
