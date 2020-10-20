@@ -89,12 +89,12 @@ if ( ! class_exists( 'WpssoUmConfig' ) ) {
 			/**
 			 * Define fixed constants.
 			 */
-			define( 'WPSSOUM_FILEPATH', $plugin_file );						
+			define( 'WPSSOUM_FILEPATH', $plugin_file );
 			define( 'WPSSOUM_PLUGINBASE', $info[ 'base' ] );	// Example: wpsso-um/wpsso-um.php.
 			define( 'WPSSOUM_PLUGINDIR', trailingslashit( realpath( dirname( $plugin_file ) ) ) );
 			define( 'WPSSOUM_PLUGINSLUG', $info[ 'slug' ] );	// Example: wpsso-um.
 			define( 'WPSSOUM_URLPATH', trailingslashit( plugins_url( '', $plugin_file ) ) );
-			define( 'WPSSOUM_VERSION', $info[ 'version' ] );						
+			define( 'WPSSOUM_VERSION', $info[ 'version' ] );
 		}
 
 		public static function require_libs( $plugin_file ) {
