@@ -20,8 +20,11 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 			$this->p =& $plugin;
 
 			if ( $this->p->debug->enabled ) {
+
 				$this->p->debug->mark();
 			}
+
+			add_action( 'activated_plugin', array( $this, 'activated_plugin' ), 10, 2 );
 
 			$this->p->util->add_plugin_actions( $this, array( 
 				'version_updates' => 1,
@@ -33,6 +36,21 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 					'load_setting_page_check_for_updates' => 4,
 					'load_setting_page_create_offers'     => 4,
 				) );
+			}
+		}
+
+		/**
+		 * This action is run by WordPress immediately after any plugin is activated.
+		 *
+		 * If a plugin is silently activated (such as during an update), this action does not run. 
+		 */
+		public function activated_plugin( $plugin, $network_activation ) {
+
+			if ( 0 === strpos( $plugin, $this->p->lca ) ) {	// Check for WPSSO plugin or add-on.
+
+				$wpssoum =& WpssoUm::get_instance();
+
+				$wpssoum->update->refresh_upd_config();
 			}
 		}
 

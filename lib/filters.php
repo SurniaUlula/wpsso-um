@@ -102,8 +102,10 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 		/**
 		 * Check for Authentication ID and version filter changes, and if the submitted values are different, force an
-		 * update check. Note that the WpssoUmActions->action_version_updates() method refreshes the Update Manager config
-		 * (for new plugin / add-on version information) when there is a plugin / add-on update.
+		 * update check.
+		 *
+		 * Note that the WpssoUmActions->action_version_updates() method also refreshes the Update Manager config when
+		 * there is a plugin or add-on version update.
 		 *
 		 * $network is true if saving multisite settings.
 		 */

@@ -132,15 +132,15 @@ msgid ""
 "complementary add-ons."
 msgstr ""
 
-#: lib/actions.php:60
+#: lib/actions.php:78
 msgid "Plugin update information has been refreshed."
 msgstr ""
 
-#: lib/actions.php:74
+#: lib/actions.php:92
 msgid "Plugin update offers have been reenabled."
 msgstr ""
 
-#: lib/filters.php:270
+#: lib/filters.php:272
 msgctxt "lib file description"
 msgid "(api) Update Check Schedule"
 msgstr ""
