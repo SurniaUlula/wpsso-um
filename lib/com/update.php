@@ -116,6 +116,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		 */
 		public function refresh_upd_config() {
 
+			SucomUpdateUtil::clear_plugins_cache();
+
 			return $this->set_upd_config( $quiet = false, $read_cache = false );
 		}
 
@@ -1205,6 +1207,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 
 			} else {
+
 				delete_transient( $cache_id );
 			}
 

@@ -13,12 +13,19 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 
 	class SucomUpdateUtil {
 
-		private static $cache_plugins = null;	// Common cache for get_plugins().
+		private static $get_plugins_cache = null;	// Common cache for get_plugins().
+
+		public function __construct() {}
 
 		/**
 		 * Decode a URL and add query arguments. Returns false on error.
 		 */
 		public static function decode_url_add_query( $url, array $args ) {
+
+			if ( method_exists( 'SucomUtil', 'decode_url_add_query' ) ) {
+
+				return SucomUtil::decode_url_add_query( $url, $args );
+			}
 
 			if ( filter_var( $url, FILTER_VALIDATE_URL ) === false ) {	// Check for invalid URL.
 
@@ -48,6 +55,11 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 
 		public static function unparse_url( $parsed_url ) {
 
+			if ( method_exists( 'SucomUtil', 'unparse_url' ) ) {
+
+				return SucomUtil::unparse_url( $parsed_url );
+			}
+
 			$scheme   = isset( $parsed_url[ 'scheme' ] )   ? $parsed_url[ 'scheme' ] . '://' : '';
 			$user     = isset( $parsed_url[ 'user' ] )     ? $parsed_url[ 'user' ] : '';
 			$pass     = isset( $parsed_url[ 'pass' ] )     ? ':' . $parsed_url[ 'pass' ]  : '';
@@ -70,12 +82,12 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 				return SucomPlugin::get_plugins();
 			}
 
-			if ( null !== self::$cache_plugins ) {
+			if ( null !== self::$get_plugins_cache ) {
 
-				return self::$cache_plugins;
+				return self::$get_plugins_cache;
 			}
 
-			self::$cache_plugins = array();	// Default value.
+			self::$get_plugins_cache = array();	// Default value.
 
 			if ( ! function_exists( 'get_plugins' ) ) {	// Load the library if necessary.
 
@@ -89,10 +101,20 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 
 			if ( function_exists( 'get_plugins' ) ) {
 
-				self::$cache_plugins = get_plugins();
+				self::$get_plugins_cache = get_plugins();
 			}
 
-			return self::$cache_plugins;
+			return self::$get_plugins_cache;
+		}
+
+		public static function clear_plugins_cache() {
+
+			if ( method_exists( 'SucomPlugin', 'clear_plugins_cache' ) ) {
+
+				return SucomPlugin::clear_plugins_cache();
+			}
+
+			SucomPlugin::$get_plugins_cache = null;
 		}
 	}
 }
