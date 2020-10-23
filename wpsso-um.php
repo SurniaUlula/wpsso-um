@@ -14,7 +14,7 @@
  * Requires PHP: 5.6
  * Requires At Least: 4.4
  * Tested Up To: 5.5.1
- * Version: 3.4.1
+ * Version: 3.5.0-dev.6
  * 
  * Version Numbering: {major}.{minor}.{bugfix}[-{stage}.{level}]
  *
@@ -40,13 +40,13 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 	class WpssoUm extends WpssoAddOn {
 
-		public $actions;	// WpssoUmActions class.
-		public $filters;	// WpssoUmFilters class.
-		public $update;		// SucomUpdate class.
+		public $actions;	// WpssoUmActions class object.
+		public $filters;	// WpssoUmFilters class object.
+		public $update;		// SucomUpdate class object.
 
-		protected $p;
+		protected $p;	// Wpsso class object.
 
-		private static $instance = null;
+		private static $instance = null;	// WpssoUm class object.
 
 		public function __construct() {
 
@@ -87,8 +87,8 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 			$info = $this->cf[ 'plugin' ][ $this->ext ];
 
-			$this->actions = new WpssoUmActions( $this->p );
-			$this->filters = new WpssoUmFilters( $this->p );
+			$this->actions = new WpssoUmActions( $this->p, $this );
+			$this->filters = new WpssoUmFilters( $this->p, $this );
 			$this->update  = new SucomUpdate( $this->p, $info[ 'text_domain' ] );
 		}
 	}

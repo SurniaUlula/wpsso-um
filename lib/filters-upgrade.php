@@ -14,7 +14,7 @@ if ( ! class_exists( 'WpssoUmFiltersUpgrade' ) ) {
 
 	class WpssoUmFiltersUpgrade {
 
-		private $p;
+		private $p;	// Wpsso class object.
 
 		/**
 		 * Instantiated by WpssoUmFilters->__construct().

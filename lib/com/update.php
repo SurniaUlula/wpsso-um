@@ -24,7 +24,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 	class SucomUpdate {
 
-		private $p;
+		private $p;	// Wpsso class object.
+
 		private $p_lca         = '';
 		private $p_slug        = '';
 		private $p_text_domain = '';

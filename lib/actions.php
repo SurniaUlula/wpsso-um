@@ -6,6 +6,7 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
+
 	die( 'These aren\'t the droids you\'re looking for.' );
 }
 
@@ -13,11 +14,13 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 
 	class WpssoUmActions {
 
-		private $p;
+		private $p;	// Wpsso class object.
+		private $a;	// WpssoUm class object.
 
-		public function __construct( &$plugin ) {
+		public function __construct( &$plugin, &$addon ) {
 
 			$this->p =& $plugin;
+			$this->a =& $addon;
 
 			if ( $this->p->debug->enabled ) {
 
@@ -48,9 +51,7 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 
 			if ( 0 === strpos( $plugin, $this->p->lca ) ) {	// Check for WPSSO plugin or add-on.
 
-				$wpssoum =& WpssoUm::get_instance();
-
-				$wpssoum->update->refresh_upd_config();
+				$this->a->update->refresh_upd_config();
 			}
 		}
 
@@ -59,35 +60,29 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 		 */
 		public function action_version_updates( array $ext_updates ) {
 
-			$wpssoum =& WpssoUm::get_instance();
-
-			$wpssoum->update->refresh_upd_config();
+			$this->a->update->refresh_upd_config();
 		}
 
 		public function action_load_setting_page_check_for_updates( $pagehook, $menu_id, $menu_name, $menu_lib ) {
-
-			$wpssoum =& WpssoUm::get_instance();
 
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
 				$this->p->admin->get_readme_info( $ext, $use_cache = false );
 			}
 
-			$wpssoum->update->manual_update_check();
+			$this->a->update->refresh_upd_config();
 
 			$this->p->notice->upd( __( 'Plugin update information has been refreshed.', 'wpsso-um' ) );
 		}
 
 		public function action_load_setting_page_create_offers( $pagehook, $menu_id, $menu_name, $menu_lib ) {
 
-			$wpssoum =& WpssoUm::get_instance();
-
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
-				$wpssoum->update->create_offer( $ext );
+				$this->a->update->create_offer( $ext );
 			}
 
-			$wpssoum->update->refresh_upd_config();
+			$this->a->update->refresh_upd_config();
 
 			$this->p->notice->upd( __( 'Plugin update offers have been reenabled.', 'wpsso-um' ) );
 		}

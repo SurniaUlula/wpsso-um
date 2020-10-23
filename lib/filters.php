@@ -14,10 +14,11 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 	class WpssoUmFilters {
 
-		private $p;
-		private $upg;		// WpssoUmFiltersUpgrade class object.
+		private $p;	// Wpsso class object.
+		private $a;	// WpssoUm class object.
+		private $upg;	// WpssoUmFiltersUpgrade class object.
 
-		public function __construct( &$plugin ) {
+		public function __construct( &$plugin, &$addon ) {
 
 			static $do_once = null;
 
@@ -29,6 +30,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			$do_once = true;
 
 			$this->p =& $plugin;
+			$this->a =& $addon;
 
 			if ( $this->p->debug->enabled ) {
 
@@ -159,14 +161,12 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			 */
 			if ( ! empty( $check_ext_for_updates ) ) {
 
-				$wpssoum =& WpssoUm::get_instance();
-
-				$wpssoum->update->refresh_upd_config();
+				$this->a->update->refresh_upd_config();
 
 				/**
 				 * SucomUpdate->check_ext_for_updates() does not throttle like SucomUpdate->check_all_for_updates().
 				 */
-				$wpssoum->update->check_ext_for_updates( $check_ext_for_updates, $quiet = true );
+				$this->a->update->check_ext_for_updates( $check_ext_for_updates, $quiet = true );
 			}
 
 			return $opts;
@@ -179,9 +179,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				$this->p->debug->mark();
 			}
 
-			$wpssoum =& WpssoUm::get_instance();
-
-			$def_filter_name = $wpssoum->update->get_default_filter_name();
+			$def_filter_name = $this->a->update->get_default_filter_name();
 
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
@@ -198,9 +196,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				$this->p->debug->mark();
 			}
 
-			$wpssoum =& WpssoUm::get_instance();
-
-			$def_filter_name = $wpssoum->update->get_default_filter_name();
+			$def_filter_name = $this->a->update->get_default_filter_name();
 
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
 
@@ -219,9 +215,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				$this->p->debug->mark();
 			}
 
-			$wpssoum =& WpssoUm::get_instance();
-
-			$filter_regex = $wpssoum->update->get_ext_filter_regex( $ext );
+			$filter_regex = $this->a->update->get_ext_filter_regex( $ext );
 
 			foreach ( $upgrade_notices as $version => $info ) {
 
@@ -246,9 +240,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				return $newer_avail;
 			}
 
-			$wpssoum =& WpssoUm::get_instance();
-
-			$filter_name = $wpssoum->update->get_ext_filter_name( $ext );
+			$filter_name = $this->a->update->get_ext_filter_name( $ext );
 
 			if ( 'stable' !== $filter_name && version_compare( $installed_version, $latest_version, '<' ) ) {
 

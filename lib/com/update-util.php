@@ -82,12 +82,12 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 				return SucomPlugin::get_plugins();
 			}
 
-			if ( null !== self::$get_plugins_cache ) {
+			if ( null !== SucomUpdateUtil::$get_plugins_cache ) {	// Use SucomUpdateUtil (not self) for single variable reference.
 
-				return self::$get_plugins_cache;
+				return SucomUpdateUtil::$get_plugins_cache;	// Use SucomUpdateUtil (not self) for single variable reference.
 			}
 
-			self::$get_plugins_cache = array();	// Default value.
+			SucomUpdateUtil::$get_plugins_cache = array();	// Use SucomUpdateUtil (not self) for single variable reference.
 
 			if ( ! function_exists( 'get_plugins' ) ) {	// Load the library if necessary.
 
@@ -101,20 +101,23 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 
 			if ( function_exists( 'get_plugins' ) ) {
 
-				self::$get_plugins_cache = get_plugins();
+				SucomUpdateUtil::$get_plugins_cache = get_plugins();	// Use SucomUpdateUtil (not self) for single variable reference.
 			}
 
-			return self::$get_plugins_cache;
+			return SucomUpdateUtil::$get_plugins_cache;	// Use SucomUpdateUtil (not self) for single variable reference.
 		}
 
+		/**
+		 * Clear both caches.
+		 */
 		public static function clear_plugins_cache() {
 
-			if ( method_exists( 'SucomPlugin', 'clear_plugins_cache' ) ) {
+			if ( method_exists( 'SucomPlugin', 'clear_plugins_cache' ) ) {	// Since WPSSO Core v4.21.0.
 
-				return SucomPlugin::clear_plugins_cache();
+				SucomPlugin::clear_plugins_cache();
 			}
 
-			SucomPlugin::$get_plugins_cache = null;
+			SucomUpdateUtil::$get_plugins_cache = null;	// Use SucomUpdateUtil (not self) for single variable reference.
 		}
 	}
 }
