@@ -61,6 +61,21 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 3.5.0-dev.6 (2020/10/23)**
+
+* **New Features**
+	* None.
+* **Improvements**
+	* Added cache refresh action when a WPSSO plugin / add-on is activated.
+* **Bugfixes**
+	* None.
+* **Developer Notes**
+	* Added an `$addon` object variable to the WpssoUmActions and WpssoUmFilters constructor arguments.
+* **Requires At Least**
+	* PHP v5.6.
+	* WordPress v4.4.
+	* WPSSO Core v5.0.0.
+
 **Version 3.4.1 (2020/10/17)**
 
 * **New Features**
@@ -78,6 +93,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* WPSSO Core v5.0.0.
 
 == Upgrade Notice ==
+
+= 3.5.0-dev.6 =
+
+(2020/10/23) Added cache refresh action when a WPSSO plugin / add-on is activated.
 
 = 3.4.1 =
 
