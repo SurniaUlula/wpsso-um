@@ -61,7 +61,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 3.5.0-b.1 (2020/10/23)**
+**Version 3.5.0-rc.1 (2020/10/23)**
 
 * **New Features**
 	* None.
@@ -94,7 +94,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 3.5.0-b.1 =
+= 3.5.0-rc.1 =
 
 (2020/10/23) Added cache refresh action when a WPSSO plugin / add-on is activated.
 
