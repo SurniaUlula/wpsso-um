@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires PHP: 5.6
 Requires At Least: 4.4
 Tested Up To: 5.5.1
-Stable Tag: 3.4.1
+Stable Tag: 3.5.0
 
 Update Manager for the WPSSO Core Premium plugin and its Premium complementary add-ons.
 
@@ -97,8 +97,4 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 = 3.5.0 =
 
 (2020/10/24) Added cache refresh action when a WPSSO plugin / add-on is activated.
-
-= 3.4.1 =
-
-(2020/10/17) Refactored the add-on class to extend a new WpssoAddOn abstract class.
 
