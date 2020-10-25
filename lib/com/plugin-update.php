@@ -52,20 +52,20 @@ if ( ! class_exists( 'SucomPluginUpdate' ) ) {
 			$plugin_update = new SucomPluginUpdate();
 
 			foreach ( array(
-				'id', 
-				'slug', 
-				'plugin', 
-				'version', 
-				'tested', 
-				'homepage', 
-				'download_url', 
+				'id',
+				'slug',
+				'plugin',
+				'version',
+				'tested',
+				'homepage',
+				'download_url',
 				'upgrade_notice',
 				'banners',
 				'icons',
 				'exp_date',
-				'qty_reg', 
-				'qty_total', 
-				'qty_used', 
+				'qty_reg',
+				'qty_total',
+				'qty_used',
 			) as $prop_name ) {
 
 				if ( isset( $plugin_data->$prop_name ) ) {

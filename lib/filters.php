@@ -58,8 +58,8 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			if ( is_admin() ) {
 
 				$this->p->util->add_plugin_filters( $this, array( 
-					'readme_upgrade_notices'  => 2, 
-					'newer_version_available' => 5, 
+					'readme_upgrade_notices'  => 2,
+					'newer_version_available' => 5,
 				) );
 
 				$this->p->util->add_plugin_filters( $this, array( 

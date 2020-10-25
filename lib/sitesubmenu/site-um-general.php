@@ -94,7 +94,7 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 			/**
 			 * Add a class to set a minimum width for the network postboxes.
 			 */
-			add_filter( 'postbox_classes_' . $this->pagehook . '_' . $this->pagehook . '_general', 
+			add_filter( 'postbox_classes_' . $this->pagehook . '_' . $this->pagehook . '_general',
 				array( $this, 'add_class_postbox_network' ) );
 		}
 
@@ -117,7 +117,7 @@ if ( ! class_exists( 'WpssoUmSitesubmenuSiteumgeneral' ) && class_exists( 'Wpsso
 				$filter_name = SucomUtil::sanitize_hookname( $this->p->lca . '_' . $metabox_id . '_' . $tab_key . '_rows' );
 
 				$table_rows[ $tab_key ] = array_merge(
-					$this->get_table_rows( $metabox_id, $tab_key ), 
+					$this->get_table_rows( $metabox_id, $tab_key ),
 					(array) apply_filters( $filter_name, array(), $this->form )
 				);
 			}
