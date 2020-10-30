@@ -61,12 +61,12 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 3.6.0-dev.1 (2020/10/30)**
+**Version 3.6.0 (2020/10/30)**
 
 * **New Features**
 	* None.
 * **Improvements**
-	* Added available module list to update API v3 query.
+	* Added the available module list to the update API v3 query.
 * **Bugfixes**
 	* None.
 * **Developer Notes**
@@ -109,9 +109,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 3.6.0-dev.1 =
+= 3.6.0 =
 
-(2020/10/30) Added available module list to update API v3 query.
+(2020/10/30) Added the available module list to the update API v3 query.
 
 = 3.5.0 =
 
