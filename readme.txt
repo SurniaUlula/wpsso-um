@@ -61,12 +61,12 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 3.6.0-dev.1 (TBD)**
+**Version 3.6.0-dev.1 (2020/10/30)**
 
 * **New Features**
 	* None.
 * **Improvements**
-	* None.
+	* Added available module list to update API v3 query.
 * **Bugfixes**
 	* None.
 * **Developer Notes**
@@ -111,7 +111,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = 3.6.0-dev.1 =
 
-(TBD) None.
+(2020/10/30) Added available module list to update API v3 query.
 
 = 3.5.0 =
 
