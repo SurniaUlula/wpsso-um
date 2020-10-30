@@ -17,6 +17,57 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 
 		public function __construct() {}
 
+		public static function encode_avail( array $avail, array $cf ) {
+
+			$avail_enc = array();
+
+			foreach ( $avail as $sub => $libs ) {
+
+				switch ( $sub ) {
+
+					case 'admin':	// Skip available admin settings.
+					case 'p':	// Skip available plugin features.
+					case 'p_ext':	// Skip available add-ons.
+					case 'wp':	// Skip available WP features.
+
+						continue 2;
+				}
+
+				if ( is_array( $libs ) ) {
+
+					foreach ( $libs as $lib => $active ) {
+
+						if ( 'any' === $lib ) {	// Skip generic library module.
+
+							continue;
+
+						/**
+						 * Skip available media APIs (enabled or disabled with a checkbox):
+						 *
+						 *	gravatar
+						 *	facebook
+						 *	slideshare
+						 *	soundcloud
+						 *	vimeo
+						 *	wistia
+						 *	wpvideo
+						 *	youtube
+						 */
+						} elseif ( isset( $cf[ 'opt' ][ 'defaults' ][ 'plugin_' . $lib . '_api' ] ) ) {
+
+							continue;
+
+						} elseif ( $active ) {
+
+							$avail_enc[] = $sub . ':' . $lib;
+						}
+					}
+				}
+			}
+
+			return implode( $avail_enc, ',' );
+		}
+
 		/**
 		 * Decode a URL and add query arguments. Returns false on error.
 		 */

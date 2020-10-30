@@ -29,12 +29,13 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		private $p_lca         = '';
 		private $p_slug        = '';
 		private $p_text_domain = '';
+		private $p_avail_enc   = array();
 		private $text_domain   = '';
 		private $cron_hook     = '';
 		private $sched_hours   = 24;
 		private $sched_name    = 'every24hours';
 
-		private static $api_version = 2.2;
+		private static $api_version = 3.0;
 		private static $upd_config  = array();
 		private static $offer_fname = 'offer-update.txt';
 
@@ -77,6 +78,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$this->p_text_domain = $this->p->cf[ 'plugin' ][ $this->p_lca ][ 'text_domain' ];
 					$this->text_domain   = $ext_text_domain;
 					$this->cron_hook     = $this->p_lca . '_update_manager_check';
+
+					if ( isset( $this->p->avail ) && is_array( $this->p->avail ) ) {
+
+						$this->p_avail_enc = SucomUpdateUtil::encode_avail( $this->p->avail, $this->p->cf );
+					}
 
 					/**
 					 * Support the "Check Again" feature on the WordPress Dashboard > Updates page.
@@ -290,8 +296,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				/**
 				 * Add query arguments to the update URL.
 				 */
-				$json_url = $info[ 'urls' ][ 'update' ];
-
+				$json_url  = $info[ 'urls' ][ 'update' ];
 				$json_args = array();
 
 				if ( ! empty( $ext_auth_type ) && $ext_auth_type !== 'none' ) {
@@ -303,6 +308,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$json_args[ 'installed_version' ] = $ext_version;
 				$json_args[ 'version_filter' ]    = $filter_name;
 				$json_args[ 'locale' ]            = $locale;
+				$json_args[ 'avail' ]             = $this->p_avail_enc;
 
 				$json_url = SucomUpdateUtil::decode_url_add_query( $json_url, $json_args );
 

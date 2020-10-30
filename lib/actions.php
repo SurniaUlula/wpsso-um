@@ -70,7 +70,7 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 				$this->p->admin->get_readme_info( $ext, $use_cache = false );
 			}
 
-			$this->a->update->refresh_upd_config();
+			$this->a->update->manual_update_check();
 
 			$this->p->notice->upd( __( 'Plugin update information has been refreshed.', 'wpsso-um' ) );
 		}
