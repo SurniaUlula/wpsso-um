@@ -79,7 +79,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$this->text_domain   = $ext_text_domain;
 					$this->cron_hook     = $this->p_lca . '_update_manager_check';
 
-					if ( isset( $this->p->avail ) && is_array( $this->p->avail ) ) {
+					if ( isset( $this->p->avail ) && is_array( $this->p->avail ) ) {	// Just in case.
 
 						$this->p_avail_enc = SucomUpdateUtil::encode_avail( $this->p->avail, $this->p->cf );
 					}
