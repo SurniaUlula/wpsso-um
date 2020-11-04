@@ -61,7 +61,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 3.6.1-dev.1 (2020/11/04)**
+**Version 3.6.1-dev.2 (2020/11/04)**
 
 * **New Features**
 	* None.
@@ -124,7 +124,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 3.6.1-dev.1 =
+= 3.6.1-dev.2 =
 
 (2020/11/04) Fixed deprecated `implode()` argument order in SucomUpdateUtil.
 
