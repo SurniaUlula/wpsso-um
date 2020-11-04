@@ -65,7 +65,7 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 				}
 			}
 
-			return implode( $avail_enc, ',' );	// Return a comma delimited string.
+			return implode( $glue = ',', $avail_enc );	// Return a comma delimited string.
 		}
 
 		/**
