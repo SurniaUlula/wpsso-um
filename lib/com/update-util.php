@@ -17,6 +17,9 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 
 		public function __construct() {}
 
+		/**
+		 * Returns an imploded string of active modules.
+		 */
 		public static function encode_avail( array $avail, array $cf ) {
 
 			$avail_enc = array();
@@ -27,7 +30,6 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 
 					case 'admin':	// Skip available admin settings.
 					case 'p':	// Skip available plugin features.
-					case 'p_ext':	// Skip available add-ons.
 					case 'wp':	// Skip available WP features.
 
 						continue 2;
@@ -38,22 +40,6 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 					foreach ( $libs as $lib => $active ) {
 
 						if ( 'any' === $lib ) {	// Skip generic library module.
-
-							continue;
-
-						/**
-						 * Skip available media APIs (enabled or disabled with a checkbox):
-						 *
-						 *	gravatar
-						 *	facebook
-						 *	slideshare
-						 *	soundcloud
-						 *	vimeo
-						 *	wistia
-						 *	wpvideo
-						 *	youtube
-						 */
-						} elseif ( isset( $cf[ 'opt' ][ 'defaults' ][ 'plugin_' . $lib . '_api' ] ) ) {
 
 							continue;
 

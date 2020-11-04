@@ -24,7 +24,8 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 	class SucomUpdate {
 
-		private $p;	// Wpsso class object.
+		private $p;	// Plugin class object.
+		private $a;	// Add-on class object.
 
 		private $p_lca         = '';
 		private $p_slug        = '';
@@ -35,7 +36,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		private $sched_hours   = 24;
 		private $sched_name    = 'every24hours';
 
-		private static $api_version = 3.0;
+		private static $api_version = 3.1;
 		private static $upd_config  = array();
 		private static $offer_fname = 'offer-update.txt';
 
@@ -59,9 +60,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			417 => 'Expectation Failed',
 		);
 
-		public function __construct( &$plugin, $ext_text_domain = '' ) {
+		public function __construct( &$plugin, &$addon, $ext_text_domain = '' ) {
 
 			$this->p =& $plugin;
+			$this->a =& $addon;
 
 			if ( $this->p->debug->enabled ) {
 
@@ -308,7 +310,14 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$json_args[ 'installed_version' ] = $ext_version;
 				$json_args[ 'version_filter' ]    = $filter_name;
 				$json_args[ 'locale' ]            = $locale;
-				$json_args[ 'avail' ]             = $this->p_avail_enc;
+
+				if ( method_exists( $this->a, 'get_ext' ) ) {	// Just in case.
+
+					if ( $ext === $this->a->get_ext() ) {
+					
+						$json_args[ 'avail' ] = $this->p_avail_enc;
+					}
+				}
 
 				$json_url = SucomUpdateUtil::decode_url_add_query( $json_url, $json_args );
 

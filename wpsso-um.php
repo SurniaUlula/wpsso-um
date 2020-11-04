@@ -14,7 +14,7 @@
  * Requires PHP: 5.6
  * Requires At Least: 4.4
  * Tested Up To: 5.5.3
- * Version: 3.6.1-dev.1
+ * Version: 3.6.1-dev.2
  * 
  * Version Numbering: {major}.{minor}.{bugfix}[-{stage}.{level}]
  *
@@ -89,7 +89,7 @@ if ( ! class_exists( 'WpssoUm' ) ) {
 
 			$this->actions = new WpssoUmActions( $this->p, $this );
 			$this->filters = new WpssoUmFilters( $this->p, $this );
-			$this->update  = new SucomUpdate( $this->p, $info[ 'text_domain' ] );
+			$this->update  = new SucomUpdate( $this->p, $this, $info[ 'text_domain' ] );
 		}
 	}
 
