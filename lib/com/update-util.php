@@ -20,38 +20,65 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 		/**
 		 * Returns an imploded string of active modules.
 		 */
-		public static function encode_avail( array $avail, array $cf ) {
+		public static function encode_avail( array $avail ) {
+
+			$avail = self::clean_avail( $avail );
 
 			$avail_enc = array();
 
 			foreach ( $avail as $sub => $libs ) {
 
-				switch ( $sub ) {
+				foreach ( $libs as $lib => $active ) {
 
-					case 'admin':	// Skip available admin settings.
-					case 'p':	// Skip available plugin features.
-					case 'wp':	// Skip available WP features.
+					if ( $active ) {
 
-						continue 2;
-				}
-
-				if ( is_array( $libs ) ) {
-
-					foreach ( $libs as $lib => $active ) {
-
-						if ( 'any' === $lib ) {	// Skip generic library module.
-
-							continue;
-
-						} elseif ( $active ) {
-
-							$avail_enc[] = $sub . ':' . $lib;
-						}
+						$avail_enc[] = $sub . ':' . $lib;
 					}
 				}
 			}
 
-			return implode( $glue = ',', $avail_enc );	// Return a comma delimited string.
+			$avail_enc = implode( $glue = ',', $avail_enc );	// Convert to comma delimited string.
+
+			return $avail_enc;
+		}
+
+		public static function clean_avail( array $avail ) {
+
+			foreach ( $avail as $sub => $libs ) {
+
+				if ( empty( $libs ) || ! is_array( $libs ) ) {	// Just in case.
+
+					unset( $avail[ $sub ] );
+
+					continue;
+				}
+					
+				switch ( $sub ) {
+
+					case '*':	// Skip deprecated plugin features.
+					case 'admin':	// Skip available admin settings.
+					case 'p':	// Skip available plugin features.
+					case 'wp':	// Skip available WP features.
+
+						unset( $avail[ $sub ] );
+
+						continue 2;
+				}
+
+				foreach ( $libs as $lib => $active ) {
+
+					switch ( $lib ) {
+
+						case 'any':	// Skip generic module.
+
+							unset( $avail[ $sub ][ $lib ] );
+
+							continue 2;
+					}
+				}
+			}
+
+			return $avail;
 		}
 
 		/**

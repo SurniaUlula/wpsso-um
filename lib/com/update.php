@@ -83,7 +83,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 					if ( isset( $this->p->avail ) && is_array( $this->p->avail ) ) {	// Just in case.
 
-						$this->p_avail_enc = SucomUpdateUtil::encode_avail( $this->p->avail, $this->p->cf );
+						$this->p_avail_enc = SucomUpdateUtil::encode_avail( $this->p->avail );
 					}
 
 					/**
