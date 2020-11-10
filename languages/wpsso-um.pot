@@ -162,7 +162,7 @@ msgctxt "metabox title"
 msgid "Network Update Manager"
 msgstr ""
 
-#: lib/sitesubmenu/site-um-general.php:108 lib/submenu/um-general.php:90
+#: lib/sitesubmenu/site-um-general.php:107 lib/submenu/um-general.php:90
 msgctxt "metabox tab"
 msgid "Version Filters"
 msgstr ""
