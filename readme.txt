@@ -61,6 +61,25 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 4.0.0-dev.1 (2020/11/16)**
+
+* **New Features**
+	* None.
+* **Improvements**
+	* Updated the query API to v4.
+	* Updated minimum required WPSSO Core version from v5.0.0 to v6.0.0.
+* **Bugfixes**
+	* None.
+* **Developer Notes**
+	* Query API v4 changes:
+		* Renamed the 'locale' key to 'user_locale'.
+		* Renamed the 'installed_version' key to 'plugin_version'.
+		* Added a 'wp_version' and 'wc_version' keys for minimum version checks.
+* **Requires At Least**
+	* PHP v5.6.
+	* WordPress v4.4.
+	* WPSSO Core v6.0.0.
+
 **Version 3.6.1 (2020/11/04)**
 
 * **New Features**
@@ -123,6 +142,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* WPSSO Core v5.0.0.
 
 == Upgrade Notice ==
+
+= 4.0.0-dev.1 =
+
+(2020/11/16) Updated the query API to v4. Updated minimum required WPSSO Core version from v5.0.0 to v6.0.0.
 
 = 3.6.1 =
 
