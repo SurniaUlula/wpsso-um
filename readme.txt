@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires PHP: 5.6
 Requires At Least: 4.4
 Tested Up To: 5.6
-Stable Tag: 3.6.1
+Stable Tag: 4.0.0
 
 Update Manager for the WPSSO Core Premium plugin and its Premium complementary add-ons.
 
@@ -119,22 +119,6 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* None.
 * **Developer Notes**
 	* Added an `$addon` object variable to the WpssoUmActions and WpssoUmFilters constructor arguments.
-* **Requires At Least**
-	* PHP v5.6.
-	* WordPress v4.4.
-	* WPSSO Core v5.0.0.
-
-**Version 3.4.1 (2020/10/17)**
-
-* **New Features**
-	* None.
-* **Improvements**
-	* Refactored the add-on class to extend a new WpssoAddOn abstract class.
-* **Bugfixes**
-	* Fixed backwards compatibility with older 'init_objects' and 'init_plugin' action arguments.
-* **Developer Notes**
-	* Added a new WpssoAddOn class in lib/abstracts/add-on.php.
-	* Added a new SucomAddOn class in lib/abstracts/com/add-on.php.
 * **Requires At Least**
 	* PHP v5.6.
 	* WordPress v4.4.
