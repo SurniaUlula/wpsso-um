@@ -61,13 +61,12 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 4.0.0-b.1 (2020/11/16)**
+**Version 4.0.0-rc.1 (2020/11/16)**
 
 * **New Features**
 	* None.
 * **Improvements**
 	* Updated the query API to v4.
-	* Updated minimum required WPSSO Core version from v5.0.0 to v6.0.0.
 * **Bugfixes**
 	* None.
 * **Developer Notes**
@@ -78,7 +77,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **Requires At Least**
 	* PHP v5.6.
 	* WordPress v4.4.
-	* WPSSO Core v6.0.0.
+	* WPSSO Core v5.0.0.
 
 **Version 3.6.1 (2020/11/04)**
 
@@ -143,7 +142,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 4.0.0-b.1 =
+= 4.0.0-rc.1 =
 
 (2020/11/16) Updated the query API to v4. Updated minimum required WPSSO Core version from v5.0.0 to v6.0.0.
 
