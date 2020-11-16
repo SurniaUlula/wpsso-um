@@ -228,6 +228,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 
 				/**
+				 * Saved as the 'plugin_status' value.
+				 */
+				$ext_status = $this->get_ext_status( $ext );	// Uses a local cache.
+
+				/**
 				 * Saved as the 'plugin_version' value.
 				 */
 				$ext_version = $this->get_ext_version( $ext );	// Uses a local cache.
@@ -309,10 +314,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				global $wp_version;	// Defined by ABSPATH . WPINC . '/version.php'.
 
 				$json_args[ 'api_version' ]    = self::$api_version;
+				$json_args[ 'plugin_status' ]  = $ext_status;
 				$json_args[ 'plugin_version' ] = $ext_version;
 				$json_args[ 'version_filter' ] = $filter_name;
-				$json_args[ 'wp_version' ]     = $wp_version;
 				$json_args[ 'user_locale' ]    = $user_locale;
+				$json_args[ 'wp_version' ]     = $wp_version;
 
 				if ( method_exists( $this->a, 'get_ext' ) ) {	// Just in case.
 
@@ -354,6 +360,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					'api_version'      => self::$api_version,
 					'auth_type'        => $ext_auth_type,
 					'auth_id'          => $ext_auth_id,
+					'plugin_status'    => $ext_status,
 					'plugin_version'   => $ext_version,
 					'version_filter'   => $filter_name,
 					'hosts'            => empty( $info[ 'hosts' ] ) ? array() : $info[ 'hosts' ],
@@ -1200,12 +1207,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				return $plugin_data = null;
 			}
 
-			global $wp_version;	// Defined by ABSPATH . WPINC . '/version.php'.
-
-			$ext_pdir   = $this->check_pp( $ext, $li = false );
-			$ext_pp     = self::$upd_config[ $ext ][ 'auth_id' ] && $this->check_pp( $ext, $li = true, WPSSO_UNDEF ) === WPSSO_UNDEF ? true : false;
-			$ext_status = ( $ext_pp ? 'L' : ( $ext_pdir ? 'U' : 'S' ) ) . ( self::$upd_config[ $ext ][ 'auth_id' ] ? '*' : '' );
-
 			if ( $read_cache ) {
 
 				/**
@@ -1332,8 +1333,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			/**
 			 * Set wp_remote_get() options.
 			 */
-			$ua_wpid = 'WordPress/' . $wp_version . ' (' . self::$upd_config[ $ext ][ 'slug' ] . '/' . 
-				self::$upd_config[ $ext ][ 'plugin_version' ] . '/' . $ext_status . '); ' . $home_url;
+			global $wp_version;	// Defined by ABSPATH . WPINC . '/version.php'.
+
+			$ua_wpid = 'WordPress/' . $wp_version . ' (' .
+				self::$upd_config[ $ext ][ 'slug' ] . '/' .
+				self::$upd_config[ $ext ][ 'plugin_version' ] . '/' .
+				self::$upd_config[ $ext ][ 'plugin_status' ] . '); ' . $home_url;
 
 			$ssl_verify = apply_filters( $this->p_lca . '_um_sslverify', true );
 
@@ -1487,6 +1492,26 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			return $plugin_data;
+		}
+
+		public function get_ext_status( $ext, $read_cache = true ) {
+
+			static $local_cache = array();
+
+			if ( $read_cache ) {
+
+				if ( isset( $local_cache[ $ext ] ) ) {
+
+					return $local_cache[ $ext ];	// Return from cache.
+				}
+			}
+
+			$ext_pdir    = $this->check_pp( $ext, $li = false );
+			$ext_auth_id = $this->get_ext_auth_id( $ext );
+			$ext_pp      = $ext_auth_id && $this->check_pp( $ext, $li = true, WPSSO_UNDEF ) === WPSSO_UNDEF ? true : false;
+			$ext_status  = ( $ext_pp ? 'L' : ( $ext_pdir ? 'U' : 'S' ) ) . ( $ext_auth_id ? '*' : '' );
+
+			return $local_cache[ $ext ] = $ext_status;
 		}
 
 		public function get_ext_version( $ext, $read_cache = true ) {
