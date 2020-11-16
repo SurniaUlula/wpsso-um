@@ -228,21 +228,21 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			return $upgrade_notices;
 		}
 
-		public function filter_newer_version_available( $newer_avail, $ext, $installed_version, $stable_version, $latest_version ) {
+		public function filter_newer_version_available( $newer_avail, $ext, $plugin_version, $stable_version, $latest_version ) {
 
 			if ( $this->p->debug->enabled ) {
 
 				$this->p->debug->mark();
 			}
 
-			if ( $newer_avail ) {
+			if ( $newer_avail ) {	// Already true.
 
 				return $newer_avail;
 			}
 
 			$filter_name = $this->a->update->get_ext_filter_name( $ext );
 
-			if ( 'stable' !== $filter_name && version_compare( $installed_version, $latest_version, '<' ) ) {
+			if ( 'stable' !== $filter_name && version_compare( $plugin_version, $latest_version, '<' ) ) {
 
 				return true;
 			}

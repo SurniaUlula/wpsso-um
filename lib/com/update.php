@@ -36,7 +36,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		private $sched_hours   = 24;
 		private $sched_name    = 'every24hours';
 
-		private static $api_version = 3.1;
+		private static $api_version = 4;
 		private static $upd_config  = array();
 		private static $offer_fname = 'offer-update.txt';
 
@@ -228,7 +228,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 
 				/**
-				 * Saved as the 'installed_version' value.
+				 * Saved as the 'plugin_version' value.
 				 */
 				$ext_version = $this->get_ext_version( $ext );	// Uses a local cache.
 
@@ -272,7 +272,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				/**
 				 * get_user_locale() is available since WP v4.7.0, so make sure it exists before calling it. :)
 				 */
-				$locale = is_admin() && function_exists( 'get_user_locale' ) ? get_user_locale() : get_locale();
+				$user_locale = is_admin() && function_exists( 'get_user_locale' ) ? get_user_locale() : get_locale();
 
 				/**
 				 * Translate the plugin name for notification mesages.
@@ -306,16 +306,24 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$json_args[ $ext_auth_type ] = $ext_auth_id;
 				}
 
-				$json_args[ 'api_version' ]       = self::$api_version;
-				$json_args[ 'installed_version' ] = $ext_version;
-				$json_args[ 'version_filter' ]    = $filter_name;
-				$json_args[ 'locale' ]            = $locale;
+				global $wp_version;	// Defined by ABSPATH . WPINC . '/version.php'.
+
+				$json_args[ 'api_version' ]    = self::$api_version;
+				$json_args[ 'plugin_version' ] = $ext_version;
+				$json_args[ 'version_filter' ] = $filter_name;
+				$json_args[ 'wp_version' ]     = $wp_version;
+				$json_args[ 'user_locale' ]    = $user_locale;
 
 				if ( method_exists( $this->a, 'get_ext' ) ) {	// Just in case.
 
-					if ( $ext === $this->a->get_ext() ) {
+					if ( $ext === $this->a->get_ext() ) {	// Only add for the update manager.
 					
-						$json_args[ 'avail' ] = $this->p_avail_enc;
+						$json_args[ 'plugin_avail' ] = $this->p_avail_enc;
+
+						if ( defined( 'WC_VERSION' ) ) {
+						
+							$json_args[ 'wc_version' ] = WC_VERSION;
+						}
 					}
 				}
 
@@ -337,22 +345,22 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				}
 
 				self::$upd_config[ $ext ] = array(
-					'name'              => $info[ 'name' ],
-					'name_transl'       => $name_transl,
-					'name_transl_link'  => $name_transl_link,
-					'short'             => $info[ 'short' ],
-					'slug'              => $info[ 'slug' ],				// Example: wpsso.
-					'base'              => $info[ 'base' ],				// Example: wpsso/wpsso.php.
-					'api_version'       => self::$api_version,
-					'auth_type'         => $ext_auth_type,
-					'auth_id'           => $ext_auth_id,
-					'installed_version' => $ext_version,
-					'version_filter'    => $filter_name,
-					'hosts'             => empty( $info[ 'hosts' ] ) ? array() : $info[ 'hosts' ],
-					'urls'              => empty( $info[ 'urls' ] ) ? array() : $info[ 'urls' ],
-					'data_json_url'     => $json_url,
-					'data_expire'       => 86100,					// Plugin data expiration (almost 24 hours).
-					'option_name'       => 'external_update-' . $info[ 'slug' ],	// Example: external_update-wpsso.
+					'name'             => $info[ 'name' ],
+					'name_transl'      => $name_transl,
+					'name_transl_link' => $name_transl_link,
+					'short'            => $info[ 'short' ],
+					'slug'             => $info[ 'slug' ],				// Example: wpsso.
+					'base'             => $info[ 'base' ],				// Example: wpsso/wpsso.php.
+					'api_version'      => self::$api_version,
+					'auth_type'        => $ext_auth_type,
+					'auth_id'          => $ext_auth_id,
+					'plugin_version'   => $ext_version,
+					'version_filter'   => $filter_name,
+					'hosts'            => empty( $info[ 'hosts' ] ) ? array() : $info[ 'hosts' ],
+					'urls'             => empty( $info[ 'urls' ] ) ? array() : $info[ 'urls' ],
+					'data_json_url'    => $json_url,
+					'data_expire'      => 86100,					// Plugin data expiration (almost 24 hours).
+					'option_name'      => 'external_update-' . $info[ 'slug' ],	// Example: external_update-wpsso.
 				);
 
 				if ( $this->p->debug->enabled ) {
@@ -720,7 +728,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				$update_data                 = new StdClass;
 				$update_data->lastCheck      = time();
-				$update_data->checkedVersion = $upd_cfg_info[ 'installed_version' ];
+				$update_data->checkedVersion = $upd_cfg_info[ 'plugin_version' ];
 				$update_data->update         = $this->get_update_data( $ext, $read_cache = false );
 
 				if ( self::update_option_data( $ext, $update_data ) ) {
@@ -815,7 +823,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		 */
 		public function maybe_update_wpua( $wpua ) {
 
-			global $wp_version;
+			global $wp_version;	// Defined by ABSPATH . WPINC . '/version.php'.
 
 			$correct_wpua = 'WordPress/' . $wp_version . '; ' . SucomUpdateUtilWP::raw_home_url();
 
@@ -998,12 +1006,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$this->p->debug->log( $ext . ' plugin: update property not an object' );
 					}
 
-				} elseif ( version_compare( self::$upd_config[ $ext ][ 'installed_version' ], $update_data->update->version, '<' ) ) {
+				} elseif ( version_compare( self::$upd_config[ $ext ][ 'plugin_version' ], $update_data->update->version, '<' ) ) {
 
 					if ( $this->p->debug->enabled ) {
 
 						$this->p->debug->log( $ext . ' plugin: installed version is older than the update version (' .
-							self::$upd_config[ $ext ][ 'installed_version' ] . ' vs ' . $update_data->update->version . ')' );
+							self::$upd_config[ $ext ][ 'plugin_version' ] . ' vs ' . $update_data->update->version . ')' );
 					}
 
 					/**
@@ -1111,7 +1119,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				unset( $transient->checked[ $base ] );
 			}
 
-			$transient->checked[ $base ] = self::$upd_config[ $ext ][ 'installed_version' ];
+			$transient->checked[ $base ] = self::$upd_config[ $ext ][ 'plugin_version' ];
 
 			$transient->$prop_name[ $base ] = $update_obj;
 
@@ -1192,11 +1200,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				return $plugin_data = null;
 			}
 
-			global $wp_version;
+			global $wp_version;	// Defined by ABSPATH . WPINC . '/version.php'.
 
-			$ext_pdir = $this->check_pp( $ext, $li = false );
-			$ext_pp   = self::$upd_config[ $ext ][ 'auth_id' ] && $this->check_pp( $ext, $li = true, WPSSO_UNDEF ) === WPSSO_UNDEF ? true : false;
-			$ext_stat = ( $ext_pp ? 'L' : ( $ext_pdir ? 'U' : 'S' ) ) . ( self::$upd_config[ $ext ][ 'auth_id' ] ? '*' : '' );
+			$ext_pdir   = $this->check_pp( $ext, $li = false );
+			$ext_pp     = self::$upd_config[ $ext ][ 'auth_id' ] && $this->check_pp( $ext, $li = true, WPSSO_UNDEF ) === WPSSO_UNDEF ? true : false;
+			$ext_status = ( $ext_pp ? 'L' : ( $ext_pdir ? 'U' : 'S' ) ) . ( self::$upd_config[ $ext ][ 'auth_id' ] ? '*' : '' );
 
 			if ( $read_cache ) {
 
@@ -1325,7 +1333,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			 * Set wp_remote_get() options.
 			 */
 			$ua_wpid = 'WordPress/' . $wp_version . ' (' . self::$upd_config[ $ext ][ 'slug' ] . '/' . 
-				self::$upd_config[ $ext ][ 'installed_version' ] . '/' . $ext_stat . '); ' . $home_url;
+				self::$upd_config[ $ext ][ 'plugin_version' ] . '/' . $ext_status . '); ' . $home_url;
 
 			$ssl_verify = apply_filters( $this->p_lca . '_um_sslverify', true );
 
@@ -1778,7 +1786,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				 * Check if switching from a development to a stable version filter or from a Premium to a Standard
 				 * version.
 				 */
-				if ( 0 === strpos( $upd_cfg_info[ 'installed_version' ], '0.' ) ) {
+				if ( 0 === strpos( $upd_cfg_info[ 'plugin_version' ], '0.' ) ) {
 
 					return $local_cache[ $ext ] = false;
 				}
@@ -1835,12 +1843,12 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			$upd_cfg_info = self::$upd_config[ $ext ];	// Shortcut variable name.
 
-			if ( ! isset( $upd_cfg_info[ 'installed_version' ] ) ) {
+			if ( ! isset( $upd_cfg_info[ 'plugin_version' ] ) ) {
 
 				return false;
 			}
 
-			if ( false !== strpos( $upd_cfg_info[ 'installed_version' ], 'not-installed' ) ) {	// Anywhere in string.
+			if ( false !== strpos( $upd_cfg_info[ 'plugin_version' ], 'not-installed' ) ) {	// Anywhere in string.
 
 				return false;
 			}
