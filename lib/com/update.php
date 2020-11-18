@@ -617,8 +617,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		 *
 		 * When $quiet is false the following notices may be shown:
 		 *
-		 *	- Update manager cache refresh ignored. Please wait a few more minutes before requesting another update
-		 *	cache refresh.
+		 *	- Update manager cache refresh ignored. Please wait a few more minutes before requesting another refresh.
 		 */
 		public function check_all_for_updates( $quiet = true ) {
 
@@ -641,7 +640,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 					$notice_msg = __( 'Update manager cache refresh ignored.', $this->text_domain ) . ' ';
 
-					$notice_msg .= __( 'Please wait a few more minutes before requesting another update cache refresh.', $this->text_domain );
+					$notice_msg .= __( 'Please wait a few more minutes before requesting another refresh.', $this->text_domain );
 
 					$notice_key = __FUNCTION__ . '_throttling';
 
