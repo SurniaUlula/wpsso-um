@@ -1,4 +1,4 @@
-<h1>Update Manager</h1><h3>WPSSO Add-on</h3>
+<h1>WPSSO Update Manager</h1>
 
 <table>
 <tr><th align="right" valign="top" nowrap>Plugin Name</th><td>WPSSO Update Manager</td></tr>
