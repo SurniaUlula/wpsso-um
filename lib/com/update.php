@@ -2,7 +2,7 @@
 /**
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl.txt
- * Copyright 2015-2020 Jean-Sebastien Morisset (https://wpsso.com/)
+ * Copyright 2015-2020 Jean-Sebastien Morisset (https://surniaulula.com/)
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -27,7 +27,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		private $p;	// Plugin class object.
 		private $a;	// Add-on class object.
 
-		private $p_lca         = '';
+		private $p_id          = '';
 		private $p_slug        = '';
 		private $p_text_domain = '';
 		private $p_avail_enc   = array();
@@ -70,16 +70,23 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$this->p->debug->mark( 'update manager constructor' );	// Begin timer.
 			}
 
-			if ( isset( $this->p->lca ) ) {	// Just in case.
+			if ( isset( $this->p->id ) ) {	// Since WPSSO Core v8.14.0.
 
-				$this->p_lca = $this->p->lca;
+				$this->p_id = $this->p->id;
 
-				if ( isset( $this->p->cf[ 'plugin' ][ $this->p_lca ][ 'slug' ] ) ) {	// Just in case.
+			} elseif ( isset( $this->p->lca ) ) {
 
-					$this->p_slug        = $this->p->cf[ 'plugin' ][ $this->p_lca ][ 'slug' ];
-					$this->p_text_domain = $this->p->cf[ 'plugin' ][ $this->p_lca ][ 'text_domain' ];
+				$this->p_id = $this->p->lca;
+			}
+
+			if ( $this->p_id ) {	// Empty string by default.
+
+				if ( isset( $this->p->cf[ 'plugin' ][ $this->p_id ][ 'slug' ] ) ) {	// Just in case.
+
+					$this->p_slug        = $this->p->cf[ 'plugin' ][ $this->p_id ][ 'slug' ];
+					$this->p_text_domain = $this->p->cf[ 'plugin' ][ $this->p_id ][ 'text_domain' ];
 					$this->text_domain   = $ext_text_domain;
-					$this->cron_hook     = $this->p_lca . '_update_manager_check';
+					$this->cron_hook     = $this->p_id . '_update_manager_check';
 
 					if ( isset( $this->p->avail ) && is_array( $this->p->avail ) ) {	// Just in case.
 
@@ -109,7 +116,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			} elseif ( $this->p->debug->enabled ) {
 
-				$this->p->debug->log( 'plugin lca property not defined' );
+				$this->p->debug->log( 'plugin id property not defined' );
 			}
 
 			if ( $this->p->debug->enabled ) {
@@ -144,7 +151,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			$cf_plugins = $this->p->cf[ 'plugin' ];
 
-			$cache_md5_pre  = $this->p->lca . '_!_';
+			$cache_md5_pre  = $this->p_id . '_!_';
 			$cache_exp_secs = 3 * DAY_IN_SECONDS;
 			$cache_salt     = __CLASS__ . '::upd_config';
 			$cache_id       = $cache_md5_pre . md5( $cache_salt );
@@ -627,7 +634,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			}
 
 			$throttle_mins  = 5;	// Throttle executions to one per 5 minutes.
-			$cache_md5_pre  = $this->p->lca . '_';
+			$cache_md5_pre  = $this->p_id . '_';
 			$cache_exp_secs = $throttle_mins * 60;
 			$cache_salt     = __METHOD__;
 			$cache_id       = $cache_md5_pre . md5( $cache_salt );
@@ -1195,7 +1202,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$home_url = SucomUpdateUtilWP::raw_home_url();
 			$json_url = self::$upd_config[ $ext ][ 'data_json_url' ];
 
-			$cache_md5_pre = $this->p_lca . '_';
+			$cache_md5_pre = $this->p_id . '_';
 			$cache_salt    = 'SucomUpdate::plugin_data(json_url:' . $json_url . '_home_url:' . $home_url . ')';
 			$cache_id      = $cache_md5_pre . md5( $cache_salt );
 
@@ -1339,7 +1346,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				self::$upd_config[ $ext ][ 'plugin_version' ] . '/' .
 				self::$upd_config[ $ext ][ 'plugin_status' ] . '); ' . $home_url;
 
-			$ssl_verify = apply_filters( $this->p_lca . '_um_sslverify', true );
+			$ssl_verify = apply_filters( $this->p_id . '_um_sslverify', true );
 
 			$get_options = array(
 				'timeout'     => 15,	// Default timeout is 5 seconds.
@@ -1507,7 +1514,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			$ext_pdir    = $this->check_pp( $ext, $li = false );
 			$ext_auth_id = $this->get_ext_auth_id( $ext );
-			$ext_pp      = $ext_auth_id && $this->check_pp( $ext, $li = true, WPSSO_UNDEF ) === WPSSO_UNDEF ? true : false;
+			$ext_pp      = $ext_auth_id && $this->check_pp( $ext, $li = true, -100 ) === -100 ? true : false;
 			$ext_status  = ( $ext_pp ? 'L' : ( $ext_pdir ? 'U' : 'S' ) ) . ( $ext_auth_id ? '*' : '' );
 
 			return $local_cache[ $ext ] = $ext_status;
