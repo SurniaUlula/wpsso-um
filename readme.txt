@@ -61,6 +61,22 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 4.0.1-dev.1 (2020/11/23)**
+
+* **New Features**
+	* None.
+* **Improvements**
+	* None.
+* **Bugfixes**
+	* None.
+* **Developer Notes**
+	* Added support for `Wpsso->id` in WPSSO Core v8.14.0.
+	* Replaced references to `Wpsso->lca` by 'wpsso'.
+* **Requires At Least**
+	* PHP v5.6.
+	* WordPress v4.4.
+	* WPSSO Core v5.0.0.
+
 **Version 4.0.0 (2020/11/16)**
 
 * **New Features**
@@ -70,7 +86,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **Bugfixes**
 	* None.
 * **Developer Notes**
-	* Query API v4 changes:
+	* Query API v4 updates:
 		* Renamed the 'locale' key to 'user_locale'.
 		* Renamed the 'installed_version' key to 'plugin_version'.
 		* Added a 'wp_version' and 'wc_version' keys for minimum version checks.
@@ -126,9 +142,13 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
+= 4.0.1-dev.1 =
+
+(2020/11/23) Added support for `Wpsso->id` in WPSSO Core v8.14.0. Replaced references to `Wpsso->lca` by 'wpsso'.
+
 = 4.0.0 =
 
-(2020/11/16) Updated the query API to v4. Updated minimum required WPSSO Core version from v5.0.0 to v6.0.0.
+(2020/11/16) Updated the query API to v4.
 
 = 3.6.1 =
 
