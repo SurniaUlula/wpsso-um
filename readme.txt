@@ -61,7 +61,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 4.0.1-dev.1 (2020/11/23)**
+**Version 4.0.1-dev.2 (2020/11/24)**
 
 * **New Features**
 	* None.
@@ -142,9 +142,9 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 4.0.1-dev.1 =
+= 4.0.1-dev.2 =
 
-(2020/11/23) Added support for `Wpsso->id` in WPSSO Core v8.14.0. Replaced references to `Wpsso->lca` by 'wpsso'.
+(2020/11/24) Added support for `Wpsso->id` in WPSSO Core v8.14.0. Replaced references to `Wpsso->lca` by 'wpsso'.
 
 = 4.0.0 =
 
