@@ -29,7 +29,7 @@ Update Manager for the WPSSO Core Premium plugin and its Premium complementary a
 
 WPSSO Update Manager (aka WPSSO UM) is an add-on for the [WPSSO Core plugin](https://wordpress.org/plugins/wpsso/).
 
-WPSSO Core and its add-ons make sure your content looks great on social sites and in search results, no matter how your URLs are crawled, shared, re-shared, posted, or embedded.
+WPSSO Core and its add-ons make sure your content looks best on social sites and in search results, no matter how your webpages are shared, re-shared, messaged, posted, embedded, or crawled.
 
 == Installation ==
 
@@ -61,7 +61,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 4.0.1-dev.3 (2020/11/24)**
+**Version 4.0.1-dev.4 (2020/11/24)**
 
 * **New Features**
 	* None.
@@ -142,7 +142,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 4.0.1-dev.3 =
+= 4.0.1-dev.4 =
 
 (2020/11/24) Added support for `Wpsso->id` in WPSSO Core v8.14.0. Replaced references to `Wpsso->lca` by 'wpsso'.
 
