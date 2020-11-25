@@ -61,7 +61,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 4.0.1-b.1 (2020/11/25)**
+**Version 4.0.1-rc.1 (2020/11/25)**
 
 * **New Features**
 	* None.
@@ -141,7 +141,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 4.0.1-b.1 =
+= 4.0.1-rc.1 =
 
 (2020/11/25) Added support for `Wpsso->id` in WPSSO Core v8.14.0.
 
