@@ -61,7 +61,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 4.0.1-dev.5 (2020/11/24)**
+**Version 4.0.1-dev.5 (2020/11/25)**
 
 * **New Features**
 	* None.
@@ -71,7 +71,6 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* None.
 * **Developer Notes**
 	* Added support for `Wpsso->id` in WPSSO Core v8.14.0.
-	* Replaced references to `Wpsso->lca` by 'wpsso'.
 * **Requires At Least**
 	* PHP v5.6.
 	* WordPress v4.4.
@@ -144,7 +143,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = 4.0.1-dev.5 =
 
-(2020/11/24) Added support for `Wpsso->id` in WPSSO Core v8.14.0. Replaced references to `Wpsso->lca` by 'wpsso'.
+(2020/11/25) Added support for `Wpsso->id` in WPSSO Core v8.14.0.
 
 = 4.0.0 =
 
