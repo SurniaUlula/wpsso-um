@@ -53,7 +53,7 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 
 					continue;
 				}
-					
+
 				switch ( $sub ) {
 
 					case '*':	// Skip deprecated plugin features.

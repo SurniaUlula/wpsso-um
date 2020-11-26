@@ -330,11 +330,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				if ( method_exists( $this->a, 'get_ext' ) ) {	// Just in case.
 
 					if ( $ext === $this->a->get_ext() ) {	// Only add for the update manager.
-					
+
 						$json_args[ 'plugin_avail' ] = $this->p_avail_enc;
 
 						if ( defined( 'WC_VERSION' ) ) {
-						
+
 							$json_args[ 'wc_version' ] = WC_VERSION;
 						}
 					}
