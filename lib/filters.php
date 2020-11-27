@@ -37,13 +37,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 				$this->p->debug->mark();
 			}
 
-			/**
-			 * Instantiate the WpssoUmFiltersUpgrade class object.
-			 */
-			if ( ! class_exists( 'WpssoUmFiltersUpgrade' ) ) {
-
-				require_once WPSSOUM_PLUGINDIR . 'lib/filters-upgrade.php';
-			}
+			require_once WPSSOUM_PLUGINDIR . 'lib/filters-upgrade.php';
 
 			$this->upg = new WpssoUmFiltersUpgrade( $plugin );
 
