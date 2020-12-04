@@ -11,7 +11,7 @@ Contributors: jsmoriss
 Requires PHP: 5.6
 Requires At Least: 4.4
 Tested Up To: 5.6
-Stable Tag: 4.0.1
+Stable Tag: 4.1.0
 
 Update Manager for the WPSSO Core Premium plugin and its Premium complementary add-ons.
 
