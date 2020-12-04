@@ -15,18 +15,15 @@ if ( ! class_exists( 'WpssoUmFiltersUpgrade' ) ) {
 	class WpssoUmFiltersUpgrade {
 
 		private $p;	// Wpsso class object.
+		private $a;	// WpssoUm class object.
 
 		/**
 		 * Instantiated by WpssoUmFilters->__construct().
 		 */
-		public function __construct( &$plugin ) {
+		public function __construct( &$plugin, &$addon ) {
 
 			$this->p =& $plugin;
-
-			if ( $this->p->debug->enabled ) {
-
-				$this->p->debug->mark();
-			}
+			$this->a =& $addon;
 
 			$this->p->util->add_plugin_filters( $this, array(
 				'rename_options_keys'    => 1,
@@ -34,11 +31,6 @@ if ( ! class_exists( 'WpssoUmFiltersUpgrade' ) ) {
 		}
 
 		public function filter_rename_options_keys( $options_keys ) {
-
-			if ( $this->p->debug->enabled ) {
-
-				$this->p->debug->mark();
-			}
 
 			$options_keys[ 'wpssoum' ] = array(
 				6 => array(

@@ -22,11 +22,6 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 			$this->p =& $plugin;
 			$this->a =& $addon;
 
-			if ( $this->p->debug->enabled ) {
-
-				$this->p->debug->mark();
-			}
-
 			add_action( 'activated_plugin', array( $this, 'activated_plugin' ), 10, 2 );
 
 			$this->p->util->add_plugin_actions( $this, array( 

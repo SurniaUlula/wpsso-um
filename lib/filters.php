@@ -18,6 +18,9 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		private $a;	// WpssoUm class object.
 		private $upg;	// WpssoUmFiltersUpgrade class object.
 
+		/**
+		 * Instantiated by WpssoUm->init_objects().
+		 */
 		public function __construct( &$plugin, &$addon ) {
 
 			static $do_once = null;
@@ -32,14 +35,9 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 			$this->p =& $plugin;
 			$this->a =& $addon;
 
-			if ( $this->p->debug->enabled ) {
-
-				$this->p->debug->mark();
-			}
-
 			require_once WPSSOUM_PLUGINDIR . 'lib/filters-upgrade.php';
 
-			$this->upg = new WpssoUmFiltersUpgrade( $plugin );
+			$this->upg = new WpssoUmFiltersUpgrade( $plugin, $addon );
 
 			$this->p->util->add_plugin_filters( $this, array( 
 				'option_type'          => 2,
@@ -63,11 +61,6 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		}
 
 		public function filter_option_type( $type, $base_key ) {
-
-			if ( $this->p->debug->enabled ) {
-
-				$this->p->debug->mark();
-			}
 
 			if ( ! empty( $type ) ) {
 
@@ -106,11 +99,6 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		 * $network is true if saving multisite settings.
 		 */
 		public function filter_save_setting_options( array $opts, $network, $upgrading ) {
-
-			if ( $this->p->debug->enabled ) {
-
-				$this->p->debug->mark();
-			}
 
 			if ( $network ) {
 
@@ -168,11 +156,6 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 		public function filter_get_defaults( $def_opts ) {
 
-			if ( $this->p->debug->enabled ) {
-
-				$this->p->debug->mark();
-			}
-
 			$def_filter_name = $this->a->update->get_default_filter_name();
 
 			foreach ( $this->p->cf[ 'plugin' ] as $ext => $info ) {
@@ -184,11 +167,6 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		}
 
 		public function filter_get_site_defaults( $def_opts ) {
-
-			if ( $this->p->debug->enabled ) {
-
-				$this->p->debug->mark();
-			}
 
 			$def_filter_name = $this->a->update->get_default_filter_name();
 
@@ -204,11 +182,6 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 		public function filter_readme_upgrade_notices( $upgrade_notices, $ext ) {
 
-			if ( $this->p->debug->enabled ) {
-
-				$this->p->debug->mark();
-			}
-
 			$filter_regex = $this->a->update->get_ext_filter_regex( $ext );
 
 			foreach ( $upgrade_notices as $version => $info ) {
@@ -223,11 +196,6 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		}
 
 		public function filter_newer_version_available( $newer_avail, $ext, $plugin_version, $stable_version, $latest_version ) {
-
-			if ( $this->p->debug->enabled ) {
-
-				$this->p->debug->mark();
-			}
 
 			if ( $newer_avail ) {	// Already true.
 
@@ -248,11 +216,6 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		 * Filter for 'wpssoum_status_std_features'.
 		 */
 		public function filter_status_std_features( $features, $ext, $info ) {
-
-			if ( $this->p->debug->enabled ) {
-
-				$this->p->debug->mark();
-			}
 
 			$features[ '(api) Update Check Schedule' ] = array( 
 				'label_transl' => _x( '(api) Update Check Schedule', 'lib file description', 'wpsso-um' ),

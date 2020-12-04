@@ -639,15 +639,21 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			$cache_salt     = __METHOD__;
 			$cache_id       = $cache_md5_pre . md5( $cache_salt );
 
-			if ( false !== get_transient( $cache_id ) ) {
+			if ( false !== ( $last_time = get_transient( $cache_id ) ) ) {
 
 				$user_id = get_current_user_id();
 
 				if ( ! $quiet && $user_id ) {
 
+					$expires_time = $last_time + $cache_exp_secs;
+
 					$notice_msg = __( 'Update manager cache refresh ignored.', $this->text_domain ) . ' ';
 
-					$notice_msg .= __( 'Please wait a few more minutes before requesting another refresh.', $this->text_domain );
+					$notice_msg .= sprintf( __( 'It has been %s since the last cache refresh.', $this->text_domain ),
+						human_time_diff( $last_time ) ) . ' ';
+
+					$notice_msg .= sprintf( __( 'Please wait %s or more before requesting another cache refresh.', $this->text_domain ),
+						human_time_diff( $expires_time ) ) . ' ';
 
 					$notice_key = __FUNCTION__ . '_throttling';
 
