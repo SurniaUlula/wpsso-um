@@ -1319,16 +1319,15 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$func_url  = 'https://www.php.net/manual/en/function.dns-get-record.php';
 					}
 
-					$error_msg .= sprintf( __( 'the <a href="%1$s">PHP %2$s function</a> did not return an IPv4 address.',
-						$this->text_domain ), $func_url, $func_name ) . ' ';
+					$error_msg .= sprintf( __( 'the <a href="%1$s">PHP %2$s function</a> did not return an IPv4 address.', $this->text_domain ),
+						$func_url, $func_name ) . ' ';
 
-					$error_msg .= __( 'Please contact your hosting provider to have this PHP issue fixed.',
-						$this->text_domain ) . ' ';
+					$error_msg .= __( 'Please contact your hosting provider to have this PHP issue fixed.', $this->text_domain ) . ' ';
 
 				} else {
 
 					$error_msg .= sprintf( __( 'the IPv4 address (%1$s) from the local host does not match the DNS IPv4 address (%2$s).',
-							$this->text_domain ), $host_cache[ $json_host ][ 'ip' ], $host_cache[ $json_host ][ 'a' ] ) . ' ';
+						$this->text_domain ), $host_cache[ $json_host ][ 'ip' ], $host_cache[ $json_host ][ 'a' ] ) . ' ';
 				}
 
 				$error_msg .= $update_disabled_msg;
