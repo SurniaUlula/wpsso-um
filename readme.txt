@@ -61,7 +61,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 4.2.0-dev.1 (2020/12/14)**
+**Version 4.2.0-rc.1 (2020/12/14)**
 
 * **New Features**
 	* None.
@@ -171,7 +171,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 4.2.0-dev.1 =
+= 4.2.0-rc.1 =
 
 (2020/12/14) Added 'php_version' key for API v4.1 minimum version checks.
 
