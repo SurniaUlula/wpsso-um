@@ -36,7 +36,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		private $sched_hours   = 24;
 		private $sched_name    = 'every24hours';
 
-		private static $api_version = 4;
+		private static $api_version = 4.1;
 		private static $upd_config  = array();
 		private static $offer_fname = 'offer-update.txt';
 
@@ -325,18 +325,19 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				$json_args[ 'plugin_version' ] = $ext_version;
 				$json_args[ 'version_filter' ] = $filter_name;
 				$json_args[ 'user_locale' ]    = $user_locale;
+				$json_args[ 'php_version' ]    = phpversion();
 				$json_args[ 'wp_version' ]     = $wp_version;
 
 				if ( method_exists( $this->a, 'get_ext' ) ) {	// Just in case.
 
 					if ( $ext === $this->a->get_ext() ) {	// Only add for the update manager.
 
-						$json_args[ 'plugin_avail' ] = $this->p_avail_enc;
-
 						if ( defined( 'WC_VERSION' ) ) {
 
 							$json_args[ 'wc_version' ] = WC_VERSION;
 						}
+
+						$json_args[ 'plugin_avail' ] = $this->p_avail_enc;
 					}
 				}
 
