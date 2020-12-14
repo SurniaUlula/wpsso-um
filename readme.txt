@@ -66,7 +66,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **New Features**
 	* None.
 * **Improvements**
-	* Added the PHP version for update API v4.1.
+	* Added 'php_version' key for API v4.1 minimum version checks.
 * **Bugfixes**
 	* None.
 * **Developer Notes**
@@ -173,7 +173,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 = 4.2.0-dev.1 =
 
-(2020/12/14) Added the PHP version for update API v4.1.
+(2020/12/14) Added 'php_version' key for API v4.1 minimum version checks.
 
 = 4.1.0 =
 
