@@ -61,6 +61,21 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 4.2.0-dev.1 (2020/12/14)**
+
+* **New Features**
+	* None.
+* **Improvements**
+	* Added the PHP version for update API v4.1.
+* **Bugfixes**
+	* None.
+* **Developer Notes**
+	* None.
+* **Requires At Least**
+	* PHP v5.6.
+	* WordPress v4.5.
+	* WPSSO Core v5.0.0.
+
 **Version 4.1.0 (2020/12/04)**
 
 * **New Features**
@@ -155,6 +170,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* WPSSO Core v5.0.0.
 
 == Upgrade Notice ==
+
+= 4.2.0-dev.1 =
+
+(2020/12/14) Added the PHP version for update API v4.1.
 
 = 4.1.0 =
 
