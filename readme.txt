@@ -8,7 +8,7 @@ License URI: https://www.gnu.org/licenses/gpl.txt
 Assets URI: https://surniaulula.github.io/wpsso-um/assets/
 Tags: wpsso, update, manager, schedule, add-on, pro version
 Contributors: jsmoriss
-Requires PHP: 5.6
+Requires PHP: 7.0
 Requires At Least: 4.5
 Tested Up To: 5.6
 Stable Tag: 4.2.0
@@ -72,7 +72,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 * **Developer Notes**
 	* None.
 * **Requires At Least**
-	* PHP v5.6.
+	* PHP v7.0.
 	* WordPress v4.5.
 	* WPSSO Core v5.0.0.
 
