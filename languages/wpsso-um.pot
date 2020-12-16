@@ -65,7 +65,7 @@ msgid "It has been %s since the last cache refresh."
 msgstr ""
 
 #: gettext/gettext-lib-com.php:14 lib/com/update.php:656
-msgid "Please wait %s or more before requesting another cache refresh."
+msgid "Please wait %s before requesting another cache refresh."
 msgstr ""
 
 #: gettext/gettext-lib-com.php:15 lib/com/update.php:726

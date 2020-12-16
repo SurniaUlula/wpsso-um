@@ -653,7 +653,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 					$notice_msg .= sprintf( __( 'It has been %s since the last cache refresh.', $this->text_domain ),
 						human_time_diff( $last_time ) ) . ' ';
 
-					$notice_msg .= sprintf( __( 'Please wait %s or more before requesting another cache refresh.', $this->text_domain ),
+					$notice_msg .= sprintf( __( 'Please wait %s before requesting another cache refresh.', $this->text_domain ),
 						human_time_diff( $expires_time ) ) . ' ';
 
 					$notice_key = __FUNCTION__ . '_throttling';

@@ -11,7 +11,7 @@ _x( 'Update Version Filters', 'metabox title', 'wpsso-um' );
 __( 'Please note that one or more non-stable / development %s have been selected.', 'wpsso-um' );
 __( 'Update manager cache refresh ignored.', 'wpsso-um' );
 __( 'It has been %s since the last cache refresh.', 'wpsso-um' );
-__( 'Please wait %s or more before requesting another cache refresh.', 'wpsso-um' );
+__( 'Please wait %s before requesting another cache refresh.', 'wpsso-um' );
 __( 'No plugins defined for updates.', 'wpsso-um' );
 __( 'Update information for %s has been retrieved and saved.', 'wpsso-um' );
 __( 'An error was returned while getting update information for %s.', 'wpsso-um' );
