@@ -61,6 +61,22 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 4.3.0-dev.1 (2021/01/10)**
+
+* **New Features**
+	* None.
+* **Improvements**
+	* Updated the cache refresh notice strings.
+* **Bugfixes**
+	* None.
+* **Developer Notes**
+	* Removed support for the deprecated 'x-error-msg' header.
+	* Updated the API version to 4.3.
+* **Requires At Least**
+	* PHP v7.0.
+	* WordPress v4.5.
+	* WPSSO Core v5.0.0.
+
 **Version 4.2.0 (2020/12/14)**
 
 * **New Features**
@@ -170,6 +186,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* WPSSO Core v5.0.0.
 
 == Upgrade Notice ==
+
+= 4.3.0-dev.1 =
+
+(2021/01/10) Updated the cache refresh notice strings. Removed support for the deprecated 'x-error-msg' header.
 
 = 4.2.0 =
 
