@@ -36,7 +36,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		private $sched_hours   = 24;
 		private $sched_name    = 'every24hours';
 
-		private static $api_version = 4.1;
+		private static $api_version = 4.3;
 		private static $upd_config  = array();
 		private static $offer_fname = 'offer-update.txt';
 
@@ -343,7 +343,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				$json_url = SucomUpdateUtil::decode_url_add_query( $json_url, $json_args );
 
-				if ( filter_var( $json_url, FILTER_VALIDATE_URL ) === false ) {	// Check for invalid URL.
+				if ( false === filter_var( $json_url, FILTER_VALIDATE_URL ) ) {	// Check for invalid URL.
 
 					if ( $this->p->debug->enabled ) {
 
@@ -648,13 +648,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 					$expires_time = $last_time + $cache_exp_secs;
 
-					$notice_msg = __( 'Update manager cache refresh ignored.', $this->text_domain ) . ' ';
+					$notice_msg = sprintf( __( 'Update manager cache refresh ignored - it has only been %s since the last cache refresh.',
+						$this->text_domain ), human_time_diff( $last_time ) ) . ' ';
 
-					$notice_msg .= sprintf( __( 'It has been %s since the last cache refresh.', $this->text_domain ),
-						human_time_diff( $last_time ) ) . ' ';
-
-					$notice_msg .= sprintf( __( 'Please wait %s before requesting another cache refresh.', $this->text_domain ),
-						human_time_diff( $expires_time ) ) . ' ';
+					$notice_msg .= sprintf( __( 'Please wait another %s before requesting a cache refresh.',
+						$this->text_domain ), human_time_diff( $expires_time ) ) . ' ';
 
 					$notice_key = __FUNCTION__ . '_throttling';
 
@@ -1445,9 +1443,11 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 							self::set_umsg( $ext, $type, $api_resp );
 						}
 
-						if ( empty( $request[ 'headers' ][ 'x-error-msg' ] ) && empty( $request[ 'headers' ][ 'x-update-error' ] ) ) {
-
-							self::$upd_config[ $ext ][ 'uerr' ] = false;
+						/**
+						 * X-Update-Error will be true if there was an authentication error and the payload
+						 * does not contain any update information.
+						 */
+						if ( empty( $request[ 'headers' ][ 'x-update-error' ] ) ) {
 
 							$plugin_data = SucomPluginData::data_from_json( $request[ 'body' ] );	// Returns null on json error.
 
