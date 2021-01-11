@@ -61,7 +61,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 4.3.0-dev.1 (2021/01/10)**
+**Version 4.3.0-rc.1 (2021/01/10)**
 
 * **New Features**
 	* None.
@@ -187,7 +187,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 4.3.0-dev.1 =
+= 4.3.0-rc.1 =
 
 (2021/01/10) Updated the cache refresh notice strings. Removed support for the deprecated 'x-error-msg' header.
 
