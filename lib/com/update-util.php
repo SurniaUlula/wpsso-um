@@ -92,7 +92,7 @@ if ( ! class_exists( 'SucomUpdateUtil' ) ) {
 				return SucomUtil::decode_url_add_query( $url, $args );
 			}
 
-			if ( filter_var( $url, FILTER_VALIDATE_URL ) === false ) {	// Check for invalid URL.
+			if ( false === filter_var( $url, FILTER_VALIDATE_URL ) ) {	// Check for invalid URL.
 
 				return false;
 			}
