@@ -41,7 +41,7 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 		 */
 		public function activated_plugin( $plugin_base, $network_activation ) {
 
-			if ( 0 === strpos( $plugin_base, $this->p->lca ) ) {	// Check for WPSSO plugin or add-on.
+			if ( 0 === strpos( $plugin_base, 'wpsso' ) ) {	// Matches WPSSO plugin or add-on.
 
 				$this->a->update->refresh_upd_config();
 			}
@@ -57,7 +57,7 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 
 				foreach ( $hook_extra[ 'plugins' ] as $plugin_base ) {
 
-					if ( 0 === strpos( $plugin_base, $this->p->lca ) ) {
+					if ( 0 === strpos( $plugin_base, 'wpsso' ) ) {	// Matches WPSSO plugin or add-on.
 	
 						$this->a->update->refresh_upd_config();
 
