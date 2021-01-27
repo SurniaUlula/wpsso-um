@@ -91,12 +91,7 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 		/**
 		 * Check for Authentication ID and version filter changes, and if the submitted values are different, force an
-		 * update check.
-		 *
-		 * Note that the WpssoUmActions->action_version_updates() method also refreshes the Update Manager config when
-		 * there is a plugin or add-on version update.
-		 *
-		 * $network is true if saving multisite settings.
+		 * update check. $network is true when saving multisite settings.
 		 */
 		public function filter_save_setting_options( array $opts, $network, $upgrading ) {
 
@@ -111,10 +106,10 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 
 				$update_auth = isset( $info[ 'update_auth' ] ) ? $info[ 'update_auth' ] : '';
 
-				/**
-				 * Check for Auth ID and version filter changes.
-				 */
-				foreach ( array( 'plugin_' . $ext . '_' . $update_auth, 'update_filter_for_' . $ext ) as $opt_key ) {
+				foreach ( array(
+					'plugin_' . $ext . '_' . $update_auth,	// Authentication ID.
+					'update_filter_for_' . $ext,		// Version filter.
+				) as $opt_key ) {
 
 					/**
 					 * The option key will exist only if the option was changed or received focus.

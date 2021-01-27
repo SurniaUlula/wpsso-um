@@ -23,10 +23,7 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 			$this->a =& $addon;
 
 			add_action( 'activated_plugin', array( $this, 'activated_plugin' ), 10, 2 );
-
-			$this->p->util->add_plugin_actions( $this, array( 
-				'version_updates' => 1,
-			) );
+			add_action( 'upgrader_process_complete', array( $this, 'upgrader_process_complete' ), 10, 2 );
 
 			if ( is_admin() ) {
 
@@ -38,24 +35,36 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 		}
 
 		/**
-		 * This action is run by WordPress immediately after any plugin is activated.
+		 * This action is run by WordPress after any plugin is activated.
 		 *
 		 * If a plugin is silently activated (such as during an update), this action does not run. 
 		 */
-		public function activated_plugin( $plugin, $network_activation ) {
+		public function activated_plugin( $plugin_base, $network_activation ) {
 
-			if ( 0 === strpos( $plugin, $this->p->lca ) ) {	// Check for WPSSO plugin or add-on.
+			if ( 0 === strpos( $plugin_base, $this->p->lca ) ) {	// Check for WPSSO plugin or add-on.
 
 				$this->a->update->refresh_upd_config();
 			}
 		}
 
 		/**
-		 * Example $ext_updates = array( 'wpssoum' ).
+		 * This action is run by WordPress when the upgrader process is complete.
 		 */
-		public function action_version_updates( array $ext_updates ) {
+		public function upgrader_process_complete( $wp_upgrader_obj, $hook_extra ) {
 
-			$this->a->update->refresh_upd_config();
+			if ( ! empty( $hook_extra[ 'action' ] ) && ! empty( $hook_extra[ 'type' ] ) && ! empty( $hook_extra[ 'plugins' ] ) &&
+				'update' === $hook_extra[ 'action' ] && 'plugin' === $hook_extra[ 'type' ] && is_array( $hook_extra[ 'plugins' ] ) ) {
+
+				foreach ( $hook_extra[ 'plugins' ] as $plugin_base ) {
+
+					if ( 0 === strpos( $plugin_base, $this->p->lca ) ) {
+	
+						$this->a->update->refresh_upd_config();
+
+						break;	// Stop here.
+					}
+				}
+			}
 		}
 
 		public function action_load_setting_page_check_for_updates( $pagehook, $menu_id, $menu_name, $menu_lib ) {
