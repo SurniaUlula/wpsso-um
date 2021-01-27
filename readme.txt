@@ -61,6 +61,23 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
+**Version 4.4.0-dev.1 (2021/01/27)**
+
+* **New Features**
+	* None.
+* **Improvements**
+	* None.
+* **Bugfixes**
+	* None.
+* **Developer Notes**
+	* Added a 'upgrader_process_complete' action hook to refresh the update manager configuation.
+	* Removed the 'wpsso_version_updates' action hook.
+	* Updated the API version to 4.4.
+* **Requires At Least**
+	* PHP v7.0.
+	* WordPress v4.5.
+	* WPSSO Core v5.0.0.
+
 **Version 4.3.0 (2021/01/11)**
 
 * **New Features**
@@ -186,6 +203,10 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 	* WPSSO Core v5.0.0.
 
 == Upgrade Notice ==
+
+= 4.4.0-dev.1 =
+
+(2021/01/27) Added a 'upgrader_process_complete' action hook to refresh the update manager configuation.
 
 = 4.3.0 =
 
