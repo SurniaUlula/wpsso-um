@@ -61,7 +61,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 <h3>Changelog / Release Notes</h3>
 
-**Version 4.4.0-dev.2 (2021/01/27)**
+**Version 4.4.0-rc.1 (2021/01/27)**
 
 * **New Features**
 	* None.
@@ -204,7 +204,7 @@ Version components: `{major}.{minor}.{bugfix}[-{stage}.{level}]`
 
 == Upgrade Notice ==
 
-= 4.4.0-dev.2 =
+= 4.4.0-rc.1 =
 
 (2021/01/27) Added a 'upgrader_process_complete' action hook to refresh the update manager configuation.
 
