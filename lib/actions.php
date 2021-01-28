@@ -58,7 +58,7 @@ if ( ! class_exists( 'WpssoUmActions' ) ) {
 				foreach ( $hook_extra[ 'plugins' ] as $plugin_base ) {
 
 					if ( 0 === strpos( $plugin_base, 'wpsso' ) ) {	// Matches WPSSO plugin or add-on.
-	
+
 						$this->a->update->refresh_upd_config();
 
 						break;	// Stop here.
