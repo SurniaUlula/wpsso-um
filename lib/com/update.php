@@ -388,7 +388,9 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				$user_id = get_current_user_id();
 
-				if ( ! $quiet && $user_id ) {
+				$notice_key = 'non-stable-update-version-filters-selected';
+
+				if ( ! $quiet && $user_id && $this->p->notice->is_admin_pre_notices( $notice_key, $user_id ) ) {
 
 					$um_metabox_title = _x( 'Update Version Filters', 'metabox title', $this->text_domain );
 
@@ -396,8 +398,6 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 					$notice_msg = sprintf( __( 'Please note that one or more non-stable / development %s have been selected.',
 						$this->text_domain ), $um_general_page_link );
-
-					$notice_key = 'non-stable-update-version-filters-selected';
 
 					$dismiss_time = MONTH_IN_SECONDS;
 

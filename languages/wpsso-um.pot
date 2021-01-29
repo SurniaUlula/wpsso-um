@@ -46,12 +46,12 @@ msgstr ""
 msgid "invalid authentication URL (%1$s)."
 msgstr ""
 
-#: gettext/gettext-lib-com.php:10 lib/com/update.php:393
+#: gettext/gettext-lib-com.php:10 lib/com/update.php:395
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr ""
 
-#: gettext/gettext-lib-com.php:11 lib/com/update.php:397
+#: gettext/gettext-lib-com.php:11 lib/com/update.php:399
 msgid ""
 "Please note that one or more non-stable / development %s have been selected."
 msgstr ""
