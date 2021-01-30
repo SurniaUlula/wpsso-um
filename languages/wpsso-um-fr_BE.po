@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WPSSO Update Manager 4.3.0\n"
+"Project-Id-Version: WPSSO Update Manager 4.4.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2021-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2021-01-10 16:33-0800\n"
+"PO-Revision-Date: 2021-01-29 08:30-0800\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -40,12 +40,12 @@ msgstr "Vous pouvez <a href=\"%1$s\">ouvrir un nouveau billet de soutien</a> si 
 msgid "invalid authentication URL (%1$s)."
 msgstr "URL d'authentification non valide (%1$s)."
 
-#: gettext/gettext-lib-com.php:10 lib/com/update.php:393
+#: gettext/gettext-lib-com.php:10 lib/com/update.php:395
 msgctxt "metabox title"
 msgid "Update Version Filters"
 msgstr "Filtres de version pour mises à jour"
 
-#: gettext/gettext-lib-com.php:11 lib/com/update.php:397
+#: gettext/gettext-lib-com.php:11 lib/com/update.php:399
 msgid "Please note that one or more non-stable / development %s have been selected."
 msgstr "Veuillez noter que l'un ou plusieurs %s non-stable / de développement ont été sélectionnés."
 
@@ -116,15 +116,15 @@ msgctxt "plugin description"
 msgid "Update Manager for the WPSSO Core Premium plugin and its Premium complementary add-ons."
 msgstr "Gestionnaire de mise à jour pour l'extension WPSSO Core Premium et ses ajouts complémentaires Premium."
 
-#: lib/actions.php:70
+#: lib/actions.php:79
 msgid "Plugin update information has been refreshed."
 msgstr "Les informations de mise à jour d'extension ont été actualisées."
 
-#: lib/actions.php:82
+#: lib/actions.php:91
 msgid "Plugin update offers have been reenabled."
 msgstr "Les offres de mise à jour des extensions ont été réactivées."
 
-#: lib/filters.php:221
+#: lib/filters.php:216
 msgctxt "lib file description"
 msgid "(api) Update Check Schedule"
 msgstr "(api) Horaire de vérification pour mises à jour"
