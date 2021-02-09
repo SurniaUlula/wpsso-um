@@ -1906,7 +1906,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		 */
 		private static function set_umsg( $ext, $type, $value ) {
 
-			$opt_name = md5( $ext . '_api:' . self::$api_version . '_type:' . $type . '_file:' . __FILE__ );
+			$opt_name = md5( __FILE__ . '_ext:' . $ext . '_api:' . self::$api_version . '_type:' . $type );
 
 			if ( empty( $value ) ) {
 
@@ -1931,7 +1931,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 		public static function get_umsg( $ext, $type = 'err' ) {
 
-			$opt_name = md5( $ext . '_api:' . self::$api_version . '_type:' . $type . '_file:' . __FILE__ );
+			$opt_name = md5( __FILE__ . '_ext:' . $ext . '_api:' . self::$api_version . '_type:' . $type );
 
 			if ( isset( self::$upd_config[ $ext ][ 'u' . $type ] ) ) {	// Array key exists and is not null.
 
