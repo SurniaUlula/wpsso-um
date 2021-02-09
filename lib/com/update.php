@@ -1906,7 +1906,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 		 */
 		private static function set_umsg( $ext, $type, $value ) {
 
-			$opt_name = md5( $ext . '_uapi' . self::$api_version . $type );
+			$opt_name = md5( $ext . '_api:' . self::$api_version . '_type:' . $type . '_file:' . __FILE__ );
 
 			if ( empty( $value ) ) {
 
@@ -1916,7 +1916,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			} else {
 
-				$value_string = base64_encode( $value );	// Convert object or array to string.
+				$value_string = base64_encode( $value );	// Convert object or array to string value.
 
 				SucomUpdateUtilWP::raw_do_option( $action = 'update', $opt_name, $value_string );
 			}
@@ -1931,7 +1931,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 		public static function get_umsg( $ext, $type = 'err' ) {
 
-			$opt_name = md5( $ext . '_uapi' . self::$api_version . $type );
+			$opt_name = md5( $ext . '_api:' . self::$api_version . '_type:' . $type . '_file:' . __FILE__ );
 
 			if ( isset( self::$upd_config[ $ext ][ 'u' . $type ] ) ) {	// Array key exists and is not null.
 
@@ -1943,7 +1943,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 				if ( is_string( $value ) ) {
 
-					$value = base64_decode( $value );	// Convert string back to object or array.
+					$value = base64_decode( $value );	// Convert string value back to object or array.
 				}
 
 				if ( empty( $value ) ) {
