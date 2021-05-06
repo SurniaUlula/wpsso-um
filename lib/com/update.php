@@ -648,10 +648,10 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 					$expires_time = $last_time + $cache_exp_secs;
 
-					$notice_msg = sprintf( __( 'Update manager cache refresh ignored - it has only been %s since the last cache refresh.',
+					$notice_msg = sprintf( __( 'Update manager cache refresh ignored - it has been %s since the last refresh.',
 						$this->text_domain ), human_time_diff( $last_time ) ) . ' ';
 
-					$notice_msg .= sprintf( __( 'Please wait another %s before requesting a cache refresh.',
+					$notice_msg .= sprintf( __( 'Please wait %s before requesting another cache refresh.',
 						$this->text_domain ), human_time_diff( $expires_time ) ) . ' ';
 
 					$notice_key = __FUNCTION__ . '_throttling';

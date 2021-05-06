@@ -58,12 +58,11 @@ msgstr ""
 
 #: gettext/gettext-lib-com.php:12 lib/com/update.php:651
 msgid ""
-"Update manager cache refresh ignored - it has only been %s since the last "
-"cache refresh."
+"Update manager cache refresh ignored - it has been %s since the last refresh."
 msgstr ""
 
 #: gettext/gettext-lib-com.php:13 lib/com/update.php:654
-msgid "Please wait another %s before requesting a cache refresh."
+msgid "Please wait %s before requesting another cache refresh."
 msgstr ""
 
 #: gettext/gettext-lib-com.php:14 lib/com/update.php:724

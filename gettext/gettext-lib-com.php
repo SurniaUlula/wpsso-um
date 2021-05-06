@@ -9,8 +9,8 @@ __( 'You may <a href="%1$s">open a new support ticket</a> if you believe this er
 __( 'invalid authentication URL (%1$s).', 'wpsso-um' );
 _x( 'Update Version Filters', 'metabox title', 'wpsso-um' );
 __( 'Please note that one or more non-stable / development %s have been selected.', 'wpsso-um' );
-__( 'Update manager cache refresh ignored - it has only been %s since the last cache refresh.', 'wpsso-um' );
-__( 'Please wait another %s before requesting a cache refresh.', 'wpsso-um' );
+__( 'Update manager cache refresh ignored - it has been %s since the last refresh.', 'wpsso-um' );
+__( 'Please wait %s before requesting another cache refresh.', 'wpsso-um' );
 __( 'No plugins defined for updates.', 'wpsso-um' );
 __( 'Update information for %s has been retrieved and saved.', 'wpsso-um' );
 __( 'An error was returned while getting update information for %s.', 'wpsso-um' );
