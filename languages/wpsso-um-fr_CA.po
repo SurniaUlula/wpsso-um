@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: WPSSO Update Manager 4.4.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2021-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2021-01-29 08:30-0800\n"
+"PO-Revision-Date: 2021-05-06 14:59-0700\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.4.3\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: gettext/gettext-lib-abstracts-com.php:6 lib/abstracts/com/add-on.php:178
@@ -50,12 +50,12 @@ msgid "Please note that one or more non-stable / development %s have been select
 msgstr "Veuillez noter que l'un ou plusieurs %s non-stable / de développement ont été sélectionnés."
 
 #: gettext/gettext-lib-com.php:12 lib/com/update.php:651
-msgid "Update manager cache refresh ignored - it has only been %s since the last cache refresh."
-msgstr "L'actualisation du cache du gestionnaire de mise à jour est ignorée - cela ne fait que %s depuis la dernière actualisation du cache."
+msgid "Update manager cache refresh ignored - it has been %s since the last refresh."
+msgstr "L'actualisation du cache du gestionnaire de mise à jour est ignorée - cela fait %s depuis la dernière actualisation."
 
 #: gettext/gettext-lib-com.php:13 lib/com/update.php:654
-msgid "Please wait another %s before requesting a cache refresh."
-msgstr "Veuillez attendre un autre %s avant de demander une actualisation du cache."
+msgid "Please wait %s before requesting another cache refresh."
+msgstr "Veuillez attendre %s avant de demander une autre actualisation du cache."
 
 #: gettext/gettext-lib-com.php:14 lib/com/update.php:724
 msgid "No plugins defined for updates."
