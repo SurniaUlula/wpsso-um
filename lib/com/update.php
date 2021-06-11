@@ -297,7 +297,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 				/**
 			 	 * Define some standard error messages for consistency checks.
 				 */
-				$inconsistency_msg = sprintf( __( 'An inconsistency was found in the %1$s update server information &mdash;',
+				$inconsistency_msg = sprintf( __( 'An inconsistency was found in the %1$s update server information - ',
 					$this->text_domain ), $name_transl_link );
 
 				$update_disabled_msg = sprintf( __( 'Update checks for %1$s are disabled while this inconsistency persists.',
@@ -350,7 +350,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 						$this->p->debug->log( $ext . ' plugin: invalid authentication URL (' . $json_url . ')' );
 					}
 
-					$error_msg = $inconsistency_msg . ' ' . sprintf( __( 'invalid authentication URL (%1$s).',
+					$error_msg = $inconsistency_msg . sprintf( __( 'invalid authentication URL (%1$s).',
 						$this->text_domain ), $json_url ) . ' ' . $update_disabled_msg;
 
 					self::set_umsg( $ext, 'err', $error_msg );
@@ -1252,7 +1252,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			/**
 			 * Define some standard error messages for consistency checks.
 			 */
-			$inconsistency_msg = sprintf( __( 'An inconsistency was found in the %1$s update server information &mdash;',
+			$inconsistency_msg = sprintf( __( 'An inconsistency was found in the %1$s update server information - ',
 				$this->text_domain ), self::$upd_config[ $ext ][ 'name_transl_link' ] );
 
 			$update_disabled_msg = sprintf( __( 'Update checks for %1$s are disabled while this inconsistency persists.',
@@ -1269,7 +1269,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 
 			if ( empty( $json_host ) || $json_host === $json_url ) {	// Check for false or original URL.
 
-				$error_msg = $inconsistency_msg . ' ' . sprintf( __( 'the update server URL (%1$s) does not appear to be a valid URL.',
+				$error_msg = $inconsistency_msg . sprintf( __( 'the update server URL (%1$s) does not appear to be a valid URL.',
 					$this->text_domain ), $json_url ) . ' ' . $update_disabled_msg;
 
 				self::set_umsg( $ext, 'err', $error_msg );
@@ -1303,7 +1303,7 @@ if ( ! class_exists( 'SucomUpdate' ) ) {
 			if ( 'ERROR' === $host_cache[ $json_host ][ 'ip' ] || 'ERROR' === $host_cache[ $json_host ][ 'a' ] ||
 				$host_cache[ $json_host ][ 'ip' ] !== $host_cache[ $json_host ][ 'a' ] ) {
 
-				$error_msg = $inconsistency_msg . ' ';
+				$error_msg = $inconsistency_msg;
 
 				if ( 'ERROR' === $host_cache[ $json_host ][ 'ip' ] || 'ERROR' === $host_cache[ $json_host ][ 'a' ] ) {
 
