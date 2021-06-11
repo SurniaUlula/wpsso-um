@@ -14,7 +14,7 @@ msgstr ""
 
 #: gettext/gettext-lib-abstracts-com.php:6 lib/abstracts/com/add-on.php:178
 msgid ""
-"The %1$s add-on requires the %2$s plugin &mdash; please activate the missing "
+"The %1$s add-on requires the %2$s plugin - please activate the missing "
 "plugin."
 msgstr ""
 
@@ -26,8 +26,7 @@ msgstr ""
 
 #: gettext/gettext-lib-com.php:6 gettext/gettext-lib-com.php:18
 #: lib/com/update.php:300 lib/com/update.php:1255
-msgid ""
-"An inconsistency was found in the %1$s update server information &mdash;"
+msgid "An inconsistency was found in the %1$s update server information - "
 msgstr ""
 
 #: gettext/gettext-lib-com.php:7 gettext/gettext-lib-com.php:19
