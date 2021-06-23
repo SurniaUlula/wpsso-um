@@ -86,6 +86,8 @@ if ( ! class_exists( 'WpssoUmFilters' ) ) {
 		 */
 		public function filter_save_options( array $opts, $options_name, $network, $upgrading ) {
 
+			_deprecated_function( __METHOD__ . '()', '2020/06/20', __CLASS__ . '::filter_save_setting_options()' );	// Deprecation message.
+
 			return $this->filter_save_setting_options( $opts, $network, $upgrading );
 		}
 
