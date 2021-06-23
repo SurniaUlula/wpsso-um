@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WPSSO Update Manager 4.4.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpsso-um\n"
 "POT-Creation-Date: 2021-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2021-06-11 11:49-0700\n"
+"PO-Revision-Date: 2021-06-23 07:49-0700\n"
 "Last-Translator: JS Morisset <jsm@surniaulula.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -124,7 +124,7 @@ msgstr "Les informations de mise à jour d'extension ont été actualisées."
 msgid "Plugin update offers have been reenabled."
 msgstr "Les offres de mise à jour des extensions ont été réactivées."
 
-#: lib/filters.php:216
+#: lib/filters.php:218
 msgctxt "lib file description"
 msgid "(api) Update Check Schedule"
 msgstr "(api) Horaire de vérification pour mises à jour"
